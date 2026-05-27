@@ -1,24 +1,54 @@
-# Logos Fractal Theological Architecture
+# Logos Governance Architecture
 
-A fractal, machine-readable theological architecture for Logos-grounded governance, derivation, and LAIRCA-style decision systems.
+A Logos-grounded theological source architecture for AI-era governance, making assumptions about truth, personhood, authority, delegation, provenance, and human accountability explicit, traceable, and reviewable.
+
+## Navigation
+
+- **New human readers:** start with this README.
+- **AI agents and coding assistants:** start with [`AI_WORK_START_HERE.md`](AI_WORK_START_HERE.md).
+- **Repo map and document index:** see [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md).
+- **Governance conventions:** see [`docs/governance/README.md`](docs/governance/README.md).
+- **Roadmap:** see [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md).
+- **Maintenance runs:** see [`docs/maintenance.md`](docs/maintenance.md).
 
 ## What this repository is
 
-This repository is the theological upstream companion to the AIRCA Fractal Decision Architecture project.
+This repository is a theological source architecture for AI-era decision systems.
+
+It is the theological upstream companion to the AIRCA Fractal Decision Architecture project.
 
 In simple terms:
+
 - **AIRCA repository** = operational decision architecture
 - **This repository** = theological source architecture, doctrinal taxonomy, ordering logic, weighting logic, derivation chains, and Christian instantiation logic for LAIRCA-style use
 
 The purpose of this repository is to make the theological layer explicit instead of leaving it hidden behind governance language, optimization language, or technical tooling.
 
-It is meant to be useful for human readers, future AI interrogation, structured retrieval, and institutionally serious downstream applications.
+It is meant to be useful for human readers, future AI interrogation, structured retrieval, governed machine-readable artifacts, and institutionally serious downstream applications.
+
+## Central claim
+
+> **No decision architecture is neutral.**
+
+Every serious system already assumes answers to questions about reality, truth, personhood, authority, responsibility, delegation, and what counts as a good outcome.
+
+Every architecture already assumes answers to questions like:
+
+- What is a person?
+- What is truth?
+- What may be delegated?
+- What does responsibility require?
+- What goods outrank others?
+- What kinds of efficiency gains are morally acceptable?
+
+The Logos project makes those assumptions visible, structured, traceable, and reviewable.
 
 ## Why this repository exists
 
 Many decision systems pretend to begin at the level of process, policy, data, or optimization. In reality, every serious system already contains deeper assumptions about reality, truth, personhood, authority, responsibility, and what counts as a good outcome.
 
 This repository exists to name those assumptions at the theological level and organize them in a way that can be carried downward into:
+
 - ethics
 - governance
 - LAIRCA configuration
@@ -28,21 +58,48 @@ This repository exists to name those assumptions at the theological level and or
 
 The project therefore starts upstream of process design. It starts with theology.
 
-## Central claim
+## Why this matters for AI and governance
 
-No decision architecture is neutral.
+AI-era institutions face a recurring temptation: to move directly from capability to deployment while skipping the deeper questions that should govern design.
 
-Every architecture already assumes answers to questions like:
-- What is a person?
-- What is truth?
-- What may be delegated?
-- What does responsibility require?
-- What goods outrank others?
-- What kinds of efficiency gains are morally acceptable?
+This repository is meant to slow that process down in a productive way.
 
-The Logos project makes those assumptions visible, structured, and reviewable.
+It asks:
 
-## Relationship to AIRCA
+- What kind of anthropology is being assumed?
+- What remains accountable to human judgment?
+- What kinds of ranking are morally dangerous?
+- When is automation appropriate, and when does it become deforming?
+- How should dignity, truth, prudence, and stewardship function in architecture rather than slogans?
+
+In that sense, the project is not anti-tool. It is anti-deformation.
+
+### Design principle
+
+> **No model output can certify its own governance validity.**
+
+A model may assist with retrieval, summarization, drafting, classification, ranking, recommendation, or comparison. But validity must come from outside the model through source provenance, authority boundaries, review obligations, derivation chains, audit evidence, and accountable human judgment.
+
+## Architecture pattern
+
+The repository organizes governance as a chain of derivation:
+
+```text
+Theological / moral source
+  -> anthropological claim
+  -> ethical implication
+  -> governance requirement
+  -> design constraint
+  -> AI workflow rule
+  -> review obligation
+  -> audit evidence
+```
+
+The purpose is not to make every decision mechanical.
+
+The purpose is to prevent hidden assumptions from silently becoming automated power.
+
+## Relationship to AIRCA and LAIRCA
 
 This repository should be read as a companion, not a replacement, to the AIRCA Fractal Decision Architecture repository.
 
@@ -50,15 +107,21 @@ The AIRCA repository focuses on the operational shape of Architect, Inform, Rank
 
 The relationship is best understood as:
 
-`Logos theological source architecture -> LAIRCA Christian instantiation -> AIRCA operational decision architecture -> institutional application`
+```text
+Logos theological source architecture
+  -> LAIRCA Christian instantiation
+  -> AIRCA operational decision architecture
+  -> institutional application
+```
 
 That means this repository is upstream of Christian uses of AIRCA while remaining distinct from AIRCA as an operational framework.
 
 ## What “fractal” means here
 
-The repository is called fractal because it is designed to grow through repeated internal structure rather than through uncontrolled accumulation of notes.
+The repository preserves a fractal architecture because it is designed to grow through repeated internal structure rather than uncontrolled accumulation of notes.
 
 In practical terms, that means:
+
 - important concepts should become nodes
 - the same structural logic should repeat at multiple levels
 - parent-child and derived-from relationships should remain explicit
@@ -103,10 +166,11 @@ The repository should preserve where reality resists current models through a go
 Expectation, exception, and adaptation should remain distinct objects so learning remains traceable.
 
 See:
-- `docs/governance/exceptions-lake-and-learning-loop.md`
-- `docs/governance/exceptions-lake-integration-note.md`
-- `docs/roadmap/exceptions-lake-learning-loop-roadmap-extension.md`
-- `data/graph/schemes/exceptions-lake.md`
+
+- [`docs/governance/exceptions-lake-and-learning-loop.md`](docs/governance/exceptions-lake-and-learning-loop.md)
+- [`docs/governance/exceptions-lake-integration-note.md`](docs/governance/exceptions-lake-integration-note.md)
+- [`docs/roadmap/exceptions-lake-learning-loop-roadmap-extension.md`](docs/roadmap/exceptions-lake-learning-loop-roadmap-extension.md)
+- [`data/graph/schemes/exceptions-lake.md`](data/graph/schemes/exceptions-lake.md)
 
 ## Structure and vocabulary discipline
 
@@ -116,30 +180,15 @@ Because it is designed for human reading, semantic retrieval, RAG-style retrieva
 
 Preferred order of extension:
 
-1. model the new thing as a node first  
-2. fit it into existing structure and vocabulary where possible  
-3. expand vocabulary only when the concept cannot fit cleanly  
-4. register new vocabulary before broad use  
-5. avoid structural redesign unless the current shell cannot represent the concept without distortion  
+1. model the new thing as a node first
+2. fit it into existing structure and vocabulary where possible
+3. expand vocabulary only when the concept cannot fit cleanly
+4. register new vocabulary before broad use
+5. avoid structural redesign unless the current shell cannot represent the concept without distortion
 
 Vocabulary drift is not a minor formatting issue here. It weakens retrieval, comparison, ontology coherence, and future reuse.
 
-See:
-- `docs/governance/README.md`
-- `docs/governance/ontology-discipline.md`
-- `docs/governance/anchor-conventions.md`
-- `docs/governance/anchor-conventions-scripture-and-graph-extension.md`
-- `docs/governance/tag-registry.md`
-- `docs/governance/tag-registry-scripture-and-boundary-extension.md`
-- `docs/governance/relationship-registry.md`
-- `docs/governance/node-types.md`
-- `docs/governance/node-types-scripture-and-boundary-extension.md`
-- `docs/governance/scripture-taxonomy-and-ontology.md`
-- `docs/governance/textual-traditions-translation-and-noncanonical-sources.md`
-- `docs/governance/noncanonical-and-heresy-classification.md`
-- `docs/governance/translation-trust-and-sectarian-classification.md`
-- `docs/roadmap/theological-buildout-roadmap.md`
-- `docs/roadmap/repository-integration-map.md`
+For detailed governance conventions, see [`docs/governance/README.md`](docs/governance/README.md) and [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md).
 
 ## Provenance, synthesis, and philosophical influence
 
@@ -148,6 +197,7 @@ This repository is not only concerned with what a node says. It is also concerne
 Because the project is designed to support human reading, semantic retrieval, recursive comparison, and future ontology development, major nodes should eventually preserve provenance more explicitly.
 
 That means the repository should be able to distinguish between:
+
 - material directly derived from one major source
 - material synthesized from several Christian thinkers or traditions
 - material adapted from earlier categories into a new theological frame
@@ -157,6 +207,7 @@ That means the repository should be able to distinguish between:
 This matters because theological architecture becomes less trustworthy when synthesis is presented as if it came from a single source, or when borrowed philosophical categories are treated as if they were native to Christian theology without acknowledgment.
 
 In practical terms, the project should increasingly support governed distinctions such as:
+
 - direct derivation
 - multi-source synthesis
 - appropriation
@@ -168,10 +219,12 @@ In practical terms, the project should increasingly support governed distinction
 That discipline is especially important in cases where Christian thinkers are deeply shaped by non-Christian philosophical traditions while also revising, correcting, or transforming them.
 
 Over time, this repository should support a clean architecture for both:
+
 - Christian canon thinkers
 - non-Christian philosophical source traditions
 
 That will allow the project to model intersections such as:
+
 - Augustine and Platonism
 - Aquinas and Aristotelianism
 - Christian doctrine and modern political or philosophical categories
@@ -182,6 +235,7 @@ The goal is not to flatten these relationships into simple influence language. T
 ## What the repository is trying to build
 
 This project is gradually building:
+
 - a canon and source map
 - a doctrine taxonomy
 - ordering profiles
@@ -201,21 +255,6 @@ This project is gradually building:
 
 The intent is that the repository becomes not merely a collection of theological notes, but a usable theological architecture.
 
-## Why this matters for AI and governance
-
-AI-era institutions face a recurring temptation: to move directly from capability to deployment while skipping the deeper questions that should govern design.
-
-This repository is meant to slow that process down in a productive way.
-
-It asks:
-- What kind of anthropology is being assumed?
-- What remains accountable to human judgment?
-- What kinds of ranking are morally dangerous?
-- When is automation appropriate, and when does it become deforming?
-- How should dignity, truth, prudence, and stewardship actually function in architecture rather than in slogans?
-
-In that sense, the project is not anti-tool. It is anti-deformation.
-
 ## Current build order
 
 The repository is being built in this order:
@@ -233,17 +272,14 @@ The repository is being built in this order:
 
 That order is intentional. It is meant to prevent the project from jumping too quickly into application before the theological source architecture is stable enough to support it.
 
-For the practical sequence of which thinkers, concepts, and comparisons to build next, see:
+For the practical sequence of which thinkers, concepts, and comparisons to build next, see [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md).
 
-- `docs/roadmap/theological-buildout-roadmap.md`
-
-For the repo-wide integration of doctrine, scripture, source-control, and graph layers, see:
-
-- `docs/roadmap/repository-integration-map.md`
+For repo-wide integration of doctrine, scripture, source-control, and graph layers, see [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md).
 
 ## What has already been built
 
 The repository already contains:
+
 - a roadmap
 - canon and doctrine branch foundations
 - a full default ordering profile
@@ -262,6 +298,7 @@ The repository already contains:
 ## Recommended next growth path
 
 The strongest next steps are:
+
 - build more doctrine nodes
 - build canon source nodes
 - deepen scripture, lexical, and manuscript linkages
@@ -273,25 +310,19 @@ The strongest next steps are:
 - introduce machine-readable sidecars once the prose architecture is stable enough
 - continue scaffolding the future primary-sources branch so it can eventually support witness-, fragment-, lexical-, and translation-aware textual analysis
 
-For the recommended theologian sequence, thinker-page checklist, concept-promotion logic, comparison roadmap, and synthesis roadmap, see:
-
-- `docs/roadmap/theological-buildout-roadmap.md`
-
-For repo-wide layer integration, see:
-
-- `docs/roadmap/repository-integration-map.md`
+For the recommended theologian sequence, thinker-page checklist, concept-promotion logic, comparison roadmap, and synthesis roadmap, see [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md).
 
 ## Graph and concordance note
 
-The repository now also includes a graph-oriented layer for governed machine-readable relationships.
+The repository includes a graph-oriented layer for governed machine-readable relationships.
 
 That graph layer should remain:
+
 - downstream of the human-readable theological architecture
 - governed by the same vocabulary and trust controls
 - aligned with scripture, doctrine, canon, translation, manuscript, and boundary-source rules
 
-See:
-- `data/graph/README.md`
+See [`data/graph/README.md`](data/graph/README.md).
 
 ## Future primary-sources horizon
 
@@ -309,7 +340,14 @@ That future layer would not be a flat archive of manuscript images or quotations
 
 The long-range goal is to make it possible to move through layers such as:
 
-`witness or fragment -> transcription -> passage reconstruction -> lexical evidence -> translation comparison -> doctrine / concept / theology`
+```text
+witness or fragment
+  -> transcription
+  -> passage reconstruction
+  -> lexical evidence
+  -> translation comparison
+  -> doctrine / concept / theology
+```
 
 without collapsing those layers into one another.
 
@@ -325,54 +363,17 @@ If built well, this future branch could help a user or AI system:
 This future layer is intended to extend the repository’s existing ontology rather than replace it. It belongs inside the same fractal shell, governed by the same commitments to stable identity, typed relationships, trust zones, provenance, validation, and machine-legible structure.
 
 See:
-- `docs/roadmap/biblical-primary-sources-future-framework.md`
-- `docs/primary-sources/README.md`
-- `docs/primary-sources/ontology-and-taxonomy.md`
-- `data/graph/schemes/primary-sources.md`
-  
-## Maintenance Runs
 
-For long cleanup/buildout cycles, use the staged operations script:
+- [`docs/roadmap/biblical-primary-sources-future-framework.md`](docs/roadmap/biblical-primary-sources-future-framework.md)
+- [`docs/primary-sources/README.md`](docs/primary-sources/README.md)
+- [`docs/primary-sources/ontology-and-taxonomy.md`](docs/primary-sources/ontology-and-taxonomy.md)
+- [`data/graph/schemes/primary-sources.md`](data/graph/schemes/primary-sources.md)
 
-- Script: `scripts/overnight_maintenance.sh`
-- Stages:
-  1. metadata lint and normalization
-  2. cross-reference validation
-  3. link validation
-  4. report generation
-- Checkpoints: stage completion markers are written to the generated runtime path `logs/overnight/checkpoints` so interrupted runs can resume safely.
-- Logs: timestamped run logs are written to the generated runtime path `logs/overnight`.
-- Reports: timestamped summaries are written to `reports/`.
+## Maintenance
 
-### Common commands
+Operational maintenance commands have been moved out of the public landing page.
 
-```bash
-# Normal run (resumable)
-./scripts/overnight_maintenance.sh
-
-# Preview normalization only (no writes)
-./scripts/overnight_maintenance.sh --dry-run
-
-# Treat warnings as failures
-./scripts/overnight_maintenance.sh --strict
-
-# Re-run all stages even if checkpoints exist
-./scripts/overnight_maintenance.sh --force
-```
-
-### Example 8-hour run
-
-Use either `nohup` or `tmux` for long sessions:
-
-```bash
-nohup ./scripts/overnight_maintenance.sh --strict > logs/overnight/nohup_$(date -u +"%Y%m%dT%H%M%SZ").out 2>&1 &
-```
-
-Or inside `tmux`:
-
-```bash
-tmux new -s overnight-maintenance './scripts/overnight_maintenance.sh --strict'
-```
+See [`docs/maintenance.md`](docs/maintenance.md) for staged cleanup/buildout runs, checkpoints, logs, reports, and common commands.
 
 ## Attribution
 
@@ -381,3 +382,5 @@ Author attribution should appear as **Lowell T. Wong**.
 ## License
 
 This repository is licensed under **CC BY 4.0**.
+
+
