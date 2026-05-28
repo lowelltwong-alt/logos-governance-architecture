@@ -1,4 +1,4 @@
-We are continuing `lowelltwong-alt/logos-fractal-theological-architecture` after PR #38 merged the live-main sync rule.
+We are continuing `lowelltwong-alt/logos-governance-architecture` (formerly `logos-fractal-theological-architecture`) after PR #38 merged the live-main sync rule.
 
 Create branch `feature/human-person-formation-core-slice` from live `main` after running the standard live-main startup protocol from `AGENTS.md`.
 

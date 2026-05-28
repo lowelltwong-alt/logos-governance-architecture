@@ -14,7 +14,7 @@ Use this header at the top of every Codex, Claude Code, or AI-assisted repositor
 
 ## Header
 
-Repository: lowelltwong-alt/logos-fractal-theological-architecture
+Repository: lowelltwong-alt/logos-governance-architecture
 
 Tool settings:
 
