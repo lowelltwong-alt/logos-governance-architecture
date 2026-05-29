@@ -1,3 +1,13 @@
+---
+artifact: true
+artifact_type: technical_crosswalk
+status: proposed
+canon_status: not_canon_until_approved
+authority: explanatory_only
+review_cycle: 6 months
+stale_after: 2026-11-29
+---
+
 # Shannon, Chaos, and Logos Source Integrity
 
 Status: Non-canonical concept note.
@@ -7,7 +17,7 @@ Authority: Explanatory only. Shannon is not used as doctrinal authority here. Th
 
 Shannon information theory is a lower-level communication-reliability lens. It explains transmission limits, error correction, and unavoidable uncertainty in any channel that carries language. It does **not** define Logos, doctrine, or the ordering of truth. In Logos architecture, Shannon is downstream of the theological source architecture: it helps describe how source-grounded coherence can be preserved (or lost) when communicated through AI workflows. It is not used to validate, prove, or order doctrine.
 
-Master conceptual reference: `../../_shared/SHANNON_INFORMATION_THEORY_FOR_AI_GOVERNANCE_MASTER.md` (workspace-shared, non-canonical).
+Conceptual lineage: this note draws on Shannon (1948), Cover & Thomas (*Elements of Information Theory*), MacKay (*Information Theory, Inference, and Learning Algorithms*), and Strogatz (*Nonlinear Dynamics and Chaos*); see the **References** section. No file outside this repository is required to read this note.
 
 ## Boundary
 
@@ -161,4 +171,3 @@ Conceptual only. No long copyrighted excerpts.
 - Immanuel Kant, *Critique of Pure Reason* (representation/coherence caution).
 - Baruch Spinoza, *Ethics* (rational order / substance framing).
 - For Logos doctrine, derivation chains, and governance: this repo's own canonical files. Shannon is not consulted for those.
-- Workspace-shared master file: `../../_shared/SHANNON_INFORMATION_THEORY_FOR_AI_GOVERNANCE_MASTER.md`.
