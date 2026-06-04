@@ -28,6 +28,8 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 ## Scripture, translation, and boundary-source governance
 
 - [`docs/governance/scripture-taxonomy-and-ontology.md`](docs/governance/scripture-taxonomy-and-ontology.md)
+- [`docs/governance/bible-classification-taxonomy.md`](docs/governance/bible-classification-taxonomy.md) — multi-axis passage classification vocabulary (promoted from taxonomy-scaffold v0.2; consumed by logos-scripture-graph)
+- [`docs/governance/scholarly-crosscheck-bibliography.md`](docs/governance/scholarly-crosscheck-bibliography.md) — frameworks to validate the taxonomy before promotion
 - [`docs/governance/textual-traditions-translation-and-noncanonical-sources.md`](docs/governance/textual-traditions-translation-and-noncanonical-sources.md)
 - [`docs/governance/noncanonical-and-heresy-classification.md`](docs/governance/noncanonical-and-heresy-classification.md)
 - [`docs/governance/translation-trust-and-sectarian-classification.md`](docs/governance/translation-trust-and-sectarian-classification.md)
