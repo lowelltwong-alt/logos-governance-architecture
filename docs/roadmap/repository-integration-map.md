@@ -21,6 +21,26 @@ The major surfaces are:
 
 These should reinforce one another rather than diverge.
 
+## Constituent repositories (surfaces in separate shells)
+
+"One architecture, multiple surfaces" does not require one git repository. Some
+surfaces are best expressed as their own deterministic, separately-validated
+repositories, coupled to this architecture **by contract** (validated release
+artifacts + schemas), not by merge or submodule. The ontology stays continuous;
+the shells differ in format.
+
+| Repository | Role | Implements layers |
+|------------|------|-------------------|
+| `logos-governance-architecture` (this repo) | Theological source architecture: taxonomy, ontology, ordering/weighting logic, governance | 1–2 (canon, doctrine/concept), 5 (biblical theme), and the governance of 3–9 |
+| [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) | **Data-plane substrate**: deterministic Bible ingest, passage/witness records, canon profiles, boundary claims, retrieval chunks, provenance + validation | 3 (scripture), 4 (original-language/translation/manuscript, via Strong's WordTokens), 6 (boundary-source, via canon profiles), 7 (graph/concordance), 8 (primary-sources, future) |
+
+The substrate consumes this repo's taxonomy/ontology/canon discipline and emits
+machine-readable, provenance-stamped artifacts the graph/concordance layer can
+govern. Its own `ADR-0001` keeps it standalone so source-fidelity and validation
+evolve independently of the theological node surface, while remaining a governed
+surface of the same architecture. See its `.ai/control/PROJECT_CONTEXT.md` for the
+reciprocal mapping.
+
 ## Main repository layers
 
 ### 1. Canon layer
