@@ -10,6 +10,10 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md) — practical buildout sequence
 - [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md) — repo-wide layer integration
 
+## Constituent repositories (external surfaces)
+
+- [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) — data-plane substrate implementing the scripture, translation/manuscript, boundary-source, and graph/concordance layers (3, 4, 6, 7, 8). Coupled by contract; see `docs/roadmap/repository-integration-map.md` → "Constituent repositories".
+
 ## Governance and vocabulary discipline
 
 - [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
