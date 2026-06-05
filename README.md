@@ -7,6 +7,7 @@ A Logos-grounded theological source architecture for AI-era governance, making a
 - **New human readers:** start with this README.
 - **AI agents and coding assistants:** start with [`AI_WORK_START_HERE.md`](AI_WORK_START_HERE.md).
 - **Repo map and document index:** see [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md).
+- **Cross-repo data flow:** see [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md).
 - **Governance conventions:** see [`docs/governance/README.md`](docs/governance/README.md).
 - **Roadmap:** see [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md).
 - **Maintenance runs:** see [`docs/maintenance.md`](docs/maintenance.md).
@@ -14,6 +15,15 @@ A Logos-grounded theological source architecture for AI-era governance, making a
 ## What this repository is
 
 This repository is a theological source architecture for AI-era decision systems.
+
+It is also the upstream governance architecture for the companion
+[`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph)
+data-plane repository. That link is a `governance_contract`: this repo defines
+source-trust, derivation, review, and authority meaning; the Scripture Graph repo
+implements deterministic Scripture data artifacts under that governance. The
+paired GitHub issues are
+[`logos-governance-architecture#54`](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/54)
+and [`logos-scripture-graph#7`](https://github.com/lowelltwong-alt/logos-scripture-graph/issues/7).
 
 It is the theological upstream companion to the AIRCA Fractal Decision Architecture project.
 

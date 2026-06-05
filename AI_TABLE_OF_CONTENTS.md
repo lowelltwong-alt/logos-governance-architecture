@@ -2,6 +2,13 @@
 
 This file maps the repository for AI agents, coding assistants, maintainers, and reviewers.
 
+## Cross-Repo Project Family
+
+- [`AI_FRONT_DOOR.md`](AI_FRONT_DOOR.md) - contribution lanes and cross-repo governance boundary
+- [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md) - hierarchy and data flow from governance authority to Scripture data plane
+- [`docs/governance/logos-cross-repo-governance-contract.md`](docs/governance/logos-cross-repo-governance-contract.md) - upstream/downstream contract with `logos-scripture-graph`
+- [`docs/governance/agent-hostile-protection.md`](docs/governance/agent-hostile-protection.md) - fail-closed agent-hostile protection policy
+
 ## Primary entry points
 
 - [`README.md`](README.md) — human-facing landing page and project overview
