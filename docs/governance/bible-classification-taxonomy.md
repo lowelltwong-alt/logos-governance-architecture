@@ -93,11 +93,13 @@ noncanonical_but_referenced, liturgically_read, doctrinally_authoritative, edify
 TraditionScope: JewishRabbinic, Protestant, RomanCatholic, EasternOrthodox,
 OrientalOrthodox, EthiopianOrthodox, Anglican, Lutheran, Reformed, Evangelical,
 AcademicBiblicalStudies, ChristianCanonical.
-(Canon membership per book is enforced in logos-scripture-graph `config/canon/canon_profiles.yaml`.)
+(Canon membership per book is enforced in the companion
+[logos-scripture-graph canon profile config](https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/config/canon/canon_profiles.yaml).)
 
 ## Extra-biblical context fence
 
 ANE / Second-Temple / Greco-Roman / inscription / archaeology / apologetic sources are
-NOT classified on these axes. They live in `logos-scripture-graph:
-schemas/extra_biblical_source.schema.json` with `layer: context` and link to scripture
-only via tradition-scoped RelationshipObjects. See `docs/governance/trust-zones.md`.
+NOT classified on these axes. They live in the companion
+[logos-scripture-graph extra-biblical source schema](https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/schemas/extra_biblical_source.schema.json)
+with `layer: context` and link to scripture only via tradition-scoped
+RelationshipObjects. See `docs/governance/trust-zones.md`.

@@ -332,4 +332,8 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "name": "governance_metadata",
             "command": [python, "scripts/validate_governance_metadata.py"],
         },
+        {
+            "name": "cross_repo_governance_contract",
+            "command": [python, "scripts/validate_cross_repo_governance_contract.py"],
+        },
     ]

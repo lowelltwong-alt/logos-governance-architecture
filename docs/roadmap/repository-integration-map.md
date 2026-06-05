@@ -13,6 +13,12 @@ It is meant to reduce drift between:
 
 The repository should be understood as one architecture with multiple surfaces, not as separate projects.
 
+The companion `logos-scripture-graph` repository is one of those surfaces: the
+governed Scripture data-plane implementation under this repo's upstream
+governance architecture. The link type is `governance_contract`, tracked by
+`docs/governance/logos-cross-repo-governance-contract.md` and the paired GitHub
+issues `logos-governance-architecture#54` and `lowelltwong-alt/logos-scripture-graph#7`.
+
 The major surfaces are:
 - theological source architecture
 - scripture and interpretation architecture
@@ -38,8 +44,9 @@ The substrate consumes this repo's taxonomy/ontology/canon discipline and emits
 machine-readable, provenance-stamped artifacts the graph/concordance layer can
 govern. Its own `ADR-0001` keeps it standalone so source-fidelity and validation
 evolve independently of the theological node surface, while remaining a governed
-surface of the same architecture. See its `.ai/control/PROJECT_CONTEXT.md` for the
-reciprocal mapping.
+surface of the same architecture. See the companion repo's
+[project context](https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/.ai/control/PROJECT_CONTEXT.md)
+for the reciprocal mapping.
 
 ## Main repository layers
 
@@ -107,6 +114,12 @@ Examples:
 - relationship objects
 - reusable edge objects with provenance
 - 
+
+The downstream `logos-scripture-graph` repo implements this layer for Scripture
+data-plane artifacts: passage identity, translation witnesses, boundary claims,
+retrieval chunks, context packets, candidate relationship objects, and validated
+release artifacts. It may consume this repo's approved governance vocabulary; it
+must not silently redefine it.
 ### 8. Primary-sources layer
 This future layer holds governed source objects related to biblical primary materials and their interpretive handling.
 

@@ -34,6 +34,12 @@ It should remain downstream of and aligned with:
 - translation and manuscript control layers
 - noncanonical and boundary rules
 
+The companion `logos-scripture-graph` repo is the downstream data-plane
+implementation for Scripture graph and concordance artifacts. Its link to this
+repo is a governance contract, not a submodule or runtime dependency. This repo
+defines upstream relationship discipline; the downstream data-plane emits
+validated artifacts under that discipline.
+
 ## Good uses for this layer
 
 - governed verse-to-verse edge objects

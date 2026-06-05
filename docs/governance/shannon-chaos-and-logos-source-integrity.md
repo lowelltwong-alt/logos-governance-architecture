@@ -1,9 +1,14 @@
 ---
 artifact: true
 artifact_type: technical_crosswalk
+object_type: technical_crosswalk
+trust_zone: proposed
+lifecycle_status: draft
 status: proposed
 canon_status: not_canon_until_approved
 authority: explanatory_only
+provenance_note: "Concept note relating Shannon/chaos reliability lenses to Logos source-integrity discipline; explanatory only."
+reason_for_inclusion: "Preserve a proposed technical crosswalk while making clear that it is not doctrinal or governance authority."
 review_cycle: 6 months
 stale_after: 2026-11-29
 ---
