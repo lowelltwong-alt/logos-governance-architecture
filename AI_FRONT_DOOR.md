@@ -39,7 +39,7 @@ AI may not silently promote, canonize, invent sources, overwrite doctrine, colla
 
 This repository is the upstream governance / theological architecture authority
 for the downstream [logos-scripture-graph](https://github.com/lowelltwong-alt/logos-scripture-graph)
-repository.
+repository. Please read its Ai Front Door here: https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/AI_FRONT_DOOR.md 
 
 The link type is `governance_contract`:
 
