@@ -39,6 +39,22 @@ Relationship changes include:
 - new adapters or promotion gates;
 - any change that could affect contamination controls.
 
+## Boundary-Originated Requests
+
+A boundary-originated request may not become an automated permission request,
+automated approval route, bundled governance change, or direct edit to a
+higher-authority repo.
+
+If boundary/reception/noncanonical work conflicts with governance policy, the
+agent must stop and produce the human-readable warning required by
+[`BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](BOUNDARY_GOVERNANCE_CONSTRAINTS.md).
+
+Only Lowell Wong, as project owner, may authorize a boundary-originated request
+to change higher-authority governance, canonical Scripture authority,
+repository-link contracts, canonical scope, trust hierarchy, or cross-repo
+policy. Contributor consensus, contributor volume, automated recommendation,
+agent routing, or boundary-layer operational need is not sufficient authority.
+
 ## Planned Repos
 
 Planned repos may appear in the registry with `status: planned_not_created`.

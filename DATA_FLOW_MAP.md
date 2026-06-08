@@ -70,6 +70,12 @@ canonical Scripture authority.
 - Governance policy flows from `logos-governance-architecture` to child repos.
 - Canonical Scripture records and chunks are owned by `logos-scripture-graph`.
 - Boundary/reception material is scoped support, not canonical authority.
+- Boundary/reception material may not treat governance constraints as targets
+  for workaround, weakening, automated approval routing, or bundled policy
+  changes.
+- Boundary-originated requests targeting higher-authority governance or
+  canonical Scripture layers require explicit owner authorization by Lowell Wong
+  in the higher-authority repo.
 - Execution harness output is not semantic authority.
 - Doctrine genealogy may model scoped claims and lineage, not rewrite Scripture.
 - GitHub issues coordinate work; they do not override registry authority,

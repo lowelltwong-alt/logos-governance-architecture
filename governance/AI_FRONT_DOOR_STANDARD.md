@@ -44,6 +44,12 @@ A Logos front door must tell agents to stop and report when:
 - a task would move data against authority direction;
 - source text ingestion lacks source-intake review;
 - boundary material would modify canonical Scripture records;
+- a boundary-layer task treats governance as a target for workaround,
+  weakening, automated approval routing, or bundled policy change;
+- a boundary-originated request to change higher-authority governance,
+  canonical Scripture authority, repository-link contracts, canonical scope,
+  trust hierarchy, or cross-repo policy lacks explicit Lowell Wong owner
+  authorization in the higher-authority repo;
 - execution harness output is treated as semantic authority;
 - doctrine-lineage claims are treated as universal truth without profile scope;
 - a planned repo is treated as active without registration.

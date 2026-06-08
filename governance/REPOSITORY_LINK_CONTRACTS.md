@@ -47,4 +47,16 @@ authority.
 - A child repo may mirror a contract but must not redefine the registry source
   of truth.
 - A planned contract must not be treated as a runtime integration.
+- A boundary-originated request must not automate a permission request, route an
+  approval request into a higher-authority repo, or bundle a governance change
+  with boundary intake.
+- A boundary-originated request to change higher-authority governance,
+  canonical Scripture authority, repository-link contracts, canonical scope,
+  trust hierarchy, or cross-repo policy requires explicit owner authorization by
+  Lowell Wong in the higher-authority repo.
 - If a task would reverse authority direction, stop and report.
+
+## Boundary-Originated Conflict Warning
+
+When a boundary-layer task conflicts with higher-authority governance, use the
+warning in [`BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](BOUNDARY_GOVERNANCE_CONSTRAINTS.md).

@@ -39,6 +39,19 @@ This branch adds:
 - issue-based repo registration process;
 - governance status surface.
 
+## Boundary-Originated Governance Stop Rules
+
+Active P0 rules:
+
+- `BOUNDARY-GOV-001 - Governance Is Constraint, Not Obstacle`
+- `BOUNDARY-GOV-002 - Owner-Reserved Authorization for Boundary-Originated Higher-Layer Changes`
+
+Boundary-layer agents must stop and produce a human-readable warning when a
+boundary-originated request appears to require changing higher-authority
+governance, canonical Scripture authority, repository-link contracts, canonical
+scope, trust hierarchy, or cross-repo policy. Only Lowell Wong, as project
+owner, may authorize such a change in the higher-authority repository.
+
 ## Boundaries
 
 This is governance/control-plane documentation only.

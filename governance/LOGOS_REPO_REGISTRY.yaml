@@ -17,6 +17,80 @@ registration_policy:
   planned_repos_allowed_with_status: planned_not_created
   creating_planned_repo_requires_issue_and_scaffold_pr: true
 
+boundary_governance_constraint_policy:
+  policy_id: BOUNDARY-GOV-001
+  title: Governance Is Constraint, Not Obstacle
+  importance: P0
+  boundary_layer_may_treat_governance_as_blocker: false
+  boundary_layer_may_optimize_around_governance: false
+  boundary_layer_may_auto_request_governance_change: false
+  boundary_layer_may_auto_route_permission_request: false
+  boundary_layer_may_bundle_governance_change_with_boundary_work: false
+  required_behavior: stop_and_create_human_escalation_warning
+  warning_required: true
+  applies_when_request_originates_from:
+    - logos-boundary-literature
+    - boundary_reception_support_plane
+    - noncanonical_source_intake
+    - commentary_reception_claims
+    - heterodox_disputed_forged_source_governance
+  protected_targets:
+    - logos-governance-architecture
+    - logos-scripture-graph
+    - canonical_scripture_authority
+    - repository_link_contracts
+    - cross_repo_policy
+    - trust_hierarchy
+    - canonical_scope
+  forbidden_boundary_actions:
+    - weaken_governance_policy_for_boundary_task
+    - bypass_governance_policy
+    - reclassify_boundary_material_to_enter_canonical_scope
+    - auto_escalate_permission_request
+    - route_approval_request_to_higher_authority_repo
+    - bundle_governance_change_with_boundary_intake
+  escalation_warning_requires:
+    - origin_repo
+    - requested_target_repo
+    - requested_policy_change_or_conflict
+    - reason_boundary_layer_is_blocked
+    - downstream_authority_risk
+    - contamination_risk
+    - maintainer_review_required
+    - explicit_warning_text
+
+owner_reserved_authorization:
+  policy_id: BOUNDARY-GOV-002
+  title: Owner-Reserved Authorization for Boundary-Originated Higher-Layer Changes
+  importance: P0
+  authorized_owner: Lowell Wong
+  applies_to_boundary_originated_changes_targeting:
+    - logos-governance-architecture
+    - logos-scripture-graph
+    - canonical_scripture_authority
+    - repository_link_contracts
+    - canonical_scope
+    - trust_hierarchy
+    - cross_repo_policy
+  contributor_consensus_sufficient: false
+  contributor_volume_sufficient: false
+  automated_recommendation_sufficient: false
+  agent_routing_sufficient: false
+  boundary_layer_need_sufficient: false
+  requires_explicit_owner_authorization: true
+  authorization_must_occur_in_higher_authority_repo: true
+
+boundary_layer_escalation_warning_text: |
+  WARNING: Boundary-layer request conflicts with higher-authority governance.
+
+  The requested boundary-layer task appears to require changing or bypassing governance-layer policy, canonical Scripture authority, repository-link contracts, routing policy, trust hierarchy, or canonical scope.
+
+  Governance is binding authority, not an obstacle to optimize around.
+
+  Do not automate, route, or implement this change from the boundary layer. A human maintainer must review the conflict directly in the higher-authority repository.
+
+  Owner-reserved authorization required: only Lowell Wong, as project owner, may authorize a boundary-originated request to change higher-authority governance, canonical Scripture authority, repository-link contracts, canonical scope, trust hierarchy, or cross-repo policy. Contributor consensus, contributor volume, automated recommendation, agent routing, or boundary-layer operational need is not sufficient authority.
+
 current_repos:
   logos-governance-architecture:
     status: active
@@ -129,6 +203,9 @@ planned_repos:
 global_stop_and_report_triggers:
   - correct_repo_cannot_be_determined
   - boundary_material_would_modify_canonical_scripture
+  - boundary_layer_treats_governance_as_obstacle
+  - boundary_originated_request_targets_higher_authority_layer
+  - boundary_originated_request_lacks_owner_authorization
   - planned_repo_treated_as_created_without_registration_issue
   - child_repo_contract_conflicts_with_governance_registry
   - source_text_ingestion_requested_without_source_intake_review
