@@ -11,7 +11,13 @@ reason_for_inclusion: "Make the upstream/downstream relationship between Logos G
 ## Purpose
 
 This repository is the upstream governance and theological architecture authority
-for the downstream Scripture data-plane repository:
+for the Logos repo family. This document records the active Scripture data-plane
+contract. The broader repo registry and relationship process now live in
+`governance/LOGOS_REPO_REGISTRY.yaml`,
+`governance/LOGOS_REPO_REGISTRY.md`, and
+`governance/REPOSITORY_LINK_CONTRACTS.md`.
+
+The downstream Scripture data-plane repository is:
 
 - Upstream: `lowelltwong-alt/logos-governance-architecture`
 - Downstream: `lowelltwong-alt/logos-scripture-graph`
@@ -57,6 +63,8 @@ The repos are not linked by:
    obligations should be proposed here before the downstream repo consumes them.
 5. GitHub issues and Project fields are coordination surfaces, not canonical
    theological or governance authority.
+6. Child repos may mirror registry facts, but the governance repo is the source
+   of truth for cross-repo authority direction and relationship changes.
 
 ## Deterministic Enforcement
 

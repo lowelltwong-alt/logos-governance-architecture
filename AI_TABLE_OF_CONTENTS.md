@@ -5,7 +5,14 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 ## Cross-Repo Project Family
 
 - [`AI_FRONT_DOOR.md`](AI_FRONT_DOOR.md) - contribution lanes and cross-repo governance boundary
-- [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md) - hierarchy and data flow from governance authority to Scripture data plane
+- [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md) - current and future repo hierarchy and data flow
+- [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md) - human-readable repo registry
+- [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml) - machine-readable repo registry
+- [`governance/THREE_REPO_DATA_FLOW.md`](governance/THREE_REPO_DATA_FLOW.md) - current active three-repo data-flow map
+- [`governance/FUTURE_FIVE_REPO_ARCHITECTURE.md`](governance/FUTURE_FIVE_REPO_ARCHITECTURE.md) - planned future five-repo topology
+- [`governance/REPOSITORY_LINK_CONTRACTS.md`](governance/REPOSITORY_LINK_CONTRACTS.md) - link types and authority direction
+- [`governance/AI_FRONT_DOOR_STANDARD.md`](governance/AI_FRONT_DOOR_STANDARD.md) - required front-door sections for Logos repos
+- [`governance/ADDING_NEW_LOGOS_REPOS.md`](governance/ADDING_NEW_LOGOS_REPOS.md) - issue-based repo registration process
 - [`docs/governance/logos-cross-repo-governance-contract.md`](docs/governance/logos-cross-repo-governance-contract.md) - upstream/downstream contract with `logos-scripture-graph`
 - [`docs/governance/agent-hostile-protection.md`](docs/governance/agent-hostile-protection.md) - fail-closed agent-hostile protection policy
 
@@ -19,7 +26,10 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 
 ## Constituent repositories (external surfaces)
 
-- [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) — data-plane substrate implementing the scripture, translation/manuscript, boundary-source, and graph/concordance layers (3, 4, 6, 7, 8). Coupled by contract; see `docs/roadmap/repository-integration-map.md` → "Constituent repositories".
+- [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) - canonical 66-book Scripture data plane. Coupled by governance contract.
+- [`logos-boundary-literature`](https://github.com/lowelltwong-alt/logos-boundary-literature) - supporting boundary/reception plane. It must not override or equal Scripture authority.
+- `logos-chunking-harness` - planned, not created; future execution/evaluation plane, not semantic authority.
+- `logos-doctrine-genealogy` - planned, not created; future doctrine lineage/profile-comparison plane, not canonical Scripture authority.
 
 ## Governance and vocabulary discipline
 

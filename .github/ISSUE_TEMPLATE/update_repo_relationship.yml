@@ -1,0 +1,61 @@
+name: Update Repo Relationship
+description: Propose a change to a Logos cross-repo relationship.
+title: "Update Logos repo relationship: <repos>"
+labels:
+  - governance
+  - repo-relationship
+body:
+  - type: textarea
+    id: repos_affected
+    attributes:
+      label: Repos affected
+      description: List every repo affected by this relationship change.
+    validations:
+      required: true
+  - type: textarea
+    id: relationship_change
+    attributes:
+      label: Relationship change
+      description: What relationship is being added, changed, or retired?
+    validations:
+      required: true
+  - type: textarea
+    id: authority_direction
+    attributes:
+      label: Authority direction
+      description: Which repo has authority over which surface?
+    validations:
+      required: true
+  - type: textarea
+    id: data_flow_change
+    attributes:
+      label: Data-flow change
+      description: What data may flow, and what data must not flow?
+    validations:
+      required: true
+  - type: textarea
+    id: routing_change
+    attributes:
+      label: Routing change
+      description: How should task routing change?
+    validations:
+      required: true
+  - type: textarea
+    id: contamination_risk
+    attributes:
+      label: Contamination risk
+      description: Identify source, authority, trust-zone, or semantic-smuggling risks.
+    validations:
+      required: true
+  - type: textarea
+    id: validation_needed
+    attributes:
+      label: Validation needed
+      description: What validation commands or checks must run?
+    validations:
+      required: true
+  - type: textarea
+    id: issue_links_in_child_repos
+    attributes:
+      label: Issue links in child repos
+      description: Link related child-repo issues or PRs.

@@ -15,9 +15,10 @@ The repository should be understood as one architecture with multiple surfaces, 
 
 The companion `logos-scripture-graph` repository is one of those surfaces: the
 governed Scripture data-plane implementation under this repo's upstream
-governance architecture. The link type is `governance_contract`, tracked by
-`docs/governance/logos-cross-repo-governance-contract.md` and the paired GitHub
-issues `logos-governance-architecture#54` and `lowelltwong-alt/logos-scripture-graph#7`.
+governance architecture. The active and planned repo topology is governed by
+`governance/LOGOS_REPO_REGISTRY.yaml`, `governance/LOGOS_REPO_REGISTRY.md`, and
+`governance/REPOSITORY_LINK_CONTRACTS.md`. The child-repo link type remains
+`governance_contract`.
 
 The major surfaces are:
 - theological source architecture
@@ -39,14 +40,15 @@ the shells differ in format.
 |------------|------|-------------------|
 | `logos-governance-architecture` (this repo) | Theological source architecture: taxonomy, ontology, ordering/weighting logic, governance | 1–2 (canon, doctrine/concept), 5 (biblical theme), and the governance of 3–9 |
 | [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) | **Data-plane substrate**: deterministic Bible ingest, passage/witness records, canon profiles, boundary claims, retrieval chunks, provenance + validation | 3 (scripture), 4 (original-language/translation/manuscript, via Strong's WordTokens), 6 (boundary-source, via canon profiles), 7 (graph/concordance), 8 (primary-sources, future) |
+| [`logos-boundary-literature`](https://github.com/lowelltwong-alt/logos-boundary-literature) | **Boundary/reception support plane**: noncanonical, disputed, forged, commentary/reception, source-intake, and trust-scope governance | 6 (boundary-source) and scoped reception/comparison support for 3-8 |
+| `logos-chunking-harness` (planned, not created) | **Execution/evaluation plane**: future cross-corpus chunking harness and promotion gates | Execution support only; no semantic authority |
+| `logos-doctrine-genealogy` (planned, not created) | **Doctrine lineage/profile plane**: future tradition/profile-scoped doctrine development and comparison | Doctrine/concept lineage support only; no canonical Scripture authority |
 
-The substrate consumes this repo's taxonomy/ontology/canon discipline and emits
-machine-readable, provenance-stamped artifacts the graph/concordance layer can
-govern. Its own `ADR-0001` keeps it standalone so source-fidelity and validation
-evolve independently of the theological node surface, while remaining a governed
-surface of the same architecture. See the companion repo's
-[project context](https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/.ai/control/PROJECT_CONTEXT.md)
-for the reciprocal mapping.
+The Scripture substrate consumes this repo's taxonomy/ontology/canon discipline
+and emits machine-readable, provenance-stamped artifacts the graph/concordance
+layer can govern. Boundary literature remains supporting context, not Scripture
+authority. Planned execution and doctrine-lineage repos require registration
+issues and scaffold PRs before they can become active.
 
 ## Main repository layers
 

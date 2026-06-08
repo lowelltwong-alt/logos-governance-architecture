@@ -56,3 +56,4 @@ See also:
 - `exceptions-lake-learning-loop-roadmap-extension.md`
 - `codex-merge-alignment-scorecard.md`
 - `source-document-integration-map.md`
+- `logos-repo-registry-and-future-architecture.md`

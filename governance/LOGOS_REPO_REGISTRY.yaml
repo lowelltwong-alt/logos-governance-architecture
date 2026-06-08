@@ -1,0 +1,135 @@
+registry_id: LOGOS-REPO-REGISTRY-v1
+object_type: logos_repo_registry
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-06-08 to make Logos repo ownership, authority, routing, and future topology explicit."
+reason_for_inclusion: "Provide the governance source of truth for current and planned Logos repository relationships."
+
+source_of_truth_repo: logos-governance-architecture
+registration_policy:
+  new_repo_requires_issue: true
+  new_repo_requires_ai_front_door: true
+  new_repo_requires_toc_or_data_map_or_exception: true
+  relationship_change_updates_registry_first_or_same_pr: true
+  child_repos_may_mirror_registry: true
+  governance_repo_is_source_of_truth: true
+  ai_stop_if_correct_repo_unknown: true
+  planned_repos_allowed_with_status: planned_not_created
+  creating_planned_repo_requires_issue_and_scaffold_pr: true
+
+current_repos:
+  logos-governance-architecture:
+    status: active
+    role: governance_control_plane
+    authority: cross_repo_policy_authority
+    public_url: "https://github.com/lowelltwong-alt/logos-governance-architecture"
+    owns:
+      - repo_registry
+      - cross_repo_contracts
+      - rule_registry_policy
+      - repo_registration_process
+      - ai_front_door_standard
+      - data_flow_map_standard
+      - issue_based_repository_onboarding
+    must_not:
+      - import_texts
+      - mutate_scripture_data
+      - mutate_boundary_literature_data
+      - implement_runtime_integration
+
+  logos-scripture-graph:
+    status: active
+    role: canonical_scripture_data_plane
+    authority: canonical_scripture_authority
+    governed_by: logos-governance-architecture
+    public_url: "https://github.com/lowelltwong-alt/logos-scripture-graph"
+    owns:
+      - canonical_66_book_scripture_corpus
+      - canonical_scripture_chunks
+      - scripture_reviewed_gold_evaluator_surfaces
+      - scripture_stress_atlas_review_packets
+    must_not_own:
+      - deuterocanonical_apocrypha_corpus
+      - noncanonical_boundary_texts
+      - commentary_corpus
+      - gnostic_heterodox_fake_forged_texts
+      - unscoped_boundary_claims
+    data_flow:
+      may_emit:
+        - canonical_scripture_refs
+        - canonical_scripture_ids
+        - reviewed_scripture_chunk_artifacts
+      may_receive:
+        - governance_contracts
+        - scoped_background_links
+        - scoped_reception_comparison_claims
+      must_not_receive:
+        - boundary_claims_as_canonical_truth
+        - commentary_as_default_scripture_meaning
+        - noncanonical_source_text_as_scripture
+
+  logos-boundary-literature:
+    status: active
+    role: boundary_reception_support_plane
+    authority: supporting_context_not_canonical
+    governed_by: logos-governance-architecture
+    supports:
+      - logos-scripture-graph
+    public_url: "https://github.com/lowelltwong-alt/logos-boundary-literature"
+    owns:
+      - noncanonical_boundary_literature_metadata
+      - deuterocanonical_apocrypha_metadata_source_intake_planning
+      - heterodox_gnostic_disputed_forged_text_governance
+      - commentary_reception_claims
+      - trust_hierarchy
+      - source_intake_policy
+    must_not:
+      - override_scripture
+      - equal_scripture_authority
+      - mutate_canonical_scripture_records
+      - supply_default_scripture_meaning
+      - auto_promote_claims_into_scripture_graph
+
+planned_repos:
+  logos-chunking-harness:
+    status: planned_not_created
+    role: cross_corpus_chunking_execution_plane
+    authority: execution_harness_not_semantic_authority
+    governed_by: logos-governance-architecture
+    owns_future:
+      - source_mode_adapters
+      - chunking_execution_harness
+      - cross_corpus_chunking_experiments
+      - evaluation_harness
+      - promotion_gates
+    must_not:
+      - own_canonical_scripture_truth
+      - mix_output_namespaces
+      - transfer_boundary_claims_into_scripture
+      - promote_quarantine_learning_into_scripture_without_reviewed_structural_approval
+
+  logos-doctrine-genealogy:
+    status: planned_not_created
+    role: doctrine_lineage_and_profile_comparison_plane
+    authority: interpretive_historical_profile_scoped
+    governed_by: logos-governance-architecture
+    owns_future:
+      - doctrinal_dependency_graph
+      - doctrine_genealogy_over_time
+      - tradition_profile_scoped_claims
+      - ethical_implication_mapping
+      - alignment_disalignment_classifications
+      - human_judgment_gates
+    must_not:
+      - rewrite_canonical_scripture
+      - collapse_contested_doctrine_into_universal_truth
+      - treat_ai_alignment_labels_as_final_authority
+      - override_profile_tradition_scope
+
+global_stop_and_report_triggers:
+  - correct_repo_cannot_be_determined
+  - boundary_material_would_modify_canonical_scripture
+  - planned_repo_treated_as_created_without_registration_issue
+  - child_repo_contract_conflicts_with_governance_registry
+  - source_text_ingestion_requested_without_source_intake_review
+  - authority_direction_unclear_or_reversed
