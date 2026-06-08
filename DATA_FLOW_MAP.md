@@ -8,59 +8,72 @@ reason_for_inclusion: "Give humans and agents a deterministic map of how governa
 
 # Data Flow Map
 
-## Repository Roles
+This map summarizes current and planned Logos repo data flow. The detailed
+registry lives in [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml).
 
-```text
-logos-governance-architecture
-  role: upstream governance / theological architecture authority
-  owns: source-trust vocabulary, derivation chains, review obligations,
-        doctrine/concept/scripture governance, graph relationship discipline
+## Current Three-Repo Flow
 
-logos-scripture-graph
-  role: governed Scripture data-plane / knowledge-plane implementation
-  owns: raw source manifests, passage identity, translation witnesses,
-        boundary claims, chunks, context packets, candidate graph claims,
-        validation gates, release artifacts
+```mermaid
+flowchart TD
+  GOV["logos-governance-architecture<br/>cross-repo policy / registry / contracts"]
+  SCRIPT["logos-scripture-graph<br/>canonical 66-book Scripture graph"]
+  BOUND["logos-boundary-literature<br/>supporting boundary / reception literature"]
+
+  GOV -->|"defines repo policy"| SCRIPT
+  GOV -->|"defines repo policy"| BOUND
+
+  SCRIPT -->|"canonical Scripture refs / IDs"| BOUND
+  BOUND -->|"scoped background / reception / comparison claims"| SCRIPT
+
+  BOUND -. "cannot override / equal / mutate" .-> SCRIPT
+  SCRIPT -. "does not import boundary texts" .-> BOUND
 ```
 
-## Link Type
+The current link type from this repo to child repos is `governance_contract`.
+`logos-scripture-graph` owns canonical Scripture data. `logos-boundary-literature`
+owns supporting boundary and reception material under scoped trust controls.
 
-The link type is `governance_contract`.
+## Planned Five-Repo Flow
 
-```text
-upstream approved governance contract
-  -> downstream deterministic implementation
-  -> validated release artifacts
-  -> future runtime consumers
+```mermaid
+flowchart TD
+  GOV["logos-governance-architecture<br/>governance / registry / contracts"]
+  SCRIPT["logos-scripture-graph<br/>canonical Scripture data plane"]
+  BOUND["logos-boundary-literature<br/>boundary / reception support plane"]
+  CHUNK["logos-chunking-harness<br/>planned execution/evaluation plane"]
+  DOCTRINE["logos-doctrine-genealogy<br/>planned doctrine lineage/profile plane"]
+
+  GOV --> SCRIPT
+  GOV --> BOUND
+  GOV --> CHUNK
+  GOV --> DOCTRINE
+
+  CHUNK -->|"read-only adapter: canonical mode"| SCRIPT
+  CHUNK -->|"read-only adapter: boundary mode"| BOUND
+  CHUNK -->|"read-only adapter: doctrine mode"| DOCTRINE
+
+  DOCTRINE -->|"Scripture refs only; scoped claims"| SCRIPT
+  DOCTRINE -->|"boundary/reception references"| BOUND
+
+  BOUND -. "not canonical authority" .-> SCRIPT
+  CHUNK -. "not semantic authority" .-> SCRIPT
+  DOCTRINE -. "not canonical authority" .-> SCRIPT
 ```
 
-No submodule, hidden runtime dependency, or automatic promotion path is implied.
+`logos-chunking-harness` and `logos-doctrine-genealogy` are planned, not
+created. Future runtime consumers must receive validated release artifacts and
+must not treat execution output, boundary claims, or doctrine-profile labels as
+canonical Scripture authority.
 
-## Cross-Repo Flow
+## Flow Rules
 
-```text
-theological source architecture
-  -> governance requirement
-  -> design constraint
-  -> downstream Scripture data-plane contract
-  -> raw source manifest
-  -> canonical passage / witness records
-  -> boundary claims
-  -> retrieval chunks / context packets
-  -> candidate or asserted graph claims
-  -> validated release artifact
-  -> future runtime / application consumer
-```
-
-## GitHub Coordination
-
-- Parent issue: `https://github.com/lowelltwong-alt/logos-governance-architecture/issues/54`
-- Child issue: `https://github.com/lowelltwong-alt/logos-scripture-graph/issues/7`
-- Intended Project board: `Logos governed Scripture graph`
-- Shared milestone: `Logos cross-repo governance integration`
-
-GitHub issues and Project fields coordinate work. They do not override source
-authority, controlled vocabulary, review status, or validation contracts.
+- Governance policy flows from `logos-governance-architecture` to child repos.
+- Canonical Scripture records and chunks are owned by `logos-scripture-graph`.
+- Boundary/reception material is scoped support, not canonical authority.
+- Execution harness output is not semantic authority.
+- Doctrine genealogy may model scoped claims and lineage, not rewrite Scripture.
+- GitHub issues coordinate work; they do not override registry authority,
+  controlled vocabulary, review status, or validation contracts.
 
 ## Agent-Hostile Guardrail
 

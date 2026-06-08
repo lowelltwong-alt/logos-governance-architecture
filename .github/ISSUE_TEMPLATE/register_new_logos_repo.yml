@@ -1,0 +1,117 @@
+name: Register New Logos Repo
+description: Propose a new repository for the Logos project family.
+title: "Register Logos repo: <repo-name>"
+labels:
+  - governance
+  - repo-registration
+body:
+  - type: input
+    id: repo_name
+    attributes:
+      label: Repo name
+      description: Proposed repository name.
+      placeholder: logos-example-repo
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_role
+    attributes:
+      label: Proposed role
+      description: What role should this repo play?
+    validations:
+      required: true
+  - type: dropdown
+    id: current_or_future_repo
+    attributes:
+      label: Current or future repo
+      options:
+        - current
+        - future_planned
+    validations:
+      required: true
+  - type: input
+    id: authority_level
+    attributes:
+      label: Authority level
+      description: Proposed authority level for this repo.
+    validations:
+      required: true
+  - type: input
+    id: upstream_governance_repo
+    attributes:
+      label: Upstream governance repo
+      placeholder: logos-governance-architecture
+    validations:
+      required: true
+  - type: textarea
+    id: downstream_supported_repos
+    attributes:
+      label: Downstream supported repos
+      description: Which repos, if any, would this repo support?
+  - type: textarea
+    id: owned_data
+    attributes:
+      label: Owned data
+      description: What data or control surfaces would this repo own?
+    validations:
+      required: true
+  - type: textarea
+    id: forbidden_data
+    attributes:
+      label: Forbidden data
+      description: What must this repo not own, import, or mutate?
+    validations:
+      required: true
+  - type: input
+    id: ai_front_door_path
+    attributes:
+      label: AI front door path
+      placeholder: AI_FRONT_DOOR.md
+    validations:
+      required: true
+  - type: input
+    id: toc_data_map_path
+    attributes:
+      label: TOC/data map path
+      description: Provide a path, or explain why none is required.
+    validations:
+      required: true
+  - type: textarea
+    id: routing_policy
+    attributes:
+      label: Routing policy
+      description: How should tasks be routed into or away from this repo?
+    validations:
+      required: true
+  - type: textarea
+    id: validation_commands
+    attributes:
+      label: Validation commands
+      description: Local validation commands required before merge.
+    validations:
+      required: true
+  - type: checkboxes
+    id: cross_repo_contract_needed
+    attributes:
+      label: Cross-repo contract needed
+      options:
+        - label: This repo needs a new or updated cross-repo contract.
+  - type: textarea
+    id: security_trust_risks
+    attributes:
+      label: Security/trust risks
+      description: Identify authority, contamination, source, trust, or routing risks.
+    validations:
+      required: true
+  - type: checkboxes
+    id: human_approval_required
+    attributes:
+      label: Human approval required
+      options:
+        - label: Human approval is required before this repo is treated as part of the Logos project.
+          required: true
+  - type: textarea
+    id: linked_child_repo_issues
+    attributes:
+      label: Linked child-repo issues
+      description: Link related issues in child repos, if any.
