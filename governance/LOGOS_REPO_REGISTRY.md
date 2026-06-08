@@ -93,7 +93,32 @@ Stop and report when:
 
 - the task owner repo cannot be determined;
 - boundary material appears necessary to modify canonical Scripture output;
+- a boundary-layer task treats governance as a target for workaround or weakening;
+- a boundary-originated request targets higher-authority governance, repository-link
+  contracts, canonical Scripture authority, canonical scope, trust hierarchy, or
+  cross-repo policy;
+- a boundary-originated higher-layer request lacks explicit Lowell Wong owner
+  authorization in the higher-authority repo;
 - a planned repo is treated as already created;
 - a child repo contract conflicts with this registry;
 - source text ingestion is requested without source-intake review;
 - authority direction is unclear or reversed.
+
+## Boundary-Originated Higher-Layer Changes
+
+`BOUNDARY-GOV-001 - Governance Is Constraint, Not Obstacle` and
+`BOUNDARY-GOV-002 - Owner-Reserved Authorization for Boundary-Originated
+Higher-Layer Changes` are P0 stop-the-line rules.
+
+Boundary-layer awareness of the wider Logos repo structure exists for routing,
+provenance, and contamination control only. It does not authorize the boundary
+repo, a boundary-layer agent, a contributor group, or an automated
+recommendation to weaken governance or canonical Scripture authority.
+
+Only Lowell Wong, as project owner, may authorize a boundary-originated request
+to change higher-authority governance, canonical Scripture authority,
+repository-link contracts, canonical scope, trust hierarchy, or cross-repo
+policy.
+
+Required policy and warning text:
+[`BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](BOUNDARY_GOVERNANCE_CONSTRAINTS.md)

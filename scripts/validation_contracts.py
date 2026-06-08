@@ -336,4 +336,8 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "name": "cross_repo_governance_contract",
             "command": [python, "scripts/validate_cross_repo_governance_contract.py"],
         },
+        {
+            "name": "boundary_governance_stop_rules",
+            "command": [python, "scripts/validate_boundary_governance_stop_rules.py"],
+        },
     ]

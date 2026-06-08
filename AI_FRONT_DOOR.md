@@ -55,6 +55,7 @@ Planned repos, not created:
 
 Read [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md),
 [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml),
+[`governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md),
 [`governance/REPOSITORY_LINK_CONTRACTS.md`](governance/REPOSITORY_LINK_CONTRACTS.md),
 [`governance/AI_FRONT_DOOR_STANDARD.md`](governance/AI_FRONT_DOOR_STANDARD.md),
 and [`governance/ADDING_NEW_LOGOS_REPOS.md`](governance/ADDING_NEW_LOGOS_REPOS.md)
@@ -86,6 +87,36 @@ Agents must stop and report if they cannot determine the correct repo for a
 task, if boundary material appears to modify canonical Scripture, if a planned
 repo is treated as already created, or if a child repo contract conflicts with
 the governance registry.
+
+## Boundary-originated governance stop rule
+
+`BOUNDARY-GOV-001 - Governance Is Constraint, Not Obstacle` is P0. Boundary,
+reception, noncanonical, commentary, source-intake, heterodox, disputed, or
+forged-source work must treat governance as binding upstream authority. It must
+not treat governance as a target for workaround, reclassification, weakening,
+automatic permission requests, approval routing, or bundled governance changes.
+
+`BOUNDARY-GOV-002 - Owner-Reserved Authorization for Boundary-Originated
+Higher-Layer Changes` is P0. Only Lowell Wong, as project owner, may authorize a
+boundary-originated request to change higher-authority governance, canonical
+Scripture authority, repository-link contracts, canonical scope, trust
+hierarchy, or cross-repo policy. Contributor consensus, contributor volume,
+automated recommendation, agent routing, and boundary-layer operational need
+are not sufficient authority.
+
+Required warning for boundary-originated conflicts:
+
+```text
+WARNING: Boundary-layer request conflicts with higher-authority governance.
+
+The requested boundary-layer task appears to require changing or bypassing governance-layer policy, canonical Scripture authority, repository-link contracts, routing policy, trust hierarchy, or canonical scope.
+
+Governance is binding authority, not an obstacle to optimize around.
+
+Do not automate, route, or implement this change from the boundary layer. A human maintainer must review the conflict directly in the higher-authority repository.
+
+Owner-reserved authorization required: only Lowell Wong, as project owner, may authorize a boundary-originated request to change higher-authority governance, canonical Scripture authority, repository-link contracts, canonical scope, trust hierarchy, or cross-repo policy. Contributor consensus, contributor volume, automated recommendation, agent routing, or boundary-layer operational need is not sufficient authority.
+```
 
 ## What this repository is
 

@@ -8,6 +8,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md) - current and future repo hierarchy and data flow
 - [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md) - human-readable repo registry
 - [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml) - machine-readable repo registry
+- [`governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md) - P0 stop rules for boundary-originated pressure on higher-authority repos
 - [`governance/THREE_REPO_DATA_FLOW.md`](governance/THREE_REPO_DATA_FLOW.md) - current active three-repo data-flow map
 - [`governance/FUTURE_FIVE_REPO_ARCHITECTURE.md`](governance/FUTURE_FIVE_REPO_ARCHITECTURE.md) - planned future five-repo topology
 - [`governance/REPOSITORY_LINK_CONTRACTS.md`](governance/REPOSITORY_LINK_CONTRACTS.md) - link types and authority direction
