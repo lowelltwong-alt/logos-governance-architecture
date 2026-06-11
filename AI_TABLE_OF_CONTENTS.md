@@ -16,6 +16,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`governance/ADDING_NEW_LOGOS_REPOS.md`](governance/ADDING_NEW_LOGOS_REPOS.md) - issue-based repo registration process
 - [`docs/governance/logos-cross-repo-governance-contract.md`](docs/governance/logos-cross-repo-governance-contract.md) - upstream/downstream contract with `logos-scripture-graph`
 - [`docs/governance/agent-hostile-protection.md`](docs/governance/agent-hostile-protection.md) - fail-closed agent-hostile protection policy
+- [`docs/governance/noesis-boundary.md`](docs/governance/noesis-boundary.md) - Noesis may inform Logos, but may not modify or govern Logos
 
 ## Primary entry points
 

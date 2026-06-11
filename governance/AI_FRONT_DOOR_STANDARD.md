@@ -50,6 +50,9 @@ A Logos front door must tell agents to stop and report when:
   canonical Scripture authority, repository-link contracts, canonical scope,
   trust hierarchy, or cross-repo policy lacks explicit Lowell Wong owner
   authorization in the higher-authority repo;
+- a child repo claims authority above the governance registry or canonical
+  Scripture scope;
+- a Noesis connection is treated as Logos authority or write access;
 - execution harness output is treated as semantic authority;
 - doctrine-lineage claims are treated as universal truth without profile scope;
 - a planned repo is treated as active without registration.

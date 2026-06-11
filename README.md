@@ -25,6 +25,10 @@ paired GitHub issues are
 [`logos-governance-architecture#54`](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/54)
 and [`logos-scripture-graph#7`](https://github.com/lowelltwong-alt/logos-scripture-graph/issues/7).
 
+Child Logos repos are implementation/support planes, not higher authority over
+the governance registry or canonical Scripture. Noesis Atlas may connect only as
+non-governing, non-mutating advisory comparison context.
+
 It is the theological upstream companion to the AIRCA Fractal Decision Architecture project.
 
 In simple terms:

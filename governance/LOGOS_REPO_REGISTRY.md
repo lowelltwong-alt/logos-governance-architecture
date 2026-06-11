@@ -53,6 +53,13 @@ It supports `logos-scripture-graph`, but it must not override Scripture, equal
 Scripture authority, mutate canonical Scripture records, supply default
 Scripture meaning, or auto-promote claims into the Scripture graph.
 
+## External Advisory Connections
+
+Noesis Atlas may connect to the Logos repo family only as reviewed, read-only
+advisory comparison context. It may inform comparison, contrast, or public
+reason bridging, but it must not modify, govern, gate, promote, demote, or
+supply authority or derivation for any Logos repo.
+
 ## Planned Repos
 
 Planned repos may be listed with `status: planned_not_created`. That status is
@@ -101,6 +108,9 @@ Stop and report when:
   authorization in the higher-authority repo;
 - a planned repo is treated as already created;
 - a child repo contract conflicts with this registry;
+- a child repo claims authority above the governance registry or canonical
+  Scripture scope;
+- a Noesis connection is treated as Logos authority or write access;
 - source text ingestion is requested without source-intake review;
 - authority direction is unclear or reversed.
 

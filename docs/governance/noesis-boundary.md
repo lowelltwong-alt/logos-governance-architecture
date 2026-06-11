@@ -36,6 +36,15 @@ Logos may, under Logos review, *read* reviewed Noesis exports as **external comp
 - must never appear in an authority or derivation field;
 - carries no binding force; Logos reaches its own conclusion under its own authority.
 
+## Allowed connection shape
+
+Noesis may connect to Logos repos only through reviewed, read-only advisory
+comparison surfaces. A Noesis connector or export must not write to, modify,
+gate, promote, demote, approve, or govern `logos-governance-architecture`,
+`logos-scripture-graph`, or `logos-boundary-literature`.
+
+Connections may carry comparison context. They must not carry authority.
+
 ## Authority direction (one line)
 
 `Noesis (classify) -> reviewed export -> Logos-side review -> Logos (decide under Christian authority)`

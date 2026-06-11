@@ -65,6 +65,14 @@ The repos are not linked by:
    theological or governance authority.
 6. Child repos may mirror registry facts, but the governance repo is the source
    of truth for cross-repo authority direction and relationship changes.
+7. `logos-scripture-graph` and `logos-boundary-literature` may own local
+   implementation or support surfaces, but neither may outrank this governance
+   repo's registry, contracts, or owner-approved authority direction.
+8. `logos-boundary-literature` may support comparison, reception, and boundary
+   analysis, but it must never equal, override, or outrank canonical Scripture.
+9. Noesis Atlas may connect only as reviewed, read-only advisory comparison
+   context. It must not modify, gate, govern, promote, demote, or supply
+   authority or derivation for any Logos repo.
 
 ## Deterministic Enforcement
 

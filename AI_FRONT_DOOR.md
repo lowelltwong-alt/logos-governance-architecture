@@ -48,6 +48,14 @@ Current active repos:
 - [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) - canonical 66-book Scripture data plane. Please read its AI Front Door here: https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/AI_FRONT_DOOR.md
 - [`logos-boundary-literature`](https://github.com/lowelltwong-alt/logos-boundary-literature) - supporting boundary/reception plane, never equal to or above Scripture authority.
 
+Child Logos repos may own local implementation or support surfaces, but they
+must not claim authority above this governance repo's registry and contracts.
+Boundary/reception material must never equal or outrank canonical Scripture.
+
+Noesis Atlas may connect to Logos repos only as reviewed, read-only advisory
+comparison context. It must not modify, gate, govern, promote, demote, or supply
+authority or derivation for any Logos repo.
+
 Planned repos, not created:
 
 - `logos-chunking-harness` - future cross-corpus chunking execution/evaluation plane.
@@ -86,7 +94,8 @@ governance truth, erase provenance, or promote generated material.
 Agents must stop and report if they cannot determine the correct repo for a
 task, if boundary material appears to modify canonical Scripture, if a planned
 repo is treated as already created, or if a child repo contract conflicts with
-the governance registry.
+the governance registry, or if a Noesis connection is treated as Logos authority
+or write access.
 
 ## Boundary-originated governance stop rule
 

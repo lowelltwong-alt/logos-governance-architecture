@@ -164,6 +164,21 @@ current_repos:
       - supply_default_scripture_meaning
       - auto_promote_claims_into_scripture_graph
 
+external_advisory_connections:
+  noesis-atlas:
+    status: external_advisory
+    role: worldview_comparison_context
+    may_connect_to:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+    may_connect_only_as: reviewed_read_only_advisory_comparison_context
+    must_not:
+      - modify_logos_repos
+      - govern_logos_repos
+      - gate_logos_promotion_or_demotion
+      - provide_logos_authority_or_derivation_basis
+
 planned_repos:
   logos-chunking-harness:
     status: planned_not_created
@@ -208,5 +223,7 @@ global_stop_and_report_triggers:
   - boundary_originated_request_lacks_owner_authorization
   - planned_repo_treated_as_created_without_registration_issue
   - child_repo_contract_conflicts_with_governance_registry
+  - child_repo_claims_authority_above_governance_or_scripture
+  - noesis_connection_treated_as_logos_authority_or_write_access
   - source_text_ingestion_requested_without_source_intake_review
   - authority_direction_unclear_or_reversed

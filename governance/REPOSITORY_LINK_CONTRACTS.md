@@ -19,6 +19,7 @@ authority.
 | `governance_contract` | Governance repo defines policy, registry, authority direction, and update rules. | From governance repo to child repo only. |
 | `supporting_context_link` | A supporting repo provides scoped background, reception, comparison, or refutation material. | No canonical authority transfer. |
 | `read_only_adapter` | A future execution repo reads another repo through an adapter. | No semantic authority transfer. |
+| `external_advisory_link` | An external project may provide reviewed comparison context. | No write access, governance, authority, promotion, demotion, or derivation transfer. |
 | `registration_issue` | A GitHub issue proposes a new repo or relationship change. | No authority until registry update is accepted. |
 
 ## Active Contracts
@@ -29,6 +30,12 @@ authority.
 | `logos-governance-architecture` | `logos-boundary-literature` | `governance_contract` | Governance defines cross-repo policy; boundary repo owns scoped boundary/reception support material. |
 | `logos-scripture-graph` | `logos-boundary-literature` | `supporting_context_link` | Scripture refs may point outward to boundary/reception materials as background or comparison. |
 | `logos-boundary-literature` | `logos-scripture-graph` | `supporting_context_link` | Boundary material may reference Scripture, but it must not override or equal Scripture authority. |
+
+## External Advisory Contracts
+
+| From | To | Link type | Rule |
+|---|---|---|---|
+| `noesis-atlas` | Logos repo family | `external_advisory_link` | Noesis may connect as reviewed, read-only advisory comparison context. It must not modify, gate, govern, promote, demote, or supply authority or derivation for any Logos repo. |
 
 ## Planned Contracts
 
@@ -46,6 +53,10 @@ authority.
 - Data-flow direction must be explicit.
 - A child repo may mirror a contract but must not redefine the registry source
   of truth.
+- Child Logos repos must not claim authority above the governance registry,
+  repository contracts, or canonical Scripture scope.
+- Noesis may connect through `external_advisory_link` only; it must not modify,
+  govern, gate, promote, demote, or provide authority or derivation for Logos.
 - A planned contract must not be treated as a runtime integration.
 - A boundary-originated request must not automate a permission request, route an
   approval request into a higher-authority repo, or bundle a governance change

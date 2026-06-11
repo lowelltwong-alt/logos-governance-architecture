@@ -39,6 +39,8 @@ Agents must stop and report when asked to:
 - promote staged, inferred, candidate, or generated material into canonical status
 - redefine the `logos-scripture-graph` relationship without updating the cross-repo contract
 - treat GitHub Project metadata as canonical governance truth
+- grant a child Logos repo authority above the governance registry or canonical Scripture scope
+- let Noesis modify, gate, govern, promote, demote, or supply authority or derivation for any Logos repo
 - weaken validation because a generated answer sounds plausible
 - collapse doctrine, ordering, weighting, derivation, and application into one undifferentiated layer
 - erase provenance, source basis, or review status
