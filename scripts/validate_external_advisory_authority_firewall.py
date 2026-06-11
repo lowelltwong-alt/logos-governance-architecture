@@ -6,8 +6,6 @@ import re
 from pathlib import Path
 from typing import Any
 
-import yaml
-
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "governance" / "LOGOS_REPO_REGISTRY.yaml"
 POLICY = ROOT / "governance" / "EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md"
@@ -244,11 +242,90 @@ def as_set(value: Any) -> set[Any]:
     return set()
 
 
+def parse_scalar(raw: str) -> Any:
+    value = raw.strip()
+    if value in {"null", "~"}:
+        return None
+    if value == "true":
+        return True
+    if value == "false":
+        return False
+    return value.strip('"').strip("'")
+
+
+def yaml_lines(text: str) -> list[tuple[int, str]]:
+    lines: list[tuple[int, str]] = []
+    for raw in text.splitlines():
+        stripped = raw.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        indent = len(raw) - len(raw.lstrip(" "))
+        lines.append((indent, stripped))
+    return lines
+
+
+def parse_block(lines: list[tuple[int, str]], index: int, indent: int) -> tuple[Any, int]:
+    if index >= len(lines):
+        return {}, index
+
+    if lines[index][1].startswith("- "):
+        values: list[Any] = []
+        while index < len(lines):
+            current_indent, content = lines[index]
+            if current_indent != indent or not content.startswith("- "):
+                break
+            values.append(parse_scalar(content[2:].strip()))
+            index += 1
+        return values, index
+
+    data: dict[str, Any] = {}
+    while index < len(lines):
+        current_indent, content = lines[index]
+        if current_indent < indent:
+            break
+        if current_indent > indent or content.startswith("- "):
+            break
+        if ":" not in content:
+            index += 1
+            continue
+
+        key, raw_value = content.split(":", 1)
+        key = key.strip()
+        value = raw_value.strip()
+        if value in {"|", ">"}:
+            block_lines: list[str] = []
+            index += 1
+            while index < len(lines) and lines[index][0] > current_indent:
+                block_lines.append(lines[index][1])
+                index += 1
+            data[key] = "\n".join(block_lines)
+            continue
+        if value:
+            data[key] = parse_scalar(value)
+            index += 1
+            continue
+
+        next_index = index + 1
+        if next_index < len(lines) and lines[next_index][0] > current_indent:
+            child, index = parse_block(lines, next_index, lines[next_index][0])
+            data[key] = child
+        else:
+            data[key] = {}
+            index += 1
+    return data, index
+
+
+def parse_yaml_subset(text: str) -> dict[str, Any]:
+    lines = yaml_lines(text)
+    parsed, _ = parse_block(lines, 0, 0)
+    return parsed if isinstance(parsed, dict) else {}
+
+
 def load_registry(failures: list[str]) -> dict[str, Any]:
     if not REGISTRY.exists():
         fail(failures, "LOGOS_REPO_REGISTRY.yaml is missing")
         return {}
-    loaded = yaml.safe_load(REGISTRY.read_text(encoding="utf-8"))
+    loaded = parse_yaml_subset(REGISTRY.read_text(encoding="utf-8"))
     if not isinstance(loaded, dict):
         fail(failures, "LOGOS_REPO_REGISTRY.yaml did not parse to an object")
         return {}
