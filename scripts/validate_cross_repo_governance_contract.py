@@ -28,6 +28,7 @@ REQUIRED_MARKERS = {
         "logos-cross-repo-governance-contract.md",
         "agent-hostile-protection.md",
         "noesis-boundary.md",
+        "EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md",
     ],
     "DATA_FLOW_MAP.md": [
         "governance_contract",
@@ -50,6 +51,15 @@ REQUIRED_MARKERS = {
         "external_advisory_link",
         "noesis-atlas",
         "must not modify, gate, govern",
+        "EXTERNAL-ADVISORY-001",
+        "COMMENT-AUTHORITY-001",
+    ],
+    "governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md": [
+        "EXTERNAL-ADVISORY-001",
+        "COMMENT-AUTHORITY-001",
+        "HOSTILE-INPUT-001",
+        "BREAK-GLASS-001",
+        "external_advisory_context",
     ],
     "docs/roadmap/repository-integration-map.md": [
         "logos-scripture-graph",
@@ -68,6 +78,8 @@ REQUIRED_MARKERS = {
         "lowelltwong-alt/logos-scripture-graph#7",
         "Noesis Atlas",
         "must not modify, gate, govern",
+        "EXTERNAL-ADVISORY-001",
+        "COMMENT-AUTHORITY-001",
     ],
     "docs/governance/agent-hostile-protection.md": [
         "agent-hostile",

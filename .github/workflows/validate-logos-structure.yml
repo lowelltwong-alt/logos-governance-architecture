@@ -29,3 +29,6 @@ jobs:
 
       - name: Validate Noesis boundary (Noesis may inform Logos, never govern it)
         run: python scripts/validate_noesis_boundary.py
+
+      - name: Validate external advisory authority firewall
+        run: python scripts/validate_external_advisory_authority_firewall.py

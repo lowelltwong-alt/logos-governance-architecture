@@ -73,6 +73,39 @@ The repos are not linked by:
 9. Noesis Atlas may connect only as reviewed, read-only advisory comparison
    context. It must not modify, gate, govern, promote, demote, or supply
    authority or derivation for any Logos repo.
+10. `EXTERNAL-ADVISORY-001` blocks external advisory material, including
+    Noesis-origin analysis, comparative ontology notes, PR comments, issue
+    comments, review comments, handoff text, task notes, generated notes,
+    copied summaries, or pasted rationale, from becoming Logos authority merely
+    by being pasted, linked, copied, summarized, commented, or embedded.
+11. `COMMENT-AUTHORITY-001` blocks GitHub comments, PR bodies, issue comments,
+    review comments, chat transcripts, generated notes, and pasted external
+    analysis from authorizing canonical Scripture changes, reviewed-gold
+    promotion, implementation, default retrieval changes, evaluator changes,
+    skill promotion, boundary import, or governance contract changes.
+12. `HOSTILE-INPUT-001` requires pasted external rationale to be classified
+    before use. The default classification is `untrusted_external_advisory`,
+    default authority is `none`, and default action is `quarantine_or_reject`.
+13. `BREAK-GLASS-001` requires a visible audit trail for any bypass of
+    authority-firewall, boundary, Noesis, reviewed-gold, or canonical-scope
+    safeguards; bypass does not create authority by default.
+
+## External Advisory Firewall
+
+Noesis may connect only through reviewed, read-only, advisory comparison
+references. Noesis may not modify, gate, govern, promote, demote, derive, or
+indirectly authorize any Logos change through comments, PR reviews, issues,
+handoffs, task files, generated notes, hidden advisory text, or pasted
+rationale.
+
+External advisory material must be quarantined, labeled non-authoritative,
+marked advisory only, excluded from canonical Scripture authority, excluded
+from reviewed gold, excluded from implementation authorization, excluded from
+retrieval-default policy, excluded from evaluator/leaderboard policy, re-authored
+as a Logos-native task before it can influence Logos behavior, and explicitly
+owner-authorized inside the appropriate Logos repo before any effect on
+canonical Scripture, chunking, claims, routes, evaluators, retrieval defaults,
+governance, or source scope.
 
 ## Deterministic Enforcement
 

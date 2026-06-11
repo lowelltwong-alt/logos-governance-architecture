@@ -37,6 +37,12 @@ authority.
 |---|---|---|---|
 | `noesis-atlas` | Logos repo family | `external_advisory_link` | Noesis may connect as reviewed, read-only advisory comparison context. It must not modify, gate, govern, promote, demote, or supply authority or derivation for any Logos repo. |
 
+External advisory links do not become stronger when advisory material is pasted
+into a PR body, issue, review comment, handoff, task note, generated note, or
+committed file. `EXTERNAL-ADVISORY-001` and `COMMENT-AUTHORITY-001` require
+quarantine, non-authoritative labeling, Logos-native re-authoring, and explicit
+owner authorization before advisory material can affect Logos behavior.
+
 ## Planned Contracts
 
 | From | To | Link type | Rule |
@@ -57,6 +63,11 @@ authority.
   repository contracts, or canonical Scripture scope.
 - Noesis may connect through `external_advisory_link` only; it must not modify,
   govern, gate, promote, demote, or provide authority or derivation for Logos.
+- Noesis may not indirectly authorize Logos changes through comments, PR
+  reviews, issues, handoffs, task files, generated notes, hidden advisory text,
+  or pasted rationale.
+- GitHub comments, PR bodies, issue comments, review comments, chat transcripts,
+  generated notes, and pasted external analysis are not Logos authority.
 - A planned contract must not be treated as a runtime integration.
 - A boundary-originated request must not automate a permission request, route an
   approval request into a higher-authority repo, or bundle a governance change
