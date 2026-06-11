@@ -68,6 +68,9 @@ canonical Scripture authority.
 ## Flow Rules
 
 - Governance policy flows from `logos-governance-architecture` to child repos.
+- Child Logos repos may own local implementation or support surfaces, but they
+  must not claim authority above the governance registry, repository contracts,
+  or canonical Scripture scope.
 - Canonical Scripture records and chunks are owned by `logos-scripture-graph`.
 - Boundary/reception material is scoped support, not canonical authority.
 - Boundary/reception material may not treat governance constraints as targets
@@ -78,6 +81,16 @@ canonical Scripture authority.
   in the higher-authority repo.
 - Execution harness output is not semantic authority.
 - Doctrine genealogy may model scoped claims and lineage, not rewrite Scripture.
+- Noesis Atlas may connect only as reviewed, read-only advisory comparison
+  context; it must not modify, gate, govern, promote, demote, or provide
+  authority or derivation for any Logos repo.
+- External advisory material cannot become Logos authority by paste, comment,
+  PR body, issue, review, handoff, task note, generated note, hidden rationale,
+  or copied summary. It defaults to `untrusted_external_advisory`, authority
+  `none`, and action `quarantine_or_reject`.
+- Break-glass bypass of authority-firewall, boundary, Noesis, reviewed-gold, or
+  canonical-scope safeguards requires a visible audit trail and does not create
+  authority by default.
 - GitHub issues coordinate work; they do not override registry authority,
   controlled vocabulary, review status, or validation contracts.
 

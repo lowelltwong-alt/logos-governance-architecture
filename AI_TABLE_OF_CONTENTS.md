@@ -9,6 +9,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md) - human-readable repo registry
 - [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml) - machine-readable repo registry
 - [`governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md) - P0 stop rules for boundary-originated pressure on higher-authority repos
+- [`governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md`](governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md) - P0 firewall for Noesis/external advisory paste, comment, handoff, and break-glass backdoors
 - [`governance/THREE_REPO_DATA_FLOW.md`](governance/THREE_REPO_DATA_FLOW.md) - current active three-repo data-flow map
 - [`governance/FUTURE_FIVE_REPO_ARCHITECTURE.md`](governance/FUTURE_FIVE_REPO_ARCHITECTURE.md) - planned future five-repo topology
 - [`governance/REPOSITORY_LINK_CONTRACTS.md`](governance/REPOSITORY_LINK_CONTRACTS.md) - link types and authority direction
@@ -16,6 +17,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`governance/ADDING_NEW_LOGOS_REPOS.md`](governance/ADDING_NEW_LOGOS_REPOS.md) - issue-based repo registration process
 - [`docs/governance/logos-cross-repo-governance-contract.md`](docs/governance/logos-cross-repo-governance-contract.md) - upstream/downstream contract with `logos-scripture-graph`
 - [`docs/governance/agent-hostile-protection.md`](docs/governance/agent-hostile-protection.md) - fail-closed agent-hostile protection policy
+- [`docs/governance/noesis-boundary.md`](docs/governance/noesis-boundary.md) - Noesis may inform Logos, but may not modify or govern Logos
 
 ## Primary entry points
 
