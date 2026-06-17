@@ -8,8 +8,8 @@ reason_for_inclusion: "Record current cross-repo governance state for agents ent
 
 # Project Status
 
-**Last updated:** 2026-06-08
-**Updated by:** Codex on branch `logos-repo-registry-and-future-architecture`
+**Last updated:** 2026-06-17
+**Updated by:** Codex on branch `codex/governance-dependency-map`
 
 ## Current Status
 
@@ -29,7 +29,7 @@ Planned repos, not created:
 
 ## Active Governance Work
 
-This branch adds:
+Current governance/control-plane surfaces include:
 
 - Logos repo registry;
 - current three-repo data-flow map;
@@ -37,7 +37,13 @@ This branch adds:
 - repository link contracts;
 - AI front-door standard;
 - issue-based repo registration process;
-- governance status surface.
+- governance status surface;
+- governance dependency map at `governance/GOVERNANCE_DEPENDENCY_MAP.yaml`.
+
+The dependency map records governance artifacts, owner authorization,
+dependencies, downstream controls, mirrors, validators, and update triggers. It
+is non-authorizing: it does not permit child repos to override governance,
+change canonical Scripture data, or import boundary material.
 
 ## Boundary-Originated Governance Stop Rules
 

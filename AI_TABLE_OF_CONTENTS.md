@@ -8,6 +8,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md) - current and future repo hierarchy and data flow
 - [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md) - human-readable repo registry
 - [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml) - machine-readable repo registry
+- [`governance/GOVERNANCE_DEPENDENCY_MAP.yaml`](governance/GOVERNANCE_DEPENDENCY_MAP.yaml) - first-class governance dependency map
 - [`governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md) - P0 stop rules for boundary-originated pressure on higher-authority repos
 - [`governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md`](governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md) - P0 firewall for Noesis/external advisory paste, comment, handoff, and break-glass backdoors
 - [`governance/THREE_REPO_DATA_FLOW.md`](governance/THREE_REPO_DATA_FLOW.md) - current active three-repo data-flow map
