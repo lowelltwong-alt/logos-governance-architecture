@@ -1,0 +1,78 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+import yaml
+
+from scripts import validate_governance_dependency_map as validator
+
+
+ROOT = Path(__file__).resolve().parents[1]
+MAP = ROOT / "governance" / "GOVERNANCE_DEPENDENCY_MAP.yaml"
+
+
+def load_map() -> dict:
+    return validator.validate_dependency_map(MAP)
+
+
+def test_dependency_map_validates_and_is_non_authorizing() -> None:
+    data = validator.validate_dependency_map(MAP)
+
+    assert data["object_type"] == "governance_dependency_map"
+    assert data["trust_zone"] == "canonical"
+    assert data["map_authority"]["records_governance_dependencies"] is True
+    assert data["map_authority"]["authorizes_child_repo_override"] is False
+    assert data["map_authority"]["authorizes_scripture_data_change"] is False
+    assert data["map_authority"]["authorizes_boundary_import"] is False
+
+
+def test_required_artifacts_are_present() -> None:
+    data = load_map()
+    by_id = {artifact["artifact_id"]: artifact for artifact in data["artifacts"]}
+
+    assert by_id["GD-001"]["object_type"] == "governance_front_door"
+    assert by_id["GD-002"]["object_type"] == "logos_repo_registry"
+    assert by_id["GD-003"]["object_type"] == "repository_link_contracts"
+    assert by_id["GD-004"]["object_type"] == "boundary_governance_stop_rules"
+    assert by_id["GD-005"]["object_type"] == "external_advisory_authority_firewall"
+    assert by_id["GD-007"]["object_type"] == "governance_validation_suite"
+
+
+def test_required_paths_are_covered() -> None:
+    data = validator.validate_dependency_map(MAP)
+    paths = set()
+    for artifact in data["artifacts"]:
+        paths.update(artifact["paths"])
+
+    assert "AI_FRONT_DOOR.md" in paths
+    assert "governance/LOGOS_REPO_REGISTRY.yaml" in paths
+    assert "governance/REPOSITORY_LINK_CONTRACTS.md" in paths
+    assert "governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md" in paths
+    assert "governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md" in paths
+    assert "scripts/validation_contracts.py" in paths
+
+
+def test_changed_path_gate_requires_map_update_for_governance_paths() -> None:
+    with pytest.raises(validator.DependencyMapError, match="must be updated"):
+        validator.validate_changed_path_gate(
+            changed_files=["governance/LOGOS_REPO_REGISTRY.yaml"],
+            map_updated=False,
+        )
+
+
+def test_changed_path_gate_passes_when_map_is_updated() -> None:
+    validator.validate_changed_path_gate(
+        changed_files=[
+            "governance/LOGOS_REPO_REGISTRY.yaml",
+            "governance/GOVERNANCE_DEPENDENCY_MAP.yaml",
+        ],
+        map_updated=None,
+    )
+
+
+def test_changed_path_gate_ignores_unwatched_paths() -> None:
+    validator.validate_changed_path_gate(
+        changed_files=["README.md", "docs/roadmap/theological-buildout-roadmap.md"],
+        map_updated=False,
+    )

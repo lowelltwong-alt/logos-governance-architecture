@@ -1,0 +1,341 @@
+---
+object_type: governance_dependency_map
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family."
+reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
+---
+schema_version: governance_dependency_map.v1
+map_id: logos_governance_dependency_map
+owner: Lowell Wong
+source_repo: logos-governance-architecture
+map_authority:
+  records_governance_dependencies: true
+  authorizes_child_repo_override: false
+  authorizes_scripture_data_change: false
+  authorizes_boundary_import: false
+update_policy:
+  changed_path_gate_enabled: true
+  map_update_required_when_paths_change:
+    - governance/
+    - docs/governance/
+    - scripts/validation_contracts.py
+    - scripts/run_validation_suite.py
+    - scripts/validate_
+    - AI_FRONT_DOOR.md
+    - AI_TABLE_OF_CONTENTS.md
+    - AI_WORK_START_HERE.md
+    - DATA_FLOW_MAP.md
+    - docs/workflows/
+    - .github/ISSUE_TEMPLATE/
+    - .github/workflows/
+  validator: scripts/validate_governance_dependency_map.py
+artifacts:
+  - artifact_id: GD-001
+    title: Governance front door and table of contents
+    repo: logos-governance-architecture
+    paths:
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+      - README.md
+      - .ai/control/PROJECT_STATUS.md
+    object_type: governance_front_door
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: owner_request_and_merged_governance_prs
+    owner_decision_ref: AI_FRONT_DOOR.md
+    depends_on: []
+    downstream_controls:
+      - repo_entry_sequence
+      - contribution_lane_selection
+      - generated_material_limits
+      - cross_repo_routing
+    mirrored_by:
+      - logos-scripture-graph/AI_FRONT_DOOR.md
+      - logos-boundary-literature/AI_FRONT_DOOR.md
+    validators:
+      - scripts/validate_governance_metadata.py
+      - scripts/validate_internal_links.py
+    update_triggers:
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+    provenance_note: "Front-door surfaces are the required entry point for humans and agents."
+    reason_for_inclusion: "Agents need deterministic routing before touching governed artifacts."
+  - artifact_id: GD-002
+    title: Logos repository registry
+    repo: logos-governance-architecture
+    paths:
+      - governance/LOGOS_REPO_REGISTRY.yaml
+      - governance/LOGOS_REPO_REGISTRY.md
+      - docs/roadmap/logos-repo-registry-and-future-architecture.md
+    object_type: logos_repo_registry
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: PR-56
+    owner_decision_ref: governance/LOGOS_REPO_REGISTRY.yaml
+    depends_on:
+      - GD-001
+    downstream_controls:
+      - active_repo_roles
+      - future_repo_status
+      - authority_direction
+      - planned_not_created_guardrails
+    mirrored_by:
+      - logos-scripture-graph/config/governance/repository_link_contract.yaml
+      - logos-boundary-literature/governance/THREE_REPO_ROUTING_GUARDRAILS.md
+    validators:
+      - scripts/validate_cross_repo_governance_contract.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/LOGOS_REPO_REGISTRY.yaml
+      - governance/LOGOS_REPO_REGISTRY.md
+    provenance_note: "Created to define current and planned Logos repo topology."
+    reason_for_inclusion: "Repo relationships need one source of truth."
+  - artifact_id: GD-003
+    title: Repository link contracts
+    repo: logos-governance-architecture
+    paths:
+      - governance/REPOSITORY_LINK_CONTRACTS.md
+      - docs/governance/logos-cross-repo-governance-contract.md
+    object_type: repository_link_contracts
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: PR-55_and_PR-56
+    owner_decision_ref: governance/REPOSITORY_LINK_CONTRACTS.md
+    depends_on:
+      - GD-001
+      - GD-002
+    downstream_controls:
+      - governance_contract_links
+      - supporting_context_links
+      - read_only_adapter_links
+      - external_advisory_links
+    mirrored_by:
+      - logos-scripture-graph/config/governance/repository_link_contract.yaml
+      - logos-boundary-literature/governance/CROSS_REPO_CONTRACT.md
+    validators:
+      - scripts/validate_cross_repo_governance_contract.py
+      - scripts/validate_external_advisory_authority_firewall.py
+    update_triggers:
+      - governance/REPOSITORY_LINK_CONTRACTS.md
+      - docs/governance/logos-cross-repo-governance-contract.md
+    provenance_note: "Contract-backed links define what reference, support, governance, and advisory relationships can and cannot transfer."
+    reason_for_inclusion: "Cross-repo links must not silently transfer authority."
+  - artifact_id: GD-004
+    title: Boundary governance constraints and stop rules
+    repo: logos-governance-architecture
+    paths:
+      - governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md
+      - scripts/validate_boundary_governance_stop_rules.py
+    object_type: boundary_governance_stop_rules
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: PR-57
+    owner_decision_ref: governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md
+    depends_on:
+      - GD-002
+      - GD-003
+    downstream_controls:
+      - boundary_originated_higher_layer_change_stop
+      - owner_reserved_authorization
+      - no_automated_permission_routing
+    mirrored_by:
+      - logos-boundary-literature/governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md
+      - logos-scripture-graph/.ai/control/boundary_material_routing.yaml
+    validators:
+      - scripts/validate_boundary_governance_stop_rules.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md
+      - scripts/validate_boundary_governance_stop_rules.py
+    provenance_note: "Added after boundary-governance workaround risk was identified."
+    reason_for_inclusion: "Boundary-layer need must not weaken higher-authority governance."
+  - artifact_id: GD-005
+    title: Noesis and external advisory authority firewall
+    repo: logos-governance-architecture
+    paths:
+      - governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md
+      - docs/governance/noesis-boundary.md
+      - scripts/validate_external_advisory_authority_firewall.py
+    object_type: external_advisory_authority_firewall
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: PR-58
+    owner_decision_ref: governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md
+    depends_on:
+      - GD-002
+      - GD-003
+    downstream_controls:
+      - noesis_read_only_advisory_status
+      - comment_and_pr_body_non_authority
+      - external_paste_quarantine
+      - break_glass_non_authority
+    mirrored_by:
+      - noesis-atlas/docs/SHANNON_INFORMATION_THEORY_AND_NOESIS_SOURCE_INTEGRITY.md
+      - logos-scripture-graph/AI_FRONT_DOOR.md
+    validators:
+      - scripts/validate_external_advisory_authority_firewall.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md
+      - docs/governance/noesis-boundary.md
+      - scripts/validate_external_advisory_authority_firewall.py
+    provenance_note: "Added to block advisory material from becoming Logos authority by paste, comment, or hidden rationale."
+    reason_for_inclusion: "External comparison can inform review but cannot govern Logos."
+  - artifact_id: GD-006
+    title: Data flow and future architecture maps
+    repo: logos-governance-architecture
+    paths:
+      - DATA_FLOW_MAP.md
+      - governance/THREE_REPO_DATA_FLOW.md
+      - governance/FUTURE_FIVE_REPO_ARCHITECTURE.md
+      - docs/roadmap/repository-integration-map.md
+    object_type: governance_data_flow_map
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: PR-55_and_PR-56
+    owner_decision_ref: DATA_FLOW_MAP.md
+    depends_on:
+      - GD-002
+      - GD-003
+    downstream_controls:
+      - three_repo_routing
+      - future_repo_non_authorization
+      - read_only_adapter_direction
+    mirrored_by:
+      - logos-scripture-graph/AI_TABLE_OF_CONTENTS.md
+      - logos-boundary-literature/README.md
+    validators:
+      - scripts/validate_cross_repo_governance_contract.py
+      - scripts/validate_internal_links.py
+    update_triggers:
+      - DATA_FLOW_MAP.md
+      - governance/THREE_REPO_DATA_FLOW.md
+      - governance/FUTURE_FIVE_REPO_ARCHITECTURE.md
+      - docs/roadmap/repository-integration-map.md
+    provenance_note: "Maps current active repos and future planned topology."
+    reason_for_inclusion: "Agents need deterministic data-flow direction before proposing integrations."
+  - artifact_id: GD-007
+    title: Default validation suite and validators
+    repo: logos-governance-architecture
+    paths:
+      - scripts/validation_contracts.py
+      - scripts/run_validation_suite.py
+      - .github/workflows/validate-logos-structure.yml
+    object_type: governance_validation_suite
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: merged_governance_validation_prs
+    owner_decision_ref: scripts/validation_contracts.py
+    depends_on:
+      - GD-001
+      - GD-002
+      - GD-003
+      - GD-004
+      - GD-005
+    downstream_controls:
+      - ci_validation_scope
+      - semantic_merge_validation_scope
+      - fail_closed_contract_checks
+    mirrored_by:
+      - logos-scripture-graph/scripts/validate_all.py
+      - logos-boundary-literature/tests
+    validators:
+      - scripts/run_validation_suite.py
+      - scripts/validate_governance_dependency_map.py
+    update_triggers:
+      - scripts/validation_contracts.py
+      - scripts/run_validation_suite.py
+      - scripts/validate_
+      - .github/workflows/
+    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks."
+    reason_for_inclusion: "Validation scope changes can change effective governance."
+  - artifact_id: GD-008
+    title: Governance workflow and roadmap process
+    repo: logos-governance-architecture
+    paths:
+      - docs/roadmap/README.md
+      - governance/ADDING_NEW_LOGOS_REPOS.md
+      - .github/ISSUE_TEMPLATE/register_new_logos_repo.yml
+      - .github/ISSUE_TEMPLATE/update_repo_relationship.yml
+    object_type: governance_workflow_rules
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: PR-56
+    owner_decision_ref: governance/ADDING_NEW_LOGOS_REPOS.md
+    depends_on:
+      - GD-002
+      - GD-003
+    downstream_controls:
+      - new_repo_registration
+      - repo_relationship_update_process
+      - planned_repo_not_active_status
+    mirrored_by:
+      - logos-scripture-graph/ROADMAP_STATE.yaml
+      - logos-boundary-literature/governance
+    validators:
+      - scripts/validate_cross_repo_governance_contract.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/ADDING_NEW_LOGOS_REPOS.md
+      - .github/ISSUE_TEMPLATE/
+      - docs/roadmap/
+    provenance_note: "Workflow rules prevent planned repos or relationship requests from becoming implicit authority."
+    reason_for_inclusion: "Repo topology changes need explicit process and owner review."
+  - artifact_id: GD-009
+    title: Agent-hostile protection
+    repo: logos-governance-architecture
+    paths:
+      - docs/governance/agent-hostile-protection.md
+    object_type: agent_hostile_protection
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: PR-55
+    owner_decision_ref: docs/governance/agent-hostile-protection.md
+    depends_on:
+      - GD-001
+      - GD-003
+    downstream_controls:
+      - fail_closed_agent_behavior
+      - no_self_certified_governance_truth
+      - provenance_preservation
+    mirrored_by:
+      - logos-scripture-graph/config/agents/agent_hostile_policy.yaml
+    validators:
+      - scripts/validate_cross_repo_governance_contract.py
+    update_triggers:
+      - docs/governance/agent-hostile-protection.md
+    provenance_note: "Created to resist prompt pressure against governance rules."
+    reason_for_inclusion: "Agents need explicit stop behavior when instructions conflict."
+  - artifact_id: GD-010
+    title: Governance dependency map
+    repo: logos-governance-architecture
+    paths:
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+      - scripts/validate_governance_dependency_map.py
+      - tests/test_governance_dependency_map.py
+    object_type: governance_dependency_map
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: owner_request_2026-06-17
+    owner_decision_ref: governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    depends_on:
+      - GD-001
+      - GD-007
+    downstream_controls:
+      - governance_artifact_dependency_tracking
+      - governance_changed_path_gate
+      - child_repo_mirror_traceability
+    mirrored_by:
+      - logos-scripture-graph/.ai/control/chunking_theological_decision_register.yaml
+    validators:
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+      - scripts/validate_governance_dependency_map.py
+      - tests/test_governance_dependency_map.py
+    provenance_note: "Created with the first-class chunking/governance decision-layer work."
+    reason_for_inclusion: "The dependency map itself must remain governed and validator-backed."

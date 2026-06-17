@@ -344,4 +344,8 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "name": "boundary_governance_stop_rules",
             "command": [python, "scripts/validate_boundary_governance_stop_rules.py"],
         },
+        {
+            "name": "governance_dependency_map",
+            "command": [python, "scripts/validate_governance_dependency_map.py"],
+        },
     ]
