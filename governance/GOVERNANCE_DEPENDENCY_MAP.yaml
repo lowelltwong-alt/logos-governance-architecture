@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -392,3 +392,34 @@ artifacts:
       - docs/original-languages/README.md
     provenance_note: "Added 2026-06-22 after owner request for guardrails against guessing/vibes in Scripture chunking, vectorization, graph edges, future unrelated repo decisions, and source-language manuscript graph readiness."
     reason_for_inclusion: "Generated structure must remain candidate or derived until source basis, scope, method, review status, provenance, and ancient-language/source-evidence readiness are explicit."
+  - artifact_id: GD-012
+    title: Branch reconciliation register
+    repo: logos-governance-architecture
+    paths:
+      - docs/governance/branch-reconciliation-register.md
+    object_type: branch_reconciliation_register
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: owner_goal_2026-06-22
+    owner_decision_ref: docs/governance/branch-reconciliation-register.md
+    depends_on:
+      - GD-001
+      - GD-002
+      - GD-007
+      - GD-010
+    downstream_controls:
+      - branch_cleanup_evidence_standard
+      - safety_branch_preservation
+      - unknown_branch_review_docket
+      - parallel_agent_worktree_cleanup
+      - no_mega_branch_policy
+    mirrored_by:
+      - logos-scripture-graph/.ai/audits/reports/20260622-T388-legacy-branch-discovery-audit.md
+    validators:
+      - scripts/validate_governance_metadata.py
+      - scripts/validate_internal_links.py
+      - scripts/validate_governance_dependency_map.py
+    update_triggers:
+      - docs/governance/branch-reconciliation-register.md
+    provenance_note: "Added 2026-06-22 after branch cleanup across active Logos repos preserved T388 stale-branch rediscovery evidence and left safety/unknown branches docketed instead of deleting blindly."
+    reason_for_inclusion: "Branch cleanup changes auditability and future agent context; it needs a governed evidence register rather than chat memory."
