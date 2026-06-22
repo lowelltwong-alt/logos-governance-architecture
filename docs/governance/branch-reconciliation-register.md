@@ -2,7 +2,7 @@
 object_type: branch_reconciliation_register
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created on 2026-06-22 during the clean, auditable, chunking-ready trunk reconciliation pass after Scripture Graph PR #105 preserved stale-branch rediscovery instructions."
+provenance_note: "Created on 2026-06-22 during the clean, auditable, chunking-ready trunk reconciliation pass after Scripture Graph PR #105 preserved stale-branch rediscovery instructions. Updated on 2026-06-22 after Scripture Graph PR #107 merged the T390 manuscript source catalog metadata plan and the stale detached Scripture worktree was removed."
 reason_for_inclusion: "Keep branch cleanup, preservation, and unknown-branch decisions discoverable from the governance front door instead of relying on chat memory or local branch lists."
 ---
 
@@ -44,9 +44,9 @@ If none of those is true, classify the branch as `unknown_review_required` or `s
 
 | Repo | Active base | Result |
 |---|---|---|
-| `logos-scripture-graph` | `main` at `439413a` | Clean on `main`; only `main` remains locally/remotely after T388 audit cleanup. |
+| `logos-scripture-graph` | `main` at `086b3f5` | Clean on `main`; only `main` remains locally/remotely after T388 audit cleanup, T389 launch-readiness, T390 manuscript source catalog metadata plan, and stale worktree removal. |
 | `logos-boundary-literature` | `main` at `b38531e` | Clean on `main`; only `main` remains locally/remotely after deleting merged PR branches. |
-| `logos-governance-architecture` | `main` at `bd299c7` | Clean on `main`; one local Claude safety branch remains preserved, and two remote branches remain review-required. |
+| `logos-governance-architecture` | `main` at `8112503` | Clean on `main`; one local Claude safety branch remains preserved, and two remote branches remain review-required. |
 | `noesis-atlas` | `main` at `8fb557b` | Clean on `main`; merged feature branches removed, local `master` remains review-required. |
 
 ## Cleaned Branches
@@ -54,6 +54,7 @@ If none of those is true, classify the branch as `unknown_review_required` or `s
 | Repo | Branch | Classification | Evidence | Action |
 |---|---|---|---|---|
 | `logos-scripture-graph` | `codex/legacy-branch-discovery-audit` | merged_delete_safe | PR #105 merged on 2026-06-22. | Remote branch deleted by merge cleanup. |
+| `logos-scripture-graph` | `codex/t390-manuscript-source-catalog-plan` | merged_delete_safe | PR #107 merged on 2026-06-22 as `086b3f5`; the branch was green, non-output-changing, and limited to manuscript source catalog metadata planning surfaces. | Remote branch deleted by merge cleanup; local worktree and local branch deleted after confirming clean state. |
 | `logos-scripture-graph` | `feat/scale-connection-discovery-codex-5-5` | superseded_archive | T388 audit on main records rediscovery-only use and forbids direct merge. | Local and remote branches deleted after T388 reached main. |
 | `logos-scripture-graph` | `t320-t325-boundary-entity-commentary-planning-pack` | superseded_archive | T388 audit on main records useful files and forbids direct merge. | Local-only branch deleted after T388 reached main. |
 | `logos-boundary-literature` | `codex/commentary-lineage-placement` | merged_delete_safe | PR #4 merged on 2026-06-22. | Local and remote branches deleted. |
@@ -75,6 +76,13 @@ If none of those is true, classify the branch as `unknown_review_required` or `s
 | `logos-governance-architecture` | `feat/phase-3-trinity-network-commits` | merged_delete_safe | Branch was merged into `origin/main`. | Remote branch deleted. |
 | `noesis-atlas` | `docs/shannon-note-hardening` | merged_delete_safe | PR #2 merged on 2026-05-29; branch was stale relative to `origin/main`. | Local branch deleted; remote was already gone. |
 | `noesis-atlas` | `feature/shannon-information-theory-note` | merged_delete_safe | PR #1 merged on 2026-05-29. | Local branch deleted; remote was already gone. |
+
+## Cleaned Worktrees
+
+| Repo | Worktree | Classification | Evidence | Action |
+|---|---|---|---|---|
+| `logos-scripture-graph` | `_codex_worktrees/logos-scripture-t390-manuscript-source-catalog` | merged_delete_safe | PR #107 merged and the worktree was clean with remote branch gone. | Worktree removed; local branch deleted. |
+| `logos-scripture-graph` | `_codex_worktrees/logos-scripture-graph-crossrepo` | superseded_archive | Detached HEAD `0dc6280` was clean and already contained in current `main`; no branch or uncommitted work existed. | Worktree removed; no branch deleted. |
 
 ## Preserved Or Docketed Branches
 
