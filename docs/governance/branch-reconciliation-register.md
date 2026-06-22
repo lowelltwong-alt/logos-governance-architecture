@@ -2,7 +2,7 @@
 object_type: branch_reconciliation_register
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created on 2026-06-22 during the clean, auditable, chunking-ready trunk reconciliation pass after Scripture Graph PR #105 preserved stale-branch rediscovery instructions. Updated on 2026-06-22 after Scripture Graph PR #107 merged the T390 manuscript source catalog metadata plan and the stale detached Scripture worktree was removed."
+provenance_note: "Created on 2026-06-22 during the clean, auditable, chunking-ready trunk reconciliation pass after Scripture Graph PR #105 preserved stale-branch rediscovery instructions. Updated on 2026-06-22 after Scripture Graph PR #107 merged the T390 manuscript source catalog metadata plan and the stale detached Scripture worktree was removed. Updated on 2026-06-22 to docket the dirty parallel-agent T391 Scripture worktree with a local safety snapshot."
 reason_for_inclusion: "Keep branch cleanup, preservation, and unknown-branch decisions discoverable from the governance front door instead of relying on chat memory or local branch lists."
 ---
 
@@ -44,7 +44,7 @@ If none of those is true, classify the branch as `unknown_review_required` or `s
 
 | Repo | Active base | Result |
 |---|---|---|
-| `logos-scripture-graph` | `main` at `086b3f5` | Clean on `main`; only `main` remains locally/remotely after T388 audit cleanup, T389 launch-readiness, T390 manuscript source catalog metadata plan, and stale worktree removal. |
+| `logos-scripture-graph` | `main` at `1f5c623` | Clean active base on `main`; merged T388/T389/T390/T390-readiness work is on main, and the dirty parallel-agent T391 worktree is preserved/docketed rather than deleted. |
 | `logos-boundary-literature` | `main` at `b38531e` | Clean on `main`; only `main` remains locally/remotely after deleting merged PR branches. |
 | `logos-governance-architecture` | `main` at `8112503` | Clean on `main`; one local Claude safety branch remains preserved, and two remote branches remain review-required. |
 | `noesis-atlas` | `main` at `8fb557b` | Clean on `main`; merged feature branches removed, local `master` remains review-required. |
@@ -84,6 +84,12 @@ If none of those is true, classify the branch as `unknown_review_required` or `s
 | `logos-scripture-graph` | `_codex_worktrees/logos-scripture-t390-manuscript-source-catalog` | merged_delete_safe | PR #107 merged and the worktree was clean with remote branch gone. | Worktree removed; local branch deleted. |
 | `logos-scripture-graph` | `_codex_worktrees/logos-scripture-graph-crossrepo` | superseded_archive | Detached HEAD `0dc6280` was clean and already contained in current `main`; no branch or uncommitted work existed. | Worktree removed; no branch deleted. |
 
+## Active Or Preserved Worktrees
+
+| Repo | Worktree | Classification | Why Preserved | Required Next Step |
+|---|---|---|---|---|
+| `logos-scripture-graph` | `_codex_worktrees/logos-scripture-t391-source-catalog-research-packet` | active_pr_needed | Dirty parallel-agent worktree on local branch `codex/t391-source-catalog-research-packet`; no open PR yet. Local status, tracked diff, and changed/untracked files were copied to the workspace safety backup named `t391-source-catalog-research-packet-20260622-2110`. | Do not delete or overwrite. Let the owning/next agent rebase or merge from `origin/main`, run T391 validators/tests, then open a separate non-output-changing PR or explicitly archive it after review. |
+
 ## Preserved Or Docketed Branches
 
 | Repo | Branch | Classification | Why Preserved | Required Next Step |
@@ -91,6 +97,7 @@ If none of those is true, classify the branch as `unknown_review_required` or `s
 | `logos-governance-architecture` | `safety/claude-dirty-governance-20260617-142552` | safety_preserve | Explicit Claude safety branch. It points to the same patch lineage as merged Shannon hardening work, but safety branches should not be deleted without an audit/preservation decision. | Audit against `origin/main` and any stash refs, then either preserve as an archive branch or delete with a short audit note. |
 | `logos-governance-architecture` | `origin/benchmark-question-corpus-foundation` | unknown_review_required | Remote branch has no open PR and was not proven merged in this pass. | Inspect diff and PR/issue provenance before deciding whether to convert to PR, archive, or delete. |
 | `logos-governance-architecture` | `origin/chore/refresh-retrieval-neighborhoods` | unknown_review_required | Remote branch has no open PR and was not proven merged in this pass. | Inspect whether it is scheduled/generated maintenance, still useful, or stale before deletion. |
+| `logos-scripture-graph` | `codex/t391-source-catalog-research-packet` | active_pr_needed | Local branch is checked out by the dirty parallel-agent T391 worktree. It is not delete-safe even though its committed tip is behind current `origin/main`, because uncommitted tracked and untracked work exists. | Preserve until the T391 owner/agent turns it into a reviewed PR, rebases it, or archives it with explicit audit evidence. |
 | `noesis-atlas` | `master` | unknown_review_required | Local branch is not an ancestor of `origin/main`; deleting it may lose old local-only history. | Audit its diff and history before deletion or archival. |
 
 ## Future Agent Instructions
