@@ -90,12 +90,14 @@ source provenance, confidence fields, validators, and expert review.
 Read [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md),
 [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml),
 [`governance/GOVERNANCE_DEPENDENCY_MAP.yaml`](governance/GOVERNANCE_DEPENDENCY_MAP.yaml),
+[`docs/governance/branch-reconciliation-register.md`](docs/governance/branch-reconciliation-register.md),
 [`governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md),
 [`governance/REPOSITORY_LINK_CONTRACTS.md`](governance/REPOSITORY_LINK_CONTRACTS.md),
 [`governance/AI_FRONT_DOOR_STANDARD.md`](governance/AI_FRONT_DOOR_STANDARD.md),
 and [`governance/ADDING_NEW_LOGOS_REPOS.md`](governance/ADDING_NEW_LOGOS_REPOS.md)
-before changing repo hierarchy, authority direction, data flow, routing, or
-repository registration.
+before changing repo hierarchy, authority direction, data flow, routing,
+repository registration, branch cleanup, safety-branch deletion, or parallel-agent
+worktree cleanup.
 
 The governance dependency map is a required first-class control surface. It
 records governance artifacts, owner authorization, dependencies, downstream

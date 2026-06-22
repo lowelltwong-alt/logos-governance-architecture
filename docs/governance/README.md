@@ -52,6 +52,7 @@ Preferred order of extension:
 - `exceptioncase-and-learningsignal-primitives.md` — governed learning primitives that keep exception capture separate from approved change
 - `exceptions-lake-integration-note.md` — landing map showing where exceptions-lake import concepts were absorbed
 - `change-taxonomy.yaml` — machine-readable change classification vocabulary aligned to the cleaned governance surface
+- `branch-reconciliation-register.md` — branch cleanup, preservation, unknown-branch docket, and clean-trunk audit evidence for stale branches, safety branches, Codex worktrees, and parallel-agent leftovers
 - `biblical-connection-vocabulary.md` — first approved subset of scholar-recognizable biblical and theological relationship terms for future governed graph and retrieval work
 - `scripture-taxonomy-and-ontology.md` — scripture-layer ontology design for books, chapters, pericopes, texts, and interpretations
 - `textual-traditions-translation-and-noncanonical-sources.md` — structure for original languages, translations, manuscripts, and noncanonical source handling
