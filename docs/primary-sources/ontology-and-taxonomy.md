@@ -21,6 +21,28 @@ The same larger repository grammar should still apply:
 - promotion rules
 - validation
 
+## Source-Language Root Graph Direction
+
+The long-range direction is a manuscript- and source-language-rooted Scripture
+graph.
+
+English translation surfaces should remain valuable access, comparison, and
+application layers, but the deepest evidence layer should eventually be able to
+trace claims back through:
+
+- manuscript witnesses and fragments;
+- Hebrew, Aramaic, and Koine Greek transcriptions where applicable;
+- lemmata, morphology, syntax, and phrase-level evidence;
+- variants and reconstruction judgments;
+- translation renderings and interpretation layers as downstream, labeled
+  objects.
+
+This direction requires capability gates. AI-assisted source-language work must
+not be promoted merely because it sounds learned or parses fluently. It needs
+licensed source data, controlled vocabulary, expert review, confidence fields,
+and validators that keep manuscript evidence, lexical analysis, translation,
+interpretation, and doctrine distinct.
+
 ## Major object families
 
 ### `witness_object`
@@ -72,6 +94,9 @@ Likely high-value relationships include:
 - `reconstructs`
 - `attests`
 - `variant_of`
+- `has_lemma`
+- `has_morphology`
+- `has_syntactic_relation`
 - `grounds`
 - `translation_witness_for`
 - `requires_review`
@@ -117,6 +142,18 @@ Likely high-value relationships include:
 - non-biblical comparative usage notes where appropriate
 - lexical confidence
 
+### Source-language analysis metadata
+- language
+- script
+- token or phrase span
+- lemma
+- morphology
+- syntactic relation where known
+- parsing confidence
+- analyst or tool provenance
+- expert-review status
+- caution notes for disputed or ambiguous parses
+
 ### Translation metadata
 - target language
 - likely renderings
@@ -137,6 +174,10 @@ Likely confidence dimensions include:
 - translation confidence
 
 Trust zones from the wider repository should still apply.
+
+AI-generated parses, alignments, or lexical observations should default to
+candidate or inferred status until reviewed. They should never overwrite
+transcriptions, variant records, or source-language evidence objects.
 
 ## Fractal rule
 

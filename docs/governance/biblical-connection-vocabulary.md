@@ -66,6 +66,10 @@ Future uses of this vocabulary should expose, where relevant:
 
 Do not use validation success, schema presence, or graph storage as proof that a theological relation is correct.
 
+Also apply `anti-guessing-and-evidence-discipline.md`: embedding closeness,
+generated confidence, or topical resemblance may create review candidates, but
+not governed biblical-theological relations.
+
 ## Approved first subset
 
 The first approved subset is intentionally narrow.

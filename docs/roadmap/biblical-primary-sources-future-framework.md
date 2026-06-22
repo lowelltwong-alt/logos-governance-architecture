@@ -24,6 +24,31 @@ Do not collapse these into one object:
 
 These layers should connect, but remain distinguishable.
 
+## Long-Range Root Graph Horizon
+
+The mature Scripture graph should eventually be rooted in manuscript witnesses
+and source-language evidence rather than in English translations alone.
+
+That means the deepest graph layer should be able to represent:
+
+- Hebrew and Aramaic witness evidence for the Old Testament where applicable;
+- Koine Greek witness evidence for the New Testament and relevant ancient
+  versional traditions;
+- fragments, codices, scrolls, inscriptions, catalog metadata, and holding
+  institutions;
+- diplomatic transcriptions, normalized transcriptions, lemmata, morphology,
+  syntax, variants, and reconstruction judgments;
+- confidence and review status for dating, reading, reconstruction, lexical,
+  syntactic, and translation decisions.
+
+This is not a claim that the project can safely build that layer immediately.
+It is a direction of travel. Until the project has enough source data, licensing
+clarity, expert review, validation, and language-specific gold samples, AI
+output in this area must stay candidate or staged.
+
+English translations may remain important user-facing access layers, but they
+should not become the final root of the evidence graph.
+
 ## Future architecture layers
 
 ### 1. Witness layer
@@ -150,6 +175,16 @@ It would connect naturally to:
 
 ## Recommended phased buildout
 
+### Phase 0: capability and source-readiness gate
+- identify source-language corpora, editions, morphology data, and manuscript
+  catalogs that may be used legally;
+- define what level of Hebrew, Aramaic, Koine Greek, textual criticism,
+  philology, and manuscript-studies review is required;
+- create small gold sample passages before any broad graph generation;
+- define validators that fail on hallucinated language analysis, missing
+  provenance, missing confidence, or collapsed translation/interpretation
+  layers.
+
 ### Phase 1: metadata-ready shell
 - define object families
 - define IDs and trust rules
@@ -170,11 +205,20 @@ It would connect naturally to:
 - connect terms to occurrences
 - connect occurrences to witnesses and passages
 - add target-language comparison objects
+- keep source-language lexical and syntactic analysis separate from translation
+  rendering and interpretation
 
 ### Phase 5: larger corpus import
 - selectively ingest larger trusted corpora
 - preserve provenance and licensing constraints
 - add validation and anti-poisoning checks before broad imports
+
+### Phase 6: source-language root graph expansion
+- build manuscript-aware Hebrew/Aramaic/Greek graph layers only from reviewed
+  source records;
+- promote AI-assisted alignments only after expert review and validator checks;
+- expose downstream English, doctrine, and apologetics reports as derived views
+  over the source-language/manuscript graph.
 
 ## Summary principle
 

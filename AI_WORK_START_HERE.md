@@ -39,7 +39,10 @@ AI agents working in this repository must follow these guardrails:
 5. **Do not redesign the recursive shell casually.**
    - Prefer adding nodes and relationships inside the existing structure before changing the structure itself.
 
-6. **Do not dilute the theological grounding into generic ethics.**
+6. **Do not let semantic similarity masquerade as evidence.**
+   - Chunking, vectorizing, retrieval neighborhoods, graph edges, and doctrine-lineage links require source basis, authority owner, scope, method, review status, and provenance before they can be treated as governed structure.
+
+7. **Do not dilute the theological grounding into generic ethics.**
    - This project is explicitly Logos-grounded and theological.
 
 ## Recommended reading order
@@ -51,9 +54,11 @@ AI agents working in this repository must follow these guardrails:
 5. [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)
 6. [`docs/governance/tag-registry.md`](docs/governance/tag-registry.md)
 7. [`docs/governance/relationship-registry.md`](docs/governance/relationship-registry.md)
-8. [`docs/governance/node-types.md`](docs/governance/node-types.md)
-9. [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md)
-10. [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md)
+8. [`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md)
+9. [`docs/governance/inference-policy.md`](docs/governance/inference-policy.md)
+10. [`docs/governance/node-types.md`](docs/governance/node-types.md)
+11. [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md)
+12. [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md)
 
 ## Preferred work pattern
 
@@ -81,7 +86,9 @@ Before changing files:
 
 5. Do not create fake file paths, fake registries, fake schemas, or fake build status.
 
-6. Report what changed, what was not verified, and what remains risky.
+6. For chunking, vectorizing, graph, or retrieval work, identify what is asserted, what is inferred, what is only a candidate, and what evidence would be needed for promotion.
+
+7. Report what changed, what was not verified, and what remains risky.
 
 ## Output expectations for AI work
 

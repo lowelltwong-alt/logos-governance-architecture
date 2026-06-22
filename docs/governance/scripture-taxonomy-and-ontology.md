@@ -40,6 +40,27 @@ The repository should preserve the difference between:
 3. what doctrine is drawn from it
 4. how that doctrine is translated into governance or AI reasoning
 
+## Source-Language And Manuscript Horizon
+
+The long-range Scripture graph should eventually be able to move below
+English-facing passage nodes into manuscript witnesses and source-language
+evidence.
+
+That future root graph should keep distinct:
+
+- Hebrew, Aramaic, and Koine Greek witness evidence;
+- manuscript and fragment records;
+- diplomatic and normalized transcriptions;
+- textual variants and reconstruction judgments;
+- lemmata, morphology, syntax, and lexical evidence;
+- translation renderings;
+- interpretation and doctrinal use.
+
+This is a roadmap horizon, not a present AI authority claim. AI may help stage
+candidate alignments, parses, and lexical notes, but source-language graph
+promotion requires licensed sources, controlled vocabulary, confidence fields,
+human expert review, and validators that keep evidence layers separate.
+
 ## Main node families
 
 ### 1. `scripture_book`
@@ -299,6 +320,16 @@ Add interpretation and hermeneutic nodes:
 
 ### Phase 4
 Link scripture nodes to doctrine, concept, and canon nodes.
+
+### Future source-language phase
+After source, licensing, and expert-review gates are in place, extend the graph
+toward manuscript and original-language evidence:
+
+- witness and fragment records;
+- Hebrew, Aramaic, and Koine Greek transcription layers;
+- lemma, morphology, syntax, and lexical-evidence objects;
+- variant and passage-reconstruction objects;
+- translation-comparison objects downstream of the source-language evidence.
 
 ## Summary principle
 

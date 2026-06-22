@@ -10,12 +10,51 @@ registration_policy:
   new_repo_requires_issue: true
   new_repo_requires_ai_front_door: true
   new_repo_requires_toc_or_data_map_or_exception: true
+  new_repo_requires_source_trust_rules: true
+  new_repo_requires_scope_rules_when_profile_or_tradition_data_exists: true
+  new_repo_requires_anti_guessing_rules_when_chunking_vectorizing_or_graphing: true
   relationship_change_updates_registry_first_or_same_pr: true
   child_repos_may_mirror_registry: true
   governance_repo_is_source_of_truth: true
   ai_stop_if_correct_repo_unknown: true
   planned_repos_allowed_with_status: planned_not_created
   creating_planned_repo_requires_issue_and_scaffold_pr: true
+
+anti_guessing_evidence_discipline_policy:
+  policy_id: ANTI-GUESSING-001
+  title: Semantic Similarity Is Not Evidence
+  importance: P0
+  applies_to:
+    - scripture_chunking
+    - vector_indexes
+    - retrieval_neighborhoods
+    - graph_edges
+    - doctrine_lineage_links
+    - repo_placement_decisions
+  semantic_similarity_is_authority: false
+  embedding_closeness_is_authority: false
+  generated_confidence_is_authority: false
+  graph_rank_is_authority: false
+  may_create:
+    - review_candidates
+    - derived_views
+    - retrieval_hints
+    - quarantine_items
+  must_not_create_without_review:
+    - canonical_scripture_relationships
+    - doctrine_claims
+    - commentary_as_scripture_meaning
+    - governed_graph_edges
+    - repo_authority_changes
+  governed_structure_requires:
+    - source_basis
+    - authority_owner
+    - trust_zone
+    - scope
+    - method_or_transformation
+    - asserted_or_inferred_status
+    - review_status
+    - provenance
 
 boundary_governance_constraint_policy:
   policy_id: BOUNDARY-GOV-001
@@ -122,17 +161,27 @@ current_repos:
       - canonical_scripture_chunks
       - scripture_reviewed_gold_evaluator_surfaces
       - scripture_stress_atlas_review_packets
+    owns_future_after_review:
+      - manuscript_source_language_scripture_evidence_graph
+      - hebrew_aramaic_greek_witness_and_transcription_layers
+      - lemma_morphology_syntax_and_lexical_evidence_objects
+      - variant_and_passage_reconstruction_objects
     must_not_own:
       - deuterocanonical_apocrypha_corpus
       - noncanonical_boundary_texts
       - commentary_corpus
+      - patristic_reception_corpus
+      - theologian_writing_corpus
+      - denominational_theology_claims
       - gnostic_heterodox_fake_forged_texts
       - unscoped_boundary_claims
+      - ai_generated_source_language_analysis_as_reviewed_truth
     data_flow:
       may_emit:
         - canonical_scripture_refs
         - canonical_scripture_ids
         - reviewed_scripture_chunk_artifacts
+        - reviewed_source_language_evidence_refs
       may_receive:
         - governance_contracts
         - scoped_background_links
@@ -141,6 +190,7 @@ current_repos:
         - boundary_claims_as_canonical_truth
         - commentary_as_default_scripture_meaning
         - noncanonical_source_text_as_scripture
+        - unreviewed_ai_language_analysis_as_source_truth
 
   logos-boundary-literature:
     status: active
@@ -154,6 +204,9 @@ current_repos:
       - noncanonical_boundary_literature_metadata
       - deuterocanonical_apocrypha_metadata_source_intake_planning
       - heterodox_gnostic_disputed_forged_text_governance
+      - patristic_reception_metadata
+      - church_father_citation_metadata
+      - theologian_writing_source_metadata
       - commentary_reception_claims
       - trust_hierarchy
       - source_intake_policy
@@ -317,6 +370,19 @@ planned_repos:
       - mix_output_namespaces
       - transfer_boundary_claims_into_scripture
       - promote_quarantine_learning_into_scripture_without_reviewed_structural_approval
+      - treat_embedding_similarity_as_scripture_relationship
+      - create_graph_edges_from_similarity_without_source_evidence
+      - promote_vector_neighbors_to_canonical_truth
+    initial_scaffold_requires:
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md_or_data_map_or_documented_exception
+      - README.md
+      - source_mode_adapter_boundary_rules
+      - derived_artifact_namespace_rules
+      - anti_guessing_and_evidence_discipline_rules
+      - vector_output_not_authority_rules
+      - graph_edge_promotion_gate
+      - validation_commands
 
   logos-doctrine-genealogy:
     status: planned_not_created
@@ -329,12 +395,42 @@ planned_repos:
       - tradition_profile_scoped_claims
       - ethical_implication_mapping
       - alignment_disalignment_classifications
+      - denomination_profile_scoped_lineage
+      - theologian_influence_and_correction_chains
       - human_judgment_gates
+    may_consume_refs_from:
+      - logos-scripture-graph
+      - logos-boundary-literature
     must_not:
       - rewrite_canonical_scripture
+      - ingest_commentary_corpora_as_scripture
+      - own_commentary_source_corpus
       - collapse_contested_doctrine_into_universal_truth
       - treat_ai_alignment_labels_as_final_authority
       - override_profile_tradition_scope
+    initial_scaffold_requires:
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md_or_data_map_or_documented_exception
+      - README.md
+      - source_trust_rules
+      - denomination_profile_scope_rules
+      - theologian_lineage_relationship_rules
+      - validation_commands
+
+derived_evidence_namespace_policy:
+  unified_evidence_products_are_derived_artifacts: true
+  source_truth_remains_split_by_repo: true
+  allowed_table_prefixes:
+    - scripture_
+    - boundary_
+    - doctrine_
+    - evidence_
+  forbidden_table_or_view_pattern:
+    - canonical_tables_include_boundary_data
+    - canonical_tables_include_commentary_data
+    - canonical_tables_include_patristic_data
+    - canonical_tables_include_theologian_data
+    - canonical_tables_include_denominational_profile_data
 
 global_stop_and_report_triggers:
   - correct_repo_cannot_be_determined
@@ -351,4 +447,9 @@ global_stop_and_report_triggers:
   - pasted_external_rationale_unclassified
   - break_glass_merge_without_audit_trail
   - source_text_ingestion_requested_without_source_intake_review
+  - semantic_similarity_treated_as_source_evidence
+  - vector_output_treated_as_authority
+  - generated_confidence_treated_as_review
+  - chunk_or_edge_lacks_source_scope_method_review_or_provenance
+  - ai_generated_greek_hebrew_or_aramaic_analysis_treated_as_reviewed_truth
   - authority_direction_unclear_or_reversed

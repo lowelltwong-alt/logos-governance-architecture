@@ -37,6 +37,7 @@ Preferred order of extension:
 - `anchor-conventions.md` — base anchor families and address logic
 - `tag-registry.md` — base controlled tag families and extension guidance
 - `relationship-registry.md` — approved relationship verbs and usage guidance
+- `anti-guessing-and-evidence-discipline.md` - guardrails against treating semantic similarity, embeddings, generated confidence, or graph convenience as evidence
 - `node-types.md` — approved base node families
 
 ### Governance extensions and architecture control
@@ -66,7 +67,9 @@ A contributor usually should read this governance layer in roughly this order:
 2. `anchor-conventions.md`
 3. `tag-registry.md`
 4. `relationship-registry.md`
-5. `node-types.md`
+5. `anti-guessing-and-evidence-discipline.md`
+6. `inference-policy.md`
+7. `node-types.md`
 
 Then read the relevant extensions when working in:
 - scripture

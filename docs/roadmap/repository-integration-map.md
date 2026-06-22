@@ -40,15 +40,22 @@ the shells differ in format.
 |------------|------|-------------------|
 | `logos-governance-architecture` (this repo) | Theological source architecture: taxonomy, ontology, ordering/weighting logic, governance | 1–2 (canon, doctrine/concept), 5 (biblical theme), and the governance of 3–9 |
 | [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) | **Data-plane substrate**: deterministic Bible ingest, passage/witness records, canon profiles, boundary claims, retrieval chunks, provenance + validation | 3 (scripture), 4 (original-language/translation/manuscript, via Strong's WordTokens), 6 (boundary-source, via canon profiles), 7 (graph/concordance), 8 (primary-sources, future) |
-| [`logos-boundary-literature`](https://github.com/lowelltwong-alt/logos-boundary-literature) | **Boundary/reception support plane**: noncanonical, disputed, forged, commentary/reception, source-intake, and trust-scope governance | 6 (boundary-source) and scoped reception/comparison support for 3-8 |
+| [`logos-boundary-literature`](https://github.com/lowelltwong-alt/logos-boundary-literature) | **Boundary/reception support plane**: noncanonical, disputed, forged, patristic, commentary/reception, theologian-writing source metadata, source-intake, and trust-scope governance | 6 (boundary-source) and scoped reception/comparison support for 3-8 |
 | `logos-chunking-harness` (planned, not created) | **Execution/evaluation plane**: future cross-corpus chunking harness and promotion gates | Execution support only; no semantic authority |
-| `logos-doctrine-genealogy` (planned, not created) | **Doctrine lineage/profile plane**: future tradition/profile-scoped doctrine development and comparison | Doctrine/concept lineage support only; no canonical Scripture authority |
+| `logos-doctrine-genealogy` (planned, not created) | **Doctrine lineage/profile plane**: future tradition/profile-scoped doctrine development, denomination mapping, and theologian lineage comparison | Doctrine/concept lineage support only; no canonical Scripture authority |
 
 The Scripture substrate consumes this repo's taxonomy/ontology/canon discipline
 and emits machine-readable, provenance-stamped artifacts the graph/concordance
 layer can govern. Boundary literature remains supporting context, not Scripture
 authority. Planned execution and doctrine-lineage repos require registration
 issues and scaffold PRs before they can become active.
+
+Commentaries, church-father citations, patristic reception, and theologian
+writings route to `logos-boundary-literature` as source/reception material. The
+future `logos-doctrine-genealogy` repo should reference those source records
+when modeling theological development, but it should not become the source-text
+corpus. Unified evidence products may join these layers only as derived
+artifacts with hard authority namespaces.
 
 ## Main repository layers
 

@@ -10,6 +10,7 @@ This file should be read together with:
 - `fractal-rules.md`
 - `competency-questions.md`
 - `relationship-registry.md`
+- `anti-guessing-and-evidence-discipline.md`
 - `schema-compatibility-policy.md`
 
 ## Core principle
@@ -49,8 +50,19 @@ Machines should not silently invent:
 - new controlled relationship verbs
 - new node types or schema grammars
 - high-confidence semantic links without governed support
+- Scripture chunk boundaries, vector neighborhoods, graph edges, or doctrine-lineage links from similarity alone
 
 Inference should expand from governed structure, not replace it.
+
+## Anti-guessing rule
+
+Inference output may generate candidates, review queues, and derived views.
+
+It may not become asserted structure until source basis, authority owner, trust
+zone, scope, method, asserted versus inferred status, review status, and
+provenance are declared.
+
+Semantic similarity is a signal to inspect, not a source of authority.
 
 ## Direct vs transitive rule
 

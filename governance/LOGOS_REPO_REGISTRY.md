@@ -36,18 +36,24 @@ or implement runtime integration as part of registry work.
 ### logos-scripture-graph
 
 Owns the canonical 66-book Scripture corpus, canonical Scripture chunks,
-reviewed Scripture gold/evaluator surfaces, and Scripture stress atlas/review
-packets.
+reviewed Scripture gold/evaluator surfaces, Scripture stress atlas/review
+packets, and the future manuscript/source-language Scripture evidence graph
+after source, licensing, vocabulary, validation, and expert-review gates are in
+place.
 
 It must not own deuterocanonical/apocrypha corpora, noncanonical or boundary
-texts, commentary corpora, gnostic/heterodox/fake/forged texts, or unscoped
-boundary claims.
+texts, patristic or commentary corpora, theologian-writing corpora,
+denominational theology claims, gnostic/heterodox/fake/forged texts, or
+unscoped boundary claims. It must not treat AI-generated Hebrew, Aramaic, or
+Koine Greek analysis as reviewed source-language truth.
 
 ### logos-boundary-literature
 
 Owns noncanonical and boundary literature metadata, deuterocanonical/apocrypha
 source-intake planning, heterodox/gnostic/disputed/forged text governance,
-commentary/reception claims, the trust hierarchy, and source-intake policy.
+patristic reception, church-father citations, commentary metadata, theologian
+writings as source/reception material, commentary/reception claims, the trust
+hierarchy, and source-intake policy.
 
 It supports `logos-scripture-graph`, but it must not override Scripture, equal
 Scripture authority, mutate canonical Scripture records, supply default
@@ -104,12 +110,36 @@ authorize runtime integration.
 
 `logos-chunking-harness` may later own source-mode adapters, chunking execution,
 cross-corpus experiments, evaluation harnesses, and promotion gates. It must not
-own canonical Scripture truth or mix output namespaces.
+own canonical Scripture truth, mix output namespaces, treat vector similarity as
+evidence, create governed graph edges from semantic closeness alone, or become
+the root manuscript/source-language graph.
 
 `logos-doctrine-genealogy` may later own doctrine lineage, tradition/profile
 comparison, ethical implication mapping, alignment/disalignment classifications,
-and human judgment gates. It must not rewrite canonical Scripture or flatten
-contested doctrine into universal truth.
+denominational/theological development over time, theologian-to-theologian
+influence and correction chains, and human judgment gates. It may consume
+Scripture references from `logos-scripture-graph` and scoped source/reception
+references from `logos-boundary-literature`. It must not rewrite canonical
+Scripture, ingest commentary corpora as Scripture, or flatten contested doctrine
+into universal truth.
+
+## Commentary And Theology-Lineage Routing
+
+Commentaries, patristic writings, church-father citations, modern and ancient
+theologian writings, and reception-history source records route to
+`logos-boundary-literature` unless a future registry update explicitly assigns a
+more specific source-intake repo.
+
+The future `logos-doctrine-genealogy` repo may model how doctrines, concepts,
+denominational profiles, and theologians build on, sharpen, correct, or diverge
+from earlier sources. It should reference source records in
+`logos-boundary-literature` rather than becoming a commentary corpus itself.
+
+Unified evidence or apologetics databases may join Scripture, boundary, and
+doctrine-lineage records only as derived artifacts. Such products must use hard
+namespaces such as `scripture_*`, `boundary_*`, `doctrine_*`, and `evidence_*`.
+They must never create a `canonical_*` table or view that includes boundary,
+commentary, patristic, theologian, or denomination-profile data.
 
 ## Registry Rules
 
@@ -118,12 +148,43 @@ contested doctrine into universal truth.
 - Any new Logos repo must include an `AI_FRONT_DOOR.md`.
 - Any new Logos repo must include a table of contents, data map, or documented
   exception.
+- Any repo that touches source, tradition, denomination, or profile data must
+  include source-trust rules, scope rules, and validation commands before real
+  corpus or lineage records are added.
+- Any repo that touches chunking, vector indexes, retrieval neighborhoods, graph
+  edge generation, or doctrine-lineage links must include anti-guessing and
+  evidence-discipline rules before generated structure is treated as governed.
 - Any repo relationship change must update the governance registry first or in
   the same coordinated PR.
 - Child repos may mirror registry entries, but the governance repo is the source
   of truth.
 - AI must stop and report when it cannot determine the correct repo for a task.
 - Creating a planned repo requires a new issue and a scaffold PR.
+
+## Repo Creation Readiness
+
+A planned repo is no longer premature only when:
+
+1. the first concrete task cannot safely live in an existing active repo;
+2. a registration issue names owned data, forbidden data, authority level,
+   upstream governance, downstream consumers, source/trust risks, and validation
+   commands;
+3. authority and data-flow direction are approved in this governance repo;
+4. the first scaffold PR includes `AI_FRONT_DOOR.md`, README, a table of
+   contents or data map, source-trust rules where needed, scope rules where
+   needed, and validation commands;
+5. the registry is updated here before or in the same coordinated PR.
+
+Do not create `logos-chunking-harness` or `logos-doctrine-genealogy` directly
+from chat or local convenience. Their first scaffold PR must preserve the
+authority limits in `LOGOS_REPO_REGISTRY.yaml` before any implementation,
+runtime adapter, source import, commentary corpus, or doctrine-lineage data is
+added.
+
+`logos-chunking-harness` is no longer premature only when a concrete
+cross-corpus execution or evaluation task needs separate source-mode adapters,
+namespace separation, anti-guessing controls, and validation commands. Embedding
+search, semantic similarity, or graph ideas alone are not enough.
 
 ## Stop And Report
 
@@ -149,6 +210,11 @@ Stop and report when:
 - pasted external rationale has not been classified and quarantined or rejected;
 - a break-glass bypass lacks a visible audit trail;
 - source text ingestion is requested without source-intake review;
+- semantic similarity, vector output, or generated confidence is treated as
+  Scripture evidence, doctrine evidence, graph authority, or repo-placement
+  authority;
+- a chunk, graph edge, retrieval neighborhood, or doctrine-lineage link lacks
+  source basis, authority owner, scope, method, review status, or provenance;
 - authority direction is unclear or reversed.
 
 ## Boundary-Originated Higher-Layer Changes

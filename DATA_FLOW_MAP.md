@@ -73,6 +73,9 @@ canonical Scripture authority.
   or canonical Scripture scope.
 - Canonical Scripture records and chunks are owned by `logos-scripture-graph`.
 - Boundary/reception material is scoped support, not canonical authority.
+- Commentaries, church-father citations, patristic reception, and ancient or
+  modern theologian writings route to `logos-boundary-literature` as scoped
+  source/reception material, not to canonical Scripture records.
 - Boundary/reception material may not treat governance constraints as targets
   for workaround, weakening, automated approval routing, or bundled policy
   changes.
@@ -81,6 +84,20 @@ canonical Scripture authority.
   in the higher-authority repo.
 - Execution harness output is not semantic authority.
 - Doctrine genealogy may model scoped claims and lineage, not rewrite Scripture.
+- Doctrine genealogy may model denomination/profile-scoped theological
+  development and theologian lineage. It may consume Scripture references and
+  boundary/reception source references, but it must not become a Scripture text
+  authority or commentary corpus.
+- Unified evidence products must be derived artifacts with hard namespaces such
+  as `scripture_*`, `boundary_*`, `doctrine_*`, and `evidence_*`. A
+  `canonical_*` table or view must not include boundary, commentary, patristic,
+  theologian, or denomination-profile data.
+- Chunking, vector, graph, and retrieval outputs are candidate or derived
+  artifacts unless they name source basis, authority owner, trust zone, scope,
+  method, asserted/inferred status, review status, and provenance.
+- Embedding similarity, generated confidence, and graph ranking do not authorize
+  Scripture relationships, doctrine claims, commentary-as-Scripture meaning, or
+  repo-governance decisions.
 - Noesis Atlas may connect only as reviewed, read-only advisory comparison
   context; it must not modify, gate, govern, promote, demote, or provide
   authority or derivation for any Logos repo.

@@ -8,6 +8,7 @@ This file should be read together with:
 - `operational-ontology-model.md`
 - `research-synthesis-ai-era-ontology-takeaways.md`
 - `asserted-inferred-and-boundary-layers.md`
+- `anti-guessing-and-evidence-discipline.md`
 - `controlled-schemes-and-vocabularies-policy.md`
 
 ## Core principle
@@ -49,6 +50,10 @@ That becomes easier when the repository includes:
 - scheme memberships
 - clear boundary or trust indicators
 - provenance and review state
+
+Search scores, embedding closeness, and generated summaries may improve recall,
+but they do not supply source authority. Retrieval output should stay labeled as
+candidate or derived unless it is tied back to governed objects and review.
 
 ## Agent-use rule
 
