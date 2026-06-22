@@ -66,6 +66,19 @@ The project should be able to document not only what a passage says in translati
 - how different modern languages may render the term differently
 - how lexical nuances affect doctrine, interpretation, and application
 
+## Source-language graph caution
+
+The long-range Scripture graph should eventually be rooted in manuscript and
+source-language evidence, including Hebrew, Aramaic, and Koine Greek where
+applicable.
+
+That future work requires more than fluent-looking AI language analysis. Lemma,
+morphology, syntax, variant, and lexical claims need source provenance,
+confidence, review status, and expert review before they can become governed
+graph structure.
+
+AI-assisted parses or alignments should stay staged or candidate until reviewed.
+
 ## Recommended future substructure
 
 - `hebrew/`

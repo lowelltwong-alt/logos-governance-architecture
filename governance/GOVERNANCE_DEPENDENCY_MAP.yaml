@@ -51,6 +51,7 @@ artifacts:
       - contribution_lane_selection
       - generated_material_limits
       - cross_repo_routing
+      - anti_guessing_entry_point
     mirrored_by:
       - logos-scripture-graph/AI_FRONT_DOOR.md
       - logos-boundary-literature/AI_FRONT_DOOR.md
@@ -82,6 +83,7 @@ artifacts:
       - future_repo_status
       - authority_direction
       - planned_not_created_guardrails
+      - commentary_and_theology_lineage_routing
     mirrored_by:
       - logos-scripture-graph/config/governance/repository_link_contract.yaml
       - logos-boundary-literature/governance/THREE_REPO_ROUTING_GUARDRAILS.md
@@ -91,7 +93,7 @@ artifacts:
     update_triggers:
       - governance/LOGOS_REPO_REGISTRY.yaml
       - governance/LOGOS_REPO_REGISTRY.md
-    provenance_note: "Created to define current and planned Logos repo topology."
+    provenance_note: "Created to define current and planned Logos repo topology; updated 2026-06-22 to route commentary/theologian source material to boundary literature and doctrine development to planned doctrine genealogy."
     reason_for_inclusion: "Repo relationships need one source of truth."
   - artifact_id: GD-003
     title: Repository link contracts
@@ -204,6 +206,8 @@ artifacts:
       - three_repo_routing
       - future_repo_non_authorization
       - read_only_adapter_direction
+      - derived_evidence_namespace_separation
+      - anti_guessing_derived_artifact_control
     mirrored_by:
       - logos-scripture-graph/AI_TABLE_OF_CONTENTS.md
       - logos-boundary-literature/README.md
@@ -215,7 +219,7 @@ artifacts:
       - governance/THREE_REPO_DATA_FLOW.md
       - governance/FUTURE_FIVE_REPO_ARCHITECTURE.md
       - docs/roadmap/repository-integration-map.md
-    provenance_note: "Maps current active repos and future planned topology."
+    provenance_note: "Maps current active repos and future planned topology, including derived evidence namespace separation and anti-guessing controls for Scripture, boundary, chunking, and doctrine-lineage records."
     reason_for_inclusion: "Agents need deterministic data-flow direction before proposing integrations."
   - artifact_id: GD-007
     title: Default validation suite and validators
@@ -339,3 +343,52 @@ artifacts:
       - tests/test_governance_dependency_map.py
     provenance_note: "Created with the first-class chunking/governance decision-layer work."
     reason_for_inclusion: "The dependency map itself must remain governed and validator-backed."
+  - artifact_id: GD-011
+    title: Anti-guessing and evidence discipline
+    repo: logos-governance-architecture
+    paths:
+      - docs/governance/anti-guessing-and-evidence-discipline.md
+      - docs/governance/inference-policy.md
+      - docs/governance/retrieval-and-agent-use-principles.md
+      - docs/governance/relationship-registry.md
+      - docs/governance/biblical-connection-vocabulary.md
+      - docs/governance/scripture-taxonomy-and-ontology.md
+      - docs/roadmap/biblical-primary-sources-future-framework.md
+      - docs/primary-sources/ontology-and-taxonomy.md
+      - docs/original-languages/README.md
+    object_type: anti_guessing_evidence_discipline
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: owner_request_2026-06-22
+    owner_decision_ref: docs/governance/anti-guessing-and-evidence-discipline.md
+    depends_on:
+      - GD-001
+      - GD-002
+      - GD-006
+      - GD-007
+    downstream_controls:
+      - no_semantic_similarity_as_authority
+      - no_vector_output_as_scripture_evidence
+      - chunk_edge_scope_method_review_provenance_required
+      - graph_edge_promotion_gate
+      - source_language_root_graph_readiness_gate
+      - reusable_non_vibes_repo_design
+    mirrored_by:
+      - logos-scripture-graph/AI_FRONT_DOOR.md
+      - logos-scripture-graph/config/governance/repository_link_contract.yaml
+      - logos-chunking-harness/AI_FRONT_DOOR.md
+    validators:
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - docs/governance/anti-guessing-and-evidence-discipline.md
+      - docs/governance/inference-policy.md
+      - docs/governance/retrieval-and-agent-use-principles.md
+      - docs/governance/relationship-registry.md
+      - docs/governance/biblical-connection-vocabulary.md
+      - docs/governance/scripture-taxonomy-and-ontology.md
+      - docs/roadmap/biblical-primary-sources-future-framework.md
+      - docs/primary-sources/ontology-and-taxonomy.md
+      - docs/original-languages/README.md
+    provenance_note: "Added 2026-06-22 after owner request for guardrails against guessing/vibes in Scripture chunking, vectorization, graph edges, future unrelated repo decisions, and source-language manuscript graph readiness."
+    reason_for_inclusion: "Generated structure must remain candidate or derived until source basis, scope, method, review status, provenance, and ancient-language/source-evidence readiness are explicit."

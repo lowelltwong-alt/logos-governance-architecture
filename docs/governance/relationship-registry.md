@@ -230,6 +230,11 @@ For example:
 - use `appropriates_from` instead of `derived_from` when the source is external and borrowed into a new frame
 - use `adapts` when a borrowed category is actively revised rather than merely carried over
 
+For graph, retrieval, vector, or Scripture-edge work, also apply
+`docs/governance/anti-guessing-and-evidence-discipline.md`. Semantic similarity
+or embedding closeness may suggest candidate edges, but it does not justify a
+governed relationship verb by itself.
+
 ## Documentation rule
 
 If a new relationship verb becomes necessary, define it here before using it broadly.

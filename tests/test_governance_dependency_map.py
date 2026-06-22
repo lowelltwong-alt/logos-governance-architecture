@@ -37,6 +37,7 @@ def test_required_artifacts_are_present() -> None:
     assert by_id["GD-004"]["object_type"] == "boundary_governance_stop_rules"
     assert by_id["GD-005"]["object_type"] == "external_advisory_authority_firewall"
     assert by_id["GD-007"]["object_type"] == "governance_validation_suite"
+    assert by_id["GD-011"]["object_type"] == "anti_guessing_evidence_discipline"
 
 
 def test_required_paths_are_covered() -> None:
@@ -50,6 +51,7 @@ def test_required_paths_are_covered() -> None:
     assert "governance/REPOSITORY_LINK_CONTRACTS.md" in paths
     assert "governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md" in paths
     assert "governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md" in paths
+    assert "docs/governance/anti-guessing-and-evidence-discipline.md" in paths
     assert "scripts/validation_contracts.py" in paths
 
 

@@ -23,7 +23,14 @@ issue and a registry entry in `logos-governance-architecture`.
 6. Ensure the child repo has an `AI_FRONT_DOOR.md`.
 7. Ensure the child repo has a table of contents, data map, or documented
    exception.
-8. Link child-repo issues back to the governance registration issue.
+8. Ensure any repo that touches source, tradition, denomination, or profile data
+   has source-trust rules, scope rules, and validation commands before adding
+   real corpus or lineage records.
+9. Ensure any repo that touches chunking, vector indexes, retrieval
+   neighborhoods, graph edge generation, or doctrine-lineage links has
+   anti-guessing and evidence-discipline rules before generated structure is
+   treated as governed.
+10. Link child-repo issues back to the governance registration issue.
 
 ## Relationship Updates
 
@@ -63,7 +70,45 @@ authorize runtime integration.
 
 Creating a planned repo requires a new issue and scaffold PR.
 
+Do not create `logos-chunking-harness` or `logos-doctrine-genealogy` directly
+from chat or local convenience. The scaffold PR must preserve the planned repo's
+authority limits from `LOGOS_REPO_REGISTRY.yaml` before any implementation,
+runtime adapter, source import, commentary corpus, or doctrine-lineage data is
+added.
+
+For planned repos that will generate chunks, vectors, retrieval neighborhoods,
+or graph candidates, the scaffold must also preserve the anti-guessing rule:
+semantic similarity, embedding closeness, generated confidence, and graph rank
+may create candidates, but not authority.
+
+## Readiness Threshold
+
+A planned repo is no longer premature only when its first concrete task cannot
+be safely handled by an existing active repo. The registration issue must name
+the first task, owned data, forbidden data, upstream governance, downstream
+consumers, authority level, source/trust risks, and validation commands.
+If the repo touches chunking, vectorizing, retrieval, or graph edges, it must
+also name the anti-guessing controls and what validator would fail if generated
+structure were promoted without evidence.
+
+For `logos-doctrine-genealogy`, the threshold is met only when doctrine lineage,
+denomination/profile comparison, or theologian-to-theologian development needs
+records that would distort either `logos-governance-architecture` or
+`logos-boundary-literature`.
+
+For `logos-chunking-harness`, the threshold is met only when cross-corpus
+execution/evaluation needs runtime or adapter behavior that would distort
+`logos-scripture-graph`, `logos-boundary-literature`, or
+`logos-doctrine-genealogy`. Semantic search, embeddings, or graph ideas alone
+are not enough; the first task must need separate source-mode adapters,
+namespace separation, anti-guessing controls, and validation commands.
+
 ## AI Rule
 
 If an AI cannot determine which repo owns the task, it must stop and report the
 missing routing information. It must not guess by moving data across repos.
+
+If an AI cannot name the source basis, authority owner, scope, method, review
+status, and provenance for a chunk, vector-derived neighborhood, graph edge, or
+doctrine-lineage link, it must keep the output as a candidate or stop and
+report the missing evidence. It must not promote generated structure by vibes.

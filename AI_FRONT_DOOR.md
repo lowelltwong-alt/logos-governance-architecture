@@ -64,8 +64,28 @@ summary. Comments and PR text are context for human review, not Logos authority.
 
 Planned repos, not created:
 
-- `logos-chunking-harness` - future cross-corpus chunking execution/evaluation plane.
+- `logos-chunking-harness` - future cross-corpus chunking execution/evaluation plane, not semantic authority.
 - `logos-doctrine-genealogy` - future doctrine lineage and profile-comparison plane.
+
+Commentaries, church-father citations, patristic reception, and ancient or
+modern theologian writings route to `logos-boundary-literature` as scoped
+source/reception material. The planned `logos-doctrine-genealogy` repo may later
+model denomination/profile-scoped theological development and theologian lineage,
+but it must reference source records rather than absorb commentary as Scripture.
+Unified evidence databases are derived products and must keep `scripture_*`,
+`boundary_*`, `doctrine_*`, and `evidence_*` namespaces separate.
+
+Chunking, vectorizing, retrieval neighborhoods, graph edges, and
+doctrine-lineage links must follow the anti-guessing rule in
+[`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md).
+Semantic similarity, embedding closeness, and generated confidence may create
+candidates or review queues; they do not create asserted truth.
+
+The long-range Scripture graph should eventually be
+manuscript/source-language-aware, with Hebrew, Aramaic, and Koine Greek evidence
+where applicable. That is a roadmap horizon, not a current AI authority claim:
+ancient-language parsing, lexical analysis, variants, and reconstruction require
+source provenance, confidence fields, validators, and expert review.
 
 Read [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md),
 [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml),
@@ -181,6 +201,19 @@ Do not create structure for its own sake.
 
 Do not create prose without enough structure to be governed.
 
+## Anti-guessing rule
+
+Do not let vibes, semantic closeness, generated confidence, or graph convenience
+masquerade as evidence.
+
+For chunking, vectorizing, retrieval, graph, or doctrine-lineage work, name the
+source basis, authority owner, trust zone, scope, method, asserted/inferred
+status, review status, and provenance before treating the result as governed
+structure.
+
+If those cannot be named, keep the result as a candidate, derived artifact,
+quarantine item, or research note.
+
 ## AI contribution posture
 
 AI should operate in one of four modes.
@@ -288,6 +321,9 @@ Choose one lane before contributing.
 | Relationship object | You are encoding a graph traversal relation. | `data/graph/relationships/` or approved graph path. | Requires relationship vocabulary review. |
 | Retrieval neighborhood | You are improving machine retrieval around a node or application. | `data/retrieval/` | Requires no silent source drift. |
 | Governance rule | You are changing how the repo itself is governed. | `docs/governance/` | Requires steward review. |
+
+For graph, retrieval, vector, or chunking work, first read
+[`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md).
 
 ## Best-practice workflow
 

@@ -16,6 +16,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`governance/REPOSITORY_LINK_CONTRACTS.md`](governance/REPOSITORY_LINK_CONTRACTS.md) - link types and authority direction
 - [`governance/AI_FRONT_DOOR_STANDARD.md`](governance/AI_FRONT_DOOR_STANDARD.md) - required front-door sections for Logos repos
 - [`governance/ADDING_NEW_LOGOS_REPOS.md`](governance/ADDING_NEW_LOGOS_REPOS.md) - issue-based repo registration process
+- [`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md) - anti-guessing guardrail for chunking, vectorizing, graph edges, and reusable repo-design decisions
 - [`docs/governance/logos-cross-repo-governance-contract.md`](docs/governance/logos-cross-repo-governance-contract.md) - upstream/downstream contract with `logos-scripture-graph`
 - [`docs/governance/agent-hostile-protection.md`](docs/governance/agent-hostile-protection.md) - fail-closed agent-hostile protection policy
 - [`docs/governance/noesis-boundary.md`](docs/governance/noesis-boundary.md) - Noesis may inform Logos, but may not modify or govern Logos
@@ -35,6 +36,22 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - `logos-chunking-harness` - planned, not created; future execution/evaluation plane, not semantic authority.
 - `logos-doctrine-genealogy` - planned, not created; future doctrine lineage/profile-comparison plane, not canonical Scripture authority.
 
+Commentaries, patristic writings, church-father citations, ancient and modern
+theologian writings, and reception-history source records route to
+`logos-boundary-literature`. Denominational and theological development over
+time routes to the planned `logos-doctrine-genealogy` repo after registration.
+Unified evidence products must be derived artifacts with hard authority
+namespaces, not authority transfers.
+
+Chunking, vectorizing, graph edges, retrieval neighborhoods, and
+doctrine-lineage links must follow the anti-guessing rule: semantic similarity,
+embedding closeness, or generated confidence may create candidates, but not
+asserted structure.
+
+The long-range Scripture evidence graph should become manuscript- and
+source-language-aware, including Hebrew, Aramaic, and Koine Greek evidence where
+applicable. Treat that as a gated roadmap horizon, not current AI authority.
+
 ## Governance and vocabulary discipline
 
 - [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
@@ -45,6 +62,8 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`docs/governance/relationship-registry.md`](docs/governance/relationship-registry.md)
 - [`docs/governance/node-types.md`](docs/governance/node-types.md)
 - [`docs/governance/node-types-scripture-and-boundary-extension.md`](docs/governance/node-types-scripture-and-boundary-extension.md)
+- [`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md)
+- [`docs/governance/inference-policy.md`](docs/governance/inference-policy.md)
 
 ## Scripture, translation, and boundary-source governance
 
