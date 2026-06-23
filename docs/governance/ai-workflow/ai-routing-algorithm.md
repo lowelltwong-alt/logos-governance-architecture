@@ -4,8 +4,8 @@ trust_zone: governance_instructions
 lifecycle_status: draft
 review_status: unreviewed
 ai_usage_posture: mandatory_routing_logic
-provenance_note: "Created 2026-04-30 as the route-selection algorithm for AI-assisted repository work."
-reason_for_inclusion: "Define the mandatory decision algorithm that classifies AI-assisted tasks into routes, modes, settings, templates, validation expectations, and stop conditions."
+provenance_note: "Created 2026-04-30 as the route-selection algorithm for AI-assisted repository work. Updated 2026-06-23 to classify generated goal prompts and slash-style command prompts through the premortem preflight."
+reason_for_inclusion: "Define the mandatory decision algorithm that classifies AI-assisted tasks into routes, modes, settings, templates, goal-prompt preflight, validation expectations, and stop conditions."
 ---
 
 # AI Routing Algorithm
@@ -22,10 +22,13 @@ This algorithm determines how AI-assisted work is classified, scoped, and execut
 6. Select the work mode: Explore, Plan, Edit, or Execute.
 7. Select tool settings using the settings matrix.
 8. Load the mandatory route template.
-9. Perform only the scoped work.
-10. Validate.
-11. Open a PR.
-12. Answer whether the router itself is affected.
+9. If generating a goal prompt, next-agent prompt, handoff prompt, slash-style
+   command prompt, roadmap prompt, or prompt sequence, apply
+   `docs/governance/ai-workflow/goal-prompt-premortem-preflight.md`.
+10. Perform only the scoped work.
+11. Validate.
+12. Open a PR.
+13. Answer whether the router itself is affected.
 
 ## Route selection questions
 
@@ -34,6 +37,18 @@ Ask these questions in order.
 ### Is this only investigation?
 
 If the task is only to inspect, summarize, compare, audit, or advise, use Explore or Plan mode and do not edit files unless explicitly asked.
+
+### Is this goal-prompt or slash-style prompt generation?
+
+If the task asks for a goal prompt, next prompt, handoff prompt, series of
+goals, slash-style command prompt, or roadmap prompt, stay in Plan mode unless
+the user also asks to edit repository files. Apply
+`goal-prompt-premortem-preflight.md` before returning the generated prompt.
+
+Slash-style commands such as `/plan`, `/goal`, `/research`, `/review`,
+`/red-team`, `/premortem`, `/fix`, `/fix-ci`, `/implement`, `/merge`, and
+`/cleanup` are intent hints. They do not override live-main sync, route
+selection, trust zones, validation, source policy, or owner permission.
 
 ### Is this staged research?
 
@@ -121,4 +136,8 @@ Stop and report if:
 - existing repo conventions conflict;
 - validations fail in unrelated areas;
 - local git state is unsafe;
+- a generated goal prompt lacks premortem, red-team, fix-loop, validation, or
+  PR/merge policy;
+- slash-style command meaning conflicts with front-door rules or would cause
+  side effects without explicit authorization;
 - execution would require a side effect not authorized by the prompt.
