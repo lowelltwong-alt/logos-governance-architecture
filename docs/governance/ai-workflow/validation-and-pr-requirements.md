@@ -4,8 +4,8 @@ trust_zone: governance_instructions
 lifecycle_status: draft
 review_status: unreviewed
 ai_usage_posture: mandatory_pr_guidance
-provenance_note: "Created 2026-04-30 to define validation and PR requirements for AI-assisted work."
-reason_for_inclusion: "Define required validation posture, PR governance sections, AI routing impact disclosure, and merge discipline for AI-assisted repository changes."
+provenance_note: "Created 2026-04-30 to define validation and PR requirements for AI-assisted work. Updated 2026-06-23 to require premortem/red-team disclosure for generated goal prompts."
+reason_for_inclusion: "Define required validation posture, PR governance sections, AI routing impact disclosure, prompt-generation preflight disclosure, and merge discipline for AI-assisted repository changes."
 ---
 
 # Validation and PR Requirements
@@ -42,6 +42,9 @@ Every AI-assisted PR should include:
 - Unchanged surface;
 - Validation;
 - AI routing impact answer.
+- Prompt-generation impact answer when the PR changes AI prompts, templates,
+  routing, slash-style command handling, handoff instructions, or next-agent
+  goal prompts.
 
 ## AI routing impact answer
 
@@ -52,6 +55,17 @@ Does this PR affect AI work routing?
 - No.
 - Yes, updated AI_WORK_START_HERE.md, route table, settings matrix, or templates.
 - Yes, follow-up PR required and listed.
+
+## Prompt-generation impact answer
+
+When a PR changes prompt workflows, generated prompts, handoff instructions,
+slash-style command handling, or next-agent goal prompts, answer:
+
+Does this PR preserve the goal-prompt premortem preflight?
+
+- No prompt-generation impact.
+- Yes, premortem/red-team/fix-loop language is present or strengthened.
+- Follow-up required, with the missing prompt-generation surface named.
 
 ## Validation reporting
 

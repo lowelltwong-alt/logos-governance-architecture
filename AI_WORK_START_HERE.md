@@ -59,6 +59,7 @@ AI agents working in this repository must follow these guardrails:
 10. [`docs/governance/node-types.md`](docs/governance/node-types.md)
 11. [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md)
 12. [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md)
+13. [`docs/governance/ai-workflow/goal-prompt-premortem-preflight.md`](docs/governance/ai-workflow/goal-prompt-premortem-preflight.md) before generating any goal prompt, next-agent prompt, handoff prompt, slash-style command prompt, or prompt sequence.
 
 ## Preferred work pattern
 
@@ -89,6 +90,11 @@ Before changing files:
 6. For chunking, vectorizing, graph, or retrieval work, identify what is asserted, what is inferred, what is only a candidate, and what evidence would be needed for promotion.
 
 7. Report what changed, what was not verified, and what remains risky.
+
+8. When generating a goal prompt or prompt sequence, include route/scope
+   preflight, premortem, red-team, fix loop, validation, PR/merge policy, and
+   residual-risk reporting. Slash-style commands are intent hints, not authority
+   overrides.
 
 ## Output expectations for AI work
 

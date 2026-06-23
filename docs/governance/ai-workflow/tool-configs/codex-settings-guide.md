@@ -5,6 +5,8 @@ lifecycle_status: draft
 review_status: unreviewed
 ai_usage_posture: contributor_guidance_only
 tool: codex
+provenance_note: "Updated 2026-06-23 to point Codex sessions that generate goal prompts to the premortem preflight."
+reason_for_inclusion: "Keep Codex startup and prompt-generation behavior aligned with AI workflow governance."
 ---
 
 # Codex Settings Guide
@@ -26,6 +28,12 @@ tool: codex
 ## Required startup
 
 Paste the universal prompt header or equivalent. Codex must follow `AGENTS.md`, `AI_WORK_START_HERE.md`, and the route table before editing.
+
+Before generating any goal prompt, next-agent prompt, handoff prompt,
+slash-style command prompt, or prompt sequence, Codex must read
+`docs/governance/ai-workflow/goal-prompt-premortem-preflight.md` and include
+route/scope preflight, premortem, red-team, fix loop, validation, PR/merge
+policy, and residual-risk reporting in the generated prompt.
 
 ## Internet use
 

@@ -10,8 +10,8 @@ trust_zone: "canonical"
 lifecycle_state: "active"
 ai_usage_posture: "human_review_required"
 object_type: "prompt_contract_catalog"
-provenance_note: "Created on 2026-04-08 as controlled task contracts for AI-assisted ontology operations."
-reason_for_inclusion: "Standardize prompts so common automation tasks remain bounded, reviewable, and promotion-safe."
+provenance_note: "Created on 2026-04-08 as controlled task contracts for AI-assisted ontology operations. Updated 2026-06-23 to require premortem, red-team, and fix-loop language when task contracts are turned into generated goal prompts."
+reason_for_inclusion: "Standardize prompts so common automation tasks remain bounded, reviewable, promotion-safe, and protected against optimistic goal prompts."
 ---
 
 
@@ -25,6 +25,13 @@ All task prompts should include:
 - promotion_policy: "never promote without explicit human review"
 - provenance_note
 - reason_for_inclusion
+- route_and_scope_preflight
+- premortem: "assume the work failed after merge and list plausible causes"
+- red_team: "attack the plan for authority leaks, source weakness, trust-zone contamination, prompt-injection risk, validation blind spots, and stale-branch/PR hazards"
+- fix_loop: "convert each P0/P1 risk into a prevention, validator, stop condition, or owner-decision gate"
+
+Generated goal prompts and prompt sequences must follow
+[`docs/governance/ai-workflow/goal-prompt-premortem-preflight.md`](ai-workflow/goal-prompt-premortem-preflight.md).
 
 ---
 

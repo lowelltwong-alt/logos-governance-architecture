@@ -2,8 +2,8 @@
 object_type: logos_ai_front_door_standard
 trust_zone: governance_instructions
 lifecycle_status: active
-provenance_note: "Created 2026-06-08 to define the required front-door block for every Logos repo."
-reason_for_inclusion: "Ensure agents can identify repo identity, authority, routing, and stop conditions before acting."
+provenance_note: "Created 2026-06-08 to define the required front-door block for every Logos repo. Updated 2026-06-23 to require deterministic goal-prompt premortem/red-team/fix-loop routing."
+reason_for_inclusion: "Ensure agents can identify repo identity, authority, routing, prompt-generation preflight, and stop conditions before acting."
 ---
 
 # AI Front Door Standard
@@ -23,8 +23,9 @@ file an AI or human contributor should read before changing repository state.
 8. Routing table.
 9. Data-flow direction.
 10. Stop-and-report triggers.
-11. Validation commands.
-12. How to add or update repo relationships.
+11. Goal-prompt premortem/red-team/fix-loop rule.
+12. Validation commands.
+13. How to add or update repo relationships.
 
 ## Required Rules
 
@@ -34,6 +35,12 @@ file an AI or human contributor should read before changing repository state.
 - The front door must state what the repo owns and what it must not own.
 - The front door must include a routing table for common cross-repo tasks.
 - The front door must list stop-and-report triggers.
+- The front door must require generated goal prompts, next-agent prompts,
+  handoff prompts, slash-style command prompts, and prompt sequences to include
+  route/scope preflight, premortem, red-team, fix loop, validation, PR/merge
+  policy, and residual-risk reporting.
+- The front door must state that slash-style commands are intent hints, not
+  authority overrides.
 - The front door must not grant itself authority above the governance registry.
 
 ## Stop-And-Report Triggers

@@ -4,8 +4,8 @@ trust_zone: proposed
 lifecycle_status: draft
 review_status: unreviewed
 ai_usage_posture: contributor_guidance_only
-provenance_note: "Created 2026-04-30 as the index for the AI-assisted work routing control plane."
-reason_for_inclusion: "Provide a navigable index for the AI-assisted work routing control plane and point contributors to the required cycle, route table, settings matrix, templates, and tool guides."
+provenance_note: "Created 2026-04-30 as the index for the AI-assisted work routing control plane. Updated 2026-06-23 to add the goal-prompt premortem preflight."
+reason_for_inclusion: "Provide a navigable index for the AI-assisted work routing control plane and point contributors to the required cycle, route table, settings matrix, goal-prompt preflight, templates, and tool guides."
 ---
 
 # AI Workflow Governance
@@ -27,6 +27,7 @@ Then use:
 - `ai-task-route-table.yaml` for task-to-template mapping.
 - `ai-tool-settings-matrix.md` for reasoning, internet, and permission settings.
 - `universal-prompt-header.md` for reusable prompt headers.
+- `goal-prompt-premortem-preflight.md` for mandatory premortem, red-team, fix-loop, and slash-style intent routing in generated goal prompts.
 - `stop-conditions.md` for mandatory stop rules.
 - `validation-and-pr-requirements.md` for PR expectations.
 - `clean-room-and-source-boundaries.md` for source-use boundaries.
@@ -47,6 +48,10 @@ The route determines:
 - permission posture;
 - validation requirements;
 - PR governance content.
+
+Any AI-generated goal prompt, next-agent prompt, handoff prompt, slash-style
+command prompt, or prompt sequence must include the premortem/red-team/fix-loop
+preflight before execution language.
 
 ## Router update rule
 
