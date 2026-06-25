@@ -65,11 +65,13 @@ def test_goal_prompt_premortem_preflight_is_governed_dependency_surface() -> Non
 
     assert artifact["owner_decision_ref"] == "docs/governance/ai-workflow/goal-prompt-premortem-preflight.md"
     assert artifact["depends_on"] == ["GD-001", "GD-007", "GD-008", "GD-009", "GD-012"]
+    assert "AI_TABLE_OF_CONTENTS.md" in artifact["paths"]
     assert "premortem_red_team_fix_loop_requirement" in artifact["downstream_controls"]
     assert "owner_permission_preservation" in artifact["downstream_controls"]
     assert "stale_branch_parallel_agent_and_merge_hazard_check" in artifact["downstream_controls"]
     assert "logos-scripture-graph/.ai/control/chunking_agent_preflight.yaml" in artifact["mirrored_by"]
     assert "docs/governance/ai-workflow/goal-prompt-premortem-preflight.md" in artifact["update_triggers"]
+    assert "AI_TABLE_OF_CONTENTS.md" in artifact["update_triggers"]
 
 
 def test_changed_path_gate_requires_map_update_for_governance_paths() -> None:

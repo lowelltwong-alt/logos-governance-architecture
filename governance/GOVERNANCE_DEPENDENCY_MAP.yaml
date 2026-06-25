@@ -434,6 +434,7 @@ artifacts:
       - docs/governance/ai-workflow/validation-and-pr-requirements.md
       - governance/AI_FRONT_DOOR_STANDARD.md
       - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
       - AI_WORK_START_HERE.md
     object_type: goal_prompt_premortem_preflight
     trust_zone: canonical
@@ -469,6 +470,7 @@ artifacts:
       - docs/governance/ai-workflow/validation-and-pr-requirements.md
       - governance/AI_FRONT_DOOR_STANDARD.md
       - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
       - AI_WORK_START_HERE.md
     provenance_note: "Added 2026-06-25 after the front door and TOC already routed agents to the goal-prompt premortem preflight, so the machine-readable dependency map now records the same control surface."
     reason_for_inclusion: "Future agents need deterministic discovery of premortem, red-team, fix-loop, owner-permission, stale-branch, and slash-intent guardrails before generating or executing goal prompts."
