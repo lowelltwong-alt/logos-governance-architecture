@@ -38,6 +38,7 @@ def test_required_artifacts_are_present() -> None:
     assert by_id["GD-005"]["object_type"] == "external_advisory_authority_firewall"
     assert by_id["GD-007"]["object_type"] == "governance_validation_suite"
     assert by_id["GD-011"]["object_type"] == "anti_guessing_evidence_discipline"
+    assert by_id["GD-013"]["object_type"] == "goal_prompt_premortem_preflight"
 
 
 def test_required_paths_are_covered() -> None:
@@ -52,7 +53,25 @@ def test_required_paths_are_covered() -> None:
     assert "governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md" in paths
     assert "governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md" in paths
     assert "docs/governance/anti-guessing-and-evidence-discipline.md" in paths
+    assert "docs/governance/ai-workflow/goal-prompt-premortem-preflight.md" in paths
+    assert "governance/AI_FRONT_DOOR_STANDARD.md" in paths
     assert "scripts/validation_contracts.py" in paths
+
+
+def test_goal_prompt_premortem_preflight_is_governed_dependency_surface() -> None:
+    data = load_map()
+    by_id = {artifact["artifact_id"]: artifact for artifact in data["artifacts"]}
+    artifact = by_id["GD-013"]
+
+    assert artifact["owner_decision_ref"] == "docs/governance/ai-workflow/goal-prompt-premortem-preflight.md"
+    assert artifact["depends_on"] == ["GD-001", "GD-007", "GD-008", "GD-009", "GD-012"]
+    assert "AI_TABLE_OF_CONTENTS.md" in artifact["paths"]
+    assert "premortem_red_team_fix_loop_requirement" in artifact["downstream_controls"]
+    assert "owner_permission_preservation" in artifact["downstream_controls"]
+    assert "stale_branch_parallel_agent_and_merge_hazard_check" in artifact["downstream_controls"]
+    assert "logos-scripture-graph/.ai/control/chunking_agent_preflight.yaml" in artifact["mirrored_by"]
+    assert "docs/governance/ai-workflow/goal-prompt-premortem-preflight.md" in artifact["update_triggers"]
+    assert "AI_TABLE_OF_CONTENTS.md" in artifact["update_triggers"]
 
 
 def test_changed_path_gate_requires_map_update_for_governance_paths() -> None:

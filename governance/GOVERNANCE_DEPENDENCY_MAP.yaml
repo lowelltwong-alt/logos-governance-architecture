@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -423,3 +423,54 @@ artifacts:
       - docs/governance/branch-reconciliation-register.md
     provenance_note: "Added 2026-06-22 after branch cleanup across active Logos repos preserved T388 stale-branch rediscovery evidence and left safety/unknown branches docketed instead of deleting blindly."
     reason_for_inclusion: "Branch cleanup changes auditability and future agent context; it needs a governed evidence register rather than chat memory."
+  - artifact_id: GD-013
+    title: Goal-prompt premortem preflight
+    repo: logos-governance-architecture
+    paths:
+      - docs/governance/ai-workflow/goal-prompt-premortem-preflight.md
+      - docs/governance/ai-workflow/universal-prompt-header.md
+      - docs/governance/ai-workflow/ai-work-cycle.md
+      - docs/governance/ai-workflow/ai-routing-algorithm.md
+      - docs/governance/ai-workflow/validation-and-pr-requirements.md
+      - governance/AI_FRONT_DOOR_STANDARD.md
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+    object_type: goal_prompt_premortem_preflight
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: PR-64
+    owner_decision_ref: docs/governance/ai-workflow/goal-prompt-premortem-preflight.md
+    depends_on:
+      - GD-001
+      - GD-007
+      - GD-008
+      - GD-009
+      - GD-012
+    downstream_controls:
+      - generated_goal_prompt_preflight
+      - slash_style_intent_non_authority
+      - premortem_red_team_fix_loop_requirement
+      - next_agent_handoff_guardrails
+      - owner_permission_preservation
+      - stale_branch_parallel_agent_and_merge_hazard_check
+    mirrored_by:
+      - logos-scripture-graph/AI_FRONT_DOOR.md
+      - logos-scripture-graph/.ai/control/chunking_agent_preflight.yaml
+      - logos-boundary-literature/AI_FRONT_DOOR.md
+    validators:
+      - scripts/validate_governance_dependency_map.py
+      - scripts/validate_internal_links.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - docs/governance/ai-workflow/goal-prompt-premortem-preflight.md
+      - docs/governance/ai-workflow/universal-prompt-header.md
+      - docs/governance/ai-workflow/ai-work-cycle.md
+      - docs/governance/ai-workflow/ai-routing-algorithm.md
+      - docs/governance/ai-workflow/validation-and-pr-requirements.md
+      - governance/AI_FRONT_DOOR_STANDARD.md
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+    provenance_note: "Added 2026-06-25 after the front door and TOC already routed agents to the goal-prompt premortem preflight, so the machine-readable dependency map now records the same control surface."
+    reason_for_inclusion: "Future agents need deterministic discovery of premortem, red-team, fix-loop, owner-permission, stale-branch, and slash-intent guardrails before generating or executing goal prompts."
