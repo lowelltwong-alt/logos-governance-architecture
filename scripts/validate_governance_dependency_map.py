@@ -73,6 +73,7 @@ REQUIRED_ARTIFACT_IDS = {
     "GD-008",
     "GD-009",
     "GD-010",
+    "GD-013",
 }
 
 REQUIRED_COVERED_PATHS = {
@@ -89,6 +90,8 @@ REQUIRED_COVERED_PATHS = {
     "scripts/validation_contracts.py",
     "scripts/run_validation_suite.py",
     "governance/GOVERNANCE_DEPENDENCY_MAP.yaml",
+    "docs/governance/ai-workflow/goal-prompt-premortem-preflight.md",
+    "governance/AI_FRONT_DOOR_STANDARD.md",
 }
 
 
