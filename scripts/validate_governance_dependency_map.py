@@ -104,6 +104,7 @@ REQUIRED_COMPANION_SURFACES = {
     "AI_WORK_START_HERE.md",
     "governance/AI_FRONT_DOOR_STANDARD.md",
     "governance/LOGOS_REPO_REGISTRY.yaml",
+    ".github/workflows/pr-description-governance-checks.yml",
     "docs/governance/ai-workflow/validation-and-pr-requirements.md",
     "scripts/validate_governance_dependency_map.py",
     "tests/test_governance_dependency_map.py",
