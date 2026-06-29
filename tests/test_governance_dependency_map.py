@@ -39,6 +39,7 @@ def test_required_artifacts_are_present() -> None:
     assert by_id["GD-007"]["object_type"] == "governance_validation_suite"
     assert by_id["GD-011"]["object_type"] == "anti_guessing_evidence_discipline"
     assert by_id["GD-013"]["object_type"] == "goal_prompt_premortem_preflight"
+    assert by_id["GD-014"]["object_type"] == "governance_map_update_gate"
 
 
 def test_required_paths_are_covered() -> None:
@@ -54,7 +55,9 @@ def test_required_paths_are_covered() -> None:
     assert "governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md" in paths
     assert "docs/governance/anti-guessing-and-evidence-discipline.md" in paths
     assert "docs/governance/ai-workflow/goal-prompt-premortem-preflight.md" in paths
+    assert "docs/governance/ai-workflow/validation-and-pr-requirements.md" in paths
     assert "governance/AI_FRONT_DOOR_STANDARD.md" in paths
+    assert "AI_WORK_START_HERE.md" in paths
     assert "scripts/validation_contracts.py" in paths
 
 
@@ -74,11 +77,40 @@ def test_goal_prompt_premortem_preflight_is_governed_dependency_surface() -> Non
     assert "AI_TABLE_OF_CONTENTS.md" in artifact["update_triggers"]
 
 
+def test_governance_map_update_gate_records_companion_surfaces() -> None:
+    data = load_map()
+    by_id = {artifact["artifact_id"]: artifact for artifact in data["artifacts"]}
+    artifact = by_id["GD-014"]
+    update_policy = data["update_policy"]
+
+    assert artifact["owner_decision_ref"] == "governance/GOVERNANCE_DEPENDENCY_MAP.yaml"
+    assert "governance_dependency_map_correction_required" in artifact["downstream_controls"]
+    assert "front_door_and_toc_discovery_surface_review_required" in artifact["downstream_controls"]
+    assert "docs/governance/ai-workflow/validation-and-pr-requirements.md" in artifact["paths"]
+    assert "scripts/validate_governance_dependency_map.py" in artifact["validators"]
+    assert "tests/test_governance_dependency_map.py" in artifact["validators"]
+    assert "governance/GOVERNANCE_DEPENDENCY_MAP.yaml" in update_policy["required_companion_surfaces_when_governance_changes"]
+    assert "AI_FRONT_DOOR.md" in update_policy["required_companion_surfaces_when_governance_changes"]
+    assert "AI_TABLE_OF_CONTENTS.md" in update_policy["required_companion_surfaces_when_governance_changes"]
+    assert "AI_WORK_START_HERE.md" in update_policy["required_companion_surfaces_when_governance_changes"]
+
+
 def test_changed_path_gate_requires_map_update_for_governance_paths() -> None:
     with pytest.raises(validator.DependencyMapError, match="must be updated"):
         validator.validate_changed_path_gate(
             changed_files=["governance/LOGOS_REPO_REGISTRY.yaml"],
             map_updated=False,
+        )
+
+
+def test_changed_path_gate_requires_registered_coverage_for_governance_paths() -> None:
+    with pytest.raises(validator.DependencyMapError, match="registered in dependency map coverage"):
+        validator.validate_changed_path_gate(
+            changed_files=[
+                "docs/governance/unregistered-new-governance-rule.md",
+                "governance/GOVERNANCE_DEPENDENCY_MAP.yaml",
+            ],
+            map_updated=None,
         )
 
 

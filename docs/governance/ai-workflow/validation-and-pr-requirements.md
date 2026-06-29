@@ -4,8 +4,8 @@ trust_zone: governance_instructions
 lifecycle_status: draft
 review_status: unreviewed
 ai_usage_posture: mandatory_pr_guidance
-provenance_note: "Created 2026-04-30 to define validation and PR requirements for AI-assisted work. Updated 2026-06-23 to require premortem/red-team disclosure for generated goal prompts."
-reason_for_inclusion: "Define required validation posture, PR governance sections, AI routing impact disclosure, prompt-generation preflight disclosure, and merge discipline for AI-assisted repository changes."
+provenance_note: "Created 2026-04-30 to define validation and PR requirements for AI-assisted work. Updated 2026-06-23 to require premortem/red-team disclosure for generated goal prompts. Updated 2026-06-29 to require governance-map and discovery-surface impact disclosure for governance changes."
+reason_for_inclusion: "Define required validation posture, PR governance sections, AI routing impact disclosure, prompt-generation preflight disclosure, governance-map impact disclosure, and merge discipline for AI-assisted repository changes."
 ---
 
 # Validation and PR Requirements
@@ -45,6 +45,9 @@ Every AI-assisted PR should include:
 - Prompt-generation impact answer when the PR changes AI prompts, templates,
   routing, slash-style command handling, handoff instructions, or next-agent
   goal prompts.
+- Governance-map impact answer when the PR changes governance paths,
+  validation contracts, route tables, front doors, repo contracts, authority
+  direction, or cross-repo policy.
 
 ## AI routing impact answer
 
@@ -66,6 +69,26 @@ Does this PR preserve the goal-prompt premortem preflight?
 - No prompt-generation impact.
 - Yes, premortem/red-team/fix-loop language is present or strengthened.
 - Follow-up required, with the missing prompt-generation surface named.
+
+## Governance-map impact answer
+
+When a PR changes governance paths, validation contracts, route tables, front
+doors, repo contracts, authority direction, or cross-repo policy, answer:
+
+Does this PR correct the governance dependency map and appropriate discovery
+surfaces?
+
+- No governance impact.
+- Yes, `governance/GOVERNANCE_DEPENDENCY_MAP.yaml` was updated, every changed
+  governance path is registered in map coverage or update triggers, and the
+  relevant front door, table of contents, work-start, validation, test, and
+  downstream mirror surfaces were updated or explicitly left unchanged with a
+  reason.
+- Follow-up required, with the missing governance-map or discovery surface named.
+
+The dependency-map validator is fail-closed: watched governance paths require a
+map update, and changed governance paths must be registered in dependency-map
+coverage.
 
 ## Validation reporting
 
