@@ -13,7 +13,10 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const body = (context.payload.pull_request.body || '').trim();
+            const body = (context.payload.pull_request.body || '')
+              .replace(/\r\n/g, '\n')
+              .replace(/\r/g, '\n')
+              .trim();
 
             const requiredSections = [
               '### Invariant impact statement (required)',
@@ -29,7 +32,7 @@ jobs:
 
             function getSectionContent(markdown, heading) {
               const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              const re = new RegExp(`${escaped}\\n([\\s\\S]*?)(?=\\n## |\\n### |$)`, 'm');
+              const re = new RegExp(`${escaped}\\n+([\\s\\S]*?)(?=\\n## |\\n### |$)`);
               const match = markdown.match(re);
               if (!match) return '';
               return match[1]

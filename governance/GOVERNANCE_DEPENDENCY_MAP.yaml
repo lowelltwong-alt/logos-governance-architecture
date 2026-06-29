@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -32,9 +32,12 @@ update_policy:
   changed_governance_path_must_be_registered_in_map_coverage: true
   required_companion_surfaces_when_governance_changes:
     - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    - governance/AI_FRONT_DOOR_STANDARD.md
+    - governance/LOGOS_REPO_REGISTRY.yaml
     - AI_FRONT_DOOR.md
     - AI_TABLE_OF_CONTENTS.md
     - AI_WORK_START_HERE.md
+    - .github/workflows/pr-description-governance-checks.yml
     - docs/governance/ai-workflow/validation-and-pr-requirements.md
     - scripts/validate_governance_dependency_map.py
     - tests/test_governance_dependency_map.py
@@ -491,6 +494,9 @@ artifacts:
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
       - AI_WORK_START_HERE.md
+      - governance/AI_FRONT_DOOR_STANDARD.md
+      - governance/LOGOS_REPO_REGISTRY.yaml
+      - .github/workflows/pr-description-governance-checks.yml
       - docs/governance/ai-workflow/validation-and-pr-requirements.md
       - scripts/validate_governance_dependency_map.py
       - tests/test_governance_dependency_map.py
@@ -509,11 +515,16 @@ artifacts:
       - changed_governance_path_coverage_required
       - front_door_and_toc_discovery_surface_review_required
       - validation_and_pr_requirements_disclosure_required
+      - child_repo_governance_dependency_map_mirror_required
       - no_governance_change_by_chat_memory_only
       - no_fake_map_update_without_registered_path_coverage
     mirrored_by:
       - logos-scripture-graph/AI_FRONT_DOOR.md
+      - logos-scripture-graph/.ai/control/governance_dependency_map_mirror.yaml
+      - logos-scripture-graph/scripts/validate_governance_dependency_map_mirror.py
       - logos-boundary-literature/AI_FRONT_DOOR.md
+      - logos-boundary-literature/.ai/control/governance_dependency_map_mirror.yaml
+      - logos-boundary-literature/scripts/validate_governance_dependency_map_mirror.py
     validators:
       - scripts/validate_governance_dependency_map.py
       - scripts/run_validation_suite.py
@@ -523,8 +534,11 @@ artifacts:
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
       - AI_WORK_START_HERE.md
+      - governance/AI_FRONT_DOOR_STANDARD.md
+      - governance/LOGOS_REPO_REGISTRY.yaml
+      - .github/workflows/pr-description-governance-checks.yml
       - docs/governance/ai-workflow/validation-and-pr-requirements.md
       - scripts/validate_governance_dependency_map.py
       - tests/test_governance_dependency_map.py
-    provenance_note: "Added 2026-06-29 after owner request that every governance change force the AI doing it to correct the governance map and appropriate discovery/validation files."
-    reason_for_inclusion: "Governance changes alter future agent behavior; they must update the dependency map, discovery surfaces, PR requirements, and validator/test coverage rather than relying on chat memory."
+    provenance_note: "Added 2026-06-29 after owner request that every governance change force the AI doing it to correct the governance map and appropriate discovery/validation files. Extended the same day to require child-repo local mirror enforcement."
+    reason_for_inclusion: "Governance changes alter future agent behavior; they must update the dependency map, discovery surfaces, PR requirements, child-repo mirror controls, and validator/test coverage rather than relying on chat memory."

@@ -2,8 +2,8 @@
 object_type: logos_ai_front_door_standard
 trust_zone: governance_instructions
 lifecycle_status: active
-provenance_note: "Created 2026-06-08 to define the required front-door block for every Logos repo. Updated 2026-06-23 to require deterministic goal-prompt premortem/red-team/fix-loop routing."
-reason_for_inclusion: "Ensure agents can identify repo identity, authority, routing, prompt-generation preflight, and stop conditions before acting."
+provenance_note: "Created 2026-06-08 to define the required front-door block for every Logos repo. Updated 2026-06-23 to require deterministic goal-prompt premortem/red-team/fix-loop routing. Updated 2026-06-29 to require child-repo governance dependency-map mirror enforcement."
+reason_for_inclusion: "Ensure agents can identify repo identity, authority, routing, prompt-generation preflight, upstream governance dependency-map mirrors, and stop conditions before acting."
 ---
 
 # AI Front Door Standard
@@ -26,6 +26,7 @@ file an AI or human contributor should read before changing repository state.
 11. Goal-prompt premortem/red-team/fix-loop rule.
 12. Validation commands.
 13. How to add or update repo relationships.
+14. Child-repo governance dependency-map mirror rule.
 
 ## Required Rules
 
@@ -41,6 +42,12 @@ file an AI or human contributor should read before changing repository state.
   policy, and residual-risk reporting.
 - The front door must state that slash-style commands are intent hints, not
   authority overrides.
+- Active and future child repos must name the upstream governance dependency
+  map as repo `logos-governance-architecture`, path
+  `governance/GOVERNANCE_DEPENDENCY_MAP.yaml`, and must publish a local mirror
+  control plus validation gate. The local gate must fail closed if
+  governance-facing files change without checking whether the upstream
+  dependency map and local mirror files are affected.
 - The front door must not grant itself authority above the governance registry.
 
 ## Stop-And-Report Triggers
@@ -69,9 +76,21 @@ A Logos front door must tell agents to stop and report when:
 - execution harness output is treated as semantic authority;
 - doctrine-lineage claims are treated as universal truth without profile scope;
 - a planned repo is treated as active without registration.
+- a governance-facing child-repo file changes without checking the upstream
+  governance dependency map and local mirror control.
 
 ## Validation
 
 Each repo should publish its local validation commands. If no validation exists
 yet, the front door must say so and require a basic file-existence and YAML parse
 check for registry or control-plane changes.
+
+Child repos must include a local validation command for the governance
+dependency-map mirror. At minimum, the command must prove:
+
+- the upstream map repo is `logos-governance-architecture` and the upstream map
+  path is `governance/GOVERNANCE_DEPENDENCY_MAP.yaml`;
+- the upstream map owns the rule through `GD-014`;
+- local front-door, TOC, repo-contract, and validator surfaces point back to the
+  upstream map;
+- local files do not claim authority to override the upstream map.
