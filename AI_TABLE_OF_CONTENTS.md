@@ -9,6 +9,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md) - human-readable repo registry
 - [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml) - machine-readable repo registry
 - [`governance/GOVERNANCE_DEPENDENCY_MAP.yaml`](governance/GOVERNANCE_DEPENDENCY_MAP.yaml) - first-class governance dependency map
+- [`docs/governance/ai-workflow/validation-and-pr-requirements.md`](docs/governance/ai-workflow/validation-and-pr-requirements.md) - PR validation rules, including governance-map and discovery-surface impact disclosure
 - [`governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md) - P0 stop rules for boundary-originated pressure on higher-authority repos
 - [`governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md`](governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md) - P0 firewall for Noesis/external advisory paste, comment, handoff, and break-glass backdoors
 - [`governance/THREE_REPO_DATA_FLOW.md`](governance/THREE_REPO_DATA_FLOW.md) - current active three-repo data-flow map
@@ -56,6 +57,7 @@ applicable. Treat that as a gated roadmap horizon, not current AI authority.
 
 ## Governance and vocabulary discipline
 
+- [`governance/GOVERNANCE_DEPENDENCY_MAP.yaml`](governance/GOVERNANCE_DEPENDENCY_MAP.yaml) - update this and registered coverage whenever governance paths change
 - [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
 - [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)
 - [`docs/governance/anchor-conventions-scripture-and-graph-extension.md`](docs/governance/anchor-conventions-scripture-and-graph-extension.md)

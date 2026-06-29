@@ -74,6 +74,7 @@ REQUIRED_ARTIFACT_IDS = {
     "GD-009",
     "GD-010",
     "GD-013",
+    "GD-014",
 }
 
 REQUIRED_COVERED_PATHS = {
@@ -91,7 +92,19 @@ REQUIRED_COVERED_PATHS = {
     "scripts/run_validation_suite.py",
     "governance/GOVERNANCE_DEPENDENCY_MAP.yaml",
     "docs/governance/ai-workflow/goal-prompt-premortem-preflight.md",
+    "docs/governance/ai-workflow/validation-and-pr-requirements.md",
     "governance/AI_FRONT_DOOR_STANDARD.md",
+    "AI_WORK_START_HERE.md",
+}
+
+REQUIRED_COMPANION_SURFACES = {
+    "governance/GOVERNANCE_DEPENDENCY_MAP.yaml",
+    "AI_FRONT_DOOR.md",
+    "AI_TABLE_OF_CONTENTS.md",
+    "AI_WORK_START_HERE.md",
+    "docs/governance/ai-workflow/validation-and-pr-requirements.md",
+    "scripts/validate_governance_dependency_map.py",
+    "tests/test_governance_dependency_map.py",
 }
 
 
@@ -141,6 +154,26 @@ def _normalize_path(path: str) -> str:
     return normalized
 
 
+def _matches_path_rule(path: str, rule: str) -> bool:
+    path = _normalize_path(path)
+    rule = _normalize_path(rule)
+    if rule.endswith("/"):
+        return path.startswith(rule)
+    return path == rule
+
+
+def _artifact_coverage(data: dict[str, Any]) -> set[str]:
+    coverage: set[str] = set()
+    for artifact in data.get("artifacts", []):
+        if not isinstance(artifact, dict):
+            continue
+        for key in ("paths", "validators", "update_triggers"):
+            value = artifact.get(key)
+            if isinstance(value, list):
+                coverage.update(_normalize_path(str(item)) for item in value if str(item).strip())
+    return coverage
+
+
 def _git_changed_files(base_ref: str) -> list[str]:
     try:
         merge_base = subprocess.check_output(
@@ -185,6 +218,31 @@ def validate_dependency_map(path: Path = MAP) -> dict[str, Any]:
     ):
         if authority.get(forbidden) is not False:
             raise DependencyMapError(f"{_rel(path)}: map_authority.{forbidden} must be false")
+
+    update_policy = data["update_policy"]
+    if not isinstance(update_policy, dict):
+        raise DependencyMapError(f"{_rel(path)}: update_policy must be a mapping")
+    if update_policy.get("changed_path_gate_enabled") is not True:
+        raise DependencyMapError(f"{_rel(path)}: update_policy.changed_path_gate_enabled must be true")
+    if update_policy.get("validator") != "scripts/validate_governance_dependency_map.py":
+        raise DependencyMapError(f"{_rel(path)}: update_policy.validator must be scripts/validate_governance_dependency_map.py")
+    _require_string_list(update_policy, "map_update_required_when_paths_change", f"{_rel(path)}: update_policy")
+    watched_rules = {_normalize_path(item) for item in update_policy["map_update_required_when_paths_change"]}
+    missing_watched = sorted(set(WATCHED_PREFIXES) - watched_rules)
+    if missing_watched:
+        raise DependencyMapError(f"{_rel(path)}: update_policy missing watched path gate(s) {missing_watched}")
+    _require_string_list(
+        update_policy,
+        "required_companion_surfaces_when_governance_changes",
+        f"{_rel(path)}: update_policy",
+    )
+    companion_surfaces = {
+        _normalize_path(item)
+        for item in update_policy["required_companion_surfaces_when_governance_changes"]
+    }
+    missing_companions = sorted(REQUIRED_COMPANION_SURFACES - companion_surfaces)
+    if missing_companions:
+        raise DependencyMapError(f"{_rel(path)}: update_policy missing companion surface(s) {missing_companions}")
 
     artifacts = data["artifacts"]
     if not isinstance(artifacts, list) or not artifacts:
@@ -253,6 +311,18 @@ def validate_changed_path_gate(
             "governance dependency map must be updated when watched paths change: "
             + ", ".join(watched_changed)
         )
+    if watched_changed:
+        data = validate_dependency_map(map_path)
+        coverage = _artifact_coverage(data)
+        uncovered = [
+            path for path in watched_changed
+            if not any(_matches_path_rule(path, rule) for rule in coverage)
+        ]
+        if uncovered:
+            raise DependencyMapError(
+                "changed governance paths must be registered in dependency map coverage: "
+                + ", ".join(uncovered)
+            )
 
 
 def main(argv: list[str] | None = None) -> int:

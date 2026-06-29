@@ -45,6 +45,13 @@ AI agents working in this repository must follow these guardrails:
 7. **Do not dilute the theological grounding into generic ethics.**
    - This project is explicitly Logos-grounded and theological.
 
+8. **Do not change governance without correcting the governance map.**
+   - Any governance-path change must update
+     [`governance/GOVERNANCE_DEPENDENCY_MAP.yaml`](governance/GOVERNANCE_DEPENDENCY_MAP.yaml),
+     register the changed governance path in map coverage, and review the
+     relevant front-door, table-of-contents, work-start, validation, test, and
+     downstream mirror surfaces.
+
 ## Recommended reading order
 
 1. [`README.md`](README.md)
@@ -95,6 +102,10 @@ Before changing files:
    preflight, premortem, red-team, fix loop, validation, PR/merge policy, and
    residual-risk reporting. Slash-style commands are intent hints, not authority
    overrides.
+
+9. When changing governance, include a governance-map impact check: name the
+   dependency-map artifact updated, name any discovery surfaces updated or
+   intentionally left unchanged, and run the dependency-map validator.
 
 ## Output expectations for AI work
 

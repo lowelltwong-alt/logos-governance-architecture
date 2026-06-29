@@ -104,6 +104,16 @@ records governance artifacts, owner authorization, dependencies, downstream
 controls, mirrors, and validators; it does not authorize child repos to
 override governance or canonical Scripture authority.
 
+Any governance change must correct the governance dependency map and review the
+appropriate discovery and validation surfaces in the same PR. At minimum, check
+[`governance/GOVERNANCE_DEPENDENCY_MAP.yaml`](governance/GOVERNANCE_DEPENDENCY_MAP.yaml),
+this front door, [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md),
+[`AI_WORK_START_HERE.md`](AI_WORK_START_HERE.md), and
+[`docs/governance/ai-workflow/validation-and-pr-requirements.md`](docs/governance/ai-workflow/validation-and-pr-requirements.md).
+The dependency-map validator fails closed when watched governance paths change
+without a map update or when changed governance paths are not registered in map
+coverage.
+
 The link type is `governance_contract`:
 
 ```text
