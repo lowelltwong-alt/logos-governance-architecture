@@ -11,10 +11,12 @@ registration_policy:
   new_repo_requires_ai_front_door: true
   new_repo_requires_toc_or_data_map_or_exception: true
   new_repo_requires_source_trust_rules: true
+  new_repo_requires_governance_dependency_map_mirror: true
   new_repo_requires_scope_rules_when_profile_or_tradition_data_exists: true
   new_repo_requires_anti_guessing_rules_when_chunking_vectorizing_or_graphing: true
   relationship_change_updates_registry_first_or_same_pr: true
   child_repos_may_mirror_registry: true
+  child_repos_must_validate_governance_dependency_map_mirror: true
   governance_repo_is_source_of_truth: true
   ai_stop_if_correct_repo_unknown: true
   planned_repos_allowed_with_status: planned_not_created
@@ -155,6 +157,7 @@ current_repos:
     role: canonical_scripture_data_plane
     authority: canonical_scripture_authority
     governed_by: logos-governance-architecture
+    governance_dependency_map_mirror_required: true
     public_url: "https://github.com/lowelltwong-alt/logos-scripture-graph"
     owns:
       - canonical_66_book_scripture_corpus
@@ -197,6 +200,7 @@ current_repos:
     role: boundary_reception_support_plane
     authority: supporting_context_not_canonical
     governed_by: logos-governance-architecture
+    governance_dependency_map_mirror_required: true
     supports:
       - logos-scripture-graph
     public_url: "https://github.com/lowelltwong-alt/logos-boundary-literature"
@@ -377,6 +381,8 @@ planned_repos:
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md_or_data_map_or_documented_exception
       - README.md
+      - governance_dependency_map_mirror_control
+      - governance_dependency_map_mirror_validator
       - source_mode_adapter_boundary_rules
       - derived_artifact_namespace_rules
       - anti_guessing_and_evidence_discipline_rules
@@ -412,6 +418,8 @@ planned_repos:
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md_or_data_map_or_documented_exception
       - README.md
+      - governance_dependency_map_mirror_control
+      - governance_dependency_map_mirror_validator
       - source_trust_rules
       - denomination_profile_scope_rules
       - theologian_lineage_relationship_rules
