@@ -42,11 +42,12 @@ file an AI or human contributor should read before changing repository state.
   policy, and residual-risk reporting.
 - The front door must state that slash-style commands are intent hints, not
   authority overrides.
-- Active and future child repos must name the upstream governance dependency map
-  as `logos-governance-architecture/governance/GOVERNANCE_DEPENDENCY_MAP.yaml`
-  and must publish a local mirror control plus validation gate. The local gate
-  must fail closed if governance-facing files change without checking whether
-  the upstream dependency map and local mirror files are affected.
+- Active and future child repos must name the upstream governance dependency
+  map as repo `logos-governance-architecture`, path
+  `governance/GOVERNANCE_DEPENDENCY_MAP.yaml`, and must publish a local mirror
+  control plus validation gate. The local gate must fail closed if
+  governance-facing files change without checking whether the upstream
+  dependency map and local mirror files are affected.
 - The front door must not grant itself authority above the governance registry.
 
 ## Stop-And-Report Triggers
@@ -87,8 +88,8 @@ check for registry or control-plane changes.
 Child repos must include a local validation command for the governance
 dependency-map mirror. At minimum, the command must prove:
 
-- the upstream map path is
-  `logos-governance-architecture/governance/GOVERNANCE_DEPENDENCY_MAP.yaml`;
+- the upstream map repo is `logos-governance-architecture` and the upstream map
+  path is `governance/GOVERNANCE_DEPENDENCY_MAP.yaml`;
 - the upstream map owns the rule through `GD-014`;
 - local front-door, TOC, repo-contract, and validator surfaces point back to the
   upstream map;
