@@ -93,6 +93,11 @@ def test_governance_map_update_gate_records_companion_surfaces() -> None:
     assert "AI_FRONT_DOOR.md" in update_policy["required_companion_surfaces_when_governance_changes"]
     assert "AI_TABLE_OF_CONTENTS.md" in update_policy["required_companion_surfaces_when_governance_changes"]
     assert "AI_WORK_START_HERE.md" in update_policy["required_companion_surfaces_when_governance_changes"]
+    assert "governance/AI_FRONT_DOOR_STANDARD.md" in update_policy["required_companion_surfaces_when_governance_changes"]
+    assert "governance/LOGOS_REPO_REGISTRY.yaml" in update_policy["required_companion_surfaces_when_governance_changes"]
+    assert "child_repo_governance_dependency_map_mirror_required" in artifact["downstream_controls"]
+    assert "logos-scripture-graph/.ai/control/governance_dependency_map_mirror.yaml" in artifact["mirrored_by"]
+    assert "logos-boundary-literature/.ai/control/governance_dependency_map_mirror.yaml" in artifact["mirrored_by"]
 
 
 def test_changed_path_gate_requires_map_update_for_governance_paths() -> None:
