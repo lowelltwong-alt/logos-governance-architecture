@@ -44,6 +44,7 @@ Owner selections D1-D10 are recorded in
 | [`KERNEL-E-codex-theology-tripwire.md`](KERNEL-E-codex-theology-tripwire.md) | Mechanical test separating transcription of recorded decisions from theological judgment during implementation | HP9 (gap pass) |
 | [`OWNER-DECISIONS-AND-PILOTS.md`](OWNER-DECISIONS-AND-PILOTS.md) | Pilot slice options + recommendation, consolidated owner decisions D1–D10 | HP7 |
 | [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md) | Sequenced deterministic work queue for Codex after owner decisions | — |
+| [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md) | Evidence-backed status ledger for PR-E through PR-8 and the remaining owner registration gate | — |
 
 ## Reading order
 
