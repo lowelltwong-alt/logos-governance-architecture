@@ -45,6 +45,8 @@ It does not:
 5. `docs/roadmap/fable-kernels/CODEX_HANDOFF.md`
 6. `incoming/research/doctrine-genealogy-registration/register_new_logos_repo_issue_body.md`
 7. `incoming/research/doctrine-genealogy-registration/scaffold_pr_file_list.md`
+8. `incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md`
+9. `incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md`
 
 ## Files
 
@@ -52,6 +54,11 @@ It does not:
   Issue [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83).
 - `scaffold_pr_file_list.md` - future scaffold PR file list, validation
   checklist, and non-authorizations.
+- `scaffold_blueprint.md` - exact future scaffold tree, file
+  responsibilities, validator contract matrix, done definition, and stop
+  conditions.
+- `future_scaffold_goal_prompt.md` - future goal prompt to use only after Issue
+  #83 is accepted by the owner for scaffold-only repo creation.
 
 ## Premortem Red-Team Pass
 

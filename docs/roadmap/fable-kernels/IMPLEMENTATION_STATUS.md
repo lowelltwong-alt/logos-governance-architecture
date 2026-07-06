@@ -28,6 +28,13 @@ doctrine-genealogy records, authorize source imports, or promote reviewed
 lineage. The next gate is owner review/acceptance of Issue #83 through the
 repo-registration process.
 
+The scaffold execution packet has also been prepared under
+[`../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md`](../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md)
+and
+[`../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md`](../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md).
+Those files are non-authorizing and may be used only after Issue #83 is
+accepted for scaffold-only repo creation.
+
 ## Evidence Table
 
 | Queue item | Repo | Status | Evidence |
@@ -45,6 +52,7 @@ repo-registration process.
 | PR-7, Scripture front-door decomposition | `logos-scripture-graph` | Merged | PR [#156](https://github.com/lowelltwong-alt/logos-scripture-graph/pull/156), merged 2026-07-06. |
 | PR-8, doctrine-genealogy registration drafts | `logos-governance-architecture` | Merged | PR [#79](https://github.com/lowelltwong-alt/logos-governance-architecture/pull/79), merged 2026-07-06. |
 | `logos-doctrine-genealogy` registration issue | `logos-governance-architecture` | Open | Issue [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83), opened 2026-07-06 from the governed PR-8 draft packet. |
+| `logos-doctrine-genealogy` scaffold blueprint | `logos-governance-architecture` | Staged | Non-authorizing scaffold blueprint and future goal prompt staged under [`../../../incoming/research/doctrine-genealogy-registration/`](../../../incoming/research/doctrine-genealogy-registration/). |
 
 ## Verified Local Checks
 
@@ -86,6 +94,8 @@ After Issue #83 is accepted, the first scaffold PR must remain scaffold-only:
 - name the first concrete task that makes the repo no longer premature;
 - avoid all real doctrine-lineage records, source imports, reviewed-lineage
   promotion, graph/retrieval/vector truth, and Scripture/chunk output.
+- use the staged scaffold blueprint and future goal prompt instead of
+  reconstructing scaffold scope from chat memory.
 
 ## Non-Authorization Reminder
 
