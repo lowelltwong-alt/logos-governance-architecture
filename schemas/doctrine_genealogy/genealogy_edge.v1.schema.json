@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine_genealogy/genealogy_edge.v1.schema.json",
+  "title": "Doctrine Genealogy Edge v1",
+  "$comment": "draft, non-authorizing, owner decisions D1-D10 apply",
+  "type": "object",
+  "x-governance": {
+    "object_type": "doctrine_genealogy_schema",
+    "trust_zone": "canonical",
+    "lifecycle_status": "active",
+    "provenance_note": "Created 2026-07-06 by Codex as PR-3, transcribing Kernel A3 edge requirements and anti-guessing evidence fields.",
+    "reason_for_inclusion": "The planned doctrine-genealogy repo needs a controlled edge contract before any lineage examples or validators are created."
+  },
+  "required": [
+    "schema_version",
+    "object_type",
+    "id",
+    "subject_ref",
+    "verb",
+    "object_ref",
+    "direction",
+    "edge_status",
+    "evidence_basis",
+    "scope",
+    "method",
+    "asserted_or_inferred",
+    "review_status",
+    "provenance_note"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "genealogy_edge.v1"
+    },
+    "object_type": {
+      "const": "genealogy_edge"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verb": {
+      "type": "string",
+      "enum": [
+        "derives_from",
+        "depends_on",
+        "clarifies",
+        "modifies",
+        "systematizes",
+        "reads_back_into",
+        "interprets_passage",
+        "cites_source",
+        "receives",
+        "rejects",
+        "counters",
+        "partially_aligns_with",
+        "tensions_with"
+      ]
+    },
+    "object_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "subject_to_object",
+        "object_to_subject"
+      ]
+    },
+    "edge_status": {
+      "type": "string",
+      "default": "retrieval_candidate",
+      "enum": [
+        "retrieval_candidate",
+        "derived_view",
+        "proposed_relationship",
+        "asserted_relationship"
+      ]
+    },
+    "evidence_basis": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "human_authored",
+        "ai_staged",
+        "derived_from_assessment",
+        "crosswalk"
+      ]
+    },
+    "asserted_or_inferred": {
+      "type": "string",
+      "enum": [
+        "asserted",
+        "inferred"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "default": "unreviewed",
+      "enum": [
+        "unreviewed",
+        "in_review",
+        "reviewed"
+      ]
+    },
+    "doctrine_provenance": {
+      "$ref": "https://logos.local/schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json"
+    },
+    "provenance_note": {
+      "type": "string"
+    }
+  },
+  "not": {
+    "properties": {
+      "verb": {
+        "enum": [
+          "condemns",
+          "is_condemned_by",
+          "related_to",
+          "influences",
+          "requires_original_language_review",
+          "requires_textual_critical_review"
+        ]
+      }
+    },
+    "required": [
+      "verb"
+    ]
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,359 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine_genealogy/evidence_packet.v1.schema.json",
+  "title": "Cross-Repo Evidence Packet v1",
+  "$comment": "draft, non-authorizing, owner decisions D1-D10 apply",
+  "type": "object",
+  "x-governance": {
+    "object_type": "doctrine_genealogy_schema",
+    "trust_zone": "canonical",
+    "lifecycle_status": "active",
+    "provenance_note": "Created 2026-07-06 by Codex as PR-3, transcribing Kernel D1 packet shape and D5 validator targets.",
+    "reason_for_inclusion": "Derived evidence products need a schema before any cross-repo report can join Scripture, boundary, doctrine, or advisory references."
+  },
+  "required": [
+    "schema_version",
+    "object_type",
+    "packet_id",
+    "query",
+    "generated_by",
+    "generated_from",
+    "non_authority_block",
+    "sections"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "evidence_packet.v1"
+    },
+    "object_type": {
+      "const": "evidence_packet"
+    },
+    "packet_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "query": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_from": {
+      "type": "object",
+      "required": [
+        "scripture_graph_release",
+        "boundary_snapshot",
+        "doctrine_snapshot"
+      ],
+      "properties": {
+        "scripture_graph_release": {
+          "type": "string"
+        },
+        "boundary_snapshot": {
+          "type": "string"
+        },
+        "doctrine_snapshot": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "non_authority_block": {
+      "type": "object",
+      "required": [
+        "is_derived_artifact",
+        "creates_scripture_authority",
+        "creates_doctrine_authority",
+        "creates_graph_or_retrieval_truth",
+        "advisory_material_authority"
+      ],
+      "properties": {
+        "is_derived_artifact": {
+          "const": true
+        },
+        "creates_scripture_authority": {
+          "const": false
+        },
+        "creates_doctrine_authority": {
+          "const": false
+        },
+        "creates_graph_or_retrieval_truth": {
+          "const": false
+        },
+        "advisory_material_authority": {
+          "const": "none"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sections": {
+      "type": "object",
+      "required": [
+        "scripture_refs",
+        "boundary_sources",
+        "doctrine_objects",
+        "advisory_notes"
+      ],
+      "properties": {
+        "scripture_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scripture_row"
+          }
+        },
+        "boundary_sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/boundary_row"
+          }
+        },
+        "doctrine_objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/doctrine_row"
+          }
+        },
+        "advisory_notes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/advisory_row"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "timeline_view": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/timeline_row"
+      }
+    }
+  },
+  "$defs": {
+    "advisory_row": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_row"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "namespace": {
+              "const": "advisory_"
+            },
+            "advisory_ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "advisory_ref"
+          ]
+        }
+      ]
+    },
+    "authority_rung": {
+      "type": "string",
+      "enum": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ]
+    },
+    "base_row": {
+      "type": "object",
+      "required": [
+        "namespace",
+        "authority_rung",
+        "review_status",
+        "provenance_ref"
+      ],
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "enum": [
+            "scripture_",
+            "boundary_",
+            "doctrine_",
+            "advisory_"
+          ]
+        },
+        "authority_rung": {
+          "$ref": "#/$defs/authority_rung"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
+        },
+        "provenance_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "boundary_row": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_row"
+        },
+        {
+          "type": "object",
+          "required": [
+            "source_ref",
+            "trust_tier"
+          ],
+          "properties": {
+            "namespace": {
+              "const": "boundary_"
+            },
+            "source_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "trust_tier": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "claim_role": {
+      "type": "string",
+      "default": "historical_description",
+      "enum": [
+        "historical_description",
+        "normative_position",
+        "comparative_note"
+      ]
+    },
+    "date_block": {
+      "$ref": "https://logos.local/schemas/doctrine_genealogy/date_block.v1.schema.json"
+    },
+    "doctrine_row": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_row"
+        },
+        {
+          "type": "object",
+          "required": [
+            "object_ref",
+            "orthodoxy_status",
+            "claim_role"
+          ],
+          "properties": {
+            "namespace": {
+              "const": "doctrine_"
+            },
+            "object_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "orthodoxy_status": {
+              "$ref": "#/$defs/orthodoxy_status"
+            },
+            "claim_role": {
+              "$ref": "#/$defs/claim_role"
+            }
+          }
+        }
+      ]
+    },
+    "orthodoxy_status": {
+      "type": "string",
+      "default": "unclassified_candidate",
+      "enum": [
+        "orthodox_core",
+        "orthodox_permitted_diversity",
+        "disputed_within_orthodoxy",
+        "heterodox",
+        "non_christian_comparative",
+        "unclassified_candidate"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "default": "unreviewed",
+      "enum": [
+        "unreviewed",
+        "in_review",
+        "reviewed"
+      ]
+    },
+    "scripture_row": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_row"
+        },
+        {
+          "type": "object",
+          "required": [
+            "passage_ref",
+            "release_artifact_ref"
+          ],
+          "properties": {
+            "namespace": {
+              "const": "scripture_"
+            },
+            "authority_rung": {
+              "const": "S0"
+            },
+            "passage_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "release_artifact_ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "timeline_row": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_row"
+        },
+        {
+          "type": "object",
+          "required": [
+            "event_object_ref",
+            "event_object_type",
+            "track",
+            "date_block"
+          ],
+          "properties": {
+            "event_object_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "event_object_type": {
+              "type": "string",
+              "enum": [
+                "formulation",
+                "assessment",
+                "instrument_binding_scope"
+              ]
+            },
+            "track": {
+              "type": "string",
+              "minLength": 1
+            },
+            "date_block": {
+              "$ref": "#/$defs/date_block"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "additionalProperties": false
+}

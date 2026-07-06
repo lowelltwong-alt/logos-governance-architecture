@@ -1,0 +1,643 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine_genealogy/doctrine_node.v1.schema.json",
+  "title": "Doctrine Genealogy Node v1",
+  "$comment": "draft, non-authorizing, owner decisions D1-D10 apply",
+  "type": "object",
+  "x-governance": {
+    "object_type": "doctrine_genealogy_schema",
+    "trust_zone": "canonical",
+    "lifecycle_status": "active",
+    "provenance_note": "Created 2026-07-06 by Codex as PR-3, transcribing Kernel A2 node types and Kernel B vocabulary constraints.",
+    "reason_for_inclusion": "The planned doctrine-genealogy repo needs node contracts before any doctrine-genealogy records or examples are created."
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/doctrine_topic"
+    },
+    {
+      "$ref": "#/$defs/doctrine_view"
+    },
+    {
+      "$ref": "#/$defs/formulation"
+    },
+    {
+      "$ref": "#/$defs/agent"
+    },
+    {
+      "$ref": "#/$defs/instrument"
+    },
+    {
+      "$ref": "#/$defs/claim"
+    },
+    {
+      "$ref": "#/$defs/assessment"
+    },
+    {
+      "$ref": "#/$defs/controversy"
+    }
+  ],
+  "$defs": {
+    "affiliation": {
+      "type": "object",
+      "required": [
+        "tradition_scope",
+        "date_block"
+      ],
+      "properties": {
+        "tradition_scope": {
+          "$ref": "#/$defs/tradition_scope"
+        },
+        "date_block": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/date_block.v1.schema.json"
+        },
+        "source_basis_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "agent": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "object_type",
+        "id",
+        "title",
+        "subtype",
+        "date_block",
+        "affiliations"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "doctrine_node.v1"
+        },
+        "object_type": {
+          "const": "agent"
+        },
+        "id": {
+          "$ref": "#/$defs/entity_ref"
+        },
+        "title": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "subtype": {
+          "type": "string",
+          "enum": [
+            "theologian",
+            "council",
+            "school_or_tradition",
+            "movement"
+          ]
+        },
+        "date_block": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/date_block.v1.schema.json"
+        },
+        "affiliations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/affiliation"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "assessment": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "object_type",
+        "id",
+        "title",
+        "verdict",
+        "assessor_ref",
+        "scope",
+        "date_block",
+        "basis_refs",
+        "doctrine_provenance"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "doctrine_node.v1"
+        },
+        "object_type": {
+          "const": "assessment"
+        },
+        "id": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "title": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "affirmed",
+            "clarified",
+            "tolerated",
+            "disputed",
+            "condemned",
+            "anathematized"
+          ]
+        },
+        "assessor_ref": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "scope": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "date_block": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/date_block.v1.schema.json"
+        },
+        "basis_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "doctrine_provenance": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json"
+        }
+      },
+      "additionalProperties": false
+    },
+    "claim": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "object_type",
+        "id",
+        "subject_ref",
+        "predicate",
+        "object_ref",
+        "doctrine_provenance"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "doctrine_node.v1"
+        },
+        "object_type": {
+          "const": "claim"
+        },
+        "id": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "subject_ref": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "predicate": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "object_ref": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "doctrine_provenance": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json"
+        }
+      },
+      "additionalProperties": false
+    },
+    "controversy": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "object_type",
+        "id",
+        "title",
+        "date_block",
+        "topic_refs",
+        "agent_refs",
+        "formulation_refs",
+        "assessment_refs"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "doctrine_node.v1"
+        },
+        "object_type": {
+          "const": "controversy"
+        },
+        "id": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "title": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "date_block": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/date_block.v1.schema.json"
+        },
+        "topic_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "agent_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "formulation_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "assessment_refs": {
+          "$ref": "#/$defs/ref_array"
+        }
+      },
+      "additionalProperties": false
+    },
+    "doctrine_topic": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "object_type",
+        "id",
+        "title",
+        "locus",
+        "scripture_refs",
+        "status"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "doctrine_node.v1"
+        },
+        "object_type": {
+          "const": "doctrine_topic"
+        },
+        "id": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "title": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "locus": {
+          "type": "string",
+          "enum": [
+            "theology_proper",
+            "christology",
+            "pneumatology",
+            "trinity",
+            "bibliology",
+            "anthropology",
+            "hamartiology",
+            "soteriology",
+            "ecclesiology",
+            "sacraments",
+            "eschatology",
+            "ethics"
+          ]
+        },
+        "scripture_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Passage IDs only from logos-scripture-graph; never Scripture text."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "proposed",
+            "active",
+            "deprecated"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "doctrine_view": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "object_type",
+        "id",
+        "topic_ref",
+        "summary",
+        "distinguishing_claims",
+        "orthodoxy_status",
+        "orthodoxy_basis_refs",
+        "claim_role",
+        "tradition_scope",
+        "first_attested_formulation_ref"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "doctrine_node.v1"
+        },
+        "object_type": {
+          "const": "doctrine_view"
+        },
+        "id": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "topic_ref": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "distinguishing_claims": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "orthodoxy_status": {
+          "$ref": "#/$defs/orthodoxy_status"
+        },
+        "orthodoxy_basis_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "claim_role": {
+          "$ref": "#/$defs/claim_role"
+        },
+        "tradition_scope": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/tradition_scope"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "first_attested_formulation_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "doctrine_provenance": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json"
+        }
+      },
+      "additionalProperties": false
+    },
+    "formulation": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "object_type",
+        "id",
+        "title",
+        "view_ref",
+        "agent_ref",
+        "source_work_ref",
+        "date_block",
+        "original_language",
+        "key_terms",
+        "orthodoxy_status",
+        "claim_role",
+        "tradition_scope",
+        "review_flags"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "doctrine_node.v1"
+        },
+        "object_type": {
+          "const": "formulation"
+        },
+        "id": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "title": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "view_ref": {
+          "$ref": "#/$defs/object_ref"
+        },
+        "agent_ref": {
+          "$ref": "#/$defs/entity_ref"
+        },
+        "source_work_ref": {
+          "$ref": "#/$defs/nonempty_string",
+          "description": "Boundary-literature work ID only; never source text."
+        },
+        "date_block": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/date_block.v1.schema.json"
+        },
+        "original_language": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "key_terms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/key_term"
+          }
+        },
+        "orthodoxy_status": {
+          "$ref": "#/$defs/orthodoxy_status"
+        },
+        "claim_role": {
+          "$ref": "#/$defs/claim_role"
+        },
+        "tradition_scope": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/tradition_scope"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "review_flags": {
+          "type": "object",
+          "properties": {
+            "original_language_review": {
+              "$ref": "#/$defs/review_gate_status"
+            },
+            "textual_critical_review": {
+              "$ref": "#/$defs/review_gate_status"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "instrument": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "object_type",
+        "id",
+        "title",
+        "adopting_authority_ref",
+        "binding_scope",
+        "source_work_ref",
+        "recensions",
+        "ladder_rung"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "doctrine_node.v1"
+        },
+        "object_type": {
+          "const": "instrument"
+        },
+        "id": {
+          "$ref": "#/$defs/entity_ref"
+        },
+        "title": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "adopting_authority_ref": {
+          "$ref": "#/$defs/entity_ref"
+        },
+        "binding_scope": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding_scope_item"
+          }
+        },
+        "source_work_ref": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "recensions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonempty_string"
+          }
+        },
+        "ladder_rung": {
+          "$ref": "#/$defs/authority_rung"
+        }
+      },
+      "additionalProperties": false
+    },
+    "binding_scope_item": {
+      "type": "object",
+      "required": [
+        "tradition_scope",
+        "reception_status",
+        "date_block"
+      ],
+      "properties": {
+        "tradition_scope": {
+          "$ref": "#/$defs/tradition_scope"
+        },
+        "reception_status": {
+          "type": "string",
+          "enum": [
+            "adopted",
+            "revised",
+            "rejected"
+          ]
+        },
+        "date_block": {
+          "$ref": "https://logos.local/schemas/doctrine_genealogy/date_block.v1.schema.json"
+        },
+        "source_basis_refs": {
+          "$ref": "#/$defs/ref_array"
+        }
+      },
+      "additionalProperties": false
+    },
+    "authority_rung": {
+      "type": "string",
+      "enum": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ]
+    },
+    "claim_role": {
+      "type": "string",
+      "default": "historical_description",
+      "enum": [
+        "historical_description",
+        "normative_position",
+        "comparative_note"
+      ]
+    },
+    "entity_ref": {
+      "type": "string",
+      "pattern": "^(person|council|instrument|school)/[a-z0-9][a-z0-9-]*$"
+    },
+    "key_term": {
+      "type": "object",
+      "required": [
+        "term",
+        "language",
+        "evidence_only"
+      ],
+      "properties": {
+        "term": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "language": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "evidence_only": {
+          "const": true
+        },
+        "review_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "nonempty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "object_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "orthodoxy_status": {
+      "type": "string",
+      "default": "unclassified_candidate",
+      "enum": [
+        "orthodox_core",
+        "orthodox_permitted_diversity",
+        "disputed_within_orthodoxy",
+        "heterodox",
+        "non_christian_comparative",
+        "unclassified_candidate"
+      ]
+    },
+    "ref_array": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "review_gate_status": {
+      "type": "string",
+      "enum": [
+        "not_required",
+        "required_pending",
+        "complete"
+      ]
+    },
+    "tradition_scope": {
+      "type": "string",
+      "enum": [
+        "reformed",
+        "arminian_wesleyan",
+        "baptist",
+        "anglican",
+        "lutheran",
+        "presbyterian",
+        "methodist",
+        "pentecostal_charismatic",
+        "patristic_creedal",
+        "roman_catholic",
+        "eastern_orthodox",
+        "oriental_orthodox",
+        "church_of_the_east",
+        "pre_division_patristic"
+      ]
+    }
+  }
+}
