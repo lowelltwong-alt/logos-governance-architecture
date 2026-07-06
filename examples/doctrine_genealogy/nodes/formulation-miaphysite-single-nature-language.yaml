@@ -1,0 +1,28 @@
+schema_version: doctrine_node.v1
+object_type: formulation
+id: formulation/miaphysite-single-nature-language
+title: Miaphysite single-nature-language placeholder
+trust_zone: proposed
+lifecycle_status: draft
+review_status: unreviewed
+decision_basis:
+  - KERNEL-A:A2
+  - KERNEL-B:B4
+  - CODEX_HANDOFF:PR-5
+view_ref: doctrine_view/miaphysite
+agent_ref: school/miaphysite-example
+source_work_ref: work/miaphysite-placeholder
+date_block:
+  date_earliest: 451
+  date_latest: null
+  date_precision: unknown
+  date_basis:
+    - schema_example_placeholder
+original_language: null
+key_terms: []
+orthodoxy_status: unclassified_candidate
+claim_role: historical_description
+tradition_scope: oriental_orthodox
+review_flags:
+  original_language_review: not_required
+  textual_critical_review: not_required

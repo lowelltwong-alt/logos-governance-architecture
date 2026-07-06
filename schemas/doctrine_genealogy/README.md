@@ -44,6 +44,9 @@ PR-4 wires these validators into `scripts/run_validation_suite.py`:
 
 Focused pytest coverage lives in `tests/test_doctrine_genealogy_validators.py`.
 
+Draft schema-conformance examples live in
+`../../examples/doctrine_genealogy/`.
+
 ## Non-Authorizations
 
 These schemas do not authorize:

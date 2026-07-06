@@ -1,0 +1,48 @@
+schema_version: genealogy_edge.v1
+object_type: genealogy_edge
+id: genealogy_edge/chalcedonian-formulation-derives-from-instrument
+trust_zone: proposed
+lifecycle_status: draft
+review_status: unreviewed
+decision_basis:
+  - FABLE-D1-D10-2026-07-06:D4
+  - KERNEL-A:A3
+  - CODEX_HANDOFF:PR-5
+subject_ref: formulation/chalcedonian-definition-two-natures
+verb: derives_from
+object_ref: instrument/chalcedonian-definition-451
+direction: subject_to_object
+edge_status: proposed_relationship
+evidence_basis:
+  - instrument/chalcedonian-definition-451
+scope: schema_example_only
+method: ai_staged
+asserted_or_inferred: inferred
+doctrine_provenance:
+  source_basis:
+    - ref: instrument/chalcedonian-definition-451
+      ladder_rung: S1
+      citation_locator: definition
+      citation_mode: summary
+  claim_role: historical_description
+  authority_zone: S1
+  tradition_scope: pre_division_patristic
+  orthodoxy_status: unclassified_candidate
+  orthodoxy_basis_refs: []
+  asserted_or_inferred: inferred
+  method: ai_staged
+  lifecycle_status: draft
+  review_status: unreviewed
+  reviewer_or_owner_decision_ref: null
+  upstream_deps:
+    - formulation/chalcedonian-definition-two-natures
+    - instrument/chalcedonian-definition-451
+  known_counterclaims: []
+  contested_status: uncontested
+  original_language_review: not_required
+  original_language_review_ref: null
+  textual_critical_review: not_required
+  textual_critical_review_ref: null
+  downstream_risk_note: Proposed example edge only; no reviewed-lineage promotion.
+  provenance_note: Demonstrates Kernel A3 derives_from verb without asserting reviewed lineage.
+provenance_note: Draft PR-5 schema example.

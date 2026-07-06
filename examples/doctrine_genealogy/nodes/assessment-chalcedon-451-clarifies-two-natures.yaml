@@ -1,0 +1,50 @@
+schema_version: doctrine_node.v1
+object_type: assessment
+id: assessment/chalcedon-451-clarifies-two-natures
+title: Chalcedon 451 clarifies two-natures boundary
+trust_zone: proposed
+lifecycle_status: draft
+review_status: unreviewed
+decision_basis:
+  - FABLE-D1-D10-2026-07-06:D1
+  - KERNEL-A:A2
+  - KERNEL-B:B2
+  - CODEX_HANDOFF:PR-5
+verdict: clarified
+assessor_ref: instrument/chalcedonian-definition-451
+scope: project_boundary_s1
+date_block:
+  date_earliest: 451
+  date_latest: 451
+  date_precision: year
+  date_basis:
+    - instrument/chalcedonian-definition-451
+basis_refs:
+  - instrument/chalcedonian-definition-451
+doctrine_provenance:
+  source_basis:
+    - ref: instrument/chalcedonian-definition-451
+      ladder_rung: S1
+      citation_locator: definition
+      citation_mode: summary
+  claim_role: historical_description
+  authority_zone: S1
+  tradition_scope: pre_division_patristic
+  orthodoxy_status: orthodox_core
+  orthodoxy_basis_refs:
+    - instrument/chalcedonian-definition-451
+  asserted_or_inferred: inferred
+  method: ai_staged
+  lifecycle_status: draft
+  review_status: unreviewed
+  reviewer_or_owner_decision_ref: null
+  upstream_deps:
+    - instrument/chalcedonian-definition-451
+  known_counterclaims: []
+  contested_status: historically_settled_scoped
+  original_language_review: not_required
+  original_language_review_ref: null
+  textual_critical_review: not_required
+  textual_critical_review_ref: null
+  downstream_risk_note: Draft example assessment; not a reviewed-lineage object.
+  provenance_note: Demonstrates assessment object shape without direct condemnation edge.

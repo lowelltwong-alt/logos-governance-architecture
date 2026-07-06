@@ -1,0 +1,68 @@
+schema_version: evidence_packet.v1
+object_type: evidence_packet
+packet_id: evidence_packet/chalcedon-minimal-schema-example
+trust_zone: proposed
+lifecycle_status: draft
+review_status: unreviewed
+decision_basis:
+  - KERNEL-D:D1
+  - KERNEL-D:D2
+  - KERNEL-D:D3
+  - CODEX_HANDOFF:PR-5
+query: Show a minimal schema-only Chalcedon doctrine-genealogy packet.
+generated_by: Codex PR-5 schema example
+generated_from:
+  scripture_graph_release: logos-scripture-graph:placeholder-release-ref
+  boundary_snapshot: logos-boundary-literature:placeholder-snapshot-ref
+  doctrine_snapshot: logos-governance-architecture:examples/doctrine_genealogy
+non_authority_block:
+  is_derived_artifact: true
+  creates_scripture_authority: false
+  creates_doctrine_authority: false
+  creates_graph_or_retrieval_truth: false
+  advisory_material_authority: none
+sections:
+  scripture_refs:
+    - namespace: scripture_
+      authority_rung: S0
+      review_status: unreviewed
+      provenance_ref: logos-scripture-graph:placeholder-release-ref
+      passage_ref: John.1.14
+      release_artifact_ref: logos-scripture-graph:placeholder-release-ref
+  boundary_sources:
+    - namespace: boundary_
+      authority_rung: S1
+      review_status: unreviewed
+      provenance_ref: instrument/chalcedonian-definition-451
+      source_ref: work/chalcedonian-definition-451
+      trust_tier: boundary_instrument_placeholder
+  doctrine_objects:
+    - namespace: doctrine_
+      authority_rung: S1
+      review_status: unreviewed
+      provenance_ref: doctrine_view/chalcedonian-dyophysitism
+      object_ref: doctrine_view/chalcedonian-dyophysitism
+      orthodoxy_status: orthodox_core
+      claim_role: historical_description
+    - namespace: doctrine_
+      authority_rung: S5
+      review_status: unreviewed
+      provenance_ref: doctrine_view/miaphysite
+      object_ref: doctrine_view/miaphysite
+      orthodoxy_status: unclassified_candidate
+      claim_role: historical_description
+  advisory_notes: []
+timeline_view:
+  - namespace: doctrine_
+    authority_rung: S1
+    review_status: unreviewed
+    provenance_ref: instrument/chalcedonian-definition-451
+    event_object_ref: instrument/chalcedonian-definition-451
+    event_object_type: instrument_binding_scope
+    track: pre_division_patristic
+    date_block:
+      date_earliest: 451
+      date_latest: 451
+      date_precision: year
+      date_basis:
+        - instrument/chalcedonian-definition-451
