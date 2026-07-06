@@ -107,6 +107,12 @@ Before changing files:
    dependency-map artifact updated, name any discovery surfaces updated or
    intentionally left unchanged, and run the dependency-map validator.
 
+10. When work creates a reusable architecture lesson, audit finding, Fable/Codex
+    feedback resolution, validator pattern, schema pattern, or cross-domain
+    transfer pattern, update the relevant lesson/outbox surface. For the Fable
+    doctrine-genealogy queue, use
+    [`docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md`](docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md).
+
 ## Output expectations for AI work
 
 When producing patches or recommendations, report:
@@ -118,6 +124,7 @@ When producing patches or recommendations, report:
 - commands run
 - tests or validations run
 - tests or validations not run
+- lessons or DAD/outbox surfaces updated, or why no reusable lesson was created
 - remaining risks
 
 ## Maintenance commands
