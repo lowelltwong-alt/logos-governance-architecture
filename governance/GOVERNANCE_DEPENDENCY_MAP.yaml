@@ -559,6 +559,8 @@ artifacts:
       - docs/governance/relationship-registry.md
       - docs/governance/doctrine-genealogy-vocabulary.md
       - governance/registry/entity_ids.yaml
+      - schemas/schema_registry.json
+      - schemas/doctrine_genealogy/
       - docs/roadmap/theological-buildout-roadmap.md
       - docs/roadmap/repository-integration-map.md
       - DATA_FLOW_MAP.md
@@ -587,6 +589,7 @@ artifacts:
       - doctrine_genealogy_controlled_vocabulary
       - doctrine_genealogy_identity_registry
       - doctrine_genealogy_relationship_verb_registry
+      - doctrine_genealogy_schema_standards
       - theology_across_time_hard_problem_routing
       - codex_and_fable_work_split
       - cross_repo_evidence_product_shape
@@ -611,10 +614,12 @@ artifacts:
       - docs/governance/relationship-registry.md
       - docs/governance/doctrine-genealogy-vocabulary.md
       - governance/registry/entity_ids.yaml
+      - schemas/schema_registry.json
+      - schemas/doctrine_genealogy/
       - docs/roadmap/theological-buildout-roadmap.md
       - docs/roadmap/repository-integration-map.md
       - DATA_FLOW_MAP.md
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
-    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, and PR-2 governance vocabulary surfaces."
-    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, and downstream agent behavior."
+    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, and PR-3 doctrine-genealogy schema standards."
+    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, and downstream agent behavior."

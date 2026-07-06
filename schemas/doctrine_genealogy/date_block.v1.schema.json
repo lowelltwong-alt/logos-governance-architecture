@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine_genealogy/date_block.v1.schema.json",
+  "title": "Doctrine Genealogy Date Block v1",
+  "$comment": "draft, non-authorizing, owner decisions D1-D10 apply",
+  "type": "object",
+  "x-governance": {
+    "object_type": "doctrine_genealogy_schema",
+    "trust_zone": "canonical",
+    "lifecycle_status": "active",
+    "provenance_note": "Created 2026-07-06 by Codex as PR-3, transcribing Kernel A4 date discipline.",
+    "reason_for_inclusion": "Shared date block required for formulation, assessment, instrument binding-scope, agent, controversy, and timeline event schemas."
+  },
+  "required": [
+    "date_earliest",
+    "date_latest",
+    "date_precision",
+    "date_basis"
+  ],
+  "properties": {
+    "date_earliest": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Earliest plausible year. Null is allowed only when a validator or reviewer confirms the date is not yet knowable."
+    },
+    "date_latest": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Latest plausible year. Null is allowed only when a validator or reviewer confirms the date is not yet knowable."
+    },
+    "date_precision": {
+      "type": "string",
+      "enum": [
+        "year",
+        "decade",
+        "quarter_century",
+        "century",
+        "unknown"
+      ]
+    },
+    "date_basis": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Cited basis for the date range; never inferred from presentation order."
+    }
+  },
+  "additionalProperties": false
+}

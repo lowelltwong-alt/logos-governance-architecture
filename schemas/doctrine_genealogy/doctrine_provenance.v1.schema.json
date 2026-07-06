@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json",
+  "title": "Doctrine Provenance v1",
+  "$comment": "draft, non-authorizing, owner decisions D1-D10 apply",
+  "type": "object",
+  "x-governance": {
+    "object_type": "doctrine_genealogy_schema",
+    "trust_zone": "canonical",
+    "lifecycle_status": "active",
+    "provenance_note": "Created 2026-07-06 by Codex as PR-3, transcribing Kernel C1 field-for-field.",
+    "reason_for_inclusion": "Doctrine-lineage objects need a reusable provenance block before examples, validators, source imports, or repo creation."
+  },
+  "required": [
+    "source_basis",
+    "claim_role",
+    "authority_zone",
+    "tradition_scope",
+    "orthodoxy_status",
+    "orthodoxy_basis_refs",
+    "asserted_or_inferred",
+    "method",
+    "lifecycle_status",
+    "review_status",
+    "reviewer_or_owner_decision_ref",
+    "upstream_deps",
+    "known_counterclaims",
+    "contested_status",
+    "original_language_review",
+    "original_language_review_ref",
+    "textual_critical_review",
+    "textual_critical_review_ref",
+    "downstream_risk_note",
+    "provenance_note"
+  ],
+  "properties": {
+    "source_basis": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source_basis_entry"
+      }
+    },
+    "claim_role": {
+      "type": "string",
+      "default": "historical_description",
+      "enum": [
+        "historical_description",
+        "normative_position",
+        "comparative_note"
+      ]
+    },
+    "authority_zone": {
+      "$ref": "#/$defs/authority_rung"
+    },
+    "tradition_scope": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/tradition_scope"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Null must be explicit; schemas may not silently infer a tradition scope."
+    },
+    "orthodoxy_status": {
+      "type": "string",
+      "default": "unclassified_candidate",
+      "enum": [
+        "orthodox_core",
+        "orthodox_permitted_diversity",
+        "disputed_within_orthodoxy",
+        "heterodox",
+        "non_christian_comparative",
+        "unclassified_candidate"
+      ]
+    },
+    "orthodoxy_basis_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "asserted_or_inferred": {
+      "type": "string",
+      "enum": [
+        "asserted",
+        "inferred"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "human_authored",
+        "ai_staged",
+        "derived_from_assessment",
+        "crosswalk"
+      ]
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "proposed",
+        "active",
+        "deprecated"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "default": "unreviewed",
+      "enum": [
+        "unreviewed",
+        "in_review",
+        "reviewed"
+      ]
+    },
+    "reviewer_or_owner_decision_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "upstream_deps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "known_counterclaims": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "contested_status": {
+      "type": "string",
+      "enum": [
+        "uncontested",
+        "contested",
+        "historically_settled_scoped"
+      ]
+    },
+    "original_language_review": {
+      "$ref": "#/$defs/review_gate_status"
+    },
+    "original_language_review_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "textual_critical_review": {
+      "$ref": "#/$defs/review_gate_status"
+    },
+    "textual_critical_review_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "downstream_risk_note": {
+      "type": "string"
+    },
+    "provenance_note": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "authority_rung": {
+      "type": "string",
+      "enum": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ]
+    },
+    "citation_mode": {
+      "type": "string",
+      "enum": [
+        "quotation",
+        "paraphrase",
+        "allusion",
+        "summary"
+      ]
+    },
+    "review_gate_status": {
+      "type": "string",
+      "enum": [
+        "not_required",
+        "required_pending",
+        "complete"
+      ]
+    },
+    "source_basis_entry": {
+      "type": "object",
+      "required": [
+        "ref",
+        "ladder_rung",
+        "citation_locator",
+        "citation_mode"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ladder_rung": {
+          "$ref": "#/$defs/authority_rung"
+        },
+        "citation_locator": {
+          "type": "string"
+        },
+        "citation_mode": {
+          "$ref": "#/$defs/citation_mode"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tradition_scope": {
+      "type": "string",
+      "enum": [
+        "reformed",
+        "arminian_wesleyan",
+        "baptist",
+        "anglican",
+        "lutheran",
+        "presbyterian",
+        "methodist",
+        "pentecostal_charismatic",
+        "patristic_creedal",
+        "roman_catholic",
+        "eastern_orthodox",
+        "oriental_orthodox",
+        "church_of_the_east",
+        "pre_division_patristic"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

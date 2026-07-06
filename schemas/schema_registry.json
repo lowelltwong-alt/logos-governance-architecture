@@ -63,6 +63,47 @@
       "validation_kind": "graph_json_object",
       "object_type": "external_mapping_object",
       "notes": "Canonical contract for governed external mapping objects. The dedicated validator resolves canonical targets from real graph objects, excludes example fixtures and templates, and enforces external-handle boundaries."
+    },
+    {
+      "name": "doctrine_genealogy_date_block_v1",
+      "path": "schemas/doctrine_genealogy/date_block.v1.schema.json",
+      "applies_to": [],
+      "validation_kind": "schema_fragment",
+      "notes": "Kernel A4 shared date discipline for future doctrine-genealogy schemas; draft, non-authorizing, and not yet wired to a data validator."
+    },
+    {
+      "name": "doctrine_provenance_v1",
+      "path": "schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json",
+      "applies_to": [],
+      "validation_kind": "schema_fragment",
+      "notes": "Kernel C1 provenance block, field-for-field; draft, non-authorizing, and reserved for PR-4 validator implementation."
+    },
+    {
+      "name": "doctrine_genealogy_node_v1",
+      "path": "schemas/doctrine_genealogy/doctrine_node.v1.schema.json",
+      "applies_to": [
+        "examples/doctrine_genealogy/nodes/**/*.yaml"
+      ],
+      "validation_kind": "future_doctrine_genealogy_node",
+      "notes": "Kernel A2 schema for the eight doctrine-genealogy node types; no doctrine data records are introduced by this registry entry."
+    },
+    {
+      "name": "genealogy_edge_v1",
+      "path": "schemas/doctrine_genealogy/genealogy_edge.v1.schema.json",
+      "applies_to": [
+        "examples/doctrine_genealogy/edges/**/*.yaml"
+      ],
+      "validation_kind": "future_genealogy_edge",
+      "notes": "Kernel A3 genealogy edge schema with the approved verb registry and forbidden-verb guardrails; no edges are introduced by this registry entry."
+    },
+    {
+      "name": "evidence_packet_v1",
+      "path": "schemas/doctrine_genealogy/evidence_packet.v1.schema.json",
+      "applies_to": [
+        "examples/doctrine_genealogy/evidence_packets/**/*.yaml"
+      ],
+      "validation_kind": "future_evidence_packet",
+      "notes": "Kernel D1 evidence packet schema for derived, read-only cross-repo reports; no evidence packets are introduced by this registry entry."
     }
   ]
 }
