@@ -348,4 +348,28 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "name": "governance_dependency_map",
             "command": [python, "scripts/validate_governance_dependency_map.py"],
         },
+        {
+            "name": "doctrine_vocabulary",
+            "command": [python, "scripts/validate_doctrine_vocabulary.py"],
+        },
+        {
+            "name": "doctrine_provenance",
+            "command": [python, "scripts/validate_doctrine_provenance.py"],
+        },
+        {
+            "name": "genealogy_edges",
+            "command": [python, "scripts/validate_genealogy_edges.py"],
+        },
+        {
+            "name": "evidence_packet",
+            "command": [python, "scripts/validate_evidence_packet.py"],
+        },
+        {
+            "name": "gate_triggers",
+            "command": [python, "scripts/validate_gate_triggers.py"],
+        },
+        {
+            "name": "codex_theology_tripwire",
+            "command": [python, "scripts/validate_codex_theology_tripwire.py"],
+        },
     ]

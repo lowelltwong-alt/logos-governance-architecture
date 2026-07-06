@@ -1,0 +1,31 @@
+object_type: doctrine_genealogy_gate_trigger_registry
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-06 by Codex as PR-4 of the Fable kernel implementation sequence, transcribing Kernel C2-C3 trigger categories without copying Scripture repo queue contents."
+reason_for_inclusion: "Provide a list-driven source for V-GATE-1 so original-language and textual-critical gates are forced mechanically while Scripture policy text remains owned by logos-scripture-graph."
+schema_version: doctrine_genealogy_gate_trigger_registry.v1
+registry_id: doctrine_genealogy_gate_triggers_v1
+scripture_repo_refs:
+  orthodox_original_language_pressure_dossier_queue: logos-scripture-graph:.ai/control/orthodox_original_language_pressure_dossier_queue.yaml
+  original_language_phrase_context_policy: logos-scripture-graph:.ai/control/original_language_phrase_context_policy.yaml
+  textual_variant_source_tradition_dossier_queue: logos-scripture-graph:.ai/control/textual_variant_source_tradition_dossier_queue.yaml
+original_language_review:
+  trigger_classes:
+    - specific_lemma_or_term
+    - grammatical_construction
+    - translation_polemic_passage
+    - word_rarity_argument
+    - root_argument
+    - article_argument
+    - tense_argument
+    - word_order_argument
+textual_critical_review:
+  trigger_classes:
+    - queued_variant_sensitive_passage
+    - disputed_reading_argument
+    - source_tradition_dependency
+non_authorizations:
+  - preferred_reading_selection
+  - source_tradition_preference
+  - gate_completion_by_ai_parse
+  - scripture_policy_fork
