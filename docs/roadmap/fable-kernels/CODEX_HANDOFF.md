@@ -4,6 +4,7 @@ trust_zone: proposed
 lifecycle_status: draft
 provenance_note: "Created 2026-07-06 by Fable. Deterministic implementation queue for Codex (high effort) after the owner records decisions D1–D10."
 reason_for_inclusion: "Codex must not decide ontology, vocabulary, orthodoxy, or slices; this handoff gives it exact, sequenced, validator-backed tasks that require no theological judgment."
+owner_decision_record_ref: "docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md#recorded-owner-selections-2026-07-06"
 ---
 
 # Codex Handoff — Kernel Implementation Queue
@@ -23,6 +24,13 @@ reviewed-gold or reviewed-lineage content promotion; no new relationship verbs, 
 values, or rungs beyond the kernels; if a kernel is ambiguous, stop and ask the owner — do not
 interpolate theology.
 
+Owner decisions D1-D10 are recorded in
+`docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md`, section
+`Recorded Owner Selections (2026-07-06)`, decision record ID
+`FABLE-D1-D10-2026-07-06`. This unblocks the D1-D5/D10 decision dependency for PR-2 and the
+D7 decision dependency for PR-8 only after the decision record is present in the working branch
+or merged main. All non-authorizations remain in force.
+
 ## Sequenced queue
 
 ### PR-1 — Kernel registration and family root *(gated paths: yes — TOC + map)*
@@ -36,6 +44,9 @@ Blocked on: nothing (may precede owner decisions; registers drafts as drafts).
    not-a-development-target. Link it from `AI_FRONT_DOOR.md` and the TOC.
 
 ### PR-2 — Governance vocabulary surfaces *(gated: yes; blocked on D1–D5, D10)*
+Owner-decision dependency status: satisfied by `FABLE-D1-D10-2026-07-06` once this decision
+record is present in the working branch or merged main.
+
 1. Extend `docs/governance/relationship-registry.md` with the Kernel A3 verb registry
    (12 verbs, families, evidence floors, forbidden list, derived-only condemnation rule).
 2. Add `governance/registry/entity_ids.yaml` scaffold: schema comment header, ID convention
@@ -93,6 +104,9 @@ Target structure (mechanical, content-preserving — no rule may be weakened or 
    that repo's audit protocol.
 
 ### PR-8 — Registration drafts *(blocked on D7; drafts only)*
+Owner-decision dependency status: satisfied by `FABLE-D1-D10-2026-07-06` for draft-only
+registration materials. Repo creation remains separately unauthorized.
+
 Draft (do not open until owner says go): the `register_new_logos_repo` issue body for
 `logos-doctrine-genealogy` (role, authority = interpretive_historical_profile_scoped,
 link contracts per registry `planned_repos` entry, scaffold checklist incl. front door, TOC,

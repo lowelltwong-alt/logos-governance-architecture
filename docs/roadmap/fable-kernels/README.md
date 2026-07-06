@@ -2,7 +2,7 @@
 object_type: fable_architecture_kernel_index
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Created 2026-07-06 by Fable during the owner-commissioned master architecture pass (Phase 1 of docs/roadmap/fable-master-architecture-buildout-plan.md), following the Opus pre-read handoff."
+provenance_note: "Created 2026-07-06 by Fable during the owner-commissioned master architecture pass (Phase 1 of docs/roadmap/fable-master-architecture-buildout-plan.md), following the Opus pre-read handoff. Updated 2026-07-06 by Codex to point future agents to the recorded owner selections D1-D10."
 reason_for_inclusion: "One index for the Fable architecture kernels so Codex, reviewers, and the owner can find every kernel, its status, and its non-authorizations."
 ---
 
@@ -27,6 +27,11 @@ These kernels do **not** authorize:
 Every structural decision below marked **(Dn)** requires the owner decision recorded in
 [`OWNER-DECISIONS-AND-PILOTS.md`](OWNER-DECISIONS-AND-PILOTS.md) before Codex may implement it
 as a governed surface.
+
+Owner selections D1-D10 are recorded in
+[`OWNER-DECISIONS-AND-PILOTS.md`](OWNER-DECISIONS-AND-PILOTS.md), section
+`Recorded Owner Selections (2026-07-06)`, decision record ID
+`FABLE-D1-D10-2026-07-06`.
 
 ## Kernel map
 

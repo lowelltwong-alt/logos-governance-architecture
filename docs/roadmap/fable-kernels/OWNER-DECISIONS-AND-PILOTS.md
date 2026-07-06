@@ -1,15 +1,42 @@
 ---
 object_type: fable_owner_decision_packet
-trust_zone: proposed
-lifecycle_status: draft
-provenance_note: "Created 2026-07-06 by Fable. Consolidated owner decisions for the architecture kernels, plus the HP7 pilot-slice decision packet. Follows the owner decision option presentation policy pattern: options, repercussions, recommendation, non-authorizations."
-reason_for_inclusion: "Recommendations are not owner selections. Nothing in the kernels may be implemented as a governed surface until the corresponding decision below is recorded."
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-06 by Fable. Updated 2026-07-06 by Codex to record Lowell Wong's owner selections D1-D10 for the architecture kernels, preserving recommendations, repercussions, and non-authorizations."
+reason_for_inclusion: "Owner selections D1-D10 unblock only the named governance-surface implementation queue and prevent future agents from relying on chat memory for these architecture decisions."
 ---
 
 # Owner Decisions and Pilot Slices
 
-Each decision needs an explicit selection by Lowell Wong. Recommendation ≠ selection.
+Current status: owner selections D1-D10 are recorded in this file under
+`Recorded Owner Selections (2026-07-06)`.
+
+Each decision below has a recorded owner selection by Lowell Wong. Recommendation remains distinct from selection unless the recorded selection says so.
 Codex implementation (see `CODEX_HANDOFF.md`) is sequenced against these.
+
+## Recorded Owner Selections (2026-07-06)
+
+Decision record ID: `FABLE-D1-D10-2026-07-06`.
+
+These are owner selections for the Fable architecture kernels. They authorize only the named
+governance surfaces, schemas, registries, validators, examples, discovery updates, and
+registration drafts. They do not authorize doctrine data records, source imports, Scripture or
+chunk changes, reviewed-gold promotion, reviewed-lineage promotion, graph/retrieval/vector
+truth, repo creation, boundary material as Scripture authority, Noesis as Logos authority, or
+denominational systematic theology as project authority.
+
+| Decision | Owner selection |
+|---|---|
+| D1 | Select option A. Project boundary instrument set is Niceno-Constantinopolitan 381 plus Chalcedonian Definition 451 only. Apostles' Creed remains honored as S2 witness, not S1 boundary. Athanasian Creed is not added to the project boundary. |
+| D2 | Select option A. Filioque is classified as `disputed_within_orthodoxy` and tradition-scoped, not `orthodox_core`. The project records the dispute without adjudicating it as project boundary. |
+| D3 | Approve the Kernel B4 tradition/profile seed list: the preserved firewall options plus `roman_catholic`, `eastern_orthodox`, `oriental_orthodox`, `church_of_the_east`, and `pre_division_patristic`. Descriptive presence is not endorsement. Future additions are owner-gated. |
+| D4 | Approve the Kernel A3 relationship-verb registry v1: the 12 verbs, derived-only condemnation rule, gate-fields-not-verbs rule, and forbidden verbs `related_to` and `influences`. |
+| D5 | Approve ladder placements. Ephesus 431 and councils V-VII sit at S2 with per-tradition reception records, not inside S1. All confessional instruments sit uniformly at S3 and bind only their own profile scope. |
+| D6 | Approve pilot slice order 1 -> 2 -> 3: first Trinity and Christology to Chalcedon, second Canon and Scripture authority, third Justification. Slice 3 waits until validators are proven on slices 1 and 2. |
+| D7 | Select option A. Create `logos-doctrine-genealogy` only after D1-D6 are recorded and Codex PRs 1-5 are merged in governance. Before that, draft registration materials only. |
+| D8 | Confirm `logos-chunking-harness` remains `planned_not_created` until a real cross-corpus execution need meets the registry readiness test. |
+| D9 | Approve `reviewed_lineage` promotion policy as owner-gated, per-object, non-generalizing, chunking-gold-analog promotion. No owner-pattern projection in this plane without separate future decision. |
+| D10 | Approve governance ownership of `governance/registry/entity_ids.yaml` for persons, councils, schools/movements, and instruments. Boundary owns work IDs. Scripture owns passage IDs. |
 
 ## D1 — Project boundary instrument set
 
