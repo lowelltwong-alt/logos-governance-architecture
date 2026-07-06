@@ -41,6 +41,7 @@ Owner selections D1-D10 are recorded in
 | [`KERNEL-B-orthodoxy-and-authority.md`](KERNEL-B-orthodoxy-and-authority.md) | Orthodoxy boundary as structure, denominational-capture prevention, source authority ladder S0–S7 | HP2, HP3 |
 | [`KERNEL-C-provenance-and-gates.md`](KERNEL-C-provenance-and-gates.md) | Evidence/provenance standard, promotion ladder, original-language and textual-critical gates | HP4, HP6 |
 | [`KERNEL-D-evidence-product.md`](KERNEL-D-evidence-product.md) | Cross-repo evidence packet shape, namespace rules, packet linter | HP5 |
+| [`KERNEL-E-codex-theology-tripwire.md`](KERNEL-E-codex-theology-tripwire.md) | Mechanical test separating transcription of recorded decisions from theological judgment during implementation | HP9 (gap pass) |
 | [`OWNER-DECISIONS-AND-PILOTS.md`](OWNER-DECISIONS-AND-PILOTS.md) | Pilot slice options + recommendation, consolidated owner decisions D1–D10 | HP7 |
 | [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md) | Sequenced deterministic work queue for Codex after owner decisions | — |
 

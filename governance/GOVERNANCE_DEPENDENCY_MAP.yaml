@@ -554,6 +554,7 @@ artifacts:
       - docs/roadmap/fable-kernels/KERNEL-B-orthodoxy-and-authority.md
       - docs/roadmap/fable-kernels/KERNEL-C-provenance-and-gates.md
       - docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md
+      - docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
       - docs/roadmap/theological-buildout-roadmap.md
       - docs/roadmap/repository-integration-map.md
       - DATA_FLOW_MAP.md
@@ -575,6 +576,7 @@ artifacts:
       - fable_master_architecture_handoff
       - fable_architecture_kernel_handoff
       - recorded_owner_decisions_d1_d10
+      - codex_theology_tripwire
       - doctrine_genealogy_planned_repo_triage
       - theology_across_time_hard_problem_routing
       - codex_and_fable_work_split
@@ -595,9 +597,10 @@ artifacts:
       - docs/roadmap/fable-kernels/KERNEL-B-orthodoxy-and-authority.md
       - docs/roadmap/fable-kernels/KERNEL-C-provenance-and-gates.md
       - docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md
+      - docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
       - docs/roadmap/theological-buildout-roadmap.md
       - docs/roadmap/repository-integration-map.md
       - DATA_FLOW_MAP.md
       - AI_TABLE_OF_CONTENTS.md
-    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files and recorded owner decisions D1-D10."
+    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, and the Codex theology tripwire."
     reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, and downstream agent behavior."
