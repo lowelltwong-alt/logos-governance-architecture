@@ -239,6 +239,14 @@ artifacts:
     paths:
       - scripts/validation_contracts.py
       - scripts/run_validation_suite.py
+      - scripts/doctrine_genealogy_validation.py
+      - scripts/validate_doctrine_vocabulary.py
+      - scripts/validate_doctrine_provenance.py
+      - scripts/validate_genealogy_edges.py
+      - scripts/validate_evidence_packet.py
+      - scripts/validate_gate_triggers.py
+      - scripts/validate_codex_theology_tripwire.py
+      - tests/test_doctrine_genealogy_validators.py
       - .github/workflows/validate-logos-structure.yml
     object_type: governance_validation_suite
     trust_zone: canonical
@@ -255,19 +263,29 @@ artifacts:
       - ci_validation_scope
       - semantic_merge_validation_scope
       - fail_closed_contract_checks
+      - doctrine_genealogy_validator_scope
+      - codex_theology_tripwire_validation
     mirrored_by:
       - logos-scripture-graph/scripts/validate_all.py
       - logos-boundary-literature/tests
     validators:
       - scripts/run_validation_suite.py
       - scripts/validate_governance_dependency_map.py
+      - scripts/validate_doctrine_vocabulary.py
+      - scripts/validate_doctrine_provenance.py
+      - scripts/validate_genealogy_edges.py
+      - scripts/validate_evidence_packet.py
+      - scripts/validate_gate_triggers.py
+      - scripts/validate_codex_theology_tripwire.py
     update_triggers:
       - scripts/validation_contracts.py
       - scripts/run_validation_suite.py
       - scripts/validate_
+      - scripts/doctrine_genealogy_validation.py
+      - tests/test_doctrine_genealogy_validators.py
       - .github/workflows/
-    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks."
-    reason_for_inclusion: "Validation scope changes can change effective governance."
+    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks. Updated 2026-07-06 to include PR-4 doctrine-genealogy validators and tests, including the Kernel E Codex theology tripwire path."
+    reason_for_inclusion: "Validation scope changes can change effective governance; doctrine-genealogy schemas need fail-closed checks before any examples, data records, reviewed lineage, or repo creation."
   - artifact_id: GD-008
     title: Governance workflow and roadmap process
     repo: logos-governance-architecture
@@ -561,6 +579,7 @@ artifacts:
       - governance/registry/entity_ids.yaml
       - schemas/schema_registry.json
       - schemas/doctrine_genealogy/
+      - schemas/doctrine_genealogy/gate_trigger_registry.v1.yaml
       - docs/roadmap/theological-buildout-roadmap.md
       - docs/roadmap/repository-integration-map.md
       - DATA_FLOW_MAP.md
@@ -590,6 +609,7 @@ artifacts:
       - doctrine_genealogy_identity_registry
       - doctrine_genealogy_relationship_verb_registry
       - doctrine_genealogy_schema_standards
+      - doctrine_genealogy_fail_closed_validators
       - theology_across_time_hard_problem_routing
       - codex_and_fable_work_split
       - cross_repo_evidence_product_shape
@@ -616,10 +636,11 @@ artifacts:
       - governance/registry/entity_ids.yaml
       - schemas/schema_registry.json
       - schemas/doctrine_genealogy/
+      - schemas/doctrine_genealogy/gate_trigger_registry.v1.yaml
       - docs/roadmap/theological-buildout-roadmap.md
       - docs/roadmap/repository-integration-map.md
       - DATA_FLOW_MAP.md
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
-    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, and PR-3 doctrine-genealogy schema standards."
-    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, and downstream agent behavior."
+    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, PR-3 doctrine-genealogy schema standards, and PR-4 doctrine-genealogy validator trigger surfaces."
+    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, fail-closed validator triggers, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, and downstream agent behavior."

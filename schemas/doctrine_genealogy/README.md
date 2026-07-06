@@ -24,6 +24,20 @@ Kernel E applies: schema defaults may use only floor values such as
 - `doctrine_node.v1.schema.json` - Kernel A2 node standards for the eight doctrine-genealogy node types.
 - `genealogy_edge.v1.schema.json` - Kernel A3 genealogy edge standard.
 - `evidence_packet.v1.schema.json` - Kernel D1 evidence packet standard.
+- `gate_trigger_registry.v1.yaml` - Kernel C2-C3 gate trigger classes and Scripture-repo policy references.
+
+## Validators
+
+PR-4 wires these validators into `scripts/run_validation_suite.py`:
+
+- `scripts/validate_doctrine_vocabulary.py`
+- `scripts/validate_doctrine_provenance.py`
+- `scripts/validate_genealogy_edges.py`
+- `scripts/validate_evidence_packet.py`
+- `scripts/validate_gate_triggers.py`
+- `scripts/validate_codex_theology_tripwire.py`
+
+Focused pytest coverage lives in `tests/test_doctrine_genealogy_validators.py`.
 
 ## Non-Authorizations
 

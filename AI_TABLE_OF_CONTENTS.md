@@ -63,6 +63,7 @@ applicable. Treat that as a gated roadmap horizon, not current AI authority.
 - [`governance/GOVERNANCE_DEPENDENCY_MAP.yaml`](governance/GOVERNANCE_DEPENDENCY_MAP.yaml) - update this and registered coverage whenever governance paths change
 - [`schemas/schema_registry.json`](schemas/schema_registry.json) - machine-readable schema registry
 - [`schemas/doctrine_genealogy/README.md`](schemas/doctrine_genealogy/README.md) - Fable PR-3 doctrine-genealogy schema standards and non-authorizations
+- [`scripts/run_validation_suite.py`](scripts/run_validation_suite.py) - default local/CI validation suite, including doctrine-genealogy validators
 - [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
 - [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)
 - [`docs/governance/anchor-conventions-scripture-and-graph-extension.md`](docs/governance/anchor-conventions-scripture-and-graph-extension.md)
