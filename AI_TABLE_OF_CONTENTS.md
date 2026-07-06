@@ -30,6 +30,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`AI_WORK_START_HERE.md`](AI_WORK_START_HERE.md) — AI-agent operating instructions and guardrails
 - [`docs/governance/README.md`](docs/governance/README.md) — governance conventions and vocabulary discipline
 - [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md) — practical buildout sequence
+- [`docs/roadmap/fable-master-architecture-buildout-plan.md`](docs/roadmap/fable-master-architecture-buildout-plan.md) - Fable-led cross-repo master architecture plan; use for doctrine-genealogy, theology-across-time, hard-problem triage, and Codex/Fable work split
 - [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md) — repo-wide layer integration
 
 ## Constituent repositories (external surfaces)

@@ -542,3 +542,46 @@ artifacts:
       - tests/test_governance_dependency_map.py
     provenance_note: "Added 2026-06-29 after owner request that every governance change force the AI doing it to correct the governance map and appropriate discovery/validation files. Extended the same day to require child-repo local mirror enforcement."
     reason_for_inclusion: "Governance changes alter future agent behavior; they must update the dependency map, discovery surfaces, PR requirements, child-repo mirror controls, and validator/test coverage rather than relying on chat memory."
+  - artifact_id: GD-015
+    title: Fable master architecture buildout plan
+    repo: logos-governance-architecture
+    paths:
+      - docs/roadmap/fable-master-architecture-buildout-plan.md
+      - docs/roadmap/theological-buildout-roadmap.md
+      - docs/roadmap/repository-integration-map.md
+      - DATA_FLOW_MAP.md
+      - AI_TABLE_OF_CONTENTS.md
+    object_type: cross_repo_master_architecture_roadmap
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: owner_request_2026-07-06
+    owner_decision_ref: docs/roadmap/fable-master-architecture-buildout-plan.md
+    depends_on:
+      - GD-001
+      - GD-002
+      - GD-003
+      - GD-006
+      - GD-011
+      - GD-013
+      - GD-014
+    downstream_controls:
+      - fable_master_architecture_handoff
+      - doctrine_genealogy_planned_repo_triage
+      - theology_across_time_hard_problem_routing
+      - codex_and_fable_work_split
+      - cross_repo_evidence_product_shape
+      - no_authority_transfer_for_scripture_boundary_doctrine_or_noesis
+    mirrored_by:
+      - logos-scripture-graph/AI_TABLE_OF_CONTENTS.md
+      - logos-boundary-literature/AI_TABLE_OF_CONTENTS.md
+    validators:
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - docs/roadmap/fable-master-architecture-buildout-plan.md
+      - docs/roadmap/theological-buildout-roadmap.md
+      - docs/roadmap/repository-integration-map.md
+      - DATA_FLOW_MAP.md
+      - AI_TABLE_OF_CONTENTS.md
+    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels."
+    reason_for_inclusion: "The Fable/Codex work split and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, and downstream agent behavior."
