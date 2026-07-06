@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the DAD-ready Fable lesson outbox and reusable architecture capture surface."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
