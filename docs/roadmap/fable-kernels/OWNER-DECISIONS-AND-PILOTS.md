@@ -36,7 +36,7 @@ denominational systematic theology as project authority.
 | D7 | Select option A. Create `logos-doctrine-genealogy` only after D1-D6 are recorded and Codex PRs 1-5 are merged in governance. Before that, draft registration materials only. |
 | D8 | Confirm `logos-chunking-harness` remains `planned_not_created` until a real cross-corpus execution need meets the registry readiness test. |
 | D9 | Approve `reviewed_lineage` promotion policy as owner-gated, per-object, non-generalizing, chunking-gold-analog promotion. No owner-pattern projection in this plane without separate future decision. |
-| D10 | Approve governance ownership of `governance/registry/entity_ids.yaml` for persons, councils, schools/movements, and instruments. Boundary owns work IDs. Scripture owns passage IDs. |
+| D10 | Approve governance ownership of future path governance/registry/entity_ids.yaml for persons, councils, schools/movements, and instruments. Boundary owns work IDs. Scripture owns passage IDs. |
 
 ## D1 — Project boundary instrument set
 
@@ -132,8 +132,8 @@ capture pressure — run only after V-ORTH validators are proven on slices 1–2
 
 ## D10 — Entity-ID registry ownership
 
-- Approve governance ownership of `governance/registry/entity_ids.yaml` for persons/councils/
-  schools/instruments (Kernel A5), boundary keeps `work/` IDs, Scripture keeps passage IDs.
+- Approve governance ownership of future path governance/registry/entity_ids.yaml for persons/councils/
+  schools/instruments (Kernel A5), boundary keeps work IDs, Scripture keeps passage IDs.
 - **Recommendation: approve.**
 
 ## Non-authorizations

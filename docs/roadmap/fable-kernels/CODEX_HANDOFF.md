@@ -49,16 +49,16 @@ record is present in the working branch or merged main.
 
 1. Extend `docs/governance/relationship-registry.md` with the Kernel A3 verb registry
    (12 verbs, families, evidence floors, forbidden list, derived-only condemnation rule).
-2. Add `governance/registry/entity_ids.yaml` scaffold: schema comment header, ID convention
+2. Add future path governance/registry/entity_ids.yaml scaffold: schema comment header, ID convention
    (`person/…`, `council/…`, `instrument/…`, `school/…`), empty or seeded ONLY with entities
    named in the kernels (Nicaea-325, Constantinople-381, Ephesus-431, Chalcedon-451, the two D1
    instruments) — identity rows only, zero doctrinal fields.
 3. Add controlled-vocabulary doc for the Kernel B enums: `orthodoxy_status`, `claim_role`,
    `tradition_scope` seed registry (per D3), ladder rungs S0–S7, `evidence_utility` flags.
-   Location: `docs/governance/doctrine-genealogy-vocabulary.md`.
+   Location: future path docs/governance/doctrine-genealogy-vocabulary.md.
 
 ### PR-3 — Schemas *(not gated unless touching listed paths; blocked on PR-2)*
-JSON Schemas under `schemas/doctrine_genealogy/` in this governance repo (standards only; the
+JSON Schemas under future path schemas/doctrine_genealogy/ in this governance repo (standards only; the
 future repo will consume them): the 8 node types + `genealogy_edge` (Kernel A2),
 `doctrine_provenance.v1` (Kernel C1 block, field-for-field), `evidence_packet.v1` (Kernel D1
 incl. row contract and `non_authority_block` as required const values), shared `date_block`
@@ -74,7 +74,7 @@ from a trigger-registry file that *references* the Scripture repo queues by path
 their contents). Wire into `scripts/run_validation_suite.py` per existing pattern.
 
 ### PR-5 — Worked examples *(blocked on PR-4 and D1/D2/D4/D5)*
-Under `examples/doctrine_genealogy/`: one minimal Chalcedon exemplar — topic, two views
+Under future path examples/doctrine_genealogy/: one minimal Chalcedon exemplar — topic, two views
 (dyophysite/miaphysite), two formulations, Chalcedon instrument with `binding_scope` showing
 per-tradition reception, one assessment, two edges (`counters`, `derives_from`), one
 `evidence_packet` shape. All records `lifecycle_status: draft`, `review_status: unreviewed`,
@@ -85,7 +85,7 @@ must pass every PR-4 validator.
 1. Add schema-conformance validators for the four existing JSON schemas + trust-tier
    closed-vocab check + a contamination lint (flag verse-length quoted strings in data files as
    suspected Scripture text — heuristic, warn-level).
-2. Add `governance/AUTHORITY_LADDER_CROSSWALK.md`: the Kernel B3 tier↔rung crosswalk
+2. Add future path governance/AUTHORITY_LADDER_CROSSWALK.md: the Kernel B3 tier↔rung crosswalk
    (contamination/retrieval vs doctrinal-authority-weight; neither collapses into the other).
 3. Update local mirror surfaces per that repo's mirror control if governance paths changed.
 
@@ -95,7 +95,7 @@ Target structure (mechanical, content-preserving — no rule may be weakened or 
    read order (fix the duplicate 6/10/11/12 numbering), cross-repo governance, canonical-scope
    rules, standing non-authorizations, pointer to the ledger and to the TOC tag index as the
    routing surface.
-2. New `docs/roadmap/TASK_LEDGER.md` (or `.ai/control/task_ledger.md`): move the T3xx–T4xx
+2. New future path docs/roadmap/TASK_LEDGER.md (or future path .ai/control/task_ledger.md): move the T3xx–T4xx
    per-task narrative paragraphs there verbatim, newest first. Every task-ID string, path, and
    non-authorization sentence must survive the move byte-preserved; only location changes.
 3. Update that repo's TOC, mirror files, and any validator that asserts front-door content;
@@ -111,7 +111,7 @@ Draft (do not open until owner says go): the `register_new_logos_repo` issue bod
 `logos-doctrine-genealogy` (role, authority = interpretive_historical_profile_scoped,
 link contracts per registry `planned_repos` entry, scaffold checklist incl. front door, TOC,
 mirror control + validator, source-trust rules, profile scope rules, validation commands) and
-the scaffold-PR file list. Store under `incoming/research/doctrine-genealogy-registration/`.
+the scaffold-PR file list. Store under future path incoming/research/doctrine-genealogy-registration/.
 
 ## Sequencing summary
 

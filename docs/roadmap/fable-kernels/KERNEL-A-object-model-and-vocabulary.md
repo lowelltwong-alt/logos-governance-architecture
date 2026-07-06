@@ -124,7 +124,7 @@ Twelve verbs, four families. The registry lives in **this governance repo** as a
   `instrument.binding_scope`, and `agent`.
 - Every date is a block: `date_earliest`, `date_latest`, `date_precision`
   (year/decade/quarter_century/century), `date_basis` (cited). This reuses the date discipline
-  already drafted in `logos-boundary-literature/schemas/reliability_evidence_early_traditions.md`.
+  already drafted in external repo path logos-boundary-literature/schemas/reliability_evidence_early_traditions.md.
 - **Anachronism validator (V-TIME-1):** a derivation-family edge whose subject's
   `date_earliest` postdates its object's `date_latest` fails closed — unless the verb is
   `reads_back_into` or `systematizes`, which are defined as later acts. Later→earlier influence
@@ -141,11 +141,11 @@ schools/movements, and instruments — one slug per entity, kebab-case, disambig
 `person/augustine-of-hippo`, `council/chalcedon-451`, `instrument/nicene-constantinopolitan-381`,
 `school/antiochene`. Rules:
 
-- `logos-boundary-literature` continues to own `work/` IDs; `logos-scripture-graph` owns passage IDs.
+- `logos-boundary-literature` continues to own work IDs; `logos-scripture-graph` owns passage IDs.
 - Other repos **reference** registry IDs; they never mint person/council/instrument IDs locally.
 - An ID must be registered before any `asserted_relationship` may reference it
   (candidates may use provisional IDs flagged `unregistered`).
-- Registry location: `governance/registry/entity_ids.yaml` (Codex scaffolds; owner D10 confirms
+- Registry location: future path governance/registry/entity_ids.yaml (Codex scaffolds; owner D10 confirms
   ownership).
 
 ## A6. Stop rules for this plane
