@@ -57,5 +57,6 @@ See also:
 - `codex-merge-alignment-scorecard.md`
 - `source-document-integration-map.md`
 - `logos-repo-registry-and-future-architecture.md`
+- `../../LOGOS_FAMILY_MAP.md`
 - `fable-master-architecture-buildout-plan.md`
 - `fable-kernels/README.md`

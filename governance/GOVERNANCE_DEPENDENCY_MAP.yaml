@@ -546,6 +546,7 @@ artifacts:
     title: Fable master architecture buildout plan
     repo: logos-governance-architecture
     paths:
+      - LOGOS_FAMILY_MAP.md
       - docs/roadmap/fable-master-architecture-buildout-plan.md
       - docs/roadmap/fable-kernels/README.md
       - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
@@ -558,6 +559,7 @@ artifacts:
       - docs/roadmap/theological-buildout-roadmap.md
       - docs/roadmap/repository-integration-map.md
       - DATA_FLOW_MAP.md
+      - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
     object_type: cross_repo_master_architecture_roadmap
     trust_zone: canonical
@@ -577,6 +579,7 @@ artifacts:
       - fable_architecture_kernel_handoff
       - recorded_owner_decisions_d1_d10
       - codex_theology_tripwire
+      - logos_family_repo_selection_map
       - doctrine_genealogy_planned_repo_triage
       - theology_across_time_hard_problem_routing
       - codex_and_fable_work_split
@@ -589,6 +592,7 @@ artifacts:
       - scripts/validate_governance_dependency_map.py
       - scripts/run_validation_suite.py
     update_triggers:
+      - LOGOS_FAMILY_MAP.md
       - docs/roadmap/fable-master-architecture-buildout-plan.md
       - docs/roadmap/fable-kernels/README.md
       - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
@@ -601,6 +605,7 @@ artifacts:
       - docs/roadmap/theological-buildout-roadmap.md
       - docs/roadmap/repository-integration-map.md
       - DATA_FLOW_MAP.md
+      - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
-    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, and the Codex theology tripwire."
-    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, and downstream agent behavior."
+    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, and the root Logos family repo-selection map."
+    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, root repo-selection map, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, and downstream agent behavior."
