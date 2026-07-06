@@ -256,6 +256,52 @@ For newer scripture, boundary, and graph-oriented relationship use, read this fi
 
 This registry remains the base controlled relationship vocabulary for the entire repository, including newer concordance and graph surfaces.
 
+## Doctrine-Genealogy Extension
+
+Decision basis: `FABLE-D1-D10-2026-07-06` D4 and Kernel A3. These verbs are approved for the planned doctrine-genealogy plane and for governance schemas/validators that prepare that plane. `logos-doctrine-genealogy` may consume this registry later, but it may not mint relationship verbs locally.
+
+These verbs do not authorize doctrine records, source imports, graph truth, reviewed lineage, or repo creation. Semantic similarity, embedding closeness, co-occurrence, or generated confidence may create only candidates.
+
+### Derivation Family
+
+| Verb | Meaning | Evidence floor | Decision basis |
+|---|---|---|---|
+| `derives_from` | A later object developed from an earlier object. | Citation showing the later object used or knew the earlier object. | Kernel A3; D4 |
+| `depends_on` | Logical dependence without requiring temporal development. | Stated inferential dependence. | Kernel A3; D4 |
+| `clarifies` | A later object makes an earlier object more precise without changing content. | Side-by-side content basis. | Kernel A3; D4 |
+| `modifies` | A later object alters earlier content. | Side-by-side content basis. | Kernel A3; D4 |
+| `systematizes` | A later object organizes earlier material and other sources into a system. | Cited organization as a later act. | Kernel A3; D4 |
+| `reads_back_into` | A later object retrospectively interprets an earlier object. | Cited interpretive act. | Kernel A3; D4 |
+
+### Citation Family
+
+| Verb | Meaning | Evidence floor | Decision basis |
+|---|---|---|---|
+| `interprets_passage` | A formulation references a Scripture passage ID as interpretation history. | Passage ID plus provenance; never Scripture meaning. | Kernel A3; D4 |
+| `cites_source` | A formulation references a boundary work ID. | Source ID plus citation mode. | Kernel A3; D4 |
+
+### Response Family
+
+| Verb | Meaning | Evidence floor | Decision basis |
+|---|---|---|---|
+| `receives` | Affirmative uptake of an object or formulation. | Cited reception basis. | Kernel A3; D4 |
+| `rejects` | A scoped agent rejects a view or formulation. | Cited rejection basis. | Kernel A3; D4 |
+| `counters` | A formulation is constructed against another formulation or view. | Cited response basis. | Kernel A3; D4 |
+
+### Comparative Family
+
+| Verb | Meaning | Evidence floor | Decision basis |
+|---|---|---|---|
+| `partially_aligns_with` | Meaningful but bounded overlap. | Cited comparison basis; may not exceed `proposed_relationship` without review. | Kernel A3; D4 |
+| `tensions_with` | Real pressure without total contradiction. | Cited comparison basis; may not exceed `proposed_relationship` without review. | Kernel A3; D4 |
+
+### Doctrine-Genealogy Verb Stop Rules
+
+- `condemns` and `is_condemned_by` are not hand-authored doctrine-genealogy edges. Condemnation is represented by an `assessment` object; any edge projection is machine-derived and scoped.
+- `requires_original_language_review` and `requires_textual_critical_review` are not verbs. They are promotion-blocking gate fields.
+- `related_to` and `influences` are forbidden for doctrine-genealogy asserted edges. Use a stronger approved verb, keep the pair as `retrieval_candidate`, or stop for owner/Fable review.
+- A real historical relationship that requires choosing between plausible verbs must cite a determinative basis or stop under Kernel E.
+
 ## Summary principle
 
 Relationship verbs are part of the ontology, not just descriptive prose.

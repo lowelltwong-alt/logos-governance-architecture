@@ -1,0 +1,85 @@
+object_type: shared_entity_id_registry
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-06 by Codex as PR-2 of the Fable kernel implementation sequence, following owner decision D10."
+reason_for_inclusion: "Provide a governance-owned identity registry for persons, councils, schools or movements, and instruments so future doctrine-genealogy objects can reference stable IDs without minting local identities."
+schema_version: shared_entity_id_registry.v0
+registry_id: logos_shared_entity_ids
+owner: Lowell Wong
+source_repo: logos-governance-architecture
+decision_basis:
+  - FABLE-D1-D10-2026-07-06:D10
+  - KERNEL-A:A5
+authority:
+  owns_person_council_school_instrument_ids: true
+  owns_work_ids: false
+  owns_scripture_passage_ids: false
+  authorizes_doctrine_records: false
+  authorizes_source_imports: false
+  authorizes_repo_creation: false
+id_conventions:
+  allowed_prefixes:
+    - person/
+    - council/
+    - instrument/
+    - school/
+  slug_style: kebab-case
+  disambiguation_required_when_label_or_date_collides: true
+entries:
+  - id: council/nicaea-325
+    entity_type: council
+    label: Nicaea 325
+    identity_scope: council_identity_only
+    lifecycle_status: active
+    decision_basis:
+      - KERNEL-A:A5
+      - CODEX_HANDOFF:PR-2
+  - id: council/constantinople-381
+    entity_type: council
+    label: Constantinople 381
+    identity_scope: council_identity_only
+    lifecycle_status: active
+    decision_basis:
+      - KERNEL-A:A5
+      - CODEX_HANDOFF:PR-2
+  - id: council/ephesus-431
+    entity_type: council
+    label: Ephesus 431
+    identity_scope: council_identity_only
+    lifecycle_status: active
+    decision_basis:
+      - KERNEL-A:A5
+      - CODEX_HANDOFF:PR-2
+  - id: council/chalcedon-451
+    entity_type: council
+    label: Chalcedon 451
+    identity_scope: council_identity_only
+    lifecycle_status: active
+    decision_basis:
+      - KERNEL-A:A5
+      - CODEX_HANDOFF:PR-2
+  - id: instrument/niceno-constantinopolitan-381
+    entity_type: instrument
+    label: Niceno-Constantinopolitan 381
+    identity_scope: instrument_identity_only
+    lifecycle_status: active
+    decision_basis:
+      - FABLE-D1-D10-2026-07-06:D1
+      - KERNEL-B:B2
+      - CODEX_HANDOFF:PR-2
+  - id: instrument/chalcedonian-definition-451
+    entity_type: instrument
+    label: Chalcedonian Definition 451
+    identity_scope: instrument_identity_only
+    lifecycle_status: active
+    decision_basis:
+      - FABLE-D1-D10-2026-07-06:D1
+      - KERNEL-B:B2
+      - CODEX_HANDOFF:PR-2
+non_authorizations:
+  - doctrine_data_records
+  - source_imports
+  - scripture_or_chunk_changes
+  - graph_retrieval_vector_truth
+  - reviewed_lineage_promotion
+  - repo_creation

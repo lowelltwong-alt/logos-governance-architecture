@@ -54,11 +54,15 @@ Preferred order of extension:
 - `change-taxonomy.yaml` — machine-readable change classification vocabulary aligned to the cleaned governance surface
 - `branch-reconciliation-register.md` — branch cleanup, preservation, unknown-branch docket, and clean-trunk audit evidence for stale branches, safety branches, Codex worktrees, and parallel-agent leftovers
 - `biblical-connection-vocabulary.md` — first approved subset of scholar-recognizable biblical and theological relationship terms for future governed graph and retrieval work
+- `doctrine-genealogy-vocabulary.md` - controlled vocabulary for planned doctrine-genealogy schemas and validators
 - `scripture-taxonomy-and-ontology.md` — scripture-layer ontology design for books, chapters, pericopes, texts, and interpretations
 - `textual-traditions-translation-and-noncanonical-sources.md` — structure for original languages, translations, manuscripts, and noncanonical source handling
 - `noncanonical-and-heresy-classification.md` — classification framework for noncanonical, pseudepigraphal, forged, and heretical materials
 - `translation-trust-and-sectarian-classification.md` — trust and boundary framework for Bible translations and disputed renderings
 - `internal-link-conventions.md` — canonical style guide for internal relative links and file naming policy
+
+### Machine-readable registries
+- `../../governance/registry/entity_ids.yaml` - shared identity registry scaffold for persons, councils, schools/movements, and instruments
 
 ## How to use this folder
 

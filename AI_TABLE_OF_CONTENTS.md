@@ -67,6 +67,8 @@ applicable. Treat that as a gated roadmap horizon, not current AI authority.
 - [`docs/governance/tag-registry.md`](docs/governance/tag-registry.md)
 - [`docs/governance/tag-registry-scripture-and-boundary-extension.md`](docs/governance/tag-registry-scripture-and-boundary-extension.md)
 - [`docs/governance/relationship-registry.md`](docs/governance/relationship-registry.md)
+- [`docs/governance/doctrine-genealogy-vocabulary.md`](docs/governance/doctrine-genealogy-vocabulary.md) - controlled vocabulary for planned doctrine-genealogy schemas and validators
+- [`governance/registry/entity_ids.yaml`](governance/registry/entity_ids.yaml) - shared identity registry scaffold for persons, councils, schools/movements, and instruments
 - [`docs/governance/node-types.md`](docs/governance/node-types.md)
 - [`docs/governance/node-types-scripture-and-boundary-extension.md`](docs/governance/node-types-scripture-and-boundary-extension.md)
 - [`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md)
