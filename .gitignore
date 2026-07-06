@@ -24,6 +24,7 @@ venv/
 site/
 dist/
 build/
+target/
 
 # Generated validation reports
 data/reports/*.json
