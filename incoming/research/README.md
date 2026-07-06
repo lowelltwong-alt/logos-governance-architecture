@@ -43,4 +43,6 @@ Research may be promoted only when the proposed object has:
 
 ## Current packets
 
+- `doctrine-genealogy-registration/` - draft-only registration packet for the planned `logos-doctrine-genealogy` repo. Tags: repo-registration, doctrine-genealogy, scaffold-prep, authority-boundary, no-data-records.
+
 - `trinity-anthropology-ai-governance/` — research seed for a vertical slice from Trinity to personhood, anthropology, human agency, and AI governance.
