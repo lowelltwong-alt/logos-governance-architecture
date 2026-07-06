@@ -17,6 +17,11 @@ Kernel E applies: schema defaults may use only floor values such as
 `unclassified_candidate`, `historical_description`, `retrieval_candidate`, and
 `review_status: unreviewed`.
 
+PR-5 worked examples must carry top-level `trust_zone: proposed`,
+`lifecycle_status: draft`, and `review_status: unreviewed`. The node, edge, and
+packet schemas therefore allow and require those metadata fields without
+promoting the example content.
+
 ## Schema Files
 
 - `date_block.v1.schema.json` - shared Kernel A4 date discipline.
