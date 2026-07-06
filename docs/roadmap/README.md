@@ -60,3 +60,4 @@ See also:
 - `../../LOGOS_FAMILY_MAP.md`
 - `fable-master-architecture-buildout-plan.md`
 - `fable-kernels/README.md`
+- `T462-governance-rust-fast-validators.md`

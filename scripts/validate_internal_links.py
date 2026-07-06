@@ -8,14 +8,20 @@ run the broader manual audit that will be normalized in Wave C.
 from __future__ import annotations
 
 import argparse
+import os
 import pathlib
 import re
+import shutil
+import subprocess
+import sys
 
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 BACKTICK_RE = re.compile(r"`([^`]+)`")
 
 SKIP_PREFIXES = ("http://", "https://", "mailto:", "tel:", "data:", "#")
 VALID_BACKTICK_SUFFIXES = (".md", ".yaml", ".yml", ".json", ".py", ".sh", "/")
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+DEFAULT_RUST_MANIFEST = ROOT / "tools" / "logos_governance_fast_validators" / "Cargo.toml"
 
 
 def looks_like_local_path(text: str) -> bool:
@@ -75,18 +81,42 @@ def check_markdown_files(root: pathlib.Path, files: list[pathlib.Path]) -> list[
     return failures
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument('paths', nargs='*', help='Optional markdown files to validate.')
-    parser.add_argument(
-        '--all-markdown',
-        action='store_true',
-        help='Validate all markdown files in repository (broader manual audit scope).',
-    )
-    args = parser.parse_args()
+def rust_manifest_path() -> pathlib.Path:
+    override = os.environ.get("LOGOS_GOVERNANCE_FAST_VALIDATORS_MANIFEST")
+    if override:
+        return pathlib.Path(override)
+    return DEFAULT_RUST_MANIFEST
 
-    root = pathlib.Path(__file__).resolve().parents[1]
 
+def run_rust_validator(args: argparse.Namespace, root: pathlib.Path) -> int | None:
+    manifest = rust_manifest_path()
+    cargo = shutil.which("cargo")
+    if cargo is None or not manifest.exists():
+        return None
+
+    command = [
+        cargo,
+        "run",
+        "--quiet",
+        "--manifest-path",
+        str(manifest),
+        "--",
+        "internal-links",
+        "--root",
+        str(root),
+    ]
+    if args.all_markdown:
+        command.append("--all-markdown")
+    command.extend(args.paths)
+
+    try:
+        completed = subprocess.run(command, text=True)
+    except FileNotFoundError:
+        return None
+    return completed.returncode
+
+
+def run_python_validator(args: argparse.Namespace, root: pathlib.Path) -> int:
     if args.paths:
         files = [root / p for p in args.paths]
     elif args.all_markdown:
@@ -104,6 +134,45 @@ def main() -> int:
 
     print(f'Internal link validation passed ({len(markdown_files)} markdown files).')
     return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('paths', nargs='*', help='Optional markdown files to validate.')
+    parser.add_argument(
+        '--all-markdown',
+        action='store_true',
+        help='Validate all markdown files in repository (broader manual audit scope).',
+    )
+    parser.add_argument(
+        '--python-fallback',
+        action='store_true',
+        help='Try the Rust fast validator when available; fall back to Python only if Rust is unavailable.',
+    )
+    parser.add_argument(
+        '--require-rust',
+        action='store_true',
+        help='Require the Rust fast validator and fail if it is unavailable.',
+    )
+    args = parser.parse_args()
+
+    if args.python_fallback and args.require_rust:
+        parser.error("--python-fallback and --require-rust are mutually exclusive")
+
+    root = ROOT
+
+    if args.python_fallback or args.require_rust:
+        rust_returncode = run_rust_validator(args, root)
+        if rust_returncode is not None:
+            return rust_returncode
+        if args.require_rust:
+            print(
+                f"Rust fast validator unavailable: expected cargo and {rust_manifest_path()}",
+                file=sys.stderr,
+            )
+            return 2
+
+    return run_python_validator(args, root)
 
 
 if __name__ == '__main__':
