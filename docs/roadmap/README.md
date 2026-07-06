@@ -58,3 +58,4 @@ See also:
 - `source-document-integration-map.md`
 - `logos-repo-registry-and-future-architecture.md`
 - `fable-master-architecture-buildout-plan.md`
+- `fable-kernels/README.md`

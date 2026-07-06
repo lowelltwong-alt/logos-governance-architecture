@@ -31,6 +31,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`docs/governance/README.md`](docs/governance/README.md) — governance conventions and vocabulary discipline
 - [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md) — practical buildout sequence
 - [`docs/roadmap/fable-master-architecture-buildout-plan.md`](docs/roadmap/fable-master-architecture-buildout-plan.md) - Fable-led cross-repo master architecture plan; use for doctrine-genealogy, theology-across-time, hard-problem triage, and Codex/Fable work split
+- [`docs/roadmap/fable-kernels/README.md`](docs/roadmap/fable-kernels/README.md) - Fable architecture kernels and recorded owner decisions D1-D10 for doctrine-genealogy and cross-repo evidence work
 - [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md) — repo-wide layer integration
 
 ## Constituent repositories (external surfaces)
