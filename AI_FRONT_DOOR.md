@@ -48,6 +48,10 @@ Current active repos:
 - [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) - canonical 66-book Scripture data plane. Please read its AI Front Door here: https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/AI_FRONT_DOOR.md
 - [`logos-boundary-literature`](https://github.com/lowelltwong-alt/logos-boundary-literature) - supporting boundary/reception plane, never equal to or above Scripture authority.
 
+For a short repo-selection map, read [`LOGOS_FAMILY_MAP.md`](LOGOS_FAMILY_MAP.md). For Fable
+architecture kernels, owner decisions D1-D10, and Codex handoff sequencing, read
+[`docs/roadmap/fable-kernels/README.md`](docs/roadmap/fable-kernels/README.md).
+
 Child Logos repos may own local implementation or support surfaces, but they
 must not claim authority above this governance repo's registry and contracts.
 Boundary/reception material must never equal or outrank canonical Scripture.

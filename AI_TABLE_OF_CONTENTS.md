@@ -5,6 +5,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 ## Cross-Repo Project Family
 
 - [`AI_FRONT_DOOR.md`](AI_FRONT_DOOR.md) - contribution lanes and cross-repo governance boundary
+- [`LOGOS_FAMILY_MAP.md`](LOGOS_FAMILY_MAP.md) - short repo-selection map for active, planned, and advisory Logos-family repos
 - [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md) - current and future repo hierarchy and data flow
 - [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md) - human-readable repo registry
 - [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml) - machine-readable repo registry
