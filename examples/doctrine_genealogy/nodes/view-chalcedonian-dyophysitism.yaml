@@ -1,0 +1,47 @@
+schema_version: doctrine_node.v1
+object_type: doctrine_view
+id: doctrine_view/chalcedonian-dyophysitism
+title: Chalcedonian dyophysitism
+trust_zone: proposed
+lifecycle_status: draft
+review_status: unreviewed
+decision_basis:
+  - FABLE-D1-D10-2026-07-06:D1
+  - KERNEL-B:B2
+  - CODEX_HANDOFF:PR-5
+topic_ref: doctrine_topic/christology-natures-of-christ
+summary: Schema-conformance placeholder for the Chalcedonian two-natures view.
+distinguishing_claims: []
+orthodoxy_status: orthodox_core
+orthodoxy_basis_refs:
+  - instrument/chalcedonian-definition-451
+claim_role: historical_description
+tradition_scope: null
+first_attested_formulation_ref: formulation/chalcedonian-definition-two-natures
+doctrine_provenance:
+  source_basis:
+    - ref: instrument/chalcedonian-definition-451
+      ladder_rung: S1
+      citation_locator: definition
+      citation_mode: summary
+  claim_role: historical_description
+  authority_zone: S1
+  tradition_scope: null
+  orthodoxy_status: orthodox_core
+  orthodoxy_basis_refs:
+    - instrument/chalcedonian-definition-451
+  asserted_or_inferred: inferred
+  method: ai_staged
+  lifecycle_status: draft
+  review_status: unreviewed
+  reviewer_or_owner_decision_ref: null
+  upstream_deps:
+    - instrument/chalcedonian-definition-451
+  known_counterclaims: []
+  contested_status: historically_settled_scoped
+  original_language_review: not_required
+  original_language_review_ref: null
+  textual_critical_review: not_required
+  textual_critical_review_ref: null
+  downstream_risk_note: Schema-conformance example only; no reviewed-lineage promotion.
+  provenance_note: Draft example based on D1/Kernel B boundary-instrument decision.

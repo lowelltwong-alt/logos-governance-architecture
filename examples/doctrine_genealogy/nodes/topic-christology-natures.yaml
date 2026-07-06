@@ -1,0 +1,14 @@
+schema_version: doctrine_node.v1
+object_type: doctrine_topic
+id: doctrine_topic/christology-natures-of-christ
+title: "Christology: natures of Christ"
+trust_zone: proposed
+lifecycle_status: draft
+review_status: unreviewed
+decision_basis:
+  - KERNEL-A:A2
+  - CODEX_HANDOFF:PR-5
+locus: christology
+scripture_refs:
+  - John.1.14
+status: draft

@@ -1,0 +1,44 @@
+schema_version: doctrine_node.v1
+object_type: doctrine_view
+id: doctrine_view/miaphysite
+title: Miaphysite view
+trust_zone: proposed
+lifecycle_status: draft
+review_status: unreviewed
+decision_basis:
+  - KERNEL-A:A2
+  - KERNEL-B:B1
+  - CODEX_HANDOFF:PR-5
+topic_ref: doctrine_topic/christology-natures-of-christ
+summary: Schema-conformance placeholder for a historically scoped miaphysite view.
+distinguishing_claims: []
+orthodoxy_status: unclassified_candidate
+orthodoxy_basis_refs: []
+claim_role: historical_description
+tradition_scope: oriental_orthodox
+first_attested_formulation_ref: formulation/miaphysite-single-nature-language
+doctrine_provenance:
+  source_basis:
+    - ref: work/miaphysite-placeholder
+      ladder_rung: S5
+      citation_locator: placeholder
+      citation_mode: summary
+  claim_role: historical_description
+  authority_zone: S5
+  tradition_scope: oriental_orthodox
+  orthodoxy_status: unclassified_candidate
+  orthodoxy_basis_refs: []
+  asserted_or_inferred: inferred
+  method: ai_staged
+  lifecycle_status: draft
+  review_status: unreviewed
+  reviewer_or_owner_decision_ref: null
+  upstream_deps: []
+  known_counterclaims: []
+  contested_status: contested
+  original_language_review: not_required
+  original_language_review_ref: null
+  textual_critical_review: not_required
+  textual_critical_review_ref: null
+  downstream_risk_note: Placeholder view is not reviewed content and carries no project-boundary classification.
+  provenance_note: Draft schema example; descriptive presence is not endorsement.

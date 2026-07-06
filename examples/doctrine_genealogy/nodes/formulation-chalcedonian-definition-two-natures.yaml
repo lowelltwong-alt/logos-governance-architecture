@@ -1,0 +1,36 @@
+schema_version: doctrine_node.v1
+object_type: formulation
+id: formulation/chalcedonian-definition-two-natures
+title: Chalcedonian Definition two-natures formulation
+trust_zone: proposed
+lifecycle_status: draft
+review_status: unreviewed
+decision_basis:
+  - FABLE-D1-D10-2026-07-06:D1
+  - KERNEL-A:A2
+  - KERNEL-B:B2
+  - CODEX_HANDOFF:PR-5
+view_ref: doctrine_view/chalcedonian-dyophysitism
+agent_ref: council/chalcedon-451
+source_work_ref: work/chalcedonian-definition-451
+date_block:
+  date_earliest: 451
+  date_latest: 451
+  date_precision: year
+  date_basis:
+    - instrument/chalcedonian-definition-451
+original_language: greek
+key_terms:
+  - term: physis
+    language: greek
+    evidence_only: true
+    review_ref: null
+orthodoxy_status: orthodox_core
+claim_role: historical_description
+tradition_scope: pre_division_patristic
+review_flags:
+  original_language_review: required_pending
+  textual_critical_review: not_required
+gate_triggers:
+  original_language_review:
+    - specific_lemma_or_term
