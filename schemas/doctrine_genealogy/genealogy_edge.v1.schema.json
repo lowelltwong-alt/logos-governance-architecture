@@ -25,7 +25,9 @@
     "method",
     "asserted_or_inferred",
     "review_status",
-    "provenance_note"
+    "provenance_note",
+    "trust_zone",
+    "lifecycle_status"
   ],
   "properties": {
     "schema_version": {
@@ -122,6 +124,27 @@
     },
     "provenance_note": {
       "type": "string"
+    },
+    "trust_zone": {
+      "type": "string",
+      "enum": [
+        "canonical",
+        "tradition-scoped",
+        "proposed",
+        "inferred",
+        "deprecated",
+        "learning-sidecar"
+      ],
+      "description": "PR-5 examples must use proposed; future promotions require separate governance."
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "proposed",
+        "active",
+        "deprecated"
+      ]
     }
   },
   "not": {

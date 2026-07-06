@@ -44,6 +44,41 @@ def test_kernel_e_schema_defaults_are_floor_only() -> None:
     assert failures == []
 
 
+def test_pr5_example_metadata_is_allowed_by_node_edge_and_packet_schemas() -> None:
+    node_schema = v.load_json(v.SCHEMA_DIR / "doctrine_node.v1.schema.json")
+    edge_schema = v.load_json(v.SCHEMA_DIR / "genealogy_edge.v1.schema.json")
+    packet_schema = v.load_json(v.SCHEMA_DIR / "evidence_packet.v1.schema.json")
+
+    for object_type in [
+        "doctrine_topic",
+        "doctrine_view",
+        "formulation",
+        "agent",
+        "instrument",
+        "claim",
+        "assessment",
+        "controversy",
+    ]:
+        object_schema = node_schema["$defs"][object_type]
+        for field in ["trust_zone", "lifecycle_status", "review_status"]:
+            assert field in object_schema["required"], object_type
+            assert field in object_schema["properties"], object_type
+
+    for field in ["trust_zone", "lifecycle_status", "review_status"]:
+        if field == "review_status":
+            assert field in edge_schema["required"]
+            assert field in edge_schema["properties"]
+        else:
+            assert field in edge_schema["required"]
+            assert field in edge_schema["properties"]
+        assert field in packet_schema["required"]
+        assert field in packet_schema["properties"]
+
+    assert "proposed" in node_schema["$defs"]["trust_zone"]["enum"]
+    assert "draft" in node_schema["$defs"]["lifecycle_status"]["enum"]
+    assert "unreviewed" in node_schema["$defs"]["review_status"]["enum"]
+
+
 def test_codex_tripwire_requires_decision_basis_for_non_floor_classification() -> None:
     record = {
         "orthodoxy_status": "orthodox_core",

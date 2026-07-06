@@ -19,7 +19,10 @@
     "generated_by",
     "generated_from",
     "non_authority_block",
-    "sections"
+    "sections",
+    "trust_zone",
+    "lifecycle_status",
+    "review_status"
   ],
   "properties": {
     "schema_version": {
@@ -129,6 +132,36 @@
       "items": {
         "$ref": "#/$defs/timeline_row"
       }
+    },
+    "trust_zone": {
+      "type": "string",
+      "enum": [
+        "canonical",
+        "tradition-scoped",
+        "proposed",
+        "inferred",
+        "deprecated",
+        "learning-sidecar"
+      ],
+      "description": "PR-5 examples must use proposed; future promotions require separate governance."
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "proposed",
+        "active",
+        "deprecated"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "default": "unreviewed",
+      "enum": [
+        "unreviewed",
+        "in_review",
+        "reviewed"
+      ]
     }
   },
   "$defs": {

@@ -70,7 +70,10 @@
         "title",
         "subtype",
         "date_block",
-        "affiliations"
+        "affiliations",
+        "trust_zone",
+        "lifecycle_status",
+        "review_status"
       ],
       "properties": {
         "schema_version": {
@@ -102,6 +105,15 @@
           "items": {
             "$ref": "#/$defs/affiliation"
           }
+        },
+        "trust_zone": {
+          "$ref": "#/$defs/trust_zone"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/lifecycle_status"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
         }
       },
       "additionalProperties": false
@@ -118,7 +130,10 @@
         "scope",
         "date_block",
         "basis_refs",
-        "doctrine_provenance"
+        "doctrine_provenance",
+        "trust_zone",
+        "lifecycle_status",
+        "review_status"
       ],
       "properties": {
         "schema_version": {
@@ -158,6 +173,15 @@
         },
         "doctrine_provenance": {
           "$ref": "https://logos.local/schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json"
+        },
+        "trust_zone": {
+          "$ref": "#/$defs/trust_zone"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/lifecycle_status"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
         }
       },
       "additionalProperties": false
@@ -171,7 +195,10 @@
         "subject_ref",
         "predicate",
         "object_ref",
-        "doctrine_provenance"
+        "doctrine_provenance",
+        "trust_zone",
+        "lifecycle_status",
+        "review_status"
       ],
       "properties": {
         "schema_version": {
@@ -194,6 +221,15 @@
         },
         "doctrine_provenance": {
           "$ref": "https://logos.local/schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json"
+        },
+        "trust_zone": {
+          "$ref": "#/$defs/trust_zone"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/lifecycle_status"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
         }
       },
       "additionalProperties": false
@@ -209,7 +245,10 @@
         "topic_refs",
         "agent_refs",
         "formulation_refs",
-        "assessment_refs"
+        "assessment_refs",
+        "trust_zone",
+        "lifecycle_status",
+        "review_status"
       ],
       "properties": {
         "schema_version": {
@@ -238,6 +277,15 @@
         },
         "assessment_refs": {
           "$ref": "#/$defs/ref_array"
+        },
+        "trust_zone": {
+          "$ref": "#/$defs/trust_zone"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/lifecycle_status"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
         }
       },
       "additionalProperties": false
@@ -251,7 +299,10 @@
         "title",
         "locus",
         "scripture_refs",
-        "status"
+        "status",
+        "trust_zone",
+        "lifecycle_status",
+        "review_status"
       ],
       "properties": {
         "schema_version": {
@@ -299,6 +350,15 @@
             "active",
             "deprecated"
           ]
+        },
+        "trust_zone": {
+          "$ref": "#/$defs/trust_zone"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/lifecycle_status"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
         }
       },
       "additionalProperties": false
@@ -316,7 +376,10 @@
         "orthodoxy_basis_refs",
         "claim_role",
         "tradition_scope",
-        "first_attested_formulation_ref"
+        "first_attested_formulation_ref",
+        "trust_zone",
+        "lifecycle_status",
+        "review_status"
       ],
       "properties": {
         "schema_version": {
@@ -364,6 +427,15 @@
         },
         "doctrine_provenance": {
           "$ref": "https://logos.local/schemas/doctrine_genealogy/doctrine_provenance.v1.schema.json"
+        },
+        "trust_zone": {
+          "$ref": "#/$defs/trust_zone"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/lifecycle_status"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
         }
       },
       "additionalProperties": false
@@ -384,7 +456,10 @@
         "orthodoxy_status",
         "claim_role",
         "tradition_scope",
-        "review_flags"
+        "review_flags",
+        "trust_zone",
+        "lifecycle_status",
+        "review_status"
       ],
       "properties": {
         "schema_version": {
@@ -451,6 +526,15 @@
             }
           },
           "additionalProperties": false
+        },
+        "trust_zone": {
+          "$ref": "#/$defs/trust_zone"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/lifecycle_status"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
         }
       },
       "additionalProperties": false
@@ -466,7 +550,10 @@
         "binding_scope",
         "source_work_ref",
         "recensions",
-        "ladder_rung"
+        "ladder_rung",
+        "trust_zone",
+        "lifecycle_status",
+        "review_status"
       ],
       "properties": {
         "schema_version": {
@@ -501,6 +588,15 @@
         },
         "ladder_rung": {
           "$ref": "#/$defs/authority_rung"
+        },
+        "trust_zone": {
+          "$ref": "#/$defs/trust_zone"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/lifecycle_status"
+        },
+        "review_status": {
+          "$ref": "#/$defs/review_status"
         }
       },
       "additionalProperties": false
@@ -637,6 +733,36 @@
         "oriental_orthodox",
         "church_of_the_east",
         "pre_division_patristic"
+      ]
+    },
+    "trust_zone": {
+      "type": "string",
+      "enum": [
+        "canonical",
+        "tradition-scoped",
+        "proposed",
+        "inferred",
+        "deprecated",
+        "learning-sidecar"
+      ],
+      "description": "PR-5 examples must use proposed; future promotions require separate governance."
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "proposed",
+        "active",
+        "deprecated"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "default": "unreviewed",
+      "enum": [
+        "unreviewed",
+        "in_review",
+        "reviewed"
       ]
     }
   }
