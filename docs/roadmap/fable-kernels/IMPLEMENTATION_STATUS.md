@@ -2,7 +2,7 @@
 object_type: fable_kernel_implementation_status
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after verifying merged PR state across logos-governance-architecture, logos-boundary-literature, and logos-scripture-graph. Updated 2026-07-07 after logos-doctrine-genealogy PR #2 added the non-authorizing data-readiness decision packet, PR #3 added the owner-gate template, issue #4 opened the owner lane-selection docket, and PR #5 added the lane-implementation runbook."
+provenance_note: "Created 2026-07-06 by Codex after verifying merged PR state across logos-governance-architecture, logos-boundary-literature, and logos-scripture-graph. Updated 2026-07-07 after logos-doctrine-genealogy PR #2 added the non-authorizing data-readiness decision packet, PR #3 added the owner-gate template, issue #4 opened the owner lane-selection docket, PR #5 added the lane-implementation runbook, and PR #6 implemented owner-selected DR-OPTION-A schema mirrors."
 reason_for_inclusion: "Give future agents a durable evidence-backed status ledger for the Fable kernel implementation queue so they do not reconstruct completion state from chat memory."
 ---
 
@@ -49,15 +49,26 @@ form for lane selection:
 [child owner decision template](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-owner-decision-template.md).
 That template records the required decision shape; it does not select a lane.
 
-The live owner-decision docket is child issue
+The child owner-decision docket is child issue
 [#4](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4).
-That issue asks the owner to select exactly one readiness lane and repeats the
-same non-authorizations.
+That issue records owner selection of DR-OPTION-A in
+[comment 4899887684](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4#issuecomment-4899887684)
+for schema mirrors only and repeats the same non-authorizations.
 
 The child repo also has a non-authorizing lane-implementation runbook:
 [child lane runbook](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-lane-implementation-runbook.md).
 That runbook starts only after issue #4 or a successor owner-decision issue
 selects exactly one lane.
+
+The child repo has completed the selected DR-OPTION-A lane by mirroring the
+approved governance doctrine-genealogy schemas as data-free, non-authorizing
+local schema mirrors with checksum validation:
+[child schema mirror manifest](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/schemas/doctrine_genealogy/schema_mirror_manifest.yaml).
+PR [#6](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/6)
+merged on 2026-07-07 at child commit `1e03972a64755049ef1fa3c6f6c40cf61f07ec21`.
+This does not authorize doctrine-lineage records, source rows/imports,
+reviewed-lineage promotion, graph/retrieval/vector truth, Scripture/chunk
+output, new vocabularies, runtime adapters, or theology authority.
 
 ## Evidence Table
 
@@ -80,8 +91,9 @@ selects exactly one lane.
 | `logos-doctrine-genealogy` initial scaffold | `logos-doctrine-genealogy` | Merged | PR [#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1), merged 2026-07-07. |
 | `logos-doctrine-genealogy` data-readiness decision packet | `logos-doctrine-genealogy` | Merged | PR [#2](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/2), merged 2026-07-07. |
 | `logos-doctrine-genealogy` data-readiness owner gate | `logos-doctrine-genealogy` | Merged | PR [#3](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/3), merged 2026-07-07. |
-| `logos-doctrine-genealogy` data-readiness lane-selection docket | `logos-doctrine-genealogy` | Open owner gate | Issue [#4](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4), opened 2026-07-07. |
+| `logos-doctrine-genealogy` data-readiness lane-selection docket | `logos-doctrine-genealogy` | DR-OPTION-A selected | Issue [#4](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4), owner selection comment [4899887684](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4#issuecomment-4899887684). |
 | `logos-doctrine-genealogy` data-readiness lane runbook | `logos-doctrine-genealogy` | Merged | PR [#5](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/5), merged 2026-07-07. |
+| `logos-doctrine-genealogy` DR-OPTION-A schema mirrors | `logos-doctrine-genealogy` | Merged | PR [#6](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/6), merged 2026-07-07 at `1e03972a64755049ef1fa3c6f6c40cf61f07ec21`. |
 
 ## Verified Local Checks
 
@@ -110,16 +122,18 @@ audit note.
 ## Remaining Gate
 
 The repo-creation gate is complete, and the child repo has a data-readiness
-decision packet, lane-selection owner gate, live owner-decision docket, and
-post-selection implementation runbook. The next gate is still owner selection of
-exactly one readiness lane in issue #4: no doctrine-lineage records, source
-rows, source imports, reviewed-lineage promotion, graph/retrieval/vector truth,
-Scripture/chunk output, new vocabularies, or theology authority are authorized
-by the scaffold, packet, owner-gate template, issue, or runbook.
+decision packet, lane-selection owner gate, owner-decision docket,
+post-selection implementation runbook, and completed DR-OPTION-A schema mirror
+lane. The next gate is a successor owner decision for any further readiness lane
+or data/source work: no doctrine-lineage records, source rows, source imports,
+reviewed-lineage promotion, graph/retrieval/vector truth, Scripture/chunk
+output, new vocabularies, runtime adapters, or theology authority are
+authorized by the scaffold, packet, owner-gate template, issue, runbook, or
+schema mirrors.
 
 Future buildout must start with a separate owner decision that chooses the next
-empty structure, review packet, schema mirror, source-intake docket, or
-validation surface to strengthen.
+empty structure, review packet, source-intake docket, validation surface, or
+other readiness lane to strengthen.
 
 ## Non-Authorization Reminder
 
