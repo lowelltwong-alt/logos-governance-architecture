@@ -24,8 +24,9 @@ relationships self-describing.
 
 - `logos-chunking-harness` is planned as a cross-corpus execution/evaluation
   plane, not semantic authority.
-- `logos-doctrine-genealogy` is planned as a doctrine lineage and
-  profile-comparison plane, not canonical Scripture authority.
+- `logos-doctrine-genealogy` exists as an active scaffold for doctrine lineage
+  and profile-comparison work, not canonical Scripture authority and not
+  data-ready beyond guardrails.
 
 ## Sequencing
 
@@ -38,7 +39,9 @@ relationships self-describing.
 ## Deferred
 
 - Creating `logos-chunking-harness`.
-- Creating `logos-doctrine-genealogy`.
+- Adding doctrine-lineage records, source imports, reviewed-lineage promotion,
+  graph/retrieval/vector truth, or local vocabulary expansion to
+  `logos-doctrine-genealogy`.
 - Runtime adapters.
 - Text ingestion.
 - Any chunk-output or evaluator changes.

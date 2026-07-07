@@ -221,6 +221,50 @@ current_repos:
       - supply_default_scripture_meaning
       - auto_promote_claims_into_scripture_graph
 
+  logos-doctrine-genealogy:
+    status: active_scaffold
+    role: doctrine_lineage_and_profile_comparison_plane
+    authority: interpretive_historical_profile_scoped
+    governed_by: logos-governance-architecture
+    governance_dependency_map_mirror_required: true
+    public_url: "https://github.com/lowelltwong-alt/logos-doctrine-genealogy"
+    registration_issue: "https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83"
+    owner_acceptance_comment: "https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83#issuecomment-4896715109"
+    scaffold_pr: "https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1"
+    owns_future:
+      - doctrinal_dependency_graph
+      - doctrine_genealogy_over_time
+      - tradition_profile_scoped_claims
+      - ethical_implication_mapping
+      - alignment_disalignment_classifications
+      - denomination_profile_scoped_lineage
+      - theologian_influence_and_correction_chains
+      - human_judgment_gates
+    may_consume_refs_from:
+      - logos-scripture-graph
+      - logos-boundary-literature
+    current_scaffold_controls:
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - README.md
+      - governance_dependency_map_mirror_control
+      - governance_dependency_map_mirror_validator
+      - source_trust_rules
+      - denomination_profile_scope_rules
+      - theologian_lineage_relationship_rules
+      - validation_commands
+    must_not:
+      - rewrite_canonical_scripture
+      - ingest_commentary_corpora_as_scripture
+      - own_commentary_source_corpus
+      - collapse_contested_doctrine_into_universal_truth
+      - treat_ai_alignment_labels_as_final_authority
+      - override_profile_tradition_scope
+      - add_doctrine_lineage_records_without_future_authorization
+      - import_source_rows_or_source_text_without_future_authorization
+      - create_graph_retrieval_or_vector_truth
+      - mint_local_relationship_verbs_profiles_enum_values_or_authority_rungs
+
 external_advisory_connections:
   noesis-atlas:
     status: external_advisory
@@ -389,42 +433,6 @@ planned_repos:
       - vector_output_not_authority_rules
       - graph_edge_promotion_gate
       - validation_commands
-
-  logos-doctrine-genealogy:
-    status: planned_not_created
-    role: doctrine_lineage_and_profile_comparison_plane
-    authority: interpretive_historical_profile_scoped
-    governed_by: logos-governance-architecture
-    owns_future:
-      - doctrinal_dependency_graph
-      - doctrine_genealogy_over_time
-      - tradition_profile_scoped_claims
-      - ethical_implication_mapping
-      - alignment_disalignment_classifications
-      - denomination_profile_scoped_lineage
-      - theologian_influence_and_correction_chains
-      - human_judgment_gates
-    may_consume_refs_from:
-      - logos-scripture-graph
-      - logos-boundary-literature
-    must_not:
-      - rewrite_canonical_scripture
-      - ingest_commentary_corpora_as_scripture
-      - own_commentary_source_corpus
-      - collapse_contested_doctrine_into_universal_truth
-      - treat_ai_alignment_labels_as_final_authority
-      - override_profile_tradition_scope
-    initial_scaffold_requires:
-      - AI_FRONT_DOOR.md
-      - AI_TABLE_OF_CONTENTS.md_or_data_map_or_documented_exception
-      - README.md
-      - governance_dependency_map_mirror_control
-      - governance_dependency_map_mirror_validator
-      - source_trust_rules
-      - denomination_profile_scope_rules
-      - theologian_lineage_relationship_rules
-      - validation_commands
-
 derived_evidence_namespace_policy:
   unified_evidence_products_are_derived_artifacts: true
   source_truth_remains_split_by_repo: true

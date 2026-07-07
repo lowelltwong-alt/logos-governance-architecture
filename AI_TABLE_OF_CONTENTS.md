@@ -33,7 +33,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md) — practical buildout sequence
 - [`docs/roadmap/fable-master-architecture-buildout-plan.md`](docs/roadmap/fable-master-architecture-buildout-plan.md) - Fable-led cross-repo master architecture plan; use for doctrine-genealogy, theology-across-time, hard-problem triage, and Codex/Fable work split
 - [`docs/roadmap/fable-kernels/README.md`](docs/roadmap/fable-kernels/README.md) - Fable architecture kernels and recorded owner decisions D1-D10 for doctrine-genealogy and cross-repo evidence work
-- [`docs/roadmap/fable-kernels/COMPLETION_AUDIT.md`](docs/roadmap/fable-kernels/COMPLETION_AUDIT.md) - tags: `audit`, `fable`, `completion-evidence`, `doctrine-genealogy`, `repo-registration`, `owner-gate`; read when checking whether the Fable recommendations are complete, what is still gated, or whether `logos-doctrine-genealogy` can be created
+- [`docs/roadmap/fable-kernels/COMPLETION_AUDIT.md`](docs/roadmap/fable-kernels/COMPLETION_AUDIT.md) - tags: `audit`, `fable`, `completion-evidence`, `doctrine-genealogy`, `repo-registration`, `owner-gate`; read when checking whether the Fable recommendations are complete, what is still gated, or whether `logos-doctrine-genealogy` is data-ready
 - [`docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md`](docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md) - tags: `dad`, `lessons-learned`, `audit`, `reuse-kernel`, `knowledge-graph`, `doctrine-genealogy`, `legal-kg`, `document-comparison`, `multi-parent-derivation`, `schema-pattern`, `validator-pattern`; read when capturing reusable Fable/Codex lessons, preparing a DAD handoff, auditing architecture decisions, or adapting Logos patterns to secular/legal knowledge-graph work
 - [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md) — repo-wide layer integration
 
@@ -42,12 +42,13 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) - canonical 66-book Scripture data plane. Coupled by governance contract.
 - [`logos-boundary-literature`](https://github.com/lowelltwong-alt/logos-boundary-literature) - supporting boundary/reception plane. It must not override or equal Scripture authority.
 - `logos-chunking-harness` - planned, not created; future execution/evaluation plane, not semantic authority.
-- `logos-doctrine-genealogy` - planned, not created; future doctrine lineage/profile-comparison plane, not canonical Scripture authority.
+- [`logos-doctrine-genealogy`](https://github.com/lowelltwong-alt/logos-doctrine-genealogy) - active scaffold for future doctrine lineage/profile-comparison work; not canonical Scripture authority, not data-ready beyond guardrails.
 
 Commentaries, patristic writings, church-father citations, ancient and modern
 theologian writings, and reception-history source records route to
 `logos-boundary-literature`. Denominational and theological development over
-time routes to the planned `logos-doctrine-genealogy` repo after registration.
+time routes to `logos-doctrine-genealogy` only after its local scaffold
+front-door, source-trust, profile-scope, and validator gates allow the task.
 Unified evidence products must be derived artifacts with hard authority
 namespaces, not authority transfers.
 

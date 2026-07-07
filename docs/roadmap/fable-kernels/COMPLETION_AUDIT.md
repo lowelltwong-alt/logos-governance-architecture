@@ -22,11 +22,10 @@ The deterministic Codex-buildable queue from
 [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md) is complete through PR-E and PR-1 through
 PR-8.
 
-The broader buildout is not complete if it means the planned
-`logos-doctrine-genealogy` repo exists and is scaffolded. That next step is
-gated by owner acceptance of Issue
-[#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83)
-through the governed repo-registration process.
+The broader buildout has completed the repo-creation and scaffold gate:
+`logos-doctrine-genealogy` exists and scaffold PR
+[#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1)
+has merged. The next gate is data-readiness, not repo creation.
 
 Current state verified:
 
@@ -34,10 +33,11 @@ Current state verified:
   merged in [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md).
 - Registration Issue
   [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83)
-  is open.
-- `logos-doctrine-genealogy` is not present or accessible as a GitHub repo.
-- The non-authorizing future scaffold packet exists under
-  [`../../../incoming/research/doctrine-genealogy-registration/`](../../../incoming/research/doctrine-genealogy-registration/).
+  has owner acceptance for scaffold-only repo creation.
+- `logos-doctrine-genealogy` is present as an active scaffold.
+- The non-authorizing scaffold packet exists under
+  [`../../../incoming/research/doctrine-genealogy-registration/`](../../../incoming/research/doctrine-genealogy-registration/)
+  and was used for scaffold PR #1.
 
 ## Requirement Audit
 
@@ -56,27 +56,15 @@ Current state verified:
 | Stage doctrine-genealogy registration drafts only. | [`../../../incoming/research/doctrine-genealogy-registration/register_new_logos_repo_issue_body.md`](../../../incoming/research/doctrine-genealogy-registration/register_new_logos_repo_issue_body.md), [`../../../incoming/research/doctrine-genealogy-registration/scaffold_pr_file_list.md`](../../../incoming/research/doctrine-genealogy-registration/scaffold_pr_file_list.md), PR #79 in [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md). | Complete. |
 | Open formal registration issue. | Issue [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83), PR #84 in [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md). | Complete. |
 | Stage future scaffold packet after issue opening. | [`../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md`](../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md), [`../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md`](../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md), PR #85 in [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md). | Complete. |
-| Create and scaffold `logos-doctrine-genealogy`. | Issue #83 owner acceptance comment states the owner must explicitly accept scaffold-only repo creation; repo does not currently exist. | Not complete; gated. |
+| Create and scaffold `logos-doctrine-genealogy`. | Issue #83 owner acceptance comment [4896715109](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83#issuecomment-4896715109); `logos-doctrine-genealogy` PR [#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1). | Complete for scaffold-only repo creation. |
 
 ## Remaining Gate
 
-The next required owner decision is Issue #83 option 1, option 2, or option 3.
-No agent should infer acceptance from the existence of this audit, the existence
-of the issue, or the prior Fable implementation queue.
-
-Acceptance wording that preserves the current non-authorizations:
-
-```text
-Authorize Issue #83 option 1: accept logos-doctrine-genealogy for scaffold-only
-repo creation. Do not authorize doctrine-lineage records, source imports,
-reviewed-lineage promotion, graph/retrieval/vector truth, Scripture/chunk output,
-new verbs, new profiles, new enum values, or theology authority.
-```
-
-If option 1 is accepted, future agents must use:
-
-- [`../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md`](../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md)
-- [`../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md`](../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md)
+The next gate is not Issue #83. It is future data-readiness. No agent should
+infer permission to add doctrine-lineage records, source rows, source imports,
+reviewed-lineage promotion, graph/retrieval/vector truth, Scripture/chunk
+output, new vocabularies, or theology authority from the existence of the
+scaffold.
 
 ## Stop Conditions
 

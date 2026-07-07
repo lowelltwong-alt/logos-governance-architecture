@@ -17,7 +17,7 @@ flowchart TD
   SCRIPT["logos-scripture-graph<br/>canonical Scripture data plane"]
   BOUND["logos-boundary-literature<br/>boundary / reception support plane"]
   CHUNK["logos-chunking-harness<br/>planned execution/evaluation plane"]
-  DOCTRINE["logos-doctrine-genealogy<br/>planned doctrine lineage/profile plane"]
+  DOCTRINE["logos-doctrine-genealogy<br/>active scaffold doctrine lineage/profile plane"]
 
   GOV --> SCRIPT
   GOV --> BOUND
@@ -71,14 +71,15 @@ It must not become the manuscript/source-language root graph.
 
 ### logos-doctrine-genealogy
 
-Future doctrine/concept lineage and profile-comparison plane. It may track
-doctrine development over time, source basis, ethical implications,
-alignment/disalignment, denomination/profile scope, and
-theologian-to-theologian influence, correction, reception, or divergence. It may
-consume Scripture references from `logos-scripture-graph` and scoped
-source/reception references from `logos-boundary-literature`. It must not
-rewrite canonical Scripture, ingest commentary corpora as Scripture, or collapse
-contested doctrine into universal truth.
+Active scaffold for the future doctrine/concept lineage and profile-comparison
+plane. It may later track doctrine development over time, source basis, ethical
+implications, alignment/disalignment, denomination/profile scope, and
+theologian-to-theologian influence, correction, reception, or divergence after
+future data-readiness authorization. It may consume Scripture references from
+`logos-scripture-graph` and scoped source/reception references from
+`logos-boundary-literature`. It must not rewrite canonical Scripture, ingest
+commentary corpora as Scripture, or collapse contested doctrine into universal
+truth.
 
 ## Commentary And Theology-Lineage Placement
 
@@ -87,8 +88,9 @@ theologian writings, and reception-history source records route to
 `logos-boundary-literature`. They are source and reception material, not
 canonical Scripture.
 
-Denominational and theological development over time routes to the future
-`logos-doctrine-genealogy` repo after registration. That repo should model how
+Denominational and theological development over time routes to
+`logos-doctrine-genealogy` only after its scaffold gates and future
+data-readiness authorization allow the task. That repo should model how
 doctrines, concepts, traditions, and theologians build on earlier ideas while
 preserving tradition/profile scope.
 
@@ -123,9 +125,10 @@ A planned repo should be created only when its first concrete task cannot be
 handled safely inside an existing active repo without distorting authority,
 source ownership, runtime boundaries, or trust scope.
 
-`logos-doctrine-genealogy` is ready only when doctrine lineage,
-denomination/profile comparison, or theologian-to-theologian development needs
-its own scoped records rather than more boundary source metadata.
+`logos-doctrine-genealogy` met the scaffold creation threshold through Issue
+#83 and scaffold PR #1. It is still not authorized for doctrine-lineage data,
+source imports, reviewed lineage, graph/retrieval/vector truth, or local
+vocabulary expansion.
 
 `logos-chunking-harness` is ready only when cross-corpus execution/evaluation
 needs runtime or adapter behavior that should not live inside Scripture,
