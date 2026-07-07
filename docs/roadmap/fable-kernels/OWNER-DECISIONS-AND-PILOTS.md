@@ -2,17 +2,51 @@
 object_type: fable_owner_decision_packet
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Fable. Updated 2026-07-06 by Codex to record Lowell Wong's owner selections D1-D10 for the architecture kernels, preserving recommendations, repercussions, and non-authorizations."
-reason_for_inclusion: "Owner selections D1-D10 unblock only the named governance-surface implementation queue and prevent future agents from relying on chat memory for these architecture decisions."
+provenance_note: "Created 2026-07-06 by Fable. Updated 2026-07-06 by Codex to record Lowell Wong's owner selections D1-D10 for the architecture kernels, preserving recommendations, repercussions, and non-authorizations. Updated 2026-07-07 to record Wave-2 owner selections D11-D16, including the D12 contributor-triggered reviewer-model transition and D15 owner-gated lens clarification."
+reason_for_inclusion: "Owner selections D1-D16 unblock only the named governance-surface implementation queue and prevent future agents from relying on chat memory for these architecture decisions."
 ---
 
 # Owner Decisions and Pilot Slices
 
 Current status: owner selections D1-D10 are recorded in this file under
-`Recorded Owner Selections (2026-07-06)`.
+`Recorded Owner Selections (2026-07-06)`. Wave-2 selections D11-D16 are
+recorded under `Recorded Wave-2 Owner Selections (2026-07-07)`.
 
 Each decision below has a recorded owner selection by Lowell Wong. Recommendation remains distinct from selection unless the recorded selection says so.
 Codex implementation (see `CODEX_HANDOFF.md`) is sequenced against these.
+
+## Recorded Wave-2 Owner Selections (2026-07-07)
+
+Decision record ID: `FABLE-WAVE2-D11-D16-2026-07-07`.
+
+These are owner selections for the Fable Wave-2 architecture handoff in
+[`WAVE2-ARCHITECTURE-HANDOFF.md`](WAVE2-ARCHITECTURE-HANDOFF.md). They authorize
+only the named governance surfaces, decision records, validators, discovery updates,
+and non-output-changing preparation work. They do not authorize doctrine data
+records, source imports/rows, Scripture or chunk output changes, reviewed-gold
+promotion, reviewed-lineage promotion, graph/retrieval/vector truth, repo creation,
+boundary material as Scripture authority, Noesis as Logos authority, denominational
+systematic theology as project authority, hermeneutic-lens authority, textual-reading
+authority, recension authority, variant-status authority, gate satisfaction by AI, or
+theology authority by Codex/subagents.
+
+| Decision | Owner selection |
+|---|---|
+| D11 | Select option A. Adopt LLOS v1 as the Logos family learning-loop standard: a thin governed lesson/preflight/midflight/postflight standard, not a new DAD runtime or platform. Require lesson admission tests, route/category loading, P0 budget discipline, sunset review, changed-path gates where applicable, and cross-repo propagation through governed mirrors/outbox surfaces. |
+| D12 | Select a contributor-triggered variant of option A. While the project remains owner-built with no outside contributors beyond the current builder/agent setup, preserve the current owner-only gate model for speed. Before onboarding any outside contributor, adopt the reviewer-role registry and two-key promotion model with owner-only seed rows as the transition gate. AI agents may not satisfy gates. Owner authorization remains required for promotions, reviewed gold, reviewed lineage, output changes, vocabulary, S0/S1-adjacent decisions, and theology authority. |
+| D13 | Select option C. For the next doctrine-genealogy readiness lane, do both: first a DR-OPTION-B-style empty data-lane structure with validators running on empty, then staged pilot-slice-1 research packets. This authorizes plumbing and staged research preparation only; it does not authorize doctrine records, source imports, reviewed-lineage promotion, graph/retrieval/vector truth, runtime adapters, or theology authority. |
+| D14 | Select option A. Historical, archaeological, ANE, Second Temple, Roman, manuscript-practice, inscription, geography, and material-culture context belongs as a governed extension of `logos-boundary-literature`, not a new repo. Such context may provide background evidence only and may not become Scripture authority, doctrine authority, canonical-meaning authority, or source-critical default. |
+| D15 | Select option A with owner-gated lens additions. Approve the Kernel J lens registry seed, including grammatical-historical, canonical, biblical-theological, systematic-theological, covenantal/dispensational where relevant, patristic/creedal, historical-contextual, genre-sensitive, apocalyptic-specific, epistle-argument-specific, and eschatological sub-profiles. These are descriptive lenses/profiles, not endorsements or hidden defaults. Future lenses/profiles require owner approval before use. Revelation/apocalyptic review must use multi-lens or lens-invariance discipline before any later output work. |
+| D16 | Select option A. Approve Kernel F vocabulary additions: `influence_case`, `label`, `contribution_facet`, and `not_attested_before`. These are structural vocabulary additions only for contested influence, labels-vs-referent, multi-parent derivation, counter-derivation, and negative evidence. They do not authorize doctrine records, source rows/imports, lineage promotion, new theological conclusions, or Codex theology. |
+
+### D15 Lens Guardrail Clarification
+
+D15 does not create a secret door for liberal theology, anti-supernatural assumptions,
+heterodox systems, sectarian defaults, or speculative lenses. It does the opposite:
+it makes lenses explicit, owner-gated, and auditable. Approved lenses are descriptive
+profiles that an artifact must declare when relevant; they are not project authority,
+not endorsements, and not defaults. A future agent that wants to add or use a new
+hermeneutic lens must stop for owner approval and record the decision.
 
 ## Recorded Owner Selections (2026-07-06)
 

@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, and DR-OPTION-A child schema mirror PR #6."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, DR-OPTION-A child schema mirror PR #6, and Wave-2 owner decisions D11-D16."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -591,6 +591,7 @@ artifacts:
       - docs/roadmap/fable-kernels/KERNEL-C-provenance-and-gates.md
       - docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md
       - docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
       - docs/roadmap/fable-kernels/COMPLETION_AUDIT.md
       - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
       - docs/governance/relationship-registry.md
@@ -638,6 +639,11 @@ artifacts:
       - theology_across_time_hard_problem_routing
       - codex_and_fable_work_split
       - fable_completion_audit_and_owner_gate_tracking
+      - fable_wave2_handoff
+      - recorded_owner_decisions_d11_d16
+      - llos_learning_loop_standard_selection
+      - contributor_triggered_reviewer_model_transition
+      - owner_gated_hermeneutic_lens_registry
       - cross_repo_evidence_product_shape
       - no_authority_transfer_for_scripture_boundary_doctrine_or_noesis
       - dad_ready_reusable_lesson_capture
@@ -663,6 +669,7 @@ artifacts:
       - docs/roadmap/fable-kernels/KERNEL-C-provenance-and-gates.md
       - docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md
       - docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
       - docs/roadmap/fable-kernels/COMPLETION_AUDIT.md
       - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
       - docs/governance/relationship-registry.md
@@ -676,5 +683,5 @@ artifacts:
       - DATA_FLOW_MAP.md
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
-    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, PR-3 doctrine-genealogy schema standards, PR-4 doctrine-genealogy validator trigger surfaces, the Fable completion audit, and the DAD-ready Fable lesson outbox. Updated 2026-07-07 to record the completed logos-doctrine-genealogy scaffold gate, child data-readiness decision packet, child owner-gate template, child owner-decision issue, child lane-implementation runbook, and owner-selected DR-OPTION-A schema mirror PR #6."
-    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, fail-closed validator triggers, completion audit, scaffold-gate status, data-readiness decision packet, data-readiness owner-gate template, data-readiness owner-decision issue, data-readiness lane-implementation runbook, DR-OPTION-A schema mirrors, DAD-ready lesson capture, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, reusable architecture learning, and downstream agent behavior."
+    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, PR-3 doctrine-genealogy schema standards, PR-4 doctrine-genealogy validator trigger surfaces, the Fable completion audit, and the DAD-ready Fable lesson outbox. Updated 2026-07-07 to record the completed logos-doctrine-genealogy scaffold gate, child data-readiness decision packet, child owner-gate template, child owner-decision issue, child lane-implementation runbook, owner-selected DR-OPTION-A schema mirror PR #6, and the Wave-2 handoff with owner selections D11-D16."
+    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, Wave-2 hard-problem handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, fail-closed validator triggers, completion audit, scaffold-gate status, data-readiness decision packet, data-readiness owner-gate template, data-readiness owner-decision issue, data-readiness lane-implementation runbook, DR-OPTION-A schema mirrors, DAD-ready lesson capture, owner-gated lens registry, contributor-triggered reviewer-model transition, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, reusable architecture learning, and downstream agent behavior."
