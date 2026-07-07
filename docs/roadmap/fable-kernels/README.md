@@ -2,7 +2,7 @@
 object_type: fable_architecture_kernel_index
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Created 2026-07-06 by Fable during the owner-commissioned master architecture pass (Phase 1 of docs/roadmap/fable-master-architecture-buildout-plan.md), following the Opus pre-read handoff. Updated 2026-07-06 by Codex to point future agents to the recorded owner selections D1-D10."
+provenance_note: "Created 2026-07-06 by Fable during the owner-commissioned master architecture pass (Phase 1 of docs/roadmap/fable-master-architecture-buildout-plan.md), following the Opus pre-read handoff. Updated 2026-07-06 by Codex to point future agents to the recorded owner selections D1-D10. Updated 2026-07-07 to route agents to DR-OPTION-A schema mirror status and audit evidence."
 reason_for_inclusion: "One index for the Fable architecture kernels so Codex, reviewers, and the owner can find every kernel, its status, and its non-authorizations."
 ---
 
@@ -44,8 +44,8 @@ Owner selections D1-D10 are recorded in
 | [`KERNEL-E-codex-theology-tripwire.md`](KERNEL-E-codex-theology-tripwire.md) | Mechanical test separating transcription of recorded decisions from theological judgment during implementation | HP9 (gap pass) |
 | [`OWNER-DECISIONS-AND-PILOTS.md`](OWNER-DECISIONS-AND-PILOTS.md) | Pilot slice options + recommendation, consolidated owner decisions D1–D10 | HP7 |
 | [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md) | Sequenced deterministic work queue for Codex after owner decisions | — |
-| [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md) | Evidence-backed status ledger for PR-E through PR-8 and the remaining owner registration gate | — |
-| [`COMPLETION_AUDIT.md`](COMPLETION_AUDIT.md) | Requirement-by-requirement audit of completed Fable recommendations and the remaining Issue #83 owner gate | -- |
+| [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md) | Evidence-backed status ledger for PR-E through PR-8, child scaffold/readiness work, and DR-OPTION-A schema mirrors | — |
+| [`COMPLETION_AUDIT.md`](COMPLETION_AUDIT.md) | Requirement-by-requirement audit of completed Fable recommendations, child schema mirrors, and remaining successor owner gates | -- |
 | [`DAD-LESSON-OUTBOX.md`](DAD-LESSON-OUTBOX.md) | DAD-ready reusable lesson capture for Fable feedback, Codex solutions, doctrine-genealogy kernels, knowledge-graph transfer, and legal/secular adaptation watchpoints | -- |
 
 ## Reading order
