@@ -1,0 +1,71 @@
+object_type: cross_repo_reference_manifest
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-07 by Codex for W2-1 of the Fable Wave-2 buildout to make governance-owned cross-repo path references validator-visible."
+reason_for_inclusion: "Gate-trigger and mirror controls must fail deterministically when referenced child-repo paths drift instead of relying on chat memory or stale local assumptions."
+schema_version: cross_repo_reference_manifest.v1
+manifest_id: logos_cross_repo_reference_manifest_v1
+owner: Lowell Wong
+source_repo: logos-governance-architecture
+decision_basis:
+  - FABLE-WAVE2-D11-D16-2026-07-07:D11
+  - FABLE-WAVE2-D11-D16-2026-07-07:D16
+  - W2-KERNEL-K
+authority:
+  records_cross_repo_path_references: true
+  validates_gate_trigger_references: true
+  authorizes_child_repo_override: false
+  authorizes_scripture_output_change: false
+  authorizes_chunk_output_change: false
+  authorizes_source_import: false
+  authorizes_doctrine_data_records: false
+  authorizes_theology_authority: false
+local_repo_roots:
+  logos-scripture-graph:
+    - ../logos-scripture-graph-repo
+    - ../logos-scripture-graph
+  logos-boundary-literature:
+    - ../logos-boundary-literature
+  logos-doctrine-genealogy:
+    - ../logos-doctrine-genealogy
+local_repo_unavailable_policy: report_when_local_repo_unavailable
+references:
+  - reference_id: ref-gate-orthodox-original-language-pressure-dossier-queue
+    source_path: schemas/doctrine_genealogy/gate_trigger_registry.v1.yaml
+    source_field: scripture_repo_refs.orthodox_original_language_pressure_dossier_queue
+    target_repo: logos-scripture-graph
+    target_path: .ai/control/orthodox_original_language_pressure_dossier_queue.yaml
+    authority_posture: reference_only_not_authority
+    failure_policy: fail_closed_when_local_repo_available
+    required_for:
+      - doctrine_genealogy_gate_trigger_registry
+      - original_language_review_gate
+  - reference_id: ref-gate-original-language-phrase-context-policy
+    source_path: schemas/doctrine_genealogy/gate_trigger_registry.v1.yaml
+    source_field: scripture_repo_refs.original_language_phrase_context_policy
+    target_repo: logos-scripture-graph
+    target_path: .ai/control/original_language_phrase_context_policy.yaml
+    authority_posture: reference_only_not_authority
+    failure_policy: fail_closed_when_local_repo_available
+    required_for:
+      - doctrine_genealogy_gate_trigger_registry
+      - original_language_phrase_context_review
+  - reference_id: ref-gate-textual-variant-source-tradition-dossier-queue
+    source_path: schemas/doctrine_genealogy/gate_trigger_registry.v1.yaml
+    source_field: scripture_repo_refs.textual_variant_source_tradition_dossier_queue
+    target_repo: logos-scripture-graph
+    target_path: .ai/control/textual_variant_source_tradition_dossier_queue.yaml
+    authority_posture: reference_only_not_authority
+    failure_policy: fail_closed_when_local_repo_available
+    required_for:
+      - doctrine_genealogy_gate_trigger_registry
+      - textual_critical_review_gate
+non_authorizations:
+  - scripture_output_change
+  - chunk_output_change
+  - reviewed_gold_promotion
+  - reviewed_lineage_promotion
+  - source_import
+  - doctrine_data_records
+  - graph_retrieval_vector_truth
+  - theology_authority
