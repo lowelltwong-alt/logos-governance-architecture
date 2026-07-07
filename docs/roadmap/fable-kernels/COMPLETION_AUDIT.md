@@ -2,7 +2,7 @@
 object_type: fable_kernel_completion_audit
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after verifying live main, merged PR evidence, Issue #83 state, and the Fable kernel handoff queue. Updated 2026-07-07 to record the merged child data-readiness decision packet, owner-gate template, and owner-decision issue."
+provenance_note: "Created 2026-07-06 by Codex after verifying live main, merged PR evidence, Issue #83 state, and the Fable kernel handoff queue. Updated 2026-07-07 to record the merged child data-readiness decision packet, owner-gate template, owner-decision issue, and lane-implementation runbook."
 reason_for_inclusion: "Future agents need requirement-by-requirement evidence for what part of the Fable recommendations is complete, what remains gated, and what must not be inferred from chat memory."
 ---
 
@@ -32,6 +32,8 @@ and a non-authorizing owner-gate template from PR
 [#3](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/3).
 The live owner-decision docket is issue
 [#4](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4).
+The child repo also has a non-authorizing lane-implementation runbook from PR
+[#5](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/5).
 The next gate is owner lane selection, not repo creation.
 
 Current state verified:
@@ -55,6 +57,9 @@ Current state verified:
   and was validated in PR #3.
 - The live owner-decision docket exists as
   [logos-doctrine-genealogy issue #4](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4).
+- The non-authorizing child lane-implementation runbook exists at
+  [child lane runbook](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-lane-implementation-runbook.md)
+  and was validated in PR #5.
 
 ## Requirement Audit
 
@@ -77,6 +82,7 @@ Current state verified:
 | Prepare child data-readiness decision packet. | `logos-doctrine-genealogy` PR [#2](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/2); [child data-readiness packet](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-decision-packet.md). | Complete for non-authorizing lane-selection preparation. |
 | Prepare child data-readiness owner gate. | `logos-doctrine-genealogy` PR [#3](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/3); [child owner decision template](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-owner-decision-template.md). | Complete for deterministic owner-decision recording. |
 | Open child data-readiness owner-decision docket. | `logos-doctrine-genealogy` issue [#4](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4). | Complete for discoverable owner gate tracking. |
+| Prepare child data-readiness lane implementation runbook. | `logos-doctrine-genealogy` PR [#5](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/5); [child lane runbook](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-lane-implementation-runbook.md). | Complete for post-selection implementation discipline. |
 
 ## Remaining Gate
 
@@ -86,7 +92,7 @@ template or issue form. No agent should infer permission to add doctrine-lineage
 records, source rows, source imports, reviewed-lineage promotion,
 graph/retrieval/vector truth, Scripture/chunk output, new vocabularies, or
 theology authority from the existence of the scaffold, decision packet,
-owner-gate template, or owner-decision issue.
+owner-gate template, owner-decision issue, or lane-implementation runbook.
 
 ## Stop Conditions
 
