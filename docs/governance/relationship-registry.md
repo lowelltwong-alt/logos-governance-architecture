@@ -258,7 +258,7 @@ This registry remains the base controlled relationship vocabulary for the entire
 
 ## Doctrine-Genealogy Extension
 
-Decision basis: `FABLE-D1-D10-2026-07-06` D4 and Kernel A3. These verbs are approved for the planned doctrine-genealogy plane and for governance schemas/validators that prepare that plane. `logos-doctrine-genealogy` may consume this registry later, but it may not mint relationship verbs locally.
+Decision basis: `FABLE-D1-D10-2026-07-06` D4 and Kernel A3. These verbs are approved for the doctrine-genealogy plane and for governance schemas/validators that prepare that plane. `logos-doctrine-genealogy` may consume this registry as an active scaffold, but it may not mint relationship verbs locally.
 
 These verbs do not authorize doctrine records, source imports, graph truth, reviewed lineage, or repo creation. Semantic similarity, embedding closeness, co-occurrence, or generated confidence may create only candidates.
 

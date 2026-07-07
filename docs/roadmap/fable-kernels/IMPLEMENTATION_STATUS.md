@@ -21,19 +21,21 @@ theological classifications.
 The Fable kernel implementation queue PR-E through PR-8 has landed across the
 Logos repos.
 
-The actual `logos-doctrine-genealogy` registration issue is now open:
+The `logos-doctrine-genealogy` registration issue was accepted for
+scaffold-only repo creation:
 [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83).
-Opening the issue does not create the repo, approve a scaffold PR, authorize
-doctrine-genealogy records, authorize source imports, or promote reviewed
-lineage. The next gate is owner review/acceptance of Issue #83 through the
-repo-registration process.
+The repo now exists as an active scaffold, and scaffold PR
+[#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1)
+has merged. This does not authorize doctrine-genealogy records, source imports,
+reviewed-lineage promotion, graph truth, retrieval truth, vector truth,
+Scripture/chunk output, new vocabularies, or theology authority.
 
 The scaffold execution packet has also been prepared under
 [`../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md`](../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md)
 and
 [`../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md`](../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md).
-Those files are non-authorizing and may be used only after Issue #83 is
-accepted for scaffold-only repo creation.
+Those files were used for the scaffold-only repo creation and remain
+non-authorizing historical scaffold evidence.
 
 ## Evidence Table
 
@@ -51,8 +53,9 @@ accepted for scaffold-only repo creation.
 | PR-6, boundary repo hardening | `logos-boundary-literature` | Merged | PR [#14](https://github.com/lowelltwong-alt/logos-boundary-literature/pull/14), merged 2026-07-06. |
 | PR-7, Scripture front-door decomposition | `logos-scripture-graph` | Merged | PR [#156](https://github.com/lowelltwong-alt/logos-scripture-graph/pull/156), merged 2026-07-06. |
 | PR-8, doctrine-genealogy registration drafts | `logos-governance-architecture` | Merged | PR [#79](https://github.com/lowelltwong-alt/logos-governance-architecture/pull/79), merged 2026-07-06. |
-| `logos-doctrine-genealogy` registration issue | `logos-governance-architecture` | Open | Issue [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83), opened 2026-07-06 from the governed PR-8 draft packet. |
-| `logos-doctrine-genealogy` scaffold blueprint | `logos-governance-architecture` | Staged | Non-authorizing scaffold blueprint and future goal prompt staged under [`../../../incoming/research/doctrine-genealogy-registration/`](../../../incoming/research/doctrine-genealogy-registration/). |
+| `logos-doctrine-genealogy` registration issue | `logos-governance-architecture` | Accepted for scaffold only | Issue [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83), owner acceptance comment [4896715109](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83#issuecomment-4896715109). |
+| `logos-doctrine-genealogy` scaffold blueprint | `logos-governance-architecture` | Used for scaffold PR | Non-authorizing scaffold blueprint and future goal prompt staged under [`../../../incoming/research/doctrine-genealogy-registration/`](../../../incoming/research/doctrine-genealogy-registration/). |
+| `logos-doctrine-genealogy` initial scaffold | `logos-doctrine-genealogy` | Merged | PR [#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1), merged 2026-07-07. |
 
 ## Verified Local Checks
 
@@ -80,29 +83,19 @@ audit note.
 
 ## Remaining Gate
 
-The Fable queue deliberately stops before repo creation.
+The repo-creation gate is complete. The next gate is data-readiness: no
+doctrine-lineage records, source rows, source imports, reviewed-lineage
+promotion, graph/retrieval/vector truth, Scripture/chunk output, new
+vocabularies, or theology authority are authorized by the scaffold.
 
-To continue toward doctrine-genealogy buildout, the owner must review and accept
-the open `register_new_logos_repo` issue for `logos-doctrine-genealogy`:
-[#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83).
-
-After Issue #83 is accepted, the first scaffold PR must remain scaffold-only:
-
-- add front door, TOC/data map, README, and governance mirror controls;
-- add source-trust, profile-scope, and theologian-lineage relationship rules;
-- add fail-closed validators and validation commands;
-- name the first concrete task that makes the repo no longer premature;
-- avoid all real doctrine-lineage records, source imports, reviewed-lineage
-  promotion, graph/retrieval/vector truth, and Scripture/chunk output.
-- use the staged scaffold blueprint and future goal prompt instead of
-  reconstructing scaffold scope from chat memory.
+Future buildout must start with a separate governed PR or owner decision that
+names the next empty structure, review packet, schema mirror, or validation
+surface to strengthen.
 
 ## Non-Authorization Reminder
 
 Completion of PR-E through PR-8 does not authorize:
 
-- creating `logos-doctrine-genealogy` before Issue #83 is accepted through the
-  registration process and a scaffold PR is reviewed;
 - creating `logos-chunking-harness`;
 - adding doctrine-genealogy data records;
 - importing source texts or commentary corpora;

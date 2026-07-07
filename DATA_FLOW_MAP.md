@@ -41,7 +41,7 @@ flowchart TD
   SCRIPT["logos-scripture-graph<br/>canonical Scripture data plane"]
   BOUND["logos-boundary-literature<br/>boundary / reception support plane"]
   CHUNK["logos-chunking-harness<br/>planned execution/evaluation plane"]
-  DOCTRINE["logos-doctrine-genealogy<br/>planned doctrine lineage/profile plane"]
+  DOCTRINE["logos-doctrine-genealogy<br/>active scaffold doctrine lineage/profile plane"]
 
   GOV --> SCRIPT
   GOV --> BOUND
@@ -60,10 +60,10 @@ flowchart TD
   DOCTRINE -. "not canonical authority" .-> SCRIPT
 ```
 
-`logos-chunking-harness` and `logos-doctrine-genealogy` are planned, not
-created. Future runtime consumers must receive validated release artifacts and
-must not treat execution output, boundary claims, or doctrine-profile labels as
-canonical Scripture authority.
+`logos-chunking-harness` is planned, not created. `logos-doctrine-genealogy`
+now exists as an active scaffold. Future runtime consumers must receive
+validated release artifacts and must not treat execution output, boundary
+claims, or doctrine-profile labels as canonical Scripture authority.
 
 ## Flow Rules
 

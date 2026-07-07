@@ -42,7 +42,7 @@ the shells differ in format.
 | [`logos-scripture-graph`](https://github.com/lowelltwong-alt/logos-scripture-graph) | **Data-plane substrate**: deterministic Bible ingest, passage/witness records, canon profiles, boundary claims, retrieval chunks, provenance + validation | 3 (scripture), 4 (original-language/translation/manuscript, via Strong's WordTokens), 6 (boundary-source, via canon profiles), 7 (graph/concordance), 8 (primary-sources, future) |
 | [`logos-boundary-literature`](https://github.com/lowelltwong-alt/logos-boundary-literature) | **Boundary/reception support plane**: noncanonical, disputed, forged, patristic, commentary/reception, theologian-writing source metadata, source-intake, and trust-scope governance | 6 (boundary-source) and scoped reception/comparison support for 3-8 |
 | `logos-chunking-harness` (planned, not created) | **Execution/evaluation plane**: future cross-corpus chunking harness and promotion gates | Execution support only; no semantic authority |
-| `logos-doctrine-genealogy` (planned, not created) | **Doctrine lineage/profile plane**: future tradition/profile-scoped doctrine development, denomination mapping, and theologian lineage comparison | Doctrine/concept lineage support only; no canonical Scripture authority |
+| `logos-doctrine-genealogy` (active scaffold) | **Doctrine lineage/profile plane**: future tradition/profile-scoped doctrine development, denomination mapping, and theologian lineage comparison | Doctrine/concept lineage support only; no canonical Scripture authority; no data records or source imports until later authorization |
 
 The Scripture substrate consumes this repo's taxonomy/ontology/canon discipline
 and emits machine-readable, provenance-stamped artifacts the graph/concordance

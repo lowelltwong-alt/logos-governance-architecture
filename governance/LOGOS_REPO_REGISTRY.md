@@ -21,6 +21,7 @@ Machine-readable registry: [`LOGOS_REPO_REGISTRY.yaml`](LOGOS_REPO_REGISTRY.yaml
 | `logos-governance-architecture` | `governance_control_plane` | `cross_repo_policy_authority` | active |
 | `logos-scripture-graph` | `canonical_scripture_data_plane` | `canonical_scripture_authority` | active |
 | `logos-boundary-literature` | `boundary_reception_support_plane` | `supporting_context_not_canonical` | active |
+| `logos-doctrine-genealogy` | `doctrine_lineage_and_profile_comparison_plane` | `interpretive_historical_profile_scoped` | active scaffold |
 
 ## Current Ownership
 
@@ -106,7 +107,6 @@ authorize runtime integration.
 | Planned repo | Future role | Authority |
 |---|---|---|
 | `logos-chunking-harness` | `cross_corpus_chunking_execution_plane` | `execution_harness_not_semantic_authority` |
-| `logos-doctrine-genealogy` | `doctrine_lineage_and_profile_comparison_plane` | `interpretive_historical_profile_scoped` |
 
 `logos-chunking-harness` may later own source-mode adapters, chunking execution,
 cross-corpus experiments, evaluation harnesses, and promotion gates. It must not
@@ -114,14 +114,19 @@ own canonical Scripture truth, mix output namespaces, treat vector similarity as
 evidence, create governed graph edges from semantic closeness alone, or become
 the root manuscript/source-language graph.
 
-`logos-doctrine-genealogy` may later own doctrine lineage, tradition/profile
-comparison, ethical implication mapping, alignment/disalignment classifications,
+`logos-doctrine-genealogy` now exists as an active scaffold after Issue
+[#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83)
+owner acceptance and scaffold PR
+[#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1).
+It may later own doctrine lineage, tradition/profile comparison, ethical
+implication mapping, alignment/disalignment classifications,
 denominational/theological development over time, theologian-to-theologian
 influence and correction chains, and human judgment gates. It may consume
 Scripture references from `logos-scripture-graph` and scoped source/reception
 references from `logos-boundary-literature`. It must not rewrite canonical
-Scripture, ingest commentary corpora as Scripture, or flatten contested doctrine
-into universal truth.
+Scripture, ingest commentary corpora as Scripture, flatten contested doctrine
+into universal truth, add doctrine-lineage records, import source rows, or
+create graph/retrieval/vector truth without later authorization.
 
 ## Commentary And Theology-Lineage Routing
 
@@ -130,10 +135,10 @@ theologian writings, and reception-history source records route to
 `logos-boundary-literature` unless a future registry update explicitly assigns a
 more specific source-intake repo.
 
-The future `logos-doctrine-genealogy` repo may model how doctrines, concepts,
-denominational profiles, and theologians build on, sharpen, correct, or diverge
-from earlier sources. It should reference source records in
-`logos-boundary-literature` rather than becoming a commentary corpus itself.
+`logos-doctrine-genealogy` may model how doctrines, concepts, denominational
+profiles, and theologians build on, sharpen, correct, or diverge from earlier
+sources only after later data authorization. It should reference source records
+in `logos-boundary-literature` rather than becoming a commentary corpus itself.
 
 Unified evidence or apologetics databases may join Scripture, boundary, and
 doctrine-lineage records only as derived artifacts. Such products must use hard
@@ -175,11 +180,11 @@ A planned repo is no longer premature only when:
    needed, and validation commands;
 5. the registry is updated here before or in the same coordinated PR.
 
-Do not create `logos-chunking-harness` or `logos-doctrine-genealogy` directly
-from chat or local convenience. Their first scaffold PR must preserve the
-authority limits in `LOGOS_REPO_REGISTRY.yaml` before any implementation,
-runtime adapter, source import, commentary corpus, or doctrine-lineage data is
-added.
+Do not create `logos-chunking-harness` directly from chat or local convenience.
+`logos-doctrine-genealogy` has already been created through Issue #83 and
+scaffold PR #1, but it must not receive implementation, runtime adapters, source
+imports, commentary corpora, doctrine-lineage data, graph/retrieval/vector
+truth, or local vocabulary expansion without later authorization.
 
 `logos-chunking-harness` is no longer premature only when a concrete
 cross-corpus execution or evaluation task needs separate source-mode adapters,
