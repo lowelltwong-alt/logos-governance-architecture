@@ -2,7 +2,7 @@
 object_type: fable_architecture_kernel_index
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Created 2026-07-06 by Fable during the owner-commissioned master architecture pass (Phase 1 of docs/roadmap/fable-master-architecture-buildout-plan.md), following the Opus pre-read handoff. Updated 2026-07-06 by Codex to point future agents to the recorded owner selections D1-D10. Updated 2026-07-07 to route agents to DR-OPTION-A schema mirror status and audit evidence."
+provenance_note: "Created 2026-07-06 by Fable during the owner-commissioned master architecture pass (Phase 1 of docs/roadmap/fable-master-architecture-buildout-plan.md), following the Opus pre-read handoff. Updated 2026-07-06 by Codex to point future agents to the recorded owner selections D1-D10. Updated 2026-07-07 to route agents to DR-OPTION-A schema mirror status, audit evidence, and the Wave-2 architecture handoff with owner selections D11-D16."
 reason_for_inclusion: "One index for the Fable architecture kernels so Codex, reviewers, and the owner can find every kernel, its status, and its non-authorizations."
 ---
 
@@ -33,6 +33,10 @@ Owner selections D1-D10 are recorded in
 `Recorded Owner Selections (2026-07-06)`, decision record ID
 `FABLE-D1-D10-2026-07-06`.
 
+Wave-2 owner selections D11-D16 are recorded in the same file, section
+`Recorded Wave-2 Owner Selections (2026-07-07)`, decision record ID
+`FABLE-WAVE2-D11-D16-2026-07-07`.
+
 ## Kernel map
 
 | File | Covers | Hard problems |
@@ -47,6 +51,7 @@ Owner selections D1-D10 are recorded in
 | [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md) | Evidence-backed status ledger for PR-E through PR-8, child scaffold/readiness work, and DR-OPTION-A schema mirrors | — |
 | [`COMPLETION_AUDIT.md`](COMPLETION_AUDIT.md) | Requirement-by-requirement audit of completed Fable recommendations, child schema mirrors, and remaining successor owner gates | -- |
 | [`DAD-LESSON-OUTBOX.md`](DAD-LESSON-OUTBOX.md) | DAD-ready reusable lesson capture for Fable feedback, Codex solutions, doctrine-genealogy kernels, knowledge-graph transfer, and legal/secular adaptation watchpoints | -- |
+| [`WAVE2-ARCHITECTURE-HANDOFF.md`](WAVE2-ARCHITECTURE-HANDOFF.md) | Fable Wave-2 hard-problem handoff, D11-D16 decision summary, PR queue, red-team findings, and D15 lens guardrail clarification | Wave 2 |
 
 ## Reading order
 
