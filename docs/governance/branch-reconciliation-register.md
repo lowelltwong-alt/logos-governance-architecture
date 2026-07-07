@@ -2,7 +2,7 @@
 object_type: branch_reconciliation_register
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created on 2026-06-22 during the clean, auditable, chunking-ready trunk reconciliation pass after Scripture Graph PR #105 preserved stale-branch rediscovery instructions. Updated on 2026-06-22 after Scripture Graph PR #107 merged the T390 manuscript source catalog metadata plan and the stale detached Scripture worktree was removed. Updated on 2026-06-22 to docket the dirty parallel-agent T391 Scripture worktree with a local safety snapshot."
+provenance_note: "Created on 2026-06-22 during the clean, auditable, chunking-ready trunk reconciliation pass after Scripture Graph PR #105 preserved stale-branch rediscovery instructions. Updated on 2026-06-22 after Scripture Graph PR #107 merged the T390 manuscript source catalog metadata plan and the stale detached Scripture worktree was removed. Updated on 2026-06-22 to docket the dirty parallel-agent T391 Scripture worktree with a local safety snapshot. Updated on 2026-07-07 for Fable Wave-2 W2-14 stale-branch hygiene after governance PR #93."
 reason_for_inclusion: "Keep branch cleanup, preservation, and unknown-branch decisions discoverable from the governance front door instead of relying on chat memory or local branch lists."
 ---
 
@@ -49,18 +49,29 @@ If none of those is true, classify the branch as `unknown_review_required` or `s
 | `logos-governance-architecture` | `main` at `8112503` | Clean on `main`; one local Claude safety branch remains preserved, and two remote branches remain review-required. |
 | `noesis-atlas` | `main` at `8fb557b` | Clean on `main`; merged feature branches removed, local `master` remains review-required. |
 
+## 2026-07-07 W2-14 Wave-2 Stale-Branch Hygiene Snapshot
+
+| Repo | Active base after cleanup | Result |
+|---|---|---|
+| `logos-governance-architecture` | `main` at `43a1679` | W2-0 PR #93 merged and local repo was clean before this W2-14 register update branch was created. |
+| `logos-scripture-graph` | detached `origin/main` at `280c73b` in the root checkout | Root checkout was moved off stale `scratch/t423-M4-codex-gpt55` after confirming PR #158 was merged and the branch tip was an ancestor of `origin/main`. Local `main` remains checked out by `_codex_worktrees/logos-scripture-t467-harness-hardening`, so the root checkout was parked detached instead of stealing `main` from that worktree. |
+| `logos-boundary-literature` | `main` at `60a8f99` | Root checkout returned to clean `main`; stale merged branch `codex/governance-map-child-gate` was deleted locally/remotely after confirming PR #13 was merged and the branch tip was an ancestor of `origin/main`. An untracked Python cache under the boundary tests folder was removed. |
+| `logos-doctrine-genealogy` | `main` at `1e03972` | Already clean on `main`; no branch hygiene action needed. |
+
 ## Cleaned Branches
 
 | Repo | Branch | Classification | Evidence | Action |
 |---|---|---|---|---|
 | `logos-scripture-graph` | `codex/legacy-branch-discovery-audit` | merged_delete_safe | PR #105 merged on 2026-06-22. | Remote branch deleted by merge cleanup. |
 | `logos-scripture-graph` | `codex/t390-manuscript-source-catalog-plan` | merged_delete_safe | PR #107 merged on 2026-06-22 as `086b3f5`; the branch was green, non-output-changing, and limited to manuscript source catalog metadata planning surfaces. | Remote branch deleted by merge cleanup; local worktree and local branch deleted after confirming clean state. |
+| `logos-scripture-graph` | `scratch/t423-M4-codex-gpt55` | merged_delete_safe | PR #158 merged on 2026-07-07; branch tip `820a20e` was an ancestor of `origin/main` at `280c73b`. | Local branch deleted during W2-14 cleanup on 2026-07-07; remote branch was already gone. Root checkout was parked detached at `origin/main` because local `main` is checked out in a linked worktree. |
 | `logos-scripture-graph` | `feat/scale-connection-discovery-codex-5-5` | superseded_archive | T388 audit on main records rediscovery-only use and forbids direct merge. | Local and remote branches deleted after T388 reached main. |
 | `logos-scripture-graph` | `t320-t325-boundary-entity-commentary-planning-pack` | superseded_archive | T388 audit on main records useful files and forbids direct merge. | Local-only branch deleted after T388 reached main. |
 | `logos-boundary-literature` | `codex/commentary-lineage-placement` | merged_delete_safe | PR #4 merged on 2026-06-22. | Local and remote branches deleted. |
 | `logos-boundary-literature` | `t002-three-repo-routing-guardrails` | merged_delete_safe | PR #1 merged on 2026-06-08. | Local and remote branches deleted. |
 | `logos-boundary-literature` | `t003-contributor-review-policy` | merged_delete_safe | PR #2 merged on 2026-06-08. | Local and remote branches deleted. |
 | `logos-boundary-literature` | `t004-governance-is-constraint-not-obstacle` | merged_delete_safe | PR #3 merged on 2026-06-08. | Local and remote branches deleted. |
+| `logos-boundary-literature` | `codex/governance-map-child-gate` | merged_delete_safe | PR #13 merged on 2026-06-29; branch tip `76466e7` was an ancestor of `origin/main` at `60a8f99`. | Local branch deleted; remote branch deleted during W2-14 cleanup on 2026-07-07. |
 | `logos-governance-architecture` | `codex/commentary-lineage-placement` | merged_delete_safe | PR #60 merged on 2026-06-22; clean old worktree removed. | Local branch/worktree removed; remote was already gone. |
 | `logos-governance-architecture` | `codex/governance-dependency-map` | merged_delete_safe | PR #59 merged on 2026-06-17. | Local and remote branches deleted. |
 | `logos-governance-architecture` | `docs/shannon-note-hardening` | merged_delete_safe | PR #49 merged on 2026-05-29; patch equivalent present on main. | Local branch deleted; remote was already gone. |
