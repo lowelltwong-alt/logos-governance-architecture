@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, and child data-readiness decision packet PR #2."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, and child owner-gate template PR #3."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -626,6 +626,7 @@ artifacts:
       - doctrine_genealogy_planned_repo_triage
       - doctrine_genealogy_active_scaffold_status
       - doctrine_genealogy_data_readiness_decision_packet
+      - doctrine_genealogy_data_readiness_owner_gate_template
       - doctrine_genealogy_controlled_vocabulary
       - doctrine_genealogy_identity_registry
       - doctrine_genealogy_relationship_verb_registry
@@ -642,6 +643,7 @@ artifacts:
       - logos-scripture-graph/AI_TABLE_OF_CONTENTS.md
       - logos-boundary-literature/AI_TABLE_OF_CONTENTS.md
       - logos-doctrine-genealogy/docs/roadmap/data-readiness-decision-packet.md
+      - logos-doctrine-genealogy/docs/roadmap/data-readiness-owner-decision-template.md
     validators:
       - scripts/validate_governance_dependency_map.py
       - scripts/run_validation_suite.py
@@ -669,5 +671,5 @@ artifacts:
       - DATA_FLOW_MAP.md
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
-    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, PR-3 doctrine-genealogy schema standards, PR-4 doctrine-genealogy validator trigger surfaces, the Fable completion audit, and the DAD-ready Fable lesson outbox. Updated 2026-07-07 to record the completed logos-doctrine-genealogy scaffold gate and child data-readiness decision packet."
-    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, fail-closed validator triggers, completion audit, scaffold-gate status, data-readiness owner gate, DAD-ready lesson capture, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, reusable architecture learning, and downstream agent behavior."
+    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, PR-3 doctrine-genealogy schema standards, PR-4 doctrine-genealogy validator trigger surfaces, the Fable completion audit, and the DAD-ready Fable lesson outbox. Updated 2026-07-07 to record the completed logos-doctrine-genealogy scaffold gate, child data-readiness decision packet, and child owner-gate template."
+    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, fail-closed validator triggers, completion audit, scaffold-gate status, data-readiness decision packet, data-readiness owner-gate template, DAD-ready lesson capture, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, reusable architecture learning, and downstream agent behavior."
