@@ -2,7 +2,7 @@
 object_type: fable_kernel_implementation_status
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after verifying merged PR state across logos-governance-architecture, logos-boundary-literature, and logos-scripture-graph. Updated 2026-07-07 after logos-doctrine-genealogy PR #2 added the non-authorizing data-readiness decision packet and PR #3 added the owner-gate template."
+provenance_note: "Created 2026-07-06 by Codex after verifying merged PR state across logos-governance-architecture, logos-boundary-literature, and logos-scripture-graph. Updated 2026-07-07 after logos-doctrine-genealogy PR #2 added the non-authorizing data-readiness decision packet, PR #3 added the owner-gate template, and issue #4 opened the owner lane-selection docket."
 reason_for_inclusion: "Give future agents a durable evidence-backed status ledger for the Fable kernel implementation queue so they do not reconstruct completion state from chat memory."
 ---
 
@@ -49,6 +49,11 @@ form for lane selection:
 [child owner decision template](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-owner-decision-template.md).
 That template records the required decision shape; it does not select a lane.
 
+The live owner-decision docket is child issue
+[#4](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4).
+That issue asks the owner to select exactly one readiness lane and repeats the
+same non-authorizations.
+
 ## Evidence Table
 
 | Queue item | Repo | Status | Evidence |
@@ -70,6 +75,7 @@ That template records the required decision shape; it does not select a lane.
 | `logos-doctrine-genealogy` initial scaffold | `logos-doctrine-genealogy` | Merged | PR [#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1), merged 2026-07-07. |
 | `logos-doctrine-genealogy` data-readiness decision packet | `logos-doctrine-genealogy` | Merged | PR [#2](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/2), merged 2026-07-07. |
 | `logos-doctrine-genealogy` data-readiness owner gate | `logos-doctrine-genealogy` | Merged | PR [#3](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/3), merged 2026-07-07. |
+| `logos-doctrine-genealogy` data-readiness lane-selection docket | `logos-doctrine-genealogy` | Open owner gate | Issue [#4](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/issues/4), opened 2026-07-07. |
 
 ## Verified Local Checks
 
@@ -98,11 +104,12 @@ audit note.
 ## Remaining Gate
 
 The repo-creation gate is complete, and the child repo has a data-readiness
-decision packet plus a lane-selection owner gate. The next gate is owner
-selection of exactly one readiness lane: no doctrine-lineage records, source
-rows, source imports, reviewed-lineage promotion, graph/retrieval/vector truth,
-Scripture/chunk output, new vocabularies, or theology authority are authorized
-by the scaffold, packet, or owner-gate template.
+decision packet, lane-selection owner gate, and live owner-decision docket. The
+next gate is owner selection of exactly one readiness lane in issue #4: no
+doctrine-lineage records, source rows, source imports, reviewed-lineage
+promotion, graph/retrieval/vector truth, Scripture/chunk output, new
+vocabularies, or theology authority are authorized by the scaffold, packet,
+owner-gate template, or issue.
 
 Future buildout must start with a separate owner decision that chooses the next
 empty structure, review packet, schema mirror, source-intake docket, or
