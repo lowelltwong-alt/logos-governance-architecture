@@ -2,13 +2,13 @@
 object_type: fable_kernel_completion_audit
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after verifying live main, merged PR evidence, Issue #83 state, and the Fable kernel handoff queue."
+provenance_note: "Created 2026-07-06 by Codex after verifying live main, merged PR evidence, Issue #83 state, and the Fable kernel handoff queue. Updated 2026-07-07 to record the merged child data-readiness decision packet."
 reason_for_inclusion: "Future agents need requirement-by-requirement evidence for what part of the Fable recommendations is complete, what remains gated, and what must not be inferred from chat memory."
 ---
 
 # Fable Kernel Completion Audit
 
-Audit date: 2026-07-06.
+Audit date: 2026-07-07.
 
 This audit verifies the Fable kernel implementation queue against current repo
 and GitHub state. It records evidence only. It does not authorize repo creation,
@@ -25,7 +25,10 @@ PR-8.
 The broader buildout has completed the repo-creation and scaffold gate:
 `logos-doctrine-genealogy` exists and scaffold PR
 [#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1)
-has merged. The next gate is data-readiness, not repo creation.
+has merged. The child repo also has a non-authorizing data-readiness decision
+packet from PR
+[#2](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/2).
+The next gate is owner lane selection, not repo creation.
 
 Current state verified:
 
@@ -38,6 +41,10 @@ Current state verified:
 - The non-authorizing scaffold packet exists under
   [`../../../incoming/research/doctrine-genealogy-registration/`](../../../incoming/research/doctrine-genealogy-registration/)
   and was used for scaffold PR #1.
+- The non-authorizing child data-readiness decision packet exists in
+  logos-doctrine-genealogy at
+  [child data-readiness decision packet](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-decision-packet.md)
+  and was validated in PR #2.
 
 ## Requirement Audit
 
@@ -57,14 +64,16 @@ Current state verified:
 | Open formal registration issue. | Issue [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83), PR #84 in [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md). | Complete. |
 | Stage future scaffold packet after issue opening. | [`../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md`](../../../incoming/research/doctrine-genealogy-registration/scaffold_blueprint.md), [`../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md`](../../../incoming/research/doctrine-genealogy-registration/future_scaffold_goal_prompt.md), PR #85 in [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md). | Complete. |
 | Create and scaffold `logos-doctrine-genealogy`. | Issue #83 owner acceptance comment [4896715109](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83#issuecomment-4896715109); `logos-doctrine-genealogy` PR [#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1). | Complete for scaffold-only repo creation. |
+| Prepare child data-readiness decision packet. | `logos-doctrine-genealogy` PR [#2](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/2); [child data-readiness packet](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-decision-packet.md). | Complete for non-authorizing lane-selection preparation. |
 
 ## Remaining Gate
 
-The next gate is not Issue #83. It is future data-readiness. No agent should
-infer permission to add doctrine-lineage records, source rows, source imports,
-reviewed-lineage promotion, graph/retrieval/vector truth, Scripture/chunk
-output, new vocabularies, or theology authority from the existence of the
-scaffold.
+The next gate is not Issue #83. It is owner selection of one future
+data-readiness lane from the child repo packet. No agent should infer permission
+to add doctrine-lineage records, source rows, source imports, reviewed-lineage
+promotion, graph/retrieval/vector truth, Scripture/chunk output, new
+vocabularies, or theology authority from the existence of the scaffold or the
+decision packet.
 
 ## Stop Conditions
 

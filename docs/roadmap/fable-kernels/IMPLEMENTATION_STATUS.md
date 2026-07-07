@@ -2,13 +2,13 @@
 object_type: fable_kernel_implementation_status
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after verifying merged PR state across logos-governance-architecture, logos-boundary-literature, and logos-scripture-graph."
+provenance_note: "Created 2026-07-06 by Codex after verifying merged PR state across logos-governance-architecture, logos-boundary-literature, and logos-scripture-graph. Updated 2026-07-07 after logos-doctrine-genealogy PR #2 added the non-authorizing data-readiness decision packet."
 reason_for_inclusion: "Give future agents a durable evidence-backed status ledger for the Fable kernel implementation queue so they do not reconstruct completion state from chat memory."
 ---
 
 # Fable Kernel Implementation Status
 
-Status date: 2026-07-06.
+Status date: 2026-07-07.
 
 This ledger records implementation status for the Fable kernel queue in
 [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md). It does not authorize repo creation,
@@ -37,6 +37,13 @@ and
 Those files were used for the scaffold-only repo creation and remain
 non-authorizing historical scaffold evidence.
 
+The child repo now also has a non-authorizing data-readiness decision packet:
+[child data-readiness decision packet](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/main/docs/roadmap/data-readiness-decision-packet.md).
+That packet names future readiness-lane options and validators, but it does not
+authorize doctrine-lineage records, source imports, reviewed-lineage promotion,
+graph/retrieval/vector truth, Scripture/chunk output, new vocabularies, or
+theology authority.
+
 ## Evidence Table
 
 | Queue item | Repo | Status | Evidence |
@@ -56,6 +63,7 @@ non-authorizing historical scaffold evidence.
 | `logos-doctrine-genealogy` registration issue | `logos-governance-architecture` | Accepted for scaffold only | Issue [#83](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83), owner acceptance comment [4896715109](https://github.com/lowelltwong-alt/logos-governance-architecture/issues/83#issuecomment-4896715109). |
 | `logos-doctrine-genealogy` scaffold blueprint | `logos-governance-architecture` | Used for scaffold PR | Non-authorizing scaffold blueprint and future goal prompt staged under [`../../../incoming/research/doctrine-genealogy-registration/`](../../../incoming/research/doctrine-genealogy-registration/). |
 | `logos-doctrine-genealogy` initial scaffold | `logos-doctrine-genealogy` | Merged | PR [#1](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/1), merged 2026-07-07. |
+| `logos-doctrine-genealogy` data-readiness decision packet | `logos-doctrine-genealogy` | Merged | PR [#2](https://github.com/lowelltwong-alt/logos-doctrine-genealogy/pull/2), merged 2026-07-07. |
 
 ## Verified Local Checks
 
@@ -83,14 +91,16 @@ audit note.
 
 ## Remaining Gate
 
-The repo-creation gate is complete. The next gate is data-readiness: no
-doctrine-lineage records, source rows, source imports, reviewed-lineage
+The repo-creation gate is complete, and the child repo has a data-readiness
+decision packet. The next gate is owner selection of exactly one readiness lane:
+no doctrine-lineage records, source rows, source imports, reviewed-lineage
 promotion, graph/retrieval/vector truth, Scripture/chunk output, new
-vocabularies, or theology authority are authorized by the scaffold.
+vocabularies, or theology authority are authorized by the scaffold or by the
+packet.
 
-Future buildout must start with a separate governed PR or owner decision that
-names the next empty structure, review packet, schema mirror, or validation
-surface to strengthen.
+Future buildout must start with a separate owner decision that chooses the next
+empty structure, review packet, schema mirror, source-intake docket, or
+validation surface to strengthen.
 
 ## Non-Authorization Reminder
 
