@@ -10,6 +10,8 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 - [`governance/LOGOS_REPO_REGISTRY.md`](governance/LOGOS_REPO_REGISTRY.md) - human-readable repo registry
 - [`governance/LOGOS_REPO_REGISTRY.yaml`](governance/LOGOS_REPO_REGISTRY.yaml) - machine-readable repo registry
 - [`governance/GOVERNANCE_DEPENDENCY_MAP.yaml`](governance/GOVERNANCE_DEPENDENCY_MAP.yaml) - first-class governance dependency map
+- [`governance/MIRROR_FRESHNESS_STANDARD.yaml`](governance/MIRROR_FRESHNESS_STANDARD.yaml) - tags: `mirror-freshness`, `cross-repo`, `drift`, `w2-1`; read when adding or auditing child-repo mirrors, staleness budgets, source checksums, or mirror verification cadence
+- [`governance/CROSS_REPO_REFERENCE_MANIFEST.yaml`](governance/CROSS_REPO_REFERENCE_MANIFEST.yaml) - tags: `cross-repo-reference`, `path-drift`, `gate-trigger`, `scripture-reference`, `w2-1`; read when adding or auditing cross-repo path references, Scripture gate-trigger references, or child-repo path existence checks
 - [`docs/governance/ai-workflow/validation-and-pr-requirements.md`](docs/governance/ai-workflow/validation-and-pr-requirements.md) - PR validation rules, including governance-map and discovery-surface impact disclosure
 - [`governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md`](governance/BOUNDARY_GOVERNANCE_CONSTRAINTS.md) - P0 stop rules for boundary-originated pressure on higher-authority repos
 - [`governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md`](governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md) - P0 firewall for Noesis/external advisory paste, comment, handoff, and break-glass backdoors
@@ -68,6 +70,7 @@ applicable. Treat that as a gated roadmap horizon, not current AI authority.
 - [`schemas/schema_registry.json`](schemas/schema_registry.json) - machine-readable schema registry
 - [`schemas/doctrine_genealogy/README.md`](schemas/doctrine_genealogy/README.md) - Fable PR-3 doctrine-genealogy schema standards and non-authorizations
 - [`scripts/run_validation_suite.py`](scripts/run_validation_suite.py) - default local/CI validation suite, including doctrine-genealogy validators
+- [`scripts/validate_cross_repo_reference_manifest.py`](scripts/validate_cross_repo_reference_manifest.py) - tags: `validator`, `cross-repo-reference`, `mirror-freshness`, `gate-trigger`; validates W2-1 manifest shape, gate-trigger coverage, local target existence when sibling repos are present, and no upward child-repo dependencies
 - [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
 - [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)
 - [`docs/governance/anchor-conventions-scripture-and-graph-extension.md`](docs/governance/anchor-conventions-scripture-and-graph-extension.md)

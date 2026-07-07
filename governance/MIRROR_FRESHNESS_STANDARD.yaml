@@ -1,0 +1,67 @@
+object_type: mirror_freshness_standard
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-07 by Codex for W2-1 of the Fable Wave-2 buildout, following owner decisions D11-D16."
+reason_for_inclusion: "Define the family standard for mirror freshness and cross-repo reference checks so child mirrors and path references do not become stale hidden assumptions."
+schema_version: mirror_freshness_standard.v1
+standard_id: logos_mirror_freshness_standard_v1
+owner: Lowell Wong
+source_repo: logos-governance-architecture
+decision_basis:
+  - FABLE-WAVE2-D11-D16-2026-07-07:D11
+  - FABLE-WAVE2-D11-D16-2026-07-07:D16
+  - W2-KERNEL-K
+authority:
+  defines_mirror_freshness_fields: true
+  defines_cross_repo_reference_integrity_expectations: true
+  authorizes_child_repo_override: false
+  authorizes_scripture_output_change: false
+  authorizes_chunk_output_change: false
+  authorizes_source_import: false
+  authorizes_doctrine_data_records: false
+  authorizes_theology_authority: false
+default_freshness_policy:
+  source_commit_required: true
+  source_path_required: true
+  source_checksum_required_for_mirrored_content: true
+  verified_against_source_commit_at_required: true
+  staleness_budget_days: 14
+  stale_mirror_blocks_dependent_pr: true
+  missing_referenced_path_blocks_when_source_repo_available: true
+  child_repo_unavailable_in_parent_ci_is_reportable_not_authorizing: true
+required_mirror_fields:
+  - mirror_id
+  - source_repo
+  - source_path
+  - source_commit
+  - source_checksum
+  - mirrored_path
+  - verified_against_source_commit_at
+  - staleness_budget_days
+  - lifecycle_status
+  - trust_zone
+required_reference_fields:
+  - reference_id
+  - source_path
+  - source_field
+  - target_repo
+  - target_path
+  - authority_posture
+  - failure_policy
+allowed_authority_postures:
+  - reference_only_not_authority
+  - mirror_only_not_authority
+  - advisory_only_not_authority
+allowed_failure_policies:
+  - fail_closed_when_local_repo_available
+  - fail_closed_when_checked_out_by_ci
+  - report_when_local_repo_unavailable
+non_authorizations:
+  - scripture_output_change
+  - chunk_output_change
+  - reviewed_gold_promotion
+  - reviewed_lineage_promotion
+  - source_import
+  - doctrine_data_records
+  - graph_retrieval_vector_truth
+  - theology_authority
