@@ -27,6 +27,7 @@ Primary source surfaces:
 - [`OWNER-DECISIONS-AND-PILOTS.md`](OWNER-DECISIONS-AND-PILOTS.md)
 - [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md)
 - [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md)
+- [`FABLE_FEEDBACK_TRACE_MATRIX.yaml`](FABLE_FEEDBACK_TRACE_MATRIX.yaml)
 - [`KERNEL-A-object-model-and-vocabulary.md`](KERNEL-A-object-model-and-vocabulary.md)
 - [`KERNEL-B-orthodoxy-and-authority.md`](KERNEL-B-orthodoxy-and-authority.md)
 - [`KERNEL-C-provenance-and-gates.md`](KERNEL-C-provenance-and-gates.md)
@@ -83,6 +84,8 @@ DAD must not ingest this as:
 | DAD-FABLE-018 | Use TOC tags and dependency maps for discoverability. | Good lessons are lost if agents cannot find them. | Owner feedback, GD-014 | AI TOC and governance dependency map updates. | Every reusable legal architecture decision should have tags, read-when guidance, owner/steward source, and validation coverage. |
 | DAD-FABLE-019 | Keep planned repos planned until readiness tests are met. | Premature repo creation creates data-plane pressure before guardrails exist. | D7-D8 | Registration drafts only; no repo creation. | Create a legal KG repo/module only after scope, authority, privacy, validation, and source-ingest rules are explicit. |
 | DAD-FABLE-020 | Model multi-parent derivation with explicit scoped edges. | "Derived from multiple parents" can hide which parent contributed what. | Kernel A3, Kernel C1 | One edge per parent with verb, evidence basis, method, date, scope, and review status. | Contract and document-version lineage should state exactly which clause, precedent, matter, playbook, or regulation each derived part depends on or modifies. |
+| DAD-FABLE-021 | Treat expert feedback as a disposition ledger, not a memory burden. | "Fable addressed this" was not mechanically auditable across gap passes, Wave-2 kernels, red-team findings, and future queues. | Wave-2 handoff; owner request for 100 percent traceability | `FABLE_FEEDBACK_TRACE_MATRIX.yaml` plus `validate_fable_feedback_trace_matrix.py`. | Legal and secular KGs should trace every expert/auditor item to implemented, planned, deferred, rejected, or owner-gated status with evidence and target queue. |
+| DAD-FABLE-022 | Use planned/deferred statuses as explicit governance, not failure. | Some Fable items are intentionally future-gated; hiding them as "not done" or pretending completion would both be wrong. | Completion audit; Wave-2 queue | Matrix dispositions require reasons, evidence, and target queues for planned or deferred items. | Law-firm systems should distinguish implemented controls from counsel-gated, data-gated, or future-release controls so audits can see intentional sequencing. |
 
 ## Reusable Kernel Map For Secular / Legal Knowledge Graphs
 
@@ -125,7 +128,7 @@ knowledge graph:
 ## Future DAD Work
 
 When a formal DAD workflow exists, ingest this file into a DAD lesson registry
-with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-020`, preserving:
+with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-022`, preserving:
 
 - source file references;
 - owner decision references;
@@ -134,6 +137,6 @@ with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-020`, preserving:
 - legal/secular transfer watchpoints;
 - validation and governance dependency references.
 
-Future agents should update this outbox when they create or discover a reusable
-architecture lesson from Fable, Codex, audits, PR failures, red-team findings,
-or cross-domain implementation work.
+Future agents should update this outbox and the feedback trace matrix when they
+create or discover a reusable architecture lesson from Fable, Codex, audits, PR
+failures, red-team findings, or cross-domain implementation work.

@@ -50,6 +50,7 @@ Wave-2 owner selections D11-D16 are recorded in the same file, section
 | [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md) | Sequenced deterministic work queue for Codex after owner decisions | — |
 | [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md) | Evidence-backed status ledger for PR-E through PR-8, child scaffold/readiness work, and DR-OPTION-A schema mirrors | — |
 | [`COMPLETION_AUDIT.md`](COMPLETION_AUDIT.md) | Requirement-by-requirement audit of completed Fable recommendations, child schema mirrors, and remaining successor owner gates | -- |
+| [`FABLE_FEEDBACK_TRACE_MATRIX.yaml`](FABLE_FEEDBACK_TRACE_MATRIX.yaml) | Machine-readable disposition matrix for Fable feedback, including implemented, planned, deferred, rejected, and owner-gated items | -- |
 | [`DAD-LESSON-OUTBOX.md`](DAD-LESSON-OUTBOX.md) | DAD-ready reusable lesson capture for Fable feedback, Codex solutions, doctrine-genealogy kernels, knowledge-graph transfer, and legal/secular adaptation watchpoints | -- |
 | [`WAVE2-ARCHITECTURE-HANDOFF.md`](WAVE2-ARCHITECTURE-HANDOFF.md) | Fable Wave-2 hard-problem handoff, D11-D16 decision summary, PR queue, red-team findings, and D15 lens guardrail clarification | Wave 2 |
 
