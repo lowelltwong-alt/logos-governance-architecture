@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, DR-OPTION-A child schema mirror PR #6, Wave-2 owner decisions D11-D16, W2-14 stale-branch hygiene evidence, and W2-1 mirror/reference freshness controls."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, DR-OPTION-A child schema mirror PR #6, Wave-2 owner decisions D11-D16, W2-14 stale-branch hygiene evidence, W2-1 mirror/reference freshness controls, and the Fable feedback trace matrix."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -253,10 +253,12 @@ artifacts:
       - scripts/validate_gate_triggers.py
       - scripts/validate_codex_theology_tripwire.py
       - scripts/validate_cross_repo_reference_manifest.py
+      - scripts/validate_fable_feedback_trace_matrix.py
       - tools/logos_governance_fast_validators/
       - docs/roadmap/T462-governance-rust-fast-validators.md
       - tests/test_doctrine_genealogy_validators.py
       - tests/test_cross_repo_reference_manifest.py
+      - tests/test_fable_feedback_trace_matrix.py
       - tests/test_rust_fast_internal_links.py
       - .github/workflows/validate-logos-structure.yml
     object_type: governance_validation_suite
@@ -277,6 +279,7 @@ artifacts:
       - doctrine_genealogy_validator_scope
       - codex_theology_tripwire_validation
       - cross_repo_reference_manifest_validation
+      - fable_feedback_trace_matrix_validation
       - rust_fast_validator_shadow_parity_scope
     mirrored_by:
       - logos-scripture-graph/scripts/validate_all.py
@@ -292,6 +295,8 @@ artifacts:
       - scripts/validate_gate_triggers.py
       - scripts/validate_codex_theology_tripwire.py
       - scripts/validate_cross_repo_reference_manifest.py
+      - scripts/validate_fable_feedback_trace_matrix.py
+      - tests/test_fable_feedback_trace_matrix.py
       - tests/test_rust_fast_internal_links.py
     update_triggers:
       - scripts/validation_contracts.py
@@ -304,9 +309,10 @@ artifacts:
       - docs/roadmap/T462-governance-rust-fast-validators.md
       - tests/test_doctrine_genealogy_validators.py
       - tests/test_cross_repo_reference_manifest.py
+      - tests/test_fable_feedback_trace_matrix.py
       - tests/test_rust_fast_internal_links.py
       - .github/workflows/
-    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks. Updated 2026-07-06 to include PR-4 doctrine-genealogy validators and tests, including the Kernel E Codex theology tripwire path. Updated 2026-07-06 to register the T462 Rust fast-validator shadow path for deterministic internal-link acceleration. Updated 2026-07-07 to include W2-1 cross-repo reference manifest validation."
+    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks. Updated 2026-07-06 to include PR-4 doctrine-genealogy validators and tests, including the Kernel E Codex theology tripwire path. Updated 2026-07-06 to register the T462 Rust fast-validator shadow path for deterministic internal-link acceleration. Updated 2026-07-07 to include W2-1 cross-repo reference manifest validation and the Fable feedback trace matrix validator."
     reason_for_inclusion: "Validation scope changes can change effective governance; doctrine-genealogy schemas need fail-closed checks before any examples, data records, reviewed lineage, or repo creation."
   - artifact_id: GD-008
     title: Governance workflow and roadmap process
@@ -597,6 +603,7 @@ artifacts:
       - docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md
       - docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
       - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
       - docs/roadmap/fable-kernels/COMPLETION_AUDIT.md
       - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
       - docs/governance/relationship-registry.md
@@ -645,6 +652,7 @@ artifacts:
       - codex_and_fable_work_split
       - fable_completion_audit_and_owner_gate_tracking
       - fable_wave2_handoff
+      - fable_feedback_trace_matrix
       - recorded_owner_decisions_d11_d16
       - llos_learning_loop_standard_selection
       - contributor_triggered_reviewer_model_transition
@@ -675,6 +683,7 @@ artifacts:
       - docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md
       - docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
       - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
       - docs/roadmap/fable-kernels/COMPLETION_AUDIT.md
       - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
       - docs/governance/relationship-registry.md
@@ -688,8 +697,8 @@ artifacts:
       - DATA_FLOW_MAP.md
       - AI_FRONT_DOOR.md
       - AI_TABLE_OF_CONTENTS.md
-    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, PR-3 doctrine-genealogy schema standards, PR-4 doctrine-genealogy validator trigger surfaces, the Fable completion audit, and the DAD-ready Fable lesson outbox. Updated 2026-07-07 to record the completed logos-doctrine-genealogy scaffold gate, child data-readiness decision packet, child owner-gate template, child owner-decision issue, child lane-implementation runbook, owner-selected DR-OPTION-A schema mirror PR #6, and the Wave-2 handoff with owner selections D11-D16."
-    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, Wave-2 hard-problem handoff, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, fail-closed validator triggers, completion audit, scaffold-gate status, data-readiness decision packet, data-readiness owner-gate template, data-readiness owner-decision issue, data-readiness lane-implementation runbook, DR-OPTION-A schema mirrors, DAD-ready lesson capture, owner-gated lens registry, contributor-triggered reviewer-model transition, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, reusable architecture learning, and downstream agent behavior."
+    provenance_note: "Added 2026-07-06 after owner request for a Fable-led master architecture pass across Logos repos, especially doctrine genealogy and theology-across-time tracing, with Codex limited to deterministic scaffolding after Fable supplies kernels. Updated 2026-07-06 to include Fable architecture kernel files, recorded owner decisions D1-D10, the Codex theology tripwire, the root Logos family repo-selection map, PR-2 governance vocabulary surfaces, PR-3 doctrine-genealogy schema standards, PR-4 doctrine-genealogy validator trigger surfaces, the Fable completion audit, and the DAD-ready Fable lesson outbox. Updated 2026-07-07 to record the completed logos-doctrine-genealogy scaffold gate, child data-readiness decision packet, child owner-gate template, child owner-decision issue, child lane-implementation runbook, owner-selected DR-OPTION-A schema mirror PR #6, the Wave-2 handoff with owner selections D11-D16, and the Fable feedback trace matrix."
+    reason_for_inclusion: "The Fable/Codex work split, Fable kernel handoff, Wave-2 hard-problem handoff, Fable feedback trace matrix, root repo-selection map, doctrine-genealogy vocabulary surfaces, doctrine-genealogy schema standards, fail-closed validator triggers, completion audit, scaffold-gate status, data-readiness decision packet, data-readiness owner-gate template, data-readiness owner-decision issue, data-readiness lane-implementation runbook, DR-OPTION-A schema mirrors, DAD-ready lesson capture, owner-gated lens registry, contributor-triggered reviewer-model transition, and doctrine-genealogy architecture affect repo routing, future repo activation, authority boundaries, reusable architecture learning, and downstream agent behavior."
   - artifact_id: GD-016
     title: Mirror freshness and cross-repo reference integrity
     repo: logos-governance-architecture
@@ -739,3 +748,50 @@ artifacts:
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
     provenance_note: "Added 2026-07-07 for W2-1 after Fable Kernel K identified stale child mirrors and unchecked Scripture path references as repo-family hazards."
     reason_for_inclusion: "Cross-repo path references and mirrors can silently drift; agents need validator-backed freshness and path-existence checks before relying on referenced Scripture, boundary, or doctrine-genealogy surfaces."
+  - artifact_id: GD-017
+    title: Fable feedback trace matrix
+    repo: logos-governance-architecture
+    paths:
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+      - scripts/validate_fable_feedback_trace_matrix.py
+      - tests/test_fable_feedback_trace_matrix.py
+    object_type: fable_feedback_trace_matrix
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: owner_request_2026-07-07
+    owner_decision_ref: docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+    depends_on:
+      - GD-001
+      - GD-007
+      - GD-010
+      - GD-014
+      - GD-015
+      - GD-016
+    downstream_controls:
+      - fable_feedback_disposition_audit
+      - requirement_to_evidence_traceability
+      - planned_and_deferred_fable_item_tracking
+      - future_fable_feedback_update_gate
+      - dad_llos_feedback_ingestion_readiness
+      - no_completion_by_chat_memory
+    mirrored_by:
+      - logos-scripture-graph/AI_TABLE_OF_CONTENTS.md
+      - logos-boundary-literature/AI_TABLE_OF_CONTENTS.md
+      - logos-doctrine-genealogy/AI_TABLE_OF_CONTENTS.md
+    validators:
+      - scripts/validate_fable_feedback_trace_matrix.py
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+      - tests/test_fable_feedback_trace_matrix.py
+    update_triggers:
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/roadmap/fable-kernels/COMPLETION_AUDIT.md
+      - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+      - docs/roadmap/fable-kernels/IMPLEMENTATION_STATUS.md
+      - scripts/validate_fable_feedback_trace_matrix.py
+      - tests/test_fable_feedback_trace_matrix.py
+      - scripts/validation_contracts.py
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    provenance_note: "Added 2026-07-07 after the owner requested an auditable 100 percent disposition plan for Fable output and feedback."
+    reason_for_inclusion: "Fable feedback affects future architecture, chunking, doctrine-genealogy, mirrors, lessons, and authority boundaries; every item needs a recorded disposition and validator-backed evidence or target queue."

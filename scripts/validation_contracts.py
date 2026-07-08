@@ -341,6 +341,10 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "command": [python, "scripts/validate_cross_repo_reference_manifest.py"],
         },
         {
+            "name": "fable_feedback_trace_matrix",
+            "command": [python, "scripts/validate_fable_feedback_trace_matrix.py"],
+        },
+        {
             "name": "external_advisory_authority_firewall",
             "command": [python, "scripts/validate_external_advisory_authority_firewall.py"],
         },
