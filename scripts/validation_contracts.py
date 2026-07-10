@@ -392,4 +392,8 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "name": "agent_qualification_fixtures",
             "command": [python, "scripts/validate_agent_qualification_fixtures.py"],
         },
+        {
+            "name": "independent_study_source_authorization",
+            "command": [python, "scripts/validate_independent_study_source_authorization.py"],
+        },
     ]

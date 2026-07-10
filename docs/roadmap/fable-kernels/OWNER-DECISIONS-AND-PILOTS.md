@@ -2,8 +2,8 @@
 object_type: fable_owner_decision_packet
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Fable. Updated 2026-07-06 by Codex to record Lowell Wong's owner selections D1-D10 for the architecture kernels, preserving recommendations, repercussions, and non-authorizations. Updated 2026-07-07 to record Wave-2 owner selections D11-D16, including the D12 contributor-triggered reviewer-model transition and D15 owner-gated lens clarification. Updated 2026-07-10 to record AGENT-W1-A, AGENT-W2-A, and AGENT-W7-A."
-reason_for_inclusion: "Owner selections D1-D16 and AGENT-W1-A through AGENT-W7-A unblock only named governance-surface implementation queues and prevent future agents from relying on chat memory for architecture decisions."
+provenance_note: "Created 2026-07-06 by Fable. Updated 2026-07-06 by Codex to record Lowell Wong's owner selections D1-D10 for the architecture kernels, preserving recommendations, repercussions, and non-authorizations. Updated 2026-07-07 to record Wave-2 owner selections D11-D16, including the D12 contributor-triggered reviewer-model transition and D15 owner-gated lens clarification. Updated 2026-07-10 to record AGENT-W1-A, AGENT-W2-A, AGENT-W7-A, and OD-C-OPEN-A."
+reason_for_inclusion: "Owner selections D1-D16, AGENT-W1-A through AGENT-W7-A, and OD-C-OPEN-A unblock only named governance-surface implementation queues and prevent future agents from relying on chat memory for architecture decisions."
 ---
 
 # Owner Decisions and Pilot Slices
@@ -15,6 +15,34 @@ selections are recorded under `Recorded Agent Buildout Selections (2026-07-10)`.
 
 Each decision below has a recorded owner selection by Lowell Wong. Recommendation remains distinct from selection unless the recorded selection says so.
 Codex implementation (see `CODEX_HANDOFF.md`) is sequenced against these.
+
+## Recorded Independent Study Source Authorization (2026-07-10)
+
+Decision record ID: `OD-C-OPEN-A`.
+
+> Authorize OD-C-OPEN-A for independent scholarly research, self-education,
+> personal Bible study, church and ministry study, lay theological scholarship,
+> teaching, and other noncommercial educational purposes.
+>
+> No university, seminary, employer, professional credential, or institutional
+> affiliation is required. Evaluate the quality of research through evidence,
+> provenance, reproducibility, source competence, and review rather than academic
+> status.
+>
+> These recognized purposes do not by themselves override copyright, license,
+> attribution, privacy, or source-distribution restrictions.
+
+This authorizes source discovery, official-rights research, candidate manifests,
+reference-only registration, permission requests, and rights/provenance validators.
+It does not by itself authorize source-text acquisition/import, public full-text
+distribution, AI transmission of protected text, chunks/embeddings, Scripture or
+chunk output, preferred readings/source traditions, or semantic authority.
+
+Owner access preference: if a needed source cannot be obtained through an open or
+ordinary lawful route, stop and tell the owner. A household academic may choose to
+use her own institutional access for legitimate academic purposes. This is not
+credential-sharing authorization and does not override the institution's or
+provider's exact download, text-mining, redistribution, or AI-use terms.
 
 ## Recorded Agent Buildout Selections (2026-07-10)
 

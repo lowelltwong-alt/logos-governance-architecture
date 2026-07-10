@@ -1,0 +1,96 @@
+object_type: independent_study_source_authorization
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 from Lowell Wong's verbatim OD-C-OPEN-A authorization for independent scholarly, personal, church, ministry, lay, teaching, and noncommercial educational study."
+reason_for_inclusion: "Recognize rigorous scholarship outside institutional credentialing while keeping research purpose separate from copyright, license, privacy, attribution, distribution, and AI-use permission."
+decision_id: OD-C-OPEN-A
+decision_date: 2026-07-10
+owner: Lowell Wong
+owner_statement: |-
+  Authorize OD-C-OPEN-A for independent scholarly research, self-education,
+  personal Bible study, church and ministry study, lay theological scholarship,
+  teaching, and other noncommercial educational purposes.
+
+  No university, seminary, employer, professional credential, or institutional
+  affiliation is required. Evaluate the quality of research through evidence,
+  provenance, reproducibility, source competence, and review rather than academic
+  status.
+
+  These recognized purposes do not by themselves override copyright, license,
+  attribution, privacy, or source-distribution restrictions.
+recognized_purposes:
+  - independent_scholarly_research
+  - self_education
+  - personal_bible_study
+  - church_and_ministry_study
+  - lay_theological_scholarship
+  - teaching
+  - other_noncommercial_educational_purposes
+institutional_requirements:
+  university_required: false
+  seminary_required: false
+  employer_required: false
+  professional_credential_required: false
+  institutional_affiliation_required: false
+optional_institutional_access_escalation:
+  owner_contact_required_before_use: true
+  account_holder_voluntary_participation_required: true
+  exact_institution_and_provider_terms_review_required: true
+  credential_storage_authorized: false
+  credential_sharing_authorized: false
+  automated_login_or_harvesting_authorized: false
+  institutional_access_authorizes_source_import: false
+  institutional_access_authorizes_ai_transmission: false
+  note: "The owner reports that an academic household member may voluntarily use her own institutional access for legitimate academic purposes if an otherwise unavailable source requires it. Stop and ask the owner; do not request, store, or use credentials."
+quality_evaluation_basis:
+  - evidence
+  - provenance
+  - reproducibility
+  - source_competence
+  - review
+rights_boundaries:
+  research_purpose_overrides_copyright: false
+  research_purpose_overrides_license: false
+  research_purpose_overrides_attribution: false
+  research_purpose_overrides_privacy: false
+  research_purpose_overrides_source_distribution: false
+authorized_governance_actions:
+  source_discovery: true
+  official_rights_research: true
+  source_candidate_manifests: true
+  reference_only_registration: true
+  permission_requests: true
+  rights_and_provenance_validators: true
+content_authority:
+  source_text_import_authorized: false
+  full_text_publication_authorized: false
+  full_text_ai_transmission_authorized: false
+  chunk_or_embedding_creation_authorized: false
+  protected_text_reconstruction_authorized: false
+  scripture_or_chunk_output_authorized: false
+  preferred_reading_or_source_tradition_authorized: false
+  doctrine_graph_retrieval_or_vector_truth_authorized: false
+source_lanes:
+  open_candidate:
+    rule: "May be investigated for later import only after exact edition, component-level rights, attribution, redistribution, modification, and AI-use terms are captured and separately approved."
+  reference_only:
+    rule: "May store bibliography, locators, rights metadata, original summaries, and permitted excerpts; no full text, chunks, embeddings, or reconstructable derivatives."
+  private_licensed:
+    rule: "Lawfully accessed personal or institutional material remains outside public Git and AI ingestion unless its exact license expressly permits the proposed use."
+premortem_controls:
+  - public_repo_leak_of_private_or_restricted_text
+  - academic_purpose_treated_as_blanket_permission
+  - ai_transmission_without_express_rights
+  - edition_or_component_license_conflation
+  - attribution_or_license_snapshot_loss
+  - imported_source_becoming_preferred_reading_or_authority
+  - institutional_access_mistaken_for_redistribution_or_ai_permission
+validators:
+  - scripts/validate_independent_study_source_authorization.py
+  - tests/test_independent_study_source_authorization.py
+non_authorizations:
+  - source_text_acquisition_or_import
+  - copyrighted_corpus_ingestion
+  - rights_conclusion_from_noncommercial_intent_alone
+  - credential_gate_for_research_quality
+  - canon_theology_variant_or_source_tradition_decision

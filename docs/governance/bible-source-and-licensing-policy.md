@@ -2,7 +2,7 @@
 object_type: governance_policy
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Created 2026-04-30 as a draft Bible source, licensing, and ingestion policy for Logos."
+provenance_note: "Created 2026-04-30 as a draft Bible source, licensing, and ingestion policy for Logos. Updated 2026-07-10 to recognize OD-C-OPEN-A independent, personal, church, ministry, lay, teaching, and noncommercial educational study without treating research purpose as a rights override."
 reason_for_inclusion: "Set source-use boundaries before Bible text, theology, or RAGGraph ingestion work."
 review_status: unreviewed
 ai_usage_posture: policy_draft_not_legal_advice
@@ -13,6 +13,21 @@ ai_usage_posture: policy_draft_not_legal_advice
 ## Status
 
 Draft governance policy. This is not legal advice. Every source must be reviewed before ingestion, indexing, embedding, publication, or redistribution.
+
+The canonical owner-purpose boundary is
+[`governance/INDEPENDENT_STUDY_SOURCE_AUTHORIZATION.yaml`](../../governance/INDEPENDENT_STUDY_SOURCE_AUTHORIZATION.yaml).
+It recognizes rigorous independent and ecclesial scholarship without requiring
+university, seminary, employer, credential, or institutional affiliation.
+Research quality is evaluated through evidence, provenance, reproducibility,
+source competence, and review. Those purposes do not override source rights.
+
+An optional institutional-access route may be available through a household
+academic who voluntarily uses her own account. When a needed source is not
+otherwise available, stop and ask the owner. A `.edu` identity or library login
+is an access channel, not permission to redistribute, text-mine, transmit to AI,
+or place material in Git. Never request, store, share, or automate another
+person's credentials; review the institution and provider terms for the exact
+proposed use.
 
 ## Core rule
 
@@ -55,7 +70,9 @@ Not included in the public repo:
 
 ### Category C: private licensed connector
 
-Use this category when a user, church, seminary, or institution has its own lawful access and wants private retrieval.
+Use this category when an independent researcher, self-educated student, user,
+church, ministry, seminary, or institution has its own lawful access and wants
+private retrieval.
 
 Public repo may store only connector policy, source manifest schema, and non-sensitive metadata. Private source text, chunks, and embeddings remain outside the public repository.
 

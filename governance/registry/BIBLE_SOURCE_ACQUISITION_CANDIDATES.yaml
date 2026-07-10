@@ -1,0 +1,90 @@
+object_type: bible_source_acquisition_candidate_register
+trust_zone: proposed
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 as the first OD-C-OPEN-A rights-preflight register using official source and license pages; no source content was acquired."
+reason_for_inclusion: "Give independent and church-based scholarship a practical path toward more Bible sources while requiring source-by-source rights, edition, attribution, and distribution review before import."
+register_id: logos_bible_source_acquisition_candidates_v1
+owner_decision_ref: governance/INDEPENDENT_STUDY_SOURCE_AUTHORIZATION.yaml
+observation_date: 2026-07-10
+register_authority:
+  records_preliminary_rights_observations_only: true
+  authorizes_source_text_import: false
+  authorizes_public_distribution: false
+  authorizes_ai_transmission: false
+  authorizes_preferred_reading_or_source_tradition: false
+candidates:
+  - candidate_id: eng-web
+    title: World English Bible
+    source_type: english_translation
+    source_url: https://ebible.org/eng-web/
+    official_rights_url: https://ebible.org/engwebp/copyright.htm
+    observed_rights_posture: public_domain_with_translation_name_trademark_caveat
+    component_rights_note: "Official page states the text is public domain and asks that modified text not be called the World English Bible."
+    attribution_required_by_observed_license: false
+    rights_review_status: preliminary_official_source_observation
+    license_snapshot_captured: false
+    owner_source_use_review_required: true
+    source_text_present: false
+    import_authorized: false
+    distribution_authorized: false
+    ai_transmission_authorized: false
+    next_action: capture_official_rights_snapshot_and_exact_edition_manifest
+  - candidate_id: grc-sblgnt
+    title: SBL Greek New Testament
+    source_type: greek_new_testament_edition
+    source_url: https://www.sblgnt.com/download/
+    official_rights_url: https://www.sblgnt.com/license/
+    observed_rights_posture: creative_commons_attribution_4_0_international
+    component_rights_note: "Official SBLGNT site states that the edition is licensed under CC BY 4.0; exact downloaded artifact and required attribution still need capture."
+    attribution_required_by_observed_license: true
+    rights_review_status: preliminary_official_source_observation
+    license_snapshot_captured: false
+    owner_source_use_review_required: true
+    source_text_present: false
+    import_authorized: false
+    distribution_authorized: false
+    ai_transmission_authorized: false
+    next_action: capture_license_snapshot_attribution_and_exact_download_artifact
+  - candidate_id: hbo-oshb-wlc
+    title: Open Scriptures Hebrew Bible / Westminster Leningrad Codex
+    source_type: hebrew_bible_text_lemma_and_morphology
+    source_url: https://hb.openscriptures.org/
+    official_rights_url: https://hb.openscriptures.org/
+    observed_rights_posture: component_scoped_public_domain_and_cc_by_4_0
+    component_rights_note: "Official project page states that the WLC text remains public domain and lemma/morphology data are CC BY 4.0; components must remain separately attributed and tracked."
+    attribution_required_by_observed_license: true
+    rights_review_status: preliminary_official_source_observation
+    license_snapshot_captured: false
+    owner_source_use_review_required: true
+    source_text_present: false
+    import_authorized: false
+    distribution_authorized: false
+    ai_transmission_authorized: false
+    next_action: capture_component_level_license_snapshot_and_exact_release_manifest
+  - candidate_id: eng-lxx2012
+    title: LXX2012 Septuagint in American English
+    source_type: english_septuagint_translation
+    source_url: https://ebible.org/eng-lxx2012/
+    official_rights_url: https://ebible.org/publicdomain.htm
+    observed_rights_posture: listed_by_distributor_as_public_domain
+    component_rights_note: "eBible's public-domain page lists LXX2012; the exact edition page and distributed artifact still require source-level capture."
+    attribution_required_by_observed_license: false
+    rights_review_status: preliminary_official_source_observation
+    license_snapshot_captured: false
+    owner_source_use_review_required: true
+    source_text_present: false
+    import_authorized: false
+    distribution_authorized: false
+    ai_transmission_authorized: false
+    next_action: capture_official_rights_snapshot_and_exact_edition_manifest
+required_before_any_import:
+  - exact_artifact_and_edition_identity
+  - official_rights_or_license_snapshot
+  - component_level_rights_when_text_and_annotations_differ
+  - attribution_and_notice_text
+  - redistribution_and_modification_scope
+  - ai_and_computational_use_posture
+  - checksum_and_acquisition_provenance
+  - owner_source_use_approval
+  - destination_repo_and_trust_zone
+  - source_specific_validator_and_removal_plan

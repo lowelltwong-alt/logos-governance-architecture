@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, DR-OPTION-A child schema mirror PR #6, Wave-2 owner decisions D11-D16, W2-14 stale-branch hygiene evidence, W2-1 mirror/reference freshness controls, the Fable feedback trace matrix, and Wave-2 DAD lesson expansion. Updated 2026-07-09 to register the independent post-Wave-2 gap audit and the model-agnostic, economically tiered agent capability buildout roadmap. Updated 2026-07-10 to register the AGENT-W1-A legacy ownership inventory."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, DR-OPTION-A child schema mirror PR #6, Wave-2 owner decisions D11-D16, W2-14 stale-branch hygiene evidence, W2-1 mirror/reference freshness controls, the Fable feedback trace matrix, and Wave-2 DAD lesson expansion. Updated 2026-07-09 to register the independent post-Wave-2 gap audit and the model-agnostic, economically tiered agent capability buildout roadmap. Updated 2026-07-10 to register the AGENT-W1-A legacy ownership inventory and OD-C-OPEN-A independent-study source authorization."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -990,3 +990,49 @@ artifacts:
       - tests/test_agent_qualification_fixtures.py
     provenance_note: "Added 2026-07-10 under AGENT-W7-A. The current workspace validates the fixture structure but cannot invoke named adapters, so every listed adapter is explicitly unqualified rather than assumed capable."
     reason_for_inclusion: "Qualification data must retain execution availability, measured evidence, expiry, and non-eligibility rather than treating model labels, effort labels, or missing measurements as a routing basis."
+  - artifact_id: GD-022
+    title: Independent-study source authorization and Bible-source rights preflight
+    repo: logos-governance-architecture
+    paths:
+      - governance/INDEPENDENT_STUDY_SOURCE_AUTHORIZATION.yaml
+      - governance/registry/BIBLE_SOURCE_ACQUISITION_CANDIDATES.yaml
+      - docs/governance/bible-source-and-licensing-policy.md
+      - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+      - scripts/validate_independent_study_source_authorization.py
+      - tests/test_independent_study_source_authorization.py
+    object_type: independent_study_source_rights_control
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: OD-C-OPEN-A-2026-07-10
+    owner_decision_ref: docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+    depends_on:
+      - GD-001
+      - GD-003
+      - GD-007
+      - GD-015
+      - GD-017
+    downstream_controls:
+      - no_institutional_credential_gate_for_research
+      - evidence_provenance_reproducibility_source_competence_review
+      - research_purpose_and_source_rights_separation
+      - preliminary_open_source_candidate_preflight
+      - no_source_text_import_from_purpose_authorization_alone
+      - component_level_original_language_rights_review
+    mirrored_by:
+      - planned_scripture_source_registry_mirror
+      - planned_boundary_source_registry_mirror
+    validators:
+      - scripts/validate_independent_study_source_authorization.py
+      - tests/test_independent_study_source_authorization.py
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/INDEPENDENT_STUDY_SOURCE_AUTHORIZATION.yaml
+      - governance/registry/BIBLE_SOURCE_ACQUISITION_CANDIDATES.yaml
+      - docs/governance/bible-source-and-licensing-policy.md
+      - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+      - scripts/validate_independent_study_source_authorization.py
+      - tests/test_independent_study_source_authorization.py
+      - AI_TABLE_OF_CONTENTS.md
+    provenance_note: "Added 2026-07-10 from the owner's verbatim OD-C-OPEN-A authorization and official-source rights preflight for WEB, SBLGNT, OSHB/WLC, and LXX2012."
+    reason_for_inclusion: "The project must welcome rigorous independent and church-based scholarship while preventing educational purpose, personal ownership, or noncommercial intent from silently becoming source-import, redistribution, AI-use, or theological authority."
