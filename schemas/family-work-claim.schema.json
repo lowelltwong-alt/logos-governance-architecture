@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/lowelltwong-alt/logos-governance-architecture/schemas/family-work-claim.schema.json",
+  "title": "Logos Family Work Claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "work_id", "repo", "task_id", "objective_key", "objective", "status",
+    "board_column", "claim_mode", "claimed_paths", "semantic_tags",
+    "roadmap_refs", "branch", "issue_url", "pr_url", "owner", "agent",
+    "started_at", "heartbeat_at", "stale_after_days", "authority_ceiling",
+    "dependencies", "related_work_ids", "overlap_resolution_ids",
+    "completion_evidence"
+  ],
+  "properties": {
+    "work_id": {"type": "string", "pattern": "^WORK-[A-Z0-9-]+$"},
+    "repo": {"type": "string", "minLength": 3},
+    "task_id": {"type": "string", "minLength": 2},
+    "objective_key": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "objective": {"type": "string", "minLength": 20},
+    "status": {"enum": ["proposed", "ready", "active", "blocked", "awaiting_review", "merged", "superseded", "abandoned", "archived"]},
+    "board_column": {"enum": ["backlog", "ready", "in_progress", "blocked", "review", "done", "archived"]},
+    "claim_mode": {"enum": ["exclusive_write", "additive_write", "read_only"]},
+    "claimed_paths": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "semantic_tags": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
+    "roadmap_refs": {"type": "array", "items": {"type": "string"}},
+    "branch": {"type": ["string", "null"]},
+    "issue_url": {"type": ["string", "null"]},
+    "pr_url": {"type": ["string", "null"]},
+    "owner": {"type": "string", "minLength": 2},
+    "agent": {"type": "string", "minLength": 2},
+    "started_at": {"type": "string", "format": "date-time"},
+    "heartbeat_at": {"type": "string", "format": "date-time"},
+    "stale_after_days": {"type": "integer", "minimum": 1},
+    "authority_ceiling": {"type": "string", "minLength": 5},
+    "dependencies": {"type": "array", "items": {"type": "string"}},
+    "related_work_ids": {"type": "array", "items": {"type": "string"}},
+    "overlap_resolution_ids": {"type": "array", "items": {"type": "string"}},
+    "completion_evidence": {"type": "array", "items": {"type": "string"}}
+  }
+}

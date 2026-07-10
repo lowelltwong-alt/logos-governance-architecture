@@ -104,6 +104,17 @@ before changing repo hierarchy, authority direction, data flow, routing,
 repository registration, branch cleanup, safety-branch deletion, or parallel-agent
 worktree cleanup.
 
+Before any new branch, worktree, roadmap implementation, or resumed task, read
+[`governance/FAMILY_WORK_COORDINATION_STANDARD.yaml`](governance/FAMILY_WORK_COORDINATION_STANDARD.yaml),
+[`governance/registry/FAMILY_WORK_REGISTRY.yaml`](governance/registry/FAMILY_WORK_REGISTRY.yaml),
+and the latest [`family worktree audit`](reports/FAMILY_WORKTREE_AUDIT_2026-07-10.md).
+Run `python scripts/validate_family_work_registry.py` and the read-only family
+audit. Reuse one existing work ID when the task or roadmap already exists. New
+work must register its identity, claimed paths, semantic tags, lease, dependencies,
+and authority ceiling before non-claim edits. Unresolved duplicate identity,
+shared roadmap, high-risk semantic overlap, or write-path overlap is a stop gate.
+Stale or dirty work is preserved for reconciliation; it is never auto-abandoned.
+
 The governance dependency map is a required first-class control surface. It
 records governance artifacts, owner authorization, dependencies, downstream
 controls, mirrors, and validators; it does not authorize child repos to

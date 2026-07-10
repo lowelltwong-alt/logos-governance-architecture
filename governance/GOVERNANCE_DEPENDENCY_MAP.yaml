@@ -1036,3 +1036,78 @@ artifacts:
       - AI_TABLE_OF_CONTENTS.md
     provenance_note: "Added 2026-07-10 from the owner's verbatim OD-C-OPEN-A authorization and official-source rights preflight for WEB, SBLGNT, OSHB/WLC, and LXX2012."
     reason_for_inclusion: "The project must welcome rigorous independent and church-based scholarship while preventing educational purpose, personal ownership, or noncommercial intent from silently becoming source-import, redistribution, AI-use, or theological authority."
+  - artifact_id: GD-023
+    title: Deterministic family work coordination and board projection
+    repo: logos-governance-architecture
+    paths:
+      - governance/FAMILY_WORK_COORDINATION_STANDARD.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - schemas/family-work-claim.schema.json
+      - docs/governance/family-work-coordination.md
+      - docs/governance/branch-reconciliation-register.md
+      - reports/FAMILY_WORKTREE_AUDIT_2026-07-10.md
+      - reports/FAMILY_WORKTREE_AUDIT_2026-07-10.yaml
+      - scripts/audit_family_work.py
+      - scripts/validate_family_work_registry.py
+      - tests/test_family_work_registry.py
+      - scripts/validation_contracts.py
+      - .github/workflows/governance-validation.yml
+      - AGENTS.md
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+      - docs/governance/README.md
+      - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+    object_type: family_work_coordination_control
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: owner_request_2026-07-10_deterministic_worktree_tracking
+    owner_decision_ref: governance/FAMILY_WORK_COORDINATION_STANDARD.yaml
+    depends_on:
+      - GD-001
+      - GD-002
+      - GD-003
+      - GD-007
+      - GD-015
+      - GD-017
+    downstream_controls:
+      - one_stable_work_identity_per_task
+      - mandatory_pre_edit_claim
+      - active_work_lease_and_stale_reconciliation
+      - deterministic_task_roadmap_path_and_high_risk_overlap
+      - dirty_unknown_work_preservation
+      - generated_family_worktree_inventory
+      - github_project_as_non_authorizing_projection
+      - short_windows_worktree_path_preflight
+      - owner_resolution_for_risky_parallel_work
+    mirrored_by:
+      - planned_scripture_family_work_claim_gate
+      - planned_boundary_family_work_claim_gate
+      - planned_doctrine_genealogy_family_work_claim_gate
+    validators:
+      - scripts/validate_family_work_registry.py
+      - tests/test_family_work_registry.py
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/FAMILY_WORK_COORDINATION_STANDARD.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - schemas/family-work-claim.schema.json
+      - docs/governance/family-work-coordination.md
+      - docs/governance/branch-reconciliation-register.md
+      - reports/FAMILY_WORKTREE_AUDIT_2026-07-10.md
+      - reports/FAMILY_WORKTREE_AUDIT_2026-07-10.yaml
+      - scripts/audit_family_work.py
+      - scripts/validate_family_work_registry.py
+      - tests/test_family_work_registry.py
+      - scripts/validation_contracts.py
+      - .github/workflows/governance-validation.yml
+      - AGENTS.md
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+      - docs/governance/README.md
+      - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    provenance_note: "Added 2026-07-10 after a family audit found forty linked worktrees, nine dirty worktrees, duplicate task signals, detached work, stale branches, and no durable cross-repo claim or lease surface."
+    reason_for_inclusion: "The owner and AI agents need an auto-populated scrum view backed by Git evidence and a fail-closed local registry so forgotten or upgraded ideas cannot silently restart on redundant or overlapping worktrees."

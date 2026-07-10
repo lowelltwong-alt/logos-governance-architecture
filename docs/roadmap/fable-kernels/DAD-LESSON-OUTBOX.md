@@ -2,7 +2,7 @@
 object_type: dad_ready_lesson_outbox
 trust_zone: learning-sidecar
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after owner request to make DAD aware of Fable feedback, Codex implementations, reusable kernels, lessons learned, and cross-domain transfer patterns. Updated 2026-07-07 to add feedback-trace and Wave-2 reusable lessons DAD-FABLE-021 through DAD-FABLE-032. Updated 2026-07-09 with post-Wave-2 audit and portable agent-routing lessons DAD-FABLE-033 through DAD-FABLE-039. Updated 2026-07-10 with AGENT-W1-A through OD-C-OPEN-A lessons DAD-FABLE-040 through DAD-FABLE-043."
+provenance_note: "Created 2026-07-06 by Codex after owner request to make DAD aware of Fable feedback, Codex implementations, reusable kernels, lessons learned, and cross-domain transfer patterns. Updated 2026-07-07 to add feedback-trace and Wave-2 reusable lessons DAD-FABLE-021 through DAD-FABLE-032. Updated 2026-07-09 with post-Wave-2 audit and portable agent-routing lessons DAD-FABLE-033 through DAD-FABLE-039. Updated 2026-07-10 with AGENT-W1-A through OD-C-OPEN-A lessons DAD-FABLE-040 through DAD-FABLE-043 and deterministic multi-worktree coordination lesson DAD-FABLE-044."
 reason_for_inclusion: "Capture reusable architecture lessons from the Fable/Codex doctrine-genealogy buildout so future agents and a future DAD workflow can discover, reuse, audit, and adapt them without relying on chat memory."
 ---
 
@@ -109,6 +109,7 @@ DAD must not ingest this as:
 | DAD-FABLE-041 | Separate capability, qualification, authority, independence, and cost in executable routing rules. | A provider name or low token price can masquerade as domain expertise or permission to bypass review. | AGENT-W2-A; DAD-FABLE-037 | Canonical non-runtime routing vocabulary with fail-closed specialist qualification and `A3_human_reserved` checks. | Legal work routing must independently establish competence, privilege/review authority, conflict independence, and cost; a preferred vendor or bargain rate cannot substitute for any of them. |
 | DAD-FABLE-042 | Missing adapter evidence is an explicit unqualified result, not a zero-risk default. | A fixture harness can create false confidence when no callable runtime actually produced results. | AGENT-W7-A | Source-safe pack plus current-alias register records `not_run`, null metrics, empty eligibility, and no role assignment until auditable execution occurs. | Vendor evaluation in legal systems must distinguish a completed benchmark from an unavailable integration; absence of evidence cannot quietly approve production use. |
 | DAD-FABLE-043 | Research quality is evidence-based, not credential-gated; purpose, access, and rights remain separate. | University affiliation can become an unjustified proxy for rigor, while noncommercial intent or a `.edu` login can be overread as blanket copying, text-mining, redistribution, or AI permission. | OD-C-OPEN-A | Recognize independent, personal, church, ministry, lay, and teaching research; assess evidence/provenance/reproducibility/source competence/review; allow owner-gated voluntary institutional access while retaining exact provider rights and credential boundaries. | Legal and policy systems should welcome self-represented, community, nonprofit, and independent researchers while keeping account access, confidentiality, text-mining, redistribution, and AI permissions explicit. |
+| DAD-FABLE-044 | Make the scrum board a projection of governed claims plus live repository evidence. | Manual boards, chats, branch names, and old roadmaps can each forget work, while stale age or a deleted card can be mistaken for permission to restart or discard it. | Owner request for deterministic worktree/roadmap awareness; professional Git worktree, GitHub Project, issue/PR, concurrency, and lease patterns | Stable work IDs, path and semantic claims, reciprocal owner overlap resolutions, heartbeat leases, live `git worktree --porcelain -z` inventory, squash/tree-equivalence detection, short Windows worktree roots, and fail-closed PR-branch claims. | Multi-repo legal, research, and knowledge-graph programs should reconstruct work from source control and durable task identity, use boards as views, and route stale/dirty/overlapping work to reconciliation rather than auto-deletion or duplicate execution. |
 
 ## Reusable Kernel Map For Secular / Legal Knowledge Graphs
 
@@ -151,7 +152,7 @@ knowledge graph:
 ## Future DAD Work
 
 When a formal DAD workflow exists, ingest this file into a DAD lesson registry
-with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-043`, preserving:
+with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-044`, preserving:
 
 - source file references;
 - owner decision references;

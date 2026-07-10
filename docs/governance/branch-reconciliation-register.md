@@ -2,7 +2,7 @@
 object_type: branch_reconciliation_register
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created on 2026-06-22 during the clean, auditable, chunking-ready trunk reconciliation pass after Scripture Graph PR #105 preserved stale-branch rediscovery instructions. Updated on 2026-06-22 after Scripture Graph PR #107 merged the T390 manuscript source catalog metadata plan and the stale detached Scripture worktree was removed. Updated on 2026-06-22 to docket the dirty parallel-agent T391 Scripture worktree with a local safety snapshot. Updated on 2026-07-07 for Fable Wave-2 W2-14 stale-branch hygiene after governance PR #93."
+provenance_note: "Created on 2026-06-22 during the clean, auditable, chunking-ready trunk reconciliation pass after Scripture Graph PR #105 preserved stale-branch rediscovery instructions. Updated on 2026-06-22 after Scripture Graph PR #107 merged the T390 manuscript source catalog metadata plan and the stale detached Scripture worktree was removed. Updated on 2026-06-22 to docket the dirty parallel-agent T391 Scripture worktree with a local safety snapshot. Updated on 2026-07-07 for Fable Wave-2 W2-14 stale-branch hygiene after governance PR #93. Updated on 2026-07-10 to link the deterministic family worktree audit and reconciliation workflow."
 reason_for_inclusion: "Keep branch cleanup, preservation, and unknown-branch decisions discoverable from the governance front door instead of relying on chat memory or local branch lists."
 ---
 
@@ -57,6 +57,17 @@ If none of those is true, classify the branch as `unknown_review_required` or `s
 | `logos-scripture-graph` | detached `origin/main` at `280c73b` in the root checkout | Root checkout was moved off stale `scratch/t423-M4-codex-gpt55` after confirming PR #158 was merged and the branch tip was an ancestor of `origin/main`. Local `main` remains checked out by `_codex_worktrees/logos-scripture-t467-harness-hardening`, so the root checkout was parked detached instead of stealing `main` from that worktree. |
 | `logos-boundary-literature` | `main` at `60a8f99` | Root checkout returned to clean `main`; stale merged branch `codex/governance-map-child-gate` was deleted locally/remotely after confirming PR #13 was merged and the branch tip was an ancestor of `origin/main`. An untracked Python cache under the boundary tests folder was removed. |
 | `logos-doctrine-genealogy` | `main` at `1e03972` | Already clean on `main`; no branch hygiene action needed. |
+
+## 2026-07-10 Deterministic Family Work Audit
+
+The first generated family audit is
+[`reports/FAMILY_WORKTREE_AUDIT_2026-07-10.md`](../../reports/FAMILY_WORKTREE_AUDIT_2026-07-10.md),
+with a machine-readable YAML companion. It observed all five configured family
+repos and every Git-linked worktree, including dirty, detached, duplicate-task,
+open-PR, and merged/superseded candidates. The audit introduces no deletion
+authorization. Every unresolved item must be assigned a governed work ID and an
+explicit continue, extend, supersede, split, parallel-boundary, or preserved-
+abandon decision before cleanup.
 
 ## Cleaned Branches
 
