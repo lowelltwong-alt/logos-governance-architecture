@@ -1,0 +1,114 @@
+object_type: current_adapter_qualification_register
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 under AGENT-W7-A. Current aliases are inventoried as unqualified because this governance workspace has no callable adapter runtime that can produce auditable fixture evidence."
+reason_for_inclusion: "Prevent model labels and effort names from becoming implied expertise or durable routing assignments while preserving an exact, auditable place to record future evidence."
+register_id: logos_current_adapter_qualification_register_v1
+decision_basis:
+  - AGENT-W7-A-2026-07-10
+  - governance/registry/agent_routing_vocabulary.yaml
+fixture_pack_ref: governance/registry/agent_qualification_fixture_manifest.yaml
+qualification_result_expiry_days: 30
+adapter_records:
+  - adapter_id: alias-sol
+    adapter_label: Sol
+    adapter_kind: environment_alias
+    runtime_adapter_available: false
+    qualification_status: not_run
+    execution_blocker: no_callable_adapter_runtime_in_current_governance_workspace
+    required_fixture_ids: []
+    completed_fixture_ids: []
+    total_cost_usd: null
+    elapsed_seconds: null
+    defect_count: null
+    escalation_quality: null
+    qualification_expires_at: null
+    role_assignment_authorized: false
+    eligible_work_classes: []
+    eligible_specialist_domains: []
+  - adapter_id: alias-terra
+    adapter_label: Terra
+    adapter_kind: environment_alias
+    runtime_adapter_available: false
+    qualification_status: not_run
+    execution_blocker: no_callable_adapter_runtime_in_current_governance_workspace
+    required_fixture_ids: []
+    completed_fixture_ids: []
+    total_cost_usd: null
+    elapsed_seconds: null
+    defect_count: null
+    escalation_quality: null
+    qualification_expires_at: null
+    role_assignment_authorized: false
+    eligible_work_classes: []
+    eligible_specialist_domains: []
+  - adapter_id: alias-luna
+    adapter_label: Luna
+    adapter_kind: environment_alias
+    runtime_adapter_available: false
+    qualification_status: not_run
+    execution_blocker: no_callable_adapter_runtime_in_current_governance_workspace
+    required_fixture_ids: []
+    completed_fixture_ids: []
+    total_cost_usd: null
+    elapsed_seconds: null
+    defect_count: null
+    escalation_quality: null
+    qualification_expires_at: null
+    role_assignment_authorized: false
+    eligible_work_classes: []
+    eligible_specialist_domains: []
+  - adapter_id: effort-low
+    adapter_label: low
+    adapter_kind: effort_adapter
+    runtime_adapter_available: false
+    qualification_status: not_run
+    execution_blocker: no_callable_adapter_runtime_in_current_governance_workspace
+    required_fixture_ids: []
+    completed_fixture_ids: []
+    total_cost_usd: null
+    elapsed_seconds: null
+    defect_count: null
+    escalation_quality: null
+    qualification_expires_at: null
+    role_assignment_authorized: false
+    eligible_work_classes: []
+    eligible_specialist_domains: []
+  - adapter_id: effort-high
+    adapter_label: high
+    adapter_kind: effort_adapter
+    runtime_adapter_available: false
+    qualification_status: not_run
+    execution_blocker: no_callable_adapter_runtime_in_current_governance_workspace
+    required_fixture_ids: []
+    completed_fixture_ids: []
+    total_cost_usd: null
+    elapsed_seconds: null
+    defect_count: null
+    escalation_quality: null
+    qualification_expires_at: null
+    role_assignment_authorized: false
+    eligible_work_classes: []
+    eligible_specialist_domains: []
+  - adapter_id: effort-ultra
+    adapter_label: ultra
+    adapter_kind: effort_adapter
+    runtime_adapter_available: false
+    qualification_status: not_run
+    execution_blocker: no_callable_adapter_runtime_in_current_governance_workspace
+    required_fixture_ids: []
+    completed_fixture_ids: []
+    total_cost_usd: null
+    elapsed_seconds: null
+    defect_count: null
+    escalation_quality: null
+    qualification_expires_at: null
+    role_assignment_authorized: false
+    eligible_work_classes: []
+    eligible_specialist_domains: []
+non_authorizations:
+  - adapter_qualification_by_name_or_reputation
+  - durable_role_assignment
+  - runtime_orchestration
+  - human_or_owner_gate_satisfaction_by_ai
+  - theology_or_source_authority

@@ -388,4 +388,8 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "name": "agent_routing_vocabulary",
             "command": [python, "scripts/validate_agent_routing_vocabulary.py"],
         },
+        {
+            "name": "agent_qualification_fixtures",
+            "command": [python, "scripts/validate_agent_qualification_fixtures.py"],
+        },
     ]

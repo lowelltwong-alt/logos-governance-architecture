@@ -950,3 +950,43 @@ artifacts:
       - tests/test_agent_routing_vocabulary.py
     provenance_note: "Added 2026-07-10 under AGENT-W2-A to make capability-first routing deterministic before adapters, durable roles, or runtime orchestration are authorized."
     reason_for_inclusion: "Agent routing must preserve economic efficiency without allowing cost, provider reputation, or an unqualified alias to replace specialist evidence, independent review, or human authority."
+  - artifact_id: GD-021
+    title: Source-safe agent adapter qualification fixtures
+    repo: logos-governance-architecture
+    paths:
+      - governance/registry/agent_qualification_fixture_manifest.yaml
+      - governance/registry/current_adapter_qualification_register.yaml
+      - docs/governance/agent-skills/adapter-qualification-fixtures.md
+      - scripts/validate_agent_qualification_fixtures.py
+      - scripts/run_agent_qualification_fixtures.py
+      - tests/test_agent_qualification_fixtures.py
+    object_type: agent_adapter_qualification_control
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: AGENT-W7-A-2026-07-10
+    owner_decision_ref: docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+    depends_on:
+      - GD-018
+      - GD-020
+    downstream_controls:
+      - source_safe_adapter_evaluation
+      - qualification_evidence_before_role_assignment
+      - measured_cost_defect_escalation_recording
+      - expiry_and_requalification
+      - unavailable_adapter_remains_unqualified
+    mirrored_by:
+      - planned_child_repo_adapter_registers
+    validators:
+      - scripts/validate_agent_qualification_fixtures.py
+      - scripts/run_agent_qualification_fixtures.py
+      - tests/test_agent_qualification_fixtures.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/registry/agent_qualification_fixture_manifest.yaml
+      - governance/registry/current_adapter_qualification_register.yaml
+      - docs/governance/agent-skills/adapter-qualification-fixtures.md
+      - scripts/validate_agent_qualification_fixtures.py
+      - scripts/run_agent_qualification_fixtures.py
+      - tests/test_agent_qualification_fixtures.py
+    provenance_note: "Added 2026-07-10 under AGENT-W7-A. The current workspace validates the fixture structure but cannot invoke named adapters, so every listed adapter is explicitly unqualified rather than assumed capable."
+    reason_for_inclusion: "Qualification data must retain execution availability, measured evidence, expiry, and non-eligibility rather than treating model labels, effort labels, or missing measurements as a routing basis."
