@@ -1,5 +1,11 @@
 # AI Front Door for Logos Fractal Theological Architecture
 
+Before proposing a material agent, CI, workflow, worktree, architecture,
+security, or recurring-process change, consult the
+[Engineering Practice Observatory](docs/governance/engineering-practice-observatory.md).
+Leading-company practice is evidence, not authority; recommendations must fit
+Logos owner authority, theological safety, auditability, scale, and cost.
+
 ## Purpose
 
 This file is the front door for humans and AI systems entering this repository.

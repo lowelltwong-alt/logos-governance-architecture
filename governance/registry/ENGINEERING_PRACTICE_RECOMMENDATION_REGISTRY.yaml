@@ -1,0 +1,124 @@
+object_type: engineering_practice_recommendation_registry
+trust_zone: proposed
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 by Codex as an owner-reviewable synthesis of the initial Engineering Practice Observatory source set."
+reason_for_inclusion: "Separate external source evidence from Logos-specific recommendations, fit judgments, pilots, rejections, and supersession history."
+schema_version: engineering_practice_recommendation_registry.v1
+registry_id: logos_engineering_practice_recommendations
+owner: Lowell Wong
+source_registry_ref: governance/registry/ENGINEERING_PRACTICE_SOURCE_REGISTRY.yaml
+recommendations:
+  - practice_id: EPR-001
+    title: Use the simplest composable workflow before adding a swarm
+    problem: "Agent count and orchestration complexity can grow faster than demonstrated task value."
+    beginner_explanation: "Start with one capable worker and deterministic checks. Add specialist or parallel agents only when the work truly needs different expertise, independent review, or parallel research."
+    recommendation_status: adopt
+    evidence_source_ids: [EPS-ANTHROPIC-001, EPS-ANTHROPIC-002]
+    evidence_summary: "Anthropic distinguishes workflows from agents, recommends simple composable patterns, and uses multi-agent delegation where research breadth benefits from parallel search."
+    logos_fit: "Strong fit because Logos has many deterministic tasks but reserves costly specialist review for Greek, Hebrew, textual criticism, theology, ontology, and high-leverage architecture."
+    fit_dimensions: {solo_maintainer_fit: high, theological_safety: high, auditability: high, economic_efficiency: high, operational_complexity: low, future_scalability: high}
+    benefits: [lower_cost, easier_debugging, explicit_escalation, less_duplicate_work]
+    risks: [under_escalation_if_triggers_are_incomplete]
+    when_to_use: [routine_validation, bounded_code_change, known_schema_work, source_catalog_grunt_work]
+    when_not_to_use: [cross_disciplinary_research, independent_theological_review, broad_parallel_source_discovery]
+    owner_decision_required: false
+    implementation_surfaces: [governance/registry/agent_routing_vocabulary.yaml]
+    last_reviewed_at: "2026-07-10"
+    next_review_due: "2026-10-08"
+    supersedes: []
+    deprecated_by: null
+  - practice_id: EPR-002
+    title: Require independent review for high-leverage agent changes
+    problem: "An implementing agent can share its own blind spots and rationalize defects in its solution."
+    beginner_explanation: "Let one agent build, then give a separate reviewer the change, requirements, and tests. The reviewer should try to disprove correctness instead of continuing the author's reasoning."
+    recommendation_status: adopt
+    evidence_source_ids: [EPS-OPENAI-001, EPS-GOOGLE-001]
+    evidence_summary: "OpenAI reports targeted agent review loops, while Google treats independent review as a mechanism for improving code health."
+    logos_fit: "Strong for governance, authority boundaries, chunking, textual-critical infrastructure, and cross-repo architecture; excessive for trivial metadata formatting."
+    fit_dimensions: {solo_maintainer_fit: medium, theological_safety: high, auditability: high, economic_efficiency: medium, operational_complexity: medium, future_scalability: high}
+    benefits: [independent_defect_discovery, architecture_review, audit_evidence]
+    risks: [token_cost, correlated_model_errors, review_theater]
+    when_to_use: [governance_change, output_change, authority_change, shared_schema, security_or_rights_change]
+    when_not_to_use: [mechanical_low_risk_edit_with_complete_deterministic_tests]
+    owner_decision_required: false
+    implementation_surfaces: [docs/governance/agent-skills/capability-first-routing-standard.md]
+    last_reviewed_at: "2026-07-10"
+    next_review_due: "2026-09-08"
+    supersedes: []
+    deprecated_by: null
+  - practice_id: EPR-003
+    title: Keep repository knowledge versioned, indexed, and progressively disclosed
+    problem: "Agents cannot reliably use decisions that live only in chat, memory, or one enormous instruction file."
+    beginner_explanation: "Store durable decisions near the code, give agents a short map to the right document, and mechanically check links, freshness, and ownership."
+    recommendation_status: adopt
+    evidence_source_ids: [EPS-OPENAI-001, EPS-ANTHROPIC-003]
+    evidence_summary: "OpenAI describes repository knowledge as the system of record with progressive disclosure; Anthropic emphasizes persistent artifacts between long-running sessions."
+    logos_fit: "Directly fits Logos decision registers, AI tables of contents, handoffs, lessons, dependency maps, and work claims."
+    fit_dimensions: {solo_maintainer_fit: high, theological_safety: high, auditability: high, economic_efficiency: high, operational_complexity: medium, future_scalability: high}
+    benefits: [durable_context, newcomer_onboarding, deterministic_discovery, reduced_chat_dependency]
+    risks: [documentation_sprawl, stale_duplicate_surfaces]
+    when_to_use: [durable_decision, architecture_rule, reusable_lesson, multi_session_work]
+    when_not_to_use: [ephemeral_scratch_note_without_downstream_effect]
+    owner_decision_required: false
+    implementation_surfaces: [AI_TABLE_OF_CONTENTS.md, governance/GOVERNANCE_DEPENDENCY_MAP.yaml]
+    last_reviewed_at: "2026-07-10"
+    next_review_due: "2026-09-08"
+    supersedes: []
+    deprecated_by: null
+  - practice_id: EPR-004
+    title: Treat continuous board-driven agents as a bounded pilot, not the default
+    problem: "Always-on agents can consume cost, multiply conflicts, and outrun human or theological review capacity."
+    beginner_explanation: "A task board can wake agents automatically, but only use that mode for work with clear claims, tests, budgets, stop rules, and review capacity."
+    recommendation_status: watch
+    evidence_source_ids: [EPS-OPENAI-002, EPS-ANTHROPIC-001]
+    evidence_summary: "OpenAI reports board-driven continuous orchestration; Anthropic cautions that agentic complexity trades cost and latency for performance."
+    logos_fit: "Useful later for deterministic maintenance and research-watch queues, but inappropriate as a universal Logos execution mode today."
+    fit_dimensions: {solo_maintainer_fit: low, theological_safety: medium, auditability: medium, economic_efficiency: low, operational_complexity: high, future_scalability: high}
+    benefits: [reduced_forgetting, queue_throughput, background_maintenance]
+    risks: [cost_runaway, duplicate_work, review_overload, authority_leakage]
+    when_to_use: [bounded_scheduled_audit, deterministic_maintenance, explicit_budgeted_pilot]
+    when_not_to_use: [theological_decision, owner_gate, source_import, output_change, ambiguous_research]
+    owner_decision_required: true
+    implementation_surfaces: [governance/registry/FAMILY_WORK_REGISTRY.yaml]
+    last_reviewed_at: "2026-07-10"
+    next_review_due: "2026-08-09"
+    supersedes: []
+    deprecated_by: null
+  - practice_id: EPR-005
+    title: Use redundant scheduled and event-triggered practice review
+    problem: "A maintainer can forget manual research, while scheduled automation may be delayed or disabled."
+    beginner_explanation: "Run a cheap check when relevant changes happen, schedule a weekly reminder at an off-hour minute, and keep a manual button. If a review becomes overdue, create a visible issue."
+    recommendation_status: pilot
+    evidence_source_ids: [EPS-GITHUB-001, EPS-GITHUB-002]
+    evidence_summary: "GitHub documents scheduled, pull-request, and manual triggers and warns that scheduled runs can be delayed and depend on default-branch activity."
+    logos_fit: "Strong fit when the scheduled job detects due work but does not pretend to complete research or adopt recommendations."
+    fit_dimensions: {solo_maintainer_fit: high, theological_safety: high, auditability: high, economic_efficiency: high, operational_complexity: low, future_scalability: high}
+    benefits: [reduced_forgetting, visible_overdue_state, manual_recovery, low_idle_cost]
+    risks: [alert_fatigue, schedule_delay, stale_issue_noise]
+    when_to_use: [practice_source_review, documentation_gardening, dependency_watch, recurring_audit]
+    when_not_to_use: [automatic_governance_adoption, autonomous_theological_decision]
+    owner_decision_required: false
+    implementation_surfaces: [.github/workflows/engineering-practice-watch.yml, scripts/run_engineering_practice_watch.py]
+    last_reviewed_at: "2026-07-10"
+    next_review_due: "2026-08-09"
+    supersedes: []
+    deprecated_by: null
+  - practice_id: EPR-006
+    title: Prefer small coherent changes over large mixed changes
+    problem: "Large mixed changes are difficult to understand, test, review, revert, and run safely in parallel."
+    beginner_explanation: "Make each pull request answer one coherent question. Do not split an invariant or migration so finely that the intermediate state becomes unsafe."
+    recommendation_status: adopt
+    evidence_source_ids: [EPS-GOOGLE-002]
+    evidence_summary: "Google recommends small self-contained changes for design, review, testing, and delivery quality."
+    logos_fit: "Matches the governed PR sequence, provided cross-file contracts and required companion registers remain in the same atomic change."
+    fit_dimensions: {solo_maintainer_fit: high, theological_safety: high, auditability: high, economic_efficiency: high, operational_complexity: low, future_scalability: high}
+    benefits: [reviewability, safer_parallelism, easier_revert, clearer_audit]
+    risks: [unsafe_fragmentation, excess_pr_overhead]
+    when_to_use: [independent_governance_layer, focused_validator, isolated_research_packet, narrow_bug_fix]
+    when_not_to_use: [change_requires_atomic_schema_validator_and_migration_contract]
+    owner_decision_required: false
+    implementation_surfaces: [docs/governance/ai-workflow/validation-and-pr-requirements.md]
+    last_reviewed_at: "2026-07-10"
+    next_review_due: "2027-01-06"
+    supersedes: []
+    deprecated_by: null

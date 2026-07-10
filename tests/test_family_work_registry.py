@@ -12,6 +12,21 @@ def registry() -> dict:
     return validator.load_yaml(validator.REGISTRY)
 
 
+def active_claim(data: dict) -> dict:
+    claim = deepcopy(data["work_items"][0])
+    claim.update({
+        "status": "active",
+        "board_column": "in_progress",
+        "completion_evidence": [],
+        "heartbeat_at": "2026-07-10T20:00:00Z",
+        "related_work_ids": [],
+        "overlap_resolution_ids": [],
+    })
+    data["work_items"] = [claim]
+    data["overlap_resolutions"] = []
+    return claim
+
+
 def test_current_registry_validates() -> None:
     failures, _ = validator.validate_registry(
         registry(), as_of=datetime(2026, 7, 10, 20, 0, tzinfo=timezone.utc)
@@ -26,7 +41,7 @@ def test_claim_schema_and_validator_require_the_same_fields() -> None:
 
 def test_duplicate_active_task_fails_closed() -> None:
     data = registry()
-    duplicate = deepcopy(data["work_items"][0])
+    duplicate = deepcopy(active_claim(data))
     duplicate["work_id"] = "WORK-GOV-FAMILY-COORD-002"
     duplicate["branch"] = "codex/duplicate"
     data["work_items"].append(duplicate)
@@ -38,7 +53,7 @@ def test_duplicate_active_task_fails_closed() -> None:
 
 def test_exclusive_path_overlap_requires_owner_resolution() -> None:
     data = registry()
-    overlapping = deepcopy(data["work_items"][0])
+    overlapping = deepcopy(active_claim(data))
     overlapping.update({
         "work_id": "WORK-GOV-OVERLAP-002",
         "task_id": "OVERLAP-002",
@@ -58,7 +73,7 @@ def test_exclusive_path_overlap_requires_owner_resolution() -> None:
 
 def test_owner_resolution_allows_recorded_parallel_boundary() -> None:
     data = registry()
-    left = data["work_items"][0]
+    left = active_claim(data)
     overlapping = deepcopy(left)
     overlapping.update({
         "work_id": "WORK-GOV-OVERLAP-003",
@@ -89,9 +104,10 @@ def test_owner_resolution_allows_recorded_parallel_boundary() -> None:
 
 def test_stale_lease_warns_but_does_not_auto_abandon() -> None:
     data = registry()
-    original_status = data["work_items"][0]["status"]
-    data["work_items"][0]["started_at"] = "2026-05-31T00:00:00Z"
-    data["work_items"][0]["heartbeat_at"] = "2026-06-01T00:00:00Z"
+    claim = active_claim(data)
+    original_status = claim["status"]
+    claim["started_at"] = "2026-05-31T00:00:00Z"
+    claim["heartbeat_at"] = "2026-06-01T00:00:00Z"
 
     failures, warnings = validator.validate_registry(
         data, as_of=datetime(2026, 7, 10, tzinfo=timezone.utc)
@@ -99,7 +115,7 @@ def test_stale_lease_warns_but_does_not_auto_abandon() -> None:
 
     assert failures == []
     assert any("owner reconciliation required" in warning for warning in warnings)
-    assert data["work_items"][0]["status"] == original_status
+    assert claim["status"] == original_status
 
 
 def test_path_overlap_is_conservative_for_globs() -> None:
@@ -125,7 +141,7 @@ def test_clean_merged_worktree_becomes_reviewable_cleanup_candidate() -> None:
 
 def test_live_audit_blocks_claim_that_overlaps_unregistered_worktree() -> None:
     data = registry()
-    claim = data["work_items"][0]
+    claim = active_claim(data)
     payload = {"worktrees": [{
         "repo": claim["repo"],
         "worktree_name": "forgotten-work",

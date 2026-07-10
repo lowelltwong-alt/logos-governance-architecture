@@ -1,0 +1,97 @@
+object_type: engineering_practice_observatory_standard
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 by Codex after the owner requested a recurring, evidence-based sentinel for leading AI and software engineering practices that remains appropriate for a solo-maintainer Logos project."
+reason_for_inclusion: "Make engineering-practice research routine, discoverable, economical, and owner-governed instead of depending on memory, fashion, or imitation of large organizations."
+schema_version: engineering_practice_observatory_standard.v1
+standard_id: logos_engineering_practice_observatory_v1
+owner: Lowell Wong
+owner_request_ref: https://github.com/lowelltwong-alt/logos-governance-architecture/issues/108
+governing_question: "Would a leading engineering organization recognize this approach, what current primary evidence supports it, and does it fit Logos?"
+forbidden_question: "How do we imitate the largest company?"
+authority:
+  leading_company_practice_is_evidence_not_authority: true
+  owner_approval_required_for_governance_adoption: true
+  ai_may_satisfy_owner_gate: false
+  research_may_directly_mutate_runtime_or_content: false
+  recommendation_may_override_theological_guardrails: false
+operating_principles:
+  - simplest_composable_pattern_first
+  - escalate_agent_complexity_only_when_expected_value_exceeds_cost
+  - separate_source_claim_from_observatory_synthesis
+  - preserve_company_context_and_scale_limitations
+  - compare_multiple_primary_sources_for_high_leverage_recommendations
+  - encode_accepted_lessons_in_repo_surfaces_and_validators
+  - retain_rejected_and_superseded_recommendations_for_audit
+  - teach_reasoning_and_tradeoffs_not_only_recipes
+sentinel_layers:
+  - layer_id: deterministic_event_sentinel
+    cost_tier: low
+    activation: every_relevant_pull_request_or_manual_run
+    purpose: detect structured triggers, overdue research, missing evidence, and stale recommendations
+  - layer_id: primary_source_research_scout
+    cost_tier: medium
+    activation: due_source_or_novel_high_leverage_trigger
+    purpose: retrieve current first-party engineering guidance and preserve exact provenance
+  - layer_id: logos_applicability_analyst
+    cost_tier: medium
+    activation: candidate_recommendation
+    purpose: compare source context with Logos scale, authority, risk, cost, and maintainability
+  - layer_id: independent_architecture_reviewer
+    cost_tier: high
+    activation: architecture_or_governance_adoption_candidate
+    purpose: challenge fit, alternatives, hidden assumptions, and cargo-cult risk
+  - layer_id: red_team
+    cost_tier: high
+    activation: high_risk_or_high_cost_candidate
+    purpose: premortem misuse, failure, lock-in, authority leakage, and operational burden
+  - layer_id: learning_librarian
+    cost_tier: low
+    activation: accepted_rejected_or_superseded_recommendation
+    purpose: update beginner cards, tags, source links, lessons, and expiry dates
+cadence:
+  weekly_lightweight_watch:
+    schedule: Monday 09:00 America/New_York
+    actions: [check_due_sources, check_trigger_queue, refresh_watch_report, surface_overdue_issue]
+  monthly_deep_review:
+    due_rule: registry_next_review_due
+    actions: [cross_source_synthesis, recommendation_fit_review, cost_and_complexity_review]
+  quarterly_library_review:
+    due_rule: first_week_of_January_April_July_October
+    actions: [prune_duplicates, mark_superseded, audit_broken_links, review_beginner_clarity]
+  event_triggered_review:
+    triggers:
+      - new_agent_or_multi_agent_architecture
+      - workflow_or_ci_architecture_change
+      - repeated_ci_failure_or_long_runtime
+      - new_worktree_or_parallel_execution_pattern
+      - architecture_schema_or_dependency_direction_change
+      - security_privacy_rights_or_authority_change
+      - postmortem_or_repeated_defect
+      - major_model_tool_or_platform_release
+      - owner_requests_professional_practice_comparison
+schedule_resilience:
+  github_schedule_is_reminder_not_exclusive_clock: true
+  codex_weekly_automation_required: true
+  manual_workflow_dispatch_required: true
+  overdue_source_creates_visible_issue: true
+  missed_schedule_does_not_mark_review_complete: true
+  off_hour_cron_minute: 17
+recommendation_statuses: [adopt, pilot, watch, reject, owner_decision_required, superseded]
+required_fit_dimensions:
+  - solo_maintainer_fit
+  - theological_safety
+  - auditability
+  - economic_efficiency
+  - operational_complexity
+  - future_scalability
+non_authorizations:
+  - automatic_governance_adoption
+  - automatic_code_or_workflow_mutation
+  - ai_owner_gate_satisfaction
+  - theology_or_scripture_authority
+  - source_or_content_import
+  - chunk_or_graph_output_change
+  - vendor_reputation_as_proof
+  - large_company_scale_as_default_fit
+

@@ -152,7 +152,7 @@ knowledge graph:
 ## Future DAD Work
 
 When a formal DAD workflow exists, ingest this file into a DAD lesson registry
-with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-044`, preserving:
+with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-045`, preserving:
 
 - source file references;
 - owner decision references;
@@ -160,6 +160,19 @@ with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-044`, preserving:
 - reusable kernel map;
 - legal/secular transfer watchpoints;
 - validation and governance dependency references.
+
+### DAD-FABLE-045: Engineering practice is evidence, not authority
+
+Use a recurring observatory with deterministic path triggers, explicit source
+freshness, Logos-specific fit dimensions, independent review for high-leverage
+adoptions, and redundant scheduling. Ask whether a leading organization would
+recognize the method and what evidence supports it, then separately ask whether
+it fits the solo maintainer, authority boundaries, theological safeguards,
+audit needs, cost, and operational capacity. Never imitate an organization only
+because it is large or prestigious.
+
+Reusable kernel: source registry + recommendation registry + due-date watcher +
+event triggers + owner-gated adoption + retained rejection/supersession history.
 
 Future agents should update this outbox and the feedback trace matrix when they
 create or discover a reusable architecture lesson from Fable, Codex, audits, PR
