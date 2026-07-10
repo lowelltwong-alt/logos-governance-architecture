@@ -56,21 +56,29 @@ AI agents working in this repository must follow these guardrails:
 
 1. [`README.md`](README.md)
 2. [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md)
-3. [`docs/governance/README.md`](docs/governance/README.md)
-4. [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
-5. [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)
-6. [`docs/governance/tag-registry.md`](docs/governance/tag-registry.md)
-7. [`docs/governance/relationship-registry.md`](docs/governance/relationship-registry.md)
-8. [`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md)
-9. [`docs/governance/inference-policy.md`](docs/governance/inference-policy.md)
-10. [`docs/governance/node-types.md`](docs/governance/node-types.md)
-11. [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md)
-12. [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md)
-13. [`docs/governance/ai-workflow/goal-prompt-premortem-preflight.md`](docs/governance/ai-workflow/goal-prompt-premortem-preflight.md) before generating any goal prompt, next-agent prompt, handoff prompt, slash-style command prompt, or prompt sequence.
+3. [`docs/governance/family-work-coordination.md`](docs/governance/family-work-coordination.md)
+4. [`governance/registry/FAMILY_WORK_REGISTRY.yaml`](governance/registry/FAMILY_WORK_REGISTRY.yaml)
+5. [`docs/governance/README.md`](docs/governance/README.md)
+6. [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
+7. [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)
+8. [`docs/governance/tag-registry.md`](docs/governance/tag-registry.md)
+9. [`docs/governance/relationship-registry.md`](docs/governance/relationship-registry.md)
+10. [`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md)
+11. [`docs/governance/inference-policy.md`](docs/governance/inference-policy.md)
+12. [`docs/governance/node-types.md`](docs/governance/node-types.md)
+13. [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md)
+14. [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md)
+15. [`docs/governance/ai-workflow/goal-prompt-premortem-preflight.md`](docs/governance/ai-workflow/goal-prompt-premortem-preflight.md) before generating any goal prompt, next-agent prompt, handoff prompt, slash-style command prompt, or prompt sequence.
 
 ## Preferred work pattern
 
 Before changing files:
+
+0. Run family work preflight. Read the registry and latest worktree audit, then
+   search the proposed task ID, roadmap refs, semantic tags, branch, and paths.
+   Reuse or update the existing work ID where one exists. Register a new claim
+   before non-claim edits. Stop for the owner if the validator finds risky or
+   ambiguous overlap.
 
 1. Identify which layer the change belongs to:
    - source authority

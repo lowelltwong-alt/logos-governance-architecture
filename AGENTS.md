@@ -2,7 +2,7 @@
 object_type: repository_governance_contract
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created on 2026-04-05 from the maintainer's governing contract provided in chat. Updated on 2026-04-30 to add a live-main startup protocol for new Codex work."
+provenance_note: "Created on 2026-04-05 from the maintainer's governing contract provided in chat. Updated on 2026-04-30 to add a live-main startup protocol for new Codex work. Updated on 2026-07-10 to require family work-registry and overlap preflight before new work."
 reason_for_inclusion: "Keep the working contract on disk at the repo root so future edits follow the same governance rules."
 ---
 
@@ -34,7 +34,18 @@ git checkout main
 git pull --ff-only origin main
 git status
 git log --oneline --decorate -n 8
+python scripts/validate_family_work_registry.py
 ```
+
+Before creating or reusing a branch/worktree, read
+`governance/registry/FAMILY_WORK_REGISTRY.yaml` and the latest
+`reports/FAMILY_WORKTREE_AUDIT_*.md`. Search for the same task ID, roadmap,
+semantic tags, and claimed paths. New work must receive one governed work ID and
+claim before non-claim edits begin. Continue, extend, supersede, split, or permit
+parallel work only through the controlled coordination policy. Stop for owner
+input on dirty-worktree, shared-roadmap, high-risk-tag, or write-path ambiguity.
+After adding the claim, run `scripts/audit_family_work.py --check-work-id` against
+the live family root before other edits.
 
 If the task explicitly continues an existing branch, reviews an old pull request, or inspects historical state, do not blindly switch, reset, rebase, or pull over that work. First report the current branch, working-tree state, and relationship to `origin/main`.
 
@@ -54,6 +65,7 @@ Do not reset, rebase, force-push, discard local work, delete branches, or overwr
 - Preserve history through deprecation rather than deletion.
 - Sync from live `origin/main` before starting new repository edits unless explicitly continuing existing branch work.
 - Stop and report dirty, divergent, or non-fast-forward local state before editing.
+- Do not start duplicate or overlapping work without a validated family work claim and any required owner overlap resolution.
 
 ## Required metadata for meaningful additions
 Every meaningful addition should declare:

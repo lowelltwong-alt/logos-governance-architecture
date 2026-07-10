@@ -1,0 +1,112 @@
+object_type: family_work_coordination_standard
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 by Codex after the owner required deterministic awareness of unfinished worktrees, roadmaps, duplicate starts, and risky overlap across the Logos repo family."
+reason_for_inclusion: "Parallel AI work needs one durable identity, claim, lease, and lifecycle model so forgotten work is rediscovered before a new branch edits the same problem or files."
+schema_version: family_work_coordination_standard.v1
+standard_id: logos_family_work_coordination_v1
+owner: Lowell Wong
+source_repo: logos-governance-architecture
+source_of_truth:
+  work_identity: governed_work_claim
+  implementation_state: git_branch_worktree_and_pull_request
+  human_view: github_project_projection
+  local_observation: generated_family_worktree_audit
+  rule: "The Project board is a synchronized view, not the sole record. Manual card movement cannot authorize work or override repository evidence."
+required_preflight_order:
+  - read_ai_front_door
+  - read_family_work_registry
+  - inventory_live_worktrees_and_open_pull_requests
+  - search_task_roadmap_and_semantic_keys
+  - propose_or_reuse_one_work_id
+  - evaluate_path_and_semantic_overlap
+  - stop_for_owner_when_risky_or_ambiguous
+  - create_or_update_claim_before_non_claim_edits
+controlled_statuses:
+  - proposed
+  - ready
+  - active
+  - blocked
+  - awaiting_review
+  - merged
+  - superseded
+  - abandoned
+  - archived
+active_statuses:
+  - proposed
+  - ready
+  - active
+  - blocked
+  - awaiting_review
+board_columns:
+  proposed: backlog
+  ready: ready
+  active: in_progress
+  blocked: blocked
+  awaiting_review: review
+  merged: done
+  superseded: archived
+  abandoned: archived
+  archived: archived
+claim_modes:
+  - exclusive_write
+  - additive_write
+  - read_only
+lease_policy:
+  heartbeat_required_for_statuses: [active, blocked, awaiting_review]
+  default_stale_after_days: 7
+  stale_means_abandoned: false
+  stale_action: owner_reconciliation_required
+  dirty_worktree_may_be_auto_removed: false
+  unknown_work_may_be_auto_deleted: false
+overlap_policy:
+  exact_work_id_or_task_id: hard_stop
+  shared_roadmap_target: hard_stop
+  overlapping_exclusive_path: hard_stop
+  overlapping_additive_path: owner_or_recorded_split_required
+  shared_high_risk_semantic_tag: owner_review_required
+  semantic_similarity_without_structured_match: advisory_only
+  allowed_resolutions:
+    - continue_existing
+    - extend_existing
+    - supersede_existing
+    - split_paths
+    - allow_parallel_with_recorded_boundaries
+    - abandon_after_preservation
+  resolution_rule: "A hard stop may clear only through an owner-recorded overlap resolution referenced by every affected active claim."
+high_risk_semantic_tags:
+  - governance_authority
+  - scripture_canonical_data
+  - chunk_output
+  - reviewed_gold
+  - route_or_evaluator
+  - textual_critical_decision
+  - source_import
+  - doctrine_lineage
+  - graph_retrieval_vector_truth
+  - theology_authority
+worktree_policy:
+  canonical_short_root_windows: "C:/wt"
+  maximum_checkout_path_characters_windows: 120
+  use_git_worktree_porcelain_z: true
+  detached_worktree_requires_explicit_purpose: true
+  locked_worktree_requires_reason: true
+  branch_cleanup_requires_reconciliation_evidence: true
+github_projection:
+  project_name: Logos Family Work
+  setup_status: pending_project_token_scope
+  setup_blocker: "The current gh token lacks read:project/project scope. Refresh those scopes before creating or configuring the Project."
+  auto_add_issues_and_pull_requests: true
+  link_pull_request_to_work_issue: true
+  close_or_complete_on_merge: true
+  retain_archived_item_metadata: true
+  actions_concurrency_key: "logos-${repo}-${work_id}"
+non_authorizations:
+  - scripture_or_chunk_output_change
+  - reviewed_gold_or_lineage_promotion
+  - source_import
+  - preferred_reading_or_source_tradition
+  - canon_scope_change
+  - graph_retrieval_vector_truth
+  - theology_authority
+  - automatic_deletion_of_unknown_or_dirty_work

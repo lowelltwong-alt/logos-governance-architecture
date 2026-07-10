@@ -349,6 +349,10 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "command": [python, "scripts/validate_legacy_content_ownership_inventory.py"],
         },
         {
+            "name": "family_work_registry",
+            "command": [python, "scripts/validate_family_work_registry.py"],
+        },
+        {
             "name": "external_advisory_authority_firewall",
             "command": [python, "scripts/validate_external_advisory_authority_firewall.py"],
         },

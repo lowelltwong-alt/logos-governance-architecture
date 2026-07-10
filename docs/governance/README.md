@@ -53,6 +53,7 @@ Preferred order of extension:
 - `exceptions-lake-integration-note.md` — landing map showing where exceptions-lake import concepts were absorbed
 - `change-taxonomy.yaml` — machine-readable change classification vocabulary aligned to the cleaned governance surface
 - `branch-reconciliation-register.md` — branch cleanup, preservation, unknown-branch docket, and clean-trunk audit evidence for stale branches, safety branches, Codex worktrees, and parallel-agent leftovers
+- `family-work-coordination.md` - mandatory work identity, claim, lease, overlap, reconciliation, and GitHub Project projection workflow for all family tasks and worktrees
 - `biblical-connection-vocabulary.md` — first approved subset of scholar-recognizable biblical and theological relationship terms for future governed graph and retrieval work
 - `doctrine-genealogy-vocabulary.md` - controlled vocabulary for planned doctrine-genealogy schemas and validators
 - `scripture-taxonomy-and-ontology.md` — scripture-layer ontology design for books, chapters, pericopes, texts, and interpretations
@@ -63,6 +64,7 @@ Preferred order of extension:
 
 ### Machine-readable registries
 - `../../governance/registry/entity_ids.yaml` - shared identity registry scaffold for persons, councils, schools/movements, and instruments
+- `../../governance/registry/FAMILY_WORK_REGISTRY.yaml` - active family work IDs, task/path claims, leases, dependencies, and overlap resolutions
 
 ## How to use this folder
 
