@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, DR-OPTION-A child schema mirror PR #6, Wave-2 owner decisions D11-D16, W2-14 stale-branch hygiene evidence, W2-1 mirror/reference freshness controls, the Fable feedback trace matrix, and Wave-2 DAD lesson expansion. Updated 2026-07-09 to register the independent post-Wave-2 gap audit and the model-agnostic, economically tiered agent capability buildout roadmap."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, DR-OPTION-A child schema mirror PR #6, Wave-2 owner decisions D11-D16, W2-14 stale-branch hygiene evidence, W2-1 mirror/reference freshness controls, the Fable feedback trace matrix, and Wave-2 DAD lesson expansion. Updated 2026-07-09 to register the independent post-Wave-2 gap audit and the model-agnostic, economically tiered agent capability buildout roadmap. Updated 2026-07-10 to register the AGENT-W1-A legacy ownership inventory."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -862,3 +862,50 @@ artifacts:
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
     provenance_note: "Added 2026-07-09 after the owner required token-efficient grunt-work agents, domain-qualified research agents, and durable role instructions that can map to Sol, Terra, Luna, current GPT effort settings, other vendors, and future model names without rewriting the workflow."
     reason_for_inclusion: "Agent selection affects cost, source access, theological and scholarly risk, review independence, and future portability; capability, domain qualification, authority, effort, and current model aliases must remain separate and auditable."
+  - artifact_id: GD-019
+    title: Legacy content ownership inventory
+    repo: logos-governance-architecture
+    paths:
+      - governance/LEGACY_CONTENT_OWNERSHIP_INVENTORY.yaml
+      - scripts/validate_legacy_content_ownership_inventory.py
+      - tests/test_legacy_content_ownership_inventory.py
+    object_type: legacy_content_ownership_inventory
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: AGENT-W1-A-2026-07-10
+    owner_decision_ref: docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+    depends_on:
+      - GD-001
+      - GD-002
+      - GD-003
+      - GD-007
+      - GD-014
+      - GD-015
+      - GD-017
+      - GD-018
+    downstream_controls:
+      - exact_one_legacy_path_disposition
+      - no_silent_legacy_content_lane
+      - source_link_preservation_before_migration
+      - path_level_migration_packet_required
+      - no_bulk_migration_or_deletion_from_inventory
+      - governance_control_plane_identity_enforced
+    mirrored_by:
+      - logos-scripture-graph/AI_TABLE_OF_CONTENTS.md
+      - logos-boundary-literature/AI_TABLE_OF_CONTENTS.md
+      - logos-doctrine-genealogy/AI_TABLE_OF_CONTENTS.md
+    validators:
+      - scripts/validate_legacy_content_ownership_inventory.py
+      - tests/test_legacy_content_ownership_inventory.py
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/LEGACY_CONTENT_OWNERSHIP_INVENTORY.yaml
+      - scripts/validate_legacy_content_ownership_inventory.py
+      - tests/test_legacy_content_ownership_inventory.py
+      - AI_TABLE_OF_CONTENTS.md
+      - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    provenance_note: "Added 2026-07-10 after AGENT-W1-A selected governance/control-plane identity and required an auditable disposition for every scoped legacy content path before any migration work."
+    reason_for_inclusion: "Legacy content from the earlier monorepo-like architecture can create duplicate authority and ambiguous AI routing. The inventory makes future ownership explicit while preserving all artifacts and links until separate path-level migration authorization."

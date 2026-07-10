@@ -2,7 +2,7 @@
 object_type: dad_ready_lesson_outbox
 trust_zone: learning-sidecar
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after owner request to make DAD aware of Fable feedback, Codex implementations, reusable kernels, lessons learned, and cross-domain transfer patterns. Updated 2026-07-07 to add feedback-trace and Wave-2 reusable lessons DAD-FABLE-021 through DAD-FABLE-032. Updated 2026-07-09 with post-Wave-2 audit and portable agent-routing lessons DAD-FABLE-033 through DAD-FABLE-039."
+provenance_note: "Created 2026-07-06 by Codex after owner request to make DAD aware of Fable feedback, Codex implementations, reusable kernels, lessons learned, and cross-domain transfer patterns. Updated 2026-07-07 to add feedback-trace and Wave-2 reusable lessons DAD-FABLE-021 through DAD-FABLE-032. Updated 2026-07-09 with post-Wave-2 audit and portable agent-routing lessons DAD-FABLE-033 through DAD-FABLE-039. Updated 2026-07-10 with AGENT-W1-A legacy ownership lesson DAD-FABLE-040."
 reason_for_inclusion: "Capture reusable architecture lessons from the Fable/Codex doctrine-genealogy buildout so future agents and a future DAD workflow can discover, reuse, audit, and adapt them without relying on chat memory."
 ---
 
@@ -105,6 +105,7 @@ DAD must not ingest this as:
 | DAD-FABLE-037 | Separate capability, domain expertise, authority, independence, and cost. | Broad model tiers made expensive agents do grunt work and let model names stand in for expertise. | Post-Wave-2 GAP-15 | Economically tiered capability roadmap with qualification fixtures and replaceable adapters. | Route law-firm work to the cheapest qualified tool while separately enforcing legal-domain competence, privilege, independence, and attorney authority. |
 | DAD-FABLE-038 | Flat lens registries create hidden category errors. | Methods, genres, traditions, systems, and conclusions were mixed into one enum, and missing data could look neutral. | Post-Wave-2 GAP-07 | Planned typed composable lens dimensions and explicit not-evaluated/not-applicable states. | Legal analysis should separate interpretive method, jurisdiction, client posture, authority set, and strategy rather than calling all of them a single lens. |
 | DAD-FABLE-039 | Resolve repo identity before scaling content. | A renamed/split repo can retain old content lanes that conflict with its new ownership contract. | Post-Wave-2 GAP-02 | Owner-gated legacy-path disposition and migration/reference-only docket before buildout. | After a legal platform split, every legacy data path needs a governed owner, compatibility alias, migration target, and sunset criterion. |
+| DAD-FABLE-040 | Inventory before migration. | A repo split can create pressure to move or delete files before their future owner, inbound links, and compatibility posture are known. | AGENT-W1-A | Exact-one-disposition inventory with a fail-closed validator and path-level migration-packet stop rule. | Before moving legal knowledge, client policy, or contract artifacts between systems, classify every scoped path and preserve links/provenance before any migration. |
 
 ## Reusable Kernel Map For Secular / Legal Knowledge Graphs
 
@@ -147,7 +148,7 @@ knowledge graph:
 ## Future DAD Work
 
 When a formal DAD workflow exists, ingest this file into a DAD lesson registry
-with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-039`, preserving:
+with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-040`, preserving:
 
 - source file references;
 - owner decision references;

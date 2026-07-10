@@ -228,7 +228,7 @@ Only after cards, schemas, validators, qualification results, audit ledger, roll
 ## PR Queue
 
 1. `AGENT-W0`: record post-Fable gap audit and owner-requirement trace.
-2. `AGENT-W1`: owner docket for governance repo identity and legacy-path disposition.
+2. `AGENT-W1`: completed owner decision AGENT-W1-A and validator-backed inventory; later work remains limited to path-level migration packets, never bulk moves.
 3. `AGENT-W2`: capability/authority/effort/domain vocabularies and compatibility aliases.
 4. `AGENT-W3`: card, adapter, work-contract, and qualification schemas.
 5. `AGENT-W4`: validators and mutant fixtures.
