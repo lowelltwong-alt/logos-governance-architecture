@@ -141,8 +141,8 @@ work_items:
     task_id: ENG-PRACTICE-OBS-001
     objective_key: engineering_practice_observatory
     objective: "Build an evidence-ranked Engineering Practice Observatory with event triggers, recurring source review, beginner-readable practice cards, deterministic due-date checks, and owner-gated recommendations."
-    status: active
-    board_column: in_progress
+    status: awaiting_review
+    board_column: review
     claim_mode: exclusive_write
     claimed_paths:
       - governance/ENGINEERING_PRACTICE_OBSERVATORY_STANDARD.yaml
@@ -169,14 +169,17 @@ work_items:
     roadmap_refs: [ENGINEERING-PRACTICE-OBSERVATORY-V1]
     branch: codex/engineering-practice-observatory
     issue_url: "https://github.com/lowelltwong-alt/logos-governance-architecture/issues/108"
-    pr_url: null
+    pr_url: "https://github.com/lowelltwong-alt/logos-governance-architecture/pull/109"
     owner: Lowell Wong
     agent: Codex
     started_at: "2026-07-10T19:05:00Z"
-    heartbeat_at: "2026-07-10T19:05:00Z"
+    heartbeat_at: "2026-07-10T19:23:00Z"
     stale_after_days: 7
     authority_ceiling: non_authorizing_engineering_research_and_recommendation
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: []
     overlap_resolution_ids: []
-    completion_evidence: []
+    completion_evidence:
+      - "Local full pytest passed: 70 tests"
+      - "Local governed validation suite passed: 26 validators"
+      - "All-markdown internal link validation passed: 420 files"
