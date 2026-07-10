@@ -2,7 +2,7 @@
 object_type: dad_ready_lesson_outbox
 trust_zone: learning-sidecar
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after owner request to make DAD aware of Fable feedback, Codex implementations, reusable kernels, lessons learned, and cross-domain transfer patterns. Updated 2026-07-07 to add feedback-trace and Wave-2 reusable lessons DAD-FABLE-021 through DAD-FABLE-032. Updated 2026-07-09 with post-Wave-2 audit and portable agent-routing lessons DAD-FABLE-033 through DAD-FABLE-039. Updated 2026-07-10 with AGENT-W1-A legacy ownership lesson DAD-FABLE-040."
+provenance_note: "Created 2026-07-06 by Codex after owner request to make DAD aware of Fable feedback, Codex implementations, reusable kernels, lessons learned, and cross-domain transfer patterns. Updated 2026-07-07 to add feedback-trace and Wave-2 reusable lessons DAD-FABLE-021 through DAD-FABLE-032. Updated 2026-07-09 with post-Wave-2 audit and portable agent-routing lessons DAD-FABLE-033 through DAD-FABLE-039. Updated 2026-07-10 with AGENT-W1-A through OD-C-OPEN-A lessons DAD-FABLE-040 through DAD-FABLE-043."
 reason_for_inclusion: "Capture reusable architecture lessons from the Fable/Codex doctrine-genealogy buildout so future agents and a future DAD workflow can discover, reuse, audit, and adapt them without relying on chat memory."
 ---
 
@@ -108,6 +108,7 @@ DAD must not ingest this as:
 | DAD-FABLE-040 | Inventory before migration. | A repo split can create pressure to move or delete files before their future owner, inbound links, and compatibility posture are known. | AGENT-W1-A | Exact-one-disposition inventory with a fail-closed validator and path-level migration-packet stop rule. | Before moving legal knowledge, client policy, or contract artifacts between systems, classify every scoped path and preserve links/provenance before any migration. |
 | DAD-FABLE-041 | Separate capability, qualification, authority, independence, and cost in executable routing rules. | A provider name or low token price can masquerade as domain expertise or permission to bypass review. | AGENT-W2-A; DAD-FABLE-037 | Canonical non-runtime routing vocabulary with fail-closed specialist qualification and `A3_human_reserved` checks. | Legal work routing must independently establish competence, privilege/review authority, conflict independence, and cost; a preferred vendor or bargain rate cannot substitute for any of them. |
 | DAD-FABLE-042 | Missing adapter evidence is an explicit unqualified result, not a zero-risk default. | A fixture harness can create false confidence when no callable runtime actually produced results. | AGENT-W7-A | Source-safe pack plus current-alias register records `not_run`, null metrics, empty eligibility, and no role assignment until auditable execution occurs. | Vendor evaluation in legal systems must distinguish a completed benchmark from an unavailable integration; absence of evidence cannot quietly approve production use. |
+| DAD-FABLE-043 | Research quality is evidence-based, not credential-gated; purpose, access, and rights remain separate. | University affiliation can become an unjustified proxy for rigor, while noncommercial intent or a `.edu` login can be overread as blanket copying, text-mining, redistribution, or AI permission. | OD-C-OPEN-A | Recognize independent, personal, church, ministry, lay, and teaching research; assess evidence/provenance/reproducibility/source competence/review; allow owner-gated voluntary institutional access while retaining exact provider rights and credential boundaries. | Legal and policy systems should welcome self-represented, community, nonprofit, and independent researchers while keeping account access, confidentiality, text-mining, redistribution, and AI permissions explicit. |
 
 ## Reusable Kernel Map For Secular / Legal Knowledge Graphs
 
@@ -150,7 +151,7 @@ knowledge graph:
 ## Future DAD Work
 
 When a formal DAD workflow exists, ingest this file into a DAD lesson registry
-with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-042`, preserving:
+with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-043`, preserving:
 
 - source file references;
 - owner decision references;
