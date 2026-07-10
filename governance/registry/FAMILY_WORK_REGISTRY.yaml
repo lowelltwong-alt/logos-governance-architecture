@@ -29,8 +29,8 @@ work_items:
     task_id: FAMILY-WORK-COORD-001
     objective_key: deterministic_family_work_coordination
     objective: "Create the family work registry, live worktree audit, overlap preflight, lifecycle validator, and GitHub Project projection standard."
-    status: active
-    board_column: in_progress
+    status: awaiting_review
+    board_column: review
     claim_mode: exclusive_write
     claimed_paths:
       - governance/FAMILY_WORK_COORDINATION_STANDARD.yaml
@@ -55,11 +55,11 @@ work_items:
     roadmap_refs: [FAMILY-WORK-COORDINATION-V1]
     branch: codex/family-work-coordination
     issue_url: "https://github.com/lowelltwong-alt/logos-governance-architecture/issues/104"
-    pr_url: null
+    pr_url: "https://github.com/lowelltwong-alt/logos-governance-architecture/pull/105"
     owner: Lowell Wong
     agent: Codex
     started_at: "2026-07-10T18:00:00Z"
-    heartbeat_at: "2026-07-10T18:00:00Z"
+    heartbeat_at: "2026-07-10T18:25:00Z"
     stale_after_days: 7
     authority_ceiling: deterministic_non_output_changing_governance
     dependencies: []
