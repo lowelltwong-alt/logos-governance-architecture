@@ -56,6 +56,20 @@ EXPECTED_DISPOSITIONS = {
     "needs_owner_decision",
 }
 
+CANONICAL_MATRIX_ID = "logos_fable_feedback_trace_matrix"
+REQUIRED_CANONICAL_SOURCE_IDS = {
+    "owner-master-brief",
+    "post-wave2-gap-audit",
+}
+REQUIRED_CANONICAL_GROUP_IDS = {
+    "owner-master-brief-coverage",
+    "post-wave2-gap-coverage",
+}
+REQUIRED_CANONICAL_ENTRY_IDS = {
+    *(f"FABLE-REQ-{index:03d}" for index in range(1, 15)),
+    *(f"FABLE-POST-{index:03d}" for index in range(1, 16)),
+}
+
 REQUIRED_SOURCE_FIELDS = {
     "source_id",
     "title",
@@ -264,6 +278,19 @@ def validate_matrix(data: dict[str, Any], *, label: str = rel(MATRIX)) -> list[s
             owner_status = entry.get("owner_decision_status")
             if not isinstance(owner_status, str) or "required" not in owner_status:
                 failures.append(f"{entry_label}: needs_owner_decision entries must say owner decision is required")
+
+    if data.get("matrix_id") == CANONICAL_MATRIX_ID:
+        missing_sources = sorted(REQUIRED_CANONICAL_SOURCE_IDS - source_ids)
+        missing_groups = sorted(REQUIRED_CANONICAL_GROUP_IDS - group_ids)
+        missing_required_entries = sorted(REQUIRED_CANONICAL_ENTRY_IDS - entry_ids)
+        if missing_sources:
+            failures.append(f"{label}: required canonical sources missing {', '.join(missing_sources)}")
+        if missing_groups:
+            failures.append(f"{label}: required canonical coverage groups missing {', '.join(missing_groups)}")
+        if missing_required_entries:
+            failures.append(
+                f"{label}: required owner/post-audit entries missing {', '.join(missing_required_entries)}"
+            )
 
     missing_entries = sorted(covered_entry_ids - entry_ids)
     extra_entries = sorted(entry_ids - covered_entry_ids)

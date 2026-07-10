@@ -2,14 +2,14 @@
 object_type: fable_feedback_trace_matrix
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-07 by Codex after the owner requested a 100 percent auditable plan for Fable output and feedback."
-reason_for_inclusion: "Future agents need a deterministic matrix showing every Fable feedback class, its disposition, evidence, remaining gate, and non-authorizations instead of relying on chat memory."
+provenance_note: "Created 2026-07-07 by Codex after the owner requested a 100 percent auditable plan for Fable output and feedback. Updated 2026-07-09 after an independent post-Wave-2 audit to trace the owner's master brief separately from Fable's response and record fifteen newly identified correction gaps."
+reason_for_inclusion: "Future agents need a deterministic matrix showing every owner requirement and Fable feedback class, its disposition, evidence, remaining gate, and non-authorizations instead of relying on chat memory or treating response coverage as requirement coverage."
 ---
 schema_version: fable_feedback_trace_matrix.v1
 matrix_id: logos_fable_feedback_trace_matrix
 owner: Lowell Wong
 source_repo: logos-governance-architecture
-scope_note: "Covers Logos-family Fable feedback recorded in the governed Fable kernel surfaces and the attached Fable gap/Wave-2 handoffs. LawFirm OS Fable output is intentionally out of scope for this Logos governance matrix."
+scope_note: "Covers the Logos-family owner master brief, Fable feedback recorded in the governed Fable kernel surfaces and attached Fable gap/Wave-2 handoffs, and the independent post-Wave-2 correction audit. LawFirm OS Fable output is intentionally out of scope for this Logos governance matrix."
 matrix_authority:
   records_feedback_disposition: true
   authorizes_scripture_output_change: false
@@ -42,6 +42,10 @@ allowed_risk_categories:
   - repo_hygiene
   - reusable_architecture
 source_documents:
+  - source_id: owner-master-brief
+    title: "Owner master brief for the Fable Wave-2 architecture pass"
+    repo_path: docs/roadmap/fable-master-architecture-buildout-plan.md
+    external_attachment_ref: "C:/Users/lowel/.codex/attachments/84c88835-597b-49f3-9f21-791be3bd6e6e/pasted-text.txt"
   - source_id: fable-gap-pass-d1-d10
     title: "Fable Gap Pass after D1-D10"
     repo_path: docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
@@ -62,7 +66,28 @@ source_documents:
   - source_id: dad-outbox
     title: "DAD Lesson Outbox"
     repo_path: docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+  - source_id: post-wave2-gap-audit
+    title: "Independent post-Wave-2 Fable gap audit"
+    repo_path: docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
 coverage_groups:
+  - group_id: owner-master-brief-coverage
+    source_id: owner-master-brief
+    source_section: "Fourteen owner-named hard problems that Fable was required to address"
+    coverage_entry_ids:
+      - FABLE-REQ-001
+      - FABLE-REQ-002
+      - FABLE-REQ-003
+      - FABLE-REQ-004
+      - FABLE-REQ-005
+      - FABLE-REQ-006
+      - FABLE-REQ-007
+      - FABLE-REQ-008
+      - FABLE-REQ-009
+      - FABLE-REQ-010
+      - FABLE-REQ-011
+      - FABLE-REQ-012
+      - FABLE-REQ-013
+      - FABLE-REQ-014
   - group_id: gap-pass-coverage
     source_id: fable-gap-pass-d1-d10
     source_section: "Coverage check, repo map, hard-problem table, findability audit, Codex readiness, updated queue, remaining owner decisions"
@@ -145,6 +170,25 @@ coverage_groups:
     coverage_entry_ids:
       - FABLE-DAD-001
       - FABLE-DAD-002
+  - group_id: post-wave2-gap-coverage
+    source_id: post-wave2-gap-audit
+    source_section: "Fifteen omissions, unsafe simplifications, or architecture corrections found by the independent Codex review"
+    coverage_entry_ids:
+      - FABLE-POST-001
+      - FABLE-POST-002
+      - FABLE-POST-003
+      - FABLE-POST-004
+      - FABLE-POST-005
+      - FABLE-POST-006
+      - FABLE-POST-007
+      - FABLE-POST-008
+      - FABLE-POST-009
+      - FABLE-POST-010
+      - FABLE-POST-011
+      - FABLE-POST-012
+      - FABLE-POST-013
+      - FABLE-POST-014
+      - FABLE-POST-015
 entries:
   - id: FABLE-GP-001
     source_group: gap-pass-coverage
@@ -1308,3 +1352,584 @@ entries:
     non_authorizations:
       - feedback_as_authority
       - completion_by_memory
+  - id: FABLE-REQ-001
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 1 - doctrine genealogy across time"
+    feedback_summary: "The owner required an architecture for doctrine genealogy across time."
+    risk_category: doctrine_genealogy
+    affected_repos:
+      - logos-governance-architecture
+      - logos-doctrine-genealogy
+    disposition: partially_implemented
+    disposition_reason: "Kernels A, B, C, F and the child schema mirrors define a substantial scaffold, but temporal semantic identity and real data-lane work remain unresolved and separately gated."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/KERNEL-A-object-model-and-vocabulary.md
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Correct temporal identity before W2-10/W2-11 data-bearing work."
+    owner_decision_status: successor_content_gate_required
+    target_queue: W2-10_W2-11_TEMPORAL_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - doctrine_data_records
+      - reviewed_lineage_promotion
+  - id: FABLE-REQ-002
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 2 - derivative theology mapping"
+    feedback_summary: "The owner required traceable dependence, correction, opposition, condemnation, and contested derivation across theologians, councils, confessions, schools, and movements."
+    risk_category: doctrine_genealogy
+    affected_repos:
+      - logos-governance-architecture
+      - logos-doctrine-genealogy
+    disposition: partially_implemented
+    disposition_reason: "Kernel F improves derivative composition and label handling, but the implementation and causal evidence taxonomy remain planned."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/governance/relationship-registry.md
+    next_action: "Implement approved structural vocabulary with evidence-floor and temporal corrections before records."
+    owner_decision_status: recorded_d16_a_structure_only
+    target_queue: W2-10
+    blocks_work: false
+    non_authorizations:
+      - lineage_assertion
+      - theology_authority
+  - id: FABLE-REQ-003
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 3 - multi-parent and counter-derivation"
+    feedback_summary: "The owner required multi-parent derivation and counter-derivation without flattening influence."
+    risk_category: doctrine_genealogy
+    affected_repos:
+      - logos-governance-architecture
+      - logos-doctrine-genealogy
+    disposition: partially_implemented
+    disposition_reason: "Kernel F and DAD-FABLE-020 define one-edge-per-parent and counter edges, while schemas, validators, and evidence distinctions remain planned."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+    next_action: "Implement W2-10 with invented fixtures and no real lineage records."
+    owner_decision_status: recorded_d16_a_structure_only
+    target_queue: W2-10
+    blocks_work: false
+    non_authorizations:
+      - real_influence_claims
+  - id: FABLE-REQ-004
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 4 - orthodox boundary without denominational capture"
+    feedback_summary: "The owner required Nicene/Chalcedonian orthodoxy without one denominational systematic becoming chunk or project authority."
+    risk_category: authority_boundary
+    affected_repos:
+      - logos-governance-architecture
+      - logos-doctrine-genealogy
+    disposition: implemented
+    disposition_reason: "Kernel B, D1-D5, the authority ladder, profile scoping, and Codex tripwire record the structural policy; later content still requires review."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/KERNEL-B-orthodoxy-and-authority.md
+      - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+      - docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
+    next_action: "Keep the capture audit and decision_basis validators active."
+    owner_decision_status: recorded_d1_d5
+    target_queue: none
+    blocks_work: false
+    non_authorizations:
+      - denominational_systematic_as_project_authority
+  - id: FABLE-REQ-005
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 5 - hidden liberal-critical, anti-supernatural, anti-canonical, sectarian, or heterodox defaults"
+    feedback_summary: "The owner required prevention of hidden methodological or theological defaults."
+    risk_category: authority_boundary
+    affected_repos:
+      - logos-governance-architecture
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+    disposition: partially_implemented
+    disposition_reason: "Authority ladders and firewalls exist, but W2-15 keyword lint is insufficient by itself and structured source-role/authority-flow review remains planned."
+    evidence_refs:
+      - governance/EXTERNAL_ADVISORY_AUTHORITY_FIREWALL.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Implement W2-15 as one detector inside a structured authority-flow control."
+    owner_decision_status: covered_by_existing_firewall
+    target_queue: W2-15_STRUCTURED_ADVISORY_FLOW
+    blocks_work: false
+    non_authorizations:
+      - advisory_as_authority
+      - lint_as_theological_proof
+  - id: FABLE-REQ-006
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 6 - original-language phrase and grammar overlays"
+    feedback_summary: "The owner required faithful Greek, Hebrew, and Aramaic phrase/context evidence, morphology, identifiers, and divine-name/editorial handling."
+    risk_category: original_language
+    affected_repos:
+      - logos-scripture-graph
+    disposition: partially_implemented
+    disposition_reason: "Scripture Graph has strong phrase/context and evidence-substrate controls, but a full multi-analysis syntax/discourse and source-layer model remains incomplete."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+      - https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/.ai/control/original_language_phrase_context_policy.yaml
+      - https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/.ai/control/original_language_schema_contracts.yaml
+    next_action: "Define coexistence and review rules for competing tokenization, morphology, syntax, discourse, and lexical-sense analyses."
+    owner_decision_status: future_expert_review_required
+    target_queue: SCRIPTURE_ORIGINAL_LANGUAGE_ANALYSIS_MODEL
+    blocks_work: false
+    non_authorizations:
+      - lexical_truth
+      - translation_preference
+  - id: FABLE-REQ-007
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 7 - textual-critical handling"
+    feedback_summary: "The owner required transparent handling for Mark 16, John 7:53-8:11, 1 John 5:7, Acts 8:37, and other variant-sensitive witnesses."
+    risk_category: variant_textual_critical
+    affected_repos:
+      - logos-scripture-graph
+    disposition: partially_implemented
+    disposition_reason: "Case policy and witness/source scaffolds exist, but Wave-2's boundary invariant needs an overlap-aware variation topology before scaled use."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Replace the simple edge-coincidence rule with report-only overlap and dependency semantics before output consequences."
+    owner_decision_status: tcp_case_policy_required_for_each_sensitive_promotion
+    target_queue: SCRIPTURE_VARIATION_TOPOLOGY_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - preferred_reading
+      - chunk_output_change
+  - id: FABLE-REQ-008
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 8 - whole-Bible chunking algorithm"
+    feedback_summary: "The owner required route-isolated whole-Bible chunking, risk/readiness math, hierarchy rules, and same-baseline proof."
+    risk_category: chunking
+    affected_repos:
+      - logos-scripture-graph
+      - logos-chunking-harness
+    disposition: partially_implemented
+    disposition_reason: "The conveyor, route isolation, and pilot patterns are strong, but unknown-risk handling, calibration, and artifact-closure proof need correction before scale."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Add missingness-aware risk and held-out calibration before using low-complexity routing at scale."
+    owner_decision_status: output_gates_unchanged
+    target_queue: SCRIPTURE_RISK_CALIBRATION_AND_HARNESS_CLOSURE
+    blocks_work: false
+    non_authorizations:
+      - scoring_as_truth
+      - whole_bible_output
+  - id: FABLE-REQ-009
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 9 - metadata preservation"
+    feedback_summary: "The owner required cross-references, headings, footnotes, word tokens, red letters/WJ, Strong's-style IDs, and formatting metadata to survive chunking faithfully."
+    risk_category: chunking
+    affected_repos:
+      - logos-scripture-graph
+      - logos-chunking-harness
+    disposition: partially_implemented
+    disposition_reason: "Marker inventories and count/census checks exist, but positional identity, payload, nesting, and render round-trip proof are not fully specified."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+      - https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/config/ingest/usfm_marker_coverage.yaml
+    next_action: "Add structural marker round-trip contracts while retaining count parity as a smoke test."
+    owner_decision_status: not_required_for_report_only_harness
+    target_queue: SCRIPTURE_METADATA_ROUNDTRIP_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - metadata_as_theology
+  - id: FABLE-REQ-010
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 10 - graph/retrieval/vector never-truth firewall"
+    feedback_summary: "The owner required graph, retrieval, and vector output to remain candidates or derived evidence rather than truth."
+    risk_category: reusable_architecture
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-doctrine-genealogy
+    disposition: partially_implemented
+    disposition_reason: "Durability and evidence-packet contracts exist, but authority-preserving query/join/ranking algebra remains undefined."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+      - https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/docs/architecture/SCRIPTURE_VECTORIZATION_AND_EDGE_DURABILITY_CONTRACT.md
+    next_action: "Define namespace-preserving query algebra and missingness/contradiction reporting."
+    owner_decision_status: future_runtime_gate_required
+    target_queue: AUTHORITY_SAFE_QUERY_ALGEBRA
+    blocks_work: false
+    non_authorizations:
+      - graph_retrieval_vector_truth
+  - id: FABLE-REQ-011
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 11 - no-context AI auditability and findability"
+    feedback_summary: "The owner required future AIs to find the relevant decisions, audits, preflights, and reasons without chat context."
+    risk_category: auditability
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+    disposition: implemented
+    disposition_reason: "Front doors, tagged TOCs, audit surfaces, dependency maps, and the feedback matrix now provide governed discovery; periodic audits remain ongoing maintenance."
+    evidence_refs:
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+    next_action: "Run periodic no-context find-task audits and keep new surfaces indexed."
+    owner_decision_status: not_required
+    target_queue: none
+    blocks_work: false
+    non_authorizations:
+      - findability_as_correctness
+  - id: FABLE-REQ-012
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 12 - cross-repo authority contracts and stale mirrors"
+    feedback_summary: "The owner required correct repo interaction, authority direction, mirrors, and drift prevention."
+    risk_category: cross_repo_integrity
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+    disposition: partially_implemented
+    disposition_reason: "W2-1/W2-2 provide freshness controls, but compatible multi-repo release snapshots and governance legacy-path ownership remain unresolved."
+    evidence_refs:
+      - governance/MIRROR_FRESHNESS_STANDARD.yaml
+      - governance/CROSS_REPO_REFERENCE_MANIFEST.yaml
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Add a family release/BOM contract and resolve governance repo identity debt."
+    owner_decision_status: repo_identity_decision_required
+    target_queue: AGENT-W1_FAMILY_RELEASE_BOM
+    blocks_work: false
+    non_authorizations:
+      - child_repo_override
+  - id: FABLE-REQ-013
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 13 - DAD/learning-loop OS"
+    feedback_summary: "The owner required lessons to be recognized, recorded, loaded at the right stage, enforced, propagated, and kept useful."
+    risk_category: learning_loop
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+    disposition: partially_implemented
+    disposition_reason: "D11-A and the DAD outbox define the direction; W2-7/W2-9 implementation and severity-aware sunset correction remain planned."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Implement LLOS with catastrophic-lesson exemptions and route-relevant loading."
+    owner_decision_status: recorded_d11_a
+    target_queue: W2-7_W2-9_SEVERITY_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - lesson_as_authority
+  - id: FABLE-REQ-014
+    source_group: owner-master-brief-coverage
+    source_item_ref: "Hard problem 14 - high-leverage subagent role map"
+    feedback_summary: "The owner required useful specialist agents and efficient delegation without model lock-in or authority leakage."
+    risk_category: review_economics
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+    disposition: partially_implemented
+    disposition_reason: "Fable listed strong roles and Scripture has capability profiles, but economic selection, domain qualification, adapter evals, and portable current-model mappings were not fully designed."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+      - docs/roadmap/agent-skill-registry-roadmap.md
+    next_action: "Build AGENT-W2 through AGENT-W9 as proposed-only governance and non-authorizing pilots."
+    owner_decision_status: runtime_activation_requires_future_owner_decision
+    target_queue: AGENT-W2_W9
+    blocks_work: false
+    non_authorizations:
+      - model_name_as_expertise
+      - ai_gate_satisfaction
+  - id: FABLE-POST-001
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-01"
+    feedback_summary: "The old completeness proof traced Fable's answer but not the owner's master requirements."
+    risk_category: auditability
+    affected_repos:
+      - logos-governance-architecture
+    disposition: implemented
+    disposition_reason: "The owner master brief is now a separate matrix source with fourteen requirement rows, and the post-Wave-2 audit is independently covered."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+    next_action: "Require future architecture handoffs to trace owner requirements separately from response items."
+    owner_decision_status: not_required
+    target_queue: none
+    blocks_work: false
+    non_authorizations:
+      - completion_by_response_inventory
+  - id: FABLE-POST-002
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-02"
+    feedback_summary: "Governance control-plane ownership conflicts with legacy theological, Scripture-reference, doctrine, claim, graph, and retrieval paths still routed as active contribution lanes."
+    risk_category: cross_repo_integrity
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+    disposition: needs_owner_decision
+    disposition_reason: "Only the owner can choose the target repo identity and authorize a deprecate/migrate/reference-only map; the audit must not move or delete governed content."
+    evidence_refs:
+      - governance/LOGOS_REPO_REGISTRY.yaml
+      - AI_FRONT_DOOR.md
+      - README.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Prepare AGENT-W1 owner options and repercussions before content buildout."
+    owner_decision_status: owner_decision_required
+    target_queue: AGENT-W1
+    blocks_work: true
+    non_authorizations:
+      - bulk_migration
+      - legacy_content_deletion
+  - id: FABLE-POST-003
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-03"
+    feedback_summary: "Variation units may overlap, nest, cross, or represent insertions/omissions, so universal chunk-boundary coincidence is unsafe."
+    risk_category: variant_textual_critical
+    affected_repos:
+      - logos-scripture-graph
+    disposition: planned
+    disposition_reason: "A report-only topology and conflict model must precede any boundary consequence."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+      - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
+    next_action: "Design nested/overlapping/discontinuous variation coverage and dependency records."
+    owner_decision_status: output_consequences_require_tcp_case_decision
+    target_queue: SCRIPTURE_VARIATION_TOPOLOGY_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - preferred_reading
+      - output_change
+  - id: FABLE-POST-004
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-04"
+    feedback_summary: "Missing risk evidence must not be treated as a zero score."
+    risk_category: chunking
+    affected_repos:
+      - logos-scripture-graph
+    disposition: planned
+    disposition_reason: "The low-complexity gate needs explicit unknown/not-applicable states and held-out false-negative calibration."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Add missingness-aware risk rows and calibration reports before scaled low-complexity routing."
+    owner_decision_status: scoring_remains_non_authorizing
+    target_queue: SCRIPTURE_RISK_MISSINGNESS_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - scoring_as_truth
+  - id: FABLE-POST-005
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-05"
+    feedback_summary: "Equal marker counts do not prove marker position, payload, target, or nesting preservation."
+    risk_category: chunking
+    affected_repos:
+      - logos-scripture-graph
+      - logos-chunking-harness
+    disposition: planned
+    disposition_reason: "Structural source-span and round-trip validation must supplement existing census checks."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Specify and test positional marker identity, nesting, attributes, payload order, and render hashes."
+    owner_decision_status: not_required_for_non_output_harness
+    target_queue: SCRIPTURE_METADATA_ROUNDTRIP_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - metadata_as_theology
+  - id: FABLE-POST-006
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-06"
+    feedback_summary: "Original-language evidence needs competing analysis layers rather than one token/lemma/morphology path."
+    risk_category: original_language
+    affected_repos:
+      - logos-scripture-graph
+    disposition: partially_implemented
+    disposition_reason: "Later Scripture controls cover much of the evidence substrate, but alternate analysis identity and expert review semantics remain incomplete."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+      - https://github.com/lowelltwong-alt/logos-scripture-graph/blob/main/.ai/control/original_language_evidence_substrate.yaml
+    next_action: "Add multi-analysis identity, disagreement, provenance, and review contracts."
+    owner_decision_status: future_expert_review_required
+    target_queue: SCRIPTURE_ORIGINAL_LANGUAGE_ANALYSIS_MODEL
+    blocks_work: false
+    non_authorizations:
+      - language_analysis_as_theology_authority
+  - id: FABLE-POST-007
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-07"
+    feedback_summary: "Methods, genres, tradition systems, and eschatological frameworks cannot safely share one flat lens enum."
+    risk_category: hermeneutic_lens
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-doctrine-genealogy
+    disposition: planned
+    disposition_reason: "D15-A approves owner-gated lenses, but the implementation should use typed composable dimensions and explicit not-evaluated/not-applicable states."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+      - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+    next_action: "Correct W2-5 schema design before creating the lens registry."
+    owner_decision_status: new_values_remain_owner_gated
+    target_queue: W2-5_TYPED_LENS_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - hidden_neutral_lens
+      - lens_ranking
+  - id: FABLE-POST-008
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-08"
+    feedback_summary: "Mirror freshness does not prove compatible multi-repo snapshots."
+    risk_category: cross_repo_integrity
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+    disposition: planned
+    disposition_reason: "A family release/BOM manifest is needed for reproducible evidence packets and cross-repo queries."
+    evidence_refs:
+      - governance/MIRROR_FRESHNESS_STANDARD.yaml
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Define compatible commit, schema, data-release, mirror, and validator pins."
+    owner_decision_status: no_content_authority_created
+    target_queue: FAMILY_RELEASE_BOM
+    blocks_work: false
+    non_authorizations:
+      - latest_main_as_implicit_compatible_release
+  - id: FABLE-POST-009
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-09"
+    feedback_summary: "Atemporal doctrine views/claims can read later semantic states back into earlier sources."
+    risk_category: doctrine_genealogy
+    affected_repos:
+      - logos-governance-architecture
+      - logos-doctrine-genealogy
+    disposition: planned
+    disposition_reason: "Stable IDs need time/source-scoped semantic states, equivalence mappings, and council event/reception structure before records."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Correct doctrine-genealogy schema standards before W2-10/W2-11."
+    owner_decision_status: real_classifications_remain_gated
+    target_queue: W2-10_TEMPORAL_IDENTITY_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - doctrine_data_records
+  - id: FABLE-POST-010
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-10"
+    feedback_summary: "Namespace-safe packet rendering still needs authority-safe query, ranking, contradiction, and missingness semantics."
+    risk_category: reusable_architecture
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-doctrine-genealogy
+    disposition: planned
+    disposition_reason: "Kernel D controls packet shape but not the complete query algebra that creates packet rows."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Draft an authority-preserving query contract and adversarial fixtures."
+    owner_decision_status: runtime_and_truth_remain_future_gates
+    target_queue: AUTHORITY_SAFE_QUERY_ALGEBRA
+    blocks_work: false
+    non_authorizations:
+      - retrieval_truth
+      - cross_zone_score_equivalence
+  - id: FABLE-POST-011
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-11"
+    feedback_summary: "Historical/archaeological context must split material observation, provenance, dating, interpretation, comparison, and dependence."
+    risk_category: source_context
+    affected_repos:
+      - logos-boundary-literature
+      - logos-governance-architecture
+    disposition: planned
+    disposition_reason: "Kernel G is a sound start but its source and uncertainty model is too coarse for minute historical/archaeological evidence."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Correct W2-13 context schema before source rows or research agents emit records."
+    owner_decision_status: recorded_d14_a_home_only
+    target_queue: W2-13_CONTEXT_PROVENANCE_CORRECTION
+    blocks_work: false
+    non_authorizations:
+      - context_as_scripture_authority
+  - id: FABLE-POST-012
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-12"
+    feedback_summary: "Reviewer roles need qualification evidence, expiry, conflicts, recusal, dissent, renewal, and quality audits."
+    risk_category: review_economics
+    affected_repos:
+      - logos-governance-architecture
+    disposition: planned
+    disposition_reason: "D12 conditional defers activation until outside contributors, giving time to complete reviewer governance before delegation."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+      - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+    next_action: "Extend Kernel M before contributor-triggered activation."
+    owner_decision_status: contributor_activation_requires_owner_review
+    target_queue: D12_REVIEWER_GOVERNANCE_EXTENSION
+    blocks_work: false
+    non_authorizations:
+      - ai_gate_satisfaction
+      - risk_score_as_delegation_authority
+  - id: FABLE-POST-013
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-13"
+    feedback_summary: "Keyword lint is a detector, not proof against hidden methodological or authority assumptions."
+    risk_category: authority_boundary
+    affected_repos:
+      - logos-governance-architecture
+    disposition: planned
+    disposition_reason: "W2-15 needs structured source-role and authority-flow checks plus human review questions."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Implement lint narrowly and pair it with structured provenance flow."
+    owner_decision_status: covered_by_existing_firewall
+    target_queue: W2-15_STRUCTURED_ADVISORY_FLOW
+    blocks_work: false
+    non_authorizations:
+      - lint_as_theological_proof
+  - id: FABLE-POST-014
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-14"
+    feedback_summary: "Usage-based lesson sunset can demote rare catastrophic guardrails."
+    risk_category: learning_loop
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+    disposition: planned
+    disposition_reason: "LLOS needs severity/irreversibility/blast-radius exemptions before sunset behavior is implemented."
+    evidence_refs:
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Correct W2-7 admission and sunset semantics."
+    owner_decision_status: recorded_d11_a_with_correction_review
+    target_queue: W2-7_LLOS_SEVERITY_EXEMPTION
+    blocks_work: false
+    non_authorizations:
+      - constitutional_lesson_auto_demotion
+  - id: FABLE-POST-015
+    source_group: post-wave2-gap-coverage
+    source_item_ref: "GAP-15"
+    feedback_summary: "Subagent roles need portable domain qualification, authority ceilings, independent review, and cost-aware adapter selection."
+    risk_category: review_economics
+    affected_repos:
+      - logos-governance-architecture
+      - logos-scripture-graph
+      - logos-boundary-literature
+      - logos-doctrine-genealogy
+      - logos-chunking-harness
+    disposition: partially_implemented
+    disposition_reason: "Existing governance and Scripture policies establish capability-first routing; the expanded roadmap now specifies economic bands, domain tags, eval qualification, and replaceable aliases, but schemas/validators/pilots remain future work."
+    evidence_refs:
+      - docs/governance/agent-skills/model-agnostic-agent-implementation-policy.md
+      - docs/roadmap/agent-skill-registry-roadmap.md
+      - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
+    next_action: "Implement AGENT-W2 through AGENT-W9 after the repo-identity docket is decided."
+    owner_decision_status: runtime_activation_requires_future_owner_decision
+    target_queue: AGENT-W2_W9
+    blocks_work: false
+    non_authorizations:
+      - vendor_model_lock_in
+      - model_name_as_expertise
+      - ai_gate_satisfaction

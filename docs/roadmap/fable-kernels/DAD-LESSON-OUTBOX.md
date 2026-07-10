@@ -2,7 +2,7 @@
 object_type: dad_ready_lesson_outbox
 trust_zone: learning-sidecar
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Codex after owner request to make DAD aware of Fable feedback, Codex implementations, reusable kernels, lessons learned, and cross-domain transfer patterns. Updated 2026-07-07 to add feedback-trace and Wave-2 reusable lessons DAD-FABLE-021 through DAD-FABLE-032."
+provenance_note: "Created 2026-07-06 by Codex after owner request to make DAD aware of Fable feedback, Codex implementations, reusable kernels, lessons learned, and cross-domain transfer patterns. Updated 2026-07-07 to add feedback-trace and Wave-2 reusable lessons DAD-FABLE-021 through DAD-FABLE-032. Updated 2026-07-09 with post-Wave-2 audit and portable agent-routing lessons DAD-FABLE-033 through DAD-FABLE-039."
 reason_for_inclusion: "Capture reusable architecture lessons from the Fable/Codex doctrine-genealogy buildout so future agents and a future DAD workflow can discover, reuse, audit, and adapt them without relying on chat memory."
 ---
 
@@ -28,6 +28,8 @@ Primary source surfaces:
 - [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md)
 - [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md)
 - [`FABLE_FEEDBACK_TRACE_MATRIX.yaml`](FABLE_FEEDBACK_TRACE_MATRIX.yaml)
+- [`FABLE_POST_WAVE2_GAP_AUDIT.md`](FABLE_POST_WAVE2_GAP_AUDIT.md)
+- [`../agent-skill-registry-roadmap.md`](../agent-skill-registry-roadmap.md)
 - [`KERNEL-A-object-model-and-vocabulary.md`](KERNEL-A-object-model-and-vocabulary.md)
 - [`KERNEL-B-orthodoxy-and-authority.md`](KERNEL-B-orthodoxy-and-authority.md)
 - [`KERNEL-C-provenance-and-gates.md`](KERNEL-C-provenance-and-gates.md)
@@ -96,6 +98,13 @@ DAD must not ingest this as:
 | DAD-FABLE-030 | Split labels from referents and influence from proof. | Labels like "-ism" names and contested influence can misrepresent a person's actual claim. | Kernel F; D16-A | Planned label objects, influence_case objects, contribution_facet fields, and negative-evidence predicates. | Legal KGs should distinguish party labels, theory names, cited influence, actual text, and disputed genealogy; labels should never substitute for the underlying formulation. |
 | DAD-FABLE-031 | Use max-risk gates for high-consequence pipelines. | Summed scores can let many easy dimensions outvote one high-risk dimension. | Kernel I | Planned chunking risk math uses `max(axes)` for gating and weighted sums only for review-priority ordering. | Legal triage should fail closed on any privileged, jurisdictional, sanctions, confidentiality, or conflict-risk axis even if other scores look easy. |
 | DAD-FABLE-032 | Preserve review economics before adding contributors. | Queue pressure can tempt agents or maintainers to weaken gates. | Kernel M; D12 conditional | Contributor-triggered reviewer-role/two-key model before outside contributors join. | Legal systems should activate role-based review and two-key approvals before workload or new contributors create pressure to rubber-stamp. |
+| DAD-FABLE-033 | Trace the request separately from the response. | A feedback matrix can be internally complete while the responder omitted a user requirement. | Post-Wave-2 GAP-01 | Owner-master-brief source group plus independent correction group in the Fable trace matrix. | Audits of legal memos, architecture reports, or vendor deliverables should map original requirements to response sections and implementation evidence separately. |
+| DAD-FABLE-034 | Unknown is not low risk. | Absence from a queue or missing evidence was able to look like a zero risk score. | Post-Wave-2 GAP-04 | Planned explicit `known_zero`, `known_nonzero`, `unknown`, and `not_applicable` states with fail-closed low-risk routing. | Legal triage and compliance scoring must distinguish cleared risk from unassessed risk. |
+| DAD-FABLE-035 | Count parity is not structural parity. | Equal marker counts can hide moved spans, targets, payloads, or nesting. | Post-Wave-2 GAP-05 | Planned identity-preserving source-span and render-round-trip contracts. | Document comparison should preserve clause location, parent structure, annotations, links, and payload identity rather than only counts. |
+| DAD-FABLE-036 | Fresh components do not prove a coherent release. | Individually current repos can be incompatible when joined at different commits. | Post-Wave-2 GAP-08 | Planned family release/BOM manifest pinning compatible commits, schemas, releases, mirrors, and validators. | Multi-system legal evidence products need a reproducible bill of materials, not just latest documents. |
+| DAD-FABLE-037 | Separate capability, domain expertise, authority, independence, and cost. | Broad model tiers made expensive agents do grunt work and let model names stand in for expertise. | Post-Wave-2 GAP-15 | Economically tiered capability roadmap with qualification fixtures and replaceable adapters. | Route law-firm work to the cheapest qualified tool while separately enforcing legal-domain competence, privilege, independence, and attorney authority. |
+| DAD-FABLE-038 | Flat lens registries create hidden category errors. | Methods, genres, traditions, systems, and conclusions were mixed into one enum, and missing data could look neutral. | Post-Wave-2 GAP-07 | Planned typed composable lens dimensions and explicit not-evaluated/not-applicable states. | Legal analysis should separate interpretive method, jurisdiction, client posture, authority set, and strategy rather than calling all of them a single lens. |
+| DAD-FABLE-039 | Resolve repo identity before scaling content. | A renamed/split repo can retain old content lanes that conflict with its new ownership contract. | Post-Wave-2 GAP-02 | Owner-gated legacy-path disposition and migration/reference-only docket before buildout. | After a legal platform split, every legacy data path needs a governed owner, compatibility alias, migration target, and sunset criterion. |
 
 ## Reusable Kernel Map For Secular / Legal Knowledge Graphs
 
@@ -138,7 +147,7 @@ knowledge graph:
 ## Future DAD Work
 
 When a formal DAD workflow exists, ingest this file into a DAD lesson registry
-with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-032`, preserving:
+with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-039`, preserving:
 
 - source file references;
 - owner decision references;
