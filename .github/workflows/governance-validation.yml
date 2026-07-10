@@ -3,12 +3,12 @@ name: Governance Validation
 on:
   pull_request:
     branches: ["main"]
+  push:
+    branches: ["main"]
 
 concurrency:
   group: governance-validation-${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref }}
   cancel-in-progress: true
-  push:
-    branches: ["main"]
 
 jobs:
   family_work_registry_validator:
