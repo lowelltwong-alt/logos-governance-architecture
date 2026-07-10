@@ -89,6 +89,7 @@ def test_owner_resolution_allows_recorded_parallel_boundary() -> None:
 
 def test_stale_lease_warns_but_does_not_auto_abandon() -> None:
     data = registry()
+    original_status = data["work_items"][0]["status"]
     data["work_items"][0]["started_at"] = "2026-05-31T00:00:00Z"
     data["work_items"][0]["heartbeat_at"] = "2026-06-01T00:00:00Z"
 
@@ -98,7 +99,7 @@ def test_stale_lease_warns_but_does_not_auto_abandon() -> None:
 
     assert failures == []
     assert any("owner reconciliation required" in warning for warning in warnings)
-    assert data["work_items"][0]["status"] == "active"
+    assert data["work_items"][0]["status"] == original_status
 
 
 def test_path_overlap_is_conservative_for_globs() -> None:
