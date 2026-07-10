@@ -71,8 +71,8 @@ work_items:
     task_id: T469
     objective_key: primary_witness_acquisition_wave_plan
     objective: "Plan rights-reviewed metadata, text, and image acquisition waves for primary and early Bible witnesses without importing content."
-    status: awaiting_review
-    board_column: review
+    status: merged
+    board_column: done
     claim_mode: exclusive_write
     claimed_paths:
       - .ai/control/primary_witness_acquisition_waves.yaml
@@ -89,13 +89,16 @@ work_items:
     owner: Lowell Wong
     agent: Codex
     started_at: "2026-07-08T13:22:39Z"
-    heartbeat_at: "2026-07-10T18:00:00Z"
+    heartbeat_at: "2026-07-10T18:56:44Z"
     stale_after_days: 7
     authority_ceiling: planning_only_non_output_changing
     dependencies: []
     related_work_ids: [WORK-GOV-FAMILY-COORD-001]
     overlap_resolution_ids: [OVERLAP-T468-T469-ISOLATION-001]
-    completion_evidence: []
+    completion_evidence:
+      - "PR #168 merged 2026-07-10 as dedd2e289ce74a675f50260c4a1a52ef26e4ea28"
+      - "GitHub validate run 29115874788 passed in 7m23s"
+      - "Local validate_all passed and pytest completed with 949 passed, 25 lifecycle-declared skips"
   - work_id: WORK-SCR-T468-W2-2
     repo: logos-scripture-graph
     task_id: T468-W2-2
