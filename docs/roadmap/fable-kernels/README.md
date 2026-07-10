@@ -2,7 +2,7 @@
 object_type: fable_architecture_kernel_index
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Created 2026-07-06 by Fable during the owner-commissioned master architecture pass (Phase 1 of docs/roadmap/fable-master-architecture-buildout-plan.md), following the Opus pre-read handoff. Updated 2026-07-06 by Codex to point future agents to the recorded owner selections D1-D10. Updated 2026-07-07 to route agents to DR-OPTION-A schema mirror status, audit evidence, and the Wave-2 architecture handoff with owner selections D11-D16."
+provenance_note: "Created 2026-07-06 by Fable during the owner-commissioned master architecture pass (Phase 1 of docs/roadmap/fable-master-architecture-buildout-plan.md), following the Opus pre-read handoff. Updated 2026-07-06 by Codex to point future agents to the recorded owner selections D1-D10. Updated 2026-07-07 to route agents to DR-OPTION-A schema mirror status, audit evidence, and the Wave-2 architecture handoff with owner selections D11-D16. Updated 2026-07-09 to index the independent post-Wave-2 gap audit and owner-requirement trace."
 reason_for_inclusion: "One index for the Fable architecture kernels so Codex, reviewers, and the owner can find every kernel, its status, and its non-authorizations."
 ---
 
@@ -50,7 +50,8 @@ Wave-2 owner selections D11-D16 are recorded in the same file, section
 | [`CODEX_HANDOFF.md`](CODEX_HANDOFF.md) | Sequenced deterministic work queue for Codex after owner decisions | — |
 | [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md) | Evidence-backed status ledger for PR-E through PR-8, child scaffold/readiness work, and DR-OPTION-A schema mirrors | — |
 | [`COMPLETION_AUDIT.md`](COMPLETION_AUDIT.md) | Requirement-by-requirement audit of completed Fable recommendations, child schema mirrors, and remaining successor owner gates | -- |
-| [`FABLE_FEEDBACK_TRACE_MATRIX.yaml`](FABLE_FEEDBACK_TRACE_MATRIX.yaml) | Machine-readable disposition matrix for Fable feedback, including implemented, planned, deferred, rejected, and owner-gated items | -- |
+| [`FABLE_FEEDBACK_TRACE_MATRIX.yaml`](FABLE_FEEDBACK_TRACE_MATRIX.yaml) | Machine-readable disposition matrix for the owner master brief, Fable feedback, and post-Wave-2 correction audit, including implemented, planned, deferred, rejected, and owner-gated items | -- |
+| [`FABLE_POST_WAVE2_GAP_AUDIT.md`](FABLE_POST_WAVE2_GAP_AUDIT.md) | Independent audit of omissions and unsafe simplifications in Wave-2, including repo identity, variant topology, risk missingness, metadata round trips, source-language analysis, lenses, family snapshots, query algebra, and portable agent routing | Post-Wave-2 correction |
 | [`DAD-LESSON-OUTBOX.md`](DAD-LESSON-OUTBOX.md) | DAD-ready reusable lesson capture for Fable feedback, Codex solutions, doctrine-genealogy kernels, knowledge-graph transfer, and legal/secular adaptation watchpoints | -- |
 | [`WAVE2-ARCHITECTURE-HANDOFF.md`](WAVE2-ARCHITECTURE-HANDOFF.md) | Fable Wave-2 hard-problem handoff, D11-D16 decision summary, PR queue, red-team findings, and D15 lens guardrail clarification | Wave 2 |
 

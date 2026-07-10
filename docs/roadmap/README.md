@@ -61,4 +61,6 @@ See also:
 - `fable-master-architecture-buildout-plan.md`
 - `fable-kernels/README.md`
 - `fable-kernels/COMPLETION_AUDIT.md`
+- `fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md`
+- `agent-skill-registry-roadmap.md`
 - `T462-governance-rust-fast-validators.md`

@@ -108,3 +108,20 @@ def test_authority_flags_must_remain_false() -> None:
     failures = validator.validate_matrix(matrix)
 
     assert any("matrix_authority.authorizes_theology_authority must be false" in failure for failure in failures)
+
+
+def test_canonical_matrix_cannot_drop_owner_or_post_audit_inventory() -> None:
+    matrix = validator.load_yaml(validator.MATRIX)
+    matrix["source_documents"] = [
+        source for source in matrix["source_documents"] if source["source_id"] != "owner-master-brief"
+    ]
+    matrix["coverage_groups"] = [
+        group for group in matrix["coverage_groups"] if group["group_id"] != "owner-master-brief-coverage"
+    ]
+    matrix["entries"] = [entry for entry in matrix["entries"] if entry["id"] != "FABLE-REQ-001"]
+
+    failures = validator.validate_matrix(matrix)
+
+    assert any("required canonical sources missing owner-master-brief" in failure for failure in failures)
+    assert any("required canonical coverage groups missing owner-master-brief-coverage" in failure for failure in failures)
+    assert any("required owner/post-audit entries missing FABLE-REQ-001" in failure for failure in failures)
