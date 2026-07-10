@@ -23,6 +23,12 @@ overlap_resolutions:
     decision: allow_parallel_with_recorded_boundaries
     decided_at: "2026-07-10T18:00:00Z"
     rationale: "T469 was selectively committed, replayed onto a clean live-main worktree, and limited to its planning files. Shared append-only status and handoff-ledger conflicts were resolved by preserving all newer main events and adding T469 chronologically. The dirty T468/W2-2 root worktree remains preserved and was not reset, rebased, or overwritten."
+  - resolution_id: OVERLAP-T468-T481-ISOLATION-001
+    owner_decision_ref: owner_authorization_SRC-PILOT-A_2026-07-10
+    affected_work_ids: [WORK-SCR-T468-W2-2, WORK-SCR-T481-SRC-PILOT-A]
+    decision: allow_parallel_with_recorded_boundaries
+    decided_at: "2026-07-10T20:00:00Z"
+    rationale: "T481 runs in isolated worktree C:/wt/logos-scripture-src-pilot-a on cursor/src-pilot-a-t469-wave0. T481 may update chunking_lesson_index and AI_TABLE_OF_CONTENTS for LSN-060 only; the dirty T468 root worktree remains preserved unrebased."
 work_items:
   - work_id: WORK-GOV-FAMILY-COORD-001
     repo: logos-governance-architecture
@@ -102,6 +108,43 @@ work_items:
       - "PR #168 merged 2026-07-10 as dedd2e289ce74a675f50260c4a1a52ef26e4ea28"
       - "GitHub validate run 29115874788 passed in 7m23s"
       - "Local validate_all passed and pytest completed with 949 passed, 25 lifecycle-declared skips"
+  - work_id: WORK-SCR-T481-SRC-PILOT-A
+    repo: logos-scripture-graph
+    task_id: T481
+    objective_key: src_pilot_a_primary_witness_wave0
+    objective: "Execute SRC-PILOT-A T469 Wave 0 metadata/rights catalog, reuse WEB/SBLGNT/OSHB without duplication, and scaffold Isaiah 53 / Mark 16 non-authorizing showcase packets."
+    status: active
+    board_column: in_progress
+    claim_mode: exclusive_write
+    claimed_paths:
+      - .ai/tasks/T481.task.yaml
+      - .ai/handoffs/T481/
+      - .ai/control/primary_bible_witness_catalog.yaml
+      - .ai/control/chunking_lesson_index.yaml
+      - .ai/control/PROJECT_STATUS.md
+      - .ai/control/handoff_ledger.jsonl
+      - .ai/control/roadmap_events.jsonl
+      - data/candidate/source_catalog/primary_bible_witnesses/
+      - docs/roadmap/T481_SRC_PILOT_A_WAVE0.md
+      - scripts/validate_primary_bible_witness_catalog.py
+      - scripts/validate_all.py
+      - tests/test_primary_bible_witness_catalog.py
+      - AI_TABLE_OF_CONTENTS.md
+    semantic_tags: [primary_witnesses, source_acquisition, source_rights, external_assets, src_pilot_a, isaiah_53, mark_16, sinaiticus_xml]
+    roadmap_refs: [T481, T469, SRC-PILOT-A]
+    branch: cursor/src-pilot-a-t469-wave0
+    issue_url: null
+    pr_url: null
+    owner: Lowell Wong
+    agent: cursor
+    started_at: "2026-07-10T20:00:00Z"
+    heartbeat_at: "2026-07-10T20:00:00Z"
+    stale_after_days: 7
+    authority_ceiling: metadata_rights_catalog_non_output_changing
+    dependencies: [WORK-SCR-T469]
+    related_work_ids: [WORK-SCR-T469, WORK-SCR-T468-W2-2]
+    overlap_resolution_ids: [OVERLAP-T468-T481-ISOLATION-001]
+    completion_evidence: []
   - work_id: WORK-SCR-T468-W2-2
     repo: logos-scripture-graph
     task_id: T468-W2-2
@@ -133,8 +176,8 @@ work_items:
     stale_after_days: 7
     authority_ceiling: preserve_and_reconcile_non_output_changing_work
     dependencies: []
-    related_work_ids: [WORK-SCR-T469]
-    overlap_resolution_ids: [OVERLAP-T468-T469-ISOLATION-001]
+    related_work_ids: [WORK-SCR-T469, WORK-SCR-T481-SRC-PILOT-A]
+    overlap_resolution_ids: [OVERLAP-T468-T469-ISOLATION-001, OVERLAP-T468-T481-ISOLATION-001]
     completion_evidence: []
   - work_id: WORK-GOV-ENG-PRACTICE-001
     repo: logos-governance-architecture
