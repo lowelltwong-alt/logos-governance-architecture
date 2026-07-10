@@ -1,5 +1,9 @@
 # Governance
 
+The [Engineering Practice Observatory](engineering-practice-observatory.md)
+provides a recurring evidence and fit check for agent and software-development
+methods. It never treats company size, reputation, or fashion as authority.
+
 This folder holds the structural discipline documents for the Logos project.
 
 These files exist to keep the repository recursive, ontology-ready, retrieval-friendly, and extensible without uncontrolled drift.

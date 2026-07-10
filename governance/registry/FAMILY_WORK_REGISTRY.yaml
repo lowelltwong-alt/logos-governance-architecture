@@ -29,8 +29,8 @@ work_items:
     task_id: FAMILY-WORK-COORD-001
     objective_key: deterministic_family_work_coordination
     objective: "Create the family work registry, live worktree audit, overlap preflight, lifecycle validator, and GitHub Project projection standard."
-    status: awaiting_review
-    board_column: review
+    status: merged
+    board_column: done
     claim_mode: exclusive_write
     claimed_paths:
       - governance/FAMILY_WORK_COORDINATION_STANDARD.yaml
@@ -59,13 +59,16 @@ work_items:
     owner: Lowell Wong
     agent: Codex
     started_at: "2026-07-10T18:00:00Z"
-    heartbeat_at: "2026-07-10T18:25:00Z"
+    heartbeat_at: "2026-07-10T19:02:10Z"
     stale_after_days: 7
     authority_ceiling: deterministic_non_output_changing_governance
     dependencies: []
     related_work_ids: [WORK-SCR-T469]
     overlap_resolution_ids: []
-    completion_evidence: []
+    completion_evidence:
+      - "PR #105 merged 2026-07-10 as 84ff7e7"
+      - "PR #107 recorded T469 lifecycle completion as 961f1f63e27cf691aee40fa2b06f8a768bb11dad"
+      - "Family work registry CI validator and focused tests passed"
   - work_id: WORK-SCR-T469
     repo: logos-scripture-graph
     task_id: T469
@@ -133,3 +136,50 @@ work_items:
     related_work_ids: [WORK-SCR-T469]
     overlap_resolution_ids: [OVERLAP-T468-T469-ISOLATION-001]
     completion_evidence: []
+  - work_id: WORK-GOV-ENG-PRACTICE-001
+    repo: logos-governance-architecture
+    task_id: ENG-PRACTICE-OBS-001
+    objective_key: engineering_practice_observatory
+    objective: "Build an evidence-ranked Engineering Practice Observatory with event triggers, recurring source review, beginner-readable practice cards, deterministic due-date checks, and owner-gated recommendations."
+    status: awaiting_review
+    board_column: review
+    claim_mode: exclusive_write
+    claimed_paths:
+      - governance/ENGINEERING_PRACTICE_OBSERVATORY_STANDARD.yaml
+      - governance/registry/ENGINEERING_PRACTICE_SOURCE_REGISTRY.yaml
+      - governance/registry/ENGINEERING_PRACTICE_RECOMMENDATION_REGISTRY.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - schemas/engineering-practice-observation.schema.json
+      - docs/governance/engineering-practice-observatory.md
+      - docs/governance/engineering-practice-library/
+      - reports/engineering-practice-watch/
+      - scripts/run_engineering_practice_watch.py
+      - scripts/validate_engineering_practice_observatory.py
+      - tests/test_engineering_practice_observatory.py
+      - .github/workflows/engineering-practice-watch.yml
+      - scripts/validation_contracts.py
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+      - AGENTS.md
+      - docs/governance/README.md
+      - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+    semantic_tags: [engineering_practice, research_watch, agent_orchestration, newbie_learning, governance_authority]
+    roadmap_refs: [ENGINEERING-PRACTICE-OBSERVATORY-V1]
+    branch: codex/engineering-practice-observatory
+    issue_url: "https://github.com/lowelltwong-alt/logos-governance-architecture/issues/108"
+    pr_url: "https://github.com/lowelltwong-alt/logos-governance-architecture/pull/109"
+    owner: Lowell Wong
+    agent: Codex
+    started_at: "2026-07-10T19:05:00Z"
+    heartbeat_at: "2026-07-10T19:23:00Z"
+    stale_after_days: 7
+    authority_ceiling: non_authorizing_engineering_research_and_recommendation
+    dependencies: [WORK-GOV-FAMILY-COORD-001]
+    related_work_ids: []
+    overlap_resolution_ids: []
+    completion_evidence:
+      - "Local full pytest passed: 70 tests"
+      - "Local governed validation suite passed: 26 validators"
+      - "All-markdown internal link validation passed: 420 files"

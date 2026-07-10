@@ -1,0 +1,138 @@
+object_type: engineering_practice_source_registry
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 by Codex from current first-party OpenAI, Anthropic, Google, and GitHub engineering guidance reviewed for the Engineering Practice Observatory pilot."
+reason_for_inclusion: "Preserve source identity, dates, context, limitations, review cadence, and topic routing so future recommendations can be rechecked rather than repeated from memory."
+schema_version: engineering_practice_source_registry.v1
+registry_id: logos_engineering_practice_sources
+owner: Lowell Wong
+standard_ref: governance/ENGINEERING_PRACTICE_OBSERVATORY_STANDARD.yaml
+allowed_source_types: [official_engineering_guidance, official_product_documentation, official_operating_practice]
+sources:
+  - source_id: EPS-OPENAI-001
+    organization: OpenAI
+    title: "Harness engineering: leveraging Codex in an agent-first world"
+    url: https://openai.com/index/harness-engineering/
+    source_type: official_engineering_guidance
+    publication_date: "2026-02-11"
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 30
+    next_review_due: "2026-08-09"
+    topics: [agent_harness, repository_knowledge, independent_review, worktrees, feedback_loops]
+    context_summary: "Reports lessons from a small OpenAI team building an internal product with Codex-authored code, repository-local knowledge, mechanical invariants, worktree isolation, and agent review loops."
+    limitations: "An internal agent-first product and unusually high automation level may not transfer directly to a solo theological research project."
+    authority_posture: evidence_only_not_governance_authority
+    status: active
+  - source_id: EPS-OPENAI-002
+    organization: OpenAI
+    title: "An open-source spec for Codex orchestration: Symphony"
+    url: https://openai.com/index/open-source-codex-orchestration-symphony/
+    source_type: official_engineering_guidance
+    publication_date: "2026-04-27"
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 30
+    next_review_due: "2026-08-09"
+    topics: [task_board, continuous_agents, orchestration, human_review]
+    context_summary: "Describes a board-driven control plane that continuously assigns active tasks to coding agents and routes results to human review."
+    limitations: "Continuous agents can impose cost, concurrency, and supervision burdens that are inappropriate for every Logos task."
+    authority_posture: evidence_only_not_governance_authority
+    status: active
+  - source_id: EPS-ANTHROPIC-001
+    organization: Anthropic
+    title: "Building effective agents"
+    url: https://www.anthropic.com/engineering/building-effective-agents
+    source_type: official_engineering_guidance
+    publication_date: "2024-12-19"
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 90
+    next_review_due: "2026-10-08"
+    topics: [simple_composable_patterns, workflows, agents, cost, complexity]
+    context_summary: "Distinguishes predictable workflows from flexible agents and recommends increasing complexity only when simpler approaches are insufficient."
+    limitations: "General agent guidance; each recommendation still requires repository-specific validation and current-model evaluation."
+    authority_posture: evidence_only_not_governance_authority
+    status: active
+  - source_id: EPS-ANTHROPIC-002
+    organization: Anthropic
+    title: "How we built our multi-agent research system"
+    url: https://www.anthropic.com/engineering/multi-agent-research-system
+    source_type: official_engineering_guidance
+    publication_date: "2025-06-13"
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 60
+    next_review_due: "2026-09-08"
+    topics: [orchestrator, parallel_research, subagents, synthesis, evaluation]
+    context_summary: "Describes an orchestrator that delegates parallel research to subagents and synthesizes their findings."
+    limitations: "Research breadth can justify parallelism; routine deterministic software tasks usually do not."
+    authority_posture: evidence_only_not_governance_authority
+    status: active
+  - source_id: EPS-ANTHROPIC-003
+    organization: Anthropic
+    title: "Effective harnesses for long-running agents"
+    url: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+    source_type: official_engineering_guidance
+    publication_date: "2025-11-26"
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 60
+    next_review_due: "2026-09-08"
+    topics: [long_running_agents, handoff, incremental_progress, persistent_artifacts]
+    context_summary: "Uses initializer and incremental coding-agent roles with explicit artifacts to preserve progress across context windows."
+    limitations: "Long-running harness patterns add ceremony and should activate only for work that actually crosses sessions."
+    authority_posture: evidence_only_not_governance_authority
+    status: active
+  - source_id: EPS-GOOGLE-001
+    organization: Google
+    title: "The Standard of Code Review"
+    url: https://google.github.io/eng-practices/review/reviewer/standard.html
+    source_type: official_operating_practice
+    publication_date: null
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 180
+    next_review_due: "2027-01-06"
+    topics: [code_review, code_health, independent_review, tradeoffs]
+    context_summary: "Frames review around improving overall code health rather than demanding perfection or optimizing only for speed."
+    limitations: "Written for a very large engineering organization; review roles and latency expectations require adaptation for solo maintenance."
+    authority_posture: evidence_only_not_governance_authority
+    status: active
+  - source_id: EPS-GOOGLE-002
+    organization: Google
+    title: "Small CLs"
+    url: https://google.github.io/eng-practices/review/developer/small-cls.html
+    source_type: official_operating_practice
+    publication_date: null
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 180
+    next_review_due: "2027-01-06"
+    topics: [small_changes, reviewability, delivery, risk]
+    context_summary: "Explains why small self-contained changes are easier to design, review, test, and deliver without blocking unrelated work."
+    limitations: "Artificially splitting one invariant or migration can increase risk; change size must follow coherent review boundaries."
+    authority_posture: evidence_only_not_governance_authority
+    status: active
+  - source_id: EPS-GITHUB-001
+    organization: GitHub
+    title: "Scheduling issue creation"
+    url: https://docs.github.com/en/actions/tutorials/manage-your-work/schedule-issue-creation
+    source_type: official_product_documentation
+    publication_date: null
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 90
+    next_review_due: "2026-10-08"
+    topics: [scheduled_workflow, issue_creation, delay, off_hour_schedule]
+    context_summary: "Documents scheduled issue creation and warns that high-load schedule times can be delayed, motivating off-hour minutes and redundant reminders."
+    limitations: "A scheduled issue is a reminder and evidence surface, not proof that research or review occurred."
+    authority_posture: implementation_documentation_not_governance_authority
+    status: active
+  - source_id: EPS-GITHUB-002
+    organization: GitHub
+    title: "Events that trigger workflows"
+    url: https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+    source_type: official_product_documentation
+    publication_date: null
+    last_verified_at: "2026-07-10"
+    review_cadence_days: 90
+    next_review_due: "2026-10-08"
+    topics: [pull_request, workflow_dispatch, schedule, default_branch, timezone]
+    context_summary: "Documents event, manual, and scheduled triggers, default-branch behavior, UTC/timezone handling, and inactivity limitations."
+    limitations: "Workflow triggering provides orchestration, not research quality or recommendation authority."
+    authority_posture: implementation_documentation_not_governance_authority
+    status: active
+

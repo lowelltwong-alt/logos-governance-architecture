@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Engineering Practice Watch Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["object_type", "trust_zone", "lifecycle_status", "generated_at", "run_kind", "due_sources", "due_recommendations", "triggered_topics", "actions"],
+  "properties": {
+    "object_type": {"const": "engineering_practice_watch_report"},
+    "trust_zone": {"const": "proposed"},
+    "lifecycle_status": {"const": "generated_report"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "run_kind": {"enum": ["event", "weekly", "monthly", "quarterly", "manual"]},
+    "due_sources": {"type": "array", "items": {"type": "string"}},
+    "due_recommendations": {"type": "array", "items": {"type": "string"}},
+    "triggered_topics": {"type": "array", "items": {"type": "string"}},
+    "actions": {"type": "array", "items": {"type": "string"}}
+  }
+}
+

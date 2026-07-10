@@ -1111,3 +1111,48 @@ artifacts:
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
     provenance_note: "Added 2026-07-10 after a family audit found forty linked worktrees, nine dirty worktrees, duplicate task signals, detached work, stale branches, and no durable cross-repo claim or lease surface."
     reason_for_inclusion: "The owner and AI agents need an auto-populated scrum view backed by Git evidence and a fail-closed local registry so forgotten or upgraded ideas cannot silently restart on redundant or overlapping worktrees."
+  - artifact_id: GD-024
+    title: Engineering Practice Observatory and recurring sentinel
+    repo: logos-governance-architecture
+    paths:
+      - governance/ENGINEERING_PRACTICE_OBSERVATORY_STANDARD.yaml
+      - governance/registry/ENGINEERING_PRACTICE_SOURCE_REGISTRY.yaml
+      - governance/registry/ENGINEERING_PRACTICE_RECOMMENDATION_REGISTRY.yaml
+      - schemas/engineering-practice-observation.schema.json
+      - docs/governance/engineering-practice-observatory.md
+      - docs/governance/engineering-practice-library/README.md
+      - scripts/validate_engineering_practice_observatory.py
+      - scripts/run_engineering_practice_watch.py
+      - tests/test_engineering_practice_observatory.py
+      - .github/workflows/engineering-practice-watch.yml
+    object_type: engineering_practice_observatory_control
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: owner_request_2026-07-10_recurring_engineering_practice_sentinel
+    owner_decision_ref: https://github.com/lowelltwong-alt/logos-governance-architecture/issues/108
+    depends_on: [GD-001, GD-015, GD-017, GD-018, GD-020, GD-021, GD-023]
+    downstream_controls:
+      - leading_company_practice_as_evidence_not_authority
+      - solo_maintainer_fit_analysis
+      - recurring_due_date_and_event_watch
+      - owner_gated_adoption
+      - beginner_discoverability_and_supersession_history
+    mirrored_by: [planned_child_repo_engineering_practice_pointers]
+    validators:
+      - scripts/validate_engineering_practice_observatory.py
+      - tests/test_engineering_practice_observatory.py
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/ENGINEERING_PRACTICE_OBSERVATORY_STANDARD.yaml
+      - governance/registry/ENGINEERING_PRACTICE_SOURCE_REGISTRY.yaml
+      - governance/registry/ENGINEERING_PRACTICE_RECOMMENDATION_REGISTRY.yaml
+      - docs/governance/engineering-practice-observatory.md
+      - docs/governance/engineering-practice-library/**
+      - scripts/validate_engineering_practice_observatory.py
+      - scripts/run_engineering_practice_watch.py
+      - tests/test_engineering_practice_observatory.py
+      - .github/workflows/engineering-practice-watch.yml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    provenance_note: "Added 2026-07-10 after the owner requested a semi-regular professional-practice sentinel that does not depend on memory or imitate large organizations blindly."
+    reason_for_inclusion: "Logos needs a low-cost learning loop that detects stale evidence and relevant engineering changes while preserving owner authority, theological safeguards, auditability, and economic efficiency."

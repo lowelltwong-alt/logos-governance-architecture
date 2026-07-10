@@ -47,6 +47,10 @@ input on dirty-worktree, shared-roadmap, high-risk-tag, or write-path ambiguity.
 After adding the claim, run `scripts/audit_family_work.py --check-work-id` against
 the live family root before other edits.
 
+For material agent, CI, workflow, worktree, architecture, security, or recurring-
+process work, also read `docs/governance/engineering-practice-observatory.md`.
+External company practice is evidence, not governance authority.
+
 If the task explicitly continues an existing branch, reviews an old pull request, or inspects historical state, do not blindly switch, reset, rebase, or pull over that work. First report the current branch, working-tree state, and relationship to `origin/main`.
 
 If there is uncommitted work, an untracked-file risk, a non-fast-forward condition, or local/remote divergence, stop and report the blocker before editing files.

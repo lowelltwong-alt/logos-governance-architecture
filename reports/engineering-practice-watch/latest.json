@@ -1,0 +1,16 @@
+{
+  "object_type": "engineering_practice_watch_report",
+  "trust_zone": "proposed",
+  "lifecycle_status": "generated_report",
+  "generated_at": "2026-07-10T19:16:33.805438+00:00",
+  "run_kind": "event",
+  "due_sources": [],
+  "due_recommendations": [],
+  "triggered_topics": [
+    "architecture_or_schema",
+    "workflow_or_ci"
+  ],
+  "actions": [
+    "assess_triggered_topics_against_existing_recommendations"
+  ]
+}
