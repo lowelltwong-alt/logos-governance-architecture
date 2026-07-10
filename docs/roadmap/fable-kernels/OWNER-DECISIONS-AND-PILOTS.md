@@ -2,18 +2,29 @@
 object_type: fable_owner_decision_packet
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-06 by Fable. Updated 2026-07-06 by Codex to record Lowell Wong's owner selections D1-D10 for the architecture kernels, preserving recommendations, repercussions, and non-authorizations. Updated 2026-07-07 to record Wave-2 owner selections D11-D16, including the D12 contributor-triggered reviewer-model transition and D15 owner-gated lens clarification."
-reason_for_inclusion: "Owner selections D1-D16 unblock only the named governance-surface implementation queue and prevent future agents from relying on chat memory for these architecture decisions."
+provenance_note: "Created 2026-07-06 by Fable. Updated 2026-07-06 by Codex to record Lowell Wong's owner selections D1-D10 for the architecture kernels, preserving recommendations, repercussions, and non-authorizations. Updated 2026-07-07 to record Wave-2 owner selections D11-D16, including the D12 contributor-triggered reviewer-model transition and D15 owner-gated lens clarification. Updated 2026-07-10 to record AGENT-W1-A, AGENT-W2-A, and AGENT-W7-A."
+reason_for_inclusion: "Owner selections D1-D16 and AGENT-W1-A through AGENT-W7-A unblock only named governance-surface implementation queues and prevent future agents from relying on chat memory for architecture decisions."
 ---
 
 # Owner Decisions and Pilot Slices
 
 Current status: owner selections D1-D10 are recorded in this file under
 `Recorded Owner Selections (2026-07-06)`. Wave-2 selections D11-D16 are
-recorded under `Recorded Wave-2 Owner Selections (2026-07-07)`.
+recorded under `Recorded Wave-2 Owner Selections (2026-07-07)`. Agent-buildout
+selections are recorded under `Recorded Agent Buildout Selections (2026-07-10)`.
 
 Each decision below has a recorded owner selection by Lowell Wong. Recommendation remains distinct from selection unless the recorded selection says so.
 Codex implementation (see `CODEX_HANDOFF.md`) is sequenced against these.
+
+## Recorded Agent Buildout Selections (2026-07-10)
+
+Decision record ID: `AGENT-BUILDOUT-W1-W2-W7-2026-07-10`.
+
+| ID | Owner selection | Authorized work | Still not authorized |
+|---|---|---|---|
+| AGENT-W1-A | Make `logos-governance-architecture` the governance/control plane plus non-data theological architecture standards. | Create a validator-backed inventory assigning each scoped legacy path one future disposition; preserve provenance and links. | Content moves, deletion, bulk migration, new doctrine records, source imports, Scripture/chunk output, graph/retrieval/vector truth, or authority changes. |
+| AGENT-W2-A | Adopt capability-first, economically tiered routing as a non-runtime governance standard. | Draft controlled vocabularies, cards, schemas, validators, low-cost deterministic worker rules, specialist research rules, and independent-review requirements. | Runtime agents, AI gate satisfaction, theology/canon/source-tradition decisions, promotions, or output changes. |
+| AGENT-W7-A | Qualify current Sol/Terra/Luna and low/high/ultra adapters through non-authorizing fixtures before durable role assignment. | Synthetic/source-safe eval fixtures, measured cost/defect/escalation records, expiry rules, and proposed adapter mappings. | Model-name-as-expertise, permanent role assignment without evidence, AI authority, or live source/content work. |
 
 ## Recorded Wave-2 Owner Selections (2026-07-07)
 

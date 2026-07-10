@@ -1585,13 +1585,14 @@ entries:
       - logos-boundary-literature
       - logos-doctrine-genealogy
     disposition: partially_implemented
-    disposition_reason: "W2-1/W2-2 provide freshness controls, but compatible multi-repo release snapshots and governance legacy-path ownership remain unresolved."
+    disposition_reason: "W2-1/W2-2 provide freshness controls and AGENT-W1-A records the legacy-path ownership inventory; compatible multi-repo release snapshots remain unresolved."
     evidence_refs:
       - governance/MIRROR_FRESHNESS_STANDARD.yaml
       - governance/CROSS_REPO_REFERENCE_MANIFEST.yaml
       - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
-    next_action: "Add a family release/BOM contract and resolve governance repo identity debt."
-    owner_decision_status: repo_identity_decision_required
+      - governance/LEGACY_CONTENT_OWNERSHIP_INVENTORY.yaml
+    next_action: "Add a family release/BOM contract; later migration work must use the AGENT-W1-A inventory."
+    owner_decision_status: recorded_agent_w1_a
     target_queue: AGENT-W1_FAMILY_RELEASE_BOM
     blocks_work: false
     non_authorizations:
@@ -1667,17 +1668,18 @@ entries:
       - logos-scripture-graph
       - logos-boundary-literature
       - logos-doctrine-genealogy
-    disposition: needs_owner_decision
-    disposition_reason: "Only the owner can choose the target repo identity and authorize a deprecate/migrate/reference-only map; the audit must not move or delete governed content."
+    disposition: partially_implemented
+    disposition_reason: "The owner selected AGENT-W1-A and the inventory records every scoped legacy path without moving or deleting content; path-level migration packets remain future work."
     evidence_refs:
       - governance/LOGOS_REPO_REGISTRY.yaml
       - AI_FRONT_DOOR.md
       - README.md
       - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
-    next_action: "Prepare AGENT-W1 owner options and repercussions before content buildout."
-    owner_decision_status: owner_decision_required
+      - governance/LEGACY_CONTENT_OWNERSHIP_INVENTORY.yaml
+    next_action: "Use the inventory to prepare only path-level migration packets after separate owner authorization."
+    owner_decision_status: recorded_agent_w1_a
     target_queue: AGENT-W1
-    blocks_work: true
+    blocks_work: false
     non_authorizations:
       - bulk_migration
       - legacy_content_deletion

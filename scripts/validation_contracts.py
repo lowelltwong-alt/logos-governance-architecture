@@ -345,6 +345,10 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "command": [python, "scripts/validate_fable_feedback_trace_matrix.py"],
         },
         {
+            "name": "legacy_content_ownership_inventory",
+            "command": [python, "scripts/validate_legacy_content_ownership_inventory.py"],
+        },
+        {
             "name": "external_advisory_authority_firewall",
             "command": [python, "scripts/validate_external_advisory_authority_firewall.py"],
         },

@@ -1,0 +1,118 @@
+---
+object_type: legacy_content_ownership_inventory
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 after owner authorization AGENT-W1-A to classify legacy governance-repo content by its future family ownership without moving or deleting any artifact."
+reason_for_inclusion: "The governance repo changed from a monorepo-like theological architecture into the family control plane. Every scoped legacy artifact needs one auditable future disposition before migration work can begin."
+---
+schema_version: legacy_content_ownership_inventory.v1
+inventory_id: logos_governance_legacy_content_ownership_inventory
+owner: Lowell Wong
+owner_authorization_id: AGENT-W1-A-2026-07-10
+scope_status: inventory_only
+content_move_authorized: false
+content_delete_authorized: false
+new_doctrine_record_authorized: false
+source_import_authorized: false
+scripture_or_chunk_output_authorized: false
+graph_retrieval_vector_truth_authorized: false
+source_link_preservation_required: true
+allowed_dispositions:
+  - migrate_to_scripture
+  - migrate_to_boundary
+  - migrate_to_doctrine_genealogy
+  - retain_as_governance_architecture
+  - reference_only
+  - compatibility_redirect
+scope_roots:
+  - data/claims
+  - data/graph
+  - data/retrieval
+  - docs/applications
+  - docs/biblical-themes
+  - docs/canon
+  - docs/concepts
+  - docs/concordance
+  - docs/derivations
+  - docs/doctrine
+  - docs/doctrines
+  - docs/hermeneutics
+  - docs/instantiations
+  - docs/lairca
+  - docs/manuscripts
+  - docs/noncanonical
+  - docs/original-languages
+  - docs/primary-sources
+  - docs/scripture
+  - docs/translations
+  - docs/weightings
+entries:
+  - entry_id: LCOI-001
+    path_globs: [data/claims/**]
+    disposition: migrate_to_doctrine_genealogy
+    target_repo: logos-doctrine-genealogy
+    reason: "Claim objects encode doctrine, concepts, Scripture references, and application bridges that must become lineage/profile-scoped records or remain unpromoted candidates in the doctrine plane."
+    provenance_refs: [AI_FRONT_DOOR.md, governance/LOGOS_REPO_REGISTRY.yaml]
+  - entry_id: LCOI-002
+    path_globs: [data/graph/passages/**, data/graph/verses/**, data/graph/translations/**, data/graph/relationships/xref.verse.*__verse.*.json]
+    disposition: migrate_to_scripture
+    target_repo: logos-scripture-graph
+    reason: "Canonical passage, verse, translation-witness, and verse-to-verse graph artifacts belong to the canonical Scripture data plane."
+    provenance_refs: [governance/LOGOS_REPO_REGISTRY.yaml, DATA_FLOW_MAP.md]
+  - entry_id: LCOI-003
+    path_globs: [data/graph/concepts/**, data/graph/doctrines/**, data/graph/entities/**, data/graph/topics/**, data/graph/relationships/xref.verse.*__concept.*.json]
+    disposition: migrate_to_doctrine_genealogy
+    target_repo: logos-doctrine-genealogy
+    reason: "Machine-readable doctrine, concept, person, topic, and doctrine-facing relationship artifacts belong to the future lineage/profile comparison plane after later data authorization."
+    provenance_refs: [governance/LOGOS_REPO_REGISTRY.yaml, docs/roadmap/fable-kernels/KERNEL-A-object-model-and-vocabulary.md]
+  - entry_id: LCOI-004
+    path_globs: [data/graph/examples/**, data/retrieval/**]
+    disposition: reference_only
+    target_repo: logos-governance-architecture
+    reason: "Examples and derived retrieval neighborhoods are historical/reference artifacts until a target plane can regenerate them from governed source records and a family release snapshot."
+    provenance_refs: [docs/roadmap/fable-kernels/KERNEL-D-evidence-product.md, docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md]
+  - entry_id: LCOI-005
+    path_globs: [data/graph/README.md, data/graph/completeness_requirements.json, data/graph/interfaces/**, data/graph/schemes/**, data/graph/shapes/**, data/graph/templates/**, data/graph/relationships/README.md]
+    disposition: retain_as_governance_architecture
+    target_repo: logos-governance-architecture
+    reason: "These are legacy contracts, reference templates, and architecture notes that remain useful as governed migration/reference standards rather than active data-plane records."
+    provenance_refs: [docs/governance/ontology-migration-buffer-wave-d-2026-04-13.md, governance/LOGOS_REPO_REGISTRY.yaml]
+  - entry_id: LCOI-006
+    path_globs: [docs/scripture/**, docs/original-languages/**, docs/manuscripts/**, docs/translations/**]
+    disposition: migrate_to_scripture
+    target_repo: logos-scripture-graph
+    reason: "Canonical Scripture, source-language, manuscript, and translation content belongs with the Scripture data plane and its source-aware review controls."
+    provenance_refs: [governance/LOGOS_REPO_REGISTRY.yaml, DATA_FLOW_MAP.md]
+  - entry_id: LCOI-007
+    path_globs: [docs/noncanonical/**, docs/primary-sources/**, docs/canon/augustine/**]
+    disposition: migrate_to_boundary
+    target_repo: logos-boundary-literature
+    reason: "Noncanonical material, source/reception metadata, and theologian/source content belong in the boundary and reception support plane."
+    provenance_refs: [governance/LOGOS_REPO_REGISTRY.yaml, LOGOS_FAMILY_MAP.md]
+  - entry_id: LCOI-008
+    path_globs: [docs/doctrines/**]
+    disposition: compatibility_redirect
+    target_repo: logos-governance-architecture
+    reason: "This is an established redirect-only legacy path and must remain link-compatible until a separately recorded closure criterion is met."
+    provenance_refs: [docs/doctrines/README.md, docs/governance/module-domain-ownership-map-2026-04-08.md]
+  - entry_id: LCOI-009
+    path_globs: [docs/applications/**, docs/biblical-themes/**, docs/concepts/**, docs/derivations/**, docs/doctrine/**, docs/hermeneutics/**, docs/instantiations/**, docs/lairca/**, docs/weightings/**]
+    disposition: retain_as_governance_architecture
+    target_repo: logos-governance-architecture
+    reason: "Human-readable theological architecture, derivation, application-policy, and LAIRCA framing remain non-data governance architecture; they must not become doctrine-lineage records or source corpora in place."
+    provenance_refs: [README.md, AI_FRONT_DOOR.md, governance/LOGOS_REPO_REGISTRY.yaml]
+  - entry_id: LCOI-010
+    path_globs: [docs/canon/README.md, docs/canon/NODE_ARCHITECTURE.md, docs/concordance/**]
+    disposition: retain_as_governance_architecture
+    target_repo: logos-governance-architecture
+    reason: "Canonical architecture and concordance design notes remain reference standards pending future target-specific schema and release decisions."
+    provenance_refs: [docs/roadmap/repository-integration-map.md, governance/LOGOS_REPO_REGISTRY.yaml]
+pre_migration_stop_rules:
+  - "Do not move, delete, rename, or rewrite an inventoried artifact in this work item."
+  - "Do not treat an inventory disposition as a completed migration, source import, doctrine record, or semantic truth decision."
+  - "Before any later move, create a path-level migration packet with inbound links, stable IDs, target contract, checksum/provenance, replacement path, validation, and owner approval where required."
+  - "Compatibility redirects remain until a recorded closure criterion and inbound-link review are complete."
+validators:
+  - scripts/validate_legacy_content_ownership_inventory.py
+  - tests/test_legacy_content_ownership_inventory.py
+  - scripts/validate_governance_dependency_map.py
