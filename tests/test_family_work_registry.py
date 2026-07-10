@@ -146,6 +146,10 @@ def test_live_audit_blocks_claim_that_overlaps_unregistered_worktree() -> None:
 
 def test_recorded_owner_resolution_clears_observed_registered_overlap() -> None:
     data = registry()
+    t469 = next(item for item in data["work_items"] if item["work_id"] == "WORK-SCR-T469")
+    t469["status"] = "awaiting_review"
+    t469["board_column"] = "review"
+    t469["completion_evidence"] = []
     payload = {"worktrees": [{
         "repo": "logos-scripture-graph",
         "worktree_name": "preserved-t468",
