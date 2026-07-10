@@ -207,7 +207,7 @@ Create W2 cards and packet contracts for each discipline. Use invented or alread
 
 ### Phase 5 - Adapter qualification
 
-Register current aliases and effort settings only after eval results exist. Choose cheapest-qualified routing using measured total cost. Expire stale mappings automatically; never expire the durable role card with the adapter.
+AGENT-W7-A now registers the fixed, source-safe fixture pack and an explicit current-alias register. In this workspace the current Sol/Terra/Luna and low/high/ultra entries are all `not_run` and ineligible because no callable adapter runtime is available. A later captured run may update them through review only after it records all fixture evidence, cost, defects, escalation quality, and expiry. Choose cheapest-qualified routing using measured total cost; never expire the durable role card with the adapter.
 
 ### Phase 6 - Orchestration and composition safety
 
