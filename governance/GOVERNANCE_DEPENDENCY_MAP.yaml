@@ -909,3 +909,44 @@ artifacts:
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
     provenance_note: "Added 2026-07-10 after AGENT-W1-A selected governance/control-plane identity and required an auditable disposition for every scoped legacy content path before any migration work."
     reason_for_inclusion: "Legacy content from the earlier monorepo-like architecture can create duplicate authority and ambiguous AI routing. The inventory makes future ownership explicit while preserving all artifacts and links until separate path-level migration authorization."
+  - artifact_id: GD-020
+    title: Canonical non-runtime agent routing vocabulary
+    repo: logos-governance-architecture
+    paths:
+      - governance/registry/agent_routing_vocabulary.yaml
+      - docs/governance/agent-skills/capability-first-routing-standard.md
+      - scripts/validate_agent_routing_vocabulary.py
+      - tests/test_agent_routing_vocabulary.py
+      - scripts/validation_contracts.py
+    object_type: agent_routing_vocabulary
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: AGENT-W2-A-2026-07-10
+    owner_decision_ref: docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+    depends_on:
+      - GD-001
+      - GD-003
+      - GD-017
+      - GD-018
+    downstream_controls:
+      - deterministic_low_cost_worker_eligibility
+      - specialist_domain_fixture_qualification
+      - independent_specialist_review
+      - ai_human_gate_separation
+      - provider_alias_non_authorization
+      - cost_safety_escalation
+    mirrored_by:
+      - planned_child_repo_agent_routing_mirrors
+    validators:
+      - scripts/validate_agent_routing_vocabulary.py
+      - scripts/run_validation_suite.py
+      - tests/test_agent_routing_vocabulary.py
+    update_triggers:
+      - governance/registry/agent_routing_vocabulary.yaml
+      - docs/governance/agent-skills/capability-first-routing-standard.md
+      - docs/roadmap/agent-skill-registry-roadmap.md
+      - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+      - scripts/validate_agent_routing_vocabulary.py
+      - tests/test_agent_routing_vocabulary.py
+    provenance_note: "Added 2026-07-10 under AGENT-W2-A to make capability-first routing deterministic before adapters, durable roles, or runtime orchestration are authorized."
+    reason_for_inclusion: "Agent routing must preserve economic efficiency without allowing cost, provider reputation, or an unqualified alias to replace specialist evidence, independent review, or human authority."

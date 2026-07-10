@@ -1,0 +1,98 @@
+object_type: agent_routing_vocabulary
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-10 under owner authorization AGENT-W2-A. It turns the approved capability-first routing policy into a deterministic, non-runtime vocabulary contract."
+reason_for_inclusion: "Keep work complexity, authority, effort, domain qualification, independence, escalation, and provider adapters separate so economy never becomes a substitute for expertise or human authority."
+schema_version: agent_routing_vocabulary.v1
+standard_id: logos_agent_routing_vocabulary_v1
+owner: Lowell Wong
+source_repo: logos-governance-architecture
+decision_basis:
+  - AGENT-W2-A-2026-07-10
+  - DAD-FABLE-037
+authority:
+  runtime_orchestration_authorized: false
+  provider_or_model_assignment_authorized: false
+  ai_may_satisfy_human_or_owner_gates: false
+  doctrine_or_scripture_authority_authorized: false
+  source_import_authorized: false
+  graph_retrieval_vector_truth_authorized: false
+routing_rule: lowest_total_cost_among_currently_qualified_adapters
+work_classes:
+  W0_mechanical:
+    description: fully_specified_deterministic_narrow_work
+    default_effort_band: E0_minimal
+  W1_bounded_engineering:
+    description: implementation_to_an_approved_contract
+    default_effort_band: E1_low
+  W2_specialist_research:
+    description: source_sensitive_analysis_inside_one_discipline
+    default_effort_band: E3_high
+  W3_cross_domain_architecture:
+    description: novel_design_across_authority_theology_ontology_algorithms_or_repos
+    default_effort_band: E4_maximum
+authority_classes:
+  A0_observation_only:
+    ai_may_produce: deterministic_observations_and_reports
+    ai_may_satisfy_gate: false
+  A1_candidate_only:
+    ai_may_produce: sourced_candidate_records_or_research_packets
+    ai_may_satisfy_gate: false
+  A2_review_preparation:
+    ai_may_produce: comparison_conflict_and_decision_packets
+    ai_may_satisfy_gate: false
+  A3_human_reserved:
+    ai_may_produce: no_gate_satisfying_output
+    ai_may_satisfy_gate: false
+effort_bands:
+  E0_minimal: cheapest_qualified_adapter_for_short_deterministic_work
+  E1_low: bounded_work_with_light_reasoning_or_tool_use
+  E2_standard: multi_file_engineering_or_ordinary_research_synthesis
+  E3_high: difficult_specialist_reasoning_ambiguity_or_adversarial_review
+  E4_maximum: rare_cross_domain_architecture_or_highest_risk_independent_review
+independence_requirements:
+  I0_not_required: no_independent_review_named_by_work_contract
+  I1_independent_adapter: implementer_cannot_self_certify_review
+  I2_human_reviewer: named_human_or_owner_review_required
+specialist_domain_requirements:
+  - domain_id: koine_greek
+    minimum_qualification: domain_fixture_and_source_safe_packet_pass
+    independence_requirement: I1_independent_adapter
+  - domain_id: biblical_hebrew_aramaic
+    minimum_qualification: domain_fixture_and_source_safe_packet_pass
+    independence_requirement: I1_independent_adapter
+  - domain_id: textual_criticism_codices
+    minimum_qualification: domain_fixture_and_source_safe_packet_pass
+    independence_requirement: I1_independent_adapter
+  - domain_id: archaeology_history
+    minimum_qualification: domain_fixture_and_source_safe_packet_pass
+    independence_requirement: I1_independent_adapter
+  - domain_id: theology_hermeneutics
+    minimum_qualification: domain_fixture_and_source_safe_packet_pass
+    independence_requirement: I1_independent_adapter
+  - domain_id: ontology_cross_repo_architecture
+    minimum_qualification: domain_fixture_and_source_safe_packet_pass
+    independence_requirement: I1_independent_adapter
+escalation_triggers:
+  - ambiguity
+  - missing_evidence
+  - source_conflict
+  - failed_qualification
+  - authority_pressure
+  - scope_expansion
+  - independence_unavailable
+  - cost_pressure_on_safety_controls
+adapter_rules:
+  current_aliases_are_non_authorizing: true
+  qualification_evidence_required_before_durable_role_assignment: true
+  alias_expiry_and_requalification_required: true
+  provider_terms_forbidden_in_durable_role_cards: true
+non_authorizations:
+  - runtime_agents
+  - schedules_or_orchestrators
+  - durable_role_assignment_for_unqualified_adapters
+  - human_or_owner_gate_satisfaction_by_ai
+  - theological_or_canon_decision_by_ai
+  - reviewed_gold_or_reviewed_lineage_promotion
+  - scripture_or_chunk_output_changes
+  - source_imports_or_doctrine_records

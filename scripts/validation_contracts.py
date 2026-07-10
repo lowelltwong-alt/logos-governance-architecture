@@ -384,4 +384,8 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "name": "codex_theology_tripwire",
             "command": [python, "scripts/validate_codex_theology_tripwire.py"],
         },
+        {
+            "name": "agent_routing_vocabulary",
+            "command": [python, "scripts/validate_agent_routing_vocabulary.py"],
+        },
     ]

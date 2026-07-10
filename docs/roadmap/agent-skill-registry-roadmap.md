@@ -189,9 +189,9 @@ Passing a software fixture does not qualify an adapter for Greek, theology, arch
 
 Prepare the owner docket for governance control-plane boundaries and legacy content migration/reference-only status. Do not move or delete content yet.
 
-### Phase 1 - Canonical capability vocabulary
+### Phase 1 - Canonical capability vocabulary (AGENT-W2-A completed)
 
-Add machine-readable vocabularies for work class, authority class, effort band, domain capability, independence, and escalation. Reconcile the existing `reasoner | executor | orchestrator` profiles as compatibility aliases, not the final ontology.
+The canonical vocabulary is now `governance/registry/agent_routing_vocabulary.yaml`. It fixes work class, authority class, effort band, specialist-domain qualification, independence, and escalation without creating a runtime, adapter assignment, or durable role. Existing `reasoner | executor | orchestrator` profiles remain compatibility guidance, not the final ontology.
 
 ### Phase 2 - Card schema and validators
 

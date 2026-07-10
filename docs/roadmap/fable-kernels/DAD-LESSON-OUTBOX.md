@@ -106,6 +106,7 @@ DAD must not ingest this as:
 | DAD-FABLE-038 | Flat lens registries create hidden category errors. | Methods, genres, traditions, systems, and conclusions were mixed into one enum, and missing data could look neutral. | Post-Wave-2 GAP-07 | Planned typed composable lens dimensions and explicit not-evaluated/not-applicable states. | Legal analysis should separate interpretive method, jurisdiction, client posture, authority set, and strategy rather than calling all of them a single lens. |
 | DAD-FABLE-039 | Resolve repo identity before scaling content. | A renamed/split repo can retain old content lanes that conflict with its new ownership contract. | Post-Wave-2 GAP-02 | Owner-gated legacy-path disposition and migration/reference-only docket before buildout. | After a legal platform split, every legacy data path needs a governed owner, compatibility alias, migration target, and sunset criterion. |
 | DAD-FABLE-040 | Inventory before migration. | A repo split can create pressure to move or delete files before their future owner, inbound links, and compatibility posture are known. | AGENT-W1-A | Exact-one-disposition inventory with a fail-closed validator and path-level migration-packet stop rule. | Before moving legal knowledge, client policy, or contract artifacts between systems, classify every scoped path and preserve links/provenance before any migration. |
+| DAD-FABLE-041 | Separate capability, qualification, authority, independence, and cost in executable routing rules. | A provider name or low token price can masquerade as domain expertise or permission to bypass review. | AGENT-W2-A; DAD-FABLE-037 | Canonical non-runtime routing vocabulary with fail-closed specialist qualification and `A3_human_reserved` checks. | Legal work routing must independently establish competence, privilege/review authority, conflict independence, and cost; a preferred vendor or bargain rate cannot substitute for any of them. |
 
 ## Reusable Kernel Map For Secular / Legal Knowledge Graphs
 
@@ -148,7 +149,7 @@ knowledge graph:
 ## Future DAD Work
 
 When a formal DAD workflow exists, ingest this file into a DAD lesson registry
-with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-040`, preserving:
+with stable lesson IDs `DAD-FABLE-001` through `DAD-FABLE-041`, preserving:
 
 - source file references;
 - owner decision references;
