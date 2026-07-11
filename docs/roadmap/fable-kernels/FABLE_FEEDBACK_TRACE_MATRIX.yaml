@@ -891,12 +891,15 @@ entries:
       - logos-governance-architecture
       - logos-boundary-literature
       - logos-doctrine-genealogy
-    disposition: planned
-    disposition_reason: "D11-A approves LLOS v1; W2-7/W2-8/W2-9 remain to implement."
+    disposition: partially_implemented
+    disposition_reason: "W2-7 now implements the LLOS v1 standard, schema, admission checks, P0 discipline, sunset safeguards, and DAD read-only bridge; W2-8/W2-9 child indexes remain pending merge."
     evidence_refs:
       - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
       - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
-    next_action: "Implement W2-7 LLOS standard and lesson schema, then bootstrap boundary and doctrine lesson indexes."
+      - governance/LOGOS_LEARNING_LOOP_OPERATING_STANDARD.yaml
+      - schemas/llos/lesson.v1.schema.json
+      - scripts/validate_llos_standard.py
+    next_action: "Merge W2-8/W2-9 child lesson indexes and verify family-wide synthetic collection."
     owner_decision_status: recorded_d11_a
     target_queue: W2-7_W2-8_W2-9
     blocks_work: false
@@ -1265,12 +1268,14 @@ entries:
       - logos-boundary-literature
       - logos-doctrine-genealogy
       - logos-governance-architecture
-    disposition: planned
-    disposition_reason: "D11-A records LLOS; W2-7/W2-8/W2-9 remain to implement."
+    disposition: partially_implemented
+    disposition_reason: "The governance LLOS contract and validator are implemented; Boundary and Doctrine index branches remain pending merge."
     evidence_refs:
       - docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
       - docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
-    next_action: "Build LLOS and child lesson indexes with admission tests."
+      - governance/LOGOS_LEARNING_LOOP_OPERATING_STANDARD.yaml
+      - scripts/validate_llos_standard.py
+    next_action: "Merge and independently validate the W2-8/W2-9 child indexes."
     owner_decision_status: recorded_d11_a
     target_queue: W2-7_W2-8_W2-9
     blocks_work: false
@@ -1608,11 +1613,14 @@ entries:
       - logos-boundary-literature
       - logos-doctrine-genealogy
     disposition: partially_implemented
-    disposition_reason: "D11-A and the DAD outbox define the direction; W2-7/W2-9 implementation and severity-aware sunset correction remain planned."
+    disposition_reason: "W2-7 now defines route loading, admission, propagation, enforcement, effectiveness review, and severity-aware retention; child adapters and live DAD read-only audit remain pending merge."
     evidence_refs:
       - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
       - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
-    next_action: "Implement LLOS with catastrophic-lesson exemptions and route-relevant loading."
+      - governance/LOGOS_LEARNING_LOOP_OPERATING_STANDARD.yaml
+      - governance/registry/LLOS_ROUTE_REGISTRY.yaml
+      - scripts/validate_llos_standard.py
+    next_action: "Merge child adapters and DAD central audit, then run the synthetic family loop."
     owner_decision_status: recorded_d11_a
     target_queue: W2-7_W2-9_SEVERITY_CORRECTION
     blocks_work: false
@@ -1900,13 +1908,16 @@ entries:
       - logos-scripture-graph
       - logos-boundary-literature
       - logos-doctrine-genealogy
-    disposition: planned
-    disposition_reason: "LLOS needs severity/irreversibility/blast-radius exemptions before sunset behavior is implemented."
+    disposition: implemented
+    disposition_reason: "LLOS v1 now forbids automatic sunset for P0, constitutional, catastrophic, or irreversible lessons and forbids raw-count/usage demotion."
     evidence_refs:
       - docs/roadmap/fable-kernels/FABLE_POST_WAVE2_GAP_AUDIT.md
-    next_action: "Correct W2-7 admission and sunset semantics."
+      - governance/LOGOS_LEARNING_LOOP_OPERATING_STANDARD.yaml
+      - schemas/llos/lesson.v1.schema.json
+      - tests/test_llos_standard.py
+    next_action: "Preserve these invariants in child mirrors and future schema revisions."
     owner_decision_status: recorded_d11_a_with_correction_review
-    target_queue: W2-7_LLOS_SEVERITY_EXEMPTION
+    target_queue: none_completed
     blocks_work: false
     non_authorizations:
       - constitutional_lesson_auto_demotion

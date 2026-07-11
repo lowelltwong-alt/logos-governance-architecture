@@ -1,0 +1,13 @@
+{
+  "schema_version": "dad.logos.write-policy.v1",
+  "repo_id": "logos-governance-architecture",
+  "dad_write_allowed": false,
+  "approval_mode": "fresh_explicit_owner_approval",
+  "approved_explicit_approval_ids": [],
+  "logos_local_outbox_write_allowed": true,
+  "logos_local_dad_central_read_allowed": true,
+  "dad_read_approved_metadata_allowed": true,
+  "dad_push_or_inbox_write_allowed": false,
+  "rollout_approval_id": "USER-2026-07-11-LOGOS-LLOS-READONLY-ROLLOUT",
+  "rollout_approval_is_standing_write_permission": false
+}

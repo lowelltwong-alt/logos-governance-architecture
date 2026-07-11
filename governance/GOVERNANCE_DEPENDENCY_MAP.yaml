@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated 2026-06-22 to add the branch reconciliation register. Updated 2026-06-25 to add the goal-prompt premortem preflight as a first-class dependency. Updated 2026-06-29 to make governance-map and discovery-surface correction a fail-closed requirement for governance changes, including child-repo mirror enforcement. Updated 2026-07-06 to register the Rust fast-validator shadow path as validation infrastructure. Updated 2026-07-07 to record logos-doctrine-genealogy as an active scaffold after Issue #83 acceptance, scaffold PR #1, child data-readiness decision packet PR #2, child owner-gate template PR #3, child owner-decision issue #4, child lane-implementation runbook PR #5, DR-OPTION-A child schema mirror PR #6, Wave-2 owner decisions D11-D16, W2-14 stale-branch hygiene evidence, W2-1 mirror/reference freshness controls, the Fable feedback trace matrix, and Wave-2 DAD lesson expansion. Updated 2026-07-09 to register the independent post-Wave-2 gap audit and the model-agnostic, economically tiered agent capability buildout roadmap. Updated 2026-07-10 to register the AGENT-W1-A legacy ownership inventory and OD-C-OPEN-A independent-study source authorization."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated through 2026-07-10 for the registered governance buildout. Updated 2026-07-11 to register D11 LLOS v1, its lesson schema, route registry, validator, child mirrors, and DAD read-only boundary."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -1156,3 +1156,63 @@ artifacts:
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
     provenance_note: "Added 2026-07-10 after the owner requested a semi-regular professional-practice sentinel that does not depend on memory or imitate large organizations blindly."
     reason_for_inclusion: "Logos needs a low-cost learning loop that detects stale evidence and relevant engineering changes while preserving owner authority, theological safeguards, auditability, and economic efficiency."
+  - artifact_id: GD-025
+    title: Logos Learning Loop Operating Standard v1
+    repo: logos-governance-architecture
+    paths:
+      - governance/LOGOS_LEARNING_LOOP_OPERATING_STANDARD.yaml
+      - .digital-asset/dad-write-policy.json
+      - governance/registry/LLOS_ROUTE_REGISTRY.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - schemas/llos/lesson.v1.schema.json
+      - schemas/schema_registry.json
+      - docs/governance/logos-learning-loop-operating-standard.md
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+      - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+      - scripts/validate_llos_standard.py
+      - scripts/validation_contracts.py
+      - tests/test_llos_standard.py
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    object_type: logos_learning_loop_operating_standard
+    trust_zone: canonical
+    lifecycle_status: active
+    authorized_by: FABLE-WAVE2-D11-D16-2026-07-07:D11_and_USER-2026-07-11-LOGOS-LLOS-READONLY-ROLLOUT
+    owner_decision_ref: docs/roadmap/fable-kernels/OWNER-DECISIONS-AND-PILOTS.md
+    depends_on: [GD-001, GD-002, GD-003, GD-007, GD-014, GD-023]
+    downstream_controls:
+      - lesson_admission_and_scope_tests
+      - p0_and_irreversible_no_auto_sunset
+      - governed_route_and_category_loading
+      - child_repo_mirror_or_outbox_propagation
+      - dad_metadata_only_read_boundary
+      - fresh_explicit_approval_for_every_dad_logos_write
+      - ai_and_dad_cannot_satisfy_owner_gates
+    mirrored_by:
+      - logos-scripture-graph/.ai/control/llos_standard_mirror.yaml
+      - logos-boundary-literature/governance/LLOS_STANDARD_MIRROR.yaml
+      - logos-doctrine-genealogy/governance/LLOS_STANDARD_MIRROR.yaml
+    validators:
+      - scripts/validate_llos_standard.py
+      - tests/test_llos_standard.py
+      - scripts/validate_governance_dependency_map.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - governance/LOGOS_LEARNING_LOOP_OPERATING_STANDARD.yaml
+      - .digital-asset/dad-write-policy.json
+      - governance/registry/LLOS_ROUTE_REGISTRY.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - schemas/llos/lesson.v1.schema.json
+      - docs/governance/logos-learning-loop-operating-standard.md
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+      - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
+      - scripts/validate_llos_standard.py
+      - tests/test_llos_standard.py
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    provenance_note: "Added 2026-07-11 from owner-approved D11 Option A and the bounded Logos LLOS rollout approval."
+    reason_for_inclusion: "The Logos family needs one measurable learning-loop contract while local authority remains in each repo and DAD remains a non-authorizing read-only metadata sidecar."

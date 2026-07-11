@@ -184,8 +184,8 @@ work_items:
     task_id: ENG-PRACTICE-OBS-001
     objective_key: engineering_practice_observatory
     objective: "Build an evidence-ranked Engineering Practice Observatory with event triggers, recurring source review, beginner-readable practice cards, deterministic due-date checks, and owner-gated recommendations."
-    status: awaiting_review
-    board_column: review
+    status: merged
+    board_column: done
     claim_mode: exclusive_write
     claimed_paths:
       - governance/ENGINEERING_PRACTICE_OBSERVATORY_STANDARD.yaml
@@ -226,3 +226,45 @@ work_items:
       - "Local full pytest passed: 70 tests"
       - "Local governed validation suite passed: 26 validators"
       - "All-markdown internal link validation passed: 420 files"
+      - "Merged as PR #109"
+  - work_id: WORK-GOV-W2-7-LLOS-V1
+    repo: logos-governance-architecture
+    task_id: W2-7
+    objective_key: logos_learning_loop_operating_standard_v1
+    objective: "Implement the owner-approved D11 thin LLOS v1 standard, schema, validation, retention safeguards, child mirror contract, and DAD read-only boundary."
+    status: awaiting_review
+    board_column: review
+    claim_mode: exclusive_write
+    claimed_paths:
+      - governance/LOGOS_LEARNING_LOOP_OPERATING_STANDARD.yaml
+      - governance/registry/LLOS_ROUTE_REGISTRY.yaml
+      - schemas/llos/lesson.v1.schema.json
+      - schemas/schema_registry.json
+      - docs/governance/logos-learning-loop-operating-standard.md
+      - scripts/validate_llos_standard.py
+      - scripts/validation_contracts.py
+      - tests/test_llos_standard.py
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+    semantic_tags: [llos, learning_loop, d11, dad_read_only, lesson_schema, human_gate]
+    roadmap_refs: [W2-7, D11]
+    branch: codex/llos-v1-governance
+    issue_url: null
+    pr_url: null
+    owner: Lowell Wong
+    agent: Codex
+    started_at: "2026-07-11T15:07:00Z"
+    heartbeat_at: "2026-07-11T15:20:00Z"
+    stale_after_days: 7
+    authority_ceiling: non_output_changing_learning_loop_governance
+    dependencies: [WORK-GOV-FAMILY-COORD-001]
+    related_work_ids: [WORK-SCR-T468-W2-2]
+    overlap_resolution_ids: []
+    completion_evidence:
+      - "Governed validation suite passed: 27 validators"
+      - "Full pytest passed: 80 tests"
+      - "Focused LLOS and negative admission tests passed"
+      - "DAD read-only policy has no standing approval IDs"

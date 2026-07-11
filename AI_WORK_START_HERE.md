@@ -52,12 +52,19 @@ AI agents working in this repository must follow these guardrails:
      relevant front-door, table-of-contents, work-start, validation, test, and
      downstream mirror surfaces.
 
+9. **Keep DAD read-only inside Logos repositories.**
+   - Follow `governance/LOGOS_LEARNING_LOOP_OPERATING_STANDARD.yaml`.
+   - DAD may read approved metadata or outboxes and write to its own data root.
+   - A DAD-originated write to any Logos file requires a new explicit approval;
+     the LLOS rollout approval is not standing permission.
+
 ## Recommended reading order
 
 1. [`README.md`](README.md)
 2. [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md)
 3. [`docs/governance/family-work-coordination.md`](docs/governance/family-work-coordination.md)
-4. [`governance/registry/FAMILY_WORK_REGISTRY.yaml`](governance/registry/FAMILY_WORK_REGISTRY.yaml)
+4. [`docs/governance/logos-learning-loop-operating-standard.md`](docs/governance/logos-learning-loop-operating-standard.md)
+5. [`governance/registry/FAMILY_WORK_REGISTRY.yaml`](governance/registry/FAMILY_WORK_REGISTRY.yaml)
 5. [`docs/governance/README.md`](docs/governance/README.md)
 6. [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
 7. [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)

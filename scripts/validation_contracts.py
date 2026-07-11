@@ -357,6 +357,10 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "command": [python, "scripts/validate_engineering_practice_observatory.py"],
         },
         {
+            "name": "logos_learning_loop_operating_standard",
+            "command": [python, "scripts/validate_llos_standard.py"],
+        },
+        {
             "name": "external_advisory_authority_firewall",
             "command": [python, "scripts/validate_external_advisory_authority_firewall.py"],
         },
