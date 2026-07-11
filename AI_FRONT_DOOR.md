@@ -41,6 +41,12 @@ AI may help retrieve, draft, compare, stage, and propose.
 
 AI may not silently promote, canonize, invent sources, overwrite doctrine, collapse traditions, or make unreviewed theological claims look authoritative.
 
+Learning work follows [LLOS v1](docs/governance/logos-learning-loop-operating-standard.md).
+Lessons begin as non-authorizing candidates, require human admission, and must
+declare where they apply, where they do not apply, and the danger of misuse.
+DAD is a read-only metadata sidecar for Logos: it may not write any Logos file
+without a new explicit owner approval.
+
 ## Cross-repo governance
 
 This repository is the upstream governance / theological architecture authority

@@ -1,0 +1,28 @@
+---
+object_type: llos_route_registry
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-11 under D11 as the bounded LLOS v1 category and route allowlist."
+reason_for_inclusion: "Prevent free-text routing from smuggling authority or sending a lesson to the wrong Logos plane."
+---
+schema_version: logos.llos.routes.v1
+surface_version: 1.0.0
+routes:
+  governance:
+    owner_repo: logos-governance-architecture
+    categories: [governance, workflow, authority_boundary, validation]
+  scripture:
+    owner_repo: logos-scripture-graph
+    categories: [scripture_pipeline, chunking, canonical_validation, source_metadata]
+  boundary:
+    owner_repo: logos-boundary-literature
+    categories: [boundary_intake, reception_context, source_rights, boundary_validation]
+  doctrine:
+    owner_repo: logos-doctrine-genealogy
+    categories: [doctrine_scaffold, profile_scope, lineage_validation, source_trust]
+  dad_candidate:
+    owner_repo: logos-governance-architecture
+    categories: [cross_repo_workflow, reusable_validator, reusable_harness]
+    metadata_only: true
+    authorizes_downstream_write: false
+

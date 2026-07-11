@@ -104,6 +104,13 @@
       ],
       "validation_kind": "future_evidence_packet",
       "notes": "Kernel D1 evidence packet schema for derived, read-only cross-repo reports; no evidence packets are introduced by this registry entry."
+    },
+    {
+      "name": "llos_lesson_v1",
+      "path": "schemas/llos/lesson.v1.schema.json",
+      "applies_to": [],
+      "validation_kind": "logos_learning_loop_candidate",
+      "notes": "D11 LLOS v1 lesson contract. Candidate lessons remain non-authorizing and may cross to DAD only as allowlisted metadata."
     }
   ]
 }

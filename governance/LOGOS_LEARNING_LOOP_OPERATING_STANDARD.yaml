@@ -1,0 +1,144 @@
+---
+object_type: logos_learning_loop_operating_standard
+trust_zone: canonical
+lifecycle_status: active
+provenance_note: "Created 2026-07-11 by Codex under owner decisions D11 and USER-2026-07-11-LOGOS-LLOS-READONLY-ROLLOUT."
+reason_for_inclusion: "Give every Logos repo one thin, testable learning-loop contract without creating a new runtime or transferring authority to DAD."
+---
+schema_version: logos.llos.standard.v1
+surface_version: 1.0.0
+standard_id: LLOS-v1
+owner: Lowell Wong
+authority_repo: logos-governance-architecture
+authorized_by:
+  - FABLE-WAVE2-D11-D16-2026-07-07:D11
+  - USER-2026-07-11-LOGOS-LLOS-READONLY-ROLLOUT
+scope:
+  repos:
+    - logos-governance-architecture
+    - logos-scripture-graph
+    - logos-boundary-literature
+    - logos-doctrine-genealogy
+  creates_new_runtime: false
+  creates_new_repo: false
+  authorizes_source_imports: false
+  authorizes_theology: false
+  authorizes_output_changes: false
+loop_stages:
+  - preflight
+  - candidate_capture
+  - admission_review
+  - local_application
+  - validation
+  - postflight
+  - effectiveness_review
+admission:
+  required_fields:
+    - lesson_id
+    - revision
+    - source_repo
+    - authority_owner
+    - category
+    - route
+    - severity
+    - constitutional
+    - status
+    - summary
+    - applies_when
+    - does_not_apply_when
+    - danger_if_misapplied
+    - evidence_refs
+    - validator_refs
+    - changed_paths
+    - enforcement_ref
+    - prevention
+    - stop_condition
+    - authority_ceiling
+    - reading_cost
+    - irreversibility
+    - blast_radius
+    - sunset_eligible
+    - propagation_posture
+    - source_hashes
+    - contains_raw_source_payload
+    - contains_theology_claim
+    - human_review_required
+  candidate_is_authority: false
+  ai_may_admit: false
+  dad_may_admit: false
+  human_review_required: true
+severity_policy:
+  allowed: [P0, P1, P2, P3]
+  p0_budget_requires_named_owner: true
+  p0_requires_explicit_human_review: true
+  p0_auto_sunset_allowed: false
+  catastrophic_or_irreversible_auto_sunset_allowed: false
+attention_budget:
+  selection_basis: route_relevance_and_reading_cost
+  raw_p0_count_may_exclude_lesson: false
+  over_budget_action: consolidate_or_request_human_review
+  usage_may_demote_p0_or_constitutional: false
+changed_path_gates:
+  nonempty_path_requires_enforcement_ref: true
+  generated_confidence_satisfies_gate: false
+sunset_policy:
+  ordinary_review_after_days: 180
+  stale_action: review_required
+  auto_delete_allowed: false
+  rejected_records_preserved: true
+  superseded_records_preserved: true
+propagation:
+  mode: governed_mirror_or_local_outbox
+  authority_transfers: false
+  downstream_auto_apply: false
+  local_reauthoring_required: true
+dad_bridge:
+  relationship: external_metadata_sidecar
+  read_approved_metadata: true
+  read_repo_outbox: true
+  write_inside_logos_repo: false
+  deliver_to_logos_inbox: false
+  mutate_logos_contract: false
+  mutate_logos_index: false
+  approval_required_for_every_future_logos_write: true
+  approval_must_be_fresh_and_explicit: true
+  central_write_root: DAD_DATA_ROOT
+  export_allowlist:
+    - lesson_id
+    - revision
+    - source_repo
+    - category
+    - route
+    - severity
+    - status
+    - summary
+    - applies_when
+    - does_not_apply_when
+    - danger_if_misapplied
+    - evidence_refs
+    - validator_refs
+    - source_hashes
+  export_forbidden:
+    - raw_source_text
+    - raw_corpus_rows
+    - private_payloads
+    - secrets
+    - unreviewed_theology_claims
+    - authority_bearing_conclusions
+communication:
+  logos_local_may_write_own_outbox: true
+  dad_may_read_approved_logos_outbox: true
+  dad_may_write_central_candidate_records: true
+  logos_local_may_read_dad_central_candidates: true
+  logos_local_pull_required_for_return_path: true
+  dad_push_to_logos_allowed: false
+  dad_direct_logos_inbox_write_allowed: false
+  candidate_return_authorizes_local_change: false
+  local_human_review_required_before_adoption: true
+gate_policy:
+  ai_may_satisfy_owner_gate: false
+  dad_may_satisfy_owner_gate: false
+  model_output_is_proof: false
+  comments_or_pr_text_are_authority: false
+  local_repo_authority_wins: true
+  conflict_action: stop_and_request_owner_review
