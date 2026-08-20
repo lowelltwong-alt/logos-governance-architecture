@@ -29,6 +29,12 @@ overlap_resolutions:
     decision: allow_parallel_with_recorded_boundaries
     decided_at: "2026-07-10T20:00:00Z"
     rationale: "T481 runs in isolated worktree C:/wt/logos-scripture-src-pilot-a on cursor/src-pilot-a-t469-wave0. T481 may update chunking_lesson_index and AI_TABLE_OF_CONTENTS for LSN-060 only; the dirty T468 root worktree remains preserved unrebased."
+  - resolution_id: OVERLAP-W27-HD4G1B-DEPMAP-001
+    owner_decision_ref: lowell_chat_2026-08-20_dispositions_1b_2a
+    affected_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-MAIN-EXPOSURE-HOTFIX-001]
+    decision: allow_parallel_with_recorded_boundaries
+    decided_at: "2026-08-20T17:20:00Z"
+    rationale: "The HD-4g hotfix lane touches governance/GOVERNANCE_DEPENDENCY_MAP.yaml only to append one provenance-note sentence recording its own claim registration, as the watched-path gate requires. It touches no LLOS artifact, standard, schema, or validation path claimed by W2-7 (whose lease is already stale pending owner reconciliation), and the W2-7 content claim is preserved unmodified."
 work_items:
   - work_id: WORK-GOV-FAMILY-COORD-001
     repo: logos-governance-architecture
@@ -262,7 +268,7 @@ work_items:
     authority_ceiling: non_output_changing_learning_loop_governance
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-SCR-T468-W2-2]
-    overlap_resolution_ids: []
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001]
     completion_evidence:
       - "Governed validation suite passed: 27 validators"
       - "Full pytest passed: 80 tests"
@@ -294,6 +300,6 @@ work_items:
     stale_after_days: 7
     authority_ceiling: non_authorizing_content_labeling_and_redaction_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
-    related_work_ids: [WORK-GOV-HABITAT-OVERLAY-001]
-    overlap_resolution_ids: []
+    related_work_ids: []
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001]
     completion_evidence: []
