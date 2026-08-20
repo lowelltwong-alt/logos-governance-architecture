@@ -2,7 +2,7 @@
 object_type: fable_feedback_trace_matrix
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-07 by Codex after the owner requested a 100 percent auditable plan for Fable output and feedback. Updated 2026-07-09 after an independent post-Wave-2 audit to trace the owner's master brief separately from Fable's response and record fifteen newly identified correction gaps."
+provenance_note: "Created 2026-07-07 by Codex after the owner requested a 100 percent auditable plan for Fable output and feedback. Updated 2026-07-09 after an independent post-Wave-2 audit to trace the owner's master brief separately from Fable's response and record fifteen newly identified correction gaps. Updated 2026-08-20 by Fable 5 under owner decision HABITAT-HD-SESSION2P-2026-08-20 (HD-4g option 1B) to redact three local user-profile external_attachment_ref paths (PRV-F9) to identity-preserving stubs; no source_documents entry, field, or evaluative content was changed."
 reason_for_inclusion: "Future agents need a deterministic matrix showing every owner requirement and Fable feedback class, its disposition, evidence, remaining gate, and non-authorizations instead of relying on chat memory or treating response coverage as requirement coverage."
 ---
 schema_version: fable_feedback_trace_matrix.v1
