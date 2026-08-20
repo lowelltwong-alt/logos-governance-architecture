@@ -1,5 +1,8 @@
 # Augustine
 
+> **⚠ PROVENANCE WARNING — DO NOT CITE (owner decision HABITAT-HD-SESSION1-2026-08-19, HD-4a).**
+> This node's supporting citations are unresolved machine-generated placeholders (`citeturn…` tokens, wrapped in invisible private-use Unicode characters) referencing unnamed reference works; no edition or locus is named anywhere in the file, and the prose contains chat residue. Its claims are therefore **unsourced** and must not be cited, quoted, promoted, or used as evidence in any downstream artifact, board material, or external document until the authorized citation repair (named Augustine editions per the patristics docket, `fable-review` files 02/12, item Q-01) is completed under qualified review. The placeholder tokens and invisible characters are intentionally retained until that repair as forensic evidence of the paste provenance. This banner is a status label only; it makes no judgment about the theological content.
+
 ## Why Augustine belongs in the shared core
 
 Augustine belongs in the shared core of this repository because he helps hold together creation, fall, will, love, grace, institutional disorder, and redemption in a way that is unusually useful for a theological architecture aimed at governance and AI-era institutional design.
