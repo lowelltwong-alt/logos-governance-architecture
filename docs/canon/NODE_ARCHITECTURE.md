@@ -1,5 +1,8 @@
 # Canon Node Architecture
 
+> **⚠ PROVENANCE WARNING (owner decision HABITAT-HD-SESSION1-2026-08-19, HD-4a).**
+> The "AI and retrieval rationale" section below carries unresolved machine-generated citation placeholders (`citeturn…` tokens) in place of real citations. That section's external-source claims are unsourced and must not be cited until the authorized citation repair (queue item Q-01 in `incoming/research/habitat-ai-theological-overlay/fable-review/12_p0_p1_remediation_queue.md`) is completed. Placeholders are intentionally retained until repair as provenance evidence.
+
 This document defines the standard recursive architecture for canon nodes in the Logos Fractal Theological Architecture repository.
 
 ## Purpose
