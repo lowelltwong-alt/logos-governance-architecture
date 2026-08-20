@@ -268,3 +268,32 @@ work_items:
       - "Full pytest passed: 80 tests"
       - "Focused LLOS and negative admission tests passed"
       - "DAD read-only policy has no standing approval IDs"
+  - work_id: WORK-GOV-MAIN-EXPOSURE-HOTFIX-001
+    repo: logos-governance-architecture
+    task_id: HD-4G-1B
+    objective_key: public_surface_exposure_hotfix
+    objective: "Apply the owner-selected HD-4g option-1B hotfix to the published main surface: HD-4a(ii) provenance banners on the two canon files and PRV-F9 local-attachment-path stub redaction in the Fable feedback trace matrix; no other content change; push and merge gated on a separate explicit owner go-ahead. Decision record HABITAT-HD-SESSION2P-2026-08-20 (fable/habitat-overlay-review ef2fb2c). The two canon files also carry the WORK-GOV-HABITAT-OVERLAY-001 claim on the permanently unpushed overlay branch; same owner and agent hold both lanes and this hotfix transcribes the identical owner-approved banner text."
+    status: active
+    board_column: in_progress
+    claim_mode: exclusive_write
+    claimed_paths:
+      - docs/canon/augustine/README.md
+      - docs/canon/NODE_ARCHITECTURE.md
+      - docs/roadmap/fable-kernels/FABLE_FEEDBACK_TRACE_MATRIX.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    semantic_tags: [privacy_remediation, provenance_banner, owner_decision, public_surface, hd4g_1b]
+    roadmap_refs: [HABITAT-HD-SESSION2P-2026-08-20]
+    branch: fable/main-exposure-hotfix
+    issue_url: null
+    pr_url: null
+    owner: Lowell Wong
+    agent: Fable 5
+    started_at: "2026-08-20T17:10:00Z"
+    heartbeat_at: "2026-08-20T17:10:00Z"
+    stale_after_days: 7
+    authority_ceiling: non_authorizing_content_labeling_and_redaction_only
+    dependencies: [WORK-GOV-FAMILY-COORD-001]
+    related_work_ids: [WORK-GOV-HABITAT-OVERLAY-001]
+    overlap_resolution_ids: []
+    completion_evidence: []

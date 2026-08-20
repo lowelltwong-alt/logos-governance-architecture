@@ -1109,7 +1109,7 @@ artifacts:
       - docs/governance/README.md
       - docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
-    provenance_note: "Added 2026-07-10 after a family audit found forty linked worktrees, nine dirty worktrees, duplicate task signals, detached work, stale branches, and no durable cross-repo claim or lease surface."
+    provenance_note: "Added 2026-07-10 after a family audit found forty linked worktrees, nine dirty worktrees, duplicate task signals, detached work, stale branches, and no durable cross-repo claim or lease surface. Updated 2026-08-20 to record the WORK-GOV-MAIN-EXPOSURE-HOTFIX-001 claim registration for the owner-authorized HD-4g option-1B public-surface hotfix (provenance banners and PRV-F9 path redaction); registry-only claim addition with no coordination-machinery change."
     reason_for_inclusion: "The owner and AI agents need an auto-populated scrum view backed by Git evidence and a fail-closed local registry so forgotten or upgraded ideas cannot silently restart on redundant or overlapping worktrees."
   - artifact_id: GD-024
     title: Engineering Practice Observatory and recurring sentinel
