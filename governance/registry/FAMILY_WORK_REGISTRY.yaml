@@ -31,10 +31,10 @@ overlap_resolutions:
     rationale: "T481 runs in isolated worktree C:/wt/logos-scripture-src-pilot-a on cursor/src-pilot-a-t469-wave0. T481 may update chunking_lesson_index and AI_TABLE_OF_CONTENTS for LSN-060 only; the dirty T468 root worktree remains preserved unrebased."
   - resolution_id: OVERLAP-W27-HD4G1B-DEPMAP-001
     owner_decision_ref: lowell_chat_2026-08-20_dispositions_1b_2a
-    affected_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-MAIN-EXPOSURE-HOTFIX-001]
+    affected_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-MAIN-EXPOSURE-HOTFIX-001, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001]
     decision: allow_parallel_with_recorded_boundaries
     decided_at: "2026-08-20T17:20:00Z"
-    rationale: "The HD-4g hotfix lane touches governance/GOVERNANCE_DEPENDENCY_MAP.yaml only to append one provenance-note sentence recording its own claim registration, as the watched-path gate requires. It touches no LLOS artifact, standard, schema, or validation path claimed by W2-7 (whose lease is already stale pending owner reconciliation), and the W2-7 content claim is preserved unmodified."
+    rationale: "The HD-4g hotfix lane and its closure PR each touch governance/registry/FAMILY_WORK_REGISTRY.yaml and governance/GOVERNANCE_DEPENDENCY_MAP.yaml only to append their own claim's fields and one provenance-note sentence, as the watched-path gate requires. Neither touches any LLOS artifact, standard, schema, or validation path claimed by W2-7 (whose lease is already stale pending owner reconciliation), and the W2-7 content claim is preserved unmodified throughout."
 work_items:
   - work_id: WORK-GOV-FAMILY-COORD-001
     repo: logos-governance-architecture
@@ -279,8 +279,8 @@ work_items:
     task_id: HD-4G-1B
     objective_key: public_surface_exposure_hotfix
     objective: "Apply the owner-selected HD-4g option-1B hotfix to the published main surface: HD-4a(ii) provenance banners on the two canon files and PRV-F9 local-attachment-path stub redaction in the Fable feedback trace matrix; no other content change; push and merge gated on a separate explicit owner go-ahead. Decision record HABITAT-HD-SESSION2P-2026-08-20 (fable/habitat-overlay-review ef2fb2c). The two canon files also carry the WORK-GOV-HABITAT-OVERLAY-001 claim on the permanently unpushed overlay branch; same owner and agent hold both lanes and this hotfix transcribes the identical owner-approved banner text."
-    status: active
-    board_column: in_progress
+    status: merged
+    board_column: done
     claim_mode: exclusive_write
     claimed_paths:
       - docs/canon/augustine/README.md
@@ -292,14 +292,45 @@ work_items:
     roadmap_refs: [HABITAT-HD-SESSION2P-2026-08-20]
     branch: fable/main-exposure-hotfix
     issue_url: null
-    pr_url: null
+    pr_url: "https://github.com/lowelltwong-alt/logos-governance-architecture/pull/114"
     owner: Lowell Wong
     agent: Fable 5
     started_at: "2026-08-20T17:10:00Z"
-    heartbeat_at: "2026-08-20T17:10:00Z"
+    heartbeat_at: "2026-08-20T17:56:46Z"
     stale_after_days: 7
     authority_ceiling: non_authorizing_content_labeling_and_redaction_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: []
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001]
+    completion_evidence:
+      - "Owner explicit push/PR/merge go-ahead recorded in chat 2026-08-20 (\"push, PR, and merge\")"
+      - "PR #114 merged as commit 4f1f8024ba689fa114844d2ea6e1c05135f28baf"
+      - "Full pytest passed: 80 tests"
+      - "Governed validation suite: 26/27 (sole failure pre-existing, unrelated retrieval_neighborhoods staleness)"
+      - "scripts/validate_internal_links.py --all-markdown passed: 421 files"
+      - "Post-merge verification: origin/main serves both canon-file banners and zero PRV-F9 local-path tokens"
+  - work_id: WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001
+    repo: logos-governance-architecture
+    task_id: HD-4G-1B-CLOSURE
+    objective_key: main_exposure_hotfix_claim_closure
+    objective: "Registry-only closure PR: transition WORK-GOV-MAIN-EXPOSURE-HOTFIX-001 to merged/done with its PR URL and completion evidence, following the already-merged and owner-authorized HD-4g option-1B hotfix (PR #114)."
+    status: active
+    board_column: in_progress
+    claim_mode: additive_write
+    claimed_paths:
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+    semantic_tags: [registry_hygiene, claim_closure]
+    roadmap_refs: [HABITAT-HD-SESSION2P-2026-08-20]
+    branch: fable/close-main-hotfix-claim
+    issue_url: null
+    pr_url: "https://github.com/lowelltwong-alt/logos-governance-architecture/pull/115"
+    owner: Lowell Wong
+    agent: Fable 5
+    started_at: "2026-08-20T17:58:00Z"
+    heartbeat_at: "2026-08-20T17:58:00Z"
+    stale_after_days: 1
+    authority_ceiling: non_authorizing_registry_bookkeeping_only
+    dependencies: [WORK-GOV-FAMILY-COORD-001]
+    related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001]
     overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001]
     completion_evidence: []
