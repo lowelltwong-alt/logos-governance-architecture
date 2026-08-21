@@ -1216,3 +1216,35 @@ artifacts:
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
     provenance_note: "Added 2026-07-11 from owner-approved D11 Option A and the bounded Logos LLOS rollout approval."
     reason_for_inclusion: "The Logos family needs one measurable learning-loop contract while local authority remains in each repo and DAD remains a non-authorizing read-only metadata sidecar."
+  - artifact_id: GD-026
+    title: Logos convergence scrubbed advisory review candidate
+    repo: logos-governance-architecture
+    paths:
+      - docs/governance/logos-convergence-advisory-review.md
+      - docs/governance/logos-convergence-advisory-review.yaml
+    object_type: logos_convergence_advisory_review
+    trust_zone: proposed
+    lifecycle_status: draft
+    authorized_by: owner_authorized_local_public_projection_candidate_2026-08-21
+    owner_decision_ref: OWNER-PUBLICATION-DECISION-LOGOS-CONVERGENCE-001
+    depends_on: [GD-001, GD-003, GD-007, GD-015, GD-017, GD-023]
+    downstream_controls:
+      - advisory_consensus_is_not_owner_approval
+      - exact_normalized_text_hash_replay
+      - p0_p1_blocks_remain_out_of_scope
+      - residuals_and_special_001_remain_blocked
+      - theology_source_authority_policy_privacy_and_publication_remain_human_gated
+      - default_deny_public_release_projection
+      - private_history_remains_local_and_nonintegrated
+    mirrored_by: [none_authorized]
+    validators:
+      - scripts/validate_governance_dependency_map.py
+      - scripts/validate_family_work_registry.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - docs/governance/logos-convergence-advisory-review.md
+      - docs/governance/logos-convergence-advisory-review.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    provenance_note: "Added 2026-08-21 as a local, scrubbed, non-authorizing release candidate under a default-deny allowlist; private evidence and publication authority remain outside the artifact."
+    reason_for_inclusion: "Expose only bounded advisory coordinates and unresolved gates for owner review without integrating or publishing held private histories."

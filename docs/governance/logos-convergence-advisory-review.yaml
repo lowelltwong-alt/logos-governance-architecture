@@ -1,0 +1,152 @@
+metadata:
+  object_type: logos_convergence_advisory_review
+  trust_zone: proposed
+  lifecycle_status: draft
+  provenance_note: "Prepared on 2026-08-21 as a default-deny, scrubbed projection of owner-allowlisted advisory coordinates; private evidence remains outside this artifact."
+  reason_for_inclusion: "Provide a reviewable non-authorizing public surface while keeping unresolved blocks, residuals, and human gates explicit."
+schema_version: logos_convergence_advisory_review.v1
+review_id: LOGOS-CONVERGENCE-ADVISORY-REVIEW-001
+authority:
+  advisory_only: true
+  owner_approval_supplied: false
+  implementation_authorized: false
+  publication_authorized: false
+  private_history_integration_authorized: false
+  later_amendment_review_claimed: false
+  exact_text_hash_contract: sha256_utf8_text_plus_single_lf
+advisory_rows:
+  - advisory_id: ADVISORY-001
+    normalized_text: "Candidate normalization: Keep the current governance repository and its incoming/research staging lane as the present program home; do not create a new repository unless an independently owned lifecycle or private/runtime boundary is demonstrated and the owner approves it. Staging is not promotion. Neither architect is recorded as accepting this text, and no human gate or implementation authority is satisfied."
+    sha256: 4e179aea2d3620c96d58ee5fcbf8dada52ca9c4960e30e57cc52210ac71c4c1f
+  - advisory_id: ADVISORY-002
+    normalized_text: "Candidate normalization: Represent a missing or inaccessible source with a scoped docket record and unavailable quotation status; do not reconstruct quotations, paraphrase memory as source content, or infer contents beyond the documented search. The record proves only unavailability within its named scope. Neither architect is recorded as accepting this text, and all source-access, rights, and human review gates remain unsatisfied."
+    sha256: 9769d0f4453d4ec3f0049031208debc229bdbbfbae3fdf9cd1307c48854d3aad
+  - advisory_id: ADVISORY-003
+    normalized_text: "Candidate normalization: Keep source identity, exact quotation replay, context, genre, addressee, plural readings, non-claims, routed original-language questions, qualified exegesis, and reception review as distinct records or gates. Structural or quotation checks do not certify interpretation. Neither architect is recorded as accepting this text, and theology, source-authority, and qualified-human gates remain unsatisfied."
+    sha256: 5235a1607e495b5b7b3b7092bc3dc72a4ff3daaa29b42f9149f5dbc0e27a974b
+  - advisory_id: ADVISORY-004
+    normalized_text: "Candidate normalization: Use task-decision pairs, preserve accountable human responsibility, evaluate worker and beneficiary harms, require rollback, and prohibit person-level monitoring until approved privacy, retention, access, and consultation rules exist. These are candidate work-design controls, not facts or policy about an institution. Neither architect is recorded as accepting this text, and every privacy, workforce, institution, and adoption gate remains unsatisfied."
+    sha256: cac88001f2be264800c79b1c475ee9717a037b22f7bc29a0dba81da85bab8874
+  - advisory_id: ADVISORY-005
+    normalized_text: "Candidate normalization: Treat fixed agent counts, wave counts, file caps, literal scanners, and current execution separation as replaceable operating choices; preserve provider-neutral provenance, evidence floors, named human authority, explicit uncertainty, and replay as the durable controls. Neither architect is recorded as accepting this text, and no route selection, human gate, or implementation authority is supplied."
+    sha256: 50272c5db8975a3072f700d864789f44897d6b7594d7d0428c57ff9e40be027e
+  - advisory_id: ADVISORY-006
+    normalized_text: "Candidate normalization: Treat the governed source plane as mechanically resolvable only to the extent replay demonstrates; quotation fitness requires a precise span, elision, emphasis, and composite contract, while context and interpretation require qualified human review. Do not infer corpus-wide quotation or exegesis fitness from one checked extraction. Neither architect is recorded as accepting this text, and source-authority, theology, review, and implementation gates remain unsatisfied."
+    sha256: db6fcf1baa8788aafbfb3c7f33f489dd02b1ff19743a74fe34fce6f4372f0ddd
+  - advisory_id: ADVISORY-007
+    normalized_text: "Candidate normalization: Treat the existing ten-agent, five-wave topology as one benchmark arm, not a default; compare it with human-only, deterministic-only, and single-agent routes, and select the smallest route shown sufficient on accepted evidence, independent defect discovery, privacy, elapsed time, reviewer and owner minutes, retries, rework, and total cost. Neither architect is recorded as accepting this text, and no experiment, budget, route, or implementation is authorized."
+    sha256: 8db38fc52aa152a7f3d97e1f299f846a30082edc02a6fd661959448bd6473d62
+blocked_rows:
+  p0_count: 2
+  p1_count: 10
+  rows:
+    - {block_id: BLOCK-P1-001, title: "Typed genealogy and historical-evidence floors", priority: P1, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P1-002, title: "Tradition scope and institution-authority separation", priority: P1, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P1-003, title: "Board view as governed projection", priority: P1, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P0-001, title: "History-aware redaction and tested consumption", priority: P0, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P1-004, title: "Parent-cardinality evidence gap", priority: P1, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P1-005, title: "Conditional custody modules versus universal traversal", priority: P1, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P1-006, title: "Per-chain weakest-hop cap and independent authority bases", priority: P1, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P1-007, title: "Warrant card as loss-bounded projection", priority: P1, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P1-008, title: "Supported-consumer replay contract", priority: P1, implementation_blocked: true, owner_gate: false}
+    - {block_id: BLOCK-P1-009, title: "Authenticated owner intent and adapter choice", priority: P1, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P0-002, title: "Historical P0 facts versus current disposition", priority: P0, implementation_blocked: true, owner_gate: true}
+    - {block_id: BLOCK-P1-010, title: "Minimal launch set and control retirement", priority: P1, implementation_blocked: true, owner_gate: true}
+  invariants:
+    findings_closed: 0
+    implementation_blocks_cleared: 0
+    resolution_or_recommendation_allowed: false
+residuals:
+  count: 5
+  rows:
+    - residual_id: RESIDUAL-001
+      title: "Asserted-basis control and reviewer floor"
+      categories: [implementation_tradeoff, owner_decision_required, experiment_recommended]
+      status: owner_decision_required
+      implementation_blocked: true
+      unresolved_gates: [basis_vocabulary, reviewer_classes, profile_selection_authority, theology_adjudication]
+    - residual_id: RESIDUAL-002
+      title: "AS-IS baseline and classification"
+      categories: [scope_or_wording_difference, factual_disagreement, experiment_recommended]
+      status: experiment_recommended
+      implementation_blocked: true
+      unresolved_gates: [dated_defect_replay, current_defect_status, tradition_scope, privacy_publication]
+    - residual_id: RESIDUAL-003
+      title: "Assurance independence and proportional-check taxonomy"
+      categories: [architecture_tradeoff, implementation_tradeoff, owner_decision_required, experiment_recommended]
+      status: owner_decision_required
+      implementation_blocked: true
+      unresolved_gates: [assurance_taxonomy, correlation_test, reviewer_capacity, budget, residual_risk_acceptance]
+    - residual_id: RESIDUAL-004
+      title: "Governed exegesis-record placement"
+      categories: [owner_decision_required, theological_or_authority_disagreement, architecture_tradeoff]
+      status: owner_decision_required
+      implementation_blocked: true
+      unresolved_gates: [object_type, source_authority, repository_contract, rights, lifecycle, downstream_consumers]
+    - residual_id: RESIDUAL-005
+      title: "Private seam store and migration"
+      categories: [owner_decision_required, implementation_tradeoff]
+      status: owner_decision_required
+      implementation_blocked: true
+      unresolved_gates: [store_selection, cloud_custody, access, encryption, retention, migration, rollback]
+  invariants:
+    implementation_blocks_cleared: 0
+    further_model_debate_authorized: false
+    resolution_or_recommendation_allowed: false
+special_001:
+  discovery_status: UNKNOWN
+  exact_semantics_identified: false
+  parent_cardinality_change_allowed: false
+  substantive_recommendation_allowed: false
+  experiment_authorized: false
+  owner_decision_required_before_change: true
+substantive_human_gates:
+  - theology_or_doctrine
+  - source_authority_or_canonicity
+  - tradition_or_institutional_policy
+  - privacy_or_publication
+  - governed_exegesis_home
+  - private_store_or_migration
+  - authority_matrix_or_authentication_adapter
+  - special_001_cardinality_or_experiment
+  - asserted_basis_and_reviewer_authority
+  - assurance_independence_or_thresholds
+  - blocked_p0_p1_scope
+release_allowlist:
+  - seven_exact_normalized_advisory_texts
+  - seven_exact_sha256_values
+  - two_p0_and_ten_p1_block_coordinates
+  - five_residual_coordinates
+  - special_001_restriction
+  - substantive_human_gates
+  - non_authorization_and_pending_publication_controls
+release_exclusions:
+  - owner_selection_quotations
+  - local_paths_or_worktree_details
+  - branch_details
+  - internal_model_or_budget_metadata
+  - raw_review_round_packets
+  - snapshot_or_round_manifests
+  - source_commit_or_blob_identifiers
+  - mesh_logs_or_internal_receipts
+  - unresolved_private_store_details
+  - externally_supplied_protocol_material_without_confirmed_provenance_and_release_rights
+owner_publication_decision_packet:
+  decision_id: OWNER-PUBLICATION-DECISION-LOGOS-CONVERGENCE-001
+  status: pending
+  question: "Should this scrubbed advisory candidate advance beyond its local checkpoint?"
+  prerequisites:
+    - confirm_provenance_and_release_rights
+    - confirm_no_excluded_material_or_history_reachability
+    - retain_all_blocks_residuals_and_human_gates
+    - revalidate_live_main_and_candidate_head_before_any_publication_action
+  options:
+    - option_id: A
+      disposition: retain_local_candidate
+      effect: "No remote action; continue provenance and release-rights review."
+    - option_id: B
+      disposition: authorize_separate_pull_request_preparation
+      effect: "Authorize a new bounded lane to prepare a reviewed pull request; no merge or publication authority is implied."
+    - option_id: C
+      disposition: reject_or_supersede_candidate
+      effect: "Keep the local checkpoint preserved for audit and do not advance this projection."
