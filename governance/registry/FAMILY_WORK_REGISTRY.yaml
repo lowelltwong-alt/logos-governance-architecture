@@ -35,6 +35,12 @@ overlap_resolutions:
     decision: allow_parallel_with_recorded_boundaries
     decided_at: "2026-08-20T17:20:00Z"
     rationale: "The HD-4g hotfix lane and its closure PR each touch governance/registry/FAMILY_WORK_REGISTRY.yaml and governance/GOVERNANCE_DEPENDENCY_MAP.yaml only to append their own claim's fields and one provenance-note sentence, as the watched-path gate requires. Neither touches any LLOS artifact, standard, schema, or validation path claimed by W2-7 (whose lease is already stale pending owner reconciliation), and the W2-7 content claim is preserved unmodified throughout."
+  - resolution_id: OVERLAP-W27-CONV-PUBLIC-PROJECTION-001
+    owner_decision_ref: OWNER-AUTHORIZED-LOCAL-PUBLIC-PROJECTION-001
+    affected_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001, WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001]
+    decision: allow_parallel_with_recorded_boundaries
+    decided_at: "2026-08-21T20:34:58Z"
+    rationale: "The public-projection lane may add only its two scrubbed non-authorizing advisory files and the minimum additive family-registry and dependency-map bookkeeping. It may append only this overlap ID to the two named existing work items and may not change their content, status, authority, history, or other fields. Publication and all substantive gates remain separately owner-controlled."
 work_items:
   - work_id: WORK-GOV-FAMILY-COORD-001
     repo: logos-governance-architecture
@@ -268,7 +274,7 @@ work_items:
     authority_ceiling: non_output_changing_learning_loop_governance
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-SCR-T468-W2-2]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
     completion_evidence:
       - "Governed validation suite passed: 27 validators"
       - "Full pytest passed: 80 tests"
@@ -332,5 +338,40 @@ work_items:
     authority_ceiling: non_authorizing_registry_bookkeeping_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
     completion_evidence: []
+  - work_id: WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001
+    repo: logos-governance-architecture
+    task_id: LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001
+    objective_key: logos_convergence_scrubbed_advisory_projection
+    objective: "Prepare a default-deny, scrubbed, non-authorizing public-release candidate containing only the owner-allowlisted convergence advisory material and explicit unresolved gates; no publication authority is granted."
+    status: awaiting_review
+    board_column: review
+    claim_mode: additive_write
+    claimed_paths:
+      - docs/governance/logos-convergence-advisory-review.md
+      - docs/governance/logos-convergence-advisory-review.yaml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    semantic_tags: [convergence_advisory, public_projection, privacy_scrubbed, human_gate, non_authorizing]
+    roadmap_refs: [LOGOS-CONVERGENCE-ADVISORY-REVIEW]
+    branch: codex/logos-convergence-public-projection
+    issue_url: null
+    pr_url: null
+    owner: Lowell Wong
+    agent: Codex
+    started_at: "2026-08-21T20:34:58Z"
+    heartbeat_at: "2026-08-21T20:55:06Z"
+    stale_after_days: 1
+    authority_ceiling: non_authorizing_local_public_release_candidate_only
+    dependencies: [WORK-GOV-FAMILY-COORD-001]
+    related_work_ids: []
+    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
+    completion_evidence:
+      - "Live public main and the local parent remained pinned to the authorized revision throughout preparation."
+      - "Family-registry validation passed and the protected-hold preflight passed with exactly seven suppressions."
+      - "Seven advisory texts replayed byte-for-byte with seven matching SHA-256 values; two P0, ten P1, five residuals, SPECIAL-001, and eleven human gates remain explicit."
+      - "Full pytest passed 80 tests and all-markdown internal-link validation passed 422 files."
+      - "The governed suite passed 26 of 27 validators; the sole failure is the pre-existing retrieval-neighborhood freshness baseline."
+      - "Targeted privacy, hidden-character, credential, provenance, license, and history-safety reviews found no candidate leak; no stronger secret scanner was installed."
+      - "Independent read-only governance and privacy review passed with publication authority still pending."
