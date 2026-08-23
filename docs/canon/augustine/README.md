@@ -1,7 +1,18 @@
 # Augustine
 
-> **⚠ PROVENANCE WARNING — DO NOT CITE (owner decision HABITAT-HD-SESSION1-2026-08-19, HD-4a).**
-> This node's supporting citations are unresolved machine-generated placeholders (`citeturn…` tokens, wrapped in invisible private-use Unicode characters) referencing unnamed reference works; no edition or locus is named anywhere in the file, and the prose contains chat residue. Its claims are therefore **unsourced** and must not be cited, quoted, promoted, or used as evidence in any downstream artifact, board material, or external document until the authorized citation repair (named Augustine editions per the patristics docket, `fable-review` files 02/12, item Q-01) is completed under qualified review. The placeholder tokens and invisible characters are intentionally retained until that repair as forensic evidence of the paste provenance. This banner is a status label only; it makes no judgment about the theological content.
+> **⚠ SOURCE REVIEW REQUIRED — DO NOT CITE (owner decision HABITAT-HD-SESSION1-2026-08-19, HD-4a).**
+> The Q-01 repair removed six non-resolvable chat-local locator tokens and their private-use Unicode wrappers from five passages below. Each passage now identifies exact candidate primary-source loci and a named public edition. These anchors are AI-assisted research candidates, not qualified theological approval. This entire node—including the five repaired passages and every remaining theological or project-level assertion—must not be cited, quoted, promoted, or used as evidence in any downstream artifact, board material, or external document until a qualified patristics reviewer approves or corrects the loci, translation fit, and interpretation. This banner is a status label only; it makes no judgment about the theological content.
+
+## Source status and edition basis
+
+The linked English texts below are public transcriptions of the following named editions. The work, book, chapter, and section locators remain controlling when translation wording differs:
+
+- Augustine, [*The City of God*](https://www.newadvent.org/fathers/1201.htm), translated by Marcus Dods, in *Nicene and Post-Nicene Fathers*, First Series, volume 2, edited by Philip Schaff (Buffalo, NY: Christian Literature Publishing Co., 1887), revised for New Advent by Kevin Knight.
+- Augustine, [*On the Trinity*](https://www.newadvent.org/fathers/1301.htm), translated by Arthur West Haddan, in *Nicene and Post-Nicene Fathers*, First Series, volume 3, edited by Philip Schaff (Buffalo, NY: Christian Literature Publishing Co., 1887), revised for New Advent by Kevin Knight.
+- Augustine, [*On the Nature of Good*](https://www.newadvent.org/fathers/1407.htm), translated by Albert H. Newman, in *Nicene and Post-Nicene Fathers*, First Series, volume 4, edited by Philip Schaff (Buffalo, NY: Christian Literature Publishing Co., 1887), revised for New Advent by Kevin Knight.
+- Augustine, [*On Nature and Grace*](https://www.newadvent.org/fathers/1503.htm), translated by Peter Holmes and Robert Ernest Wallis, revised by Benjamin B. Warfield, in *Nicene and Post-Nicene Fathers*, First Series, volume 5, edited by Philip Schaff (Buffalo, NY: Christian Literature Publishing Co., 1887), revised for New Advent by Kevin Knight.
+
+These editions replace the unnamed machine locators as inspectable evidence. They do not replace the qualified source-review gate.
 
 ## Why Augustine belongs in the shared core
 
@@ -36,7 +47,7 @@ Until that deeper decomposition becomes necessary, this README functions as the 
 
 ## Creation as good, ordered, and intelligible
 
-Augustine is very important to this repository because he treats creation as good, ordered, and intelligible under God. Creation is not morally neutral matter waiting for human domination to give it meaning. It is already formed, already ordered, and already answerable to God. Augustine’s theology of creation resists chaos, dualism, and any idea that human technique is the source of order itself. Major reference works on Augustine emphasize his understanding of creation as good and ordered under God and his major Genesis writings as central to his theological system. citeturn0search1turn0search0
+Augustine treats created natures as good because they come from God and locates their measure, form, and order in God ([*On the Nature of Good* 1, 3, 8](https://www.newadvent.org/fathers/1407.htm)). In [*City of God* XI.21–22](https://www.newadvent.org/fathers/120111.htm), he reads Genesis’s repeated divine approval of creation as approval of the work in divine wisdom and describes created things as fitted into a larger order. For this node, the claim that human technique receives rather than creates value is an application of those loci, not Augustine’s discussion of modern technology. **Source status:** candidate loci; qualified patristics approval pending.
 
 For this project, that means governance should be understood as participation in a prior order, not the invention of value by system design. AI, institutions, and decision frameworks are therefore creaturely tools within an already ordered reality. They are not sovereign makers of truth.
 
@@ -44,7 +55,7 @@ This is one of Augustine’s strongest gifts to the project. He helps make clear
 
 ## The human person: intelligence, will, and creaturely dignity
 
-Augustine is also crucial because he gives a rich account of the human person. The person is not merely an object in the world but a rational, willing creature with interiority, memory, judgment, and moral accountability. Major Augustine scholarship highlights his importance for freedom, the will, moral agency, and the human person as image-bearing in ways especially developed in works like *De Trinitate*. citeturn0search0
+Augustine analyzes the mind’s self-knowledge through memory, understanding, and will in [*On the Trinity* X.11.17–X.12.19](https://www.newadvent.org/fathers/130110.htm), and relates the mind’s capacity to remember, understand, and love God to the divine image in [*On the Trinity* XIV.11.14–XIV.12.15](https://www.newadvent.org/fathers/130114.htm). These loci directly support the narrower claims about the mind and image-bearing; the node’s claims about irreducibility, accountability, and AI governance are project-level inferences. **Source status:** candidate loci; qualified patristics approval pending.
 
 This matters for the repository because the project needs a robust anthropology before it can responsibly discuss AI governance. If the person is treated as only a behavioral surface, then ranking, prediction, and optimization become much easier to justify. If the person is understood as morally significant, irreducible, and accountable, then governance must preserve stronger forms of human review, responsibility, and explanation.
 
@@ -54,7 +65,7 @@ Augustine therefore strengthens the project’s resistance to reducing persons t
 
 For this project, Augustine’s treatment of Genesis 3 is one of his most valuable contributions.
 
-The fall is not simply a problem of missing information. It is a disordering of love, willing, and moral orientation. The human person does not merely know too little. The human person loves wrongly, turns inward in pride, and misuses created goods. Major Augustine references emphasize his account of sin, damaged willing, and the inability of fallen humanity simply to restore itself by its own powers. citeturn0search0
+In [*City of God* XIV.6, 13–15](https://www.newadvent.org/fathers/120114.htm), Augustine describes a wrong will as ill-directed love and traces the first open disobedience to a prior evil will rooted in pride and a turn from the higher good toward the self. In [*On Nature and Grace* 3](https://www.newadvent.org/fathers/1503.htm), he describes post-Adamic nature as unsound, darkened, weakened, and in need of illumination and healing. For this node, treating the fall as more than a lack of information is an inference from those loci. **Source status:** candidate loci; qualified patristics approval pending.
 
 This is foundational for AI governance.
 
@@ -83,7 +94,7 @@ That distinction is essential for AI governance. A system that makes labor faste
 
 ## Grace and redemption as necessary, not optional
 
-Another reason Augustine belongs in the shared core is that he will not allow the human problem to be solved by technique alone. Grace is not decorative in Augustine. It is necessary because the will is damaged and because right order cannot simply be engineered out of fallen material by force of intelligence alone. Major Augustine scholarship emphasizes the centrality of grace, moral dependence on God, and the inability of fallen persons to heal themselves unaided. citeturn0search0
+In [*On Nature and Grace* 3–4, 82](https://www.newadvent.org/fathers/1503.htm), Augustine says fallen nature needs a physician, illumination, and healing; he also says it cannot be enlightened or purified without God’s grace. The claims here about technique, engineering, and AI are project applications of that anti-Pelagian premise, not subjects Augustine directly addresses. **Source status:** candidate loci; qualified patristics approval pending.
 
 For this repository, that means any Christian account of governance or AI use must remain anti-Pelagian. It cannot assume that the right architecture, the right model, or the right workflow will itself redeem the institution.
 
@@ -93,7 +104,7 @@ That is highly relevant to AI governance because it helps the repository avoid b
 
 ## The two cities and the moral instability of institutions
 
-Augustine’s *City of God* is extremely important for this project because it offers a durable way of thinking about institutions without idolizing them. The distinction between the earthly city and the city of God is not a simplistic church-versus-state framework. Rather, it is a distinction rooted in governing loves. Major Augustine scholarship emphasizes this point and shows that visible institutions in history remain mixed, morally unstable, and never identical with ultimate righteousness. citeturn0search0
+In [*City of God* XIV.28](https://www.newadvent.org/fathers/120114.htm), Augustine distinguishes the earthly and heavenly cities by their governing loves. In [*City of God* I.35](https://www.newadvent.org/fathers/120101.htm), he says the two cities remain intermixed until the last judgment and notes that the pilgrim city’s visible communion includes some who will not finally belong to the saints. These loci support present intermingling, not a blanket claim that every visible institution is morally unstable; the governance implications below are project-level inferences. **Source status:** candidate loci; qualified patristics approval pending.
 
 This is directly useful for governance and AI.
 
