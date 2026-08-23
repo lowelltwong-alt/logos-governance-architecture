@@ -32,3 +32,6 @@ jobs:
 
       - name: Validate external advisory authority firewall
         run: python scripts/validate_external_advisory_authority_firewall.py
+
+      - name: Reject machine-local citation artifacts
+        run: python scripts/validate_machine_citation_artifacts.py

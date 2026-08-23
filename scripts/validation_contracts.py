@@ -325,6 +325,10 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "command": [python, "scripts/validate_internal_links.py"],
         },
         {
+            "name": "machine_citation_artifacts",
+            "command": [python, "scripts/validate_machine_citation_artifacts.py"],
+        },
+        {
             "name": "retrieval_neighborhoods",
             "command": [python, "scripts/validate_retrieval_neighborhoods.py"],
         },

@@ -245,6 +245,7 @@ artifacts:
       - scripts/run_validation_suite.py
       - scripts/validate_all.py
       - scripts/validate_internal_links.py
+      - scripts/validate_machine_citation_artifacts.py
       - scripts/doctrine_genealogy_validation.py
       - scripts/validate_doctrine_vocabulary.py
       - scripts/validate_doctrine_provenance.py
@@ -259,6 +260,8 @@ artifacts:
       - tests/test_doctrine_genealogy_validators.py
       - tests/test_cross_repo_reference_manifest.py
       - tests/test_fable_feedback_trace_matrix.py
+      - tests/test_machine_citation_artifacts.py
+      - tests/test_validation_contracts.py
       - tests/test_rust_fast_internal_links.py
       - .github/workflows/validate-logos-structure.yml
     object_type: governance_validation_suite
@@ -280,6 +283,7 @@ artifacts:
       - codex_theology_tripwire_validation
       - cross_repo_reference_manifest_validation
       - fable_feedback_trace_matrix_validation
+      - machine_citation_artifact_recurrence_gate
       - rust_fast_validator_shadow_parity_scope
     mirrored_by:
       - logos-scripture-graph/scripts/validate_all.py
@@ -287,6 +291,7 @@ artifacts:
     validators:
       - scripts/run_validation_suite.py
       - scripts/validate_internal_links.py
+      - scripts/validate_machine_citation_artifacts.py
       - scripts/validate_governance_dependency_map.py
       - scripts/validate_doctrine_vocabulary.py
       - scripts/validate_doctrine_provenance.py
@@ -296,6 +301,8 @@ artifacts:
       - scripts/validate_codex_theology_tripwire.py
       - scripts/validate_cross_repo_reference_manifest.py
       - scripts/validate_fable_feedback_trace_matrix.py
+      - tests/test_machine_citation_artifacts.py
+      - tests/test_validation_contracts.py
       - tests/test_fable_feedback_trace_matrix.py
       - tests/test_rust_fast_internal_links.py
     update_triggers:
@@ -310,9 +317,11 @@ artifacts:
       - tests/test_doctrine_genealogy_validators.py
       - tests/test_cross_repo_reference_manifest.py
       - tests/test_fable_feedback_trace_matrix.py
+      - tests/test_machine_citation_artifacts.py
+      - tests/test_validation_contracts.py
       - tests/test_rust_fast_internal_links.py
       - .github/workflows/
-    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks. Updated 2026-07-06 to include PR-4 doctrine-genealogy validators and tests, including the Kernel E Codex theology tripwire path. Updated 2026-07-06 to register the T462 Rust fast-validator shadow path for deterministic internal-link acceleration. Updated 2026-07-07 to include W2-1 cross-repo reference manifest validation and the Fable feedback trace matrix validator."
+    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks. Updated 2026-07-06 to include PR-4 doctrine-genealogy validators and tests, including the Kernel E Codex theology tripwire path. Updated 2026-07-06 to register the T462 Rust fast-validator shadow path for deterministic internal-link acceleration. Updated 2026-07-07 to include W2-1 cross-repo reference manifest validation and the Fable feedback trace matrix validator. Updated 2026-08-23 to reject private-use citation markers and non-resolvable chat-local citation locators across tracked public text."
     reason_for_inclusion: "Validation scope changes can change effective governance; doctrine-genealogy schemas need fail-closed checks before any examples, data records, reviewed lineage, or repo creation."
   - artifact_id: GD-008
     title: Governance workflow and roadmap process
