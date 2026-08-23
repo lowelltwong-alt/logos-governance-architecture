@@ -41,6 +41,12 @@ overlap_resolutions:
     decision: allow_parallel_with_recorded_boundaries
     decided_at: "2026-08-21T20:34:58Z"
     rationale: "The public-projection lane may add only its two scrubbed non-authorizing advisory files and the minimum additive family-registry and dependency-map bookkeeping. It may append only this overlap ID to the two named existing work items and may not change their content, status, authority, history, or other fields. Publication and all substantive gates remain separately owner-controlled."
+  - resolution_id: OVERLAP-W27-CITATION-RESIDUE-REPAIR-001
+    owner_decision_ref: lowell_chat_continue_citation_residue_repair_plan_2026-08-22
+    affected_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001, WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001, WORK-GOV-CITATION-RESIDUE-REPAIR-001]
+    decision: allow_parallel_with_recorded_boundaries
+    decided_at: "2026-08-23T04:07:36Z"
+    rationale: "The citation-residue repair may add only its own claim, validator registration, dependency-map coverage, focused test, CI step, and bounded public citation-residue repairs. PR #111 already merged the W2-7 content at ce79001, PR #115 merged the hotfix-closure content at 15c5ca6, and PR #116 merged the public projection at 739537b; their substantive files, statuses, authority, and histories remain unchanged. The new lane may extend scripts/validation_contracts.py and GD-007 without changing LLOS semantics or convergence advisory content. Qualified theological source review, publication, and all remote effects remain separate human gates."
 work_items:
   - work_id: WORK-GOV-FAMILY-COORD-001
     repo: logos-governance-architecture
@@ -274,7 +280,7 @@ work_items:
     authority_ceiling: non_output_changing_learning_loop_governance
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-SCR-T468-W2-2]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001]
     completion_evidence:
       - "Governed validation suite passed: 27 validators"
       - "Full pytest passed: 80 tests"
@@ -338,7 +344,7 @@ work_items:
     authority_ceiling: non_authorizing_registry_bookkeeping_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001]
     completion_evidence: []
   - work_id: WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001
     repo: logos-governance-architecture
@@ -366,7 +372,7 @@ work_items:
     authority_ceiling: non_authorizing_local_public_release_candidate_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: []
-    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
+    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001]
     completion_evidence:
       - "Live public main and the local parent remained pinned to the authorized revision throughout preparation."
       - "Family-registry validation passed and the protected-hold preflight passed with exactly seven suppressions."
@@ -375,3 +381,52 @@ work_items:
       - "The governed suite passed 26 of 27 validators; the sole failure is the pre-existing retrieval-neighborhood freshness baseline."
       - "Targeted privacy, hidden-character, credential, provenance, license, and history-safety reviews found no candidate leak; no stronger secret scanner was installed."
       - "Independent read-only governance and privacy review passed with publication authority still pending."
+  - work_id: WORK-GOV-CITATION-RESIDUE-REPAIR-001
+    repo: logos-governance-architecture
+    task_id: CITATION-RESIDUE-REPAIR-001
+    objective_key: public_machine_citation_artifact_repair
+    objective: "Remove non-resolvable chat-local citation locator residue from public tracked examples where no source judgment is required, stage qualified-source repairs for the two canon documents without self-approving theology, and add a deterministic tracked-public-file validator that blocks Unicode private-use citation markers and chat-local locator tokens from recurring."
+    status: awaiting_review
+    board_column: review
+    claim_mode: exclusive_write
+    claimed_paths:
+      - docs/canon/NODE_ARCHITECTURE.md
+      - docs/canon/augustine/README.md
+      - data/graph/examples/primary-sources/genesis-11/reconstruction.genesis.11.1-9.json
+      - data/graph/examples/primary-sources/genesis-11/transcription.mt.genesis.11.1-9.json
+      - data/graph/examples/primary-sources/genesis-11/witness.dss_genesis_manuscript_sample.json
+      - data/graph/examples/primary-sources/genesis-11/witness.leningrad_codex.json
+      - data/graph/examples/primary-sources/mark-1/reconstruction.mark.1.1-15.sample.json
+      - data/graph/examples/primary-sources/mark-1/transcription.sinaiticus.mark.1.1-35.sample.json
+      - data/graph/examples/primary-sources/mark-1/witness.codex_sinaiticus.mark_sample.json
+      - scripts/validate_machine_citation_artifacts.py
+      - scripts/validation_contracts.py
+      - tests/test_machine_citation_artifacts.py
+      - tests/test_validation_contracts.py
+      - .github/workflows/validate-logos-structure.yml
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    semantic_tags: [citation_artifact, source_provenance, privacy_remediation, public_surface, validation_contract, governance_authority, human_gate]
+    roadmap_refs: [HABITAT-HD-SESSION2P-2026-08-20, Q-01]
+    branch: codex/citation-residue-repair
+    issue_url: null
+    pr_url: null
+    owner: Lowell Wong
+    agent: Codex
+    started_at: "2026-08-23T04:07:36Z"
+    heartbeat_at: "2026-08-23T18:34:06Z"
+    stale_after_days: 7
+    authority_ceiling: non_authorizing_public_hygiene_validation_and_source_ref_cleanup
+    dependencies: [WORK-GOV-FAMILY-COORD-001]
+    related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001, WORK-GOV-W2-7-LLOS-V1]
+    overlap_resolution_ids: [OVERLAP-W27-CITATION-RESIDUE-REPAIR-001]
+    completion_evidence:
+      - "Owner-authorized one-time protected-hold-aware preflight at checkpoint 08eab8e3 passed without modifying any held worktree; eight exact clean non-writing holds qualified, seven were actual overlaps, and the eighth had no ahead commit or overlapping path."
+      - "Removed sixteen non-resolvable locator tokens from nine public files and all private-use citation wrappers from the two canon documents; seven example provenance.source_refs arrays are now empty rather than fabricated."
+      - "NODE_ARCHITECTURE.md now cites two first-party Microsoft Learn sources; Augustine names exact candidate primary loci and NPNF editions for five passages, separates modern AI/governance applications as project inferences, and retains a whole-node no-cite gate pending qualified patristics review, so no theological source approval is claimed."
+      - "Machine citation artifact validation passed across 715 UTF-8 tracked text files with zero skipped files and no payload echo; focused tests passed 34 and full pytest passed 114."
+      - "Independent Terra/medium read-only review found one tracked-symlink bypass; the validator now scans public link-target text without dereferencing it, two regression tests cover the fix, and no other actionable finding remained."
+      - "A final independent authority audit found that the first candidate had narrowed the original whole-node no-cite gate to the repaired passages; the banner now again covers every theological and project-level assertion in the node, and the independent follow-up verdict is PASS."
+      - "Seven JSON files parsed; governance dependency map, family registry, governance metadata, node frontmatter, and all-markdown internal-link validation passed."
+      - "Governed validation suite passed 27 of 28 validators; the sole failure is the pre-existing 48-day retrieval-neighborhood freshness baseline outside this claim."
+      - "At 2026-08-23T18:34:06Z Lowell authorized exactly these sixteen claimed paths for one intentional commit, non-force push of codex/citation-residue-repair, pull request, and merge after required CI, while retaining the Augustine whole-node gate; no remote action had occurred as of this evidence update, and cleanup, reset, rebase, force-push, protection bypass, unrelated staging, and branch deletion remain prohibited."
