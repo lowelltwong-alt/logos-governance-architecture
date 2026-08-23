@@ -41,6 +41,12 @@ overlap_resolutions:
     decision: allow_parallel_with_recorded_boundaries
     decided_at: "2026-08-21T20:34:58Z"
     rationale: "The public-projection lane may add only its two scrubbed non-authorizing advisory files and the minimum additive family-registry and dependency-map bookkeeping. It may append only this overlap ID to the two named existing work items and may not change their content, status, authority, history, or other fields. Publication and all substantive gates remain separately owner-controlled."
+  - resolution_id: OVERLAP-W27-STEWARD-BUILDOUT-001
+    owner_decision_ref: lowell_chat_2026-08-23_start_long_run_stewardship_architecture_buildout
+    affected_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001, WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001, WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001]
+    decision: allow_parallel_with_recorded_boundaries
+    decided_at: "2026-08-23T15:46:00Z"
+    rationale: "The stewardship-buildout lane may append only its own claim to the shared family registry and may write only its disjoint docs/roadmap/logos-stewardship-architecture-buildout/ tree. It may not alter LLOS artifacts, either pre-existing claim's content or status, the public advisory projection, the governance dependency map, or any convergence/Fable lane. Substantive architecture, theology, source authority, privacy, migration, publication, and implementation gates remain separately owner-controlled."
 work_items:
   - work_id: WORK-GOV-FAMILY-COORD-001
     repo: logos-governance-architecture
@@ -274,7 +280,7 @@ work_items:
     authority_ceiling: non_output_changing_learning_loop_governance
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-SCR-T468-W2-2]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-STEWARD-BUILDOUT-001]
     completion_evidence:
       - "Governed validation suite passed: 27 validators"
       - "Full pytest passed: 80 tests"
@@ -338,7 +344,7 @@ work_items:
     authority_ceiling: non_authorizing_registry_bookkeeping_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-STEWARD-BUILDOUT-001]
     completion_evidence: []
   - work_id: WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001
     repo: logos-governance-architecture
@@ -366,7 +372,7 @@ work_items:
     authority_ceiling: non_authorizing_local_public_release_candidate_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: []
-    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001]
+    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-STEWARD-BUILDOUT-001]
     completion_evidence:
       - "Live public main and the local parent remained pinned to the authorized revision throughout preparation."
       - "Family-registry validation passed and the protected-hold preflight passed with exactly seven suppressions."
@@ -375,3 +381,29 @@ work_items:
       - "The governed suite passed 26 of 27 validators; the sole failure is the pre-existing retrieval-neighborhood freshness baseline."
       - "Targeted privacy, hidden-character, credential, provenance, license, and history-safety reviews found no candidate leak; no stronger secret scanner was installed."
       - "Independent read-only governance and privacy review passed with publication authority still pending."
+  - work_id: WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
+    repo: logos-governance-architecture
+    task_id: LOGOS-STEWARDSHIP-BUILDOUT-001
+    objective_key: logos_stewardship_architecture_buildout_campaign
+    objective: "Author and begin a governed, resumable, specification-only campaign for the Logos Stewardship Architecture buildout, including its research, typed-graph, schema, safety, validation, human-decision, migration, and specialist-mesh dependency graph."
+    status: active
+    board_column: in_progress
+    claim_mode: additive_write
+    claimed_paths:
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/
+    semantic_tags: [architecture_buildout, long_run_campaign, agent_orchestration, governance_authority, graph_retrieval_vector_truth, theology_authority]
+    roadmap_refs: [LOGOS-STEWARDSHIP-ARCHITECTURE-BUILDOUT-V1]
+    branch: codex/logos-stewardship-buildout
+    issue_url: null
+    pr_url: null
+    owner: Lowell Wong
+    agent: Codex root
+    started_at: "2026-08-23T15:44:30Z"
+    heartbeat_at: "2026-08-23T15:44:30Z"
+    stale_after_days: 7
+    authority_ceiling: specification_only_non_authorizing_research_campaign_bootstrap
+    dependencies: [WORK-GOV-FAMILY-COORD-001]
+    related_work_ids: [WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001]
+    overlap_resolution_ids: [OVERLAP-W27-STEWARD-BUILDOUT-001]
+    completion_evidence: []
