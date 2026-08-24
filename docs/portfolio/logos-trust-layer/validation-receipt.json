@@ -3,7 +3,7 @@
     "object_type": "logos_portfolio_validation_receipt",
     "trust_zone": "proposed",
     "lifecycle_status": "validated_release_candidate",
-    "provenance_note": "Reissued on 2026-08-24 for the corrected full 131-path stewardship release candidate after deterministic replay and task-separated non-author review.",
+    "provenance_note": "Reissued on 2026-08-24 for the corrected full 131-path stewardship release candidate after deterministic replay, review-gate repairs, and task-separated non-author review.",
     "reason_for_inclusion": "Bind the public portfolio and doctrine-mesh specification to exact Git-object snapshots, checks, independent review, authority limits, and release state without treating narrative claims as proof."
   },
   "schema_version": "logos.portfolio_validation_receipt.v1",
@@ -16,25 +16,25 @@
     "scope": "All 111 post-V1 candidate paths except this self-describing validation receipt.",
     "path_count": 110,
     "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:23cc88affb8d5a3bd91a02874e4a8a6ab896768319e88165bbec47dc68188282"
+    "digest": "sha256:07e31a95e3af79475dbfd583019dbb8733d11cd121da403e42abb1162dbea70c"
   },
   "full_pr_composite_scope": {
     "base_commit": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12",
-    "content_head_commit": "e61886cbba8eee2e9423e6e426c1f8b7ad48684b",
+    "content_head_commit": "691a7895cc6203d5ddc079d77d677bba384cf79f",
     "scope": "All 131 base-to-content-head release paths except this self-describing validation receipt.",
     "path_count": 131,
     "fingerprinted_path_count": 130,
     "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:67bf4843859c3d2bd27bab8641c1d39a804ac202dccdd10a1ec037f649f80af3"
+    "digest": "sha256:9393bade4d91339144f2b2ee9f9cea26d0ab6b5d670ee8b117e420c57f676ea9"
   },
   "post_v1_candidate_slice": {
     "parent_commit": "410c7e429290d34013c1dbf23c0335ebfe68e45f",
-    "content_head_commit": "e61886cbba8eee2e9423e6e426c1f8b7ad48684b",
+    "content_head_commit": "691a7895cc6203d5ddc079d77d677bba384cf79f",
     "scope": "All 111 post-V1 candidate paths except this self-describing validation receipt.",
     "path_count": 111,
     "fingerprinted_path_count": 110,
     "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:23cc88affb8d5a3bd91a02874e4a8a6ab896768319e88165bbec47dc68188282"
+    "digest": "sha256:07e31a95e3af79475dbfd583019dbb8733d11cd121da403e42abb1162dbea70c"
   },
   "doctrine_mesh_status": "validated_specification_only",
   "doctrine_mesh_payload_digest": "sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946",
@@ -82,12 +82,17 @@
     {
       "check_id": "full_pytest_frozen_candidate",
       "status": "pass",
-      "result": "171 passed, zero skipped after receipt finalization."
+      "result": "173 passed, zero skipped after receipt finalization."
     },
     {
       "check_id": "portfolio_front_door_focused_tests",
       "status": "pass",
-      "result": "37 passed, zero skipped, including release accounting, merge-tree integrity, path portability, baseline-aware sensitive scanning, invalid-UTF-8 fail-closed behavior, and authority-boundary regressions."
+      "result": "39 passed, zero skipped, including release accounting, merge-tree integrity, immutable-object cache correctness, path portability, baseline-aware sensitive scanning, invalid-UTF-8 fail-closed behavior, and authority-boundary regressions."
+    },
+    {
+      "check_id": "portfolio_git_object_cache_performance",
+      "status": "pass",
+      "result": "The focused suite improved from 159.48 seconds to 52.68 seconds (approximately 67 percent), and an explicit cold/warm parity replay returned identical results at 25.193 and 5.025 seconds with 893 cache hits and 287 misses. Cache keys bind the resolved repository root, exact 40-character commit, and normalized path; mutable HEAD, branch, YAML, and filesystem reads are not cached."
     },
     {
       "check_id": "default_validation_suite_frozen_candidate",
@@ -234,6 +239,14 @@
       "reviewed_path_count": 130,
       "reviewed_digest": "sha256:67bf4843859c3d2bd27bab8641c1d39a804ac202dccdd10a1ec037f649f80af3",
       "scope_note": "Final 17-file content review reproduced the complete release and Doctrine digest chains, 452 links, exact repository metrics, UTF-8 and candidate-added privacy results, path hardening, and every specification-only and theological-authority boundary; no material blocker remained."
+    },
+    {
+      "review_id": "portfolio_cache_correctness_review_007",
+      "role": "independent-performance-correctness-checker",
+      "status": "pass",
+      "reviewed_path_count": 2,
+      "reviewed_digest": "sha256:6bb2f10913d70f92ddc7229119725acd6e77461972c775431c2c6801d1b82dcd",
+      "scope_note": "Changed-input review verified exact immutable cache keys, cached missing-base results, fail-closed error behavior, cache isolation in tests, and no caching of mutable HEAD, branch, YAML, or filesystem reads; supplied cold/warm parity and focused-suite timing evidence were sufficient."
     }
   ],
   "unchanged_head_gate": "pass_local_exact_content_head_and_130_path_composite_fingerprint_pending_post_push_gate",
@@ -245,6 +258,6 @@
   "completed_doctrine_corpus": false,
   "qualified_theological_authority_granted": false,
   "mutation_performed_by_validation": false,
-  "observed_at": "2026-08-24T21:01:37.4814766Z",
-  "receipt_digest": "sha256:229bffaabe54d049419d61f82efd01cf079e401372c65ae57eadf29369e79a53"
+  "observed_at": "2026-08-24T21:16:46.4127539Z",
+  "receipt_digest": "sha256:1129c8a2a5211256e5bd1933ea8e15954661d301ff0d8f3653797abb48f3d1ec"
 }
