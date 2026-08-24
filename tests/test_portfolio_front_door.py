@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
 from pathlib import Path
 
 import jsonschema
@@ -160,6 +161,64 @@ def test_release_snapshot_fails_closed_on_invalid_utf8_text(
     ]
     assert scanned == 0
     assert skipped == 1
+
+
+def test_git_object_cache_uses_exact_immutable_keys(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls: list[tuple[str, str]] = []
+
+    def fake_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        commit, path = command[2].split(":", 1)
+        calls.append((commit, path))
+        return subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=f"{commit}:{path}".encode(),
+            stderr=b"",
+        )
+
+    validator._git_object_record.cache_clear()
+    monkeypatch.setattr(validator.subprocess, "run", fake_run)
+    try:
+        first = validator._git_object_bytes(ROOT, "a" * 40, "one.md")
+        repeated = validator._git_object_bytes(ROOT, "a" * 40, "one.md")
+        changed_path = validator._git_object_bytes(ROOT, "a" * 40, "two.md")
+        changed_commit = validator._git_object_bytes(ROOT, "b" * 40, "one.md")
+    finally:
+        validator._git_object_record.cache_clear()
+
+    assert first == repeated
+    assert changed_path != first
+    assert changed_commit != first
+    assert calls == [
+        ("a" * 40, "one.md"),
+        ("a" * 40, "two.md"),
+        ("b" * 40, "one.md"),
+    ]
+
+
+def test_git_object_cache_retains_exact_missing_base_result(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls = 0
+
+    def fake_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        nonlocal calls
+        calls += 1
+        return subprocess.CompletedProcess(command, 128, stdout=b"", stderr=b"missing")
+
+    validator._git_object_record.cache_clear()
+    monkeypatch.setattr(validator.subprocess, "run", fake_run)
+    try:
+        first = validator._git_object_bytes_if_present(ROOT, "a" * 40, "missing.md")
+        repeated = validator._git_object_bytes_if_present(ROOT, "a" * 40, "missing.md")
+    finally:
+        validator._git_object_record.cache_clear()
+
+    assert first is None
+    assert repeated is None
+    assert calls == 1
 
 
 @pytest.mark.parametrize(

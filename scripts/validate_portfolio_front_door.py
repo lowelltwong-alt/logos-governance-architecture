@@ -25,6 +25,7 @@ import re
 import subprocess
 from collections import Counter
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from types import ModuleType
 from typing import Any, Iterable
@@ -169,17 +170,46 @@ def _git_changed_paths(root: Path, base_commit: str, head_commit: str) -> list[s
     return sorted({path.replace("\\", "/") for path in output.splitlines() if path.strip()})
 
 
-def _git_object_bytes(root: Path, commit: str, path: str) -> bytes:
+@lru_cache(maxsize=4096)
+def _git_object_record(
+    resolved_root: str, commit: str, path: str
+) -> tuple[bool, bytes]:
+    """Cache one immutable Git blob lookup, including an absent-path result."""
+
     try:
-        return subprocess.check_output(
+        completed = subprocess.run(
             ["git", "show", f"{commit}:{path}"],
-            cwd=root,
+            cwd=resolved_root,
+            stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
+            check=False,
         )
-    except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+    except OSError as exc:
         raise PortfolioValidationError(
-            f"cannot read release object {commit}:{path}: {exc}"
+            f"cannot execute Git object lookup {commit}:{path}: {exc}"
         ) from exc
+    return completed.returncode == 0, completed.stdout if completed.returncode == 0 else b""
+
+
+def _git_object_lookup(root: Path, commit: str, path: str) -> tuple[bool, bytes]:
+    if not re.fullmatch(r"[0-9a-f]{40}", commit):
+        raise PortfolioValidationError(f"Git object lookup requires an exact commit: {commit}")
+    normalized_path = path.replace("\\", "/")
+    return _git_object_record(str(root.resolve()), commit, normalized_path)
+
+
+def _git_object_bytes(root: Path, commit: str, path: str) -> bytes:
+    exists, raw = _git_object_lookup(root, commit, path)
+    if not exists:
+        raise PortfolioValidationError(f"cannot read release object {commit}:{path}")
+    return raw
+
+
+def _git_object_bytes_if_present(root: Path, commit: str, path: str) -> bytes | None:
+    """Read an immutable Git blob or return its cached exact-commit absence."""
+
+    exists, raw = _git_object_lookup(root, commit, path)
+    return raw if exists else None
 
 
 def _git_parents(root: Path, commit: str) -> list[str]:
@@ -601,9 +631,8 @@ def _scan_release_snapshot(
                 )
             )
             continue
-        try:
-            baseline_raw = _git_object_bytes(root, base_commit, path)
-        except PortfolioValidationError:
+        baseline_raw = _git_object_bytes_if_present(root, base_commit, path)
+        if baseline_raw is None:
             baseline_text = ""
         else:
             try:
