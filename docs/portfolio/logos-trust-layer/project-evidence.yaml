@@ -1,0 +1,358 @@
+metadata:
+  object_type: logos_public_project_evidence_manifest
+  trust_zone: proposed
+  lifecycle_status: public_release_candidate
+  provenance_note: "Prepared on 2026-08-24 from exact public origin/main commits and the frozen doctrine-mesh-v2 specification candidate."
+  reason_for_inclusion: "Give recruiters, engineers, reviewers, and their AI tools a skeptical, machine-checkable route from project claims to inspectable evidence and explicit limits."
+schema_version: logos.project_evidence.v1
+project_id: logos-trust-layer
+title: "Logos: an evidence-bound trust layer for AI-assisted Christian knowledge work"
+public_entry: PORTFOLIO.md
+snapshot:
+  observed_at: "2026-08-24T18:07:00Z"
+  governance_candidate_parent: 410c7e429290d34013c1dbf23c0335ebfe68e45f
+  count_method: >-
+    For each exact public origin/main commit, enumerate git ls-tree -r --name-only.
+    Count JSON and YAML by suffix; schema-like paths by
+    (^|/)(schemas?|schema)(/|$)|.schema.(json|yaml|yml)$; validator-like paths by
+    (^|/)(scripts?|tools?)/.*validat|(^|/)validat.*.py$; and test-like paths by
+    (^|/)(tests?|test)(/|$)|(^|/)test_.*.py$.
+  count_limitations: >-
+    These are reproducible path signals at dated commits. Categories can overlap
+    and do not equal independent test cases, passing behavior, semantic
+    correctness, runtime readiness, theological authority, or completed features.
+  totals:
+    tracked_files: 4035
+    json_paths: 249
+    yaml_paths: 676
+    schema_like_paths: 82
+    validator_like_paths: 218
+    test_like_paths: 274
+maturity_vocabulary:
+  - code: active_control
+    definition: "A checked-in governance, schema, registry, navigation, or validation control used by the repository."
+    does_not_imply: "Production deployment, perfect coverage, semantic correctness, or authority outside its stated contract."
+  - code: active_data_plane
+    definition: "A checked-in repository surface that stores or derives governed data artifacts under upstream contracts."
+    does_not_imply: "An agent runtime, a complete corpus, current CI success, or authority to change upstream governance."
+  - code: active_scaffold
+    definition: "A guarded repository foundation whose schemas and validators intentionally precede substantive data admission."
+    does_not_imply: "A populated corpus, completed domain model, or permission to import sources and make doctrine claims."
+  - code: validated_specification_only
+    definition: "A frozen design package whose structure, contracts, links, fixtures, and digests passed bounded static checks."
+    does_not_imply: "A running system, qualified experts, live research, source ingestion, doctrinal correctness, or production readiness."
+  - code: dated_validation_snapshot
+    definition: "A result bound to one exact revision, command, input set, and observation time."
+    does_not_imply: "A timeless guarantee or a pass after code, dependencies, data, runtime, provider, or policy changes."
+  - code: roadmap_only
+    definition: "A planned value horizon or design question that remains unimplemented and separately authority-gated."
+    does_not_imply: "A schedule commitment, delivered capability, selected architecture, or permission to begin the work."
+repositories:
+  - repository_id: logos-governance-architecture
+    role: "Upstream governance and trust control plane for the Logos repository family."
+    url: https://github.com/lowelltwong-alt/logos-governance-architecture
+    snapshot_commit: 4f00f6f9d50e870d4e9805f29a69feb33e6f4d12
+    maturity: active_control
+    counts:
+      tracked_files: 715
+      json_paths: 88
+      yaml_paths: 132
+      schema_like_paths: 20
+      validator_like_paths: 40
+      test_like_paths: 14
+    evidence:
+      - kind: local_path
+        target: AI_FRONT_DOOR.md
+        supports: "Authority boundaries, contribution lanes, and cross-repository routing."
+      - kind: local_path
+        target: governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+        supports: "Machine-readable governance dependencies, downstream controls, and validators."
+      - kind: local_path
+        target: schemas/schema_registry.json
+        supports: "Registered machine-readable contract surfaces."
+  - repository_id: logos-scripture-graph
+    role: "Governed Scripture knowledge and deterministic data plane under the control-plane contract."
+    url: https://github.com/lowelltwong-alt/logos-scripture-graph
+    snapshot_commit: c6982050a0a8f1b9508e1d2c5b767513bc92d2fa
+    maturity: active_data_plane
+    counts:
+      tracked_files: 3178
+      json_paths: 148
+      yaml_paths: 525
+      schema_like_paths: 39
+      validator_like_paths: 160
+      test_like_paths: 237
+    evidence:
+      - kind: github_url
+        target: https://github.com/lowelltwong-alt/logos-scripture-graph/blob/c6982050a0a8f1b9508e1d2c5b767513bc92d2fa/AI_FRONT_DOOR.md
+        supports: "Data-plane role, governance coupling, and agent authority limits at the measured commit."
+      - kind: github_url
+        target: https://github.com/lowelltwong-alt/logos-scripture-graph/blob/c6982050a0a8f1b9508e1d2c5b767513bc92d2fa/README.md
+        supports: "Repository scope and inspectable implementation entry points at the measured commit."
+  - repository_id: logos-boundary-literature
+    role: "Supporting boundary, reception, and source-metadata plane with contamination controls."
+    url: https://github.com/lowelltwong-alt/logos-boundary-literature
+    snapshot_commit: 9defaa58fa34a1ce9f0791ccdc2b4e28e99e4046
+    maturity: active_scaffold
+    counts:
+      tracked_files: 72
+      json_paths: 7
+      yaml_paths: 9
+      schema_like_paths: 14
+      validator_like_paths: 5
+      test_like_paths: 12
+    evidence:
+      - kind: github_url
+        target: https://github.com/lowelltwong-alt/logos-boundary-literature/blob/9defaa58fa34a1ce9f0791ccdc2b4e28e99e4046/AI_FRONT_DOOR.md
+        supports: "Boundary authority limits and routing rules at the measured commit."
+      - kind: github_url
+        target: https://github.com/lowelltwong-alt/logos-boundary-literature/blob/9defaa58fa34a1ce9f0791ccdc2b4e28e99e4046/README.md
+        supports: "Metadata-scaffold status and the absence of an imported source corpus."
+  - repository_id: logos-doctrine-genealogy
+    role: "Data-free doctrine-lineage and profile-comparison scaffold with fail-closed admission rules."
+    url: https://github.com/lowelltwong-alt/logos-doctrine-genealogy
+    snapshot_commit: add1aad9816e9b3d9a0977b9e73578c530aaf332
+    maturity: active_scaffold
+    counts:
+      tracked_files: 70
+      json_paths: 6
+      yaml_paths: 10
+      schema_like_paths: 9
+      validator_like_paths: 13
+      test_like_paths: 11
+    evidence:
+      - kind: github_url
+        target: https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/add1aad9816e9b3d9a0977b9e73578c530aaf332/AI_FRONT_DOOR.md
+        supports: "Data-readiness, authority, and contribution boundaries at the measured commit."
+      - kind: github_url
+        target: https://github.com/lowelltwong-alt/logos-doctrine-genealogy/blob/add1aad9816e9b3d9a0977b9e73578c530aaf332/README.md
+        supports: "Active data-free scaffold status and explicit non-authorizations."
+capabilities:
+  - capability_id: authority-and-trust-zones
+    title: "Authority and trust-zone separation"
+    maturity: active_control
+    mechanism: "Typed trust zones, lifecycle state, provenance, review fields, and directional dependency rules keep candidate and inferred material from silently governing canonical surfaces."
+    demonstrates: "Contract-first AI governance expressed as data structures and fail-closed rules rather than prompt aspiration alone."
+    does_not_prove: "That every theological assertion is correct or that an AI can grant source, doctrinal, or publication authority."
+    evidence:
+      - kind: local_path
+        target: schemas/logos_node_min.schema.json
+        supports: "Minimum node identity, trust, lifecycle, provenance, and review contract."
+      - kind: local_path
+        target: schemas/logos_claim_min.schema.json
+        supports: "Minimum claim, epistemic, evidence, and review contract."
+      - kind: local_path
+        target: AGENTS.md
+        supports: "Repository-wide trust-zone direction and agent non-authority rules."
+  - capability_id: cross-repository-contract-plane
+    title: "Cross-repository custody by contract"
+    maturity: active_control
+    mechanism: "A registry, link contracts, dependency map, front doors, and validators separate the governance, Scripture, boundary, and doctrine-lineage planes."
+    demonstrates: "Multi-repository system design with explicit upstream and downstream authority, ownership, and failure boundaries."
+    does_not_prove: "That every child repository is at the same maturity or that a lower-trust plane can override Scripture or governance."
+    evidence:
+      - kind: local_path
+        target: governance/LOGOS_REPO_REGISTRY.yaml
+        supports: "Machine-readable repository roles and lifecycle states."
+      - kind: local_path
+        target: DATA_FLOW_MAP.md
+        supports: "Human-readable cross-repository flow and authority direction."
+      - kind: local_path
+        target: governance/REPOSITORY_LINK_CONTRACTS.md
+        supports: "Allowed link semantics and non-transfer of authority."
+  - capability_id: ontology-taxonomy-and-schema-engineering
+    title: "Ontology, taxonomy, and schema engineering"
+    maturity: active_control
+    mechanism: "Identity is separated from labels; doctrine topic, view, and assessment remain distinct; controlled vocabularies and versioned schemas define graph nodes, claims, genealogy edges, evidence, and gates."
+    demonstrates: "Knowledge-engineering discipline across ontology, taxonomy, schema evolution, and graph semantics."
+    does_not_prove: "A finished ontology, populated doctrine graph, resolved parent-cardinality decision, or universally accepted theological taxonomy."
+    evidence:
+      - kind: local_path
+        target: docs/governance/ontology-discipline.md
+        supports: "Ontology identity and layering discipline."
+      - kind: local_path
+        target: docs/governance/scripture-taxonomy-and-ontology.md
+        supports: "Scripture classification and ontology boundaries."
+      - kind: local_path
+        target: schemas/doctrine_genealogy/genealogy_edge.v1.schema.json
+        supports: "Typed doctrine-genealogy edge contract."
+  - capability_id: provenance-graph-and-blast-radius
+    title: "Provenance graph and reverse blast radius"
+    maturity: active_control
+    mechanism: "Typed dependencies, source pointers, consumer coverage, trust direction, and staleness rules make downstream effects inspectable and challengeable."
+    demonstrates: "Graph engineering that treats evidence lineage and change impact as first-class controls."
+    does_not_prove: "That graph proximity is evidence, that every edge is semantically true, or that stale evidence can remain load-bearing."
+    evidence:
+      - kind: local_path
+        target: governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+        supports: "Typed governance dependencies, validators, update triggers, and downstream controls."
+      - kind: local_path
+        target: docs/governance/anti-guessing-and-evidence-discipline.md
+        supports: "Rule that semantic similarity and model confidence cannot self-promote graph structure."
+      - kind: local_path
+        target: docs/roadmap/logos-stewardship-architecture-buildout/graph/typed-dependency-graph.yaml
+        supports: "Specification-level dependency graph and blocked design coordinates."
+  - capability_id: deterministic-validation-harnesses
+    title: "Deterministic validators and harnesses"
+    maturity: active_control
+    mechanism: "Provider-neutral validators, negative fixtures, validation contracts, dependency-map checks, link checks, and CI-facing command registries turn bounded policy properties into executable gates."
+    demonstrates: "Evidence-preserving engineering where a reviewer can rerun the exact check instead of trusting a narrative receipt."
+    does_not_prove: "Semantic or theological correctness beyond each validator's stated contract, nor a timeless pass after inputs change."
+    evidence:
+      - kind: local_path
+        target: scripts/validation_contracts.py
+        supports: "Default validation command registry."
+      - kind: local_path
+        target: scripts/validate_governance_dependency_map.py
+        supports: "Fail-closed governance dependency coverage."
+      - kind: local_path
+        target: tests/test_governance_dependency_map.py
+        supports: "Focused regression coverage for the dependency-map contract."
+  - capability_id: hierarchical-specialist-agent-mesh
+    title: "Hierarchical specialist agent mesh"
+    maturity: validated_specification_only
+    mechanism: "A bounded role factory, completeness auditor, specialist taxonomy, source-pack contracts, citation and entailment checkers, counterevidence challenges, deterministic receipts, budgets, and human escalation are modeled before runtime selection."
+    demonstrates: "Deep multi-agent workflow architecture with single-writer custody, independent checks, disagreement routing, and provider-neutral capability contracts."
+    does_not_prove: "A running mesh, qualified agent experts, actual source research, cross-provider independence, a controller, or completed doctrine."
+    evidence:
+      - kind: local_path
+        target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/mesh/agent-mesh.v2.json
+        supports: "Specification-level role graph, authority boundaries, and proof obligations."
+      - kind: local_path
+        target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/mesh/completeness-auditor-contract.yaml
+        supports: "Preflight, midflight, and postflight expert-completeness audit contract."
+      - kind: local_path
+        target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/research/expert-pack-contract.yaml
+        supports: "Source-bound ExpertPack contract without treating summaries as evidence."
+  - capability_id: public-ai-interrogation-surface
+    title: "AI-interrogable public portfolio"
+    maturity: dated_validation_snapshot
+    mechanism: "A human landing page, machine-readable evidence manifest, JSON Schema, skeptic prompt, deterministic validator, tests, and receipt route every claim back to inspectable code and explicit limits."
+    demonstrates: "Communication design for recruiters and technical evaluators who want their own AI to challenge project claims."
+    does_not_prove: "That a portfolio summary supersedes repository evidence or that a passing structure check guarantees every interpretation."
+    evidence:
+      - kind: local_path
+        target: PORTFOLIO.md
+        supports: "Human-facing recruiter entry and architecture diagrams."
+      - kind: local_path
+        target: docs/portfolio/logos-trust-layer/project-evidence.schema.json
+        supports: "Machine contract for the project evidence packet."
+      - kind: local_path
+        target: scripts/validate_portfolio_front_door.py
+        supports: "Deterministic claim, link, privacy, and frozen-specification checks."
+doctrine_mesh_specification:
+  path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2
+  maturity: validated_specification_only
+  release_file_count: 90
+  payload_file_count: 85
+  structured_file_count: 66
+  capability_role_count: 13
+  expert_profile_count: 68
+  graph_node_count: 25
+  graph_edge_count: 26
+  adversarial_test_count: 19
+  payload_digest: sha256:00143bcff73658b6051f8ff34dffd27ebbb72730893e4478246c1c23009a5bdf
+  revision_manifest_digest: sha256:d06f896d9ea473ed6a37d89857d753df182d31205eda777909f2436ae83a00a3
+  final_saved_version_digest: sha256:7999e16be3f03ebb1eb8df640f79b39c101764700f820172c33ef0b18800e85a
+  independent_review_status: pass_specification_only
+  independence_status: partly_verified_non_authorizing
+  cross_provider_verified: false
+  freeze_publication_authorized: false
+  portfolio_release_authorized: true
+  runtime_activation_authorized: false
+  source_ingestion_authorized: false
+  substantive_doctrine_implementation_authorized: false
+  completed_doctrine_corpus: false
+  qualified_theological_authority: false
+  evidence:
+    - kind: local_path
+      target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/README.md
+      supports: "Scope, design goals, and prominent specification-only non-claims."
+    - kind: local_path
+      target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/revision-manifest.yaml
+      supports: "Exact 85-file frozen payload and content digests."
+    - kind: local_path
+      target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/FINAL-SAVED-VERSION.yaml
+      supports: "Terminal saved-version index and freeze-time authority flags."
+    - kind: local_path
+      target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validation-receipt.json
+      supports: "Bounded deterministic artifact validation and 19-test result."
+    - kind: local_path
+      target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/independent-review.json
+      supports: "Specification-only review status, partial independence, and unresolved runtime boundaries."
+evidence_routes:
+  - route_id: recruiter-overview
+    question: "What was designed, what exists now, and why is it relevant to an AI engineering or engagement role?"
+    start_at: PORTFOLIO.md
+    then_read:
+      - docs/portfolio/logos-trust-layer/README.md
+      - docs/portfolio/logos-trust-layer/project-evidence.yaml
+  - route_id: skeptical-ai-audit
+    question: "How can another AI independently test the portfolio claims and identify overstatement?"
+    start_at: docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md
+    then_read:
+      - docs/portfolio/logos-trust-layer/project-evidence.schema.json
+      - scripts/validate_portfolio_front_door.py
+      - tests/test_portfolio_front_door.py
+  - route_id: doctrine-mesh-design
+    question: "What is in the doctrine mesh, and what does its validation explicitly not authorize?"
+    start_at: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/README.md
+    then_read:
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/revision-manifest.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validation-receipt.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/independent-review.json
+  - route_id: trust-and-custody
+    question: "How are authority, evidence, trust zones, and cross-repository custody kept separate?"
+    start_at: AI_FRONT_DOOR.md
+    then_read:
+      - DATA_FLOW_MAP.md
+      - governance/LOGOS_REPO_REGISTRY.yaml
+      - governance/REPOSITORY_LINK_CONTRACTS.md
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+  - route_id: deterministic-validation
+    question: "Which executable checks support the public packet and where are their limits recorded?"
+    start_at: scripts/validate_portfolio_front_door.py
+    then_read:
+      - tests/test_portfolio_front_door.py
+      - scripts/validation_contracts.py
+      - docs/portfolio/logos-trust-layer/validation-receipt.json
+planned_value_horizons:
+  - horizon_id: nonprofit-christian-knowledge-stewardship
+    status: roadmap_only
+    potential_value: "Help a faith-based nonprofit organize sources, doctrine questions, institutional decisions, and AI assistance without hiding authority or provenance."
+    required_before_claiming_delivery: "Qualified stakeholders, source and rights policy, domain review, scoped implementation, runtime qualification, user testing, and publication approval."
+  - horizon_id: manuscript-language-and-translation-provenance
+    status: roadmap_only
+    potential_value: "Connect manuscript, Hebrew, Aramaic, Koine Greek, translation, passage, and interpretive evidence while preserving witness and claim boundaries."
+    required_before_claiming_delivery: "Rights-cleared sources, qualified language and textual-critical review, validated schemas, real fixtures, and non-AI authority decisions."
+  - horizon_id: doctrine-genealogy-and-tradition-slices
+    status: roadmap_only
+    potential_value: "Trace how doctrine positions, historical witnesses, councils, traditions, disputes, and reception claims relate without flattening them into one answer."
+    required_before_claiming_delivery: "Qualified theological and historical review, source admission, tradition policy, populated lineage records, and independent validation."
+  - horizon_id: governed-specialist-research-mesh
+    status: roadmap_only
+    potential_value: "Coordinate bounded researchers and checkers across biblical studies, languages, history, archaeology, traditions, philosophy, rights, provenance, and safety."
+    required_before_claiming_delivery: "Qualified source packs and humans, a selected and tested runtime, provider and budget controls, semantic fixtures, privacy review, and explicit activation authority."
+explicit_non_claims:
+  - "This portfolio does not claim a production AI platform or deployed service."
+  - "The doctrine mesh is not a running system and no controller has been activated."
+  - "The doctrine mesh is not a completed doctrine corpus and contains no substantive doctrine decisions."
+  - "The doctrine mesh is not qualified theological authority and cannot approve Scripture, exegesis, doctrine, or tradition policy."
+  - "No ExpertPack in the doctrine-mesh specification is currently qualified or execution-ready."
+  - "No source corpus was ingested by the doctrine-mesh specification campaign."
+  - "A deterministic validator pass proves only its bounded structural and policy contract, not semantic or theological correctness."
+  - "Graph proximity, embeddings, generated confidence, or agent consensus cannot promote a candidate to governed truth."
+  - "The recorded independent review is partly verified and does not claim cross-provider independence."
+  - "Roadmap horizons are possible applications, not delivered features, schedules, or standing authorization."
+verification:
+  schema: docs/portfolio/logos-trust-layer/project-evidence.schema.json
+  manifest: docs/portfolio/logos-trust-layer/project-evidence.yaml
+  validator: scripts/validate_portfolio_front_door.py
+  tests: tests/test_portfolio_front_door.py
+  ai_interrogation_prompt: docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md
+  commands:
+    - python scripts/validate_portfolio_front_door.py
+    - python -m pytest tests/test_portfolio_front_door.py
+    - python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
+    - python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
+    - python scripts/validate_internal_links.py --all-markdown

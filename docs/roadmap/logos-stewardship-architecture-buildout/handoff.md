@@ -1,7 +1,7 @@
 ---
 object_type: stewardship_architecture_campaign_handoff
 trust_zone: proposed
-lifecycle_status: active_handoff
+lifecycle_status: active
 provenance_note: "Created on 2026-08-23 by Codex root as the resumable handoff for the specification-only buildout lane."
 reason_for_inclusion: "Preserve the achieved frontier, evidence, blockers, and exact resume sequence without relying on conversation memory."
 ---
@@ -28,10 +28,18 @@ establish architecture implementation authority.
 2. Verify this branch, current HEAD, common Git directory, status, and active operations.
 3. Fetch only when authorized and stop on changed `origin/main` or source digests.
 4. Verify the family claim and run the exact claim-specific family preflight required by then-current policy.
-5. Run `checks/validate_stewardship_campaign.py`.
-6. Run the portable campaign and mesh validators named in `checks/README.md`.
-7. Reconcile every planned role against the prior mesh revision before execution.
-8. Continue only the first dependency-ready, human-authorized job.
+5. Identify the exact campaign revision before selecting validators.
+6. For a V1 historical audit, begin with its checked-in validation receipt and
+   independent review. Exact forensic replay requires reconstructing the staged
+   V1 artifact tree over its recorded pre-commit parent as described in
+   `checks/README.md`; neither ordinary commit checkout is an exact replay. Do
+   not interpret expected changed-revision failures on the expanded tree as a
+   V2 result.
+7. For Doctrine Mesh V2, run its revision-specific final validator and tests;
+   for a public portfolio release, also run the portfolio validator and current
+   repository suite named in `checks/README.md`.
+8. Reconcile every planned role against the prior mesh revision before execution.
+9. Continue only the first dependency-ready, human-authorized job.
 
 ## Mandatory stops
 

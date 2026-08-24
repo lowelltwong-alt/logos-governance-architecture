@@ -5,6 +5,7 @@ A Logos-grounded theological source architecture for AI-era governance, making a
 ## Navigation
 
 - **New human readers:** start with this README.
+- **Recruiters and portfolio reviewers:** start with [`PORTFOLIO.md`](PORTFOLIO.md), then use its evidence manifest and AI interrogation prompt.
 - **AI agents and coding assistants:** start with [`AI_WORK_START_HERE.md`](AI_WORK_START_HERE.md).
 - **Repo map and document index:** see [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md).
 - **Cross-repo data flow:** see [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md).

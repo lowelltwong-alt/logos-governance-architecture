@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/lowelltwong-alt/logos-governance-architecture/blob/main/docs/portfolio/logos-trust-layer/project-evidence.schema.json",
+  "title": "Logos Trust Layer Public Project Evidence",
+  "description": "A public, evidence-bound description of the Logos repository family. Structural validity does not confer theological, source, publication, or runtime authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "schema_version",
+    "project_id",
+    "title",
+    "public_entry",
+    "snapshot",
+    "maturity_vocabulary",
+    "repositories",
+    "capabilities",
+    "doctrine_mesh_specification",
+    "evidence_routes",
+    "planned_value_horizons",
+    "explicit_non_claims",
+    "verification"
+  ],
+  "properties": {
+    "metadata": {"$ref": "#/$defs/metadata"},
+    "schema_version": {"const": "logos.project_evidence.v1"},
+    "project_id": {"const": "logos-trust-layer"},
+    "title": {"type": "string", "minLength": 10},
+    "public_entry": {"const": "PORTFOLIO.md"},
+    "snapshot": {"$ref": "#/$defs/snapshot"},
+    "maturity_vocabulary": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/maturityDefinition"}
+    },
+    "repositories": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"$ref": "#/$defs/repository"}
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 6,
+      "items": {"$ref": "#/$defs/capability"}
+    },
+    "doctrine_mesh_specification": {"$ref": "#/$defs/doctrineMesh"},
+    "evidence_routes": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"$ref": "#/$defs/evidenceRoute"}
+    },
+    "planned_value_horizons": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"$ref": "#/$defs/valueHorizon"}
+    },
+    "explicit_non_claims": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 12}
+    },
+    "verification": {"$ref": "#/$defs/verification"}
+  },
+  "$defs": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"],
+      "properties": {
+        "object_type": {"const": "logos_public_project_evidence_manifest"},
+        "trust_zone": {"const": "proposed"},
+        "lifecycle_status": {"enum": ["public_release_candidate", "active"]},
+        "provenance_note": {"type": "string", "minLength": 20},
+        "reason_for_inclusion": {"type": "string", "minLength": 20}
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed_at", "governance_candidate_parent", "count_method", "count_limitations", "totals"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "governance_candidate_parent": {"$ref": "#/$defs/sha1"},
+        "count_method": {"type": "string", "minLength": 20},
+        "count_limitations": {"type": "string", "minLength": 20},
+        "totals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tracked_files", "json_paths", "yaml_paths", "schema_like_paths", "validator_like_paths", "test_like_paths"],
+          "properties": {
+            "tracked_files": {"const": 4035},
+            "json_paths": {"const": 249},
+            "yaml_paths": {"const": 676},
+            "schema_like_paths": {"const": 82},
+            "validator_like_paths": {"const": 218},
+            "test_like_paths": {"const": 274}
+          }
+        }
+      }
+    },
+    "maturityDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "definition", "does_not_imply"],
+      "properties": {
+        "code": {"$ref": "#/$defs/maturity"},
+        "definition": {"type": "string", "minLength": 15},
+        "does_not_imply": {"type": "string", "minLength": 15}
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository_id", "role", "url", "snapshot_commit", "maturity", "counts", "evidence"],
+      "properties": {
+        "repository_id": {"enum": ["logos-governance-architecture", "logos-scripture-graph", "logos-boundary-literature", "logos-doctrine-genealogy"]},
+        "role": {"type": "string", "minLength": 15},
+        "url": {"type": "string", "pattern": "^https://github\\.com/lowelltwong-alt/[A-Za-z0-9._-]+$"},
+        "snapshot_commit": {"$ref": "#/$defs/sha1"},
+        "maturity": {"$ref": "#/$defs/maturity"},
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tracked_files", "json_paths", "yaml_paths", "schema_like_paths", "validator_like_paths", "test_like_paths"],
+          "properties": {
+            "tracked_files": {"type": "integer", "minimum": 1},
+            "json_paths": {"type": "integer", "minimum": 0},
+            "yaml_paths": {"type": "integer", "minimum": 0},
+            "schema_like_paths": {"type": "integer", "minimum": 0},
+            "validator_like_paths": {"type": "integer", "minimum": 0},
+            "test_like_paths": {"type": "integer", "minimum": 0}
+          }
+        },
+        "evidence": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capability_id", "title", "maturity", "mechanism", "demonstrates", "does_not_prove", "evidence"],
+      "properties": {
+        "capability_id": {"type": "string", "pattern": "^[a-z][a-z0-9-]+$"},
+        "title": {"type": "string", "minLength": 5},
+        "maturity": {"$ref": "#/$defs/maturity"},
+        "mechanism": {"type": "string", "minLength": 20},
+        "demonstrates": {"type": "string", "minLength": 20},
+        "does_not_prove": {"type": "string", "minLength": 20},
+        "evidence": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "doctrineMesh": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path", "maturity", "release_file_count", "payload_file_count",
+        "structured_file_count", "capability_role_count", "expert_profile_count",
+        "graph_node_count", "graph_edge_count", "adversarial_test_count",
+        "payload_digest", "revision_manifest_digest", "final_saved_version_digest",
+        "independent_review_status", "independence_status", "cross_provider_verified",
+        "freeze_publication_authorized", "portfolio_release_authorized",
+        "runtime_activation_authorized", "source_ingestion_authorized",
+        "substantive_doctrine_implementation_authorized", "completed_doctrine_corpus",
+        "qualified_theological_authority", "evidence"
+      ],
+      "properties": {
+        "path": {"const": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2"},
+        "maturity": {"const": "validated_specification_only"},
+        "release_file_count": {"const": 90},
+        "payload_file_count": {"const": 85},
+        "structured_file_count": {"const": 66},
+        "capability_role_count": {"const": 13},
+        "expert_profile_count": {"const": 68},
+        "graph_node_count": {"const": 25},
+        "graph_edge_count": {"const": 26},
+        "adversarial_test_count": {"const": 19},
+        "payload_digest": {"$ref": "#/$defs/sha256"},
+        "revision_manifest_digest": {"$ref": "#/$defs/sha256"},
+        "final_saved_version_digest": {"$ref": "#/$defs/sha256"},
+        "independent_review_status": {"const": "pass_specification_only"},
+        "independence_status": {"const": "partly_verified_non_authorizing"},
+        "cross_provider_verified": {"const": false},
+        "freeze_publication_authorized": {"const": false},
+        "portfolio_release_authorized": {"const": true},
+        "runtime_activation_authorized": {"const": false},
+        "source_ingestion_authorized": {"const": false},
+        "substantive_doctrine_implementation_authorized": {"const": false},
+        "completed_doctrine_corpus": {"const": false},
+        "qualified_theological_authority": {"const": false},
+        "evidence": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "evidenceRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route_id", "question", "start_at", "then_read"],
+      "properties": {
+        "route_id": {"type": "string", "pattern": "^[a-z][a-z0-9-]+$"},
+        "question": {"type": "string", "minLength": 10},
+        "start_at": {"type": "string", "minLength": 3},
+        "then_read": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 3}}
+      }
+    },
+    "valueHorizon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["horizon_id", "status", "potential_value", "required_before_claiming_delivery"],
+      "properties": {
+        "horizon_id": {"type": "string", "pattern": "^[a-z][a-z0-9-]+$"},
+        "status": {"const": "roadmap_only"},
+        "potential_value": {"type": "string", "minLength": 20},
+        "required_before_claiming_delivery": {"type": "string", "minLength": 20}
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "manifest", "validator", "tests", "ai_interrogation_prompt", "commands"],
+      "properties": {
+        "schema": {"const": "docs/portfolio/logos-trust-layer/project-evidence.schema.json"},
+        "manifest": {"const": "docs/portfolio/logos-trust-layer/project-evidence.yaml"},
+        "validator": {"const": "scripts/validate_portfolio_front_door.py"},
+        "tests": {"const": "tests/test_portfolio_front_door.py"},
+        "ai_interrogation_prompt": {"const": "docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md"},
+        "commands": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"type": "string", "minLength": 8}
+        }
+      }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/evidenceRef"}
+    },
+    "evidenceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "target", "supports"],
+      "properties": {
+        "kind": {"enum": ["local_path", "github_url"]},
+        "target": {"type": "string", "minLength": 3},
+        "supports": {"type": "string", "minLength": 10}
+      }
+    },
+    "maturity": {
+      "enum": ["active_control", "active_data_plane", "active_scaffold", "validated_specification_only", "dated_validation_snapshot", "roadmap_only"]
+    },
+    "sha1": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

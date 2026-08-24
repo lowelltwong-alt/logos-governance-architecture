@@ -1,0 +1,207 @@
+{
+  "metadata": {
+    "object_type": "logos_portfolio_validation_receipt",
+    "trust_zone": "proposed",
+    "lifecycle_status": "validated_release_candidate",
+    "provenance_note": "Completed on 2026-08-24 for the exact stewardship public release candidate after deterministic replay and task-separated non-author review.",
+    "reason_for_inclusion": "Bind the public portfolio and doctrine-mesh specification to exact checks, independent review, authority limits, and pre-PR release state without treating narrative claims as proof."
+  },
+  "schema_version": "logos.portfolio_validation_receipt.v1",
+  "receipt_id": "LOGOS-PORTFOLIO-RELEASE-001",
+  "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "candidate_parent": "410c7e429290d34013c1dbf23c0335ebfe68e45f",
+  "status": "pass_release_candidate",
+  "candidate_content_fingerprint": {
+    "scope": "All 111 release-candidate paths except this self-describing validation receipt.",
+    "path_count": 110,
+    "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
+    "digest": "sha256:a20a7e7cf7957165822e440a906e63dde1f82dddfbefd7484a2ef77dd72745fb"
+  },
+  "doctrine_mesh_status": "validated_specification_only",
+  "doctrine_mesh_payload_digest": "sha256:00143bcff73658b6051f8ff34dffd27ebbb72730893e4478246c1c23009a5bdf",
+  "preflight": {
+    "status": "pass",
+    "checkpoint": "08eab8e3edf44ab22175e3e47b1828153a84d716",
+    "observed_at": "2026-08-24T18:04:53Z",
+    "protected_hold_suppressions": 8,
+    "mutation_performed": false
+  },
+  "dad_unavailable_ack": {
+    "operation": "public_release",
+    "reviewed_by": "Lowell Wong",
+    "created_at": "2026-08-24T18:05:19.626670Z",
+    "authority_boundary": "Audit acknowledgement only; repository privacy, provenance, accuracy, CI, theological authority, and independent-review gates remain binding."
+  },
+  "checks": [
+    {
+      "check_id": "doctrine_mesh_final_replay",
+      "status": "pass_artifact_specification_only",
+      "result": "66 structured files; 13 roles; 68 domain profiles; 25 nodes; 26 edges; zero failures."
+    },
+    {
+      "check_id": "doctrine_mesh_adversarial_tests",
+      "status": "pass",
+      "result": "19 passed, zero skipped."
+    },
+    {
+      "check_id": "controlled_vocabulary",
+      "status": "pass",
+      "result": "All governed lifecycle and trust-zone values pass the repository vocabulary contract; V2 dormancy and specification-only meaning remains encoded in explicit activation, authority, and prose boundaries."
+    },
+    {
+      "check_id": "historical_v1_campaign_validator_current_tree",
+      "status": "expected_changed_revision_fail_not_current_gate",
+      "result": "The frozen V1 command reports exactly governed-metadata, source-lock-replay, family-claim, and scope-privacy-and-hygiene against the expanded tree. Its pass bound the staged V1 candidate over parent 9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4, later committed as 410c7e429290d34013c1dbf23c0335ebfe68e45f; neither ordinary checkout is an exact replay. The runbook and handoff classify this as historical evidence, not a current V2 or portfolio gate."
+    },
+    {
+      "check_id": "all_markdown_internal_links",
+      "status": "pass",
+      "result": "452 Markdown files checked."
+    },
+    {
+      "check_id": "full_pytest_precommit",
+      "status": "pass",
+      "result": "150 passed, zero skipped."
+    },
+    {
+      "check_id": "default_validation_suite_precommit",
+      "status": "fail_with_documented_baseline_and_precommit_condition",
+      "result": "27 of 29 validators passed. Retrieval-neighborhood freshness reports ten unchanged 49-day artifacts against a 30-day threshold outside this claim; governance-dependency-map default mode requires the watched registry/map delta to be committed. Neither result is waived, and post-commit replay is required."
+    },
+    {
+      "check_id": "machine_citation_frozen_staged_surface",
+      "status": "pass",
+      "result": "839 UTF-8 tracked text files scanned with zero skipped across the current tracked index, including the exact staged release candidate."
+    },
+    {
+      "check_id": "governance_metadata",
+      "status": "pass",
+      "result": "114 frontmatter-bearing files checked."
+    },
+    {
+      "check_id": "family_registry",
+      "status": "pass_with_unrelated_warnings",
+      "result": "Schema and semantics passed; five pre-existing stale-lease warnings remain outside this claim."
+    },
+    {
+      "check_id": "governance_dependency_map_exact_scope",
+      "status": "pass",
+      "result": "Every changed watched path is covered and the map is declared updated."
+    },
+    {
+      "check_id": "public_repository_inventory_replay",
+      "status": "pass",
+      "result": "Four exact origin/main snapshots independently reproduce 4,035 tracked paths, 249 JSON paths, 676 YAML paths, 82 conservative schema-like paths, 218 validator-like paths, and 274 test-like paths."
+    },
+    {
+      "check_id": "public_sensitive_pattern_scan",
+      "status": "pass_bounded_current_candidate",
+      "result": "No candidate-added private locator, chat locator, email, phone, or credential-shaped signal; stronger secret scanners were unavailable and Git history/all refs were not claimed scanned."
+    },
+    {
+      "check_id": "git_diff_check",
+      "status": "pass",
+      "result": "No whitespace error."
+    }
+  ],
+  "independent_reviews": [
+    {
+      "review_id": "portfolio_evidence_fact_check_001",
+      "role": "evidence-fact-checker",
+      "status": "pass",
+      "reviewed_path_count": 106,
+      "reviewed_digest": "sha256:8049bb23034f84a99709ba06365923761c480c2025f52aa28acb3aaabd3bcfad",
+      "scope_note": "Initial full candidate including the draft receipt; all material repository metrics and evidence claims reproduced."
+    },
+    {
+      "review_id": "recruiter_experience_review_001",
+      "role": "recruiter-experience-reviewer",
+      "status": "pass",
+      "reviewed_path_count": 105,
+      "reviewed_digest": "sha256:c0e5f2a497e6bdee0475f80ffb5cb5fb2cbbdf2b9a93f173bed235d195fde12a",
+      "scope_note": "Changed-input non-receipt review passed after three clarity repairs; navigation, maturity labels, six diagram/prose pairs, and evidence drill-down remained intact."
+    },
+    {
+      "review_id": "privacy_authority_redteam_001",
+      "role": "privacy-authority-redteam",
+      "status": "pass",
+      "reviewed_path_count": 105,
+      "reviewed_digest": "sha256:9e41811f2bba20625a222794939184454ac73629e4bd79a5e64f762339c77aa3",
+      "scope_note": "Final non-receipt review passed after catching and verifying correction of one misapplied registry evidence hunk; the paused residue claim is restored except for the authorized reciprocal overlap."
+    },
+    {
+      "review_id": "portfolio_evidence_fact_check_002",
+      "role": "evidence-fact-checker",
+      "status": "pass",
+      "reviewed_path_count": 110,
+      "reviewed_digest": "sha256:49a8afcd1f4b416326cb0f217c8b11c62980cb278bb779e5cac299f5b7bf1048",
+      "scope_note": "Changed-input final review reproduced the complete V2 digest chain, exact registry scope, authority limits, controlled vocabulary, and corrected staged-candidate history for the historical V1 validator."
+    },
+    {
+      "review_id": "privacy_authority_redteam_002",
+      "role": "privacy-authority-redteam",
+      "status": "pass",
+      "reviewed_path_count": 110,
+      "reviewed_digest": "sha256:49a8afcd1f4b416326cb0f217c8b11c62980cb278bb779e5cac299f5b7bf1048",
+      "scope_note": "Final changed-input red-team passed privacy, scope, historical-replay truthfulness, dormancy, theological-authority, and release-boundary checks; stronger secret scanners and Git-history/all-ref scanning remain unavailable and unclaimed."
+    },
+    {
+      "review_id": "portfolio_evidence_fact_check_003",
+      "role": "evidence-fact-checker",
+      "status": "pass",
+      "reviewed_path_count": 110,
+      "reviewed_digest": "sha256:117e30fb3dcd920a2280bfad6b1f17bdd58343d842ab480ddecb949417014026",
+      "scope_note": "Final whole-candidate review reproduced all 85 payload bindings, the complete Doctrine V2 administrative digest chain, portfolio evidence bindings, exact registry scope, links, and authority limits after four parse-tree-equivalent EOF repairs."
+    },
+    {
+      "review_id": "privacy_authority_redteam_003",
+      "role": "privacy-authority-redteam",
+      "status": "pass",
+      "reviewed_path_count": 110,
+      "reviewed_digest": "sha256:117e30fb3dcd920a2280bfad6b1f17bdd58343d842ab480ddecb949417014026",
+      "scope_note": "Final whole-candidate red-team passed privacy, authority, registry-scope, historical-V1, frozen-specification, and four-byte whitespace-repair checks; stronger secret scanners and Git-history/all-ref scanning remain unavailable and unclaimed."
+    },
+    {
+      "review_id": "portfolio_evidence_fact_check_004",
+      "role": "evidence-fact-checker",
+      "status": "pass",
+      "reviewed_path_count": 110,
+      "reviewed_digest": "sha256:5dd6329c196786d62fabf78b20cc0aa5b498abd04436f832a20a3ee3645fe94d",
+      "scope_note": "Final release review reproduced the newline-stable fingerprint, all 85 Doctrine payload bindings, the full administrative chain, nineteen tests, public schema/count consistency, exact registry scope, and authority limits."
+    },
+    {
+      "review_id": "privacy_authority_redteam_004",
+      "role": "privacy-authority-redteam",
+      "status": "pass",
+      "reviewed_path_count": 110,
+      "reviewed_digest": "sha256:5dd6329c196786d62fabf78b20cc0aa5b498abd04436f832a20a3ee3645fe94d",
+      "scope_note": "Final release red-team passed privacy, authority, specification-only, historical-V1, registry, count, portability, and evidence checks; stronger secret scanners and Git-history/all-ref scanning remain unavailable and unclaimed."
+    },
+    {
+      "review_id": "portfolio_evidence_fact_check_005",
+      "role": "evidence-fact-checker",
+      "status": "pass",
+      "reviewed_path_count": 110,
+      "reviewed_digest": "sha256:a20a7e7cf7957165822e440a906e63dde1f82dddfbefd7484a2ef77dd72745fb",
+      "scope_note": "Changed-input final review independently reproduced the exact 90-plus-21 path composition, newline-stable fingerprint, Doctrine V2 digest chain and nineteen tests, public evidence counts, historical V1 boundary, registry scope, links, privacy limitations, and authority gates after the one-LF README EOF repair."
+    },
+    {
+      "review_id": "privacy_authority_redteam_005",
+      "role": "privacy-authority-redteam",
+      "status": "pass",
+      "reviewed_path_count": 110,
+      "reviewed_digest": "sha256:a20a7e7cf7957165822e440a906e63dde1f82dddfbefd7484a2ef77dd72745fb",
+      "scope_note": "Changed-input final red-team independently reproduced the exact fingerprint and passed privacy, provenance, specification-only dormancy, theological-authority, historical-V1, registry, count, portability, and evidence-overclaim checks; the README delta is exactly one redundant terminal LF with no semantic effect."
+    }
+  ],
+  "unchanged_head_gate": "pass_precommit_parent_and_110_path_content_fingerprint",
+  "required_ci": "pending_pr_required_checks",
+  "normal_merge": "pending_pr",
+  "runtime_activation_authorized": false,
+  "source_ingestion_authorized": false,
+  "substantive_doctrine_implementation_authorized": false,
+  "qualified_theological_authority_granted": false,
+  "mutation_performed_by_validation": false,
+  "observed_at": "2026-08-24T19:47:45Z",
+  "receipt_digest": "sha256:aa26dc8e03fe29fb4d82896ba1fb712de3330baffb5c67c33931df896225dbc9"
+}

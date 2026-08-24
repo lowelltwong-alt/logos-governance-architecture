@@ -1,7 +1,7 @@
 ---
 object_type: stewardship_campaign_controller_state_boundary
 trust_zone: proposed
-lifecycle_status: inactive
+lifecycle_status: draft
 provenance_note: "Created on 2026-08-23 by Codex root to reserve and explain the controller-owned state boundary without creating runtime state."
 reason_for_inclusion: "Make it explicit that workers cannot edit controller state and that no lease, receipt log, or execution state currently exists."
 ---

@@ -1,7 +1,7 @@
 ---
 object_type: stewardship_architecture_long_run_campaign
 trust_zone: proposed
-lifecycle_status: specification_only
+lifecycle_status: draft
 provenance_note: "Created on 2026-08-23 by Codex root from the owner-authorized stewardship lane, the integrated scrubbed advisory projection, and repository governance."
 reason_for_inclusion: "Explain the campaign objective, dependency order, mesh, evidence standard, budgets, and hard stops in human-readable form."
 ---

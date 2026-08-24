@@ -1,7 +1,7 @@
 ---
 object_type: stewardship_architecture_buildout_entrypoint
 trust_zone: proposed
-lifecycle_status: specification_only
+lifecycle_status: draft
 provenance_note: "Created on 2026-08-23 by Codex root after the governed family claim, exact origin/main reconciliation, and protected-hold-aware family preflight passed."
 reason_for_inclusion: "Give maintainers and future agents one safe starting point for the non-authorizing architecture buildout campaign."
 ---
