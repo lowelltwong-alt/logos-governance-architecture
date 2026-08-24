@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "object_type": "doctrine_audit_input_manifest",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root for the end-of-design completeness audit.",
+    "reason_for_inclusion": "Freeze the final design scope, independent findings, repaired controls, and deliberately dormant implementation boundaries inspected before artifact completion."
+  },
+  "schema_version": "logos.doctrine_audit_input_manifest.v2",
+  "manifest_id": "DMI-POSTFLIGHT-001",
+  "phase": "postflight",
+  "work_unit_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "work_unit_revision": "doctrine-mesh-v2-design-postflight-1",
+  "parent_checkpoint": "410c7e429290d34013c1dbf23c0335ebfe68e45f",
+  "completed_design_surfaces": [
+    "authority, storage, consumer, autonomy, risk, human-gate, portability, and campaign contracts",
+    "controller-only sparse mesh, task-local role factory, per-job binding, resumption, budget, and attempt-lineage interfaces",
+    "preflight, triggered midflight, and postflight completeness-auditor schemas, prompts, evidence, and negative harness",
+    "sixty-eight period, language, corpus, tradition, philosophy, archaeology, method, and verification capability profiles",
+    "candidate source-family atlas plus deep ExpertPack and twenty-seven unbuilt expert-pack blueprints",
+    "claim/source/translation/rights/qualification/human authorization, influence, decision-bundle, and consumer-index interfaces",
+    "internal prompts for foreman, researchers, checkers, challengers, representation, risk, integration, and recovery",
+    "independent determinism, campaign-integration, autonomy/authority red-team, premortem, and repair classification",
+    "frozen optional Fable review brief with no external call or authority"
+  ],
+  "material_review_discoveries": [
+    "Parent source identity must use ancestry and exact parent Git blobs rather than require revision HEAD equality.",
+    "Midflight checking is a pre-lease trigger barrier, not a job after research.",
+    "The factory proposes profiles; only a qualified controller may dispatch or own a lease.",
+    "Changed evidence cannot reset cumulative audit, role, assignment, budget, or recovery ceilings.",
+    "Jewish representation, translation fidelity, source rights/custody, and destination readiness add unique checks beyond generic doctrine roles.",
+    "Risk tags, materiality, decision bundles, actor lineage, and human receipts must remain separate and conservatively computed.",
+    "A schema or contract is a dormant interface until semantic validators, adversarial fixtures, qualified adapters, and exact human authority exist.",
+    "Actual high-signal source packs remain unbuilt and cannot be replaced by a taxonomy label, model memory, source catalog, or provider prestige."
+  ],
+  "authority": {
+    "mode": "specification_only",
+    "runtime_launch": false,
+    "research_execution": false,
+    "source_ingestion": false,
+    "cross_repository_write": false,
+    "substantive_doctrine_implementation": false,
+    "human_doctrine_gates_remain_blocking": true,
+    "artifact_freeze_is_runtime_qualification": false
+  },
+  "manifest_digest": "sha256:12bd20913d1c5d6ffbb468d56f3c201ad7356b68c91af590ba8cfd6c8980ee8e"
+}

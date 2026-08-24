@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-mesh-final-saved-version-v2.json",
+  "title": "DoctrineMeshFinalSavedVersion",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_mesh_final_saved_version_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root for the terminal saved-specification gate.",
+    "reason_for_inclusion": "Make the requested final saved version an exact digest-bound index rather than an unchecked marker file."
+  },
+  "required": ["metadata", "schema_version", "save_id", "status", "revision_manifest_ref", "revision_manifest_digest", "payload_digest", "payload_file_count", "validation_receipt_ref", "validation_receipt_file_digest", "validation_receipt_object_digest", "independent_review_ref", "independent_review_file_digest", "independent_review_object_digest", "fable_manifest_ref", "fable_manifest_file_digest", "fable_manifest_object_digest", "postflight_receipt_ref", "postflight_receipt_file_digest", "postflight_receipt_object_digest", "artifact_freeze_readiness", "runtime_activation_authorized", "research_authorized", "source_ingestion_authorized", "substantive_doctrine_implementation_authorized", "cross_repository_write_authorized", "publication_authorized", "commit_created", "Fable_external_review_status", "saved_at", "final_digest"],
+  "properties": {
+    "metadata": {
+      "type": "object", "additionalProperties": false,
+      "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"],
+      "properties": {
+        "object_type": {"const": "doctrine_mesh_final_saved_version"},
+        "trust_zone": {"const": "proposed"},
+        "lifecycle_status": {"const": "saved_specification_only"},
+        "provenance_note": {"type": "string", "minLength": 1},
+        "reason_for_inclusion": {"type": "string", "minLength": 1}
+      }
+    },
+    "schema_version": {"const": "logos.doctrine_mesh_final_saved_version.v2"},
+    "save_id": {"const": "LOGOS-DOCTRINE-MESH-SAVED-002"},
+    "status": {"const": "saved_specification_only"},
+    "revision_manifest_ref": {"const": "revision-manifest.yaml"},
+    "revision_manifest_digest": {"$ref": "#/$defs/digest"},
+    "payload_digest": {"$ref": "#/$defs/digest"},
+    "payload_file_count": {"type": "integer", "minimum": 1},
+    "validation_receipt_ref": {"const": "checks/validation-receipt.json"},
+    "validation_receipt_file_digest": {"$ref": "#/$defs/digest"},
+    "validation_receipt_object_digest": {"$ref": "#/$defs/digest"},
+    "independent_review_ref": {"const": "checks/independent-review.json"},
+    "independent_review_file_digest": {"$ref": "#/$defs/digest"},
+    "independent_review_object_digest": {"$ref": "#/$defs/digest"},
+    "fable_manifest_ref": {"const": "fable/fable-review-manifest.yaml"},
+    "fable_manifest_file_digest": {"$ref": "#/$defs/digest"},
+    "fable_manifest_object_digest": {"$ref": "#/$defs/digest"},
+    "postflight_receipt_ref": {"const": "evidence/receipts/postflight.json"},
+    "postflight_receipt_file_digest": {"$ref": "#/$defs/digest"},
+    "postflight_receipt_object_digest": {"$ref": "#/$defs/digest"},
+    "artifact_freeze_readiness": {"const": "ready_specification_artifact_only"},
+    "runtime_activation_authorized": {"const": false},
+    "research_authorized": {"const": false},
+    "source_ingestion_authorized": {"const": false},
+    "substantive_doctrine_implementation_authorized": {"const": false},
+    "cross_repository_write_authorized": {"const": false},
+    "publication_authorized": {"const": false},
+    "commit_created": {"const": false},
+    "Fable_external_review_status": {"const": "not_sent"},
+    "saved_at": {"type": "string", "format": "date-time"},
+    "final_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

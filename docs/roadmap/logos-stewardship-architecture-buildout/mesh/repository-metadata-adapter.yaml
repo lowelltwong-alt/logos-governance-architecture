@@ -1,0 +1,123 @@
+metadata:
+  object_type: stewardship_architecture_mesh_repository_metadata_adapter
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-23 by Codex root to bind the closed DAD mesh manifest to repository metadata, job roles, human gates, and task-local role cards."
+  reason_for_inclusion: "Keep the provider-neutral core schema closed while making repository authority, role/job bindings, privacy, effects, and human ownership explicit."
+schema_version: logos_stewardship_mesh_repository_adapter.v1
+adapter_id: LOGOS-STEWARDSHIP-MESH-REPOSITORY-ADAPTER-001
+portable_manifest_ref: mesh/agent-mesh.v1.json
+portable_manifest_digest: sha256:0cdb9cf4df8822c8b7b553c724c934d09a8b492074824e7dc287eb4fcea6c19d
+portable_manifest_schema: dad.task_local_agent_mesh_manifest.v1
+role_cards_ref: mesh/role-cards.yaml
+role_card_count: 27
+task_id: WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
+source_snapshot_digest: sha256:d28f522158bb25fd073703a9db376f31e85a1b3c6c3c6dd8bfe468cce9ca633d
+
+repository_contract:
+  family_claim_ref: governance/registry/FAMILY_WORK_REGISTRY.yaml#WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
+  campaign_tree: docs/roadmap/logos-stewardship-architecture-buildout/
+  sole_content_writer: specification-writer
+  independent_checker: independent-authority-checker
+  controller_state_owner_if_later_activated: campaign-controller
+  controller_state_root: docs/roadmap/logos-stewardship-architecture-buildout/state/
+  max_direct_fanout: 3
+  max_delegation_depth: 1
+  worker_delegation_allowed: false
+  execution_authorized: false
+  external_research_authorized: false
+  implementation_authorized: false
+  migration_authorized: false
+  publication_authorized: false
+
+authority_adapter:
+  source_authority_refs:
+    - AGENTS.md
+    - AI_FRONT_DOOR.md
+    - governance/FAMILY_WORK_COORDINATION_STANDARD.yaml
+    - governance/registry/FAMILY_WORK_REGISTRY.yaml
+    - docs/governance/logos-convergence-advisory-review.yaml
+  allowed_current_effects:
+    - read_pinned_local_evidence
+    - write_candidate_specification_inside_claimed_campaign_tree
+    - run_local_read_only_or_deterministic_validation
+    - return_read_only_specialist_packets
+  prohibited_effects:
+    - write_outside_claim
+    - substantive_architecture_or_schema_implementation
+    - theology_source_tradition_or_policy_decision
+    - controller_or_runtime_activation
+    - external_provider_or_paid_service_call
+    - private_data_copy_or_credential_access
+    - migration_deployment_publication_push_pr_or_remote_merge
+    - cleanup_reset_rebase_force_operation_or_deletion
+  data_classes_allowed: [public_repository_metadata, scrubbed_candidate_specification, non_content_validation_receipt]
+  data_classes_prohibited: [secret, credential, raw_private_source, raw_conversation, unapproved_client_payload]
+  human_gate_registry_ref: human-gates.yaml
+
+job_bindings:
+  - {job_id: J-000, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: validation, human_gate_ids: [], current_execution_state: not_started}
+  - {job_id: J-001, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: validation, human_gate_ids: [], current_execution_state: not_started}
+  - {job_id: J-002, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: read_only, human_gate_ids: [], current_execution_state: not_started}
+  - {job_id: J-100, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [], current_execution_state: not_started}
+  - {job_id: J-110, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [], current_execution_state: not_started}
+  - {job_id: J-120, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [], current_execution_state: not_started}
+  - {job_id: J-130, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [], current_execution_state: not_started}
+  - {job_id: J-140, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [], current_execution_state: not_started}
+  - {job_id: J-150, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [HG-012, HG-013], current_execution_state: not_started}
+  - {job_id: J-200, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [HG-001, HG-002, HG-003, HG-004, HG-005, HG-008, HG-009], current_execution_state: not_started}
+  - {job_id: J-210, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [HG-010, HG-013], current_execution_state: not_started}
+  - {job_id: J-220, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: documentation, human_gate_ids: [HG-004, HG-006, HG-007, HG-011, HG-014], current_execution_state: not_started}
+  - {job_id: J-300, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: read_only, human_gate_ids: [HG-007, HG-010, HG-012, HG-013], current_execution_state: blocked_human}
+  - {job_id: J-310, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: validation, human_gate_ids: [HG-012, HG-013], current_execution_state: blocked_human}
+  - {job_id: J-320, specification_author: specification-writer, future_executor: campaign-controller, checker: independent-authority-checker, effect_class: validation, human_gate_ids: [HG-012, HG-014], current_execution_state: blocked_human}
+  - {job_id: J-400, specification_author: specification-writer, future_executor: human-campaign-sponsor, checker: human-campaign-sponsor, effect_class: documentation, human_gate_ids: [HG-001, HG-002, HG-003, HG-004, HG-005, HG-006, HG-007, HG-008, HG-009, HG-010, HG-011, HG-012, HG-013, HG-014], current_execution_state: blocked_human}
+
+topology:
+  dispatch_shape: controller_direct_depth_one
+  direct_assignment_only: true
+  foremen_are_read_only_synthesizers_not_delegators: true
+  sample_waves:
+    - {wave_id: graph_specification, direct_roles: [specification-writer, provenance-graph-specialist, independent-authority-checker], max_parallel: 3}
+    - {wave_id: research_design, direct_roles: [research-evidence-foreman, primary-source-researcher, source-rights-specialist], max_parallel: 3}
+    - {wave_id: evaluation_design, direct_roles: [empirical-methods-specialist, statistical-review-specialist, information-retrieval-specialist], max_parallel: 3}
+    - {wave_id: safety_design, direct_roles: [privacy-security-custody-specialist, authentication-boundary-specialist, migration-safety-specialist], max_parallel: 3}
+
+independence_adapter:
+  different_role_id_alone_is_proof: false
+  checker_assignment_isolated: true
+  checker_shared_authorship_prohibited: true
+  checker_reads_raw_permitted_evidence: true
+  checker_attempt_lineage_required: true
+  changed_revision_invalidates_result: true
+  independent_result_may_clear_human_gate: false
+
+portability_adapter:
+  portable_core_has_provider_binding: false
+  capability_tiers_are_mutable: true
+  runtime_adapter_ref: controller/runtime-adapter-contract.yaml
+  runtime_adapter_status: unbound
+  provider_probe_receipt: null
+  harness_receipt: null
+  portability_claim_status: unverified
+  invalidation_triggers: [runtime, model, provider, tools, context, privacy, effects, authority, schema, dependencies, scope, human_gate, budget]
+
+human_role_adapter:
+  agent_may_impersonate_human: false
+  agent_may_assert_human_qualification: false
+  named_human_roles:
+    - qualified-theology-exegesis-human
+    - qualified-history-tradition-human
+    - privacy-security-custody-human
+    - qualified-primary-source-human
+    - qualified-rights-review-human
+    - human-campaign-sponsor
+  qualification_source: owner_scoped_future_receipt_only
+  current_qualified_human_assignments: []
+
+binding_invariants:
+  - "Every job has exactly one specification author and one checker; J-400 is explicitly human-checked."
+  - "Future executor identity does not grant current execution authority."
+  - "Controller state and repository content remain disjoint."
+  - "A role card, graph edge, validator pass, model grade, or consensus result is never a human receipt."
+  - "Specialists return candidate packets; only the sole content writer may encode accepted packets in the repository."

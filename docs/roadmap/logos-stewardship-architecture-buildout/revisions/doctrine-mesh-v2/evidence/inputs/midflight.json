@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "object_type": "doctrine_audit_input_manifest",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root for the material-change midflight completeness audit.",
+    "reason_for_inclusion": "Freeze the scope, authority, source-catalog, and autonomy deltas that triggered a required midflight audit."
+  },
+  "schema_version": "logos.doctrine_audit_input_manifest.v2",
+  "manifest_id": "DMI-MIDFLIGHT-001",
+  "phase": "midflight",
+  "work_unit_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "work_unit_revision": "doctrine-mesh-v2-draft-2",
+  "parent_checkpoint": "410c7e429290d34013c1dbf23c0335ebfe68e45f",
+  "trigger": "scope_or_authority_change",
+  "trigger_delta": [
+    "Expert classifications expanded from generic historical-doctrine research to periodized Jewish, ancient-context, philosophy, corpus, tradition, and verification facets.",
+    "Automatic role composition was added and therefore requires recursion, promotion, rights, budget, provider, and human-gate controls.",
+    "The existing campaign validator's HEAD-coupled source lock is stale even though source bytes replay, so this revision separates parent checkpoint identity from revision identity.",
+    "A named source catalog was added as candidate pointers only, creating a requirement for current source, edition, access, rights, and fitness verification before use.",
+    "Deterministic execution-presence proof was separated from independent substantive completeness review."
+  ],
+  "authority": {
+    "mode": "specification_only",
+    "new_runtime_or_research_authority": false,
+    "new_source_authority": false,
+    "new_cross_repository_authority": false
+  },
+  "manifest_digest": "sha256:ead6a2f11aa811defb483229d49904b780338bd762f1c673ba42ec11f41c0d5a"
+}

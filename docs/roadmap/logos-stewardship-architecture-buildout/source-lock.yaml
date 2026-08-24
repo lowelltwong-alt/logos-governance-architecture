@@ -1,0 +1,50 @@
+metadata:
+  object_type: stewardship_architecture_source_lock
+  trust_zone: proposed
+  lifecycle_status: active_lock
+  provenance_note: "Created on 2026-08-23 by Codex root from Git and SHA-256 replay at the clean reconciled checkpoint."
+  reason_for_inclusion: "Bind the campaign to exact source authority without copying private convergence packets or relying on mutable conversation state."
+schema_version: logos_stewardship_source_lock.v1
+lock_id: LOGOS-STEWARDSHIP-SOURCE-LOCK-001
+repository_head: 9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4
+origin_main_at_lock: 4f00f6f9d50e870d4e9805f29a69feb33e6f4d12
+source_snapshot_digest: sha256:d28f522158bb25fd073703a9db376f31e85a1b3c6c3c6dd8bfe468cce9ca633d
+observed_at: "2026-08-23T20:11:49Z"
+snapshot_digest_rule: "SHA-256 over canonical compact sorted-key JSON containing repository_head, origin_main, and the path/sha256/git_blob rows sorted by path."
+sources:
+  - path: AGENTS.md
+    sha256: b0bdb3114c117edb136c27e3538336497ecf092bca16f3a86a621ca40776c401
+    git_blob: 696bc7b23a4b4216d4eaf4b8e1d59103b99cae67
+    authority: repository_governance_contract
+    freshness_trigger: file_or_repository_policy_change
+  - path: AI_FRONT_DOOR.md
+    sha256: 1befca06d9be4f89559082bbc61ad545b8703bf53e61fe59926800bff14aa25a
+    git_blob: 12bb1b599f9b79b3461cd5bf0f356f2d1e90b305
+    authority: repository_ai_entry_contract
+    freshness_trigger: file_or_repository_authority_change
+  - path: governance/FAMILY_WORK_COORDINATION_STANDARD.yaml
+    sha256: 9b44c730b2217c262351b0c70c0efa49fc02c4b675ffa554242eae36c9079ae3
+    git_blob: 8da7c4928d385650aae7fbf0e6948882cbadf174
+    authority: family_work_coordination_contract
+    freshness_trigger: coordination_policy_change
+  - path: governance/registry/FAMILY_WORK_REGISTRY.yaml
+    sha256: 271718a86238081d4e6bac34d13fc0fcff3d8df294c409f8702547d44a2b02d7
+    git_blob: 5a67ecf309e4aee561f94863bdd46e6b27cd57cf
+    authority: governed_work_claim_state
+    freshness_trigger: registry_or_claim_change
+  - path: docs/governance/logos-convergence-advisory-review.yaml
+    sha256: 63a14f2ae5d9d406abbbb171a33c5c47075ab1032cb02c9b55e3bcd21d0b69de
+    git_blob: 0fb782cd06a5793114043d6de01975d05c6a60a0
+    authority: scrubbed_non_authorizing_advisory_projection
+    freshness_trigger: advisory_projection_or_human_gate_change
+private_terminal_evidence:
+  content_copied_into_campaign: false
+  local_path_recorded: false
+  role: corroborating_private_evidence_only
+  access_rule: owner_or_separately_authorized_reviewer_only
+  public_projection_is_not_owner_approval: true
+freshness_policy:
+  states: [current, watch, stale, superseded, unknown]
+  current_state: current_at_observation
+  changed_digest_action: stop_affected_jobs_and_append_new_lock_revision
+  age_alone_changes_authority: false

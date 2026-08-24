@@ -1,0 +1,340 @@
+metadata:
+  object_type: stewardship_architecture_typed_dependency_graph
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-23 by Codex root from the reconciled family claim, pinned source lock, block registry, human-gate registry, and atomic job catalog."
+  reason_for_inclusion: "Make dependency, provenance, authority, freshness, blocking, and reverse-blast relationships explicit and machine-auditable before any implementation is considered."
+schema_version: logos_stewardship_typed_dependency_graph.v1
+graph_id: LOGOS-STEWARDSHIP-GRAPH-001
+revision: 1
+execution_authority: false
+graph_semantics: closed_world_multigraph
+planes:
+  semantic: [immutable_source, evidence, inference, conclusion]
+  control: [job, human_gate, block, validation]
+  delivery: [artifact, consumer, runtime_adapter, implementation_action]
+
+node_contract:
+  required_fields: [node_id, node_kind, trust_zone, authority_owner, lifecycle_status, freshness_state]
+  trust_zones: [canonical, tradition-scoped, proposed, inferred, deprecated, learning-sidecar]
+  missing_authority_owner_is_error: true
+  missing_freshness_is_error: true
+edge_contract:
+  required_fields: [edge_id, source_id, target_id, relation, provenance_ref]
+  inherited_defaults_allowed: true
+  defaults:
+    asserted_by: specification-writer
+    review_state: proposed
+    observed_at: "2026-08-23T20:11:49Z"
+    valid_from: "2026-08-23T20:11:49Z"
+    valid_until: null
+    freshness_state: current_at_observation
+    invalidation_action: mark_transitive_consumers_stale_and_block_affected_jobs
+  allowed_relations:
+    depends_on:
+      inverse: required_by
+      meaning: "The source job or artifact cannot be satisfied without the target prerequisite."
+      acyclic: true
+    derived_from:
+      inverse: supports_derivation_of
+      meaning: "A conclusion derives from an inference, an inference from evidence, or evidence from an immutable source."
+      acyclic: true
+    produces:
+      inverse: produced_by
+      meaning: "A job creates a proposed artifact or validation result."
+      acyclic: false
+    consumes:
+      inverse: consumed_by
+      meaning: "A job reads an artifact without changing its authority."
+      acyclic: false
+    consumed_by:
+      inverse: consumes
+      meaning: "An artifact has a known downstream consumer used for reverse blast-radius analysis."
+      acyclic: false
+    validates:
+      inverse: validated_by
+      meaning: "A validation node evaluates an artifact or assertion against a declared rule."
+      acyclic: false
+    reviewed_by:
+      inverse: reviews
+      meaning: "A candidate is reviewed by an independent role or a named human authority."
+      acyclic: false
+    challenges:
+      inverse: challenged_by
+      meaning: "Evidence or review disputes a candidate without silently deleting it."
+      acyclic: false
+    governs:
+      inverse: governed_by
+      meaning: "A source contract constrains a job, artifact, or action."
+      acyclic: false
+    blocks:
+      inverse: blocked_by
+      meaning: "An active block or unclosed human gate dominates any positive readiness path to the target."
+      acyclic: false
+    authorizes:
+      inverse: authorized_by
+      meaning: "Only a fresh scoped human receipt may authorize the exact target action; no such receipt exists in this revision."
+      acyclic: false
+    supersedes:
+      inverse: superseded_by
+      meaning: "A newer revision replaces a prior revision without deleting history."
+      acyclic: true
+    migrates_to:
+      inverse: migrates_from
+      meaning: "A separately authorized migration maps source to target with rollback evidence."
+      acyclic: true
+  prohibited_relations: [related_to, associated_with, implies_authority]
+
+nodes:
+  # Atomic campaign jobs. Their status describes future execution, not whether this specification file exists.
+  - {node_id: J-000, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-001, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-002, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-100, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-110, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-120, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-130, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-140, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-150, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-200, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-210, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-220, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: specified_not_executed, freshness_state: current_at_observation}
+  - {node_id: J-300, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: J-310, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: J-320, node_kind: job, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: J-400, node_kind: implementation_action, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: dormant_blocked_human, freshness_state: current_at_observation}
+
+  # Advisory rows are evidence coordinates, not decisions. Every row remains implementation-blocking.
+  - {node_id: B-ADV-AB-R02-001, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-ADV-AB-R02-002, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-ADV-AB-R02-003, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-ADV-AB-R02-006, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-ADV-AB-R02-009, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-ADV-AB-R02-013, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-ADV-AB-R02-015, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P0-AB-R02-008, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P0-AB-R02-018, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-004, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-005, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-007, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-010, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-011, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-012, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-014, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-016, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-017, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-P1-AB-R02-019, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-RES-AB-R03-DIS-001, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-RES-AB-R03-DIS-002, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-RES-AB-R03-DIS-003, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-RES-AB-R03-DIS-004, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-RES-AB-R03-DIS-005, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active, freshness_state: current_at_observation}
+  - {node_id: B-SPECIAL-001-UNKNOWN, node_kind: block, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: active_unknown_no_numeric_constraint, freshness_state: current_at_observation}
+
+  # Human authorities remain gates; no authorization receipt node exists in this revision.
+  - {node_id: HG-001, node_kind: human_gate, trust_zone: proposed, authority_owner: qualified-theology-exegesis-human-plus-owner, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-002, node_kind: human_gate, trust_zone: proposed, authority_owner: qualified-primary-source-human-plus-owner, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-003, node_kind: human_gate, trust_zone: proposed, authority_owner: qualified-history-tradition-human-plus-owner, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-004, node_kind: human_gate, trust_zone: proposed, authority_owner: privacy-security-custody-human-plus-owner, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-005, node_kind: human_gate, trust_zone: proposed, authority_owner: qualified-theology-exegesis-human-plus-owner, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-006, node_kind: human_gate, trust_zone: proposed, authority_owner: privacy-security-custody-human-plus-owner, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-007, node_kind: human_gate, trust_zone: proposed, authority_owner: owner-with-security-review, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-008, node_kind: human_gate, trust_zone: proposed, authority_owner: owner-after-evidence-and-independent-review, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-009, node_kind: human_gate, trust_zone: proposed, authority_owner: qualified-domain-humans-plus-owner, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-010, node_kind: human_gate, trust_zone: proposed, authority_owner: owner-after-empirical-methods-review, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-011, node_kind: human_gate, trust_zone: proposed, authority_owner: owner-after-block-specific-evidence, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-012, node_kind: human_gate, trust_zone: proposed, authority_owner: owner-after-runtime-qualification, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-013, node_kind: human_gate, trust_zone: proposed, authority_owner: owner-for-exact-budgeted-attempt, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+  - {node_id: HG-014, node_kind: human_gate, trust_zone: proposed, authority_owner: owner-after-fresh-review, lifecycle_status: blocked_human, freshness_state: current_at_observation}
+
+  # Immutable sources and explicit reverse-provenance chain.
+  - {node_id: S-REPO-GOVERNANCE, node_kind: immutable_source, trust_zone: canonical, authority_owner: repository-maintainer, lifecycle_status: active, freshness_state: current_at_observation, source_ref: AGENTS.md, digest: "sha256:b0bdb3114c117edb136c27e3538336497ecf092bca16f3a86a621ca40776c401"}
+  - {node_id: S-FAMILY-REGISTRY, node_kind: immutable_source, trust_zone: canonical, authority_owner: repository-maintainer, lifecycle_status: active, freshness_state: current_at_observation, source_ref: governance/registry/FAMILY_WORK_REGISTRY.yaml, digest: "sha256:271718a86238081d4e6bac34d13fc0fcff3d8df294c409f8702547d44a2b02d7"}
+  - {node_id: S-ADVISORY-PROJECTION, node_kind: immutable_source, trust_zone: proposed, authority_owner: repository-maintainer, lifecycle_status: draft_non_authorizing, freshness_state: current_at_observation, source_ref: docs/governance/logos-convergence-advisory-review.yaml, digest: "sha256:63a14f2ae5d9d406abbbb171a33c5c47075ab1032cb02c9b55e3bcd21d0b69de"}
+  - {node_id: E-EXACT-PARTITION-REPLAY, node_kind: evidence, trust_zone: proposed, authority_owner: independent-authority-checker, lifecycle_status: planned_validation_evidence, freshness_state: pending_validation}
+  - {node_id: I-NON-AUTHORIZING-BOUNDARY, node_kind: inference, trust_zone: inferred, authority_owner: independent-authority-checker, lifecycle_status: proposed, freshness_state: pending_validation, method: exact_set_hash_and_authority_replay}
+  - {node_id: C-SPECIFICATION-ONLY, node_kind: conclusion, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: proposed_non_authorizing, freshness_state: pending_validation, statement: "Current work may specify and validate the campaign only; implementation remains blocked."}
+
+  # Proposed artifacts and dormant consumers.
+  - {node_id: A-CONSTITUTION, node_kind: artifact, trust_zone: proposed, authority_owner: specification-writer, lifecycle_status: authored_candidate, freshness_state: current_at_observation, path: constitution.yaml}
+  - {node_id: A-SOURCE-LOCK, node_kind: artifact, trust_zone: proposed, authority_owner: specification-writer, lifecycle_status: authored_candidate, freshness_state: current_at_observation, path: source-lock.yaml}
+  - {node_id: A-BLOCK-REGISTRY, node_kind: artifact, trust_zone: proposed, authority_owner: specification-writer, lifecycle_status: authored_candidate, freshness_state: current_at_observation, path: block-registry.yaml}
+  - {node_id: A-TYPED-GRAPH, node_kind: artifact, trust_zone: proposed, authority_owner: specification-writer, lifecycle_status: authored_candidate, freshness_state: current_at_observation, path: graph/typed-dependency-graph.yaml}
+  - {node_id: A-AGENT-MESH, node_kind: artifact, trust_zone: proposed, authority_owner: specification-writer, lifecycle_status: authored_candidate, freshness_state: current_at_observation, path: mesh/agent-mesh.v1.json}
+  - {node_id: A-RESEARCH-DOCKET, node_kind: artifact, trust_zone: proposed, authority_owner: specification-writer, lifecycle_status: authored_candidate, freshness_state: current_at_observation, path: research/research-docket.yaml}
+  - {node_id: A-EVALUATION-BASELINE, node_kind: artifact, trust_zone: proposed, authority_owner: specification-writer, lifecycle_status: authored_candidate, freshness_state: current_at_observation, path: evaluation/evaluation-baseline.yaml}
+  - {node_id: A-MIGRATION-SPEC, node_kind: artifact, trust_zone: proposed, authority_owner: specification-writer, lifecycle_status: dormant_specification, freshness_state: current_at_observation, path: migration/rollback-spec.yaml}
+  - {node_id: A-RUNTIME-ADAPTER, node_kind: runtime_adapter, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: unbound_dormant, freshness_state: unqualified, path: controller/runtime-adapter-contract.yaml}
+  - {node_id: V-CAMPAIGN-VALIDATOR, node_kind: validation, trust_zone: proposed, authority_owner: independent-authority-checker, lifecycle_status: authored_candidate, freshness_state: pending_execution, path: checks/validate_stewardship_campaign.py}
+  - {node_id: CONSUMER-FUTURE-IMPLEMENTATION, node_kind: consumer, trust_zone: proposed, authority_owner: human-campaign-sponsor, lifecycle_status: dormant_blocked_human, freshness_state: not_applicable}
+
+edges:
+  # Atomic execution dependencies.
+  - {edge_id: E-DEP-001, source_id: J-001, target_id: J-000, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-002, source_id: J-002, target_id: J-001, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-003, source_id: J-100, target_id: J-002, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-004, source_id: J-110, target_id: J-002, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-005, source_id: J-120, target_id: J-110, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-006, source_id: J-130, target_id: J-100, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-007, source_id: J-130, target_id: J-110, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-008, source_id: J-130, target_id: J-120, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-009, source_id: J-140, target_id: J-130, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-010, source_id: J-150, target_id: J-130, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-011, source_id: J-150, target_id: J-140, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-012, source_id: J-200, target_id: J-120, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-013, source_id: J-200, target_id: J-130, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-014, source_id: J-210, target_id: J-200, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-015, source_id: J-220, target_id: J-120, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-016, source_id: J-220, target_id: J-210, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-017, source_id: J-300, target_id: J-150, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-018, source_id: J-300, target_id: J-210, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-019, source_id: J-310, target_id: J-300, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-020, source_id: J-320, target_id: J-310, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-021, source_id: J-400, target_id: J-220, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-DEP-022, source_id: J-400, target_id: J-320, relation: depends_on, provenance_ref: jobs/JOB_CATALOG.yaml}
+
+  # Reverse-provenance path: conclusion -> inference -> evidence -> immutable source.
+  - {edge_id: E-PROV-001, source_id: C-SPECIFICATION-ONLY, target_id: I-NON-AUTHORIZING-BOUNDARY, relation: derived_from, provenance_ref: block-registry.yaml}
+  - {edge_id: E-PROV-002, source_id: I-NON-AUTHORIZING-BOUNDARY, target_id: E-EXACT-PARTITION-REPLAY, relation: derived_from, provenance_ref: checks/validation-receipt.json}
+  - {edge_id: E-PROV-003, source_id: E-EXACT-PARTITION-REPLAY, target_id: S-ADVISORY-PROJECTION, relation: derived_from, provenance_ref: source-lock.yaml}
+  - {edge_id: E-GOV-001, source_id: S-REPO-GOVERNANCE, target_id: J-400, relation: governs, provenance_ref: source-lock.yaml}
+  - {edge_id: E-GOV-002, source_id: S-FAMILY-REGISTRY, target_id: J-400, relation: governs, provenance_ref: source-lock.yaml}
+
+  # Job/artifact lineage and reverse consumers.
+  - {edge_id: E-PROD-100, source_id: J-100, target_id: A-CONSTITUTION, relation: produces, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-PROD-110, source_id: J-110, target_id: A-SOURCE-LOCK, relation: produces, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-PROD-120, source_id: J-120, target_id: A-BLOCK-REGISTRY, relation: produces, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-PROD-130, source_id: J-130, target_id: A-TYPED-GRAPH, relation: produces, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-PROD-140, source_id: J-140, target_id: A-AGENT-MESH, relation: produces, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-PROD-200, source_id: J-200, target_id: A-RESEARCH-DOCKET, relation: produces, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-PROD-210, source_id: J-210, target_id: A-EVALUATION-BASELINE, relation: produces, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-PROD-220, source_id: J-220, target_id: A-MIGRATION-SPEC, relation: produces, provenance_ref: jobs/JOB_CATALOG.yaml}
+  - {edge_id: E-CONS-001, source_id: A-BLOCK-REGISTRY, target_id: J-400, relation: consumed_by, provenance_ref: future/implementation-gate.yaml}
+  - {edge_id: E-CONS-002, source_id: A-MIGRATION-SPEC, target_id: J-400, relation: consumed_by, provenance_ref: future/implementation-gate.yaml}
+  - {edge_id: E-CONS-003, source_id: A-RUNTIME-ADAPTER, target_id: J-300, relation: consumed_by, provenance_ref: controller/qualification-plan.yaml}
+  - {edge_id: E-CONS-004, source_id: J-400, target_id: CONSUMER-FUTURE-IMPLEMENTATION, relation: consumed_by, provenance_ref: future/implementation-gate.yaml}
+  - {edge_id: E-CONS-005, source_id: A-CONSTITUTION, target_id: J-130, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-006, source_id: A-SOURCE-LOCK, target_id: J-120, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-007, source_id: A-SOURCE-LOCK, target_id: J-130, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-008, source_id: A-BLOCK-REGISTRY, target_id: J-130, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-009, source_id: A-BLOCK-REGISTRY, target_id: J-200, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-010, source_id: A-TYPED-GRAPH, target_id: J-140, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-011, source_id: A-TYPED-GRAPH, target_id: J-150, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-012, source_id: A-TYPED-GRAPH, target_id: J-200, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-013, source_id: A-AGENT-MESH, target_id: J-150, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-014, source_id: A-RESEARCH-DOCKET, target_id: J-210, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-015, source_id: A-EVALUATION-BASELINE, target_id: J-220, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-CONS-016, source_id: A-EVALUATION-BASELINE, target_id: J-300, relation: consumed_by, provenance_ref: campaign.json}
+  - {edge_id: E-VAL-001, source_id: V-CAMPAIGN-VALIDATOR, target_id: A-TYPED-GRAPH, relation: validates, provenance_ref: checks/validate_stewardship_campaign.py}
+  - {edge_id: E-VAL-002, source_id: V-CAMPAIGN-VALIDATOR, target_id: A-AGENT-MESH, relation: validates, provenance_ref: checks/validate_stewardship_campaign.py}
+
+  # All 25 preserved convergence coordinates dominate future implementation readiness.
+  - {edge_id: E-BLOCK-ADV-001, source_id: B-ADV-AB-R02-001, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-ADV-002, source_id: B-ADV-AB-R02-002, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-ADV-003, source_id: B-ADV-AB-R02-003, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-ADV-006, source_id: B-ADV-AB-R02-006, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-ADV-009, source_id: B-ADV-AB-R02-009, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-ADV-013, source_id: B-ADV-AB-R02-013, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-ADV-015, source_id: B-ADV-AB-R02-015, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P0-008, source_id: B-P0-AB-R02-008, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P0-018, source_id: B-P0-AB-R02-018, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-004, source_id: B-P1-AB-R02-004, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-005, source_id: B-P1-AB-R02-005, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-007, source_id: B-P1-AB-R02-007, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-010, source_id: B-P1-AB-R02-010, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-011, source_id: B-P1-AB-R02-011, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-012, source_id: B-P1-AB-R02-012, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-014, source_id: B-P1-AB-R02-014, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-016, source_id: B-P1-AB-R02-016, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-017, source_id: B-P1-AB-R02-017, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-P1-019, source_id: B-P1-AB-R02-019, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-RES-001, source_id: B-RES-AB-R03-DIS-001, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-RES-002, source_id: B-RES-AB-R03-DIS-002, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-RES-003, source_id: B-RES-AB-R03-DIS-003, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-RES-004, source_id: B-RES-AB-R03-DIS-004, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-RES-005, source_id: B-RES-AB-R03-DIS-005, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+  - {edge_id: E-BLOCK-SPECIAL-001, source_id: B-SPECIAL-001-UNKNOWN, target_id: J-400, relation: blocks, provenance_ref: block-registry.yaml}
+
+  # Explicit human-gate incidence. Missing receipts keep these edges active.
+  - {edge_id: E-HG-001, source_id: HG-001, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-002, source_id: HG-002, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-003, source_id: HG-003, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-004, source_id: HG-004, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-005, source_id: HG-005, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-006, source_id: HG-006, target_id: J-220, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-007, source_id: HG-007, target_id: J-300, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-008, source_id: HG-008, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-009, source_id: HG-009, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-010, source_id: HG-010, target_id: J-300, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-011, source_id: HG-011, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-012A, source_id: HG-012, target_id: J-300, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-012B, source_id: HG-012, target_id: J-310, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-012C, source_id: HG-012, target_id: J-320, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-013, source_id: HG-013, target_id: J-300, relation: blocks, provenance_ref: human-gates.yaml}
+  - {edge_id: E-HG-014, source_id: HG-014, target_id: J-400, relation: blocks, provenance_ref: human-gates.yaml}
+
+proof_obligations:
+  - obligation_id: PO-IDENTITY
+    rule: "Every node and edge ID is unique, every endpoint exists, and every load-bearing edge uses the closed vocabulary."
+    evidence: checks/validation-receipt.json
+    status: pending_validation
+  - obligation_id: PO-ACYCLIC
+    rule: "The depends_on subgraph and the derived_from subgraph are acyclic."
+    evidence: checks/validation-receipt.json
+    status: pending_validation
+  - obligation_id: PO-REVERSE-PROVENANCE
+    rule: "Every material conclusion reverse-traverses conclusion -> inference -> evidence -> immutable source; a summary never substitutes for a source."
+    evidence: checks/provenance-review.json
+    status: pending_independent_review
+  - obligation_id: PO-TRUST-DIRECTION
+    rule: "Derived or inferred content cannot become canonical through reachability, validation, consensus, or graph placement."
+    evidence: checks/provenance-review.json
+    status: pending_independent_review
+  - obligation_id: PO-BLOCK-DOMINANCE
+    rule: "Every advisory, P0, P1, residual, SPECIAL, and applicable human gate has an active blocks edge that dominates readiness for implementation."
+    evidence: checks/block-replay.json
+    status: pending_validation
+  - obligation_id: PO-FRESHNESS
+    rule: "Digest, authority, policy, schema, privacy, runtime, dependency, or scope drift marks affected consumers stale; age alone cannot promote authority."
+    evidence: checks/source-lock.json
+    status: pending_validation
+  - obligation_id: PO-REVERSE-BLAST-RADIUS
+    rule: "A changed or revoked source, evidence item, gate, schema, or adapter reaches all downstream conclusions, jobs, artifacts, validations, consumers, and implementation actions."
+    evidence: checks/provenance-review.json
+    status: pending_independent_review
+  - obligation_id: PO-MIGRATION-SAFETY
+    rule: "No migrates_to or implementation edge becomes active without source/target revisions, consumer inventory, compatibility proof, privacy classification, rollback, kill criteria, and exact human receipt."
+    evidence: checks/future-gates.json
+    status: blocked_human
+
+readiness_semantics:
+  positive_dependencies_are_insufficient: true
+  active_blocks_dominate: true
+  missing_or_expired_human_receipt_means: blocked_human
+  validator_pass_grants_authority: false
+  model_consensus_grants_authority: false
+  current_implementation_readiness: false
+
+reverse_blast_radius:
+  start_node_kinds: [immutable_source, evidence, human_gate, block, runtime_adapter]
+  traverse_inverse_relations: [supports_derivation_of, consumed_by, required_by, validated_by, produced_by]
+  dispositions: [stale, revalidate, blocked, quarantine]
+  stop_at_visibility_boundary: false
+  redact_private_payloads_in_reports: true
+
+cycle_policy:
+  acyclic_relations: [depends_on, derived_from, supersedes, migrates_to]
+  allowed_process_cycles_require:
+    - explicit_exit_condition
+    - bounded_attempt_count
+    - append_only_attempt_receipt
+    - independent_recheck_after_repair
+  current_allowed_process_cycles: []
+
+validation_policy:
+  unknown_relation_is_error: true
+  orphan_load_bearing_node_is_error: true
+  missing_reverse_consumer_is_error: true
+  numeric_constraint_on_special_001_is_error: true
+  authorizes_edge_without_human_receipt_is_error: true
+  implementation_edge_in_this_revision_is_error: true

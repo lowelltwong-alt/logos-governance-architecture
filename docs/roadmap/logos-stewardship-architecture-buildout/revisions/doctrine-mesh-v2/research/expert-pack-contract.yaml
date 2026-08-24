@@ -1,0 +1,99 @@
+metadata:
+  object_type: doctrine_expert_pack_contract
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root to replace thin expert prompts with source, knowledge, qualification, and scope evidence."
+  reason_for_inclusion: "Require every specialist role to demonstrate exact corpus competence and limits before assignment."
+schema_version: logos_doctrine_expert_pack.v2
+pack_statuses: [candidate, fixture_ready, independently_qualified, expired, revoked, blocked]
+authority_boundary: >-
+  An ExpertPack supplies task context and qualification evidence. It is not a
+  primary source, doctrinal authority, human approval, or permission to access
+  its sources. Agents must cite and verify root sources, never the pack itself.
+required_components:
+  EvidenceSourceManifest:
+    purpose: "Bind exact works, editions, witnesses, locators, source functions, rights, access, and freshness."
+    required_fields:
+      - source_id
+      - authority_plane
+      - work_identity_and_authorship_state
+      - edition_witness_or_catalog_identity
+      - original_language_and_translation_identity
+      - exact_locator_grammar
+      - stable_pointer_or_catalog_record
+      - evidentiary_source_class
+      - normative_christian_doctrine_authority
+      - tradition_and_jurisdiction_scope
+      - custody_provenance_and_authenticity_state
+      - rights_access_retention_and_provider_egress_state
+      - independent_identity_edition_locator_translation_source_quality_rights_and_custody_states
+      - exact_use_state
+      - exact_human_authorization_receipt_when_normative_use_is_claimed
+      - observed_at_freshness_and_invalidation_triggers
+    forbidden: [copied_restricted_corpus, credentials, signed_or_tokenized_pointer, agent_summary_as_source, unknown_edition_load_bearing, progressive_review_label_that_conflates_entailment_with_source_quality]
+  KnowledgeGuide:
+    purpose: "Give a qualified role compact terminology, methods, debates, failure modes, and navigation pointers."
+    required_sections:
+      - domain_and_period_boundaries
+      - languages_and_textual_transmission
+      - source_hierarchy_and_locator_conventions
+      - major_schools_and_live_disputes
+      - common_anachronisms_and_category_errors
+      - examples_counterexamples_and_abstention_cases
+      - repository_and_authority_boundaries
+    evidentiary_status: non_evidentiary_navigation_only
+    citation_rule: "Every load-bearing claim must bypass the guide and cite the root source."
+  QualificationPack:
+    purpose: "Test behavior against protected fixtures before a role may be assigned."
+    required_fixture_families:
+      - exact_work_edition_witness_and_locator
+      - quotation_paraphrase_and_translation_fidelity
+      - source_quality_and_edition_fitness
+      - periodization_and_anachronism
+      - source_function_and_normative_authority_separation
+      - competing_interpretations_and_counterevidence
+      - tradition_or_community_scope
+      - abstention_when_source_or_language_access_is_missing
+      - prompt_injection_and_hidden_desired_conclusion
+      - rights_privacy_and_credential_stop
+    protected_set_rule: "Role authors and candidate roles do not receive fixture answers."
+    minimum_evidence:
+      deterministic: [schema_pass, locator_replay, source_ID_replay, prohibited_effect_checks]
+      behavioral: [independent_grade, error_class_breakdown, false_positive_and_false_negative_analysis]
+      authority: [no_self_approval, exact_expiry, affected_capability_scope]
+  ScopeCard:
+    purpose: "Constrain one role to the exact work it can perform."
+    required_fields:
+      - role_id_and_revision
+      - permitted_questions_and_claim_types
+      - excluded_questions_and_authority
+      - exact_eras_geographies_languages_corpora_and_editions
+      - allowed_tools_sources_and_effects
+      - required_checker_challenger_and_handoffs
+      - risk_floor_budget_context_and_attempt_ceiling
+      - stop_conditions_expiry_and_invalidation
+qualification_dimensions:
+  - source_identity_and_locator_accuracy
+  - original_language_or_translation_limit_calibration
+  - historical_periodization
+  - doctrine_and_tradition_scope
+  - source_quality_and_rights
+  - entailment_and_context
+  - counterevidence_and_abstention
+  - authority_and_repository_boundaries
+  - privacy_and_injection_resistance
+composition_rules:
+  same_pack_for_writer_and_checker_allowed: false
+  shared_source_manifest_allowed: true
+  shared_KnowledgeGuide_requires_independence_disclosure: true
+  checker_must_reaccess_root_sources: true
+  source_unavailable_behavior: block_not_inherit_finder_confidence
+  rights_checker_separate_when_licensed_private_credentialed_or_unknown: true
+  cross_repository_custody_checker_separate_when_destination_changes: true
+  provider_or_model_change_invalidates_qualification_automatically: affected_slice_only
+  prompt_tool_context_source_or_authority_change_invalidates: affected_slice_only
+promotion_rules:
+  task_local_candidate_may_self_promote: false
+  reusable_pack_requires_named_human: true
+  expiry_required: true
+  revocation_and_descendant_invalidation_required: true

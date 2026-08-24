@@ -1,0 +1,156 @@
+{
+  "schema_version": "dad.task_local_agent_mesh_manifest.v1",
+  "mesh_id": "dad:agent-mesh:logos-portfolio-release",
+  "task_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "revision_id": "dad:agent-mesh-revision:logos-portfolio-release:v1",
+  "phase": "execution",
+  "status": "active",
+  "source_snapshot_digest": "sha256:fa8c269b425b9e78cefe941255c84718f1fe94e8fb61ff93cc87006ffc8ae1e1",
+  "authority": {
+    "source_authority": "The Logos repositories, exact Git revisions, machine-readable evidence manifest, deterministic validators, and named human owner retain authority; this mesh only coordinates the bounded public portfolio release.",
+    "execution_authority": false,
+    "human_gate_required": true
+  },
+  "max_delegation_depth": 1,
+  "writer_role_id": "portfolio-release-writer",
+  "checker_role_id": "evidence-fact-checker",
+  "non_overlap_statement": "Only portfolio-release-writer may edit the stewardship worktree. Every reviewer is read-only, the mechanical actuator may perform only the separately authorized unchanged-head GitHub release sequence after all gates pass, no role may delegate, and the paused residue-repair lane remains untouched.",
+  "roles": [
+    {
+      "role_id": "portfolio-release-writer",
+      "why_needed": "One accountable writer prevents overlap while assembling the frozen doctrine specification and public evidence packet.",
+      "mission": "Author only the claimed public portfolio, navigation, manifest, schema, validator, test, dependency-map, validation-contract, and specification-release bookkeeping paths.",
+      "inputs": ["authorized family claim and overlap resolution", "validated doctrine-mesh-v2 package", "public repository evidence", "recruiter information architecture"],
+      "dependencies": [],
+      "authority": "Sole writer inside the authorized stewardship lane; cannot launch runtime work, ingest sources, implement doctrine, alter authority gates, force Git operations, or mutate other worktrees.",
+      "model_effort_class": "high",
+      "writer_checker_relation": "writer",
+      "acceptance_conditions": ["Exact claimed scope only", "All deterministic checks pass", "Public claims resolve to inspectable evidence", "Frozen candidate is handed to non-author reviewers"],
+      "stop_conditions": ["Scope or authority ambiguity", "Private or sensitive information signal", "Material evidence contradiction", "Family or lifecycle drift"],
+      "handoff": {
+        "recipient_role_ids": ["evidence-fact-checker", "privacy-authority-redteam", "recruiter-experience-reviewer"],
+        "deliverables": ["frozen candidate diff", "validation evidence", "claim-to-source manifest", "known limitations"],
+        "readiness_conditions": ["Writer checks pass on one exact candidate state"]
+      }
+    },
+    {
+      "role_id": "evidence-fact-checker",
+      "why_needed": "A public trust-layer portfolio must not rely on the author's interpretation of its own evidence.",
+      "mission": "Re-derive counts, paths, maturity labels, digests, links, and non-claims from raw repository evidence.",
+      "inputs": ["frozen candidate diff", "machine-readable evidence manifest", "repository files and Git state", "validator output"],
+      "dependencies": ["portfolio-release-writer"],
+      "authority": "Read-only independent checker; cannot edit, approve theology, waive a finding, or authorize release.",
+      "model_effort_class": "medium",
+      "writer_checker_relation": "checker",
+      "acceptance_conditions": ["Every material claim is supported or rejected", "Maturity and non-claims are explicit", "Exact candidate revision is recorded"],
+      "stop_conditions": ["Candidate changes during review", "Evidence is missing", "Checker shares authorship", "A material claim cannot be reproduced"],
+      "handoff": {
+        "recipient_role_ids": ["mechanical-release-actuator"],
+        "deliverables": ["independent fact verdict", "finding list", "reviewed candidate digest"],
+        "readiness_conditions": ["Raw permitted evidence and frozen candidate are available"]
+      }
+    },
+    {
+      "role_id": "privacy-authority-redteam",
+      "why_needed": "Public release can expose workstation data or overstate theological and operational authority even when structural tests pass.",
+      "mission": "Red-team privacy, sensitive patterns, provenance, authority leakage, anti-hype boundaries, and specification-versus-runtime labeling.",
+      "inputs": ["frozen candidate diff", "public-release classification rules", "authority contracts", "doctrine-mesh freeze receipts"],
+      "dependencies": ["portfolio-release-writer"],
+      "authority": "Read-only red-team; cannot edit, grant publication authority, approve doctrine, or weaken repository gates.",
+      "model_effort_class": "high",
+      "writer_checker_relation": "specialist",
+      "acceptance_conditions": ["No private locator or credential signal", "No authority inflation", "Specification-only limits are prominent", "Residual risks are explicit"],
+      "stop_conditions": ["Possible secret or private path", "Doctrinal authority implication", "Unbounded public claim", "Candidate drift"],
+      "handoff": {
+        "recipient_role_ids": ["mechanical-release-actuator"],
+        "deliverables": ["privacy and authority verdict", "premortem findings", "release blockers"],
+        "readiness_conditions": ["The exact public candidate is frozen"]
+      }
+    },
+    {
+      "role_id": "recruiter-experience-reviewer",
+      "why_needed": "The packet must be understandable to a recruiter and independently interrogable by another AI without sacrificing precision.",
+      "mission": "Review narrative hierarchy, Mermaid readability, navigation, evidence drill-down, transferable engineering value, and honest maturity language.",
+      "inputs": ["portfolio landing page", "diagram source", "AI interrogation prompt", "evidence manifest"],
+      "dependencies": ["portfolio-release-writer"],
+      "authority": "Read-only experience review; cannot rewrite the candidate or promote roadmap and specification claims to delivered capability.",
+      "model_effort_class": "medium",
+      "writer_checker_relation": "specialist",
+      "acceptance_conditions": ["One-minute value is legible", "Every diagram has a prose alternative", "Evidence paths are navigable", "Status terms are consistent"],
+      "stop_conditions": ["Marketing language exceeds evidence", "Navigation dead end", "Diagram lacks accessible explanation", "Candidate drift"],
+      "handoff": {
+        "recipient_role_ids": ["mechanical-release-actuator"],
+        "deliverables": ["experience verdict", "navigation findings", "reviewed candidate digest"],
+        "readiness_conditions": ["The exact public candidate is frozen"]
+      }
+    },
+    {
+      "role_id": "mechanical-release-actuator",
+      "why_needed": "The authorized remote sequence should be performed mechanically against one unchanged, fully checked head.",
+      "mission": "After all local and independent gates pass, stage only approved paths, create scoped commits, push without force, open the governed PR, wait for required CI, recheck the unchanged head, and merge normally.",
+      "inputs": ["passing deterministic receipt", "three passing independent verdicts", "exact staged-path list", "unchanged-head release gate", "owner release authority"],
+      "dependencies": ["evidence-fact-checker", "privacy-authority-redteam", "recruiter-experience-reviewer"],
+      "authority": "Mechanical release effects only within the user's exact authorization; no force, admin bypass, unrelated staging, repair authorship, branch deletion, or cleanup.",
+      "model_effort_class": "low",
+      "writer_checker_relation": "specialist",
+      "acceptance_conditions": ["Pushed head equals reviewed head", "Required CI succeeds", "PR scope is exact", "Normal merge contains the reviewed commits"],
+      "stop_conditions": ["Head or base changes", "Any required check fails", "New review finding", "Protection or authority ambiguity"],
+      "handoff": {
+        "recipient_role_ids": [],
+        "deliverables": ["push receipt", "PR URL", "CI receipt", "merge and containment receipt"],
+        "readiness_conditions": ["All dependencies pass at the unchanged candidate head"]
+      }
+    }
+  ],
+  "proof_obligations": [
+    {
+      "obligation_id": "exact-public-scope",
+      "description": "Prove every committed path belongs to the stewardship claim and no paused or held worktree was modified.",
+      "evidence_required": ["family preflight receipt", "exact staged path inventory", "held-lane unchanged state"],
+      "owner_role_id": "portfolio-release-writer",
+      "checker_role_id": "evidence-fact-checker",
+      "status": "satisfied"
+    },
+    {
+      "obligation_id": "evidence-bound-claims",
+      "description": "Prove every material portfolio claim has an inspectable source, maturity class, limitation, and reproducible validation rule.",
+      "evidence_required": ["project evidence manifest", "schema validation", "independent fact review"],
+      "owner_role_id": "portfolio-release-writer",
+      "checker_role_id": "evidence-fact-checker",
+      "status": "satisfied"
+    },
+    {
+      "obligation_id": "specification-runtime-boundary",
+      "description": "Prove doctrine-mesh-v2 remains validated design only and is not described as runtime, completed doctrine, ingested research, or theological authority.",
+      "evidence_required": ["doctrine-mesh frozen receipts", "public non-claims", "authority red-team verdict"],
+      "owner_role_id": "portfolio-release-writer",
+      "checker_role_id": "evidence-fact-checker",
+      "status": "satisfied"
+    },
+    {
+      "obligation_id": "safe-governed-release",
+      "description": "Prove privacy, provenance, links, tests, independent review, unchanged-head, CI, and normal-merge gates all passed without bypass.",
+      "evidence_required": ["validation receipt", "independent verdicts", "CI checks", "merge containment"],
+      "owner_role_id": "mechanical-release-actuator",
+      "checker_role_id": "evidence-fact-checker",
+      "status": "pending"
+    }
+  ],
+  "unresolved_decisions": [
+    {
+      "decision_id": "theological-authority-and-doctrine",
+      "summary": "Scripture interpretation, source authority, doctrine, tradition policy, and qualified theological approval remain outside this public engineering release.",
+      "owner_role_id": "portfolio-release-writer",
+      "blocking": true,
+      "status": "open"
+    },
+    {
+      "decision_id": "runtime-activation-and-research",
+      "summary": "Agent runtime selection, provider qualification, budgets, source ingestion, live research, substantive implementation, and production deployment remain separately human-gated and unstarted.",
+      "owner_role_id": "portfolio-release-writer",
+      "blocking": true,
+      "status": "open"
+    }
+  ],
+  "manifest_digest": "sha256:ac536bc9b1e607f03c06835cce938dd15d7f169040fd714514dea518e9df66fb"
+}

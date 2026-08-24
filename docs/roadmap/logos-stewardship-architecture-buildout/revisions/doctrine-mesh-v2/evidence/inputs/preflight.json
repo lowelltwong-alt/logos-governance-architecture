@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "object_type": "doctrine_audit_input_manifest",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root for the preflight completeness audit.",
+    "reason_for_inclusion": "Freeze the exact user requirements and authority boundary inspected before the doctrine-mesh specification was written."
+  },
+  "schema_version": "logos.doctrine_audit_input_manifest.v2",
+  "manifest_id": "DMI-PREFLIGHT-001",
+  "phase": "preflight",
+  "work_unit_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "work_unit_revision": "doctrine-mesh-v2-draft-1",
+  "parent_checkpoint": "410c7e429290d34013c1dbf23c0335ebfe68e45f",
+  "requirements": [
+    "Run a doctrine expertise completeness auditor before, during, and after work.",
+    "Prove deterministically that required audit executions occurred while not claiming deterministic proof of epistemic completeness.",
+    "Automatically select or compose appropriate task-local expert and research roles over time without routine human staffing.",
+    "Use deep source and qualification packs rather than thin expert labels.",
+    "Check every material citation, source quality, entailment, counterevidence, prompt-goal alignment, and authority boundary.",
+    "Classify doctrine traditions, ancient Jewish worlds, archaeology and external ancient contexts, philosophy, theologian corpora, and verification methods.",
+    "Keep non-Christian context outside canonical Scripture and normative Christian doctrine authority.",
+    "Attach risk reasons and expose high-risk disagreement to the named human.",
+    "Red-team and premortem the design, repair major findings, and freeze a Fable review packet."
+  ],
+  "authority": {
+    "mode": "specification_only",
+    "runtime_launch": false,
+    "research_execution": false,
+    "source_ingestion": false,
+    "cross_repository_write": false,
+    "human_doctrine_gates_remain_blocking": true
+  },
+  "manifest_digest": "sha256:04a5366517a5f5605dae21c7ba6efe8d4c2591316ed1a7f1c178c8c057f56260"
+}

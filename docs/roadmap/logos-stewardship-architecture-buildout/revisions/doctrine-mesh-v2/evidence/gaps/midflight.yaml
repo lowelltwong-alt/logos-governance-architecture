@@ -1,0 +1,80 @@
+metadata:
+  object_type: doctrine_role_gap_registry
+  trust_zone: proposed
+  lifecycle_status: independently_checked_audit_output
+  provenance_note: "Produced on 2026-08-24 during the triggered doctrine-mesh midflight coverage audit."
+  reason_for_inclusion: "Record gaps discovered after the source catalog, role factory, and deterministic audit design materially expanded."
+schema_version: logos_doctrine_role_gap_registry.v2
+registry_id: DMRG-MIDFLIGHT-001
+audit_event_id: DMA-MIDFLIGHT-001
+gaps:
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-SOURCE-QUALITY-SEPARATION
+    audit_event_id: DMA-MIDFLIGHT-001
+    affected_claims: [ALL-MATERIAL-SOURCE-CLAIMS]
+    missing_capability: separate_source_quality_and_rights_verifier
+    unique_error_class: real_locator_but_unfit_edition_bad_provenance_wrong_source_function_or_unpermitted_use
+    why_current_roles_are_insufficient: "A citation verifier can prove a locator exists but cannot alone establish edition fitness, custody, evidentiary reliability, normative authority, or rights for the exact use."
+    likely_added_value: high
+    risk_if_omitted: high
+    cost_and_delay: "Add one independent source-quality pass for every load-bearing source; reuse across claims only when source function and use are identical."
+    qualification_requirements: [source_class_method, edition_and_provenance, rights_and_access, authority_separation_fixtures]
+    recommendation: ADD_NOW
+    rationale: "The candidate source catalog made this separation load-bearing, so source-authority-verifier and the ExpertPack source manifest were added."
+    review_state: accepted
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-AUDITOR-INDEPENDENCE
+    audit_event_id: DMA-MIDFLIGHT-001
+    affected_claims: [MESH-COVERAGE-COMPLETENESS]
+    missing_capability: non_author_checker_of_completeness_auditor
+    unique_error_class: auditor_omits_role_or_marks_its_own_coverage_complete
+    why_current_roles_are_insufficient: "A deterministic receipt proves an audit event and output existed, not that the auditor reasoned well or found every valuable specialist."
+    likely_added_value: high
+    risk_if_omitted: high
+    cost_and_delay: "One read-only independent re-derivation at preflight material midflight and postflight boundaries."
+    qualification_requirements: [blind_or_independently_derived_requirement_map, raw_evidence_access, no_writer_or_auditor_authorship]
+    recommendation: ADD_NOW
+    rationale: "The independent-whole-work-checker now challenges role omissions and the audit's epistemic limits; deterministic and behavioral proof remain separate."
+    review_state: accepted
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-PERMANENT-ROLE-BUILDER
+    audit_event_id: DMA-MIDFLIGHT-001
+    affected_claims: [AUTOMATIC-ROLE-CREATION]
+    missing_capability: standing_self_improving_agent_builder
+    unique_error_class: none_beyond_existing_factory_validator_and_human_promotion_route
+    why_current_roles_are_insufficient: "The task-local factory plus deterministic contracts and human promotion already cover bounded role composition; a standing self-improver would add recursive authority and correlated failure."
+    likely_added_value: none
+    risk_if_omitted: low
+    cost_and_delay: "Omission reduces recursion, maintenance, and authority risk."
+    qualification_requirements: [not_applicable_because_role_is_rejected]
+    recommendation: OMIT_WITH_REASON
+    rationale: "Automatic task-local composition is useful, but persistent self-modifying role creation is outside the approved envelope and would weaken the human gate."
+    review_state: accepted
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-FRONTIER-MANUAL-RESEARCH
+    audit_event_id: DMA-MIDFLIGHT-001
+    affected_claims: [HIGH-COMPLEXITY-SOURCE-ATLAS, DISPUTED-LITERATURE, THEORY-TO-CASE]
+    missing_capability: exact_attempt_external_frontier_research
+    unique_error_class: broad_primary_source_discovery_and_difficult_cross_corpus_synthesis_beyond_current_bounded_route
+    why_current_roles_are_insufficient: "Some future source-atlas or disputed-literature tasks may benefit from a separately authorized frontier research lane, but prestige alone does not prove value or trust."
+    likely_added_value: unknown
+    risk_if_omitted: medium
+    cost_and_delay: "Prepare a manual handoff only after Lowell authorizes the exact provider, job, sources, rights, budget, and output."
+    qualification_requirements: [exact_attempt_authorization, sanitized_brief, root_source_requirements, independent_reverification_pipeline]
+    recommendation: ADD_ON_TRIGGER
+    rationale: "The docket preserves a simple future handoff while keeping every external result quarantined and non-authoritative until independently rechecked."
+    review_state: human_pending
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-ANCIENT-CONTEXT-REPOSITORY
+    audit_event_id: DMA-MIDFLIGHT-001
+    affected_claims: [ANCIENT-CONTEXT-STORAGE]
+    missing_capability: evidence_for_separate_ancient_context_repository
+    unique_error_class: premature_topology_split_or_boundary_repository_overload
+    why_current_roles_are_insufficient: "Current policy supports metadata and context pointers in logos-boundary-literature, but no measured corpus, rights, storage, lifecycle, or validation need proves a new repository is necessary."
+    likely_added_value: unknown
+    risk_if_omitted: medium
+    cost_and_delay: "Keep the current boundary placement; collect scale and custody evidence before any architecture decision."
+    qualification_requirements: [corpus_inventory, rights_and_media_profile, storage_and_lifecycle_metrics, blast_radius_and_migration_plan]
+    recommendation: HUMAN_DECISION
+    rationale: "A future split is a cross-repository architecture choice and cannot be inferred from the number of expert domains requested."
+    review_state: human_pending

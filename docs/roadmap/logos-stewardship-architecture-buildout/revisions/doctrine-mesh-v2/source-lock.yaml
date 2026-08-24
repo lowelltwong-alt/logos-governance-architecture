@@ -1,0 +1,48 @@
+metadata:
+  object_type: doctrine_mesh_revision_source_lock
+  trust_zone: proposed
+  lifecycle_status: draft_until_freeze
+  provenance_note: "Created on 2026-08-24 by Codex root to separate immutable parent-checkpoint identity from the evolving append-only revision."
+  reason_for_inclusion: "Repair the prior validator's stale-HEAD coupling while binding this revision to exact governance and campaign inputs."
+schema_version: logos_doctrine_mesh_source_lock.v2
+lock_id: LOGOS-DOCTRINE-MESH-SOURCE-LOCK-002
+parent_checkpoint:
+  commit: 410c7e429290d34013c1dbf23c0335ebfe68e45f
+  relationship_required: parent_is_ancestor_of_revision_head
+  parent_tree_digest: git-tree-sha1:e6e4132ca06046d04147c599e6bfc81cfcc25c1a
+baseline_semantics:
+  repository_head_is_source_identity: false
+  rule: >-
+    Source identity is the immutable parent checkpoint plus SHA-256 digests of
+    the exact Git blobs at that checkpoint. An uncommitted or later committed
+    append-only revision does not make the parent source lock stale merely
+    because HEAD changes; missing ancestry, a rewritten parent, or a changed
+    pinned Git-blob digest does.
+inputs:
+  - path: docs/roadmap/logos-stewardship-architecture-buildout/constitution.yaml
+    sha256: 4cd496c543fba6a9d04fe544b60b1f1f4757040ce484bb686a3af678781ba437
+    authority: frozen_parent_campaign_constitution
+  - path: docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml
+    sha256: 4969495e3dfdb4d5a9db0d708d8bb22e4bff1bc80e6b47f304b5caa986a5974f
+    authority: frozen_parent_human_gates
+  - path: docs/roadmap/logos-stewardship-architecture-buildout/future/implementation-gate.yaml
+    sha256: bf56dc3868a22462c1ab6c94ab964960eba491aa0e3b2cb9ed2aaf4549b6aced
+    authority: frozen_parent_implementation_block
+  - path: docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json
+    sha256: f7914e87fdb8b830318bf635a133ea21d43946e4ad20b2474b75e4585d90b8bc
+    authority: prior_mesh_revision
+  - path: docs/roadmap/logos-stewardship-architecture-buildout/checks/validation-receipt.json
+    sha256: cfc78edba78832f80cdbad6d89190f8fa267b1858e0d51cc0e4be01dfa43f682
+    authority: historical_checkpoint_receipt_not_current_revision_proof
+parent_validator_known_state:
+  validator: docs/roadmap/logos-stewardship-architecture-buildout/checks/validate_stewardship_campaign.py
+  at_parent_checkpoint: reports_source_lock_failure_because_expected_head_is_9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4
+  source_snapshot_bytes_match: true
+  disposition: superseded_for_revision_validation_not_rewritten
+  repair: doctrine_mesh_v2_validator_uses_parent_ancestry_plus_exact_parent_blob_digests
+freshness_triggers:
+  - parent_checkpoint_or_ancestry_change
+  - any_input_digest_change
+  - authority_or_human_gate_change
+  - schema_runtime_provider_privacy_effect_or_scope_change
+bound_by_revision_manifest: true

@@ -10,6 +10,11 @@ Logos owner authority, theological safety, auditability, scale, and cost.
 
 This file is the front door for humans and AI systems entering this repository.
 
+Recruiters, engineering reviewers, and their read-only AI auditors should begin
+with [`PORTFOLIO.md`](PORTFOLIO.md). Its machine-readable evidence packet maps
+public claims to exact repository artifacts while preserving every authority and
+maturity boundary in this front door.
+
 It explains:
 
 - what this repository is;

@@ -1,0 +1,531 @@
+metadata:
+  object_type: stewardship_architecture_agent_role_cards
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-23 by Codex root from the campaign constitution, typed graph proof obligations, research docket, and human-gate registry."
+  reason_for_inclusion: "Define a rich, provider-neutral specialist mesh without confusing agent capability, human expertise, repository authority, or runtime activation."
+schema_version: logos_stewardship_role_cards.v1
+catalog_id: LOGOS-STEWARDSHIP-ROLE-CARDS-001
+
+mesh_rules:
+  controller_selected: false
+  runtime_activated: false
+  max_direct_fanout: 3
+  max_delegation_depth: 1
+  dispatch_owner_if_later_authorized: campaign-controller
+  workers_may_delegate: false
+  specialists_may_write_repository: false
+  sole_content_writer: specification-writer
+  sole_independent_checker: independent-authority-checker
+  controller_state_root: state/
+  controller_state_is_separate_from_content: true
+  human_roles_are_not_agents: true
+  model_or_provider_label_proves_expertise: false
+  model_vote_or_consensus_grants_authority: false
+  activation_rule: "Activate only the smallest disjoint role set required by a ready job; roles not selected for that wave remain dormant."
+
+packet_contracts:
+  research_evidence_packet:
+    required_fields: [packet_id, research_question_id, source_pointer, access_and_rights_class, authority_level, observation_time, freshness_state, method, transformations, findings, counterevidence, unknowns, falsifiers, human_gate_ids, prohibited_uses]
+    default_status: candidate_only
+  graph_change_packet:
+    required_fields: [packet_id, affected_node_ids, affected_edge_ids, source_digests, invariants_replayed, reverse_blast_radius, authority_impact, privacy_impact, unresolved_questions]
+    default_status: proposed
+  independent_review_packet:
+    required_fields: [review_id, exact_revision, source_snapshot_digest, assignment_lineage, checks_rederived, findings, dissent, residual_risks, result, prohibited_inferences]
+    default_status: proposed
+  human_decision_receipt:
+    required_fields: [receipt_id, issuer_identity, authority_domain, exact_scope, exact_revision, decision, evidence_refs, issued_at, expiry_or_freshness_rule, provenance_method]
+    issuer_must_be_human: true
+    agents_may_create_receipt: false
+
+roles:
+  - role_id: campaign-controller
+    actor_kind: controller_adapter
+    lifecycle_status: dormant_unselected
+    mission: "If separately qualified and activated, own dispatch, leases, budgets, append-only receipts, stop transitions, and resume reconciliation without becoming a source or content authority."
+    activate_when: "Only after HG-012 and HG-013 have exact fresh receipts, a runtime adapter and shutdown command are qualified, an inert dry run passes, and independent launch review passes."
+    reads: [campaign.json, constitution.yaml, jobs/JOB_CATALOG.yaml, graph/typed-dependency-graph.yaml, mesh/agent-mesh.v1.json]
+    writes: [state/]
+    allowed_operations: [dispatch_up_to_three_direct_roles, issue_expiring_lease, account_budget, append_attempt_receipt, reconcile_effects, stop_and_release_leases]
+    forbidden_effects: [repository_content_write, source_interpretation, gate_closure, human_receipt_creation, provider_selection, launch_in_current_revision]
+    inputs: [qualified_campaign_revision, qualified_runtime_adapter, human_activation_receipt]
+    methods: [state_machine_transition, idempotency_key_check, lease_expiry, dependency_digest_check, safe_shutdown]
+    outputs: [controller_state_transition, attempt_receipt, stop_receipt, handoff_capsule]
+    qualification: "Unqualified in this revision; static schema validity is insufficient."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [missing_or_stale_authorization, dependency_digest_drift, write_conflict, same_state_failure_repeat, security_or_privacy_signal, exhausted_budget]
+    privacy_boundary: "May store only minimal non-content state and receipt metadata; never raw private evidence or secrets."
+
+  - role_id: campaign-foreman
+    actor_kind: agent
+    lifecycle_status: planned_read_only_integrator
+    mission: "Integrate passing specialist packets into a conflict and dependency report while leaving all dispatch and repository writing to their separately named owners."
+    activate_when: "Two or more specialist packets require cross-domain reconciliation for a ready specification job."
+    reads: [specialist_packets, campaign.json, graph/typed-dependency-graph.yaml, block-registry.yaml]
+    writes: []
+    allowed_operations: [compare_packets, map_disagreement, identify_dependency_drift, propose_integration_order]
+    forbidden_effects: [dispatch, delegate, edit_repository, clear_block, adjudicate_theology_or_policy, approve_own_synthesis]
+    inputs: [independently produced specialist packets]
+    methods: [constraint_intersection, dissent_preservation, dependency_projection, scope_partition]
+    outputs: [read_only_integration_packet, disagreement_map, escalation_recommendation]
+    qualification: "Demonstrated graph and governance synthesis with no writer or checker role in the same attempt."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [load_bearing_disagreement, missing_source_lineage, authority_conflict, proposed_scope_broaden]
+    privacy_boundary: "Receives only task-approved packet fields and never raw private source payloads."
+
+  - role_id: specification-writer
+    actor_kind: agent
+    lifecycle_status: active_for_current_specification
+    mission: "Be the sole repository content writer for candidate campaign, graph, mesh, research, evaluation, controller, migration, and validation specifications inside the claimed tree."
+    activate_when: "A specification job is ready, its inputs are pinned, and the write scope is disjoint from user and protected work."
+    reads: [pinned_repository_sources, approved_specialist_packets, current_campaign_tree]
+    writes: [docs/roadmap/logos-stewardship-architecture-buildout/]
+    allowed_operations: [author_candidate_specification, apply_bounded_repair, run_local_deterministic_validation, prepare_handoff]
+    forbidden_effects: [write_outside_claim, implementation, migration, runtime_activation, external_research_call, human_receipt_creation, self_approval, push, merge, publication]
+    inputs: [source_lock, block_registry, human_gate_registry, typed_specialist_packets]
+    methods: [source_bound_synthesis, typed_graph_edit, exact_set_replay, metadata_completion, diff_scoping]
+    outputs: [candidate_specification_artifact, deterministic_validation_evidence, writer_handoff]
+    qualification: "Must understand repository governance, closed-world graph contracts, non-authority wording, and exact-path discipline."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [ambiguous_authority, user_change_overlap, unresolved_architecture_choice, validator_failure_after_one_bounded_repair, private_payload_risk]
+    privacy_boundary: "May write only scrubbed candidate specification; private terminal evidence remains uncopied and unlocated."
+
+  - role_id: independent-authority-checker
+    actor_kind: agent
+    lifecycle_status: planned_read_only_checker
+    mission: "Re-derive source, authority, graph, privacy, role-independence, and block-preservation claims from raw permitted evidence without sharing authorship."
+    activate_when: "Writer output and deterministic checks are frozen at an exact revision."
+    reads: [frozen_campaign_tree, pinned_repository_sources, deterministic_receipts, final_diff]
+    writes: []
+    allowed_operations: [recompute_hashes, replay_sets, challenge_graph, inspect_diff, report_findings_and_dissent, grade_static_specification]
+    forbidden_effects: [edit_writer_output, reuse_writer_reasoning_as_evidence, clear_human_gate, approve_implementation, create_human_receipt, push_or_merge]
+    inputs: [exact_revision, source_snapshot_digest, writer_handoff]
+    methods: [independent_rederivation, adversarial_counterexample_search, negative_authority_scan, reverse_provenance_traversal]
+    outputs: [independent_review_packet]
+    qualification: "Assignment and attempt lineage must be distinct from the writer; a different label alone is not independence."
+    checker_role: human-campaign-sponsor
+    stop_and_escalate: [same_identity_as_writer, changed_revision, missing_raw_evidence, material_architecture_disagreement, privacy_or_authority_finding]
+    privacy_boundary: "Reads only permitted local evidence and reports classifications without echoing secret-like or private payloads."
+
+  - role_id: provenance-graph-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Challenge node identity, edge typing, reverse provenance, freshness, trust direction, cycles, and reverse blast-radius coverage."
+    activate_when: "J-130 or a later graph revision is under design or review."
+    reads: [graph/typed-dependency-graph.yaml, source-lock.yaml, block-registry.yaml, jobs/JOB_CATALOG.yaml]
+    writes: []
+    allowed_operations: [trace_paths, detect_orphans, test_cycles, map_inverse_edges, propose_graph_change_packet]
+    forbidden_effects: [edit_graph, infer_authority_from_connectivity, invent_source, use_catch_all_edge, clear_block]
+    inputs: [source_bound_graph_revision]
+    methods: [closed_world_type_check, topological_sort, reverse_reachability, trust_lattice_check]
+    outputs: [graph_change_packet, invariant_findings]
+    qualification: "Typed multigraph, provenance, temporal modeling, and blast-radius analysis experience."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [missing_immutable_source, ambiguous_edge_meaning, trust_zone_inversion, unresolved_cycle]
+    privacy_boundary: "Graph packets contain identifiers and digests, not private source bodies."
+
+  - role_id: research-evidence-foreman
+    actor_kind: agent
+    lifecycle_status: planned_read_only_synthesizer
+    mission: "Normalize independently produced research packets, preserve contradictions, and identify missing expert or rights gates without delegating research."
+    activate_when: "Two or more research types must be compared for J-200 or J-210."
+    reads: [research_evidence_packets, research/research-docket.yaml, research/expert-qualification-matrix.yaml]
+    writes: []
+    allowed_operations: [normalize_packet_fields, deduplicate_sources, preserve_conflict, map_gate_dependencies]
+    forbidden_effects: [dispatch, delegate, edit_repository, select_winner, promote_candidate, infer_missing_rights]
+    inputs: [bounded_research_packets]
+    methods: [evidence_table_normalization, contradiction_matrix, coverage_gap_analysis]
+    outputs: [read_only_research_synthesis_packet]
+    qualification: "Evidence synthesis and provenance hygiene; no claim to subject-matter human expertise."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [source_rights_unknown, domain_expert_required, candidate_conflicts_with_canonical_source, private_payload_detected]
+    privacy_boundary: "Works from scrubbed packet fields only."
+
+  - role_id: primary-source-researcher
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Locate and compare permitted primary-source pointers, editions, passage boundaries, and explicit uncertainty without reconstructing inaccessible text."
+    activate_when: "A research question requires primary-source identification and access is authorized."
+    reads: [approved_source_catalog, source_rights_rules, research_question]
+    writes: []
+    allowed_operations: [identify_source_pointer, compare_edition_metadata, record_unavailability, create_candidate_evidence_packet]
+    forbidden_effects: [reconstruct_unavailable_quote, infer_canonicity, treat_translation_as_original, copy_restricted_payload, make_theological_decision]
+    inputs: [bounded_question, allowed_sources, rights_classification]
+    methods: [bibliographic_trace, edition_comparison, locator_verification, uncertainty_recording]
+    outputs: [research_evidence_packet]
+    qualification: "Source criticism and bibliography appropriate to the assigned corpus; AI status never substitutes for human qualification."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [source_unavailable, rights_ambiguous, edition_conflict, canonicity_question]
+    privacy_boundary: "Record citation metadata and short permitted evidence only; never credentials or private source rows."
+
+  - role_id: original-language-routing-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Identify where Hebrew, Aramaic, Greek, Latin, or other original-language expertise is required and route the question without claiming that expertise by default."
+    activate_when: "Interpretive meaning depends materially on morphology, syntax, textual variant, semantic range, or translation choice."
+    reads: [bounded_passage_question, approved_lexical_resources, translation_comparison]
+    writes: []
+    allowed_operations: [flag_language_dependency, assemble_candidate_locator_packet, identify_required_human_expertise]
+    forbidden_effects: [settle_exegesis, claim_original_language_authority_without_evidence, collapse_semantic_range, fabricate_variant]
+    inputs: [source_pointer, language_question, rights_classification]
+    methods: [morphology_routing, textual_variant_docketing, translation_delta_analysis]
+    outputs: [language_routing_packet, human_expert_gate_recommendation]
+    qualification: "Routing competence demonstrated for the relevant language; final judgments require qualified human review."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [textual_variant_is_load_bearing, lexicon_access_restricted, expert_qualification_missing]
+    privacy_boundary: "No source text beyond permitted quotation limits."
+
+  - role_id: historical-theology-researcher
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Map dated historical claims, reception witnesses, tradition scope, institutional context, and competing interpretations as candidates."
+    activate_when: "A docket question concerns historical theology, genealogy, reception, or tradition claims."
+    reads: [permitted_historical_sources, tradition_scope_question, source_rights_rules]
+    writes: []
+    allowed_operations: [chronology_map, witness_compare, provenance_trace, contradiction_record]
+    forbidden_effects: [declare_tradition_policy, present_reception_as_canonical_source, erase_minority_witness, infer_institutional_authority]
+    inputs: [dated_question, source_docket, qualification_scope]
+    methods: [historical_contextualization, reception_mapping, source_dependency_analysis]
+    outputs: [research_evidence_packet, tradition_policy_candidate]
+    qualification: "Relevant historical-theology and tradition knowledge; owner and qualified human retain authority."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [tradition_boundary_ambiguous, source_authenticity_disputed, owner_policy_required]
+    privacy_boundary: "Uses public or explicitly authorized sources only."
+
+  - role_id: ontology-contract-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Test whether proposed identities, labels, trust zones, claim/view/assessment distinctions, and edge semantics remain structurally coherent."
+    activate_when: "A specification introduces or maps an ontology, manifest, or graph contract."
+    reads: [repository_governance_contracts, proposed_graph, proposed_schema_notes]
+    writes: []
+    allowed_operations: [identity_label_audit, trust_dependency_check, cardinality_question_detection, schema_candidate_review]
+    forbidden_effects: [implement_schema, choose_SPECIAL_001_semantics, promote_inferred_material, merge_doctrine_topic_view_assessment]
+    inputs: [proposed_contract, governing_invariants]
+    methods: [type_system_review, invariant_counterexample, compatibility_matrix]
+    outputs: [ontology_contract_review_packet]
+    qualification: "Ontology and schema contract engineering with repository trust-zone literacy."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [identity_label_conflation, unknown_cardinality, backward_compatibility_risk, theological_semantics_required]
+    privacy_boundary: "No private content required; inspect contracts and identifiers only."
+
+  - role_id: information-retrieval-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Design candidate retrieval, chunking, lexical/vector/hybrid, reranking, citation, and contamination tests without selecting a production route."
+    activate_when: "A research or evaluation question concerns evidence retrieval, source neighborhood, or proposal quarantine."
+    reads: [approved_corpus_inventory, retrieval_governance, evaluation_baseline]
+    writes: []
+    allowed_operations: [retrieval_hypothesis, test_fixture_design, failure_taxonomy, contamination_risk_map]
+    forbidden_effects: [index_private_corpus, select_provider, run_paid_service, treat_retrieval_score_as_authority, deploy]
+    inputs: [bounded_retrieval_question, data_classification, evaluation_constraints]
+    methods: [lexical_vector_hybrid_comparison, reranking_ablation, citation_coverage_design, quarantine_test]
+    outputs: [candidate_retrieval_protocol, research_evidence_packet]
+    qualification: "Information retrieval and evaluation methodology; runtime remains unselected."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [private_data_required, provider_call_required, fixture_rights_unknown, authority_leakage]
+    privacy_boundary: "Only approved fixtures and aggregate metrics; no raw private corpus transfer."
+
+  - role_id: empirical-methods-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Turn architecture questions into falsifiable comparisons with baselines, controls, preregistered measures, and a no-winner option."
+    activate_when: "J-210 or an owner-authorized future experiment needs a method specification."
+    reads: [research_docket, evaluation_baseline, budget_and_privacy_constraints]
+    writes: []
+    allowed_operations: [hypothesis_decomposition, baseline_definition, confound_map, measurement_plan, stopping_rule_design]
+    forbidden_effects: [run_experiment, select_architecture, p_hack, hide_null_result, convert_metric_to_authority]
+    inputs: [bounded_question, candidate_arms, protected_metrics]
+    methods: [preregistration, controlled_comparison, variance_plan, falsifier_design]
+    outputs: [candidate_evaluation_protocol]
+    qualification: "Empirical study design appropriate to software/agent workflows."
+    checker_role: statistical-review-specialist
+    stop_and_escalate: [no_valid_baseline, unmeasurable_outcome, privacy_cost_unbounded, human_threshold_required]
+    privacy_boundary: "Prefer synthetic or approved fixtures and minimal aggregate reporting."
+
+  - role_id: statistical-review-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Independently challenge power, variance, dependence, multiple comparisons, uncertainty, and decision thresholds in evaluation candidates."
+    activate_when: "An empirical methods packet proposes quantitative interpretation."
+    reads: [candidate_evaluation_protocol, metric_definitions, sampling_plan]
+    writes: []
+    allowed_operations: [power_review, dependence_analysis, uncertainty_check, sensitivity_plan, null_result_review]
+    forbidden_effects: [change_raw_data, choose_threshold_for_owner, claim_causal_result_from_observation, approve_topology]
+    inputs: [frozen_method_packet]
+    methods: [sensitivity_analysis, error_rate_review, hierarchical_dependence_check, robustness_check]
+    outputs: [statistical_review_packet]
+    qualification: "Statistical review capability appropriate to the proposed design and data scale."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [underpowered_design, non_independent_observations, threshold_is_policy_choice, missing_data_mechanism_unknown]
+    privacy_boundary: "Use aggregate or de-identified measures; do not request raw private payloads."
+
+  - role_id: evaluation-harness-specialist
+    actor_kind: agent
+    lifecycle_status: dormant_read_only_specialist
+    mission: "Specify a revision-bound, inert, deterministic evaluation harness and its portability probes without executing it."
+    activate_when: "A later authorized qualification job requires a harness contract."
+    reads: [evaluation_baseline, runtime_adapter_contract, portability_policy]
+    writes: []
+    allowed_operations: [fixture_contract_design, deterministic_seed_plan, adapter_probe_spec, receipt_schema_review]
+    forbidden_effects: [execute_harness, bind_provider, access_unapproved_data, claim_cross_model_diversity_without_evidence]
+    inputs: [authorized_probe_scope, exact_runtime_revision]
+    methods: [revision_binding, deterministic_fixture_design, capability_probe_design]
+    outputs: [candidate_harness_contract]
+    qualification: "Evaluation harness and reproducibility design; qualification evidence is runtime-specific."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [runtime_unbound, fixture_unapproved, nondeterministic_effect, provider_budget_missing]
+    privacy_boundary: "No live fixture or external payload access in this revision."
+
+  - role_id: privacy-security-custody-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Threat-model data custody, visibility, retention, redaction, downstream consumption, and publication boundaries as candidate controls."
+    activate_when: "A proposed source, store, migration, retrieval, or publication path touches protected data."
+    reads: [data_classification, proposed_data_flow, authority_matrix, retention_rules]
+    writes: []
+    allowed_operations: [threat_model, data_flow_trace, least_privilege_review, retention_and_redaction_candidate]
+    forbidden_effects: [access_secret, select_store, grant_permission, approve_publication, expose_private_path_or_payload]
+    inputs: [scrubbed_architecture_candidate, data_classes]
+    methods: [source_to_sink_analysis, trust_boundary_review, failure_mode_analysis, privacy_minimization]
+    outputs: [privacy_security_candidate_assessment]
+    qualification: "Security/privacy architecture capability; human custody owner retains decisions."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [credential_or_secret_signal, unknown_data_owner, irreversible_disclosure_risk, regulatory_or_legal_question]
+    privacy_boundary: "Never echo sensitive values; report only location class and remediation category."
+
+  - role_id: authentication-boundary-specialist
+    actor_kind: agent
+    lifecycle_status: dormant_read_only_specialist
+    mission: "Specify candidate authenticated-owner-intent, least-privilege adapter, audit, revocation, and confused-deputy controls."
+    activate_when: "HG-007 receives scoped authority to evaluate an authentication or runtime adapter boundary."
+    reads: [authority_matrix_candidate, adapter_contract, action_inventory]
+    writes: []
+    allowed_operations: [principal_action_matrix, authorization_flow_review, replay_and_revocation_design, audit_event_contract]
+    forbidden_effects: [create_credential, select_identity_provider, grant_access, bind_adapter, authenticate_as_owner]
+    inputs: [authorized_boundary_question, scrubbed_action_set]
+    methods: [least_privilege_matrix, threat_scenario, token_lifecycle_review, explicit_confirmation_design]
+    outputs: [authentication_boundary_candidate]
+    qualification: "Authentication and authorization system design."
+    checker_role: privacy-security-custody-specialist
+    stop_and_escalate: [identity_provider_decision, credential_needed, owner_intent_ambiguous, irreversible_action]
+    privacy_boundary: "Credentials and raw tokens are categorically prohibited inputs."
+
+  - role_id: source-rights-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Classify source access, quotation, transformation, retention, and publication questions without inventing licenses or legal conclusions."
+    activate_when: "A source docket includes uncertain rights or access constraints."
+    reads: [source_metadata, stated_license_or_terms, proposed_use]
+    writes: []
+    allowed_operations: [rights_fact_docket, use_case_mapping, uncertainty_flag, qualified_human_referral]
+    forbidden_effects: [legal_advice, infer_license_from_access, copy_restricted_content, approve_publication]
+    inputs: [source_pointer, stated_terms, bounded_use]
+    methods: [license_fact_extraction, rights_dimension_matrix, provenance_record]
+    outputs: [source_rights_candidate_record]
+    qualification: "Rights and source-custody research capability; legal questions require qualified counsel or owner disposition."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [terms_unavailable, jurisdiction_or_legal_interpretation_required, redistribution_risk]
+    privacy_boundary: "Retain only minimal source and rights metadata."
+
+  - role_id: migration-safety-specialist
+    actor_kind: agent
+    lifecycle_status: dormant_read_only_specialist
+    mission: "Specify compatibility, consumer inventory, rehearsal, rollback, kill criteria, and restoration proof for a migration that remains unauthorized."
+    activate_when: "A later human decision authorizes a bounded migration design question, not a migration effect."
+    reads: [source_and_target_schema_candidates, consumer_map, data_classification, rollback_requirements]
+    writes: []
+    allowed_operations: [compatibility_matrix, reverse_consumer_map, rehearsal_plan, kill_criteria_design]
+    forbidden_effects: [copy_data, acquire_credentials, alter_store, run_migration, declare_rollback_proven]
+    inputs: [authorized_design_scope, exact_schema_revisions]
+    methods: [forward_backward_compatibility, shadow_replay_plan, restoration_proof_design]
+    outputs: [migration_impact_candidate, rollback_candidate]
+    qualification: "Data/schema migration and operational safety design."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [consumer_inventory_incomplete, irreversible_transform, rights_or_privacy_unknown, source_target_unselected]
+    privacy_boundary: "No live data or credentials; use structure and classifications only."
+
+  - role_id: schema-evolution-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Assess versioning, compatibility, deprecation, registry, and consumer contract impacts of proposed schema changes without implementing them."
+    activate_when: "A candidate ontology or graph contract may require a future schema revision."
+    reads: [current_schema_registry, proposed_contract, consumer_inventory]
+    writes: []
+    allowed_operations: [compatibility_review, version_boundary_design, deprecation_plan, consumer_impact_map]
+    forbidden_effects: [edit_schema, register_revision, migrate_data, suppress_breaking_change]
+    inputs: [candidate_schema_delta, reverse_consumer_map]
+    methods: [structural_diff, compatibility_classification, contract_test_design]
+    outputs: [schema_evolution_candidate]
+    qualification: "Schema evolution and API/data contract design."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [unknown_consumer, identity_semantics_change, human_domain_decision_required]
+    privacy_boundary: "Schema shapes only; never production rows."
+
+  - role_id: maintainer-workflow-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Evaluate owner burden, review flow, decision visibility, error recovery, and maintainability without turning convenience into authority."
+    activate_when: "A proposed campaign, graph, board, or review workflow changes maintainer interaction."
+    reads: [workflow_candidate, evaluation_metrics, human_gate_registry]
+    writes: []
+    allowed_operations: [task_analysis, review_burden_map, failure_recovery_walkthrough, decision_visibility_review]
+    forbidden_effects: [approve_workflow, remove_human_gate_for_speed, infer_user_preference, alter_repository]
+    inputs: [candidate_workflow, bounded_maintainer_scenarios]
+    methods: [cognitive_walkthrough, handoff_analysis, reversible_action_review]
+    outputs: [maintainer_workflow_candidate_assessment]
+    qualification: "Developer-experience and governed workflow design."
+    checker_role: accessibility-review-specialist
+    stop_and_escalate: [owner_preference_required, hidden_irreversible_effect, excessive_review_burden]
+    privacy_boundary: "No raw conversations or personal telemetry."
+
+  - role_id: accessibility-review-specialist
+    actor_kind: agent
+    lifecycle_status: planned_read_only_specialist
+    mission: "Challenge information hierarchy, terminology, navigability, cognitive load, and accessible representation of governance states."
+    activate_when: "Human-facing campaign, board, decision, or review artifacts are proposed."
+    reads: [human_facing_candidate, glossary, gate_and_status_model]
+    writes: []
+    allowed_operations: [readability_review, semantic_heading_check, status_distinguishability_review, alternative_representation_plan]
+    forbidden_effects: [rewrite_source_authority, collapse_statuses, approve_board_semantics, claim human usability without evidence]
+    inputs: [candidate_artifact, target_audience_assumptions]
+    methods: [heuristic_review, terminology_consistency, keyboard_and_nonvisual_representation_plan]
+    outputs: [accessibility_candidate_review]
+    qualification: "Accessibility and information-architecture review capability."
+    checker_role: independent-authority-checker
+    stop_and_escalate: [audience_unknown, status_cannot_be_distinguished, user_research_required]
+    privacy_boundary: "No personal user data; use synthetic scenarios."
+
+  - role_id: qualified-theology-exegesis-human
+    actor_kind: human_authority
+    lifecycle_status: human_gate_only_not_selected
+    mission: "Provide qualified, scoped human review where theology, doctrine, exegesis, source authority, or canonicity is load-bearing."
+    activate_when: "The owner names a qualified reviewer, exact scope, permitted evidence, and decision or review request."
+    reads: [owner_approved_source_packet, candidate_theological_or_exegetical_question]
+    writes: []
+    allowed_operations: [human_review, scoped_decision_receipt_or_dissent]
+    forbidden_effects: [automatic_activation, delegation_to_agent, blanket_approval, decision_outside_named_scope]
+    inputs: [qualified_identity_evidence, exact_human_review_scope]
+    methods: [human_expert_judgment]
+    outputs: [human_decision_receipt_or_review_packet]
+    qualification: "Must be established by the owner for the exact domain; this catalog makes no qualification claim."
+    checker_role: human-campaign-sponsor
+    stop_and_escalate: [qualification_not_established, evidence_scope_incomplete, conflict_of_interest]
+    privacy_boundary: "Owner controls source access and publication."
+
+  - role_id: qualified-history-tradition-human
+    actor_kind: human_authority
+    lifecycle_status: human_gate_only_not_selected
+    mission: "Provide qualified, scoped human review for historical, reception, tradition, and institutional-policy questions."
+    activate_when: "The owner establishes qualification and supplies an exact review scope."
+    reads: [owner_approved_historical_packet, tradition_policy_question]
+    writes: []
+    allowed_operations: [human_review, scoped_decision_receipt_or_dissent]
+    forbidden_effects: [automatic_activation, blanket_tradition_authority, decision_outside_scope]
+    inputs: [qualified_identity_evidence, exact_human_review_scope]
+    methods: [human_expert_judgment]
+    outputs: [human_decision_receipt_or_review_packet]
+    qualification: "Must be established by the owner for the exact tradition and period; this catalog makes no qualification claim."
+    checker_role: human-campaign-sponsor
+    stop_and_escalate: [qualification_not_established, tradition_scope_ambiguous, source_authenticity_disputed]
+    privacy_boundary: "Owner controls source access and publication."
+
+  - role_id: privacy-security-custody-human
+    actor_kind: human_authority
+    lifecycle_status: human_gate_only_not_selected
+    mission: "Own human decisions about protected data, storage, access, retention, migration, security acceptance, and publication."
+    activate_when: "The owner supplies an exact decision request and qualified reviewer identity."
+    reads: [scrubbed_threat_model, data_classification, proposed_effect_and_rollback]
+    writes: []
+    allowed_operations: [human_risk_disposition, scoped_decision_receipt_or_dissent]
+    forbidden_effects: [credential_sharing, blanket_future_approval, decision_outside_named_data_and_effect_scope]
+    inputs: [qualified_identity_evidence, exact_human_decision_scope]
+    methods: [human_risk_judgment]
+    outputs: [human_decision_receipt_or_review_packet]
+    qualification: "Must be established by the owner for the exact privacy/security/custody domain."
+    checker_role: human-campaign-sponsor
+    stop_and_escalate: [qualification_not_established, irreversible_disclosure, legal_or_regulatory_uncertainty]
+    privacy_boundary: "Sensitive evidence remains need-to-know and is never copied into generic agent packets."
+
+  - role_id: qualified-primary-source-human
+    actor_kind: human_authority
+    lifecycle_status: human_gate_only_not_selected
+    mission: "Provide scoped human judgment about source identity, edition fitness, quotation boundaries, access, and source-authority questions."
+    activate_when: "The owner establishes qualification for the exact corpus and supplies an exact review scope."
+    reads: [owner_approved_source_docket, bounded_source_question]
+    writes: []
+    allowed_operations: [human_source_review, scoped_decision_receipt_or_dissent]
+    forbidden_effects: [automatic_activation, reconstructed_source_text, blanket_corpus_approval, decision_outside_scope]
+    inputs: [qualified_identity_evidence, exact_human_review_scope]
+    methods: [human_expert_judgment]
+    outputs: [human_decision_receipt_or_review_packet]
+    qualification: "Must be established by the owner for the exact corpus, language, edition, and task; this catalog makes no qualification claim."
+    checker_role: human-campaign-sponsor
+    stop_and_escalate: [qualification_not_established, source_access_unapproved, source_identity_disputed]
+    privacy_boundary: "Owner controls source access, quotation, and publication."
+
+  - role_id: qualified-rights-review-human
+    actor_kind: human_authority
+    lifecycle_status: human_gate_only_not_selected
+    mission: "Provide scoped human review of source access, license, quotation, text-mining, retention, and redistribution questions."
+    activate_when: "The owner establishes qualification and supplies the exact terms, proposed use, jurisdictional context if relevant, and review scope."
+    reads: [owner_approved_rights_docket, proposed_source_use]
+    writes: []
+    allowed_operations: [human_rights_review, scoped_decision_receipt_or_dissent]
+    forbidden_effects: [automatic_activation, inferred_license, blanket_future_permission, decision_outside_scope]
+    inputs: [qualified_identity_evidence, exact_human_review_scope]
+    methods: [human_expert_judgment]
+    outputs: [human_decision_receipt_or_review_packet]
+    qualification: "Must be established by the owner for the exact rights question; this catalog gives no legal or professional qualification."
+    checker_role: human-campaign-sponsor
+    stop_and_escalate: [qualification_not_established, terms_unavailable, legal_or_jurisdictional_uncertainty]
+    privacy_boundary: "Use minimal source and terms metadata; restricted content remains outside generic agent packets."
+
+  - role_id: human-campaign-sponsor
+    actor_kind: human_owner
+    lifecycle_status: active_authority_not_worker
+    mission: "Retain final authority over scope, human qualifications, budgets, exceptions, activation, architecture decisions, implementation, migration, publication, and release."
+    activate_when: "A named human gate, exception, budget, or scope decision is genuinely required."
+    reads: [decision_packet, independent_review, residual_risk_summary]
+    writes: []
+    allowed_operations: [approve_reject_or_defer_exact_scope, name_qualified_human, set_budget, authorize_future_attempt]
+    forbidden_effects: [implicit_blanket_authorization, retroactive_fabricated_receipt, delegation_of_owner_authority_to_model_consensus]
+    inputs: [concise_evidence_backed_decision_packet]
+    methods: [human_owner_judgment]
+    outputs: [human_decision_receipt_or_explicit_no_decision]
+    qualification: "Repository owner/maintainer authority; domain-expert qualification remains separately required where named."
+    checker_role: null
+    stop_and_escalate: [insufficient_evidence, authority_domain_requires_qualified_expert, requested_scope_exceeds_claim]
+    privacy_boundary: "Owner decides access and disclosure; receipts should contain minimal non-sensitive evidence references."
+
+activation_waves:
+  - wave_id: SPEC-GRAPH
+    purpose: "Author and independently check graph and mesh specifications."
+    direct_roles: [specification-writer, provenance-graph-specialist, independent-authority-checker]
+    max_parallel: 3
+    execution_authorized: false
+  - wave_id: RESEARCH-DESIGN
+    purpose: "Design research packets and qualification routes without conducting external research."
+    direct_roles: [research-evidence-foreman, primary-source-researcher, source-rights-specialist]
+    max_parallel: 3
+    execution_authorized: false
+  - wave_id: EVALUATION-DESIGN
+    purpose: "Design falsifiable evaluation with independent quantitative challenge."
+    direct_roles: [empirical-methods-specialist, statistical-review-specialist, information-retrieval-specialist]
+    max_parallel: 3
+    execution_authorized: false
+  - wave_id: SAFETY-DESIGN
+    purpose: "Review privacy, authentication, schema evolution, and migration as dormant specifications."
+    direct_roles: [privacy-security-custody-specialist, authentication-boundary-specialist, migration-safety-specialist]
+    max_parallel: 3
+    execution_authorized: false
+
+independence_rules:
+  distinct_role_id_alone_is_sufficient: false
+  checker_may_share_authorship: false
+  checker_receives_writer_chain_of_thought: false
+  checker_rederives_from_raw_permitted_evidence: true
+  checker_assignment_lineage_required: true
+  changed_head_invalidates_review: true
+  unresolved_dissent_is_preserved: true

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-expertise-coverage-plan-v2.json",
+  "title": "DoctrineExpertiseCoveragePlan",
+  "type": "object",
+  "x-logos-metadata": {
+    "object_type": "doctrine_expertise_coverage_plan_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root.",
+    "reason_for_inclusion": "Require each coverage audit to bind phase, input, role value, omissions, and independent-review status."
+  },
+  "required": ["metadata", "schema_version", "plan_id", "audit_event_id", "phase", "input_manifest_ref", "input_manifest_digest", "status"],
+  "properties": {
+    "metadata": {"type": "object"},
+    "schema_version": {"const": "logos_doctrine_expertise_coverage_plan.v2"},
+    "plan_id": {"type": "string", "pattern": "^DMCP-[A-Z0-9-]+$"},
+    "audit_event_id": {"type": "string", "pattern": "^DMA-[A-Z0-9-]+$"},
+    "phase": {"enum": ["preflight", "midflight", "postflight"]},
+    "input_manifest_ref": {"type": "string"},
+    "input_manifest_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "required_capability_groups": {"type": "array"},
+    "dynamic_domain_rule": {"type": "string"},
+    "explicitly_required_now": {"type": "array"},
+    "triggered_specialists": {"type": "array"},
+    "omitted_as_ceremonial": {"type": "array"},
+    "material_deltas": {"type": "array"},
+    "role_reconciliation": {"type": "array"},
+    "new_required_controls": {"type": "array"},
+    "discoveries": {"type": "array"},
+    "postflight_recovery": {"type": "array"},
+    "status": {"enum": ["candidate_requires_independent_check", "independently_checked", "blocked", "human_pending"]}
+  },
+  "additionalProperties": false
+}

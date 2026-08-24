@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "object_type": "stewardship_architecture_static_validation_receipt",
+    "trust_zone": "proposed",
+    "lifecycle_status": "validation_evidence",
+    "provenance_note": "Regenerated on 2026-08-24 by Codex root after the owner-authorized correction of exactly eleven terminal blank lines, from the exact corrected staged campaign at the pinned stewardship checkpoint.",
+    "reason_for_inclusion": "Bind the corrected static campaign specification to replayable validator and staged-index results without granting human, runtime, migration, implementation, publication, or remote-effect authority."
+  },
+  "schema_version": "logos_stewardship_validation_receipt.v1",
+  "receipt_id": "LOGOS-STEWARDSHIP-STATIC-VALIDATION-20260824T024311Z",
+  "campaign_id": "logos-stewardship-architecture-buildout-v1",
+  "campaign_revision": "1-specification-only-20260823",
+  "repository_head": "9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4",
+  "observed_at_utc": "2026-08-24T02:43:11.697668Z",
+  "validation_input": {
+    "artifact_count_excluding_receipts": 23,
+    "canonical_path_hash_rows_digest": "sha256:d8e4a874f4dc339fae7e0a7ce5ce1cb27ea40a66ec7b6b14b5d4233f3aef437f",
+    "campaign_sha256": "sha256:afcc6d8679808b702ef1e7de3084aa5a96a1ce938e2a05457c761fc44c74a227",
+    "typed_graph_sha256": "sha256:86d2914c918c5a2c3e29e5236adbda1643e70b72715a4e8963c38c43acffe903",
+    "role_cards_sha256": "sha256:b1101941d2ad7ad137902053e81d303e9860b6d2a6a78b72ae19ee35dbef8bc3",
+    "mesh_manifest_digest": "sha256:0cdb9cf4df8822c8b7b553c724c934d09a8b492074824e7dc287eb4fcea6c19d",
+    "task_local_validator_sha256": "sha256:aa3f3016267c489b4ecd18a61a97af67c8febd64cafb13f4c30253e12f499183"
+  },
+  "task_local_checks": [
+    {"id": "required-static-artifacts", "status": "pass", "details": {"required_count": 23, "missing_count": 0}},
+    {"id": "governed-metadata", "status": "pass", "details": {"checked_files": 24, "failure_count": 0, "mesh_metadata_companion": true}},
+    {"id": "parse-static-artifacts", "status": "pass", "details": {"parsed_count": 19}},
+    {"id": "source-lock-replay", "status": "pass", "details": {"source_count": 5, "head_matches": true, "merge_parents_match": true, "snapshot_matches": true}},
+    {"id": "family-claim", "status": "pass", "details": {"claim_count": 1, "authority_ceiling": "specification_only_non_authorizing_research_campaign_bootstrap"}},
+    {"id": "exact-convergence-boundary", "status": "pass", "details": {"advisory_count": 7, "p0_count": 2, "p1_count": 10, "residual_count": 5}},
+    {"id": "special-001-unknown", "status": "pass", "details": {"numeric_constraint_allowed": false, "experiment_authorized": false}},
+    {"id": "human-gates-preserved", "status": "pass", "details": {"gate_count": 14, "receipt_count": 0}},
+    {"id": "specification-only-authority", "status": "pass", "details": {"execution_mode": "specification_only", "implementation_authorized": false}},
+    {"id": "campaign-job-dag", "status": "pass", "details": {"job_count": 16, "acyclic": true, "mismatch_count": 0}},
+    {"id": "typed-graph", "status": "pass", "details": {"node_count": 72, "edge_count": 94, "block_node_count": 25, "all_conclusions_reach_source": true}},
+    {"id": "agent-mesh", "status": "pass", "details": {"mesh_role_count": 22, "role_card_count": 27, "acyclic": true}},
+    {"id": "job-role-bindings", "status": "pass", "details": {"binding_count": 16, "error_count": 0}},
+    {"id": "research-and-expert-routing", "status": "pass", "details": {"question_count": 8, "agent_role_count": 16, "human_expert_type_count": 6}},
+    {"id": "dormant-future-effects", "status": "pass", "details": {"controller_selected": false, "runtime_bound": false, "state_payload_count": 0}},
+    {"id": "scope-privacy-and-hygiene", "status": "pass", "details": {"changed_path_count": 25, "outside_claim_count": 0, "absolute_path_hits": 0, "legacy_label_hits": 0, "secret_signal_hits": 0, "whitespace_files": 0, "git_diff_check": true}}
+  ],
+  "external_static_validators": [
+    {
+      "validator": "orchestrate-long-run-campaigns validate_campaign.py",
+      "observed_at_utc": "2026-08-24T02:43:11.697668Z",
+      "result": "pass",
+      "receipt": "VALID: long_run_campaign.v2 (static specification only; no execution authorization)"
+    },
+    {
+      "validator": "dad-manifest-graph-engineering validate_agent_mesh_manifest.py",
+      "observed_at_utc": "2026-08-24T02:43:11.697668Z",
+      "result": "pass",
+      "manifest_digest": "sha256:0cdb9cf4df8822c8b7b553c724c934d09a8b492074824e7dc287eb4fcea6c19d"
+    },
+    {
+      "validator": "repository family-work registry validator",
+      "observed_at_utc": "2026-08-24T02:43:11.697668Z",
+      "result": "pass",
+      "warning_count": 5,
+      "warning_scope": "pre-existing stale leases outside this claim; no automatic reconciliation performed"
+    },
+    {
+      "validator": "all campaign JSON and YAML parser",
+      "observed_at_utc": "2026-08-24T02:43:11.697668Z",
+      "result": "pass",
+      "parsed_file_count": 19
+    },
+    {
+      "validator": "exact corrected staged-index scope and git diff --cached --check",
+      "observed_at_utc": "2026-08-24T02:43:11.697668Z",
+      "result": "pass",
+      "staged_path_count": 25,
+      "outside_claim_count": 0,
+      "tracked_unstaged_count": 0,
+      "untracked_count": 0,
+      "eof_blank_line_finding_count": 0
+    }
+  ],
+  "overall_status": "pass",
+  "authorization_state": "blocked_human",
+  "non_authorization": {
+    "static_pass_is_controller_qualification": false,
+    "static_pass_is_research_authorization": false,
+    "static_pass_is_human_decision": false,
+    "static_pass_is_migration_or_implementation_authority": false,
+    "static_pass_is_publication_or_remote_effect_authority": false
+  },
+  "mutation_performed_by_validation": false
+}

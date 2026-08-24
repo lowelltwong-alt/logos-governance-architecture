@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "object_type": "doctrine_mesh_specification_validation_receipt",
+    "trust_zone": "proposed",
+    "lifecycle_status": "validated_specification_only",
+    "provenance_note": "Rebound on 2026-08-24 by Codex root after deterministic replay of the claimed-scope traversal repair and the expanded twenty-test adversarial suite over the exact 85-file payload.",
+    "reason_for_inclusion": "Bind deterministic final validation and all adversarial fixtures without implying a qualified runtime, research, or doctrinal result."
+  },
+  "schema_version": "logos.doctrine_mesh_specification_validation_receipt.v2",
+  "receipt_id": "DM-VALIDATION-002",
+  "revision_manifest_ref": "revision-manifest.yaml",
+  "revision_manifest_digest": "sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1",
+  "payload_digest": "sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946",
+  "validator_ref": "checks/validate_doctrine_mesh.py",
+  "validator_digest": "sha256:9474e653857da7baab809236557595285d335460a05045edca426c43331bdcb2",
+  "test_ref": "checks/test_validate_doctrine_mesh.py",
+  "test_digest": "sha256:bbaebe5afe4d98b9cb00db473e3ed2d91f030ae96d24c6a35cede187c1d7d882",
+  "final_replay_command": "python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final",
+  "test_command": "python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py",
+  "status": "pass_artifact_specification_only",
+  "validator_result": {"failure_count": 0, "audit_failures": 0, "internal_markdown_link_failures": 0, "campaign_gate_evidence_refs": 10},
+  "test_result": {"status": "pass", "test_count": 20, "skipped": 0},
+  "runtime_activation_authorized": false,
+  "research_authorized": false,
+  "mutation_performed": false,
+  "observed_at": "2026-08-24T20:24:27Z",
+  "receipt_digest": "sha256:9911d192d8b66c5bf0806cf8c025ea22c0070af6986b706d9db2faa86aef4355"
+}

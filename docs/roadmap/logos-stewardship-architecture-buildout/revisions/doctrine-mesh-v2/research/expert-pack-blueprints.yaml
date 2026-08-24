@@ -1,0 +1,163 @@
+metadata:
+  object_type: doctrine_expert_pack_blueprint_registry
+  trust_zone: proposed
+  lifecycle_status: blueprint_only_no_sources_ingested
+  provenance_note: "Created on 2026-08-24 by Codex root from the expertise taxonomy and candidate source-family catalog; no web access, corpus acquisition, or qualification occurred."
+  reason_for_inclusion: "Turn expert labels into buildable source, knowledge, fixture, and scope requirements while blocking agents from pretending an unbuilt pack is expertise."
+schema_version: logos_doctrine_expert_pack_blueprints.v2
+registry_id: LOGOS-DOCTRINE-EXPERT-PACK-BLUEPRINTS-002
+global_status: no_pack_is_currently_qualified_or_execution_ready
+automatic_factory_rule: "The factory may select an independently qualified exact-revision pack; it may propose an unbuilt blueprint but must block research until source, rights, fixture, and qualification gates pass."
+source_discovery_rule: "Start with the named candidate source families, then verify the current primary witness, critical edition, institutional catalog, official community source, peer-reviewed scholarship, stable pointer, rights, and exact-use fitness. Search rank and model memory are discovery only."
+pack_blueprints:
+  - pack_id: EPB-HEBREW-TEXT
+    profiles: [DOM-HEBREW-TEXT, DOM-HEBREW-LING, DOM-TORAH-SCRIBAL]
+    candidate_source_families: [SRC-BHQ-BHS, SRC-MANUSCRIPT-CATALOGS, SRC-DJD-DSS]
+    required_languages: [Biblical_Hebrew, relevant_Aramaic, comparative_Semitics_when_claimed]
+    protected_fixtures: [witness_vs_critical_text, apparatus_reading, root_fallacy, diachrony, translation_not_original]
+  - pack_id: EPB-SEPTUAGINT
+    profiles: [DOM-SEPTUAGINT, DOM-GREEK-LING]
+    candidate_source_families: [SRC-GOTTINGEN-LXX, SRC-MANUSCRIPT-CATALOGS]
+    required_languages: [Koine_Greek, Biblical_Hebrew]
+    protected_fixtures: [edition_scope, recension, translation_technique, later_reception_vs_origin]
+  - pack_id: EPB-NEW-TESTAMENT-TEXT
+    profiles: [DOM-NT-TEXT, DOM-GREEK-LING]
+    candidate_source_families: [SRC-ECM-NA-UBS, SRC-MANUSCRIPT-CATALOGS]
+    required_languages: [Koine_Greek]
+    protected_fixtures: [witness_identity, apparatus, local_genealogy, variant_confidence]
+  - pack_id: EPB-ISRAEL-TORAH-EXILE
+    profiles: [DOM-TRIBAL-ISRAEL, DOM-ISRAEL-HISTORY, DOM-TORAH-SCRIBAL, DOM-EXILIC-POSTEXILIC, DOM-TEMPLE-PRIESTHOOD]
+    candidate_source_families: [SRC-BHQ-BHS, SRC-IAA-EXCAVATION, SRC-FINAL-REPORTS, SRC-GAZETTEERS, SRC-CDLI]
+    required_languages: [Biblical_Hebrew, relevant_Aramaic, ancient_context_language_or_qualified_translation]
+    protected_fixtures: [tribal_uniformity, practice_vs_prescription, archaeology_vs_canon, contact_not_similarity, period_collapse]
+  - pack_id: EPB-SECOND-TEMPLE-GROUPS
+    profiles: [DOM-SECOND-TEMPLE, DOM-HASMONEAN-ROMAN-JUDEA, DOM-JEWISH-SECTS, DOM-JEWISH-DIASPORA, DOM-JEWISH-LAW-PRACTICE]
+    candidate_source_families: [SRC-DJD-DSS, SRC-PHILO-CRITICAL, SRC-JOSEPHUS-CRITICAL, SRC-RABBINIC-CRITICAL, SRC-GENIZA, SRC-IAA-EXCAVATION]
+    required_languages: [Greek, Hebrew, Aramaic_as_exact_claim_requires]
+    protected_fixtures: [Pharisee_Sadducee_Essene_source_bias, later_rabbinic_projection, diaspora_generalization, teacher_vs_group, law_practice_vs_text]
+  - pack_id: EPB-QUMRAN-APOCALYPTIC
+    profiles: [DOM-QUMRAN, DOM-ENOCHIC]
+    candidate_source_families: [SRC-DJD-DSS, SRC-MANUSCRIPT-CATALOGS]
+    required_languages: [Hebrew, Aramaic, Greek_or_Ethiopic_when_exact_work_requires]
+    protected_fixtures: [fragment_restoration, composite_date, Qumran_not_all_Jews, manuscript_identity]
+  - pack_id: EPB-PHILO-JOSEPHUS
+    profiles: [DOM-PHILO, DOM-JOSEPHUS, DOM-JEWISH-DIASPORA]
+    candidate_source_families: [SRC-PHILO-CRITICAL, SRC-JOSEPHUS-CRITICAL, SRC-CLASSICAL-CRITICAL]
+    required_languages: [Greek]
+    protected_fixtures: [author_bias, exact_treatise_or_work, Alexandria_not_all_Judaism, Logos_category_nonidentity]
+  - pack_id: EPB-RABBINIC-MYSTICISM
+    profiles: [DOM-EARLY-RABBINIC, DOM-JEWISH-MYSTICISM, DOM-JEWISH-LAW-PRACTICE]
+    candidate_source_families: [SRC-RABBINIC-CRITICAL, SRC-GENIZA, SRC-SEFARIA-DISCOVERY]
+    required_languages: [Rabbinic_Hebrew, periodized_Jewish_Aramaic]
+    protected_fixtures: [Mishnah_Tosefta_Bavli_distinction, redaction_date, Hekhalot_strata, Kabbalah_projection]
+  - pack_id: EPB-TWO-POWERS-DIVINE-AGENCY
+    profiles: [DOM-TWO-POWERS, DOM-MESSIANISM-DIVINE-AGENCY, DOM-JEWISH-REPRESENTATION]
+    candidate_source_families: [SRC-DJD-DSS, SRC-PHILO-CRITICAL, SRC-RABBINIC-CRITICAL, SRC-GOTTINGEN-LXX]
+    required_languages: [Hebrew, Aramaic, Greek_as_exact_corpus_requires]
+    protected_fixtures: [rabbinic_category_vs_earlier_evidence, scholarly_construct_vs_primary_text, Two_Powers_not_Two_Persons, no_proto_Trinity_inference]
+  - pack_id: EPB-JEWISH-REPRESENTATION
+    profiles: [DOM-JEWISH-REPRESENTATION, FN-JEWISH-REPRESENTATION]
+    candidate_source_families: [SRC-DJD-DSS, SRC-PHILO-CRITICAL, SRC-JOSEPHUS-CRITICAL, SRC-RABBINIC-CRITICAL]
+    required_languages: [language_matching_load_bearing_source]
+    protected_fixtures: [Judaism_not_negative_foil, internal_plurality, periodization, Christian_category_projection, anti_supersession]
+  - pack_id: EPB-EGYPT
+    profiles: [DOM-EGYPT]
+    candidate_source_families: [SRC-EGYPT-CORPORA, SRC-GAZETTEERS, SRC-FINAL-REPORTS]
+    required_languages: [Egyptian_for_primary_claim_or_explicit_qualified_translation_limit]
+    protected_fixtures: [millennia_collapse, object_provenance, similarity_not_borrowing, prescription_vs_practice]
+  - pack_id: EPB-MESOPOTAMIA-BABYLON
+    profiles: [DOM-ASSYRIOLOGY, DOM-BABYLON-RELIGION]
+    candidate_source_families: [SRC-ORACC, SRC-CDLI, SRC-GAZETTEERS]
+    required_languages: [Akkadian_or_Sumerian_as_claim_requires]
+    protected_fixtures: [tablet_ID, period_empire_distinction, exile_contact, parallel_not_source]
+  - pack_id: EPB-UGARIT-NORTHWEST-SEMITIC
+    profiles: [DOM-NW-SEMITIC]
+    candidate_source_families: [SRC-UGARITIC-EDITIONS, SRC-GAZETTEERS]
+    required_languages: [Ugaritic, comparative_Northwest_Semitic]
+    protected_fixtures: [tablet_and_restoration, lexical_cognate_not_theological_identity, period_gap]
+  - pack_id: EPB-PERSIAN-CONTEXT
+    profiles: [DOM-PERSIA, DOM-EXILIC-POSTEXILIC]
+    candidate_source_families: [SRC-CLASSICAL-CRITICAL, SRC-GAZETTEERS]
+    required_languages: [Old_Persian_or_other_Iranian_language_when_load_bearing]
+    protected_fixtures: [late_text_backdating, contact_evidence, imperial_context, similarity_not_influence]
+  - pack_id: EPB-ARCHAEOLOGY-EPIGRAPHY
+    profiles: [DOM-ARCHAEOLOGY, DOM-EPIGRAPHY]
+    candidate_source_families: [SRC-IAA-EXCAVATION, SRC-FINAL-REPORTS, SRC-GAZETTEERS, SRC-MANUSCRIPT-CATALOGS]
+    required_languages: [object_language_when_reading_is_load_bearing]
+    protected_fixtures: [stratigraphy, dating_uncertainty, restoration_marks, unprovenanced_artifact, absence_of_evidence]
+  - pack_id: EPB-GREEK-ROMAN-RELIGION-SOCIETY
+    profiles: [DOM-GREEK-RELIGION, DOM-ROMAN]
+    candidate_source_families: [SRC-CLASSICAL-CRITICAL, SRC-GAZETTEERS, SRC-FINAL-REPORTS]
+    required_languages: [Greek_and_or_Latin_as_claim_requires]
+    protected_fixtures: [polis_province_period_scope, law_vs_practice, infant_exposure_source_scope, literary_topos_vs_population]
+  - pack_id: EPB-PLATONIC-TRADITIONS
+    profiles: [DOM-PLATO, DOM-NEOPLATONISM, DOM-CULTURAL-GENEALOGY]
+    candidate_source_families: [SRC-PLATONIC, SRC-CLASSICAL-CRITICAL]
+    required_languages: [Greek_for_disputed_terms]
+    protected_fixtures: [Plato_Middle_Platonism_Neoplatonism_distinction, dialogue_context, concept_similarity_not_dependency]
+  - pack_id: EPB-ARISTOTLE-AQUINAS-SOURCES
+    profiles: [DOM-ARISTOTLE, DOM-AQUINAS]
+    candidate_source_families: [SRC-ARISTOTLE, SRC-LEONINE-AQUINAS]
+    required_languages: [Greek_for_Aristotle_when_disputed, scholastic_Latin_for_Aquinas]
+    protected_fixtures: [Aristotle_not_Aquinas, objection_sed_contra_respondeo_reply, genre, translation_term, source_apparatus]
+  - pack_id: EPB-EARLY-CHRISTIAN-PATRISTICS
+    profiles: [DOM-APOSTOLIC-FATHERS, DOM-GREEK-PATRISTICS, DOM-LATIN-PATRISTICS, DOM-SYRIAC-COPTIC]
+    candidate_source_families: [SRC-SC-CCSL-CCSG, SRC-GCS-CSEL-PO]
+    required_languages: [Greek_Latin_Syriac_or_Coptic_as_exact_source_requires]
+    protected_fixtures: [quote_mining, date_authorship_genre, original_translation, terminology_across_languages]
+  - pack_id: EPB-COUNCILS-HERESIOLOGY
+    profiles: [DOM-COUNCILS, DOM-HERESIOLOGY]
+    candidate_source_families: [SRC-COUNCIL-ACTA, SRC-SC-CCSL-CCSG, SRC-GCS-CSEL-PO]
+    required_languages: [Greek_Latin_or_other_acta_language_as_required]
+    protected_fixtures: [acta_vs_later_summary, jurisdiction_reception, hostile_source, fragmentary_movement, no_agent_heresy_ruling]
+  - pack_id: EPB-AUGUSTINE
+    profiles: [DOM-AUGUSTINE, DOM-LATIN-PATRISTICS]
+    candidate_source_families: [SRC-AUGUSTINE, SRC-SC-CCSL-CCSG, SRC-GCS-CSEL-PO]
+    required_languages: [patristic_Latin]
+    protected_fixtures: [chronology, authentic_work, genre, development, whole_node_human_gate]
+  - pack_id: EPB-AQUINAS
+    profiles: [DOM-AQUINAS, DOM-MEDIEVAL]
+    candidate_source_families: [SRC-LEONINE-AQUINAS, SRC-ARISTOTLE, SRC-SC-CCSL-CCSG]
+    required_languages: [scholastic_Latin, Greek_only_when_source_claim_requires]
+    protected_fixtures: [objection_not_Thomas, article_structure, corpus_chronology, cited_authority, term_fidelity]
+  - pack_id: EPB-LUTHER
+    profiles: [DOM-LUTHER, DOM-LUTHERAN]
+    candidate_source_families: [SRC-LUTHER-WA, SRC-LUTHERAN-CONFESSIONS]
+    required_languages: [early_modern_German, Latin_as_work_requires]
+    protected_fixtures: [Table_Talk_not_diary_or_verbatim, work_date_genre, personal_view_vs_confession, isolated_quote]
+  - pack_id: EPB-CATHOLIC
+    profiles: [DOM-CATHOLIC, DOM-COUNCILS]
+    candidate_source_families: [SRC-CATHOLIC-OFFICIAL, SRC-COUNCIL-ACTA]
+    required_languages: [official_text_language_when_disputed]
+    protected_fixtures: [document_authority_level, jurisdiction, current_vs_historical, theologian_not_magisterium]
+  - pack_id: EPB-EASTERN-ORIENTAL
+    profiles: [DOM-BYZANTINE, DOM-SYRIAC-COPTIC]
+    candidate_source_families: [SRC-ORTHODOX-ORIENTAL, SRC-SC-CCSL-CCSG, SRC-GCS-CSEL-PO]
+    required_languages: [Greek_Syriac_Coptic_or_other_exact_source_language]
+    protected_fixtures: [Eastern_vs_Oriental_scope, jurisdiction, received_council, Western_category_projection]
+    qualification_granularity: exact_tradition_body_era_jurisdiction_and_source_revision_never_the_umbrella_blueprint
+  - pack_id: EPB-REFORMED-PRESBYTERIAN
+    profiles: [DOM-REFORMED, DOM-PRESBYTERIAN]
+    candidate_source_families: [SRC-REFORMED, SRC-WESTMINSTER]
+    required_languages: [Latin_French_or_English_as_source_requires]
+    protected_fixtures: [Calvin_not_all_Reformed, Westminster_history_vs_current_jurisdiction, polity_and_confession_scope]
+  - pack_id: EPB-ANGLICAN-FREE-CHURCH
+    profiles: [DOM-ANGLICAN, DOM-ANABAPTIST, DOM-BAPTIST, DOM-WESLEYAN, DOM-PENTECOSTAL]
+    candidate_source_families: [SRC-ANGLICAN, SRC-FREE-CHURCH]
+    required_languages: [source_language_for_exact_historical_claim]
+    protected_fixtures: [province_or_body_scope, movement_diversity, confession_authority, oral_history_limit, global_vs_US_scope]
+    qualification_granularity: exact_tradition_body_era_jurisdiction_and_source_revision_never_the_umbrella_blueprint
+required_build_sequence:
+  - source_atlas_with_current_stable_pointers_and_exact_editions
+  - rights_privacy_custody_and_provider_egress_review
+  - non_evidentiary_KnowledgeGuide_with_root_source_links
+  - sealed_fixture_and_counterexample_pack
+  - task_specific_ScopeCard
+  - deterministic_checks_and_independent_behavioral_qualification
+  - expiry_revocation_and_affected_consumer_registration
+prohibited_claims:
+  - blueprint_is_a_knowledge_base
+  - candidate_source_family_is_current_or_rights_cleared
+  - model_memory_satisfies_pack
+  - provider_reputation_satisfies_qualification
+  - one_pack_qualifies_all_eras_languages_or_traditions

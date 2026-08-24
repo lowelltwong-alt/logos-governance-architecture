@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-attempt-lineage-v2.json",
+  "title": "DoctrineAttemptLineage",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_attempt_lineage_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root after adversarial independence review.",
+    "reason_for_inclusion": "Make actor, prompt, context, source exposure, authorship, effects, and checker separation inspectable instead of trusting different role names."
+  },
+  "required": ["schema_version", "attempt_id", "event_id", "actor_role_id", "actor_instance_id", "checker_role_id", "checker_instance_id", "execution_class", "prompt_revision_digest", "context_snapshot_digest", "source_exposure_digest", "authored_artifact_groups", "read_scope", "write_scope", "independence_evidence", "provider_identity_grants_authority", "started_at", "auditor_completed_at", "checker_started_at", "checker_completed_at", "completed_at", "status"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_attempt_lineage.v2"},
+    "attempt_id": {"type": "string", "pattern": "^DMA-ATTEMPT-[A-Z0-9-]+$"},
+    "event_id": {"type": "string", "pattern": "^DMA-[A-Z0-9-]+$"},
+    "actor_role_id": {"type": "string"},
+    "actor_instance_id": {"type": "string"},
+    "checker_role_id": {"type": "string"},
+    "checker_instance_id": {"type": "string"},
+    "execution_class": {"enum": ["manual_specification_coverage_review", "controller_execution_audit"]},
+    "prompt_revision_digest": {"$ref": "#/$defs/digest"},
+    "context_snapshot_digest": {"$ref": "#/$defs/digest"},
+    "source_exposure_digest": {"$ref": "#/$defs/digest"},
+    "authored_artifact_groups": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "read_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "write_scope": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "independence_evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "computed_not_self_declared", "shared_context_disclosed", "cross_provider_verified", "evidence_ref"],
+      "properties": {
+        "status": {"enum": ["verified_for_exact_assignment", "partly_verified_non_authorizing", "failed"]},
+        "computed_not_self_declared": {"const": true},
+        "shared_context_disclosed": {"type": "boolean"},
+        "cross_provider_verified": {"type": "boolean"},
+        "evidence_ref": {"type": "string"}
+      }
+    },
+    "provider_identity_grants_authority": {"const": false},
+    "started_at": {"type": "string", "format": "date-time"},
+    "auditor_completed_at": {"type": "string", "format": "date-time"},
+    "checker_started_at": {"type": "string", "format": "date-time"},
+    "checker_completed_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["completed_candidate", "blocked", "failed", "inconclusive"]}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

@@ -1,0 +1,63 @@
+metadata:
+  object_type: stewardship_architecture_campaign_constitution
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-23 by Codex root from repository governance and the integrated non-authorizing advisory projection."
+  reason_for_inclusion: "Freeze objective, authority, protected work, gold standards, effects, and shutdown behavior before any campaign job can be considered."
+schema_version: logos_stewardship_campaign_constitution.v1
+constitution_id: LOGOS-STEWARDSHIP-CONSTITUTION-001
+revision: "1"
+objective: "Produce a validated, resumable, provider-neutral specification for research and future human-gated architecture work without implementing or approving that architecture."
+source_authority_order:
+  - named_human_owner_decisions
+  - repository_governance_contracts
+  - immutable_repository_source_records
+  - independently_checked_candidate_evidence
+  - generated_candidate_analysis
+authority_owners:
+  campaign_sponsor: Lowell Wong
+  repository_meaning: Lowell Wong
+  theology_doctrine_canonicity: qualified_human_review_plus_owner_decision
+  privacy_security_custody: qualified_human_review_plus_owner_decision
+  budget_provider_and_runtime: Lowell Wong
+  implementation_release_and_publication: Lowell Wong
+current_authority:
+  execution_mode: specification_only
+  implementation_authorized: false
+  experiment_authorized: false
+  migration_authorized: false
+  provider_call_authorized: false
+  paid_service_authorized: false
+  unattended_execution_authorized: false
+  push_authorized: false
+  pull_request_authorized: false
+  remote_merge_authorized: false
+  publication_authorized: false
+allowed_effects:
+  - read pinned repository evidence
+  - edit files only inside the claimed campaign tree
+  - run local deterministic parsers and validators
+  - write candidate research and human-decision packets inside the claimed campaign tree
+  - report exact evidence, unknowns, failures, and residual risk
+prohibited_effects:
+  - modify convergence or documentation-validation source namespaces
+  - modify doctrine, canon, data, schemas, runtime, CI, or application code
+  - reconstruct missing quotations or treat memory as source
+  - decide theology, canonicity, exegesis, tradition, privacy, custody, or publication
+  - activate agents, controllers, schedules, providers, connectors, or external messages
+  - push, open a pull request, merge remotely, publish, deploy, migrate, clean, reset, rebase, force, or delete
+protected_user_work:
+  rule: "Every other registered or unknown worktree, commit, staged file, untracked artifact, and held path remains untouched."
+  cleanup_allowed: false
+gold_standard_ids: [GS-001, GS-002, GS-003, GS-004, GS-005, GS-006, GS-007, GS-008, GS-009, GS-010]
+controller_state_authority:
+  sole_owner_role: campaign-controller
+  worker_state_write_allowed: false
+  state_root: docs/roadmap/logos-stewardship-architecture-buildout/state/
+  current_controller_selected: false
+safe_shutdown:
+  rule: "Stop before the next effect, release any task-local lease, preserve append-only evidence, and identify the exact resume preconditions."
+  destructive_recovery_allowed: false
+completion_boundary:
+  current_completion_means: specification_artifacts_validated_and_independently_reviewed
+  does_not_mean: [architecture_approved, implementation_ready, runtime_qualified, release_ready, publication_approved]

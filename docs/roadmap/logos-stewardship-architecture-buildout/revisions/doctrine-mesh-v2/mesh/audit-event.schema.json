@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-mesh-audit-event-v2.json",
+  "title": "DoctrineMeshAuditEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_mesh_audit_event_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root.",
+    "reason_for_inclusion": "Make every preflight, triggered midflight, and postflight audit expectation deterministic."
+  },
+  "required": ["schema_version", "event_id", "sequence", "phase", "execution_class", "trigger", "work_unit_id", "work_unit_revision", "input_manifest_ref", "input_manifest_digest", "required_before_event_id", "expected_auditor_role_id", "expected_checker_role_id", "emitted_at", "event_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_mesh_audit_event.v2"},
+    "event_id": {"type": "string", "pattern": "^DMA-[A-Z0-9-]+$"},
+    "sequence": {"type": "integer", "minimum": 1},
+    "phase": {"enum": ["preflight", "midflight", "postflight"]},
+    "execution_class": {"enum": ["manual_specification_coverage_review", "controller_execution_audit"]},
+    "trigger": {"enum": ["work_unit_opened", "new_claim", "new_source_domain", "new_tradition", "new_era_or_geography", "new_language_or_textual_problem", "new_method", "risk_increase", "material_disagreement", "source_unavailable", "role_failed", "scope_or_authority_change", "new_downstream_use", "before_completion"]},
+    "work_unit_id": {"type": "string", "minLength": 1},
+    "work_unit_revision": {"type": "string", "minLength": 1},
+    "input_manifest_ref": {"type": "string", "pattern": "^evidence/inputs/[a-z0-9-]+\\.json$"},
+    "input_manifest_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "required_before_event_id": {"type": ["string", "null"], "pattern": "^DMA-[A-Z0-9-]+$"},
+    "expected_auditor_role_id": {"const": "doctrine-mesh-completeness-auditor"},
+    "expected_checker_role_id": {"const": "independent-whole-work-checker"},
+    "emitted_at": {"type": "string", "format": "date-time"},
+    "event_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

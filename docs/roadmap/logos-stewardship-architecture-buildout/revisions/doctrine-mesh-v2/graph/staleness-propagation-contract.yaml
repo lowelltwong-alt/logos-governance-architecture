@@ -1,0 +1,19 @@
+metadata:
+  object_type: doctrine_staleness_propagation_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_until_implementation
+  provenance_note: "Created on 2026-08-24 by Codex root after adversarial graph review."
+  reason_for_inclusion: "Require deterministic reverse-reachability quarantine when a source, check, prompt, decision, role, or authority revision changes."
+schema_version: logos_doctrine_staleness_propagation.v2
+consumer_index_schema_ref: graph/consumer-index.schema.json
+algorithm:
+  - build forward and reverse projections from the same exact graph snapshot
+  - reject any edge present in only one direction or any orphan endpoint
+  - on invalidation perform deterministic reverse breadth-first traversal over every load-bearing edge type
+  - quarantine the root and all reachable consumers before any revalidation attempt
+  - record exact root revision reason descendant set digest and traversal receipt
+  - replay only the affected slice but preserve historical nodes and explicit invalidation edges
+load_bearing_edges: [normative_support, derived_from, cites_for_evidence, qualified_by, validated_by, stored_in, exported_to]
+non_load_bearing_context_edges: [contextualizes, historical_parallel, possible_contact, documents_reception]
+negative_fixtures_required: [missing_reverse_edge, omitted_descendant, stale_root_current_consumer, orphan_consumer, changed_edge_type_without_replay, context_edge_mistaken_for_normative_support]
+completion_rule: "No consumer may return current while any load-bearing ancestor is stale, blocked, invalidated, or unresolved."

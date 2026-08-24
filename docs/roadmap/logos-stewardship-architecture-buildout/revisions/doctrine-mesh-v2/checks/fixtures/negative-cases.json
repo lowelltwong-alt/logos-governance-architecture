@@ -1,0 +1,27 @@
+{
+  "schema_version": "logos.doctrine_mesh_negative_cases.v2",
+  "metadata": {
+    "object_type": "doctrine_mesh_negative_fixture_catalog",
+    "trust_zone": "proposed",
+    "lifecycle_status": "active_fixture",
+    "provenance_note": "Created on 2026-08-24 by Codex root.",
+    "reason_for_inclusion": "Ensure the completeness-auditor proof fails closed for the exact bypasses it claims to detect."
+  },
+  "cases": [
+    {"case_id": "NEG-MISSING-POST", "action": "remove_postflight_receipt", "expected_signal": "postflight"},
+    {"case_id": "NEG-DUPLICATE-MID", "action": "duplicate_midflight_receipt", "expected_signal": "expected exactly 1"},
+    {"case_id": "NEG-STALE-INPUT", "action": "stale_input_digest", "expected_signal": "input_manifest_digest mismatch"},
+    {"case_id": "NEG-OUT-OF-ORDER", "action": "out_of_order_sequence", "expected_signal": "sequences are not contiguous"},
+    {"case_id": "NEG-SELF-CHECK", "action": "auditor_checker_collision", "expected_signal": "schema error"},
+    {"case_id": "NEG-REUSED-ATTEMPT", "action": "reused_attempt", "expected_signal": "reused auditor attempt"},
+    {"case_id": "NEG-CORRUPT-DIGEST", "action": "corrupt_receipt_digest", "expected_signal": "receipt digest mismatch"},
+    {"case_id": "NEG-CORRUPT-EVENT", "action": "corrupt_event_digest", "expected_signal": "event digest mismatch"},
+    {"case_id": "NEG-BROKEN-CHAIN", "action": "break_receipt_chain", "expected_signal": "receipt hash-chain mismatch"},
+    {"case_id": "NEG-WRONG-OUTPUT", "action": "wrong_output_digest", "expected_signal": "output digest mismatch"},
+    {"case_id": "NEG-WRONG-PREDECESSOR", "action": "wrong_event_predecessor", "expected_signal": "event predecessor mismatch"},
+    {"case_id": "NEG-MISSING-ATTEMPT", "action": "missing_attempt", "expected_signal": "missing attempt"},
+    {"case_id": "NEG-ATTEMPT-ACTOR", "action": "attempt_actor_mismatch", "expected_signal": "attempt actor mismatch"},
+    {"case_id": "NEG-LATE-PREFLIGHT", "action": "preflight_after_writer", "expected_signal": "preflight auditor did not complete before first writer lease"},
+    {"case_id": "NEG-EARLY-POSTFLIGHT", "action": "postflight_before_worker", "expected_signal": "postflight did not complete after worker/checker receipts"}
+  ]
+}

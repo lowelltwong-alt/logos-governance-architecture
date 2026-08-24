@@ -4,6 +4,8 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 
 ## Cross-Repo Project Family
 
+- [`PORTFOLIO.md`](PORTFOLIO.md) - recruiter-facing whole-project landing page with evidence-linked architecture diagrams, honest maturity labels, machine-readable project evidence, and a prompt for independent AI interrogation
+- [`docs/portfolio/logos-trust-layer/README.md`](docs/portfolio/logos-trust-layer/README.md) - technical portfolio evidence packet, receipt chain, validator route, and explicit non-claims
 - [`AI_FRONT_DOOR.md`](AI_FRONT_DOOR.md) - contribution lanes and cross-repo governance boundary
 - [`LOGOS_FAMILY_MAP.md`](LOGOS_FAMILY_MAP.md) - short repo-selection map for active, planned, and advisory Logos-family repos
 - [`DATA_FLOW_MAP.md`](DATA_FLOW_MAP.md) - current and future repo hierarchy and data flow
@@ -40,6 +42,7 @@ This file maps the repository for AI agents, coding assistants, maintainers, and
 
 ## Primary entry points
 
+- [`PORTFOLIO.md`](PORTFOLIO.md) — public recruiter and AI-auditor entry point for the whole Logos trust-layer project
 - [`README.md`](README.md) — human-facing landing page and project overview
 - [`AI_WORK_START_HERE.md`](AI_WORK_START_HERE.md) — AI-agent operating instructions and guardrails
 - [`docs/governance/README.md`](docs/governance/README.md) — governance conventions and vocabulary discipline

@@ -1,0 +1,96 @@
+metadata:
+  object_type: doctrine_research_source_authority_catalog
+  trust_zone: proposed
+  lifecycle_status: candidate_seed_catalog
+  provenance_note: "Created on 2026-08-24 by Codex root from established scholarly source classes and named corpus families; no web verification or source acquisition occurred."
+  reason_for_inclusion: "Give future researchers high-signal starting points while requiring current pointer, edition, rights, and fitness verification before use."
+schema_version: logos_doctrine_source_authority_catalog.v2
+catalog_id: LOGOS-DOCTRINE-SOURCE-CATALOG-002
+current_status: candidate_pointer_families_not_yet_verified_for_access_or_rights
+no_source_content_ingested: true
+two_dimension_rule:
+  evidentiary_reliability: "How reliably this object supports the exact historical, textual, linguistic, archaeological, philosophical, reception, or tradition claim."
+  normative_christian_doctrine_authority: "Whether the governing human-approved Scripture or tradition policy admits the object as normative support."
+  prohibition: "Never derive normative authority from evidentiary quality, antiquity, institutional prestige, or similarity."
+source_classes:
+  SC-PRIMARY-WITNESS:
+    evidentiary_priority: highest_when_authentic_and_fit
+    examples: [manuscript, inscription, tablet, papyrus, coin, artifact, conciliar_act, theologian_work, promulgated_confession]
+    requirements: [stable_identity, provenance, edition_or_image, locator, date, source_function, limitations]
+  SC-CRITICAL-EDITION:
+    evidentiary_priority: high
+    examples: [critical_text, apparatus, diplomatic_edition, corpus_catalog]
+    requirements: [editorial_revision, witness_basis, locator_grammar, rights_and_access]
+  SC-OFFICIAL-COMMUNITY:
+    evidentiary_priority: high_for_current_self_description_with_scope
+    examples: [official_magisterial_document, official_confession, constitution, liturgical_book, denominational_standard]
+    requirements: [promulgating_body, jurisdiction, date, authority_level, current_or_historical_status]
+  SC-PEER-REVIEWED-SCHOLARSHIP:
+    evidentiary_priority: high_secondary
+    examples: [university_press_monograph, critical_commentary, peer_reviewed_article, excavation_report]
+    requirements: [author_qualification, publisher_or_journal, date, method, counterevidence, exact_page_or_section]
+  SC-REFERENCE-CATALOG:
+    evidentiary_priority: navigation_and_identity
+    examples: [museum_catalog, manuscript_catalog, prosopography, gazetteer, lexical_database]
+    requirements: [maintainer, stable_ID, revision, scope, link_to_primary_or_edition]
+  SC-DISCOVERY-ONLY:
+    evidentiary_priority: not_load_bearing_alone
+    examples: [general_website, encyclopedia_without_primary_locator, search_snippet, repository_mirror, AI_output]
+    requirements: [use_only_to_find_higher_class_source, independently_verify_every_claim]
+candidate_source_families:
+  scripture_and_textual_criticism:
+    - {family_id: SRC-BHQ-BHS, names: [Biblia_Hebraica_Quinta, Biblia_Hebraica_Stuttgartensia], intended_use: Hebrew_critical_text_and_apparatus, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_before_use}
+    - {family_id: SRC-GOTTINGEN-LXX, names: [Goettingen_Septuagint, Rahlfs_Hanhart_where_appropriate], intended_use: Septuagint_critical_text, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_before_use}
+    - {family_id: SRC-ECM-NA-UBS, names: [Editio_Critica_Maior, Nestle_Aland, UBS_Greek_New_Testament], intended_use: New_Testament_critical_text_and_apparatus, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_before_use}
+    - {family_id: SRC-MANUSCRIPT-CATALOGS, names: [official_manuscript_catalogs, institutional_digital_facsimiles], intended_use: witness_identity_and_images, source_class: SC-REFERENCE-CATALOG, access_rights_state: exact_institution_and_license_required}
+  jewish_worlds:
+    - {family_id: SRC-DJD-DSS, names: [Discoveries_in_the_Judaean_Desert, official_Dead_Sea_Scrolls_catalogs_and_images], intended_use: Qumran_and_DSS_text_identity, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_each_edition_and_image}
+    - {family_id: SRC-PHILO-CRITICAL, names: [critical_Philo_editions_and_corpus_indices], intended_use: Philo_primary_text, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_before_use}
+    - {family_id: SRC-JOSEPHUS-CRITICAL, names: [critical_Josephus_editions_and_corpus_indices], intended_use: Josephus_primary_text, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_before_use}
+    - {family_id: SRC-RABBINIC-CRITICAL, names: [manuscript_based_Mishnah_Tosefta_Talmud_and_Midrash_editions], intended_use: rabbinic_primary_text, source_class: SC-CRITICAL-EDITION, access_rights_state: exact_edition_required}
+    - {family_id: SRC-SEFARIA-DISCOVERY, names: [Sefaria_or_similar_public_navigation], intended_use: discovery_and_locator_crosscheck_only, source_class: SC-DISCOVERY-ONLY, access_rights_state: verify_text_edition_and_license}
+    - {family_id: SRC-GENIZA, names: [institutional_Cairo_Geniza_catalogs_and_images], intended_use: manuscript_identity_and_Jewish_history, source_class: SC-REFERENCE-CATALOG, access_rights_state: institution_specific}
+  ancient_near_east_and_archaeology:
+    - {family_id: SRC-ORACC, names: [Open_Richly_Annotated_Cuneiform_Corpus_candidates], intended_use: cuneiform_catalog_and_annotated_text_discovery, source_class: SC-REFERENCE-CATALOG, access_rights_state: verify_project_and_text}
+    - {family_id: SRC-CDLI, names: [Cuneiform_Digital_Library_Initiative_candidates], intended_use: tablet_identity_images_and_metadata, source_class: SC-REFERENCE-CATALOG, access_rights_state: verify_object_and_image_terms}
+    - {family_id: SRC-EGYPT-CORPORA, names: [institutional_Egyptian_text_corpora, museum_and_excavation_catalogs], intended_use: Egyptian_primary_text_and_object_identity, source_class: SC-REFERENCE-CATALOG, access_rights_state: verify_institution_and_edition}
+    - {family_id: SRC-UGARITIC-EDITIONS, names: [critical_Ugaritic_text_editions_and_tablet_catalogs], intended_use: Ugaritic_primary_text, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_before_use}
+    - {family_id: SRC-IAA-EXCAVATION, names: [Israel_Antiquities_Authority_and_other_official_excavation_records], intended_use: site_object_and_excavation_identity, source_class: SC-PRIMARY-WITNESS, access_rights_state: verify_record_and_media_terms}
+    - {family_id: SRC-FINAL-REPORTS, names: [final_excavation_reports, peer_reviewed_archaeological_journals], intended_use: stratigraphy_dating_and_context, source_class: SC-PEER-REVIEWED-SCHOLARSHIP, access_rights_state: verify_exact_report}
+    - {family_id: SRC-GAZETTEERS, names: [Pleiades_Trismegistos_and_institutional_gazetteer_candidates], intended_use: identity_geography_and_object_crosslink, source_class: SC-REFERENCE-CATALOG, access_rights_state: verify_dataset_revision_and_license}
+  classical_philosophy_and_social_history:
+    - {family_id: SRC-CLASSICAL-CRITICAL, names: [critical_Greek_and_Latin_editions, papyrological_and_epigraphic_corpora], intended_use: primary_text_and_object_identity, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_exact_edition}
+    - {family_id: SRC-LOEB-DISCOVERY, names: [Loeb_or_other_bilingual_editions], intended_use: navigation_and_translation_crosscheck, source_class: SC-CRITICAL-EDITION, access_rights_state: usually_restricted_verify_exact_use}
+    - {family_id: SRC-ARISTOTLE, names: [critical_Aristotle_editions_and_commentary_traditions], intended_use: exact_work_argument_and_reception, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_before_use}
+    - {family_id: SRC-PLATONIC, names: [critical_Plato_Middle_Platonist_and_Neoplatonist_editions], intended_use: author_and_school_specific_concept_history, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_before_use}
+  patristic_and_medieval:
+    - {family_id: SRC-SC-CCSL-CCSG, names: [Sources_Chretiennes, Corpus_Christianorum_Series_Latina, Corpus_Christianorum_Series_Graeca], intended_use: critical_patristic_and_medieval_text, source_class: SC-CRITICAL-EDITION, access_rights_state: typically_restricted_verify_exact_use}
+    - {family_id: SRC-GCS-CSEL-PO, names: [Die_Griechischen_Christlichen_Schriftsteller, Corpus_Scriptorum_Ecclesiasticorum_Latinorum, Patrologia_Orientalis], intended_use: critical_early_Christian_text, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_exact_volume}
+    - {family_id: SRC-COUNCIL-ACTA, names: [critical_conciliar_acta_creeds_and_canons], intended_use: council_text_and_reception, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_exact_edition}
+    - {family_id: SRC-AUGUSTINE, names: [critical_Augustine_editions_and_corpus_indices], intended_use: Augustine_primary_text_and_chronology, source_class: SC-CRITICAL-EDITION, access_rights_state: qualified_patristics_gate_remains}
+    - {family_id: SRC-LEONINE-AQUINAS, names: [Editio_Leonina, Corpus_Thomisticum_candidate_navigation], intended_use: Aquinas_primary_text_and_source_apparatus, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_text_revision_and_license}
+  reformation_and_traditions:
+    - {family_id: SRC-LUTHER-WA, names: [Weimarer_Ausgabe_and_critical_Luther_editions], intended_use: Luther_primary_corpus_including_genre_critical_Table_Talk, source_class: SC-CRITICAL-EDITION, access_rights_state: verify_volume_and_digital_terms}
+    - {family_id: SRC-LUTHERAN-CONFESSIONS, names: [critical_Book_of_Concord_editions, official_synodical_sources], intended_use: Lutheran_confessional_self_description, source_class: SC-OFFICIAL-COMMUNITY, access_rights_state: jurisdiction_and_edition_required}
+    - {family_id: SRC-REFORMED, names: [critical_Calvin_editions, Reformed_confessions_and_synod_records], intended_use: Reformed_primary_and_confessional_sources, source_class: SC-CRITICAL-EDITION, access_rights_state: exact_document_required}
+    - {family_id: SRC-WESTMINSTER, names: [Westminster_Assembly_records, Westminster_Standards, official_Presbyterian_jurisdiction_sources], intended_use: Presbyterian_history_doctrine_and_current_scope, source_class: SC-OFFICIAL-COMMUNITY, access_rights_state: distinguish_historical_from_current}
+    - {family_id: SRC-CATHOLIC-OFFICIAL, names: [official_promulgated_Catholic_council_papal_catechetical_and_canonical_sources], intended_use: Catholic_document_identity_and_authority_level, source_class: SC-OFFICIAL-COMMUNITY, access_rights_state: verify_official_text_language_and_status}
+    - {family_id: SRC-ORTHODOX-ORIENTAL, names: [received_conciliar_liturgical_and_official_community_sources], intended_use: Eastern_and_Oriental_self_description, source_class: SC-OFFICIAL-COMMUNITY, access_rights_state: exact_church_jurisdiction_required}
+    - {family_id: SRC-ANGLICAN, names: [historic_formularies_and_official_province_sources], intended_use: Anglican_history_and_current_jurisdiction, source_class: SC-OFFICIAL-COMMUNITY, access_rights_state: province_and_edition_required}
+    - {family_id: SRC-FREE-CHURCH, names: [official_Anabaptist_Baptist_Wesleyan_Pentecostal_confessions_disciplines_and_statements], intended_use: movement_or_denomination_self_description, source_class: SC-OFFICIAL-COMMUNITY, access_rights_state: body_date_and_status_required}
+source_admission_workflow:
+  - verify current stable pointer and source identity
+  - verify edition witness catalog or promulgating authority
+  - record evidentiary source class and exact claim fitness
+  - record normative authority independently
+  - verify rights access retention quotation and provider egress
+  - qualify locators translations context and known limitations
+  - independently re-access before material use
+  - preserve source_unavailable or disputed status instead of inheriting a summary
+prohibited_shortcuts:
+  - web_search_rank_as_quality
+  - publisher_brand_as_entailment
+  - official_site_as_universal_historical_authority
+  - public_access_as_AI_or_redistribution_permission
+  - modern_translation_as_original_language_proof
+  - agent_or_ExpertPack_summary_as_root_evidence

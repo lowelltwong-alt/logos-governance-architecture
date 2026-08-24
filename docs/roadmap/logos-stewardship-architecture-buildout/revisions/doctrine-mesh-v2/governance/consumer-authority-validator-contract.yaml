@@ -1,0 +1,36 @@
+metadata:
+  object_type: doctrine_consumer_authority_validator_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_until_implementation
+  provenance_note: "Created on 2026-08-24 by Codex root after adversarial cross-plane review."
+  reason_for_inclusion: "Require consumers and retrieval projections—not only authors—to reject contextual sources on normative doctrine paths."
+schema_version: logos_doctrine_consumer_authority_validator.v2
+current_activation: false
+required_consumer_checks:
+  normative_support_refs:
+    reject_prefixes: [boundary_]
+    reject_authority_planes: [jewish_historical_context, external_ancient_context, governance_and_campaign]
+    require: [exact_source_manifest_revision, applicable_human_scripture_or_tradition_policy_receipt, claim_entailment_receipt, nonstale_reverse_path]
+  historical_context_refs:
+    allow_authority_planes: [jewish_historical_context, external_ancient_context]
+    force_normative_weight: none
+  reception_history_refs:
+    allow_authority_planes: [christian_reception_sources, jewish_historical_context]
+    force_normative_weight: none
+  retrieval_and_export:
+    preserve_fields: [authority_plane, source_function, normative_christian_doctrine_authority, use_state, exact_source_revision, evidence_check_receipt_refs]
+    stripping_authority_metadata: blocking
+typed_edge_endpoint_rules:
+  normative_support: {from_types: [doctrine_claim], to_authority_planes: [canonical_scripture], human_policy_required: true}
+  contextualizes: {from_authority_planes: [jewish_historical_context, external_ancient_context], to_types: [doctrine_claim], normative_force: none}
+  documents_reception: {from_authority_planes: [christian_reception_sources, jewish_historical_context], to_types: [doctrine_claim], normative_force: none}
+  cites: {allowed_only_for_evidence_pointer: true, grants_entailment_or_normativity: false}
+  derived_from: {requires_typed_intermediate_inference_and_claim_receipts: true, boundary_to_normative_path: forbidden}
+negative_fixtures_required:
+  - boundary_ID_in_normative_support_refs
+  - boundary_source_reaches_doctrine_through_generic_cites
+  - retrieval_projection_strips_authority_plane
+  - descriptive_source_marked_normative_by_high_evidentiary_reliability
+  - stale_source_revision_remains_current_in_consumer
+  - destination_repository_not_ready
+implementation_gate: "No doctrine consumer, search index, graph projection, export, or promotion may activate until these exact negative fixtures fail closed."

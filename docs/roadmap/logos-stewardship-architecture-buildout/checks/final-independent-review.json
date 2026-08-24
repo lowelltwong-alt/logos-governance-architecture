@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "object_type": "stewardship_architecture_independent_review_receipt",
+    "trust_zone": "proposed",
+    "lifecycle_status": "independent_validation_evidence",
+    "provenance_note": "Regenerated on 2026-08-24 by Codex root from a fresh separate read-only architecture and authority review over the exact corrected staged campaign.",
+    "reason_for_inclusion": "Preserve the independent checker verdict, corrected digest replay, dissent retraction, residual risk, and exact non-authorization boundary without granting implementation authority."
+  },
+  "schema_version": "logos_stewardship_independent_review.v1",
+  "review_id": "LOGOS-STEWARDSHIP-INDEPENDENT-REVIEW-20260824T025037Z",
+  "assignment_lineage": "corrected_campaign_independent_review/read_only_non_authoring_attempt_001",
+  "reviewed_at_utc": "2026-08-24T02:50:37.902978Z",
+  "verdict": "PASS",
+  "frozen_input": {
+    "repository_head": "9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4",
+    "branch": "codex/logos-stewardship-buildout",
+    "staged_path_count": 25,
+    "artifact_count_excluding_this_receipt": 24,
+    "canonical_path_hash_rows_digest": "sha256:95d735329708e5d14e514da57687ece8d3ccea4faae67ce91eef02357b52dc8a",
+    "artifact_count_excluding_both_receipts": 23,
+    "non_receipt_path_hash_rows_digest": "sha256:d8e4a874f4dc339fae7e0a7ce5ce1cb27ea40a66ec7b6b14b5d4233f3aef437f",
+    "validation_receipt_index_sha256": "sha256:cfc78edba78832f80cdbad6d89190f8fa267b1858e0d51cc0e4be01dfa43f682",
+    "head_parent_1": "4424818c40382e52ab9521662ecb0922f61d8430",
+    "head_parent_2": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12"
+  },
+  "independence": {
+    "read_only": true,
+    "shared_authorship": false,
+    "writer_output_modified": false,
+    "repository_or_registry_mutation": false,
+    "external_contact": false,
+    "raw_permitted_evidence_rederived": true,
+    "input_digest_rechecked_after_review": true
+  },
+  "checks": [
+    {"id": "task-local-validator", "status": "pass", "details": {"passed": 16, "failed": 0}},
+    {"id": "long-run-campaign-schema", "status": "pass", "details": {"schema": "long_run_campaign.v2", "static_non_authorizing": true}},
+    {"id": "dad-mesh-schema-and-digest", "status": "pass", "details": {"manifest_digest": "sha256:0cdb9cf4df8822c8b7b553c724c934d09a8b492074824e7dc287eb4fcea6c19d"}},
+    {"id": "source-lock-and-merge-identity", "status": "pass", "details": {"source_count": 5, "source_hashes_and_blobs_replayed": true, "snapshot_matches": true, "parents_match": true}},
+    {"id": "advisory-and-block-boundary", "status": "pass", "details": {"advisory_hashes": 7, "p0_blocks": 2, "p1_blocks": 10, "residual_blocks": 5, "special_001": "UNKNOWN"}},
+    {"id": "human-gate-boundary", "status": "pass", "details": {"blocked_human_gates": 14, "receipt_count": 0}},
+    {"id": "job-dag", "status": "pass", "details": {"job_count": 16, "catalog_consistent": true, "acyclic": true, "blocked_future_jobs": ["J-300", "J-310", "J-320", "J-400"]}},
+    {"id": "typed-graph", "status": "pass", "details": {"node_count": 72, "edge_count": 94, "bad_endpoint_count": 0, "bad_relation_count": 0, "cycle_count": 0, "block_nodes_dominating_future_implementation": 25, "human_gate_nodes_with_block_edges": 14, "artifact_reverse_consumers": 8}},
+    {"id": "hierarchical-specialist-mesh", "status": "pass", "details": {"canonical_mesh_roles": 22, "role_cards": 27, "sole_writer": true, "distinct_checker": true, "max_delegation_depth": 1, "max_direct_fanout": 3, "missing_reference_count": 0}},
+    {"id": "research-and-human-expert-routing", "status": "pass", "details": {"research_agent_role_references": 16, "human_expert_type_references": 6, "missing_reference_count": 0, "candidate_only": true}},
+    {"id": "future-effect-dormancy", "status": "pass", "details": {"controller_selected": false, "runtime_bound": false, "experiment_authorized": false, "migration_authorized": false, "implementation_authorized": false, "state_payload_count": 0}},
+    {"id": "scope-privacy-and-wording", "status": "pass", "details": {"staged_paths_in_claim": 25, "outside_claim_count": 0, "tracked_unstaged_count": 0, "untracked_count": 0, "all_staged_modes": "100644", "symlink_count": 0, "git_diff_cached_check": true, "absolute_local_path_hits": 0, "secret_signal_hits": 0, "legacy_label_hits": 0, "false_authority_finding_count": 0}},
+    {"id": "authorized-terminal-lf-correction", "status": "pass", "details": {"corrected_file_count": 11, "removed_byte_count": 11, "each_current_blob_equals_prior_blob_minus_one_final_lf": true, "each_current_blob_ends_in_exactly_one_lf": true}},
+    {"id": "frozen-input-integrity", "status": "pass", "details": {"windows_path_order_replayed_from_index": true, "review_digest_matches": true, "non_receipt_digest_matches": true, "validation_receipt_hash_matches": true}}
+  ],
+  "findings": {
+    "critical": [],
+    "high": [],
+    "medium": [],
+    "low": [
+      {
+        "finding_id": "LOW-EXTERNAL-STALE-LEASES",
+        "scope": "outside_this_claim",
+        "summary": "The family-registry validator reports five stale leases outside this claim.",
+        "disposition": "Preserved and not reconciled; any future resume must use then-current family and workspace preflight."
+      }
+    ]
+  },
+  "retraction": {
+    "superseded_interim_verdict": "FAIL",
+    "status": "explicitly_retracted",
+    "cause": "The interim replay used ordinal string sorting and placed uppercase README.md before lowercase paths instead of the specified Windows pathlib Path ordering.",
+    "correction": "The reviewer rederived the exact INDEX blobs with Windows sorted(Path.rglob('*')) ordering and matched both supplied digests exactly."
+  },
+  "handoff_assessment": {
+    "resumable_specification_and_validation_lane": true,
+    "self_executing": false,
+    "pinned_identity_present": true,
+    "source_drift_stop_present": true,
+    "validation_order_present": true,
+    "human_authorization_boundary_present": true
+  },
+  "non_authorization": {
+    "pass_means_only_internal_coherence_and_authority_safety": true,
+    "controller_authorized": false,
+    "research_execution_authorized": false,
+    "provider_or_runtime_use_authorized": false,
+    "experiment_authorized": false,
+    "migration_authorized": false,
+    "implementation_authorized": false,
+    "publication_authorized": false,
+    "commit_push_or_merge_authorized": false,
+    "human_gate_resolved": false
+  },
+  "mutation_performed_by_reviewer": false
+}

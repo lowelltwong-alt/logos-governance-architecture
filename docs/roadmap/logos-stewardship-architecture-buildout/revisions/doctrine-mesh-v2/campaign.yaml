@@ -1,0 +1,70 @@
+metadata:
+  object_type: doctrine_mesh_revision_campaign
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root as an append-only campaign revision for expert-mesh governance and deterministic audit proof."
+  reason_for_inclusion: "Define dependency-ordered specification jobs, gates, stops, budgets, and future activation boundaries for this revision."
+schema_version: logos_doctrine_mesh_campaign.v2
+campaign_id: LOGOS-WHOLE-DOCTRINE-MESH-002
+revision_id: doctrine-mesh-v2
+mode: specification_only
+artifact_qualification_evaluation_at: "2026-08-24T16:46:08.602Z"
+artifact_time_boundary: "This timestamp makes frozen qualification replay deterministic; any future assignment must evaluate expiry against its own current qualified-runtime clock."
+controller_runtime: unselected_and_unauthorized
+max_delegation_depth: 1
+max_parallel_lanes_if_future_runtime_is_authorized: 3
+default_attempts: {original: 1, repair: 1}
+jobs:
+  - {job_id: DM-000, title: freeze_revision_authority, depends_on: [], effect: specification_write, gate_ids: [DMG-001]}
+  - {job_id: DM-010, title: classify_claim_and_required_expertise, depends_on: [DM-000], effect: specification_write, gate_ids: [DMG-002]}
+  - {job_id: DM-020, title: run_preflight_completeness_audit, depends_on: [DM-010], effect: candidate_evidence, gate_ids: [DMG-003]}
+  - {job_id: DM-030, title: compose_or_select_task_local_roles, depends_on: [DM-020], effect: candidate_role_profiles, gate_ids: [DMG-004]}
+  - {job_id: DM-040, title: qualify_expert_and_source_packs, depends_on: [DM-030], effect: candidate_evidence, gate_ids: [DMG-005]}
+  - {job_id: DM-050, title: install_midflight_trigger_barrier, depends_on: [DM-040], effect: future_dormant_control, gate_ids: [DMG-007]}
+  - {job_id: DM-060, title: execute_bounded_research_and_peer_checks, depends_on: [DM-050], effect: future_dormant_research, gate_ids: [DMG-006]}
+  - {job_id: DM-070, title: run_postflight_completeness_and_recovery, depends_on: [DM-060], effect: candidate_evidence, gate_ids: [DMG-008]}
+  - {job_id: DM-080, title: independent_authority_and_entailment_review, depends_on: [DM-070], effect: read_only_review, gate_ids: [DMG-009]}
+  - {job_id: DM-090, title: freeze_optional_manual_frontier_review_packet, depends_on: [DM-080], effect: specification_write, gate_ids: [DMG-010]}
+gates:
+  - {gate_id: DMG-001, type: deterministic, result_required: pass, evidence: source-lock.yaml, validation_rule: source_lock_valid}
+  - {gate_id: DMG-002, type: deterministic_plus_independent, result_required: pass, evidence: mesh/role-requirement.schema.json, validation_rule: schema_valid}
+  - {gate_id: DMG-003, type: deterministic_plus_independent, result_required: pass, evidence: evidence/receipts/preflight.json, validation_rule: manual_audit_receipt_pass}
+  - {gate_id: DMG-004, type: deterministic_plus_independent, result_required: pass, evidence: mesh/autonomous-role-factory.yaml, validation_rule: dormant_factory_contract_valid}
+  - {gate_id: DMG-005, type: deterministic_plus_independent, result_required: pass, evidence: research/expert-pack-contract.yaml, validation_rule: specification_contract_valid}
+  - {gate_id: DMG-006, type: human, result_required: blocked_human, evidence: governance/human-gates.yaml, validation_rule: all_human_gates_blocked}
+  - {gate_id: DMG-007, type: deterministic_plus_independent, result_required: pass, evidence: evidence/receipts/midflight.json, validation_rule: manual_audit_receipt_pass}
+  - {gate_id: DMG-008, type: deterministic_plus_independent, result_required: pass, evidence: evidence/receipts/postflight.json, validation_rule: manual_audit_receipt_pass}
+  - {gate_id: DMG-009, type: independent, result_required: pass_specification_only, evidence: checks/independent-review.json, validation_rule: independent_specification_review_pass}
+  - {gate_id: DMG-010, type: deterministic, result_required: packet_integrity_pass_external_review_not_sent, evidence: fable/fable-review-manifest.yaml, validation_rule: dormant_manual_review_packet_valid}
+mandatory_stop_codes:
+  - user_interrupt
+  - budget_exhausted
+  - authority_boundary
+  - human_gate_required
+  - repeated_failure
+  - source_or_citation_failure
+  - security_privacy_or_rights
+  - dependency_stale
+  - write_conflict
+  - validation_inconclusive
+  - qualified_role_unavailable
+  - unresolved_high_risk_disagreement
+controller_invariants:
+  midflight_trigger_barrier: >-
+    Before granting or regranting an affected worker or writer lease, derive all
+    material trigger events from the changed input revision. Block the affected
+    job and descendants until each distinct trigger has one fresh checked audit
+    receipt. An audit after the affected research is not midflight compliance.
+  duplicate_trigger_rule: "Deduplicate only identical trigger IDs over identical input digests; changed inputs require a new event."
+  design_time_receipt_boundary: >-
+    Receipts frozen in this revision are manual specification coverage reviews.
+    They do not qualify or activate a future controller; controller execution
+    must generate its own controller_execution_audit receipts after activation.
+future_launch_requirements:
+  - exact human authorization receipt for the campaign controller and revision
+  - qualified runtime adapter and provider probes
+  - rights-cleared source allowlists and budgets
+  - inert dry run with leases fencing idempotency restart and shutdown proof
+  - independent unchanged-revision launch review
+  - separate research execution authority
+  - campaign budget ledger conforming to governance/campaign-budget-ledger.schema.json with exact cumulative ceiling and remaining balance
