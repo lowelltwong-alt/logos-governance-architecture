@@ -140,6 +140,38 @@ class DoctrineMeshStaticContractTests(unittest.TestCase):
         self.assertTrue(VALIDATOR.is_volatile_runtime_file(Path("checks/__pycache__/validator.pyc")))
         self.assertFalse(VALIDATOR.is_volatile_runtime_file(Path("checks/validate_doctrine_mesh.py")))
 
+    def test_job_path_contract_rejects_noncanonical_repository_paths(self) -> None:
+        schema = VALIDATOR.load_data(ROOT / "mesh/job-binding.schema.json")
+        path_schema = schema["$defs"]["repositoryRelativePath"]
+        validator = VALIDATOR.Draft202012Validator(path_schema)
+        valid_paths = [
+            "claimed/unit-1",
+            "claimed/unit-1/nested/result.json",
+            "claimed/unit-1/.keep",
+        ]
+        invalid_paths = [
+            "",
+            ".",
+            "..",
+            "../claimed/file.json",
+            "claimed/./file.json",
+            "claimed/unit-1/../../other/file.json",
+            "claimed/unit-1//file.json",
+            "claimed/unit-1/",
+            "/absolute/file.json",
+            "//server/share/file.json",
+            "C:/absolute/file.json",
+            "C:relative/file.json",
+            "claimed\\unit-1\\file.json",
+            "claimed/unit-1/line\nbreak.json",
+        ]
+        for path in valid_paths:
+            with self.subTest(valid=path):
+                self.assertEqual([], list(validator.iter_errors(path)))
+        for path in invalid_paths:
+            with self.subTest(invalid=path):
+                self.assertTrue(list(validator.iter_errors(path)), path)
+
     def test_qualified_role_cannot_have_deterministic_failures(self) -> None:
         schema = VALIDATOR.load_data(ROOT / "research/qualification-receipt.schema.json")
         instance = {
@@ -346,7 +378,37 @@ class DoctrineMeshStaticContractTests(unittest.TestCase):
         self.assertTrue(any("missing budget ledger" in failure for failure in failures), failures)
         binding["outputs"][0]["canonical_path"] = "another/unit/result.json"
         failures = VALIDATOR.validate_job_binding_semantics(binding)
-        self.assertTrue(any("output outside" in failure for failure in failures), failures)
+        self.assertTrue(any("output does not descend" in failure for failure in failures), failures)
+
+        invalid_outputs = [
+            "claimed/unit-1",
+            "claimed/unit-10/result.json",
+            "claimed/unit-1/../../other/file.json",
+            "claimed/./unit-1/result.json",
+            "claimed/unit-1//result.json",
+            "claimed\\unit-1\\result.json",
+        ]
+        for path in invalid_outputs:
+            with self.subTest(output=path):
+                invalid = copy.deepcopy(binding)
+                invalid["outputs"][0]["canonical_path"] = path
+                failures = VALIDATOR.validate_job_binding_semantics(invalid)
+                self.assertTrue(
+                    any(
+                        "invalid output canonical path" in failure
+                        or "output does not descend" in failure
+                        for failure in failures
+                    ),
+                    failures,
+                )
+
+        invalid_claim = copy.deepcopy(binding)
+        invalid_claim["claimed_scope_ref"] = "claimed/../other"
+        invalid_claim["roles"]["writer"]["write_scope"] = ["claimed/../other"]
+        invalid_claim["data_and_effects"]["write_scope"] = ["claimed/../other"]
+        invalid_claim["outputs"][0]["canonical_path"] = "claimed/../other/result.json"
+        failures = VALIDATOR.validate_job_binding_semantics(invalid_claim)
+        self.assertTrue(any("invalid claimed scope path" in failure for failure in failures), failures)
 
 
 if __name__ == "__main__":

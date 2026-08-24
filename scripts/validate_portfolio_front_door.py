@@ -22,8 +22,10 @@ import hashlib
 import importlib.util
 import json
 import re
+import subprocess
+from collections import Counter
 from dataclasses import dataclass
-from pathlib import Path, PurePosixPath
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from types import ModuleType
 from typing import Any, Iterable
 
@@ -72,15 +74,30 @@ REQUIRED_BOUNDARY_TEXT = (
     "not qualified theological authority",
 )
 TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".py", ".txt"}
+PORTFOLIO_RECEIPT_RELATIVE = Path(
+    "docs/portfolio/logos-trust-layer/validation-receipt.json"
+)
 
 CHAT_LOCAL_LOCATOR = re.compile(r"turn[0-9]+(?:search|fetch|view)[0-9]+", re.I)
 WINDOWS_PRIVATE_PATH = re.compile(
-    r"(?i)(?:[a-z]:[\\/](?:users|wt|tmp|git)(?:[\\/]|$)|c:/users/)"
+    r"(?i)(?:[a-z]:[\\/](?:users|wt|tmp|git)(?:[\\/]|$)|"
+    + "c:"
+    + r"/users/)"
 )
+FILE_URI = re.compile("file" + "://", re.I)
 PRIVATE_KEY = re.compile(r"-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----")
 GITHUB_TOKEN = re.compile(r"\bgh[pousr]_[A-Za-z0-9]{20,}\b")
 AWS_ACCESS_KEY = re.compile(r"\bAKIA[0-9A-Z]{16}\b")
 GENERIC_SECRET = re.compile(r"\bsk-[A-Za-z0-9]{20,}\b")
+SENSITIVE_RULES = (
+    ("windows_private_path", WINDOWS_PRIVATE_PATH),
+    ("file_uri", FILE_URI),
+    ("chat_local_locator", CHAT_LOCAL_LOCATOR),
+    ("private_key_marker", PRIVATE_KEY),
+    ("github_token_shape", GITHUB_TOKEN),
+    ("aws_access_key_shape", AWS_ACCESS_KEY),
+    ("generic_secret_shape", GENERIC_SECRET),
+)
 
 
 class PortfolioValidationError(RuntimeError):
@@ -129,15 +146,179 @@ def _canonical_digest(value: dict[str, Any], omitted: Iterable[str] = ()) -> str
     return f"sha256:{hashlib.sha256(encoded).hexdigest()}"
 
 
+def _canonical_content_bytes(raw: bytes) -> bytes:
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        return raw
+    return text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+
+
+def _git_changed_paths(root: Path, base_commit: str, head_commit: str) -> list[str]:
+    try:
+        output = subprocess.check_output(
+            ["git", "diff", "--name-only", f"{base_commit}..{head_commit}", "--"],
+            cwd=root,
+            text=True,
+            stderr=subprocess.PIPE,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+        raise PortfolioValidationError(
+            f"cannot enumerate release scope {base_commit}..{head_commit}: {exc}"
+        ) from exc
+    return sorted({path.replace("\\", "/") for path in output.splitlines() if path.strip()})
+
+
+def _git_object_bytes(root: Path, commit: str, path: str) -> bytes:
+    try:
+        return subprocess.check_output(
+            ["git", "show", f"{commit}:{path}"],
+            cwd=root,
+            stderr=subprocess.PIPE,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+        raise PortfolioValidationError(
+            f"cannot read release object {commit}:{path}: {exc}"
+        ) from exc
+
+
+def _git_parents(root: Path, commit: str) -> list[str]:
+    try:
+        line = subprocess.check_output(
+            ["git", "rev-list", "--parents", "-n", "1", commit],
+            cwd=root,
+            text=True,
+            stderr=subprocess.PIPE,
+        ).strip()
+    except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+        raise PortfolioValidationError(f"cannot read parents for {commit}: {exc}") from exc
+    fields = line.split()
+    if not fields or fields[0] != commit:
+        raise PortfolioValidationError(f"unexpected parent record for {commit}")
+    return fields[1:]
+
+
+def _git_is_ancestor(root: Path, ancestor: str, descendant: str) -> bool:
+    return (
+        subprocess.run(
+            ["git", "merge-base", "--is-ancestor", ancestor, descendant],
+            cwd=root,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        ).returncode
+        == 0
+    )
+
+
+def _git_latest_path_commit(root: Path, head: str, path: str) -> str:
+    try:
+        commit = subprocess.check_output(
+            ["git", "log", "-1", "--format=%H", head, "--", path],
+            cwd=root,
+            text=True,
+            stderr=subprocess.PIPE,
+        ).strip()
+    except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+        raise PortfolioValidationError(
+            f"cannot locate the current receipt commit for {path}: {exc}"
+        ) from exc
+    if not re.fullmatch(r"[0-9a-f]{40}", commit):
+        raise PortfolioValidationError(f"current receipt commit is unavailable for {path}")
+    return commit
+
+
+def _git_revision(root: Path, revision: str) -> str:
+    try:
+        value = subprocess.check_output(
+            ["git", "rev-parse", "--verify", revision],
+            cwd=root,
+            text=True,
+            stderr=subprocess.PIPE,
+        ).strip()
+    except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+        raise PortfolioValidationError(f"cannot resolve Git revision {revision}: {exc}") from exc
+    if not re.fullmatch(r"[0-9a-f]{40}", value):
+        raise PortfolioValidationError(f"Git revision is not an exact commit: {revision}")
+    return value
+
+
+def _git_snapshot_fingerprint(
+    root: Path,
+    base_commit: str,
+    content_head_commit: str,
+    excluded_paths: Iterable[str] = (),
+) -> tuple[list[str], str]:
+    paths = _git_changed_paths(root, base_commit, content_head_commit)
+    excluded = set(excluded_paths)
+    fingerprint_paths = [path for path in paths if path not in excluded]
+    rows: list[str] = []
+    for path in fingerprint_paths:
+        raw = _git_object_bytes(root, content_head_commit, path)
+        digest = hashlib.sha256(_canonical_content_bytes(raw)).hexdigest()
+        rows.append(f"{digest}\t{path}\n")
+    aggregate = hashlib.sha256("".join(rows).encode("utf-8")).hexdigest()
+    return paths, f"sha256:{aggregate}"
+
+
+def _historical_windows_index_digest(
+    root: Path,
+    commit: str,
+    paths: Iterable[str],
+    campaign_prefix: str,
+) -> str:
+    """Replay the preserved V1 Windows-path/index convention without promoting it."""
+
+    normalized_prefix = campaign_prefix.rstrip("/") + "/"
+    relative_paths: list[tuple[str, str]] = []
+    for path in paths:
+        if not path.startswith(normalized_prefix):
+            raise PortfolioValidationError(
+                f"historical V1 path is outside its campaign root: {path}"
+            )
+        relative_paths.append((path, path[len(normalized_prefix) :]))
+    ordered = sorted(relative_paths, key=lambda row: PureWindowsPath(row[1]))
+    rows = [
+        {
+            "path": relative,
+            "sha256": hashlib.sha256(_git_object_bytes(root, commit, path)).hexdigest(),
+        }
+        for path, relative in ordered
+    ]
+    encoded = json.dumps(
+        rows, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    ).encode("utf-8")
+    return f"sha256:{hashlib.sha256(encoded).hexdigest()}"
+
+
 def _safe_repo_path(value: str) -> Path:
     if not isinstance(value, str) or not value:
         raise PortfolioValidationError("evidence path is missing")
-    posix = PurePosixPath(value)
-    if posix.is_absolute() or any(part in {"", ".", ".."} for part in posix.parts):
+    if value.startswith("/") or re.match(r"^[A-Za-z]:", value):
         raise PortfolioValidationError(f"unsafe repository path: {value!r}")
-    if re.match(r"^[A-Za-z]:", value) or "\\" in value:
+    if "\\" in value or any(ord(character) < 32 or ord(character) == 127 for character in value):
         raise PortfolioValidationError(f"non-portable repository path: {value!r}")
-    return Path(*posix.parts)
+    segments = value.split("/")
+    if any(segment in {"", ".", ".."} for segment in segments):
+        raise PortfolioValidationError(f"unsafe repository path: {value!r}")
+    invalid_windows_characters = set('<>:"|?*')
+    reserved_windows_names = {
+        "CON",
+        "PRN",
+        "AUX",
+        "NUL",
+        *(f"COM{number}" for number in range(1, 10)),
+        *(f"LPT{number}" for number in range(1, 10)),
+    }
+    for segment in segments:
+        device_stem = segment.split(".", 1)[0].upper()
+        if (
+            segment.endswith((" ", "."))
+            or any(character in invalid_windows_characters for character in segment)
+            or device_stem in reserved_windows_names
+        ):
+            raise PortfolioValidationError(f"non-portable repository path: {value!r}")
+    return Path(*segments)
 
 
 def _is_private_use(character: str) -> bool:
@@ -153,37 +334,40 @@ def scan_public_text(path: str, text: str) -> list[Finding]:
     """Return privacy/sensitive-pattern findings without echoing matched content."""
 
     findings: list[Finding] = []
-    rules = (
-        ("windows_private_path", WINDOWS_PRIVATE_PATH),
-        ("file_uri", re.compile(r"file://", re.I)),
-        ("chat_local_locator", CHAT_LOCAL_LOCATOR),
-        ("private_key_marker", PRIVATE_KEY),
-        ("github_token_shape", GITHUB_TOKEN),
-        ("aws_access_key_shape", AWS_ACCESS_KEY),
-        ("generic_secret_shape", GENERIC_SECRET),
-    )
     for line_number, line in enumerate(text.splitlines(), start=1):
         if any(_is_private_use(character) for character in line):
             findings.append(Finding("unicode_private_use", path, f"line {line_number}"))
-        for rule, pattern in rules:
+        for rule, pattern in SENSITIVE_RULES:
             if pattern.search(line):
                 findings.append(Finding(rule, path, f"line {line_number}"))
     return findings
 
 
-def _public_text_paths(root: Path, packet_root: Path, doctrine_root: Path) -> list[Path]:
-    paths = [root / name for name in EXPECTED_NAVIGATION_FILES]
-    paths.append(root / "PORTFOLIO.md")
-    for directory in (packet_root, doctrine_root):
-        for path in directory.rglob("*"):
-            if (
-                path.is_file()
-                and path.suffix.lower() in TEXT_SUFFIXES
-                and "__pycache__" not in path.parts
-                and path.suffix.lower() != ".pyc"
-            ):
-                paths.append(path)
-    return sorted(set(paths))
+def _sensitive_occurrences(text: str) -> Counter[tuple[str, str]]:
+    occurrences: Counter[tuple[str, str]] = Counter()
+    for line in text.splitlines():
+        for character in line:
+            if _is_private_use(character):
+                occurrences[("unicode_private_use", character)] += 1
+        for rule, pattern in SENSITIVE_RULES:
+            for match in pattern.finditer(line):
+                occurrences[(rule, match.group(0))] += 1
+    return occurrences
+
+
+def scan_candidate_added_text(path: str, current: str, baseline: str) -> list[Finding]:
+    """Report only sensitive occurrences added above the exact base snapshot."""
+
+    current_occurrences = _sensitive_occurrences(current)
+    baseline_occurrences = _sensitive_occurrences(baseline)
+    findings: list[Finding] = []
+    for (rule, matched_value), count in sorted(current_occurrences.items()):
+        added = count - baseline_occurrences.get((rule, matched_value), 0)
+        if added > 0:
+            findings.append(
+                Finding(rule, path, f"{added} candidate-added occurrence(s)")
+            )
+    return findings
 
 
 def _load_doctrine_validator(validator_path: Path) -> ModuleType:
@@ -374,6 +558,434 @@ def _check_doctrine_freeze(
     }
 
 
+def _load_json_at_commit(root: Path, commit: str, path: str) -> dict[str, Any]:
+    raw = _git_object_bytes(root, commit, path)
+    try:
+        value = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise PortfolioValidationError(
+            f"cannot parse historical JSON {commit}:{path}: {exc}"
+        ) from exc
+    if not isinstance(value, dict):
+        raise PortfolioValidationError(
+            f"historical JSON is not an object: {commit}:{path}"
+        )
+    return value
+
+
+def _scan_release_snapshot(
+    root: Path,
+    base_commit: str,
+    content_head: str,
+    receipt_commit: str,
+    release_paths: Iterable[str],
+) -> tuple[list[Finding], int, int]:
+    findings: list[Finding] = []
+    scanned = 0
+    skipped = 0
+    receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    for path in sorted(set(release_paths)):
+        if PurePosixPath(path).suffix.lower() not in TEXT_SUFFIXES:
+            continue
+        commit = receipt_commit if path == receipt_path else content_head
+        raw = _git_object_bytes(root, commit, path)
+        try:
+            text = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            skipped += 1
+            findings.append(
+                Finding(
+                    "release_scope_privacy_scan",
+                    path,
+                    "text-suffixed release file is not valid UTF-8",
+                )
+            )
+            continue
+        try:
+            baseline_raw = _git_object_bytes(root, base_commit, path)
+        except PortfolioValidationError:
+            baseline_text = ""
+        else:
+            try:
+                baseline_text = baseline_raw.decode("utf-8")
+            except UnicodeDecodeError:
+                baseline_text = ""
+        scanned += 1
+        findings.extend(scan_candidate_added_text(path, text, baseline_text))
+    return findings, scanned, skipped
+
+
+def _composed_snapshot_drift(
+    root: Path,
+    anchor_commit: str,
+    content_head: str,
+    receipt_commit: str,
+    release_paths: Iterable[str],
+) -> list[str]:
+    """Return release paths whose integration-anchor bytes differ from review."""
+
+    receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    drift: list[str] = []
+    for path in sorted(set(release_paths)):
+        expected_commit = receipt_commit if path == receipt_path else content_head
+        try:
+            expected = _git_object_bytes(root, expected_commit, path)
+            observed = _git_object_bytes(root, anchor_commit, path)
+        except PortfolioValidationError:
+            drift.append(path)
+            continue
+        if observed != expected:
+            drift.append(path)
+    return drift
+
+
+def _is_durable_public_path(path: str, doctrine_prefix: str) -> bool:
+    """Identify release surfaces that require a fresh receipt after integration."""
+
+    protected_files = {
+        *EXPECTED_PUBLIC_FILES,
+        *EXPECTED_NAVIGATION_FILES,
+        "scripts/validation_contracts.py",
+    }
+    return (
+        path in protected_files
+        or path.startswith("docs/portfolio/logos-trust-layer/")
+        or path.startswith(doctrine_prefix)
+    )
+
+
+def _check_release_scope(
+    manifest: dict[str, Any], receipt: dict[str, Any], root: Path
+) -> tuple[list[Finding], dict[str, int]]:
+    findings: list[Finding] = []
+    scope = manifest.get("release_scope", {})
+    full = receipt.get("full_pr_composite_scope", {})
+    post_v1 = receipt.get("post_v1_candidate_slice", {})
+    receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    doctrine_prefix = (
+        "docs/roadmap/logos-stewardship-architecture-buildout/"
+        "revisions/doctrine-mesh-v2/"
+    )
+
+    expected_total = (
+        scope.get("v1_checkpoint_path_count", 0)
+        + scope.get("v2_path_count", 0)
+        + scope.get("post_v1_portfolio_path_count", 0)
+        - scope.get("shared_path_count", 0)
+    )
+    if expected_total != scope.get("total_unique_path_count"):
+        findings.append(Finding("release_scope_arithmetic", "project-evidence.yaml", "composite path arithmetic mismatch"))
+    if scope.get("v1_only_path_count") + scope.get("shared_path_count") != scope.get("v1_checkpoint_path_count"):
+        findings.append(Finding("release_scope_arithmetic", "project-evidence.yaml", "V1 path partition mismatch"))
+    if scope.get("v2_path_count") + scope.get("post_v1_portfolio_path_count") != scope.get("post_v1_candidate_path_count"):
+        findings.append(Finding("release_scope_arithmetic", "project-evidence.yaml", "post-V1 slice arithmetic mismatch"))
+    if scope.get("receipt_excluded_path_count") != scope.get("total_unique_path_count", 0) - 1:
+        findings.append(Finding("release_scope_arithmetic", "project-evidence.yaml", "composite receipt exclusion mismatch"))
+    if scope.get("post_v1_receipt_excluded_path_count") != scope.get("post_v1_candidate_path_count", 0) - 1:
+        findings.append(Finding("release_scope_arithmetic", "project-evidence.yaml", "post-V1 receipt exclusion mismatch"))
+
+    historical = scope.get("historical_v1", {})
+    for field in ("validation_receipt_ref", "independent_review_ref"):
+        try:
+            relative = _safe_repo_path(historical.get(field, ""))
+        except PortfolioValidationError as exc:
+            findings.append(Finding("release_scope_v1_evidence", "project-evidence.yaml", str(exc)))
+            continue
+        if not (root / relative).is_file():
+            findings.append(Finding("release_scope_v1_evidence", relative.as_posix(), "historical V1 evidence path is missing"))
+
+    comparison_fields = {
+        "base_commit": scope.get("base_commit"),
+        "path_count": scope.get("total_unique_path_count"),
+        "fingerprinted_path_count": scope.get("receipt_excluded_path_count"),
+        "algorithm": scope.get("canonical_digest_algorithm"),
+    }
+    for field, expected in comparison_fields.items():
+        if full.get(field) != expected:
+            findings.append(Finding("release_scope_receipt", PORTFOLIO_RECEIPT_RELATIVE.as_posix(), f"full_pr_composite_scope.{field} mismatch"))
+    post_comparisons = {
+        "parent_commit": scope.get("v1_checkpoint_commit"),
+        "path_count": scope.get("post_v1_candidate_path_count"),
+        "fingerprinted_path_count": scope.get("post_v1_receipt_excluded_path_count"),
+        "algorithm": scope.get("canonical_digest_algorithm"),
+    }
+    for field, expected in post_comparisons.items():
+        if post_v1.get(field) != expected:
+            findings.append(Finding("release_scope_receipt", PORTFOLIO_RECEIPT_RELATIVE.as_posix(), f"post_v1_candidate_slice.{field} mismatch"))
+
+    content_head = full.get("content_head_commit")
+    if not isinstance(content_head, str) or not re.fullmatch(r"[0-9a-f]{40}", content_head):
+        findings.append(Finding("release_scope_head", PORTFOLIO_RECEIPT_RELATIVE.as_posix(), "content head is not an exact commit"))
+        return findings, {
+            "release_unique_paths": 0,
+            "release_fingerprinted_paths": 0,
+            "release_text_files_scanned": 0,
+            "release_text_files_skipped": 0,
+        }
+
+    base = scope.get("base_commit", "")
+    v1 = scope.get("v1_checkpoint_commit", "")
+    historical = scope.get("historical_v1", {})
+    staged_parent = historical.get("staged_candidate_parent", "")
+    for ancestor, descendant, label in (
+        (base, staged_parent, "base-to-staged-parent"),
+        (staged_parent, v1, "staged-parent-to-v1"),
+        (v1, content_head, "v1-to-content-head"),
+    ):
+        if not _git_is_ancestor(root, ancestor, descendant):
+            findings.append(
+                Finding(
+                    "release_scope_ancestry",
+                    receipt_path,
+                    f"{label} ancestry is not retained",
+                )
+            )
+
+    head = _git_revision(root, "HEAD")
+    receipt_commit = _git_latest_path_commit(root, head, receipt_path)
+    receipt_parents = _git_parents(root, receipt_commit)
+    if receipt_parents != [content_head]:
+        findings.append(
+            Finding(
+                "release_scope_finalization",
+                receipt_path,
+                "current receipt was not committed directly on the declared content head",
+            )
+        )
+    if _git_changed_paths(root, content_head, receipt_commit) != [receipt_path]:
+        findings.append(
+            Finding(
+                "release_scope_finalization",
+                receipt_path,
+                "finalization commit must change exactly the self-describing receipt",
+            )
+        )
+    if not _git_is_ancestor(root, receipt_commit, head):
+        findings.append(
+            Finding(
+                "release_scope_finalization",
+                receipt_path,
+                "current receipt commit is not retained in HEAD ancestry",
+            )
+        )
+
+    head_parents = _git_parents(root, head)
+    release_anchor: str | None = receipt_commit
+    if head != receipt_commit and receipt_commit in head_parents:
+        release_anchor = head
+    elif head != receipt_commit:
+        try:
+            merge_candidates = subprocess.check_output(
+                ["git", "rev-list", "--merges", "--ancestry-path", f"{receipt_commit}..{head}"],
+                cwd=root,
+                text=True,
+                stderr=subprocess.PIPE,
+            ).splitlines()
+        except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+            raise PortfolioValidationError(f"cannot locate release merge anchor: {exc}") from exc
+        merge_anchor = next(
+            (
+                commit
+                for commit in merge_candidates
+                if receipt_commit in _git_parents(root, commit)
+            ),
+            None,
+        )
+        if merge_anchor is None:
+            release_anchor = None
+            findings.append(
+                Finding(
+                    "release_scope_finalization",
+                    receipt_path,
+                    "HEAD is neither the receipt commit nor a descendant of its direct merge anchor",
+                )
+            )
+        else:
+            release_anchor = merge_anchor
+            protected_drift = [
+                path
+                for path in _git_changed_paths(root, merge_anchor, head)
+                if _is_durable_public_path(path, doctrine_prefix)
+            ]
+            if protected_drift:
+                findings.append(
+                    Finding(
+                        "release_scope_post_merge_drift",
+                        receipt_path,
+                        f"{len(protected_drift)} protected release paths changed without a fresh receipt",
+                    )
+                )
+
+    full_paths, full_digest = _git_snapshot_fingerprint(
+        root,
+        base,
+        content_head,
+        (receipt_path,),
+    )
+    post_paths, post_digest = _git_snapshot_fingerprint(
+        root,
+        v1,
+        content_head,
+        (receipt_path,),
+    )
+    if release_anchor is not None and release_anchor != receipt_commit:
+        integration_drift = _composed_snapshot_drift(
+            root,
+            release_anchor,
+            content_head,
+            receipt_commit,
+            full_paths,
+        )
+        if integration_drift:
+            findings.append(
+                Finding(
+                    "release_scope_merge_tree",
+                    receipt_path,
+                    f"{len(integration_drift)} release paths differ at the integration anchor",
+                )
+            )
+    historical_exclusions = tuple(historical.get("portable_replay_excluded_paths", []))
+    historical_paths, historical_digest = _git_snapshot_fingerprint(
+        root,
+        staged_parent,
+        v1,
+        historical_exclusions,
+    )
+    historical_fingerprinted_paths = [
+        path for path in historical_paths if path not in set(historical_exclusions)
+    ]
+    historical_environment_digest = _historical_windows_index_digest(
+        root,
+        v1,
+        historical_fingerprinted_paths,
+        "docs/roadmap/logos-stewardship-architecture-buildout",
+    )
+
+    v1_set = set(historical_paths)
+    post_set = set(post_paths)
+    shared_paths = v1_set & post_set
+    v1_only_paths = v1_set - post_set
+    doctrine_paths = {path for path in post_set if path.startswith(doctrine_prefix)}
+    post_v1_other_paths = post_set - doctrine_paths
+    unchanged_v1_only = {
+        path
+        for path in v1_only_paths
+        if _git_object_bytes(root, v1, path) == _git_object_bytes(root, content_head, path)
+    }
+
+    if len(full_paths) != scope.get("total_unique_path_count"):
+        findings.append(Finding("release_scope_path_count", PORTFOLIO_RECEIPT_RELATIVE.as_posix(), "full PR path count mismatch"))
+    if len(post_paths) != scope.get("post_v1_candidate_path_count"):
+        findings.append(Finding("release_scope_path_count", PORTFOLIO_RECEIPT_RELATIVE.as_posix(), "post-V1 path count mismatch"))
+    partition_counts = {
+        "v1_checkpoint_path_count": len(v1_set),
+        "v1_only_path_count": len(v1_only_paths),
+        "shared_path_count": len(shared_paths),
+        "v2_path_count": len(doctrine_paths),
+        "post_v1_portfolio_path_count": len(post_v1_other_paths),
+    }
+    for field, observed in partition_counts.items():
+        if scope.get(field) != observed:
+            findings.append(
+                Finding(
+                    "release_scope_partition",
+                    "project-evidence.yaml",
+                    f"{field} does not match the Git-object partition",
+                )
+            )
+    if len(unchanged_v1_only) != scope.get("v1_only_path_count"):
+        findings.append(
+            Finding(
+                "release_scope_v1_immutability",
+                "project-evidence.yaml",
+                "one or more V1-only blobs changed after the frozen checkpoint",
+            )
+        )
+    if len(historical_paths) != historical.get("historical_path_count"):
+        findings.append(
+            Finding(
+                "release_scope_v1_replay",
+                "project-evidence.yaml",
+                "historical V1 path count mismatch",
+            )
+        )
+    if len(historical_paths) - len(historical_exclusions) != historical.get("historical_non_receipt_path_count"):
+        findings.append(
+            Finding(
+                "release_scope_v1_replay",
+                "project-evidence.yaml",
+                "historical V1 non-receipt path count mismatch",
+            )
+        )
+    if historical.get("portable_replay_algorithm") != scope.get("canonical_digest_algorithm"):
+        findings.append(
+            Finding(
+                "release_scope_v1_replay",
+                "project-evidence.yaml",
+                "portable historical replay algorithm is not the declared canonical algorithm",
+            )
+        )
+    if historical_digest != historical.get("portable_replay_digest"):
+        findings.append(
+            Finding(
+                "release_scope_v1_replay",
+                "project-evidence.yaml",
+                "portable historical V1 digest mismatch",
+            )
+        )
+    if (
+        historical.get("historical_receipt_digest_algorithm_id")
+        != "windows_pathlib_staged_index_path_sha256_rows.v1"
+        or historical.get("historical_receipt_replay_status")
+        != "historical_evidence_only"
+        or historical_environment_digest
+        != historical.get("historical_non_receipt_digest")
+    ):
+        findings.append(
+            Finding(
+                "release_scope_v1_historical_digest",
+                "project-evidence.yaml",
+                "historical staged-index digest or its evidence-only classification is invalid",
+            )
+        )
+
+    historical_validation = _load_json_at_commit(
+        root, v1, historical.get("validation_receipt_ref", "")
+    )
+    historical_review = _load_json_at_commit(
+        root, v1, historical.get("independent_review_ref", "")
+    )
+    historical_receipt_digest = historical.get("historical_non_receipt_digest")
+    if (
+        historical_validation.get("validation_input", {}).get("canonical_path_hash_rows_digest")
+        != historical_receipt_digest
+        or historical_review.get("frozen_input", {}).get("non_receipt_path_hash_rows_digest")
+        != historical_receipt_digest
+    ):
+        findings.append(
+            Finding(
+                "release_scope_v1_evidence",
+                "project-evidence.yaml",
+                "historical V1 receipts do not agree on their recorded digest",
+            )
+        )
+    if full_digest != full.get("digest"):
+        findings.append(Finding("release_scope_digest", PORTFOLIO_RECEIPT_RELATIVE.as_posix(), "full PR composite digest mismatch"))
+    if post_digest != post_v1.get("digest"):
+        findings.append(Finding("release_scope_digest", PORTFOLIO_RECEIPT_RELATIVE.as_posix(), "post-V1 slice digest mismatch"))
+
+    scan_findings, scanned, skipped = _scan_release_snapshot(
+        root, base, content_head, receipt_commit, full_paths
+    )
+    findings.extend(scan_findings)
+    return findings, {
+        "release_unique_paths": len(full_paths),
+        "release_fingerprinted_paths": len(full_paths) - 1,
+        "release_text_files_scanned": scanned,
+        "release_text_files_skipped": skipped,
+    }
+
+
 def _check_portfolio_prose(root: Path) -> tuple[list[Finding], dict[str, int]]:
     findings: list[Finding] = []
     try:
@@ -405,9 +1017,8 @@ def _check_navigation(root: Path) -> list[Finding]:
     return findings
 
 
-def _check_receipt(root: Path) -> list[Finding]:
-    relative = Path("docs/portfolio/logos-trust-layer/validation-receipt.json")
-    receipt = _load_json(root / relative)
+def _check_receipt_payload(receipt: dict[str, Any]) -> list[Finding]:
+    relative = PORTFOLIO_RECEIPT_RELATIVE
     findings: list[Finding] = []
     required = {
         "schema_version": "logos.portfolio_validation_receipt.v1",
@@ -418,11 +1029,29 @@ def _check_receipt(root: Path) -> list[Finding]:
     for field, expected in required.items():
         if receipt.get(field) != expected:
             findings.append(Finding("portfolio_receipt", relative.as_posix(), f"{field} must equal {expected}"))
-    if receipt.get("runtime_activation_authorized") is not False:
-        findings.append(Finding("portfolio_receipt_authority", relative.as_posix(), "runtime activation must remain false"))
+    authority_fields = {
+        "runtime_activation_authorized": "runtime activation",
+        "source_ingestion_authorized": "source ingestion",
+        "substantive_doctrine_implementation_authorized": "substantive doctrine implementation",
+        "completed_doctrine_corpus": "completed doctrine corpus",
+        "qualified_theological_authority_granted": "qualified theological authority",
+    }
+    for field, label in authority_fields.items():
+        if receipt.get(field) is not False:
+            findings.append(
+                Finding(
+                    "portfolio_receipt_authority",
+                    relative.as_posix(),
+                    f"{label} must remain false",
+                )
+            )
     if receipt.get("receipt_digest") != _canonical_digest(receipt, ("receipt_digest",)):
         findings.append(Finding("portfolio_receipt_digest", relative.as_posix(), "canonical digest mismatch"))
     return findings
+
+
+def _check_receipt(root: Path) -> list[Finding]:
+    return _check_receipt_payload(_load_json(root / PORTFOLIO_RECEIPT_RELATIVE))
 
 
 def validate_repository(root: Path = ROOT) -> ValidationResult:
@@ -439,6 +1068,7 @@ def validate_repository(root: Path = ROOT) -> ValidationResult:
 
     manifest = _load_yaml(manifest_path)
     schema = _load_json(schema_path)
+    portfolio_receipt = _load_json(root / PORTFOLIO_RECEIPT_RELATIVE)
     if not isinstance(manifest, dict) or not isinstance(schema, dict):
         raise PortfolioValidationError("manifest and schema must be objects")
 
@@ -446,6 +1076,10 @@ def validate_repository(root: Path = ROOT) -> ValidationResult:
     findings.extend(_check_manifest_schema(manifest, schema, manifest_path, root))
     findings.extend(_check_evidence_references(manifest, root))
     findings.extend(_check_repository_inventory(manifest))
+    release_findings, release_metrics = _check_release_scope(
+        manifest, portfolio_receipt, root
+    )
+    findings.extend(release_findings)
     findings.extend(_check_agent_mesh(root))
     doctrine_findings, doctrine_metrics = _check_doctrine_freeze(
         manifest, doctrine_root, doctrine_validator_path, root
@@ -456,22 +1090,11 @@ def validate_repository(root: Path = ROOT) -> ValidationResult:
     findings.extend(_check_navigation(root))
     findings.extend(_check_receipt(root))
 
-    scanned_count = 0
-    for path in _public_text_paths(root, packet_root, doctrine_root):
-        try:
-            text = path.read_text(encoding="utf-8")
-        except UnicodeDecodeError:
-            continue
-        except OSError as exc:
-            raise PortfolioValidationError(f"cannot read public text {path}: {exc}") from exc
-        scanned_count += 1
-        findings.extend(scan_public_text(path.relative_to(root).as_posix(), text))
-
     metrics = {
         "manifest_repositories": len(manifest.get("repositories", [])),
         "manifest_capabilities": len(manifest.get("capabilities", [])),
-        "public_text_files_scanned": scanned_count,
         **doctrine_metrics,
+        **release_metrics,
         **prose_metrics,
     }
     return ValidationResult(tuple(sorted(set(findings))), metrics)

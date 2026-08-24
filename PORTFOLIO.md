@@ -267,11 +267,12 @@ this release. It contains:
 - schemas for attempts, events, receipts, coverage, role gaps, decisions, source
   manifests, qualifications, and controller evidence;
 - negative fixtures, red-team and premortem repairs, a deterministic validator,
-  19 passing adversarial/static tests, frozen digests, and independent review.
+  20 passing adversarial/static tests, including claimed-path traversal
+  regression coverage, frozen digests, and independent review.
 
 The package’s own receipt reports 66 parsed structured files, 13 capability
 roles, 68 domain profiles, zero static audit failures, zero internal Markdown
-link failures, and 19 tests passing. Its independent review is deliberately
+link failures, and 20 tests passing. Its independent review is deliberately
 described as `partly_verified_non_authorizing`; cross-provider independence is
 not claimed.
 

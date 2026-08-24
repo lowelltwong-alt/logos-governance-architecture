@@ -49,20 +49,33 @@ For every material claim in PORTFOLIO.md:
   or a roadmap into delivered work.
 
 Independently verify these high-risk boundaries:
-1. Doctrine Mesh V2 contains exactly 90 managed files: 85 payload files and 5
+1. The full PR contains 131 unique paths: 25 V1 campaign paths plus 90 Doctrine
+   Mesh V2 paths plus 21 post-V1 portfolio/governance paths, minus 5 shared
+   paths. Distinguish this from the 111-path post-V1 candidate slice.
+   Require the integration anchor to byte-match all 131 composed paths. For a
+   later `main` descendant, distinguish the current protected-surface check
+   (front door, root AI navigation, doctrine package, and validation contracts)
+   from a claim that all `HEAD` bytes still equal that historical snapshot.
+   Treat registry and dependency-map evolution as separately governed, and use
+   the receipt's pinned commits for historic-state claims.
+   Reproduce both the environment-bound historical V1 digest and its separate
+   portable Git-object replay; do not describe the historical convention as
+   portable.
+2. Doctrine Mesh V2 contains exactly 90 managed files: 85 payload files and 5
    administrative evidence files, excluding interpreter caches.
-2. Its frozen digests replay against revision-manifest.yaml and
+3. Its frozen digests replay against revision-manifest.yaml and
    FINAL-SAVED-VERSION.yaml.
-3. The final validator reports specification-only readiness and 19 tests pass.
-4. The independent review is partly_verified_non_authorizing and does not claim
+4. The final validator reports specification-only readiness and 20 tests pass,
+   including claimed-path traversal regression coverage.
+5. The independent review is partly_verified_non_authorizing and does not claim
    cross-provider independence.
-5. Runtime activation, source ingestion, substantive doctrine implementation,
+6. Runtime activation, source ingestion, substantive doctrine implementation,
    completed doctrine corpus, and qualified theological authority remain false.
-6. No portfolio path exposes a local workstation path, chat-local locator,
+7. No portfolio path exposes a local workstation path, chat-local locator,
    credential-shaped token, or private attachment reference.
-7. Every Mermaid diagram has a nearby prose explanation that communicates the
+8. Every Mermaid diagram has a nearby prose explanation that communicates the
    same relationship without the diagram.
-8. The four repository metrics are tied to exact public commits and described as
+9. The four repository metrics are tied to exact public commits and described as
    path signals rather than current CI or capability counts.
 
 If you can run local commands safely, rerun:

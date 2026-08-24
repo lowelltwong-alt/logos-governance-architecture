@@ -27,6 +27,33 @@ validator pass.
 | [`scripts/validate_portfolio_front_door.py`](../../../scripts/validate_portfolio_front_door.py) | Deterministic schema, evidence, privacy, navigation, diagram, and doctrine-freeze checks | Bounded structural/policy proof only |
 | [`tests/test_portfolio_front_door.py`](../../../tests/test_portfolio_front_door.py) | Positive and negative regression cases | Test coverage is not completeness |
 
+## Release accounting
+
+PR #118 carries 131 unique base-to-head paths, not merely the latest public
+packet. Its composite is 25 historical V1 campaign paths, 90 Doctrine Mesh V2
+paths, and 21 post-V1 portfolio/governance paths, with five paths shared between
+V1 and the later portfolio slice: `25 + 90 + 21 - 5 = 131`.
+
+The later post-`410c7e4` candidate is a distinct 111-path slice: 90 Doctrine
+Mesh V2 paths plus 21 portfolio/governance paths. The validation receipt records
+both scopes separately. Twenty V1-only paths remain byte-identical to their
+reviewed checkpoint; five shared V1 paths were changed and revalidated in the
+later slice. The [historical V1 validation receipt](../../roadmap/logos-stewardship-architecture-buildout/checks/validation-receipt.json)
+and [independent review](../../roadmap/logos-stewardship-architecture-buildout/checks/final-independent-review.json)
+retain their original staged-candidate digest convention and are cited as
+historical evidence rather than rewritten as current V2 proof. The manifest
+labels that Windows-path/index convention as environment-bound historical
+evidence and adds a separate ordinal Git-object replay digest for portable
+verification of the same 23 non-receipt blobs.
+
+At the integration anchor, the validator requires all 131 composed release
+paths to byte-match the pinned content and receipt commits. On later `main`
+descendants it instead guards the current recruiter front door, root AI
+navigation, Doctrine Mesh V2 package, and validation-contract surfaces. Shared
+registry and dependency-map records may evolve under their own governance, so
+this does not claim that every later `HEAD` byte equals the historical release;
+historic-state claims must use the receipt's pinned commits.
+
 ## Five ways to inspect the work
 
 ### Recruiter or hiring manager
@@ -103,7 +130,7 @@ immediately below each diagram for accessibility and non-Mermaid clients:
 
 ## Doctrine Mesh V2 receipt chain
 
-The public doctrine-mesh release contains exactly 90 managed source/evidence
+The public doctrine-mesh package contains exactly 90 managed source/evidence
 files: 85 frozen payload files plus 5 administrative files.
 
 Follow this order:

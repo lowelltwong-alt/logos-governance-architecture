@@ -32,6 +32,15 @@ def load_schema() -> dict:
     )
 
 
+def load_receipt() -> dict:
+    return json.loads(
+        (
+            ROOT
+            / "docs/portfolio/logos-trust-layer/validation-receipt.json"
+        ).read_text(encoding="utf-8")
+    )
+
+
 def test_public_portfolio_candidate_passes() -> None:
     result = validator.validate_repository(ROOT)
 
@@ -100,9 +109,74 @@ def test_public_text_scan_detects_chat_local_locator_without_literal_fixture() -
     assert findings == [validator.Finding("chat_local_locator", "candidate.md", "line 1")]
 
 
+def test_candidate_added_scan_suppresses_unchanged_base_finding() -> None:
+    private_path = "".join(("C:", "\\", "wt", "\\", "historical"))
+
+    assert validator.scan_candidate_added_text(
+        "registry.yaml", private_path, private_path
+    ) == []
+
+
+def test_candidate_added_scan_rejects_new_sensitive_occurrence_without_echo() -> None:
+    private_path = "".join(("C:", "\\", "wt", "\\", "new-private"))
+
+    findings = validator.scan_candidate_added_text(
+        "candidate.yaml", private_path, "clean baseline"
+    )
+
+    assert findings == [
+        validator.Finding(
+            "windows_private_path",
+            "candidate.yaml",
+            "1 candidate-added occurrence(s)",
+        )
+    ]
+    assert private_path not in findings[0].render()
+
+
+def test_release_snapshot_fails_closed_on_invalid_utf8_text(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes",
+        lambda _root, _commit, _path: b"\xff",
+    )
+
+    findings, scanned, skipped = validator._scan_release_snapshot(
+        ROOT,
+        "base",
+        "content",
+        "receipt",
+        ["candidate.md"],
+    )
+
+    assert findings == [
+        validator.Finding(
+            "release_scope_privacy_scan",
+            "candidate.md",
+            "text-suffixed release file is not valid UTF-8",
+        )
+    ]
+    assert scanned == 0
+    assert skipped == 1
+
+
 @pytest.mark.parametrize(
     "value",
-    ["/absolute", "../escape", "safe/../escape", "C:/private", "safe\\windows"],
+    [
+        "/absolute",
+        "../escape",
+        "safe/../escape",
+        "C:/private",
+        "safe\\windows",
+        "safe//child",
+        "safe/./child",
+        "safe/child/",
+        "safe/control\nchild",
+        "safe/CON",
+        "safe/name:stream",
+    ],
 )
 def test_nonportable_evidence_paths_fail_closed(value: str) -> None:
     with pytest.raises(validator.PortfolioValidationError):
@@ -124,6 +198,120 @@ def test_repository_count_totals_are_reproducible_from_rows() -> None:
         assert manifest["snapshot"]["totals"][field] == sum(
             repository["counts"][field] for repository in manifest["repositories"]
         )
+
+
+def test_full_pr_release_scope_is_replayable_and_fails_on_count_drift() -> None:
+    manifest = load_manifest()
+    receipt = load_receipt()
+    findings, metrics = validator._check_release_scope(manifest, receipt, ROOT)
+
+    assert findings == []
+    assert metrics["release_unique_paths"] == 131
+    assert metrics["release_fingerprinted_paths"] == 130
+    assert metrics["release_text_files_scanned"] > 0
+    assert metrics["release_text_files_skipped"] == 0
+
+    drifted = copy.deepcopy(manifest)
+    drifted["release_scope"]["total_unique_path_count"] = 111
+    findings, _ = validator._check_release_scope(drifted, receipt, ROOT)
+    assert any(finding.rule == "release_scope_arithmetic" for finding in findings)
+
+
+def test_release_scope_rejects_a_stale_content_head() -> None:
+    manifest = load_manifest()
+    receipt = copy.deepcopy(load_receipt())
+    receipt["full_pr_composite_scope"]["content_head_commit"] = manifest[
+        "release_scope"
+    ]["v1_checkpoint_commit"]
+
+    findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
+
+    assert any(finding.rule == "release_scope_finalization" for finding in findings)
+
+
+def test_historical_v1_digest_is_reproduced_without_promoting_its_convention() -> None:
+    historical = load_manifest()["release_scope"]["historical_v1"]
+    paths = validator._git_changed_paths(
+        ROOT,
+        historical["staged_candidate_parent"],
+        historical["artifact_commit"],
+    )
+    fingerprinted = [
+        path for path in paths if path not in historical["portable_replay_excluded_paths"]
+    ]
+
+    digest = validator._historical_windows_index_digest(
+        ROOT,
+        historical["artifact_commit"],
+        fingerprinted,
+        "docs/roadmap/logos-stewardship-architecture-buildout",
+    )
+
+    assert historical["historical_receipt_replay_status"] == "historical_evidence_only"
+    assert digest == historical["historical_non_receipt_digest"]
+
+
+def test_composed_snapshot_drift_detects_merge_tree_change(monkeypatch: pytest.MonkeyPatch) -> None:
+    receipt_path = validator.PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    objects = {
+        ("content", "PORTFOLIO.md"): b"reviewed portfolio",
+        ("receipt", receipt_path): b"reviewed receipt",
+        ("merge", "PORTFOLIO.md"): b"changed during merge",
+        ("merge", receipt_path): b"reviewed receipt",
+    }
+
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes",
+        lambda _root, commit, path: objects[(commit, path)],
+    )
+
+    assert validator._composed_snapshot_drift(
+        ROOT,
+        "merge",
+        "content",
+        "receipt",
+        [receipt_path, "PORTFOLIO.md"],
+    ) == ["PORTFOLIO.md"]
+
+
+def test_durable_public_path_protects_root_navigation_but_not_shared_registry() -> None:
+    doctrine_prefix = (
+        "docs/roadmap/logos-stewardship-architecture-buildout/"
+        "revisions/doctrine-mesh-v2/"
+    )
+
+    assert validator._is_durable_public_path("AI_FRONT_DOOR.md", doctrine_prefix)
+    assert validator._is_durable_public_path("README.md", doctrine_prefix)
+    assert validator._is_durable_public_path("scripts/validation_contracts.py", doctrine_prefix)
+    assert validator._is_durable_public_path(
+        f"{doctrine_prefix}README.md", doctrine_prefix
+    )
+    assert not validator._is_durable_public_path(
+        "governance/registry/FAMILY_WORK_REGISTRY.yaml", doctrine_prefix
+    )
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "runtime_activation_authorized",
+        "source_ingestion_authorized",
+        "substantive_doctrine_implementation_authorized",
+        "completed_doctrine_corpus",
+        "qualified_theological_authority_granted",
+    ],
+)
+def test_portfolio_receipt_rejects_authority_elevation(field: str) -> None:
+    receipt = copy.deepcopy(load_receipt())
+    receipt[field] = True
+    receipt["receipt_digest"] = validator._canonical_digest(
+        receipt, ("receipt_digest",)
+    )
+
+    findings = validator._check_receipt_payload(receipt)
+
+    assert any(finding.rule == "portfolio_receipt_authority" for finding in findings)
 
 
 def test_release_mesh_keeps_one_writer_and_distinct_checker() -> None:

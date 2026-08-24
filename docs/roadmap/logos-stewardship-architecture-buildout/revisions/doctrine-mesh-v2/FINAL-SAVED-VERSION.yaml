@@ -2,24 +2,24 @@ metadata:
   object_type: doctrine_mesh_final_saved_version
   trust_zone: proposed
   lifecycle_status: saved_specification_only
-  provenance_note: "Resaved on 2026-08-24 by Codex root after deterministic replay, adversarial fixtures, task-separated read-only challenge lanes, staged EOF-whitespace repair, and checkout-newline portability repair."
+  provenance_note: "Resaved on 2026-08-24 by Codex root after deterministic replay, twenty adversarial tests, and two task-separated read-only checks of the claimed-scope traversal repair and exact payload freeze."
   reason_for_inclusion: "Provide one exact terminal index for Lowell and the optional Fable reviewer without implying implementation, research, doctrine, or publication authority."
 schema_version: logos.doctrine_mesh_final_saved_version.v2
 save_id: LOGOS-DOCTRINE-MESH-SAVED-002
 status: saved_specification_only
 revision_manifest_ref: revision-manifest.yaml
-revision_manifest_digest: sha256:d06f896d9ea473ed6a37d89857d753df182d31205eda777909f2436ae83a00a3
-payload_digest: sha256:00143bcff73658b6051f8ff34dffd27ebbb72730893e4478246c1c23009a5bdf
+revision_manifest_digest: sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1
+payload_digest: sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946
 payload_file_count: 85
 validation_receipt_ref: checks/validation-receipt.json
-validation_receipt_file_digest: sha256:28b617da220726baa9f49615cfb22f598c1283ee9cc250590e24193d154ae90b
-validation_receipt_object_digest: sha256:0ba8f548b57fbd951de5782bf789c8e8cf576a2aeec15cf341d7f8f5483d7697
+validation_receipt_file_digest: sha256:c24f07711c432443b1db0b3dbf5b815e5c9c11781d6837592b060de7485659d7
+validation_receipt_object_digest: sha256:9911d192d8b66c5bf0806cf8c025ea22c0070af6986b706d9db2faa86aef4355
 independent_review_ref: checks/independent-review.json
-independent_review_file_digest: sha256:f2e81fe28245b65f063607dd5c6b7eef85955ab3b0a8289749b36073c884278a
-independent_review_object_digest: sha256:93589f975f27ad88383974b238df55962f0627ada36248ad5f218691d98925c8
+independent_review_file_digest: sha256:d4883122aa5d696141ce24bd63fb3c446132476c252cf5b66e7f15bebc525846
+independent_review_object_digest: sha256:a4ad475cc54db85e6cbdc60353b1c790302f1a28aa614e46d95620e6402e158e
 fable_manifest_ref: fable/fable-review-manifest.yaml
-fable_manifest_file_digest: sha256:e8a56fa4576a184a90cba5a638cf8630d0e8efe731418443e22f76404700d01c
-fable_manifest_object_digest: sha256:1a08add823ddb207c9adb5e53318ce6bb2db43744fd1ce5e3d38e0ab79e0bf7c
+fable_manifest_file_digest: sha256:f7eb2fa6b860d0ff8dfe9ad74a67b96101465328441ad7546060a6ef634cce28
+fable_manifest_object_digest: sha256:829969a988555e7b413f827369bfb7c6516f0d0470b8b9f3925b81e637b321d0
 postflight_receipt_ref: evidence/receipts/postflight.json
 postflight_receipt_file_digest: sha256:c6fffe56fceb2b33f859f0cf57d06c063a2128740ba0319e73e592516d958217
 postflight_receipt_object_digest: sha256:d148b292e056b4039b5ad21c6f80f8191ca03cc5362bcb49b84589eac6f6674d
@@ -32,5 +32,5 @@ cross_repository_write_authorized: false
 publication_authorized: false
 commit_created: false
 Fable_external_review_status: not_sent
-saved_at: "2026-08-24T19:31:11Z"
-final_digest: sha256:7999e16be3f03ebb1eb8df640f79b39c101764700f820172c33ef0b18800e85a
+saved_at: "2026-08-24T20:24:27Z"
+final_digest: sha256:a5f4bcdd3cbba5e24afd1edfbfb8351c92e10a92ae5ab1e054e5ec0255db3a13

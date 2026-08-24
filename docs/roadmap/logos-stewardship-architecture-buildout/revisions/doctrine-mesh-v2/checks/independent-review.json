@@ -3,20 +3,21 @@
     "object_type": "doctrine_mesh_independent_specification_review",
     "trust_zone": "proposed",
     "lifecycle_status": "independently_checked",
-    "provenance_note": "Recorded on 2026-08-24 by Codex root from task-separated read-only reviews and changed-input confirmations; final payload bindings include independent byte-semantic review of the staged EOF-whitespace and checkout-newline portability repairs.",
+    "provenance_note": "Rebound on 2026-08-24 by Codex root after two task-separated read-only reviews independently replayed the claimed-scope traversal repair, 85-file payload freeze, schema semantics, and twenty-test adversarial suite.",
     "reason_for_inclusion": "Bind the exact frozen payload to the final independent artifact-freeze verdict while retaining all runtime and human-authority limits."
   },
   "schema_version": "logos.doctrine_mesh_independent_specification_review.v2",
   "review_id": "DM-INDEPENDENT-REVIEW-002",
   "revision_manifest_ref": "revision-manifest.yaml",
-  "revision_manifest_digest": "sha256:d06f896d9ea473ed6a37d89857d753df182d31205eda777909f2436ae83a00a3",
-  "payload_digest": "sha256:00143bcff73658b6051f8ff34dffd27ebbb72730893e4478246c1c23009a5bdf",
+  "revision_manifest_digest": "sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1",
+  "payload_digest": "sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946",
   "review_lineage_ref": "evidence/independence/review-lineage.yaml",
   "review_lineage_digest": "sha256:6826ba13103cb50075ca129c93b48ac9d1a454a96cbab282809f9e95d87cdf3c",
   "reviewer_lanes": [
     "autonomy_authority_redteam",
     "campaign_integration_checker",
     "deterministic_schema_checker",
+    "path_scope_repair_checker",
     "release_evidence_checker",
     "release_authority_redteam"
   ],
@@ -38,6 +39,6 @@
   "doctrine_decision_authorized": false,
   "cross_repository_write_authorized": false,
   "publication_authorized": false,
-  "observed_at": "2026-08-24T19:31:11Z",
-  "review_digest": "sha256:93589f975f27ad88383974b238df55962f0627ada36248ad5f218691d98925c8"
+  "observed_at": "2026-08-24T20:24:27Z",
+  "review_digest": "sha256:a4ad475cc54db85e6cbdc60353b1c790302f1a28aa614e46d95620e6402e158e"
 }

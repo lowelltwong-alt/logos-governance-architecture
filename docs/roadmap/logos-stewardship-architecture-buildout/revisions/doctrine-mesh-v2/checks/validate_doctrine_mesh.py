@@ -181,6 +181,25 @@ def check_schema(schema: dict[str, Any], label: str) -> list[str]:
     return []
 
 
+def repository_relative_segments(value: object) -> tuple[str, ...] | None:
+    """Parse a canonical, portable repository-relative path without filesystem access."""
+    if not isinstance(value, str) or not value:
+        return None
+    if value.startswith("/") or re.match(r"^[A-Za-z]:", value):
+        return None
+    if "\\" in value or any(ord(character) < 32 or ord(character) == 127 for character in value):
+        return None
+    segments = value.split("/")
+    if any(segment in {"", ".", ".."} for segment in segments):
+        return None
+    return tuple(segments)
+
+
+def is_strict_path_descendant(child: tuple[str, ...], parent: tuple[str, ...]) -> bool:
+    """Return true only when child is below parent at a complete path-segment boundary."""
+    return len(child) > len(parent) and child[: len(parent)] == parent
+
+
 def acyclic(role_ids: set[str], roles: list[dict[str, Any]]) -> bool:
     dependencies = {role["role_id"]: set(role.get("dependencies", [])) for role in roles}
     if any(not deps <= role_ids for deps in dependencies.values()):
@@ -419,19 +438,42 @@ def validate_job_binding_semantics(
         values = [participant.get(field) for participant in participants]
         if None in values or len(values) != len(set(values)):
             failures.append(f"job: participant {field} collision {assignment_id}")
-    claimed_scope = binding.get("claimed_scope_ref", "").rstrip("/")
-    if writer.get("write_scope") != [claimed_scope]:
+    claimed_scope = binding.get("claimed_scope_ref", "")
+    claimed_segments = repository_relative_segments(claimed_scope)
+    if claimed_segments is None:
+        failures.append(f"job: invalid claimed scope path {assignment_id}")
+    writer_scope = writer.get("write_scope")
+    if (
+        not isinstance(writer_scope, list)
+        or len(writer_scope) != 1
+        or repository_relative_segments(writer_scope[0]) is None
+    ):
+        failures.append(f"job: invalid writer write scope path {assignment_id}")
+    if writer_scope != [claimed_scope]:
         failures.append(f"job: writer scope does not equal claimed scope {assignment_id}")
     if any(participant.get("write_scope") for participant in [*checkers, *challengers]):
         failures.append(f"job: checker or challenger has write scope {assignment_id}")
-    if binding.get("data_and_effects", {}).get("write_scope") != [claimed_scope]:
+    effect_scope = binding.get("data_and_effects", {}).get("write_scope")
+    if (
+        not isinstance(effect_scope, list)
+        or len(effect_scope) != 1
+        or repository_relative_segments(effect_scope[0]) is None
+    ):
+        failures.append(f"job: invalid effect write scope path {assignment_id}")
+    if effect_scope != [claimed_scope]:
         failures.append(f"job: effect write scope does not equal claimed scope {assignment_id}")
-    prefix = claimed_scope + "/"
     claim_digest = binding.get("work_claim_digest")
+    for input_artifact in binding.get("inputs", []):
+        if repository_relative_segments(input_artifact.get("canonical_path", "")) is None:
+            failures.append(f"job: invalid input canonical path {assignment_id}")
     for output in binding.get("outputs", []):
-        path = output.get("canonical_path", "")
-        if not path.startswith(prefix) or output.get("work_claim_digest") != claim_digest:
-            failures.append(f"job: output outside or not bound to claimed scope {assignment_id}")
+        output_segments = repository_relative_segments(output.get("canonical_path", ""))
+        if output_segments is None:
+            failures.append(f"job: invalid output canonical path {assignment_id}")
+        elif claimed_segments is None or not is_strict_path_descendant(output_segments, claimed_segments):
+            failures.append(f"job: output does not descend from claimed scope {assignment_id}")
+        if output.get("work_claim_digest") != claim_digest:
+            failures.append(f"job: output work-claim digest mismatch {assignment_id}")
     budget = binding.get("budget_binding", {})
     if budget.get("campaign_id") != binding.get("campaign_id"):
         failures.append(f"job: budget campaign mismatch {assignment_id}")

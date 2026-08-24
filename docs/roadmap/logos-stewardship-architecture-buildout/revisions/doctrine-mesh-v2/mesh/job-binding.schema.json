@@ -23,7 +23,7 @@
     "requirement_digest": {"$ref": "#/$defs/digest"},
     "work_claim_ref": {"type": "string", "minLength": 1},
     "work_claim_digest": {"$ref": "#/$defs/digest"},
-    "claimed_scope_ref": {"type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:|/|\\\\).+"},
+    "claimed_scope_ref": {"$ref": "#/$defs/repositoryRelativePath"},
     "claimed_scope_digest": {"$ref": "#/$defs/digest"},
     "controller_revision_ref": {"type": "string", "minLength": 1},
     "controller_revision_digest": {"$ref": "#/$defs/digest"},
@@ -63,7 +63,7 @@
       "properties": {
         "data_classes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["public", "repository_internal", "licensed", "private", "credentialed", "unknown"]}},
         "read_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
-        "write_scope": {"type": "array", "maxItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "write_scope": {"type": "array", "maxItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryRelativePath"}},
         "external_effects": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
         "source_egress_allowed": {"type": "boolean"}
       }
@@ -126,6 +126,11 @@
   ],
   "$defs": {
     "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "repositoryRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!.*\\/$)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?$)(?!.*\\/\\.\\.?/)(?!.*[\\u0000-\\u001F\\u007F]).+$"
+    },
     "roleBinding": {
       "type": "object", "additionalProperties": false,
       "required": ["role_id", "actor_instance_id", "capability_profile_refs", "effort_class", "expert_pack_ref", "expert_pack_digest", "qualification_receipt_ref", "qualification_receipt_digest", "attempt_lineage_ref", "attempt_lineage_digest", "independence_group", "write_scope"],
@@ -141,7 +146,7 @@
         "attempt_lineage_ref": {"type": "string", "minLength": 1},
         "attempt_lineage_digest": {"$ref": "#/$defs/digest"},
         "independence_group": {"type": "string", "minLength": 1},
-        "write_scope": {"type": "array", "maxItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+        "write_scope": {"type": "array", "maxItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryRelativePath"}}
       }
     },
     "artifactBinding": {
@@ -149,7 +154,7 @@
       "required": ["artifact_ref", "canonical_path", "digest", "revision", "authority_class", "work_claim_digest"],
       "properties": {
         "artifact_ref": {"type": "string", "minLength": 1},
-        "canonical_path": {"type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:|/|\\\\).+"},
+        "canonical_path": {"$ref": "#/$defs/repositoryRelativePath"},
         "digest": {"$ref": "#/$defs/digest"},
         "revision": {"type": "string", "minLength": 1},
         "authority_class": {"type": "string", "minLength": 1},

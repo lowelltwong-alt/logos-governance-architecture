@@ -2,14 +2,14 @@ metadata:
   object_type: logos_public_project_evidence_manifest
   trust_zone: proposed
   lifecycle_status: public_release_candidate
-  provenance_note: "Prepared on 2026-08-24 from exact public origin/main commits and the frozen doctrine-mesh-v2 specification candidate."
+  provenance_note: "Prepared on 2026-08-24 from exact public origin/main commits, the historical V1 campaign checkpoint, and the repaired frozen doctrine-mesh-v2 specification candidate."
   reason_for_inclusion: "Give recruiters, engineers, reviewers, and their AI tools a skeptical, machine-checkable route from project claims to inspectable evidence and explicit limits."
-schema_version: logos.project_evidence.v1
+schema_version: logos.project_evidence.v2
 project_id: logos-trust-layer
 title: "Logos: an evidence-bound trust layer for AI-assisted Christian knowledge work"
 public_entry: PORTFOLIO.md
 snapshot:
-  observed_at: "2026-08-24T18:07:00Z"
+  observed_at: "2026-08-24T20:24:27Z"
   governance_candidate_parent: 410c7e429290d34013c1dbf23c0335ebfe68e45f
   count_method: >-
     For each exact public origin/main commit, enumerate git ls-tree -r --name-only.
@@ -28,6 +28,51 @@ snapshot:
     schema_like_paths: 82
     validator_like_paths: 218
     test_like_paths: 274
+release_scope:
+  status: full_pr_composite_release_candidate
+  base_commit: 4f00f6f9d50e870d4e9805f29a69feb33e6f4d12
+  v1_checkpoint_commit: 410c7e429290d34013c1dbf23c0335ebfe68e45f
+  total_unique_path_count: 131
+  receipt_excluded_path_count: 130
+  v1_checkpoint_path_count: 25
+  v1_only_path_count: 20
+  v2_path_count: 90
+  post_v1_portfolio_path_count: 21
+  shared_path_count: 5
+  post_v1_candidate_path_count: 111
+  post_v1_receipt_excluded_path_count: 110
+  canonical_digest_algorithm: >-
+    Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF
+    and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase
+    SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8
+    concatenation including the final LF.
+  historical_v1:
+    staged_candidate_parent: 9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4
+    artifact_commit: 410c7e429290d34013c1dbf23c0335ebfe68e45f
+    historical_path_count: 25
+    current_v1_only_paths_unchanged: 20
+    shared_paths_revalidated: 5
+    historical_non_receipt_path_count: 23
+    historical_non_receipt_digest: sha256:d8e4a874f4dc339fae7e0a7ce5ce1cb27ea40a66ec7b6b14b5d4233f3aef437f
+    historical_receipt_digest_algorithm_id: windows_pathlib_staged_index_path_sha256_rows.v1
+    historical_receipt_replay_status: historical_evidence_only
+    historical_receipt_digest_algorithm: >-
+      From the 25 staged-candidate paths exclude both V1 receipts; order the 23
+      campaign-root-relative POSIX paths with Windows pathlib semantics; emit a
+      compact UTF-8 JSON array of path and raw final-index-blob SHA-256 objects
+      with no trailing newline; then SHA-256 those JSON bytes. This historical
+      environment-bound convention is evidence only, not the portable standard.
+    portable_replay_algorithm: >-
+      Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF
+      and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase
+      SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8
+      concatenation including the final LF.
+    portable_replay_excluded_paths:
+      - docs/roadmap/logos-stewardship-architecture-buildout/checks/validation-receipt.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/checks/final-independent-review.json
+    portable_replay_digest: sha256:05ce43887b191df1fbe20fe8deb6e0cf946b6cc179efb2c0bb7ea44b883a501a
+    validation_receipt_ref: docs/roadmap/logos-stewardship-architecture-buildout/checks/validation-receipt.json
+    independent_review_ref: docs/roadmap/logos-stewardship-architecture-buildout/checks/final-independent-review.json
 maturity_vocabulary:
   - code: active_control
     definition: "A checked-in governance, schema, registry, navigation, or validation control used by the repository."
@@ -250,10 +295,10 @@ doctrine_mesh_specification:
   expert_profile_count: 68
   graph_node_count: 25
   graph_edge_count: 26
-  adversarial_test_count: 19
-  payload_digest: sha256:00143bcff73658b6051f8ff34dffd27ebbb72730893e4478246c1c23009a5bdf
-  revision_manifest_digest: sha256:d06f896d9ea473ed6a37d89857d753df182d31205eda777909f2436ae83a00a3
-  final_saved_version_digest: sha256:7999e16be3f03ebb1eb8df640f79b39c101764700f820172c33ef0b18800e85a
+  adversarial_test_count: 20
+  payload_digest: sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946
+  revision_manifest_digest: sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1
+  final_saved_version_digest: sha256:a5f4bcdd3cbba5e24afd1edfbfb8351c92e10a92ae5ab1e054e5ec0255db3a13
   independent_review_status: pass_specification_only
   independence_status: partly_verified_non_authorizing
   cross_provider_verified: false
@@ -276,7 +321,7 @@ doctrine_mesh_specification:
       supports: "Terminal saved-version index and freeze-time authority flags."
     - kind: local_path
       target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validation-receipt.json
-      supports: "Bounded deterministic artifact validation and 19-test result."
+      supports: "Bounded deterministic artifact validation and 20-test result, including claimed-path traversal regression coverage."
     - kind: local_path
       target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/independent-review.json
       supports: "Specification-only review status, partial independence, and unresolved runtime boundaries."

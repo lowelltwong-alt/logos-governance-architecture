@@ -12,7 +12,8 @@ semantic_rules:
   - the role factory may propose a profile but may not appear as dispatcher or lease owner
   - writer actor instance, checker actor instances, challenger actor instances, and independence groups must be pairwise disjoint
   - exactly one role may have a nonempty write scope and every other role must have an empty write scope
-  - output paths must be inside the claimed work-unit scope and nonoverlapping with live writers
+  - claimed scopes, writer and effect scopes, and artifact paths must be canonical forward-slash repository-relative paths with no empty, dot, dot-dot, drive, absolute, backslash, or control-character segment
+  - output paths must be strict segment-wise descendants of the claimed work-unit scope and nonoverlapping with live writers
   - the work claim, claimed scope, controller revision, controller attempt, controller qualification, human activation receipt, role qualifications, and attempt lineages must each carry an exact paired digest
   - each capability requirement must map to exact qualification evidence independently of effort class or provider prestige
   - all inputs, packs, prompts, schemas, authority receipts, and controller revisions are digest bound
@@ -25,6 +26,6 @@ semantic_rules:
   - every assignment binds one campaign budget-ledger snapshot and reservation idempotency key; a leased assignment requires a reservation receipt and a completed candidate requires an exact debit receipt
   - ledger sequence, predecessor digest, campaign identity, ceiling reconciliation, and debit uniqueness are validated outside JSON Schema by the protected semantic helper
 future_validator_requirements:
-  negative_fixtures: [factory_as_dispatcher, two_writers, writer_checker_actor_collision, shared_independence_group, missing_pack_digest, altered_authority_receipt_digest, altered_work_claim_digest, output_outside_claimed_scope, stale_input, write_overlap, missing_budget_reservation, duplicate_budget_idempotency_key, budget_reconciliation_mismatch, budget_predecessor_mismatch, unapproved_egress, depth_two_dispatch, duplicate_effect, stale_dependency, unexpired_conflicting_lease, stale_fence, resume_without_checkpoint, output_reconciliation_mismatch, effect_reconciliation_mismatch]
+  negative_fixtures: [factory_as_dispatcher, two_writers, writer_checker_actor_collision, shared_independence_group, missing_pack_digest, altered_authority_receipt_digest, altered_work_claim_digest, output_outside_claimed_scope, path_traversal_output, invalid_repository_relative_scope, stale_input, write_overlap, missing_budget_reservation, duplicate_budget_idempotency_key, budget_reconciliation_mismatch, budget_predecessor_mismatch, unapproved_egress, depth_two_dispatch, duplicate_effect, stale_dependency, unexpired_conflicting_lease, stale_fence, resume_without_checkpoint, output_reconciliation_mismatch, effect_reconciliation_mismatch]
   controller_owned_receipt_required: true
   changed_head_or_input_requires_replay: true
