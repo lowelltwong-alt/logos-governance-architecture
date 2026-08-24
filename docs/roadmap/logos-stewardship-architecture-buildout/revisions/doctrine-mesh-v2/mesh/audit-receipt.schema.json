@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-mesh-audit-receipt-v2.json",
+  "title": "DoctrineMeshAuditReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_mesh_audit_receipt_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root.",
+    "reason_for_inclusion": "Bind each completeness-auditor execution to one exact event, input, output, checker, and limitation."
+  },
+  "required": ["schema_version", "receipt_id", "event_id", "event_digest", "sequence", "phase", "execution_class", "work_unit_id", "work_unit_revision", "input_manifest_ref", "input_manifest_digest", "auditor_role_id", "auditor_attempt_id", "execution_attempt_ref", "controller_runtime_receipt_ref", "controller_runtime_receipt_digest", "checker_role_id", "coverage_plan_ref", "coverage_plan_digest", "role_gap_registry_ref", "role_gap_registry_digest", "status", "execution_presence", "substantive_completeness", "started_at", "auditor_completed_at", "checker_started_at", "checker_completed_at", "completed_at", "previous_receipt_digest", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_mesh_audit_receipt.v2"},
+    "receipt_id": {"type": "string", "pattern": "^DMR-[A-Z0-9-]+$"},
+    "event_id": {"type": "string", "pattern": "^DMA-[A-Z0-9-]+$"},
+    "event_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "sequence": {"type": "integer", "minimum": 1},
+    "phase": {"enum": ["preflight", "midflight", "postflight"]},
+    "execution_class": {"enum": ["manual_specification_coverage_review", "controller_execution_audit"]},
+    "work_unit_id": {"type": "string", "minLength": 1},
+    "work_unit_revision": {"type": "string", "minLength": 1},
+    "input_manifest_ref": {"type": "string", "pattern": "^evidence/inputs/[a-z0-9-]+\\.json$"},
+    "input_manifest_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "auditor_role_id": {"const": "doctrine-mesh-completeness-auditor"},
+    "auditor_attempt_id": {"type": "string", "minLength": 1},
+    "execution_attempt_ref": {"type": "string", "pattern": "^evidence/execution-attempts\\.json#DMA-ATTEMPT-[A-Z0-9-]+$"},
+    "controller_runtime_receipt_ref": {"type": ["string", "null"]},
+    "controller_runtime_receipt_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "checker_role_id": {"const": "independent-whole-work-checker"},
+    "coverage_plan_ref": {"type": "string", "pattern": "^evidence/coverage/[a-z0-9-]+\\.yaml$"},
+    "coverage_plan_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "role_gap_registry_ref": {"type": "string", "pattern": "^evidence/gaps/[a-z0-9-]+\\.yaml$"},
+    "role_gap_registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "status": {"enum": ["pass", "blocked", "inconclusive"]},
+    "execution_presence": {"const": "deterministically_proven_for_exact_event_and_inputs"},
+    "substantive_completeness": {"const": "not_deterministically_provable_requires_independent_review"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "auditor_completed_at": {"type": "string", "format": "date-time"},
+    "checker_started_at": {"type": "string", "format": "date-time"},
+    "checker_completed_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "previous_receipt_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"execution_class": {"const": "manual_specification_coverage_review"}}, "required": ["execution_class"]},
+      "then": {"properties": {"controller_runtime_receipt_ref": {"type": "null"}, "controller_runtime_receipt_digest": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"execution_class": {"const": "controller_execution_audit"}}, "required": ["execution_class"]},
+      "then": {"properties": {"controller_runtime_receipt_ref": {"type": "string", "minLength": 1}, "controller_runtime_receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}}
+    }
+  ]
+}

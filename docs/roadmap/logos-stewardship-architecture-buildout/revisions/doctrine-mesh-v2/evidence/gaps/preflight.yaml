@@ -1,0 +1,80 @@
+metadata:
+  object_type: doctrine_role_gap_registry
+  trust_zone: proposed
+  lifecycle_status: independently_checked_audit_output
+  provenance_note: "Produced on 2026-08-24 during the doctrine-mesh preflight coverage audit."
+  reason_for_inclusion: "Record missing and intentionally deferred expertise with unique value, cost, risk, and route."
+schema_version: logos_doctrine_role_gap_registry.v2
+registry_id: DMRG-PREFLIGHT-001
+audit_event_id: DMA-PREFLIGHT-001
+gaps:
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-RUNTIME-QUALIFICATION
+    audit_event_id: DMA-PREFLIGHT-001
+    affected_claims: [AUTONOMOUS-CONTROLLER-SAFETY]
+    missing_capability: qualified_controller_runtime_and_adapter
+    unique_error_class: duplicate_effect_budget_overrun_stale_lease_or_unreconciled_restart
+    why_current_roles_are_insufficient: "A static campaign, prompt, or model reviewer cannot prove leases, fencing, idempotency, append durability, restart recovery, and shutdown behavior in a real runtime."
+    likely_added_value: high
+    risk_if_omitted: frontier
+    cost_and_delay: "Requires a separately selected runtime, deterministic harness, inert dry run, and independent launch review."
+    qualification_requirements: [exact_runtime_revision, lease_and_fencing_fixture, restart_and_duplicate_effect_fixture, budget_and_shutdown_fixture]
+    recommendation: BLOCK_UNSTAFFED
+    rationale: "The requested automatic future staffing cannot safely become active until runtime behavior is proven; specification can continue while activation remains blocked."
+    review_state: independently_checked
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-JEWISH-PERIODIZATION
+    audit_event_id: DMA-PREFLIGHT-001
+    affected_claims: [ANCIENT-JEWISH-CONTEXT]
+    missing_capability: exact_period_and_corpus_specific_Jewish_specialist
+    unique_error_class: collapse_of_diverse_Jewish_groups_dates_redactions_and_later_rabbinic_categories
+    why_current_roles_are_insufficient: "A generic ancient-history or doctrine role cannot reliably distinguish Qumran, apocalyptic, Philo, Josephus, early rabbinic, Samaritan, mystical, and divine-agency corpora across periods."
+    likely_added_value: high
+    risk_if_omitted: high
+    cost_and_delay: "Trigger one bounded specialist only when an actual claim names the period or corpus."
+    qualification_requirements: [relevant_language, periodized_primary_sources, redaction_and_edition_method, anti_anachronism_fixtures]
+    recommendation: ADD_ON_TRIGGER
+    rationale: "The taxonomy must include the facets now, but staffing every Jewish corpus role before a concrete claim would be ceremonial and expensive."
+    review_state: independently_checked
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-ANCIENT-CONTEXT
+    audit_event_id: DMA-PREFLIGHT-001
+    affected_claims: [EGYPT-BABYLON-GREEK-ROMAN-CONTEXT]
+    missing_capability: exact_civilization_period_language_or_archaeology_specialist
+    unique_error_class: false_parallel_false_influence_period_collapse_or_unprovenanced_material_claim
+    why_current_roles_are_insufficient: "Doctrine and biblical-language roles do not establish Egyptian, Mesopotamian, Ugaritic, Persian, Greek, Roman, archaeological, epigraphic, or numismatic facts."
+    likely_added_value: high
+    risk_if_omitted: high
+    cost_and_delay: "Staff only the domain and method touched by a claim, with source and contact-chain checks."
+    qualification_requirements: [domain_language_or_material_method, periodization, primary_catalog_or_critical_edition, provenance_and_contact_fixtures]
+    recommendation: ADD_ON_TRIGGER
+    rationale: "External context can add major historical value but must stay non-normative and cannot be inferred from similarity, so targeted specialists are necessary when triggered."
+    review_state: independently_checked
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-TRADITION-SPECIFIC
+    audit_event_id: DMA-PREFLIGHT-001
+    affected_claims: [TRADITION-COMPARISON]
+    missing_capability: qualified_specialist_for_each_materially_represented_tradition
+    unique_error_class: outsider_summary_wrong_jurisdiction_wrong_era_or_wrong_document_authority
+    why_current_roles_are_insufficient: "One generic doctrine researcher cannot authoritatively distinguish Catholic, Orthodox, Oriental, Lutheran, Reformed, Presbyterian, Anglican, Anabaptist, Baptist, Wesleyan, Pentecostal, and other internal scopes."
+    likely_added_value: high
+    risk_if_omitted: high
+    cost_and_delay: "One role per materially represented tradition, not one role per possible tradition."
+    qualification_requirements: [primary_and_official_sources, jurisdiction_and_era_scope, internal_diversity_fixture, independent_representation_review]
+    recommendation: ADD_ON_TRIGGER
+    rationale: "Tradition specialists are necessary when a comparison is load-bearing, but preemptively instantiating all traditions would create false balance and gate noise."
+    review_state: independently_checked
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-HUMAN-DOCTRINE-AUTHORITY
+    audit_event_id: DMA-PREFLIGHT-001
+    affected_claims: [DOCTRINE-NORMATIVITY-CANON-ORTHODOXY-HERESY]
+    missing_capability: qualified_human_doctrine_and_source_authority_decision
+    unique_error_class: automated_candidate_mistaken_for_normative_or_canonical_judgment
+    why_current_roles_are_insufficient: "Agents can research, compare, and challenge evidence but do not hold the project's human authority to establish doctrine, canon, normativity, orthodoxy, or heresy."
+    likely_added_value: high
+    risk_if_omitted: frontier
+    cost_and_delay: "Human review and Lowell's exact decision are required only when a dependent action needs the decision."
+    qualification_requirements: [qualified_domain_human, balanced_evidence_packet, explicit_scope_and_authority_receipt]
+    recommendation: HUMAN_DECISION
+    rationale: "The mesh must preserve this non-substitutable gate without flooding Lowell with unresolved scholarship that has no pending normative action."
+    review_state: human_pending

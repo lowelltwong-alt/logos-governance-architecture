@@ -1,0 +1,30 @@
+metadata:
+  object_type: doctrine_expertise_coverage_plan
+  trust_zone: proposed
+  lifecycle_status: independently_checked_audit_output
+  provenance_note: "Produced on 2026-08-24 by the Doctrine Mesh Completeness Auditor function after material role, source, autonomy, and validation changes."
+  reason_for_inclusion: "Preserve the triggered midflight re-evaluation and its corrections rather than silently expanding the original plan."
+schema_version: logos_doctrine_expertise_coverage_plan.v2
+plan_id: DMCP-MIDFLIGHT-001
+audit_event_id: DMA-MIDFLIGHT-001
+phase: midflight
+input_manifest_ref: evidence/inputs/midflight.json
+input_manifest_digest: sha256:ead6a2f11aa811defb483229d49904b780338bd762f1c673ba42ec11f41c0d5a
+material_deltas:
+  - generic historical-doctrine role split into corpus research, citation, source quality, entailment, counterevidence, and tradition representation
+  - task-local automatic role factory added with depth-one, expiry, no-self-modification, and human risk floors
+  - candidate source-family catalog added without source admission or web verification
+  - parent-checkpoint source identity separated from revision identity
+  - deterministic audit presence separated from substantive coverage correctness
+role_reconciliation:
+  - {prior_role: historical-theology-researcher, disposition: split, current_roles: [bounded-domain-researcher, citation-locator-verifier, source-authority-verifier, claim-entailment-verifier, counterevidence-challenger, tradition-representation-auditor], reason: "One role could author and implicitly validate its own sources, meaning, and tradition scope."}
+  - {prior_role: null, disposition: added, current_roles: [doctrine-mesh-completeness-auditor, doctrine-task-local-role-factory, goal-alignment-authority-auditor, risk-human-gate-router], reason: "New explicit lifecycle, autonomy, alignment, and risk requirements."}
+  - {prior_role: every_domain_role_standing, disposition: removed, current_roles: [], reason: "Dynamic trigger-based staffing is safer and cheaper than an always-on ceremonial swarm."}
+new_required_controls:
+  - source catalog entries remain candidate pointers until independently verified
+  - a role cannot verify a source it cannot re-access
+  - KnowledgeGuides and external frontier outputs are non-evidentiary
+  - repeated role failures can propose but not self-apply a reusable improvement
+  - independent checker must challenge role omissions and the auditor itself
+  - Fable and external frontier review remain manual exact-attempt human gates
+status: independently_checked

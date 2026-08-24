@@ -1,0 +1,83 @@
+metadata:
+  object_type: doctrine_decision_and_risk_contract
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root from Lowell's requirement that disagreements and decisions carry explicit risk and reasons."
+  reason_for_inclusion: "Make routing, dissent, human escalation, rollback, and downstream invalidation inspectable without equating scores with truth."
+schema_version: logos_doctrine_decision_risk.v2
+decision_record_required_fields:
+  - identity
+  - crisp_question
+  - options_including_abstain_or_unresolved
+  - materiality_and_affected_surfaces
+  - evidence_and_counterevidence_refs
+  - assumptions_unknowns_and_falsifiers
+  - actor_checker_and_challenger_lineage
+  - risk_dimensions_with_separate_reasons
+  - proposed_tier_and_computed_minimum_floor
+  - disagreement_and_dissent
+  - authority_granted_and_explicitly_not_granted
+  - rollback_kill_freshness_and_supersession
+risk_dimensions:
+  consequence: {scale: 1_to_5, question: "How harmful is an accepted error?"}
+  uncertainty: {scale: 1_to_5, question: "How incomplete, disputed, or access-limited is the evidence?"}
+  reversibility: {scale: 1_to_5, question: "How difficult is complete withdrawal and descendant repair?"}
+  propagation: {scale: 1_to_5, question: "How broadly can the result influence consumers, claims, or repositories?"}
+minimum_risk_floors:
+  low: [formatting_or_locator_metadata_with_no_authority_effect]
+  medium: [bounded_descriptive_history, task_local_role_composition, non_normative_context]
+  high: [doctrine_interpretation, tradition_representation, disputed_source_fitness, historical_influence, human_expert_gap]
+  frontier: [canon_or_normativity, orthodoxy_or_heresy_ruling, cross_repo_authority, systemic_autonomy, private_or_restricted_corpus, irreversible_publication]
+floor_rule: "A deterministic rule may raise the minimum tier but may never lower a proposed tier or settle the substantive classification."
+deterministic_risk_tags:
+  formatting_or_locator_metadata_no_authority_effect: low
+  bounded_descriptive_history: medium
+  task_local_role_composition: medium
+  non_normative_ancient_context: medium
+  doctrine_interpretation: high
+  tradition_or_Jewish_community_representation: high
+  disputed_source_fitness: high
+  historical_influence_or_cultural_genealogy: high
+  human_expert_gap: high
+  canon_normativity_orthodoxy_heresy: frontier
+  cross_repository_authority_or_topology: frontier
+  systemic_autonomy_or_controller_change: frontier
+  private_restricted_or_credentialed_corpus: frontier
+  irreversible_publication: frontier
+semantic_validator_rules:
+  - derive required risk tags from typed protected surfaces; author-submitted tags may add conservatism but may not omit a derived tag
+  - compute minimum floor as the maximum registered risk tag; never trust a submitted lower value
+  - materiality is true whenever any materiality trigger or downstream consumer is present
+  - records sharing evidence authority question or downstream consumers must bind one DecisionBundle
+  - a bundle's tier is at least the maximum member floor and combined effect; fragments may not lower it
+  - writer checker and challenger actor-instance lineage must be disjoint
+  - high or frontier material bundles require a valid exact HumanAuthorizationReceipt before dependent action
+  - stale evidence or an invalidated consumer projection blocks the record regardless of prior status
+  - recompute every nested record hash and require contiguous revision and prior-hash linkage for each decision identity
+materiality_is_sticky: true
+materiality_triggers:
+  - supports promotion or publication
+  - becomes a downstream citation or inference premise
+  - changes a doctrine view, assessment, genealogy, authority, gate, or source status
+  - touches rights, privacy, credentials, cross-repository effects, or irreversible transformation
+  - can propagate through a typed dependency path
+disagreement_routing:
+  low_or_medium_non_material: preserve dissent and allow bounded continued research
+  high_or_frontier_material: create Lowell-visible HumanDecisionPacket and block dependent action
+  scholarly_plurality_without_pending_action: preserve as unresolved without forcing adjudication
+  later_dependency_on_unresolved_position: block and escalate at that time
+invalid_decision_methods:
+  - majority vote
+  - model prestige
+  - confidence averaging
+  - approval-rate targets
+  - silent unresolved_fact default
+  - splitting one material decision into low-risk fragments
+required_schema_refs:
+  decision_record: governance/decision-record.schema.json
+  decision_bundle: governance/decision-bundle.schema.json
+  human_authorization_receipt: governance/human-authorization-receipt.schema.json
+required_descendant_behavior:
+  failed_source_or_citation: quarantine_transitive_descendants
+  superseded_evidence: mark_consumers_stale_and_replay_blast_radius
+  overturned_decision: preserve_history_and_issue_explicit_invalidation_edges

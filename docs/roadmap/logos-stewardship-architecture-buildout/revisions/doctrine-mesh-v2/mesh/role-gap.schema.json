@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-role-gap-v2.json",
+  "title": "RoleGapRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_role_gap_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root.",
+    "reason_for_inclusion": "Force every proposed or omitted expert role to carry a unique value and risk argument."
+  },
+  "required": ["schema_version", "gap_id", "audit_event_id", "affected_claims", "missing_capability", "unique_error_class", "why_current_roles_are_insufficient", "likely_added_value", "risk_if_omitted", "cost_and_delay", "qualification_requirements", "recommendation", "rationale", "review_state"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_role_gap.v2"},
+    "gap_id": {"type": "string", "pattern": "^DRG-[A-Z0-9-]+$"},
+    "audit_event_id": {"type": "string", "pattern": "^DMA-[A-Z0-9-]+$"},
+    "affected_claims": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "missing_capability": {"type": "string", "minLength": 1},
+    "unique_error_class": {"type": "string", "minLength": 1},
+    "why_current_roles_are_insufficient": {"type": "string", "minLength": 20},
+    "likely_added_value": {"enum": ["none", "low", "medium", "high", "unknown"]},
+    "risk_if_omitted": {"enum": ["low", "medium", "high", "frontier"]},
+    "cost_and_delay": {"type": "string", "minLength": 1},
+    "qualification_requirements": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "recommendation": {"enum": ["ADD_NOW", "ADD_ON_TRIGGER", "OMIT_WITH_REASON", "HUMAN_DECISION", "BLOCK_UNSTAFFED"]},
+    "rationale": {"type": "string", "minLength": 30},
+    "review_state": {"enum": ["candidate", "independently_checked", "human_pending", "accepted", "rejected", "superseded"]}
+  }
+}

@@ -1,0 +1,80 @@
+metadata:
+  object_type: doctrine_role_gap_registry
+  trust_zone: proposed
+  lifecycle_status: independently_checked_audit_output
+  provenance_note: "Produced on 2026-08-24 during the doctrine-mesh postflight completeness and recovery audit."
+  reason_for_inclusion: "Keep unresolved runtime, source-pack, authentication, human-expert, and independence gaps visible as activation blockers after design repair."
+schema_version: logos_doctrine_role_gap_registry.v2
+registry_id: DMRG-POSTFLIGHT-001
+audit_event_id: DMA-POSTFLIGHT-001
+gaps:
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-RUNTIME-SEMANTIC-ENFORCEMENT
+    audit_event_id: DMA-POSTFLIGHT-001
+    affected_claims: [AUTONOMOUS-CONTROLLER, JOB-RESUMPTION, BUDGETS, CONSUMER-AUTHORITY, STALENESS]
+    missing_capability: qualified_controller_runtime_plus_instance_semantic_validators_and_adversarial_fixtures
+    unique_error_class: schema_theater_duplicate_effect_stale_dependency_bad_arithmetic_or_dormant_contract_reported_as_enforcement
+    why_current_roles_are_insufficient: "Static schemas and a design-time validator can prove file shape and selected invariants but cannot prove runtime leases, authenticated actor binding, arithmetic, idempotency, traversal, restart, or external effects."
+    likely_added_value: high
+    risk_if_omitted: frontier
+    cost_and_delay: "Requires a separately selected runtime, exact implementation claim, inert fixtures, deterministic semantic validators, and independent launch review."
+    qualification_requirements: [qualified_runtime_revision, job_and_budget_semantic_negative_fixtures, lease_restart_duplicate_effect_fixture, consumer_and_staleness_fixture, safe_shutdown_receipt]
+    recommendation: BLOCK_UNSTAFFED
+    rationale: "The specification can freeze honestly, but no autonomous buildout may launch or cite these dormant interfaces as active protection."
+    review_state: independently_checked
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-ACTUAL-EXPERT-PACKS
+    audit_event_id: DMA-POSTFLIGHT-001
+    affected_claims: [ALL-FUTURE-DOMAIN-RESEARCH]
+    missing_capability: source_researched_rights_cleared_fixture_tested_and_independently_qualified_ExpertPacks
+    unique_error_class: taxonomy_label_or_model_memory_impersonates_actual_language_corpus_method_and_source_competence
+    why_current_roles_are_insufficient: "The blueprint registry identifies what must be built but contains no ingested corpus, current verified pointer, rights grant, KnowledgeGuide, protected fixture answers, or behavioral qualification result."
+    likely_added_value: high
+    risk_if_omitted: frontier
+    cost_and_delay: "Build source atlases and packs in many separately authorized evidence-producing work units with rights and expert review."
+    qualification_requirements: [current_source_atlas, exact_editions_and_languages, rights_and_egress_receipts, sealed_fixtures, independent_behavioral_grade, expiry_and_revocation]
+    recommendation: BLOCK_UNSTAFFED
+    rationale: "No researcher may be treated as an ancient-language, Jewish-world, archaeology, theologian-corpus, philosophy, or tradition expert merely because a profile and prompt now exist."
+    review_state: independently_checked
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-AUTHENTICATED-HUMAN-AUTHORITY
+    audit_event_id: DMA-POSTFLIGHT-001
+    affected_claims: [RUNTIME-ACTIVATION, DOCTRINE, CANON, NORMATIVITY, SOURCE-AUTHORITY, CROSS-REPO, PUBLICATION]
+    missing_capability: authenticated_revision_bound_human_authorization_adapter
+    unique_error_class: dangling_or_forged_human_receipt_string_is_mistaken_for_exact_owner_authority
+    why_current_roles_are_insufficient: "A schema can describe the receipt, but an agent-authored file cannot authenticate the human or prove an external thread, signature, target revision, expiry, and exact grant without a qualified authority adapter."
+    likely_added_value: high
+    risk_if_omitted: frontier
+    cost_and_delay: "Select and qualify an authority receipt mechanism before any dependent action; specification needs no such activation now."
+    qualification_requirements: [human_identity_binding, exact_question_and_revision_digest, tamper_evident_receipt, expiry_and_revocation, negative_forgery_fixtures]
+    recommendation: HUMAN_DECISION
+    rationale: "Human gates remain blocking and no local schema, completion phrase, model, or majority may impersonate Lowell or a qualified domain human."
+    review_state: human_pending
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-QUALIFIED-DOMAIN-HUMANS
+    audit_event_id: DMA-POSTFLIGHT-001
+    affected_claims: [NORMATIVE-DOCTRINE, TRADITION-SELF-DESCRIPTION, PATRISTICS, ORIGINAL-LANGUAGE, RIGHTS]
+    missing_capability: exact_qualified_human_reviewers_for_each_future_high_or_frontier_domain
+    unique_error_class: agents_and_generic_reviewers_miss_language_corpus_tradition_legal_or_doctrinal_errors_with_human_authority_consequences
+    why_current_roles_are_insufficient: "The mesh routes candidate evidence but has no present roster, credentials, scope, availability, or authorization for theologians, philologists, Jewish studies scholars, archaeologists, tradition representatives, or rights experts."
+    likely_added_value: high
+    risk_if_omitted: frontier
+    cost_and_delay: "Recruit or identify reviewers only when an exact work unit and dependent decision requires them."
+    qualification_requirements: [domain_and_language_scope, conflict_disclosure, exact_source_access, authority_scope, signed_or_authenticated_review_receipt]
+    recommendation: ADD_ON_TRIGGER
+    rationale: "Human expertise cannot be fabricated in advance by agent instructions; the completeness auditor must block affected work when a genuinely required reviewer is unavailable."
+    review_state: human_pending
+  - schema_version: logos.doctrine_role_gap.v2
+    gap_id: DRG-CROSS-PROVIDER-INDEPENDENCE
+    audit_event_id: DMA-POSTFLIGHT-001
+    affected_claims: [INDEPENDENT-REVIEW-DIVERSITY]
+    missing_capability: exact_cross_provider_or_cross_model_behavioral_independence_evidence
+    unique_error_class: correlated_training_prompt_context_or_retrieval_failure_is_hidden_by_different_role_names
+    why_current_roles_are_insufficient: "The read-only task lanes are separated from writing but share an unverified provider/model lineage and surrounding context; role separation is not cross-provider diversity."
+    likely_added_value: unknown
+    risk_if_omitted: medium
+    cost_and_delay: "Use only for a future exact high-consequence review when Lowell authorizes the provider, sanitized inputs, budget, and independent replay."
+    qualification_requirements: [exact_attempt_authorization, exposure_graph, provider_and_model_revision, sanitized_packet, independent_local_reverification]
+    recommendation: ADD_ON_TRIGGER
+    rationale: "The current artifact can disclose partial independence honestly; it may not claim variance reduction or cross-provider assurance that was not tested."
+    review_state: independently_checked

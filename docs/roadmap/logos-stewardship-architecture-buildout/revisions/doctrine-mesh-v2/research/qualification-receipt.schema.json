@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-role-qualification-receipt-v2.json",
+  "title": "DoctrineRoleQualificationReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_role_qualification_receipt_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root after adversarial qualification review.",
+    "reason_for_inclusion": "Prevent an approved label or provider reputation from substituting for exact, revision-bound behavioral and deterministic qualification evidence."
+  },
+  "required": ["schema_version", "receipt_id", "role_profile_ref", "role_profile_digest", "expert_pack_ref", "expert_pack_digest", "runtime_fingerprint", "fixture_pack_ref", "fixture_pack_digest", "threshold_policy_ref", "threshold_policy_digest", "deterministic_results", "behavioral_results", "meets_all_thresholds", "independent_grader_lineage_ref", "qualified_scope", "excluded_scope", "status", "observed_at", "expires_at", "revalidation_triggers", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_role_qualification_receipt.v2"},
+    "receipt_id": {"type": "string", "pattern": "^DQR-[A-Z0-9-]+$"},
+    "role_profile_ref": {"type": "string", "minLength": 1}, "role_profile_digest": {"$ref": "#/$defs/digest"},
+    "expert_pack_ref": {"type": "string", "minLength": 1}, "expert_pack_digest": {"$ref": "#/$defs/digest"},
+    "runtime_fingerprint": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider", "model", "runtime", "tools_digest", "prompt_digest", "context_policy_digest"],
+      "properties": {"provider": {"type": "string", "minLength": 1}, "model": {"type": "string", "minLength": 1}, "runtime": {"type": "string", "minLength": 1}, "tools_digest": {"$ref": "#/$defs/digest"}, "prompt_digest": {"$ref": "#/$defs/digest"}, "context_policy_digest": {"$ref": "#/$defs/digest"}}
+    },
+    "fixture_pack_ref": {"type": "string", "minLength": 1}, "fixture_pack_digest": {"$ref": "#/$defs/digest"},
+    "threshold_policy_ref": {"type": "string", "minLength": 1}, "threshold_policy_digest": {"$ref": "#/$defs/digest"},
+    "deterministic_results": {"type": "object", "required": ["passed", "failed", "receipt_ref"], "properties": {"passed": {"type": "integer", "minimum": 0}, "failed": {"type": "integer", "minimum": 0}, "receipt_ref": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+    "behavioral_results": {"type": "object", "required": ["false_positive_rate", "false_negative_rate", "abstention_calibration", "receipt_ref"], "properties": {"false_positive_rate": {"type": "number", "minimum": 0, "maximum": 1}, "false_negative_rate": {"type": "number", "minimum": 0, "maximum": 1}, "abstention_calibration": {"type": "number", "minimum": 0, "maximum": 1}, "receipt_ref": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+    "independent_grader_lineage_ref": {"type": "string", "minLength": 1},
+    "meets_all_thresholds": {"type": "boolean"},
+    "qualified_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "excluded_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "status": {"enum": ["qualified_exact_revision", "candidate", "blocked", "expired", "revoked"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "revalidation_triggers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "receipt_digest": {"$ref": "#/$defs/digest"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "qualified_exact_revision"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "deterministic_results": {"properties": {"passed": {"type": "integer", "minimum": 1}, "failed": {"const": 0}, "receipt_ref": {"type": "string", "minLength": 1}}, "required": ["passed", "failed", "receipt_ref"]},
+          "behavioral_results": {"properties": {"false_positive_rate": {"type": "number", "minimum": 0, "exclusiveMaximum": 1}, "false_negative_rate": {"type": "number", "minimum": 0, "exclusiveMaximum": 1}, "receipt_ref": {"type": "string", "minLength": 1}}, "required": ["false_positive_rate", "false_negative_rate", "receipt_ref"]},
+          "role_profile_ref": {"type": "string", "minLength": 1},
+          "expert_pack_ref": {"type": "string", "minLength": 1},
+          "fixture_pack_ref": {"type": "string", "minLength": 1},
+          "threshold_policy_ref": {"type": "string", "minLength": 1},
+          "independent_grader_lineage_ref": {"type": "string", "minLength": 1},
+          "meets_all_thresholds": {"const": true}
+        }
+      }
+    }
+  ],
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "object_type": "doctrine_mesh_specification_validation_receipt",
+    "trust_zone": "proposed",
+    "lifecycle_status": "validated_specification_only",
+    "provenance_note": "Recorded on 2026-08-24 by Codex root for the exact manifest-bound final replay and rebound after presentation-only path-token, controlled-lifecycle-vocabulary, staged EOF-whitespace, and checkout-newline portability repairs.",
+    "reason_for_inclusion": "Bind deterministic final validation and all adversarial fixtures without implying a qualified runtime, research, or doctrinal result."
+  },
+  "schema_version": "logos.doctrine_mesh_specification_validation_receipt.v2",
+  "receipt_id": "DM-VALIDATION-002",
+  "revision_manifest_ref": "revision-manifest.yaml",
+  "revision_manifest_digest": "sha256:d06f896d9ea473ed6a37d89857d753df182d31205eda777909f2436ae83a00a3",
+  "payload_digest": "sha256:00143bcff73658b6051f8ff34dffd27ebbb72730893e4478246c1c23009a5bdf",
+  "validator_ref": "checks/validate_doctrine_mesh.py",
+  "validator_digest": "sha256:d8f7eb91790aa2015f7c3cfaef2b6f5ab53dcd7386adc45c6c266595e865d236",
+  "test_ref": "checks/test_validate_doctrine_mesh.py",
+  "test_digest": "sha256:aa4f9c4f29019c5561b26eacb9eace55e9a6545831cc5029d7b714b25d6d1bd6",
+  "final_replay_command": "python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final",
+  "test_command": "python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py",
+  "status": "pass_artifact_specification_only",
+  "validator_result": {"failure_count": 0, "audit_failures": 0, "internal_markdown_link_failures": 0, "campaign_gate_evidence_refs": 10},
+  "test_result": {"status": "pass", "test_count": 19, "skipped": 0},
+  "runtime_activation_authorized": false,
+  "research_authorized": false,
+  "mutation_performed": false,
+  "observed_at": "2026-08-24T19:31:11Z",
+  "receipt_digest": "sha256:0ba8f548b57fbd951de5782bf789c8e8cf576a2aeec15cf341d7f8f5483d7697"
+}

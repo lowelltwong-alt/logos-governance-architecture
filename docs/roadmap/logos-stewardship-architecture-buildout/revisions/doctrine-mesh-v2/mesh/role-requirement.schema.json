@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-role-requirement-v2.json",
+  "title": "DoctrineRoleRequirement",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_role_requirement_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root.",
+    "reason_for_inclusion": "Make expertise selection reproducible, risk-bound, and independently reviewable."
+  },
+  "required": ["schema_version", "requirement_id", "work_unit", "claims", "dimensions", "required_functions", "risk", "authority", "source_constraints", "status"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_role_requirement.v2"},
+    "requirement_id": {"type": "string", "pattern": "^DRR-[A-Z0-9-]+$"},
+    "work_unit": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "revision", "input_digest"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "minLength": 1},
+        "input_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "claims": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "dimensions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["doctrine_loci", "traditions", "eras", "geographies", "languages", "source_corpora", "textual_problems", "methods"],
+      "properties": {
+        "doctrine_loci": {"$ref": "#/$defs/stringSet"},
+        "traditions": {"$ref": "#/$defs/stringSet"},
+        "eras": {"$ref": "#/$defs/stringSet"},
+        "geographies": {"$ref": "#/$defs/stringSet"},
+        "languages": {"$ref": "#/$defs/stringSet"},
+        "source_corpora": {"$ref": "#/$defs/stringSet"},
+        "textual_problems": {"$ref": "#/$defs/stringSet"},
+        "methods": {"$ref": "#/$defs/stringSet"}
+      }
+    },
+    "required_functions": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"enum": ["bounded_researcher", "citation_locator_verifier", "source_quality_verifier", "claim_entailment_context_verifier", "counterevidence_challenger", "tradition_representation_auditor", "goal_alignment_and_authority_auditor", "doctrine_mesh_completeness_auditor", "bounded_evidence_integrator", "independent_whole_work_checker"]}},
+    "risk": {
+      "type": "object", "additionalProperties": false,
+      "required": ["proposed_tier", "minimum_floor", "consequence", "uncertainty", "reversibility", "propagation", "reasons"],
+      "properties": {
+        "proposed_tier": {"enum": ["low", "medium", "high", "frontier"]},
+        "minimum_floor": {"enum": ["low", "medium", "high", "frontier"]},
+        "consequence": {"type": "integer", "minimum": 1, "maximum": 5},
+        "uncertainty": {"type": "integer", "minimum": 1, "maximum": 5},
+        "reversibility": {"type": "integer", "minimum": 1, "maximum": 5},
+        "propagation": {"type": "integer", "minimum": 1, "maximum": 5},
+        "reasons": {"type": "array", "minItems": 4, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["trust_zone", "human_gate_ids", "normative_decision_allowed"],
+      "properties": {
+        "trust_zone": {"enum": ["proposed", "inferred", "learning-sidecar", "tradition-scoped"]},
+        "human_gate_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "normative_decision_allowed": {"const": false}
+      }
+    },
+    "source_constraints": {
+      "type": "object", "additionalProperties": false,
+      "required": ["allowlist_refs", "rights_state", "root_sources_required", "agent_summary_as_evidence_allowed"],
+      "properties": {
+        "allowlist_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "rights_state": {"enum": ["approved_exact_use", "public_pointer_only", "unknown_blocked", "restricted_blocked"]},
+        "root_sources_required": {"const": true},
+        "agent_summary_as_evidence_allowed": {"const": false}
+      }
+    },
+    "status": {"enum": ["candidate", "qualified", "blocked", "expired"]}
+  },
+  "$defs": {"stringSet": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}}
+}

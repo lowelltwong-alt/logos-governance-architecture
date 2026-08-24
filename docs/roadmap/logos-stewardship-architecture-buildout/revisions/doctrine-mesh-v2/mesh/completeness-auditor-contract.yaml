@@ -1,0 +1,93 @@
+metadata:
+  object_type: doctrine_mesh_completeness_auditor_contract
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root from Lowell's requirement for beginning, midflight, and end-of-work expert coverage audits."
+  reason_for_inclusion: "Make expert-gap review mandatory, useful, independently challengeable, and deterministically observable."
+schema_version: logos_doctrine_mesh_completeness_auditor.v2
+role_id: doctrine-mesh-completeness-auditor
+display_name: Doctrine Mesh Completeness Auditor
+mission: >-
+  Determine which source, language, historical, doctrinal, tradition,
+  archaeology, philosophy, methodology, and checking capabilities can add
+  unique decision value to the exact work unit; identify missing, redundant,
+  unqualified, or late-discovered roles; never decide the doctrine itself.
+required_runs:
+  preflight:
+    trigger: work_unit_opened
+    must_complete_before: any_research_or_writer_lease
+  midflight:
+    triggers:
+      - new_claim
+      - new_source_domain
+      - new_tradition
+      - new_era_or_geography
+      - new_language_or_textual_problem
+      - new_method
+      - risk_increase
+      - material_disagreement
+      - source_unavailable
+      - role_failed
+      - scope_or_authority_change
+      - new_downstream_use
+    rule: "One fresh event and receipt per material trigger revision; deduplicate identical trigger IDs, never distinct changed inputs."
+  postflight:
+    trigger: before_completion
+    must_complete_after: all_worker_and_checker_receipts
+    must_complete_before: work_unit_completion_or_promotion_gate
+questions_each_run:
+  - What claims, corpora, languages, periods, geographies, traditions, methods, and authority domains are actually touched?
+  - Which assigned roles detect a unique error class for each material claim?
+  - Is a Catholic, Eastern, Oriental, Lutheran, Reformed, Presbyterian, Anglican, Anabaptist, Baptist, Wesleyan, Pentecostal, or other tradition specialist materially needed rather than cosmetically balanced?
+  - Is a source-corpus specialist needed for Aquinas, Augustine, Luther, councils, confessions, Qumran, rabbinic texts, Philo, Josephus, or another named corpus?
+  - Is an ancient Jewish-world specialist missing, including periodized faction, divine-agency, mystical, apocalyptic, legal, or interpretive expertise?
+  - Does any Christian-Jewish comparison require a distinct Jewish representation and anti-projection reviewer rather than only a Christian tradition reviewer?
+  - Does a translated or language-dependent claim require a translation-fidelity verifier separate from its interpreter?
+  - Does exact-use rights, privacy, custody, or a cross-repository destination require a checker independent of source-quality judgment?
+  - Is an Egyptologist, Assyriologist, archaeologist, epigrapher, Greek or Roman historian, or philosophy specialist needed for context or a claimed transmission path?
+  - Would the missing role add a genuinely new check, counterexample, source access route, or method? What exact error could it catch?
+  - Are roles duplicative, unqualified, source-blind, prompt-aligned toward a desired conclusion, or unable to verify one another?
+  - Did the work reveal a missing expert whose review could materially change a load-bearing result?
+required_outputs:
+  - DoctrineRoleRequirement
+  - DoctrineExpertiseCoveragePlan
+  - RoleGapRecord_set
+  - role_reuse_split_add_remove_or_block_reconciliation
+  - high_risk_disagreement_and_human_gate_packet_refs
+  - explicit_omissions_with_reasons
+deterministic_presence_proof:
+  expected_event_generation: "Controller derives event IDs from work-unit ID, revision, monotonic sequence, phase, trigger, and exact input-manifest digest."
+  one_to_one_rule: "Every expected event has exactly one receipt; no receipt may satisfy two events."
+  receipt_binding:
+    - event_id_and_digest
+    - work_unit_id_and_revision
+    - exact_input_manifest_digest
+    - execution_class_and_attributable_attempt_receipt
+    - coverage_plan_and_role_gap_digests
+    - previous_receipt_hash_chain
+    - start_end_and_sequence_order
+  rejection_cases:
+    - missing duplicate stale future or out_of_order receipt
+    - reused attempt or receipt ID
+    - phase or trigger mismatch
+    - changed input or output digest
+    - auditor is checker or integrator
+    - preflight after worker lease or postflight before final worker receipt
+  completion_rule: "Missing, blocked, stale, invalid, or inconclusive audit receipt blocks the affected phase."
+epistemic_boundary:
+  deterministic_claim: "The required auditor execution occurred once against exact inputs and produced schema-valid hash-bound outputs."
+  prohibited_claim: "The deterministic harness proves the role selection is complete or correct."
+  substantive_check: "A distinct independent checker re-derives requirements, tests omitted roles and counterexamples, and may appeal any gap disposition."
+execution_class_boundary:
+  manual_specification_coverage_review: "May prove that the design-time audit occurred before writing and was independently challenged before artifact completion; a later checker finding requires explicit recovery and cannot qualify or activate a controller."
+  controller_execution_audit: "May exist only after separately authorized runtime activation and must bind the exact qualified controller adapter and work-unit state."
+  controller_preflight_rule: "Both auditor and checker must complete before the first affected worker or writer lease."
+independence:
+  auditor_may_check_itself: false
+  required_checker_role_id: independent-whole-work-checker
+  integrator_may_overrule_silently: false
+  majority_vote_decides_gap: false
+postflight_recovery:
+  missing_role_found_and_material: "Quarantine affected conclusion and descendants; staff and run the role if qualified, or block for human decision."
+  missing_role_found_but_no_unique_value: "Record OMIT_WITH_REASON with independent checker acceptance."
+  repeated_decomposition_failure: "Propose a reusable taxonomy or role-factory improvement; never self-apply it."

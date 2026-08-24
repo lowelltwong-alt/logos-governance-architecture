@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-human-authorization-receipt-v2.json",
+  "title": "DoctrineHumanAuthorizationReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_human_authorization_receipt_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root after adversarial authority review.",
+    "reason_for_inclusion": "Bind a human decision to one exact gate, question, revision, evidence snapshot, authority grant, exclusions, expiry, and authentication route."
+  },
+  "required": ["schema_version", "receipt_id", "human_owner", "gate_id", "decision_id", "question_digest", "evidence_snapshot_digest", "target_revision", "authority_granted", "explicitly_not_granted", "authentication", "observed_at", "expires_at", "revalidation_triggers", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_human_authorization_receipt.v2"},
+    "receipt_id": {"type": "string", "pattern": "^DHA-[A-Z0-9-]+$"},
+    "human_owner": {"type": "string", "minLength": 1},
+    "gate_id": {"type": "string"}, "decision_id": {"type": "string"},
+    "question_digest": {"$ref": "#/$defs/digest"}, "evidence_snapshot_digest": {"$ref": "#/$defs/digest"},
+    "target_revision": {"type": "string"},
+    "authority_granted": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "explicitly_not_granted": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "authentication": {"type": "object", "additionalProperties": false, "required": ["method", "source_ref", "source_digest"], "properties": {"method": {"enum": ["repository_signed_record", "provider_thread_receipt", "maintainer_attestation"]}, "source_ref": {"type": "string"}, "source_digest": {"$ref": "#/$defs/digest"}}},
+    "observed_at": {"type": "string", "format": "date-time"}, "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "revalidation_triggers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "receipt_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

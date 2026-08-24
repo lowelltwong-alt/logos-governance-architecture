@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-evidence-source-manifest-v2.json",
+  "title": "EvidenceSourceManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_evidence_source_manifest_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root.",
+    "reason_for_inclusion": "Bind exact source identity, edition, locator, function, rights, evidentiary reliability, and normative authority independently."
+  },
+  "required": ["schema_version", "manifest_id", "revision", "source_id", "authority_plane", "work_identity", "edition_or_witness", "language_and_translation", "locator", "stable_pointer", "source_class", "source_function", "evidentiary_reliability", "normative_christian_doctrine_authority", "tradition_scope", "custody_and_provenance", "rights_and_access", "freshness", "verification_states", "human_authorization_receipt_ref", "human_authorization_receipt_digest", "use_state"],
+  "properties": {
+    "schema_version": {"const": "logos.evidence_source_manifest.v2"},
+    "manifest_id": {"type": "string", "pattern": "^ESM-[A-Z0-9-]+$"},
+    "revision": {"type": "integer", "minimum": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "authority_plane": {"enum": ["canonical_scripture", "jewish_historical_context", "external_ancient_context", "christian_reception_sources", "doctrine_genealogy", "governance_and_campaign"]},
+    "work_identity": {"type": "object", "required": ["title", "author_or_body", "authorship_state", "date_or_range", "genre"], "additionalProperties": false, "properties": {"title": {"type": "string"}, "author_or_body": {"type": "string"}, "authorship_state": {"enum": ["established", "traditional", "disputed", "anonymous", "composite", "unknown"]}, "date_or_range": {"type": "string"}, "genre": {"type": "string"}}},
+    "edition_or_witness": {"type": "object", "required": ["identity", "revision", "witness_or_object_ids", "fitness_state"], "additionalProperties": false, "properties": {"identity": {"type": "string", "minLength": 1}, "revision": {"type": "string", "minLength": 1}, "witness_or_object_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "fitness_state": {"enum": ["fit", "fit_with_limits", "not_fit", "unknown"]}}},
+    "language_and_translation": {"type": "object", "required": ["original_languages", "translation_identity", "translation_checked"], "additionalProperties": false, "properties": {"original_languages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}, "translation_identity": {"type": ["string", "null"]}, "translation_checked": {"type": "boolean"}}},
+    "locator": {"type": "object", "required": ["grammar", "exact_value", "quotation_or_paraphrase"], "additionalProperties": false, "properties": {"grammar": {"type": "string", "minLength": 1}, "exact_value": {"type": "string"}, "quotation_or_paraphrase": {"enum": ["quotation", "close_paraphrase", "summary", "object_metadata", "not_applicable"]}}},
+    "stable_pointer": {"type": "object", "required": ["identifier", "pointer", "pointer_kind", "credentials_or_access_token_present", "observed_at"], "additionalProperties": false, "properties": {"identifier": {"type": "string", "minLength": 1}, "pointer": {"type": "string", "minLength": 1}, "pointer_kind": {"enum": ["stable_identifier", "public_catalog_url", "public_repository_pointer", "restricted_reference_without_secret"]}, "credentials_or_access_token_present": {"const": false}, "observed_at": {"type": "string", "format": "date-time"}}},
+    "source_class": {"enum": ["SC-PRIMARY-WITNESS", "SC-CRITICAL-EDITION", "SC-OFFICIAL-COMMUNITY", "SC-PEER-REVIEWED-SCHOLARSHIP", "SC-REFERENCE-CATALOG", "SC-DISCOVERY-ONLY"]},
+    "source_function": {"enum": ["canonical_text_witness", "historical_context", "reception_history", "tradition_self_description", "doctrinal_argument", "material_culture", "linguistic_evidence", "navigation_only"]},
+    "evidentiary_reliability": {"enum": ["high", "moderate", "low", "disputed", "unknown"]},
+    "normative_christian_doctrine_authority": {"enum": ["none", "candidate_tradition_scoped", "human_governed_scripture_policy_required"]},
+    "tradition_scope": {"type": "object", "required": ["community", "jurisdiction", "era", "authority_level"], "additionalProperties": false, "properties": {"community": {"type": ["string", "null"]}, "jurisdiction": {"type": ["string", "null"]}, "era": {"type": "string"}, "authority_level": {"type": "string"}}},
+    "custody_and_provenance": {"type": "object", "required": ["custodian", "provenance_state", "authenticity_state", "limitations"], "additionalProperties": false, "properties": {"custodian": {"type": "string"}, "provenance_state": {"enum": ["documented", "partial", "unprovenanced", "unknown"]}, "authenticity_state": {"enum": ["accepted", "disputed", "forged", "unknown"]}, "limitations": {"type": "array", "items": {"type": "string"}}}},
+    "rights_and_access": {"type": "object", "required": ["access_state", "quotation_state", "retention_state", "provider_egress_state", "credentials_required"], "additionalProperties": false, "properties": {"access_state": {"enum": ["approved_exact_use", "public_pointer_only", "restricted", "unknown"]}, "quotation_state": {"enum": ["approved", "limited", "prohibited", "unknown"]}, "retention_state": {"enum": ["approved", "pointer_only", "prohibited", "unknown"]}, "provider_egress_state": {"enum": ["approved", "prohibited", "unknown"]}, "credentials_required": {"type": "boolean"}}},
+    "freshness": {"type": "object", "required": ["state", "observed_at", "triggers"], "additionalProperties": false, "properties": {"state": {"enum": ["current", "watch", "stale", "superseded", "unknown"]}, "observed_at": {"type": "string", "format": "date-time"}, "triggers": {"type": "array", "minItems": 1, "items": {"type": "string"}}}},
+    "verification_states": {
+      "type": "object", "additionalProperties": false,
+      "required": ["identity", "edition_fitness", "locator", "translation", "source_quality", "rights_exact_use", "custody_provenance"],
+      "properties": {
+        "identity": {"enum": ["candidate", "verified", "disputed", "blocked"]},
+        "edition_fitness": {"enum": ["candidate", "verified_exact_use", "limited", "not_fit", "blocked"]},
+        "locator": {"enum": ["candidate", "verified", "not_found", "blocked"]},
+        "translation": {"enum": ["not_applicable", "candidate", "verified_exact_passage", "disputed", "blocked"]},
+        "source_quality": {"enum": ["candidate", "reviewed_exact_use", "limited", "rejected", "blocked"]},
+        "rights_exact_use": {"enum": ["candidate", "approved", "limited", "prohibited", "unknown_blocked"]},
+        "custody_provenance": {"enum": ["candidate", "reviewed", "disputed", "unprovenanced_blocked"]}
+      }
+    },
+    "human_authorization_receipt_ref": {"type": ["string", "null"]},
+    "human_authorization_receipt_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "use_state": {"enum": ["candidate_not_load_bearing", "approved_exact_descriptive_use", "approved_exact_normative_use_after_human_gate", "blocked"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"authority_plane": {"enum": ["jewish_historical_context", "external_ancient_context", "governance_and_campaign"]}}, "required": ["authority_plane"]},
+      "then": {"properties": {"normative_christian_doctrine_authority": {"const": "none"}}}
+    },
+    {
+      "if": {"properties": {"source_function": {"enum": ["historical_context", "material_culture", "navigation_only"]}}, "required": ["source_function"]},
+      "then": {"properties": {"normative_christian_doctrine_authority": {"const": "none"}}}
+    },
+    {
+      "if": {"properties": {"rights_and_access": {"properties": {"credentials_required": {"const": true}}, "required": ["credentials_required"]}}, "required": ["rights_and_access"]},
+      "then": {"properties": {"use_state": {"const": "blocked"}}}
+    },
+    {
+      "if": {"properties": {"use_state": {"enum": ["approved_exact_descriptive_use", "approved_exact_normative_use_after_human_gate"]}}, "required": ["use_state"]},
+      "then": {
+        "properties": {
+          "rights_and_access": {"properties": {"access_state": {"const": "approved_exact_use"}, "credentials_required": {"const": false}}, "required": ["access_state", "credentials_required"]},
+          "verification_states": {"properties": {"rights_exact_use": {"const": "approved"}}, "required": ["rights_exact_use"]}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"use_state": {"const": "approved_exact_normative_use_after_human_gate"}}, "required": ["use_state"]},
+      "then": {
+        "properties": {
+          "source_class": {"enum": ["SC-PRIMARY-WITNESS", "SC-CRITICAL-EDITION", "SC-OFFICIAL-COMMUNITY", "SC-PEER-REVIEWED-SCHOLARSHIP"]},
+          "normative_christian_doctrine_authority": {"enum": ["candidate_tradition_scoped", "human_governed_scripture_policy_required"]},
+          "edition_or_witness": {"properties": {"fitness_state": {"enum": ["fit", "fit_with_limits"]}, "identity": {"minLength": 1}, "revision": {"minLength": 1}}, "required": ["fitness_state", "identity", "revision"]},
+          "locator": {"properties": {"exact_value": {"type": "string", "minLength": 1}}, "required": ["exact_value"]},
+          "custody_and_provenance": {"properties": {"provenance_state": {"enum": ["documented", "partial"]}, "authenticity_state": {"const": "accepted"}}, "required": ["provenance_state", "authenticity_state"]},
+          "freshness": {"properties": {"state": {"enum": ["current", "watch"]}}, "required": ["state"]},
+          "verification_states": {
+            "properties": {
+              "identity": {"const": "verified"},
+              "edition_fitness": {"const": "verified_exact_use"},
+              "locator": {"const": "verified"},
+              "translation": {"enum": ["not_applicable", "verified_exact_passage"]},
+              "source_quality": {"const": "reviewed_exact_use"},
+              "rights_exact_use": {"const": "approved"},
+              "custody_provenance": {"const": "reviewed"}
+            },
+            "required": ["identity", "edition_fitness", "locator", "translation", "source_quality", "rights_exact_use", "custody_provenance"]
+          },
+          "human_authorization_receipt_ref": {"type": "string", "minLength": 1},
+          "human_authorization_receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+        }
+      }
+    }
+  ]
+}

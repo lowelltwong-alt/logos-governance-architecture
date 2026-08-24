@@ -1,0 +1,81 @@
+metadata:
+  object_type: doctrine_autonomous_role_factory_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_until_human_activation
+  provenance_note: "Created on 2026-08-24 by Codex root to automate bounded expert staffing over time without self-modifying authority."
+  reason_for_inclusion: "Let a future controller staff appropriate researchers and checkers without routine owner selection while blocking unqualified or high-risk autonomy."
+schema_version: logos_doctrine_autonomous_role_factory.v2
+factory_id: LOGOS-DOCTRINE-ROLE-FACTORY-002
+stable_role_id: doctrine-task-local-role-factory
+current_activation: false
+factory_may_dispatch_or_own_lease: false
+sole_dispatcher_if_future_activation_occurs: qualified_controller_runtime_adapter
+inputs:
+  - DoctrineRoleRequirement
+  - latest_valid_completeness_audit_receipt
+  - reviewed_expertise_taxonomy_revision
+  - reviewed_role_and_skill_library_snapshot
+  - approved_ExpertPack_registry
+  - runtime_capability_and_provider_probe_snapshot
+  - source_rights_privacy_and_budget_envelope
+  - conflict_and_independence_graph
+selection_order:
+  - search reviewed existing roles and DAD assets by capability and evidence
+  - reuse exact qualified role when its contract and consequence boundary match
+  - specialize a reviewed role with approved facets when exact qualification remains valid
+  - compose a new task-local candidate only when no reviewed role satisfies the requirement
+  - block unstafed work when source access qualification independence or authority is missing
+candidate_composition:
+  required_components:
+    - one function profile
+    - one or more exact domain profiles
+    - explicit era geography languages corpus and edition scope
+    - one approved ExpertPack
+    - neutral prompt revision
+    - source and rights allowlist
+    - risk floor and materiality rule
+    - distinct checker and challenger
+    - stop conditions and handoff schema
+    - expiry and invalidation triggers
+  generated_status: candidate_task_local
+  maximum_delegation_depth: 1
+  may_generate_children: false
+  may_write_repository: false
+  may_change_factory_or_taxonomy: false
+automatic_acceptance_checks:
+  - every required capability maps to qualification evidence
+  - source and language claims match exact fixtures and access
+  - no worker checker challenger or integrator collision
+  - no write path overlap
+  - no provider model or brand in stable identity
+  - no leading objective or required doctrinal conclusion
+  - human and authority gates preserved
+  - budget and context ceilings fit
+  - role adds a named unique error-detection value
+auto_route_allowed_only_when:
+  - risk is low or medium
+  - no doctrine canon normativity orthodoxy heresy or tradition policy decision
+  - no new corpus source authority rights privacy credentials paid provider or cross-repository effect
+  - all source and ExpertPack evidence is approved for exact use
+  - deterministic and independent gates are available
+  - the completeness-auditor receipt is fresh
+human_or_blocked_route_when:
+  - risk is high or frontier
+  - role or source qualification is missing or expired
+  - material disagreement is unresolved
+  - source verifier cannot independently access the source
+  - a new tradition corpus language archaeology domain or authority class appears
+  - role creation would require a global skill persistent agent recursive delegation or instruction change
+  - an external frontier provider or paid service is proposed
+recovery:
+  maximum_role_recovery_rounds_without_changed_evidence: 1
+  on_failure: "Quarantine output, append failure evidence, rerun the completeness slice, and either route one bounded replacement or stop."
+  no_same_state_retry: true
+  cumulative_generation_limit: 2
+  changed_evidence_does_not_reset_generation_counter: true
+  terminal_state_after_limit: blocked_scope_growth
+learning_boundary:
+  task_local_grade_can_change_current_role: false
+  repeated_independent_failure_can_create: reusable_improvement_candidate
+  human_approval_required_for_taxonomy_prompt_skill_or_global_role_change: true
+  raw_conversations_private_sources_and_credentials_may_enter_learning_record: false

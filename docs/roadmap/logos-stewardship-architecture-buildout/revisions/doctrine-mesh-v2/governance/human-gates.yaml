@@ -1,0 +1,26 @@
+metadata:
+  object_type: doctrine_mesh_revision_human_gates
+  trust_zone: proposed
+  lifecycle_status: blocking
+  provenance_note: "Created on 2026-08-24 by Codex root as additive gates for automatic expert routing and ancient-context boundaries."
+  reason_for_inclusion: "Prevent automatic staffing from becoming automatic doctrinal, corpus, authority, or runtime approval."
+schema_version: logos_doctrine_mesh_human_gates.v2
+inherits_blocked_gates_from: ../../../human-gates.yaml
+default_status: blocked_human
+gates:
+  - {gate_id: DM-HG-001, domain: autonomous_controller_activation, required_authority: Lowell_after_runtime_qualification, status: blocked_human}
+  - {gate_id: DM-HG-002, domain: reusable_expert_role_promotion, required_authority: Lowell_after_independent_fixture_evidence, status: blocked_human}
+  - {gate_id: DM-HG-003, domain: new_source_domain_or_corpus, required_authority: qualified_source_rights_review_plus_Lowell, status: blocked_human}
+  - {gate_id: DM-HG-004, domain: doctrine_normativity_orthodoxy_or_heresy, required_authority: qualified_doctrine_review_plus_Lowell, status: blocked_human}
+  - {gate_id: DM-HG-005, domain: tradition_self_description_or_comparison, required_authority: qualified_tradition_review_plus_Lowell, status: blocked_human}
+  - {gate_id: DM-HG-006, domain: historical_influence_borrowing_or_cultural_genealogy, required_authority: qualified_history_review_plus_Lowell, status: blocked_human}
+  - {gate_id: DM-HG-007, domain: ancient_context_repository_or_schema_expansion, required_authority: cross_repo_architecture_review_plus_Lowell, status: blocked_human}
+  - {gate_id: DM-HG-008, domain: paid_restricted_private_or_credentialed_research, required_authority: rights_privacy_budget_review_plus_Lowell, status: blocked_human}
+  - {gate_id: DM-HG-009, domain: high_risk_missing_expert_or_disagreement, required_authority: Lowell_after_balanced_evidence_packet, status: blocked_human}
+  - {gate_id: DM-HG-010, domain: external_frontier_or_manual_artifact_review_attempt, required_authority: Lowell_for_exact_provider_attempt_scope_sources_budget_privacy_and_output, status: blocked_human}
+receipt_rules:
+  exact_scope_and_revision_required: true
+  prior_general_permission_sufficient: false
+  model_completion_phrase_is_approval: false
+  agent_may_create_human_receipt: false
+  changed_source_role_prompt_runtime_or_effect_invalidates_affected_receipt: true

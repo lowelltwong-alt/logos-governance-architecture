@@ -1,0 +1,424 @@
+metadata:
+  object_type: doctrine_expertise_taxonomy
+  trust_zone: proposed
+  lifecycle_status: candidate_role_library
+  provenance_note: "Created on 2026-08-24 by Codex root from Lowell's requested doctrine, Jewish-world, ancient-context, archaeology, philosophy, tradition, and verification classifications."
+  reason_for_inclusion: "Give the completeness auditor and role factory a deep, typed vocabulary without pretending a label itself proves expertise."
+schema_version: logos_doctrine_expertise_taxonomy.v2
+taxonomy_id: LOGOS-DOCTRINE-EXPERTISE-002
+qualification_rule: >-
+  A taxonomy profile is a capability requirement, not an agent credential. A
+  role is staffable only when an exact ExpertPack, protected qualification
+  fixtures, source access, independence route, and current review receipt exist.
+composition_axes:
+  - function
+  - doctrine_locus_or_claim_type
+  - community_or_tradition
+  - era
+  - geography
+  - language
+  - source_corpus
+  - textual_or_edition_problem
+  - research_method
+  - authority_and_trust_zone
+  - risk_and_materiality
+function_profiles:
+  - {profile_id: FN-RESEARCH, label: bounded_researcher, mission: "Build a source-rooted candidate evidence packet for one neutral question.", may_write_repository: false}
+  - {profile_id: FN-CITATION, label: citation_locator_verifier, mission: "Re-access every locator and verify work, edition, witness, passage, quotation or paraphrase, and rights state.", may_write_repository: false}
+  - {profile_id: FN-SOURCE-QUALITY, label: source_quality_verifier, mission: "Judge source identity, custody, edition fitness, scholarly status, and limitations for the exact claim.", may_write_repository: false}
+  - {profile_id: FN-ENTAILMENT, label: claim_entailment_context_verifier, mission: "Test whether sources support the precise claim in context without anachronism or overstatement.", may_write_repository: false}
+  - {profile_id: FN-COUNTER, label: counterevidence_challenger, mission: "Search qualified contrary sources, alternative interpretations, and falsifiers.", may_write_repository: false}
+  - {profile_id: FN-TRADITION, label: tradition_representation_auditor, mission: "Check that a community is represented from its own authoritative and historically appropriate sources.", may_write_repository: false}
+  - {profile_id: FN-ALIGNMENT, label: goal_alignment_and_authority_auditor, mission: "Detect leading assignments, hidden desired conclusions, authority leakage, and scope drift.", may_write_repository: false}
+  - {profile_id: FN-JEWISH-REPRESENTATION, label: Jewish_community_representation_and_anti_projection_auditor, mission: "Detect Christian category projection, supersessionist flattening, faction collapse, and claims that exceed periodized Jewish evidence.", may_write_repository: false}
+  - {profile_id: FN-TRANSLATION, label: translation_and_interpretation_fidelity_verifier, mission: "Separate textual reading, translation choice, interpretive inference, and doctrinal use when a claim depends on language.", may_write_repository: false}
+  - {profile_id: FN-RIGHTS-CUSTODY, label: source_rights_privacy_and_custody_verifier, mission: "Independently verify exact-use access, rights, retention, provider egress, provenance, and secret-safe pointers.", may_write_repository: false}
+  - {profile_id: FN-CROSS-REPO-CUSTODY, label: cross_repository_storage_and_contract_checker, mission: "Verify destination readiness, namespace, authority, reference direction, and consumer validation before any separately authorized cross-repository handoff.", may_write_repository: false}
+  - {profile_id: FN-COVERAGE, label: doctrine_mesh_completeness_auditor, mission: "At preflight, material midflight triggers, and postflight identify missing or redundant expertise and explain expected decision value.", may_write_repository: false}
+  - {profile_id: FN-INTEGRATOR, label: bounded_evidence_integrator, mission: "Write one candidate synthesis that preserves evidence, dissent, uncertainty, and human gates.", may_write_repository: true}
+  - {profile_id: FN-FINAL, label: independent_whole_work_checker, mission: "Re-derive scope and verify the complete evidence and authority chain without writing the artifact.", may_write_repository: false}
+domain_profiles:
+  scripture_and_languages:
+    - profile_id: DOM-HEBREW-TEXT
+      label: Hebrew_Bible_textual_critic
+      use_when: [Hebrew_witness, Masoretic_text, variant, vocalization, scribal_history]
+      required_competencies: [Biblical_Hebrew, Aramaic_where_relevant, manuscript_and_edition_method, textual_criticism]
+      mandatory_source_classes: [critical_edition, manuscript_or_witness_catalog, textual_apparatus]
+      stop_conditions: [translation_used_as_original_language_proof, witness_identity_unclear]
+    - profile_id: DOM-SEPTUAGINT
+      label: Septuagint_and_Greek_Jewish_Scripture_specialist
+      use_when: [Old_Greek, recensions, translation_technique, Hebrew_Greek_relation]
+      required_competencies: [Koine_Greek, Septuagint_textual_history, Hebrew_Greek_comparison]
+      mandatory_source_classes: [critical_Septuagint_edition, witness_evidence, specialist_lexicon]
+      stop_conditions: [one_Greek_form_generalized_to_all_LXX, later_reception_confused_with_translation_origin]
+    - profile_id: DOM-NT-TEXT
+      label: New_Testament_textual_critic
+      use_when: [Greek_witness, variant, papyrus, codex, critical_text]
+      required_competencies: [Koine_Greek, manuscript_method, genealogical_and_local_textual_reasoning]
+      mandatory_source_classes: [critical_edition, manuscript_catalog, apparatus]
+      stop_conditions: [critical_text_treated_as_single_manuscript, variant_confidence_overstated]
+    - profile_id: DOM-HEBREW-LING
+      label: Ancient_Hebrew_linguist
+      use_when: [lexeme, syntax, semantics, diachrony, discourse]
+      required_competencies: [Biblical_Hebrew, comparative_Semitics, corpus_and_lexicographic_method]
+      mandatory_source_classes: [primary_text, critical_lexicon, grammar, corpus_evidence]
+      stop_conditions: [etymology_treated_as_meaning, root_fallacy, later_Hebrew_projected_backward]
+    - profile_id: DOM-ARAMAIC
+      label: Biblical_and_Second_Temple_Aramaic_specialist
+      use_when: [Aramaic_text, targum, imperial_Aramaic, Jewish_Aramaic]
+      required_competencies: [periodized_Aramaic, manuscript_method, Semitic_linguistics]
+      mandatory_source_classes: [primary_text, critical_edition, period_appropriate_lexicon]
+      stop_conditions: [dialects_or_centuries_collapsed]
+    - profile_id: DOM-GREEK-LING
+      label: Koine_Greek_linguist
+      use_when: [Greek_lexeme, syntax, discourse, semantic_domain]
+      required_competencies: [Koine_corpora, syntax, discourse, papyrological_comparison]
+      mandatory_source_classes: [primary_text, critical_lexicon, corpus_evidence]
+      stop_conditions: [classical_usage_assumed_identical, illegitimate_totality_transfer]
+    - profile_id: DOM-HERMENEUTICS
+      label: genre_and_hermeneutics_specialist
+      use_when: [genre, author_audience, intertext, typology, narrative, poetry, apocalyptic]
+      required_competencies: [literary_method, historical_context, canonical_and_tradition_scope_awareness]
+      mandatory_source_classes: [primary_text, genre_evidence, competing_interpretations]
+      stop_conditions: [method_silently_decides_doctrine, context_or_genre_omitted]
+  ancient_jewish_worlds:
+    - profile_id: DOM-TRIBAL-ISRAEL
+      label: tribal_Israel_identity_and_social_history_specialist
+      use_when: [tribe, tribal_identity, settlement, kinship, confederation, regional_practice]
+      required_competencies: [Hebrew_texts_as_texts, archaeology, epigraphy, social_history, historiographic_limits]
+      mandatory_source_classes: [exact_primary_text, regional_archaeology_or_inscription, critical_history]
+      stop_conditions: [all_tribes_assumed_uniform, later_tribal_schema_projected_backward, reconstruction_treated_as_canon]
+    - profile_id: DOM-TORAH-SCRIBAL
+      label: Torah_legal_scribal_and_interpretive_history_specialist
+      use_when: [Torah, law_collection, scribal_practice, legal_interpretation, covenant, purity]
+      required_competencies: [Biblical_Hebrew, source_and_redaction_methods, ancient_law_context, reception_periodization]
+      mandatory_source_classes: [critical_text, manuscript_or_witness_evidence, dated_interpretive_source]
+      stop_conditions: [literary_hypothesis_presented_as_fact, later_halakhah_read_as_direct_early_transcript]
+    - profile_id: DOM-ISRAEL-HISTORY
+      label: ancient_Israel_and_Judah_historian
+      use_when: [tribes, monarchy, exile, restoration, practice_history, identity]
+      required_competencies: [Hebrew_Bible_history, archaeology, epigraphy, historiography]
+      mandatory_source_classes: [canonical_text_as_text, inscriptions, archaeology_reports, critical_history]
+      stop_conditions: [historical_reconstruction_treated_as_canon, pan_Israelite_uniformity_assumed]
+    - profile_id: DOM-EXILIC-POSTEXILIC
+      label: exilic_Persian_and_early_postexilic_Jewish_history_specialist
+      use_when: [exile, return, Persian_period, restoration, temple_rebuilding, identity_boundary]
+      required_competencies: [Hebrew_Aramaic_sources, Babylonian_and_Achaemenid_context, chronology, archaeology]
+      mandatory_source_classes: [dated_primary_text, inscription_or_administrative_record, archaeology, critical_history]
+      stop_conditions: [Babylonian_or_Persian_influence_inferred_from_similarity, return_treated_as_single_event]
+    - profile_id: DOM-TEMPLE-PRIESTHOOD
+      label: temple_priesthood_sacrifice_and_liturgical_history_specialist
+      use_when: [temple, priesthood, sacrifice, purity, pilgrimage, liturgical_calendar]
+      required_competencies: [priestly_texts, Second_Temple_sources, archaeology, institutional_history]
+      mandatory_source_classes: [period_primary_text, temple_or_material_evidence, critical_history]
+      stop_conditions: [first_and_second_temples_collapsed, prescriptive_text_assumed_to_equal universal_practice]
+    - profile_id: DOM-SECOND-TEMPLE
+      label: Second_Temple_Judaisms_historian
+      use_when: [Pharisee, Sadducee, Essene, sect, temple, synagogue, apocalyptic, messianism]
+      required_competencies: [periodization, Jewish_primary_sources, Greek_and_or_Hebrew_Aramaic, Roman_context]
+      mandatory_source_classes: [period_primary_source, critical_edition, archaeology_or_epigraphy_where_relevant]
+      stop_conditions: [Judaism_treated_as_one_view, later_rabbinic_source_projected_unqualified]
+    - profile_id: DOM-HASMONEAN-ROMAN-JUDEA
+      label: Hasmonean_Herodian_and_early_Roman_Judea_specialist
+      use_when: [Maccabean, Hasmonean, Herodian, Roman_Judea, temple_politics, revolt]
+      required_competencies: [Greek_and_Jewish_primary_sources, numismatics, archaeology, political_and_religious_history]
+      mandatory_source_classes: [dated_primary_text, coin_or_inscription_catalog, excavation_or_critical_history]
+      stop_conditions: [political_and_doctrinal_group_labels_conflated, Josephus_used_without_bias_review]
+    - profile_id: DOM-JEWISH-SECTS
+      label: Pharisaic_Sadducean_Essene_and_other_Jewish_group_specialist
+      use_when: [Pharisee, Sadducee, Essene, sect, teacher, school, legal_dispute]
+      required_competencies: [source_bias_analysis, Qumran_and_Josephus, later_rabbinic_reception, first_century_context]
+      mandatory_source_classes: [multiple_independent_period_sources, exact_group_and_date, critical_reconstruction]
+      stop_conditions: [later_label_backprojected, opponent_report_treated_as_self_description, group_boundary_assumed_fixed]
+    - profile_id: DOM-JEWISH-DIASPORA
+      label: Hellenistic_and_Roman_Jewish_diaspora_specialist
+      use_when: [Alexandria, diaspora, synagogue, Greek_Jewish_text, civic_status, acculturation]
+      required_competencies: [Greek, epigraphy, diaspora_geography, community_and_legal_history]
+      mandatory_source_classes: [inscription_or_papyrus, period_primary_text, regional_critical_history]
+      stop_conditions: [Alexandria_generalized_to_all_diaspora, Hellenization_treated_as_one_direction]
+    - profile_id: DOM-JEWISH-LAW-PRACTICE
+      label: Jewish_law_practice_and_teacher_traditions_specialist
+      use_when: [halakhic_dispute, teacher, school, purity, Sabbath, food, household_practice]
+      required_competencies: [periodized_legal_sources, redaction_history, practice_vs_prescription, material_context]
+      mandatory_source_classes: [exact_legal_text_and_stratum, comparative_period_source, practice_evidence_where_available]
+      stop_conditions: [one_teacher_generalized_to_Jews, later_codification_read_as uniform_earlier_practice]
+    - profile_id: DOM-MESSIANISM-DIVINE-AGENCY
+      label: Jewish_messianism_divine_agency_Wisdom_Name_and_Logos_specialist
+      use_when: [messiah, Son_of_Man, Wisdom, Name, Logos, principal_agent, exalted_figure]
+      required_competencies: [Second_Temple_corpora, Jewish_exegesis, textual_stratification, Christian_comparison_limits]
+      mandatory_source_classes: [exact_period_primary_text, critical_edition, competing_category_scholarship]
+      stop_conditions: [different_figures_collapsed, Christian_person_categories_projected_backward, similarity_called_identity]
+    - profile_id: DOM-JEWISH-REPRESENTATION
+      label: Jewish_community_representation_and_anti_supersession_specialist
+      use_when: [Judaism_claim, Christian_Jewish_comparison, supersession, covenant, law_grace_contrast]
+      required_competencies: [periodized_Jewish_sources, internal_diversity, Christian_reception_history, representation_ethics]
+      mandatory_source_classes: [Jewish_primary_or_self_descriptive_source, period_specific_scholarship, Christian_reception_source_if_compared]
+      stop_conditions: [Judaism_used_as_negative_foil, one_faction_generalized, later_or_modern_view_projected_backward]
+    - profile_id: DOM-QUMRAN
+      label: Qumran_and_Dead_Sea_Scrolls_specialist
+      use_when: [DSS, sectarian_text, pesher, community_rule, textual_witness]
+      required_competencies: [Hebrew_Aramaic, manuscript_identification, palaeography_awareness, Qumran_history]
+      mandatory_source_classes: [official_or_critical_scroll_edition, image_or_witness_metadata, specialist_catalog]
+      stop_conditions: [fragment_restoration_hidden, Qumran_equated_with_all_Jews]
+    - profile_id: DOM-ENOCHIC
+      label: Jewish_apocalyptic_and_Enochic_specialist
+      use_when: [Enoch, apocalypse, angelology, heavenly_figures, resurrection, eschatology]
+      required_competencies: [Second_Temple_literature, textual_transmission, apocalyptic_genre]
+      mandatory_source_classes: [critical_edition, manuscript_language_evidence, competing_scholarship]
+      stop_conditions: [composite_work_treated_as_single_date, later_text_backdated]
+    - profile_id: DOM-PHILO
+      label: Philo_and_Hellenistic_Judaism_specialist
+      use_when: [Philo, Logos_language, allegory, Alexandria, Hellenistic_Jewish_philosophy]
+      required_competencies: [Greek, Philo_corpus, Middle_Platonism_context, Jewish_exegesis]
+      mandatory_source_classes: [critical_Philo_edition, exact_treatise_locator, specialist_scholarship]
+      stop_conditions: [Philo_equated_with_Christian_Logos, Alexandrian_view_generalized]
+    - profile_id: DOM-JOSEPHUS
+      label: Josephus_and_Judean_history_specialist
+      use_when: [Josephus, Jewish_War, Antiquities, sect_descriptions, Roman_Judea]
+      required_competencies: [Greek, Josephus_corpus, Roman_historiography, source_bias_analysis]
+      mandatory_source_classes: [critical_edition, exact_work_and_section, comparative_primary_evidence]
+      stop_conditions: [Josephus_treated_as_neutral_transcript]
+    - profile_id: DOM-EARLY-RABBINIC
+      label: early_rabbinic_literature_specialist
+      use_when: [Mishnah, Tosefta, Talmud, midrash, tannaim, amoraim]
+      required_competencies: [Rabbinic_Hebrew_and_Aramaic, redaction_history, manuscript_or_edition_awareness]
+      mandatory_source_classes: [critical_or_manuscript_based_edition, tractate_and_unit_locator, redaction_scholarship]
+      stop_conditions: [rabbinic_text_used_as_direct_first_century_transcript, Bavli_and_Mishnah_collapsed]
+    - profile_id: DOM-JEWISH-MYSTICISM
+      label: early_Jewish_mysticism_and_merkabah_specialist
+      use_when: [heavenly_ascent, merkabah, hekhalot, mystical_exegesis, divine_name]
+      required_competencies: [textual_stratification, Hebrew_Aramaic, late_antique_context, category_history]
+      mandatory_source_classes: [critical_edition, date_and_stratum_evidence, competing_category_scholarship]
+      stop_conditions: [medieval_Kabbalah_projected_into_Second_Temple_period, mysticism_used_as_undifferentiated_label]
+    - profile_id: DOM-TWO-POWERS
+      label: Jewish_divine_agency_and_Two_Powers_specialist
+      use_when: [two_powers, divine_agency, exalted_figures, Logos, Name, Wisdom]
+      required_competencies: [rabbinic_category_history, Second_Temple_sources, Christology_comparison, anti_anachronism]
+      mandatory_source_classes: [exact_primary_text, dated_reception_evidence, competing_scholarship]
+      stop_conditions: [Two_Powers_equated_with_Two_Persons_or_Trinity, later_rabbinic_polemic_assumed_to_describe_all_earlier_Jews]
+    - profile_id: DOM-SAMARITAN
+      label: Samaritan_history_and_text_specialist
+      use_when: [Samaritan_Pentateuch, Gerizim, Samaritan_community, Jewish_Samaritan_relation]
+      required_competencies: [Samaritan_textual_history, Hebrew, community_history]
+      mandatory_source_classes: [critical_text, inscriptions_or_archaeology, community_and_scholarly_sources]
+      stop_conditions: [Samaritan_evidence_collapsed_into_rabbinic_Judaism]
+  ancient_external_context:
+    - profile_id: DOM-EGYPT
+      label: Egyptologist_and_Egyptian_religion_historian
+      use_when: [Egypt, exodus_context, wisdom_parallel, kingship, temple, afterlife, iconography]
+      required_competencies: [Egyptian_language_or_qualified_translation_method, periodization, material_culture]
+      mandatory_source_classes: [primary_inscription_or_text, critical_edition, excavation_or_museum_record]
+      stop_conditions: [millennia_collapsed, similarity_called_borrowing, Egyptian_source_given_normative_force]
+    - profile_id: DOM-ASSYRIOLOGY
+      label: Assyriologist_and_Mesopotamian_text_specialist
+      use_when: [Akkadian, Sumerian, Assyria, Babylon, law, epic, ritual, omen]
+      required_competencies: [cuneiform_corpus_method, periodization, ancient_Near_Eastern_history]
+      mandatory_source_classes: [tablet_or_catalog_ID, transliteration_or_critical_edition, provenance]
+      stop_conditions: [Sumerian_Akkadian_Babylonian_Assyrian_collapsed, parallel_called_source]
+    - profile_id: DOM-BABYLON-RELIGION
+      label: Babylonian_religion_and_exile_context_specialist
+      use_when: [Babylonian_deity, creation_epic, exile, ritual, imperial_ideology]
+      required_competencies: [Akkadian, Babylonian_history, religion_method, exile_period_context]
+      mandatory_source_classes: [dated_primary_text, critical_edition, historical_contact_evidence]
+      stop_conditions: [Babylonian_category_imported_into_doctrine, influence_asserted_without_contact_and_reception]
+    - profile_id: DOM-NW-SEMITIC
+      label: Northwest_Semitic_and_Ugaritic_specialist
+      use_when: [Ugarit, Canaanite_religion, Baal, El, Northwest_Semitic_language, iconography]
+      required_competencies: [Ugaritic, comparative_Semitics, Late_Bronze_and_Iron_Age_history]
+      mandatory_source_classes: [tablet_ID, critical_edition, archaeological_context]
+      stop_conditions: [lexical_cognate_treated_as_theological_identity, period_gap_hidden]
+    - profile_id: DOM-PERSIA
+      label: Achaemenid_and_Iranian_religion_context_specialist
+      use_when: [Persian_period, Zoroastrian_claim, empire, return, angelology_comparison]
+      required_competencies: [Achaemenid_history, Iranian_source_date_criticism, contact_analysis]
+      mandatory_source_classes: [dated_primary_evidence, inscription, critical_source_history]
+      stop_conditions: [late_Iranian_text_backdated, influence_inferred_from_similarity]
+    - profile_id: DOM-GREEK-RELIGION
+      label: Greek_religion_and_classical_social_history_specialist
+      use_when: [Greek_cult, polis, exposure, virtue, household, civic_religion, myth]
+      required_competencies: [Greek, period_and_polis_specific_history, legal_and_material_evidence]
+      mandatory_source_classes: [primary_text, inscription_or_archaeology, source_specific_commentary]
+      stop_conditions: [all_Greeks_generalized, prescription_report_and_practice_conflated, context_given_normative_force]
+    - profile_id: DOM-ROMAN
+      label: Roman_religion_law_and_social_history_specialist
+      use_when: [Roman_cult, imperial_cult, household, citizenship, law, patronage, exposure]
+      required_competencies: [Latin_and_or_Greek, Roman_law_source_method, social_history]
+      mandatory_source_classes: [primary_legal_or_literary_source, inscription_or_papyrus, dated_commentary]
+      stop_conditions: [centuries_or_provinces_collapsed, literary_topos_treated_as_population_rate]
+    - profile_id: DOM-ARCHAEOLOGY
+      label: biblical_and_Mediterranean_archaeology_specialist
+      use_when: [site, stratum, artifact, burial, settlement, cult_object, dating]
+      required_competencies: [stratigraphy, dating_method, publication_history, context_and_provenance]
+      mandatory_source_classes: [final_or_preliminary_excavation_report, locus_or_object_ID, method_and_uncertainty]
+      stop_conditions: [unprovenanced_artifact_load_bearing, sensational_claim_without_report, absence_of_evidence_overstated]
+    - profile_id: DOM-EPIGRAPHY
+      label: epigraphy_papyrology_and_numismatics_specialist
+      use_when: [inscription, papyrus, coin, seal, ostracon, palaeography]
+      required_competencies: [relevant_language, object_provenance, reading_and_restoration_method]
+      mandatory_source_classes: [catalog_ID, image_or_autopsy_record, edition, restoration_marks]
+      stop_conditions: [restoration_hidden, market_provenance_unqualified]
+  philosophy_and_concept_history:
+    - profile_id: DOM-PLATO
+      label: Plato_and_Platonic_traditions_specialist
+      use_when: [Plato, Platonism, Middle_Platonism, forms, soul, participation]
+      required_competencies: [Greek, dialogue_specific_exegesis, reception_periodization]
+      mandatory_source_classes: [exact_dialogue_or_later_Platonist_text, critical_edition, reception_evidence]
+      stop_conditions: [Plato_Middle_Platonism_and_Neoplatonism_collapsed, concept_similarity_called_dependency]
+    - profile_id: DOM-ARISTOTLE
+      label: Aristotle_and_Peripatetic_traditions_specialist
+      use_when: [Aristotle, substance, act_potency, causes, soul, virtue, natural_law]
+      required_competencies: [Greek_or_critical_translation, work_authenticity, ancient_and_medieval_reception]
+      mandatory_source_classes: [exact_work_and_locator, critical_edition, reception_source]
+      stop_conditions: [Aristotle_equated_with_Aquinas, prescription_generalized_to_Greek_practice]
+    - profile_id: DOM-STOIC
+      label: Stoicism_and_Hellenistic_philosophy_specialist
+      use_when: [Stoic, Logos, natural_law, passions, virtue, cosmopolis]
+      required_competencies: [fragment_source_criticism, Greek_Latin, Hellenistic_context]
+      mandatory_source_classes: [fragment_or_primary_testimony, source_witness, modern_critical_collection]
+      stop_conditions: [Christian_Logos_equated_with_Stoic_Logos, hostile_testimony_unqualified]
+    - profile_id: DOM-NEOPLATONISM
+      label: Neoplatonism_and_late_antique_metaphysics_specialist
+      use_when: [Plotinus, Proclus, procession, return, participation, late_antique_metaphysics]
+      required_competencies: [Greek, school_and_author_differences, Christian_reception]
+      mandatory_source_classes: [critical_primary_text, dated_reception_evidence, competing_scholarship]
+      stop_conditions: [Neoplatonism_projected_into_earlier_Platonism, reception_called_doctrinal_source_without_evidence]
+    - profile_id: DOM-CULTURAL-GENEALOGY
+      label: cultural_genealogy_and_concept_transmission_specialist
+      use_when: [continuity, rupture, appropriation, rejection, reframing, modern_cultural_recurrence]
+      required_competencies: [reception_history, contact_chain_method, causal_inference_limits, counterexample_search]
+      mandatory_source_classes: [dated_source_chain, explicit_reception_or_rejection, intervening_history]
+      stop_conditions: [straight_line_genealogy, similarity_as_causation, moral_judgment_substitutes_for_history]
+  christian_doctrine_and_reception:
+    - profile_id: DOM-APOSTOLIC-FATHERS
+      label: Apostolic_Fathers_and_early_Christianity_specialist
+      use_when: [Didache, Ignatius, Clement, Polycarp, Shepherd, early_practice]
+      required_competencies: [Greek_and_or_Latin, textual_history, early_Christian_diversity]
+      mandatory_source_classes: [critical_edition, exact_work_locator, date_and_authorship_evidence]
+      stop_conditions: [later_dogma_read_back_without_argument]
+    - profile_id: DOM-GREEK-PATRISTICS
+      label: Greek_patristics_specialist
+      use_when: [Greek_Father, patristic_exegesis, Christology, Trinity, councils]
+      required_competencies: [patristic_Greek, critical_editions, doctrinal_and_conciliar_history]
+      mandatory_source_classes: [critical_text, translation_checked_against_original, reception_context]
+      stop_conditions: [Father_quote_mining, author_or_era_homogenized]
+    - profile_id: DOM-LATIN-PATRISTICS
+      label: Latin_patristics_specialist
+      use_when: [Latin_Father, Augustine, Latin_reception, Western_council]
+      required_competencies: [patristic_Latin, critical_editions, doctrinal_history]
+      mandatory_source_classes: [critical_text, exact_work_section, date_and_genre]
+      stop_conditions: [translation_only_load_bearing_when_Latin_disputed, author_development_ignored]
+    - profile_id: DOM-SYRIAC-COPTIC
+      label: Syriac_Coptic_and_Oriental_Christian_sources_specialist
+      use_when: [Syriac_Father, Coptic_source, Oriental_Orthodox_reception, non_Greek_Latin_witness]
+      required_competencies: [relevant_language_or_verified_translation_method, manuscript_and_church_history]
+      mandatory_source_classes: [critical_edition, community_authoritative_source, reception_history]
+      stop_conditions: [Greek_Latin_categories_forced_onto_distinct_terminology]
+    - profile_id: DOM-COUNCILS
+      label: ecumenical_councils_canons_and_creeds_specialist
+      use_when: [council, creed, canon, conciliar_act, reception, anathema]
+      required_competencies: [acta_and_textual_history, jurisdiction, reception, doctrinal_terminology]
+      mandatory_source_classes: [critical_acta_or_creed_text, jurisdiction_and_reception_evidence]
+      stop_conditions: [council_label_or_scope_assumed, later_summary_substitutes_for_acta]
+    - profile_id: DOM-HERESIOLOGY
+      label: heresiology_and_disputed_movement_specialist
+      use_when: [heresy, orthodoxy, Gnosticism, Arian, Pelagian, movement_reconstruction]
+      required_competencies: [hostile_source_criticism, fragmentary_evidence, council_and_reception_history]
+      mandatory_source_classes: [movement_source_if_extant, critic_source, independent_context]
+      stop_conditions: [opponent_report_treated_as_neutral, agent_labels_orthodox_or_heretical]
+    - profile_id: DOM-AUGUSTINE
+      label: Augustine_corpus_specialist
+      use_when: [Augustine, grace, will, Trinity, church, sacraments, development]
+      required_competencies: [Latin, chronology, anti_Pelagian_and_other_corpora, textual_editions]
+      mandatory_source_classes: [critical_Augustine_text, exact_work_book_section, chronology]
+      stop_conditions: [one_period_generalized, spurious_work, current_whole_node_human_gate_ignored]
+    - profile_id: DOM-AQUINAS
+      label: Thomas_Aquinas_and_scholastic_method_specialist
+      use_when: [Aquinas, Summa, disputed_question, commentary, scholastic_argument, Aristotle_reception]
+      required_competencies: [scholastic_Latin, work_genre, objection_respondeo_structure, Aristotelian_and_patristic_sources]
+      mandatory_source_classes: [Leonine_or_equivalent_critical_text, exact_article_and_objection_reply, source_apparatus]
+      stop_conditions: [sed_contra_or_objection_called_Thomas_position, translation_conceals_term, Aristotle_and_Thomas_equated]
+    - profile_id: DOM-MEDIEVAL
+      label: medieval_theology_and_mysticism_specialist
+      use_when: [medieval_school, monastic, mystical, sacramental, canon_law, scholastic_debate]
+      required_competencies: [Latin_or_relevant_vernacular, institution_and_genre_history, manuscript_or_edition_method]
+      mandatory_source_classes: [critical_primary_text, school_or_order_context, reception]
+      stop_conditions: [centuries_and_schools_collapsed]
+    - profile_id: DOM-BYZANTINE
+      label: Byzantine_and_Eastern_Orthodox_doctrine_specialist
+      use_when: [Byzantine, Eastern_Orthodox, Palamas, liturgy, councils, hesychasm]
+      required_competencies: [Greek_or_verified_source_method, conciliar_and_liturgical_history, community_self_description]
+      mandatory_source_classes: [primary_text, received_conciliar_or_liturgical_source, qualified_scholarship]
+      stop_conditions: [Western_categories_assumed_univocal, community_scope_ignored]
+    - profile_id: DOM-CATHOLIC
+      label: Catholic_doctrine_and_magisterial_sources_specialist
+      use_when: [Catholic_doctrine, magisterium, council, papal_document, catechism, canon_law]
+      required_competencies: [document_authority_levels, Latin_where_disputed, historical_development, official_source_navigation]
+      mandatory_source_classes: [official_promulgated_text, critical_historical_source, qualified_Catholic_scholarship]
+      stop_conditions: [all_documents_same_authority, theologian_opinion_called_magisterium]
+    - profile_id: DOM-LUTHER
+      label: Martin_Luther_primary_corpus_specialist
+      use_when: [Luther, disputation, sermon, letter, Table_Talk, Reformation_debate]
+      required_competencies: [early_modern_German_and_Latin, Weimar_edition_navigation, chronology, genre_and_transmission]
+      mandatory_source_classes: [critical_Luther_edition, exact_series_volume_page, document_genre_and_date]
+      stop_conditions: [Table_Talk_called_diary_or_verbatim_without_source_criticism, later_confession_substituted_for_Luther, isolated_quote]
+    - profile_id: DOM-LUTHERAN
+      label: Lutheran_confessional_doctrine_specialist
+      use_when: [Augsburg_Confession, Apology, Formula_of_Concord, Lutheran_tradition]
+      required_competencies: [confessional_texts, German_and_Latin_where_disputed, reception_and_synod_scope]
+      mandatory_source_classes: [critical_or_official_confessional_text, jurisdiction_specific_official_source]
+      stop_conditions: [Luther_personal_view_equated_with_all_Lutheran_confession]
+    - profile_id: DOM-REFORMED
+      label: Reformed_and_Calvin_studies_specialist
+      use_when: [Calvin, Reformed_confession, covenant, predestination, sacrament, polity]
+      required_competencies: [Latin_and_or_French, Institutes_and_commentary_chronology, confessional_diversity]
+      mandatory_source_classes: [critical_Calvin_text, exact_confessional_document, reception_history]
+      stop_conditions: [Calvin_equated_with_all_Reformed_traditions]
+    - profile_id: DOM-PRESBYTERIAN
+      label: Presbyterian_doctrine_and_polity_specialist
+      use_when: [Westminster_Standards, Presbyterian_polity, PCA, OPC, Church_of_Scotland, confessional_reception]
+      required_competencies: [Westminster_primary_records, confession_and_catechisms, jurisdiction_specific_constitution]
+      mandatory_source_classes: [critical_or_official_standard, exact_jurisdiction_source, assembly_history]
+      stop_conditions: [Presbyterian_jurisdictions_collapsed, current_policy_inferred_from_historical_standard]
+    - profile_id: DOM-ANGLICAN
+      label: Anglican_history_and_doctrine_specialist
+      use_when: [Articles_of_Religion, Book_of_Common_Prayer, homilies, Anglican_communion]
+      required_competencies: [formularies, liturgical_editions, jurisdiction_and_period_differences]
+      mandatory_source_classes: [official_or_historical_formulary, province_specific_source]
+      stop_conditions: [global_Anglican_uniformity_assumed]
+    - profile_id: DOM-ANABAPTIST
+      label: Radical_Reformation_and_Anabaptist_specialist
+      use_when: [Anabaptist, Radical_Reformation, believers_baptism, peace_church]
+      required_competencies: [movement_diversity, primary_confessions_and_trials, hostile_source_criticism]
+      mandatory_source_classes: [movement_primary_source, legal_or_opponent_source_with_bias_review, reception]
+      stop_conditions: [distinct_movements_collapsed]
+    - profile_id: DOM-BAPTIST
+      label: Baptist_traditions_specialist
+      use_when: [Baptist_confession, baptism, congregational_polity, Baptist_history]
+      required_competencies: [confessional_and_associational_history, jurisdiction_and_period_scope]
+      mandatory_source_classes: [primary_confession, official_body_source, qualified_history]
+      stop_conditions: [all_Baptists_collapsed]
+    - profile_id: DOM-WESLEYAN
+      label: Wesleyan_and_Methodist_specialist
+      use_when: [Wesley, sanctification, Methodist_articles, sermons, discipline]
+      required_competencies: [Wesley_corpus, editions, denominational_history]
+      mandatory_source_classes: [critical_primary_text, official_discipline_or_articles, reception]
+      stop_conditions: [Wesley_equated_with_every_Methodist_body]
+    - profile_id: DOM-PENTECOSTAL
+      label: Pentecostal_and_charismatic_traditions_specialist
+      use_when: [Pentecostal, charismatic, Spirit_baptism, gifts, healing, revival]
+      required_competencies: [global_movement_diversity, denominational_sources, oral_history_method]
+      mandatory_source_classes: [official_statement, primary_movement_source, qualified_global_history]
+      stop_conditions: [US_movement_generalized_globally, testimony_used_as_population_claim]
+  methods_and_safeguards:
+    - {profile_id: MTH-SYSTEMATIC, label: systematic_doctrine_method, detects: [locus_coherence, conceptual_distinction, normative_claim], limit: "Cannot establish source authority or canon."}
+    - {profile_id: MTH-BIBLICAL, label: biblical_doctrine_method, detects: [canonical_pattern, intertext, redemptive_historical_claim], limit: "Method and canon scope must be explicit and human-governed."}
+    - {profile_id: MTH-HISTORICAL, label: historical_doctrine_method, detects: [development, controversy, reception, discontinuity], limit: "Chronology does not establish truth."}
+    - {profile_id: MTH-PHILOSOPHICAL, label: philosophical_doctrine_method, detects: [validity, category_error, metaphysical_assumption], limit: "Coherence does not establish revelation or doctrine."}
+    - {profile_id: MTH-SOCIAL-HISTORY, label: social_and_material_history_method, detects: [practice_context, institution, demography, material_constraint], limit: "Description has no normative doctrinal force."}
+    - {profile_id: MTH-RIGHTS, label: rights_privacy_and_custody_method, detects: [license, access, retention, egress, attribution], limit: "Access is not permission and cannot be inferred."}
+    - {profile_id: MTH-GRAPH, label: provenance_and_graph_method, detects: [lineage_gap, stale_dependency, unsupported_edge, blast_radius], limit: "Graph presence and centrality are not truth."}
+required_gap_question: >-
+  For every candidate missing role, state the unique error class it could detect,
+  why assigned roles cannot detect it adequately, the likely decision value,
+  cost and delay, risk if omitted, and whether it is needed now, on a trigger,
+  or not at all. Prestige, denominational balance, and role count are not enough.

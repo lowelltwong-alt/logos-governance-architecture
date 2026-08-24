@@ -1,0 +1,48 @@
+metadata:
+  object_type: doctrine_manual_frontier_research_docket
+  trust_zone: proposed
+  lifecycle_status: dormant_human_gate
+  provenance_note: "Created on 2026-08-24 by Codex root from Lowell's request for simple manual Opus research handoffs when frontier research is genuinely needed."
+  reason_for_inclusion: "Prepare bounded source-atlas and theory-to-case jobs without assigning permanent authority to a provider or launching one now."
+schema_version: logos_doctrine_manual_frontier_docket.v2
+current_activation: false
+human_gate_id: DM-HG-010
+provider_neutral_role: external_frontier_research_specialist
+completion_phrase_semantics: "The phrase proves only that the manual task ended; it proves no citation, truth, authority, review, or approval."
+jobs:
+  - job_id: EFR-DM-0004
+    title: high_signal_source_atlas
+    purpose: "Find current primary, critical-edition, official-community, and peer-reviewed source pointers for the exact expert domains selected by a future pilot."
+    required_outputs: [source_pointer_table, source_class, edition_or_authority, rights_and_access, supported_use, limitations, counterevidence_sources]
+    completion_phrase: "Opus completed job EFR-DM-0004"
+    status: dormant_human_gate
+  - job_id: EFR-DM-0005
+    title: disputed_literature_and_counterevidence_map
+    purpose: "Map major scholarly positions, strongest primary evidence, falsifiers, and unresolved disputes for one named question without choosing doctrine."
+    required_outputs: [position_map, root_sources, strongest_counterarguments, unresolved_facts, anachronism_risks]
+    completion_phrase: "Opus completed job EFR-DM-0005"
+    status: dormant_human_gate
+  - job_id: EFR-DM-0006
+    title: theory_to_historical_case_map
+    purpose: "Test a claimed philosophical or cultural transmission against dated sources, contact mechanisms, explicit reception or rejection, alternatives, and modern recurrence."
+    required_outputs: [theory_definition, source_chain, contact_evidence, reception_or_rejection, alternatives, uncertainty, practical_application_limits]
+    completion_phrase: "Opus completed job EFR-DM-0006"
+    status: dormant_human_gate
+simple_handoff_template: >-
+  Opus, read the attached Fable/Logos doctrine research brief for job {JOB_ID}.
+  Execute only that job, verify every load-bearing claim from root sources, and
+  write your answers to {OUTPUT_PATH}. Do not decide doctrine or treat access as
+  permission. Tell the user when complete by saying exactly: Opus completed job
+  {JOB_ID}.
+post_handoff_pipeline:
+  - quarantine_as_untrusted_external_candidate
+  - independently_reaccess_every_locator
+  - source_quality_and_rights_review
+  - claim_entailment_context_and_translation_review
+  - counterevidence_and_alignment_review
+  - applicable_human_gate
+forbidden:
+  - automatic_provider_call
+  - provider_output_as_ExpertPack_root_evidence
+  - inaccessible_source_confidence_inheritance
+  - model_completion_phrase_as_acceptance

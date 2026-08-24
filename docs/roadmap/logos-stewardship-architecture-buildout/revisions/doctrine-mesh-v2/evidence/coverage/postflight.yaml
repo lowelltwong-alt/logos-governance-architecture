@@ -1,0 +1,30 @@
+metadata:
+  object_type: doctrine_expertise_coverage_plan
+  trust_zone: proposed
+  lifecycle_status: independently_checked_audit_output
+  provenance_note: "Produced on 2026-08-24 by the Doctrine Mesh Completeness Auditor function after all design workers and initial independent challenge lanes."
+  reason_for_inclusion: "Answer whether any materially valuable expert or checker was missing at the end and require recovery before specification freeze."
+schema_version: logos_doctrine_expertise_coverage_plan.v2
+plan_id: DMCP-POSTFLIGHT-001
+audit_event_id: DMA-POSTFLIGHT-001
+phase: postflight
+input_manifest_ref: evidence/inputs/postflight.json
+input_manifest_digest: sha256:12bd20913d1c5d6ffbb468d56f3c201ad7356b68c91af590ba8cfd6c8980ee8e
+discoveries:
+  - {capability: Jewish_community_representation_and_anti_projection, unique_value: "Detects faction/period collapse, supersessionist negative-foil framing, and Christian-category projection that a Christian tradition reviewer cannot independently catch.", disposition: added_trigger_profile_prompt_route_and_pack_blueprint}
+  - {capability: translation_and_interpretation_fidelity, unique_value: "Separates witness/text, rendering, interpretation, and doctrine when locator and source-quality checks alone are insufficient.", disposition: added_trigger_profile_prompt_and_receipt_type}
+  - {capability: source_rights_privacy_and_custody, unique_value: "Independently checks exact-use access, retention, egress, secrets, and provenance rather than letting source quality approve permissions.", disposition: added_trigger_profile_prompt_and_cross_field_blocks}
+  - {capability: cross_repository_destination_checker, unique_value: "Prevents a named repository or scaffold from being treated as schema-ready, authority-ready, or write-authorized.", disposition: added_trigger_profile_prompt_and_readiness_gate}
+  - {capability: job_resumption_and_budget_reconciliation, unique_value: "Detects duplicate effects, stale dependencies, conflicting leases, reset counters, and unreconciled checkpoints in long runs.", disposition: added_job_binding_and_campaign_budget_interfaces_activation_blocked}
+  - {capability: authenticated_independence_and_human_authority, unique_value: "Detects different-role-ID theater and forged human refs that static schemas alone cannot prove.", disposition: retained_as_runtime_and_human_authentication_blocker}
+  - {capability: semantic_validator_theater_challenger, unique_value: "Prevents a green artifact parser from being reported as active runtime, source, rights, consumer, human, or doctrine protection.", disposition: added_premortem_mode_and_three_state_repair_classification}
+  - {capability: cross_snapshot_budget_and_job_evidence_join_checker, unique_value: "Detects reused debits across ledger history and fabricated reservation or debit links that per-file schema validity cannot catch.", disposition: added_chain_wide_uniqueness_exact_ledger_join_and_negative_fixtures}
+  - {capability: deterministic_qualification_time_checker, unique_value: "Prevents a frozen receipt from changing validator outcome merely because wall-clock time advanced.", disposition: added_frozen_artifact_evaluation_timestamp_runtime_current_clock_still_required}
+postflight_recovery:
+  - {finding_refs: [RT-001, RT-017], affected_outputs: [source-lock.yaml, campaign.yaml], action: repaired_and_replayed_as_static_design_control}
+  - {finding_refs: [RT-002, RT-003, RT-020], affected_outputs: [mesh/job-binding.schema.json, mesh/job-binding-contract.yaml, governance/campaign-budget-ledger.schema.json], action: interfaces_strengthened_runtime_activation_remains_blocked}
+  - {finding_refs: [RT-004, RT-005, RT-006, RT-022], affected_outputs: [mesh/attempt-lineage.schema.json, governance/decision-record.schema.json, governance/human-authorization-receipt.schema.json, checks/validate_doctrine_mesh.py], action: static_and_manual_evidence_narrowed_no_authenticated_runtime_claim}
+  - {finding_refs: [RT-007, RT-008, RT-009, RT-010, RT-016], affected_outputs: [governance/consumer-authority-validator-contract.yaml, research/evidence-check-receipt.schema.json, graph/staleness-propagation-contract.yaml, graph/influence-bridge.schema.json], action: dormant_interfaces_authored_future_semantic_fixtures_required}
+  - {finding_refs: [RT-011, RT-012, RT-013], affected_outputs: [prompts/goal-alignment-authority-auditor.md, governance/autonomy-envelope.yaml, governance/portable-capability-boundary.yaml], action: hidden_bias_queue_and_provider_prestige_controls_strengthened_residual_human_bias_disclosed}
+  - {finding_refs: [RT-014, RT-015, RT-019], affected_outputs: [mesh/expertise-taxonomy.yaml, research/expert-pack-blueprints.yaml, prompts/Jewish-community-representation-auditor.md], action: high_value_trigger_facets_added_without_instantiating_ceremonial_swarm_or_claiming_expertise}
+status: independently_checked

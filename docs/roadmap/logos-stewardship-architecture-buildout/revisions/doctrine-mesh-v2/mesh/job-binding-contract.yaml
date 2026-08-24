@@ -1,0 +1,30 @@
+metadata:
+  object_type: doctrine_mesh_job_binding_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_until_runtime_activation
+  provenance_note: "Created on 2026-08-24 by Codex root after independent mesh review."
+  reason_for_inclusion: "Prevent a static role roster from being mistaken for proof of safe per-job writer, checker, scope, budget, and lease assignment."
+schema_version: logos_doctrine_job_binding_contract.v2
+schema_ref: mesh/job-binding.schema.json
+current_runtime_assignments: none
+semantic_rules:
+  - only the qualified controller runtime adapter may issue or renew a lease
+  - the role factory may propose a profile but may not appear as dispatcher or lease owner
+  - writer actor instance, checker actor instances, challenger actor instances, and independence groups must be pairwise disjoint
+  - exactly one role may have a nonempty write scope and every other role must have an empty write scope
+  - output paths must be inside the claimed work-unit scope and nonoverlapping with live writers
+  - the work claim, claimed scope, controller revision, controller attempt, controller qualification, human activation receipt, role qualifications, and attempt lineages must each carry an exact paired digest
+  - each capability requirement must map to exact qualification evidence independently of effort class or provider prestige
+  - all inputs, packs, prompts, schemas, authority receipts, and controller revisions are digest bound
+  - licensed private credentialed or unknown data blocks provider egress unless an exact human authorization says otherwise
+  - missing numeric budget, lease fence, fresh audit receipt, human gate, or independence evidence blocks assignment
+  - no assigned worker may originate an assignment, lease, role, prompt, or child job
+  - resume only from a content-addressed checkpoint after exact dependency, output, effect, append-only attempt, and state-transition reconciliation
+  - reject an unexpired conflicting lease, stale fence, duplicate idempotency key with a different effect digest, or resume without a valid heartbeat-expiry path
+  - retry class and backoff are controller-computed; changed evidence does not erase cumulative attempt or budget consumption
+  - every assignment binds one campaign budget-ledger snapshot and reservation idempotency key; a leased assignment requires a reservation receipt and a completed candidate requires an exact debit receipt
+  - ledger sequence, predecessor digest, campaign identity, ceiling reconciliation, and debit uniqueness are validated outside JSON Schema by the protected semantic helper
+future_validator_requirements:
+  negative_fixtures: [factory_as_dispatcher, two_writers, writer_checker_actor_collision, shared_independence_group, missing_pack_digest, altered_authority_receipt_digest, altered_work_claim_digest, output_outside_claimed_scope, stale_input, write_overlap, missing_budget_reservation, duplicate_budget_idempotency_key, budget_reconciliation_mismatch, budget_predecessor_mismatch, unapproved_egress, depth_two_dispatch, duplicate_effect, stale_dependency, unexpired_conflicting_lease, stale_fence, resume_without_checkpoint, output_reconciliation_mismatch, effect_reconciliation_mismatch]
+  controller_owned_receipt_required: true
+  changed_head_or_input_requires_replay: true
