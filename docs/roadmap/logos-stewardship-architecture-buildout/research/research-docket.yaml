@@ -1,0 +1,96 @@
+metadata:
+  object_type: stewardship_architecture_research_docket
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-23 by Codex root to decompose unresolved architecture questions into bounded, evidence-first research contracts."
+  reason_for_inclusion: "Define which research agents and human experts are needed, what they may inspect, and what evidence must exist before a recommendation can be reviewed."
+schema_version: logos_stewardship_research_docket.v1
+docket_id: LOGOS-STEWARDSHIP-RESEARCH-001
+execution_authorized: false
+default_output_status: candidate_only
+source_rules:
+  primary_sources_preferred: true
+  official_technical_documentation_preferred: true
+  secondary_sources_may_supply_context_not_authority: true
+  inaccessible_source_must_use_unavailable_docket: true
+  quotation_reconstruction_from_memory_forbidden: true
+  private_payload_copy_forbidden: true
+  source_pointer_transformation_and_uncertainty_required: true
+  freshness_date_required: true
+research_questions:
+  - research_id: RQ-001
+    title: "Primary-source identity, quotation fitness, and exegesis boundaries"
+    question: "What source, span, context, language, edition, rights, and qualified-review records are required before quotation or exegetical use can be proposed?"
+    research_agents: [primary-source-researcher, original-language-routing-specialist, provenance-graph-specialist]
+    required_human_experts: [qualified-theology-exegesis-human, qualified-primary-source-human]
+    allowed_sources: [repository_primary_records, critical_edition_metadata, rights_holder_terms, qualified_human_source_docket]
+    outputs: [source_identity_matrix, quotation_fitness_contract, unavailable_source_docket, exegesis_gate_packet]
+    human_gate_ids: [HG-001, HG-002, HG-005]
+    prohibited_conclusions: [canon_selection, theological_ruling, reconstructed_quotation, corpus_wide_fitness_from_one_example]
+  - research_id: RQ-002
+    title: "Genealogy, historical-evidence floors, and tradition scope"
+    question: "Which typed evidence and temporal rules can distinguish source reception, doctrine formulation, institution, tradition, assessment, and later interpretation without anachronism?"
+    research_agents: [historical-theology-researcher, provenance-graph-specialist, ontology-contract-specialist]
+    required_human_experts: [qualified-history-tradition-human, qualified-theology-exegesis-human]
+    allowed_sources: [dated_primary_sources, reviewed_critical_editions, repository_governance, qualified_historical_review]
+    outputs: [historical_evidence_floor, temporal_lineage_options, tradition_scope_decision_packet]
+    human_gate_ids: [HG-003, HG-009, HG-011]
+    prohibited_conclusions: [tradition_policy_selection, orthodoxy_assessment, institution_authority_inference]
+  - research_id: RQ-003
+    title: "Empirical route baseline and assurance independence"
+    question: "Which smallest route is sufficient when human-only, deterministic-only, single-agent, and hierarchical-mesh arms are compared on accepted evidence?"
+    research_agents: [empirical-methods-specialist, statistical-review-specialist, evaluation-harness-specialist]
+    required_human_experts: [human-campaign-sponsor]
+    allowed_sources: [accepted_test_fixtures, immutable_defect_replay, primary_runtime_documentation, measured_receipts]
+    outputs: [dated_baseline, benchmark_protocol, independence_correlation_plan, no_winner_report]
+    human_gate_ids: [HG-010, HG-013]
+    prohibited_conclusions: [route_selection_without_data, provider_preference_as_competence, model_agreement_as_independence]
+  - research_id: RQ-004
+    title: "Privacy, security, custody, authentication, and publication boundary"
+    question: "What data classifications, access controls, retention limits, authenticated owner-intent rules, and threat mitigations are required before any private or publishable surface is considered?"
+    research_agents: [privacy-security-custody-specialist, authentication-boundary-specialist, provenance-graph-specialist]
+    required_human_experts: [privacy-security-custody-human, human-campaign-sponsor]
+    allowed_sources: [repository_privacy_contracts, official_security_standards, official_runtime_security_docs, owner_classification]
+    outputs: [threat_model_candidate, custody_options, authentication_contract, publication_risk_packet]
+    human_gate_ids: [HG-004, HG-006, HG-007, HG-014]
+    prohibited_conclusions: [store_selection, retention_approval, publication_approval, live_connector_use]
+  - research_id: RQ-005
+    title: "Typed graph, retrieval, provenance, and reverse-consumer engineering"
+    question: "Which stable identities, edge types, trust-zone rules, provenance paths, freshness states, and reverse-consumer proofs are needed for candidate graph and retrieval proposals?"
+    research_agents: [provenance-graph-specialist, information-retrieval-specialist, ontology-contract-specialist]
+    required_human_experts: [qualified-theology-exegesis-human]
+    allowed_sources: [repository_schemas_and_validators, primary_graph_standards, measured_retrieval_fixtures, qualified_domain_review]
+    outputs: [typed_edge_candidate, provenance_contract, freshness_policy, reverse_blast_radius_map]
+    human_gate_ids: [HG-001, HG-002, HG-011]
+    prohibited_conclusions: [similarity_as_truth, catch_all_relationship, candidate_to_canonical_promotion, hidden_authority_upgrade]
+  - research_id: RQ-006
+    title: "Migration, compatibility, rollback, and kill criteria"
+    question: "What inventory, consumer map, reversible sequence, restoration proof, and stop criteria would be required if a migration were later authorized?"
+    research_agents: [migration-safety-specialist, schema-evolution-specialist, privacy-security-custody-specialist]
+    required_human_experts: [privacy-security-custody-human, human-campaign-sponsor]
+    allowed_sources: [versioned_schema_contracts, consumer_manifests, backup_and_restore_evidence, official_storage_docs]
+    outputs: [migration_inventory, compatibility_matrix, rollback_plan, restoration_test_plan]
+    human_gate_ids: [HG-006, HG-007, HG-014]
+    prohibited_conclusions: [target_selection, data_copy, credential_use, live_migration]
+  - research_id: RQ-007
+    title: "Rights, licensing, access, and unavailable-source handling"
+    question: "Which access terms, licenses, quotation permissions, text-mining limits, and redistribution rules apply to each proposed source?"
+    research_agents: [source-rights-specialist, primary-source-researcher]
+    required_human_experts: [qualified-rights-review-human]
+    allowed_sources: [rights_holder_terms, license_text, publisher_or_archive_policy, qualified_rights_review]
+    outputs: [rights_docket, permitted_use_matrix, unavailable_or_restricted_source_record]
+    human_gate_ids: [HG-002, HG-004]
+    prohibited_conclusions: [blanket_permission_from_access, credential_sharing, copied_restricted_corpus]
+  - research_id: RQ-008
+    title: "Maintainer workflow, accessibility, and loss-bounded projection"
+    question: "How can reviewers see source, inference, uncertainty, dissent, and action consequences without an overloaded or authority-laundering interface?"
+    research_agents: [maintainer-workflow-specialist, accessibility-review-specialist, provenance-graph-specialist]
+    required_human_experts: [human-campaign-sponsor]
+    allowed_sources: [repository_workflow_contracts, accessibility_standards, measured_review_sessions, accepted_projection_fixtures]
+    outputs: [review_workflow_candidate, accessibility_checklist, projection_loss_budget, warrant_view_decision_packet]
+    human_gate_ids: [HG-009, HG-010, HG-014]
+    prohibited_conclusions: [board_as_authority, hidden_source_loss, interface_approval_without_user_review]
+output_contract:
+  required_fields: [research_id, claim_id, source_pointer, source_type, access_and_rights, observed_at, freshness, transformation, assumptions, omissions, uncertainty, contradictions, falsifier, reviewer_state, human_gate_ids]
+  allowed_statuses: [candidate, contradicted, source_unavailable, blocked_human, superseded]
+  promotion_status_available_to_agents: false

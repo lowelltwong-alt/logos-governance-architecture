@@ -1,0 +1,57 @@
+metadata:
+  object_type: stewardship_architecture_expert_qualification_matrix
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-23 by Codex root to keep capability, authority, independence, privacy, and cost as separate qualification questions."
+  reason_for_inclusion: "Prevent an agent name, credential, provider, or low price from masquerading as subject-matter authority."
+schema_version: logos_stewardship_expert_qualification.v1
+matrix_id: LOGOS-STEWARDSHIP-EXPERTS-001
+qualification_dimensions:
+  - capability_for_exact_question
+  - source_and_method_competence
+  - authority_to_make_or_recommend_the_decision
+  - independence_from_writer_and_prior_conclusion
+  - privacy_rights_and_confidentiality_fit
+  - reproducibility_and_evidence_traceability
+  - cost_and_time_fit
+  - conflict_or_bias_disclosure
+default_on_missing_evidence: unqualified
+expert_classes:
+  - expert_class: qualified-theology-exegesis-human
+    required_evidence: [relevant_domain_formation_or_demonstrated_competence, exact_source_review, tradition_scope_disclosure, accountable_identity, conflict_disclosure]
+    may: [review_theological_candidate, identify_exegetical_limits, recommend_human_decision]
+    may_not: [delegate_final_owner_authority, approve_outside_review_scope, convert_agent_output_to_source]
+  - expert_class: qualified-primary-source-human
+    required_evidence: [edition_and_source_competence, locator_and_language_competence_when_applicable, exact_source_access, rights_awareness]
+    may: [review_source_identity, review_quotation_span, route_language_or_textual_questions]
+    may_not: [infer_missing_text, certify_theology_from_mechanical_replay]
+  - expert_class: qualified-history-tradition-human
+    required_evidence: [historical_method_competence, primary_source_review, temporal_scope, tradition_and_institution_scope_disclosure]
+    may: [review_historical_context, review_genealogy_candidate, identify_anachronism]
+    may_not: [set_project_tradition_policy_without_owner, treat_later_reception_as_earlier_source]
+  - expert_class: privacy-security-custody-human
+    required_evidence: [data_classification_competence, threat_model_review, access_retention_and_incident_scope, accountable_identity]
+    may: [review_privacy_and_security_candidate, recommend_custody_controls, block_unsafe_work]
+    may_not: [select_store_or_publish_without_owner, request_unbounded_private_payload]
+  - expert_class: qualified-rights-review-human
+    required_evidence: [exact_terms_or_license_review, jurisdiction_and_scope_limit, accountable_identity, uncertainty_statement]
+    may: [classify_access_and_use_candidate, identify_required_permission]
+    may_not: [invent_permission, treat_login_or_noncommercial_intent_as_blanket_right]
+agent_capability_classes:
+  economy:
+    suitable_for: [bounded_inventory, exact_extraction, formatting, deterministic_observation]
+    insufficient_for: [theological_judgment, architecture_adjudication, privacy_acceptance]
+  balanced:
+    suitable_for: [normal_research_synthesis, graph_specification, evaluation_design, integration_review]
+    insufficient_without_human: [doctrine, canonicity, tradition_policy, privacy_or_release_decision]
+  frontier:
+    suitable_for: [exceptional_adversarial_architecture_review_after_explicit_gate]
+    default_status: unavailable_under_current_campaign
+    authority_added_by_capability: none
+selection_rules:
+  provider_or_model_name_is_qualification: false
+  self_description_is_qualification: false
+  different_role_id_proves_independence: false
+  human_credential_alone_proves_scope_fit: false
+  evidence_and_scope_review_required: true
+  ultra_effort_requires_exact_human_authorization: true

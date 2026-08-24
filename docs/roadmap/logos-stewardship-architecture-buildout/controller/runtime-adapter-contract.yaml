@@ -1,0 +1,31 @@
+metadata:
+  object_type: stewardship_campaign_runtime_adapter_contract
+  trust_zone: proposed
+  lifecycle_status: unbound
+  provenance_note: "Created on 2026-08-23 by Codex root as the provider-neutral adapter boundary for a possible future qualified runtime."
+  reason_for_inclusion: "Prevent a host product, model name, or prompt from redefining campaign authority, scope, gates, or completion."
+schema_version: logos_stewardship_runtime_adapter_contract.v1
+adapter_contract_id: LOGOS-STEWARDSHIP-ADAPTER-001
+artifact_class: runtime_adapter
+binding_status: unselected
+portable_core_ref: ../campaign.json
+adapter_may:
+  - translate one controller-issued ready job into a bounded runtime task
+  - return evidence and measured usage to the controller
+  - request stop or escalation
+adapter_may_not:
+  - redefine objective_scope_source_authority_or_gold_standards
+  - edit controller_state_directly
+  - clear_human_or_block_registry_gates
+  - select_provider_model_budget_or_data_scope
+  - publish_deploy_message_migrate_or_delete
+required_binding_evidence:
+  - exact_adapter_revision
+  - callable_runtime_identity
+  - tool_and_context_contract
+  - privacy_and_data_classification
+  - allowed_effect_enforcement
+  - qualification_probe_receipt
+  - rollback_and_retirement_path
+current_binding: null
+human_gate_ids: [HG-007, HG-012, HG-013]

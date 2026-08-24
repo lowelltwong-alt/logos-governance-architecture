@@ -1,0 +1,39 @@
+metadata:
+  object_type: stewardship_architecture_conditional_migration_rollback_spec
+  trust_zone: proposed
+  lifecycle_status: dormant
+  provenance_note: "Created on 2026-08-23 by Codex root as a conditional safety specification with no selected source, target, data, or migration authority."
+  reason_for_inclusion: "Require consumer inventory, compatibility, restoration proof, and human gates before any future migration can be proposed."
+schema_version: logos_stewardship_migration_rollback.v1
+migration_id: LOGOS-STEWARDSHIP-MIGRATION-001
+status: dormant
+migration_authorized: false
+source_selected: false
+target_selected: false
+data_copy_authorized: false
+credentials_authorized: false
+required_preconditions:
+  - exact_source_and_target_revision
+  - complete_path_and_object_inventory
+  - data_privacy_rights_and_custody_classification
+  - reverse_consumer_and_inbound_link_map
+  - compatibility_and_forward_replay_tests
+  - immutable_backup_and_restoration_test
+  - rollback_steps_and_time_objectives
+  - kill_criteria_and_accountable_operator
+  - qualified_security_privacy_review
+  - exact_owner_decision_receipt
+  - fresh_family_claim_and_independent_gate
+path_dispositions: [retain, transform_with_provenance, alias, deprecate, quarantine, exclude_with_reason]
+compatibility_dimensions: [stable_identity, schema_revision, typed_edges, provenance, rights, trust_zone, temporal_history, consumer_contract]
+kill_criteria:
+  - source_or_target_digest_mismatch
+  - missing_or_unclassified_consumer
+  - authority_or_trust_zone_inversion
+  - privacy_rights_or_secret_signal
+  - restoration_test_failure
+  - unsupported_schema_or_adapter
+  - unexplained_data_loss_or_count_drift
+  - user_interrupt_or_budget_exhaustion
+rollback_rule: "Rollback must restore the exact prior revision and consumer behavior from independently verified evidence; a plan without restoration proof remains blocked."
+human_gate_ids: [HG-004, HG-006, HG-007, HG-014]

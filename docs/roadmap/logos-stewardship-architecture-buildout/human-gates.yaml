@@ -1,0 +1,31 @@
+metadata:
+  object_type: stewardship_architecture_human_gate_registry
+  trust_zone: proposed
+  lifecycle_status: blocking
+  provenance_note: "Created on 2026-08-23 by Codex root from repository authority and preserved terminal convergence gates."
+  reason_for_inclusion: "Name every decision domain that agents, validators, consensus, or graph structure may not self-approve."
+schema_version: logos_stewardship_human_gates.v1
+registry_id: LOGOS-STEWARDSHIP-HUMAN-GATES-001
+default_status: blocked_human
+receipt_rule: "A gate closes only through a durable receipt from the named authority for the exact scope and revision; absence, ambiguity, expiry, or changed inputs leaves it blocked."
+gates:
+  - {gate_id: HG-001, domain: theology_or_doctrine, required_authority: qualified_theology_exegesis_human_plus_owner, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-002, domain: source_authority_or_canonicity, required_authority: qualified_primary_source_human_plus_owner, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-003, domain: tradition_or_institutional_policy, required_authority: qualified_history_tradition_human_plus_owner, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-004, domain: privacy_or_publication, required_authority: privacy_security_custody_human_plus_owner, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-005, domain: governed_exegesis_home, required_authority: qualified_theology_exegesis_human_plus_owner, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-006, domain: private_store_or_migration, required_authority: privacy_security_custody_human_plus_owner, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-007, domain: authority_matrix_or_authentication_adapter, required_authority: owner_with_security_review, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-008, domain: special_001_cardinality_or_experiment, required_authority: owner_after_evidence_and_independent_review, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-009, domain: asserted_basis_and_reviewer_authority, required_authority: qualified_domain_humans_plus_owner, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-010, domain: assurance_independence_or_thresholds, required_authority: owner_after_empirical_methods_review, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-011, domain: blocked_p0_p1_scope, required_authority: owner_after_exact_block_specific_evidence, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-012, domain: controller_runtime_activation, required_authority: owner_after_qualification_and_independent_launch_review, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-013, domain: budget_paid_provider_or_external_service, required_authority: owner_for_exact_attempt_and_ceiling, status: blocked_human, receipt_ref: null}
+  - {gate_id: HG-014, domain: implementation_release_or_publication, required_authority: owner_after_fresh_claim_review_and_required_domain_gates, status: blocked_human, receipt_ref: null}
+non_authority_rules:
+  model_vote_is_receipt: false
+  agent_self_grade_is_receipt: false
+  static_validator_pass_is_receipt: false
+  graph_edge_is_receipt: false
+  prior_general_permission_is_receipt: false

@@ -1,0 +1,45 @@
+metadata:
+  object_type: stewardship_campaign_controller_qualification_plan
+  trust_zone: proposed
+  lifecycle_status: not_qualified
+  provenance_note: "Created on 2026-08-23 by Codex root as a non-executable qualification plan; no controller or runtime adapter is selected."
+  reason_for_inclusion: "Separate a valid campaign specification from evidence that a controller can enforce leases, budgets, stops, and receipts."
+schema_version: logos_stewardship_controller_qualification.v1
+qualification_id: LOGOS-STEWARDSHIP-CONTROLLER-QUAL-001
+status: not_run
+controller_selected: false
+runtime_adapter_selected: false
+launch_command_authorized: false
+shutdown_command_authorized: false
+required_capabilities:
+  - sole_lease_ownership
+  - deterministic_ready_job_order
+  - dependency_and_digest_replay
+  - disjoint_write_scope_enforcement
+  - heartbeat_and_lease_expiry
+  - effect_reconciliation_before_reissue
+  - append_only_receipts
+  - budget_accounting_and_hard_stop
+  - human_gate_non_auto_advance
+  - safe_shutdown_and_resumable_handoff
+  - duplicate_completion_reconciliation_by_idempotency_key
+qualification_sequence:
+  - freeze_exact_campaign_mesh_adapter_and_validator_revisions
+  - select_inert_local_test_fixture
+  - prove_no_repository_or_external_effects
+  - replay_success_failure_stale_dependency_write_conflict_and_interruption_cases
+  - prove_one_repair_limit_and_same_state_retry_rejection
+  - prove_receipt_durability_and_state_reconstruction
+  - run safe_shutdown_and_resume_forward_test
+  - obtain_independent_launch_review
+  - obtain_exact_human_activation_receipt
+invalidation_triggers: [provider, model, runtime, tools, context, privacy, effects, authority, schema, dependencies, scope, budget, controller_revision, adapter_revision]
+current_missing_evidence:
+  - controller_revision
+  - runtime_adapter_revision
+  - qualification_harness
+  - dry_run_receipt
+  - safe_shutdown_receipt
+  - independent_launch_review
+  - human_activation_receipt
+human_gate_ids: [HG-007, HG-012, HG-013, HG-014]
