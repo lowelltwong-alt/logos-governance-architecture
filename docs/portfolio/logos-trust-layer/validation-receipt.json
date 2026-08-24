@@ -59,19 +59,19 @@
       "result": "452 Markdown files checked."
     },
     {
-      "check_id": "full_pytest_precommit",
+      "check_id": "full_pytest_frozen_candidate",
       "status": "pass",
-      "result": "150 passed, zero skipped."
+      "result": "151 passed, zero skipped."
     },
     {
-      "check_id": "default_validation_suite_precommit",
-      "status": "fail_with_documented_baseline_and_precommit_condition",
-      "result": "27 of 29 validators passed. Retrieval-neighborhood freshness reports ten unchanged 49-day artifacts against a 30-day threshold outside this claim; governance-dependency-map default mode requires the watched registry/map delta to be committed. Neither result is waived, and post-commit replay is required."
+      "check_id": "default_validation_suite_frozen_candidate",
+      "status": "fail_with_documented_unrelated_baseline",
+      "result": "28 of 29 validators passed. The sole failure is retrieval-neighborhood freshness for ten unchanged 49-day artifacts against a 30-day threshold outside this claim; governance-dependency-map validation now passes. The unrelated freshness failure is disclosed, not waived."
     },
     {
-      "check_id": "machine_citation_frozen_staged_surface",
+      "check_id": "machine_citation_frozen_committed_surface",
       "status": "pass",
-      "result": "839 UTF-8 tracked text files scanned with zero skipped across the current tracked index, including the exact staged release candidate."
+      "result": "839 UTF-8 tracked text files scanned with zero skipped across the committed release surface."
     },
     {
       "check_id": "governance_metadata",
@@ -194,7 +194,7 @@
       "scope_note": "Changed-input final red-team independently reproduced the exact fingerprint and passed privacy, provenance, specification-only dormancy, theological-authority, historical-V1, registry, count, portability, and evidence-overclaim checks; the README delta is exactly one redundant terminal LF with no semantic effect."
     }
   ],
-  "unchanged_head_gate": "pass_precommit_parent_and_110_path_content_fingerprint",
+  "unchanged_head_gate": "pass_exact_scope_and_110_path_content_fingerprint",
   "required_ci": "pending_pr_required_checks",
   "normal_merge": "pending_pr",
   "runtime_activation_authorized": false,
@@ -202,6 +202,6 @@
   "substantive_doctrine_implementation_authorized": false,
   "qualified_theological_authority_granted": false,
   "mutation_performed_by_validation": false,
-  "observed_at": "2026-08-24T19:47:45Z",
-  "receipt_digest": "sha256:aa26dc8e03fe29fb4d82896ba1fb712de3330baffb5c67c33931df896225dbc9"
+  "observed_at": "2026-08-24T19:50:13Z",
+  "receipt_digest": "sha256:331c50041bee535e841a2e71d664bd2fee56069f26a7b6cd3ebcc98c6fb32f30"
 }
