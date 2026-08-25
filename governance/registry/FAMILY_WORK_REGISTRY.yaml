@@ -47,6 +47,12 @@ overlap_resolutions:
     decision: allow_parallel_with_recorded_boundaries
     decided_at: "2026-08-23T04:07:36Z"
     rationale: "The citation-residue repair may add only its own claim, validator registration, dependency-map coverage, focused test, CI step, and bounded public citation-residue repairs. PR #111 already merged the W2-7 content at ce79001, PR #115 merged the hotfix-closure content at 15c5ca6, and PR #116 merged the public projection at 739537b; their substantive files, statuses, authority, and histories remain unchanged. The new lane may extend scripts/validation_contracts.py and GD-007 without changing LLOS semantics or convergence advisory content. Qualified theological source review, publication, and all remote effects remain separate human gates."
+  - resolution_id: OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001
+    owner_decision_ref: lowell_goal_2026-08-24_complete_recommended_repo_residue_repairs_in_order
+    affected_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001, WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001, WORK-GOV-CITATION-RESIDUE-REPAIR-001, WORK-GOV-REPO-RESIDUE-REMOTE-REPAIR-001]
+    decision: extend_existing
+    decided_at: "2026-08-24T15:25:04Z"
+    rationale: "Lowell explicitly authorized completion of the previously recommended ordered repository-wide remediation. This lane extends the merged citation repair only to the twelve contaminated live remote heads, the portable validator's ref-aware coverage, a scheduled all-origin-head audit, and truthful repair evidence. It may add bounded bookkeeping to the shared family registry, validation contract, and dependency map, but it may not alter LLOS semantics, convergence advisory content, any protected worktree, or the Augustine whole-node no-cite gate pending qualified patristics review. Two exact contained remote heads may be deleted after fresh verification; ten heads with unique commits must retain their ancestry and may advance only without force or history rewrite."
 work_items:
   - work_id: WORK-GOV-FAMILY-COORD-001
     repo: logos-governance-architecture
@@ -280,7 +286,7 @@ work_items:
     authority_ceiling: non_output_changing_learning_loop_governance
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-SCR-T468-W2-2]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001]
     completion_evidence:
       - "Governed validation suite passed: 27 validators"
       - "Full pytest passed: 80 tests"
@@ -344,7 +350,7 @@ work_items:
     authority_ceiling: non_authorizing_registry_bookkeeping_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001]
     completion_evidence: []
   - work_id: WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001
     repo: logos-governance-architecture
@@ -372,7 +378,7 @@ work_items:
     authority_ceiling: non_authorizing_local_public_release_candidate_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: []
-    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001]
+    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001]
     completion_evidence:
       - "Live public main and the local parent remained pinned to the authorized revision throughout preparation."
       - "Family-registry validation passed and the protected-hold preflight passed with exactly seven suppressions."
@@ -419,7 +425,7 @@ work_items:
     authority_ceiling: non_authorizing_public_hygiene_validation_and_source_ref_cleanup
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001, WORK-GOV-W2-7-LLOS-V1]
-    overlap_resolution_ids: [OVERLAP-W27-CITATION-RESIDUE-REPAIR-001]
+    overlap_resolution_ids: [OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001]
     completion_evidence:
       - "Owner-authorized one-time protected-hold-aware preflight at checkpoint 08eab8e3 passed without modifying any held worktree; eight exact clean non-writing holds qualified, seven were actual overlaps, and the eighth had no ahead commit or overlapping path."
       - "Removed sixteen non-resolvable locator tokens from nine public files and all private-use citation wrappers from the two canon documents; seven example provenance.source_refs arrays are now empty rather than fabricated."
@@ -430,3 +436,35 @@ work_items:
       - "Seven JSON files parsed; governance dependency map, family registry, governance metadata, node frontmatter, and all-markdown internal-link validation passed."
       - "Governed validation suite passed 27 of 28 validators; the sole failure is the pre-existing 48-day retrieval-neighborhood freshness baseline outside this claim."
       - "At 2026-08-23T18:34:06Z Lowell authorized exactly these sixteen claimed paths for one intentional commit, non-force push of codex/citation-residue-repair, pull request, and merge after required CI, while retaining the Augustine whole-node gate; no remote action had occurred as of this evidence update, and cleanup, reset, rebase, force-push, protection bypass, unrelated staging, and branch deletion remain prohibited."
+  - work_id: WORK-GOV-REPO-RESIDUE-REMOTE-REPAIR-001
+    repo: logos-governance-architecture
+    task_id: REPO-RESIDUE-REMOTE-REPAIR-001
+    objective_key: repository_wide_machine_residue_remote_ref_remediation
+    objective: "Complete the owner-approved ordered repository-wide remediation: remove two exact contained contaminated remote heads; advance ten contaminated heads with unique commits without force, reset, rebase, or history rewrite; verify five raw local-attachment-path branch exposures are redacted; harden the machine-artifact validator to scan the Git index and all live origin heads; add a scheduled fail-closed sweep and public repair receipt; then publish, review, and merge the hardening change after required CI."
+    status: active
+    board_column: in_progress
+    claim_mode: exclusive_write
+    claimed_paths:
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+      - scripts/validate_machine_citation_artifacts.py
+      - scripts/validation_contracts.py
+      - tests/test_machine_citation_artifacts.py
+      - tests/test_validation_contracts.py
+      - .github/workflows/machine-citation-residue-sweep.yml
+      - reports/MACHINE_CITATION_RESIDUE_REMOTE_REPAIR_2026-08-24.md
+    semantic_tags: [citation_artifact, privacy_remediation, public_surface, validation_contract, governance_authority, human_gate]
+    roadmap_refs: [HABITAT-HD-SESSION2P-2026-08-20, Q-01]
+    branch: codex/repo-residue-remote-repair
+    issue_url: null
+    pr_url: null
+    owner: Lowell Wong
+    agent: Codex root
+    started_at: "2026-08-24T15:25:04Z"
+    heartbeat_at: "2026-08-24T15:25:04Z"
+    stale_after_days: 7
+    authority_ceiling: non_authorizing_public_hygiene_remote_ref_remediation_and_validation
+    dependencies: [WORK-GOV-FAMILY-COORD-001, WORK-GOV-CITATION-RESIDUE-REPAIR-001]
+    related_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-MAIN-EXPOSURE-HOTFIX-001, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001, WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001]
+    overlap_resolution_ids: [OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001]
+    completion_evidence: []
