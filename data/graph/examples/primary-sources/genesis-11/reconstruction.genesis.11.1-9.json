@@ -41,7 +41,7 @@
     "typed_edges": []
   },
   "provenance": {
-    "source_refs": ["turn0search24"],
+    "source_refs": [],
     "derived_from": ["witness.leningrad_codex", "witness.dss.genesis.manuscript_sample", "transcription.mt.genesis.11.1-9"],
     "created_by": "author.lowell_t_wong",
     "last_modified_by": "author.lowell_t_wong",

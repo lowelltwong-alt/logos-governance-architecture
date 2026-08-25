@@ -1,5 +1,8 @@
 # Canon Node Architecture
 
+> **CITATION REPAIR STATUS (owner decision HABITAT-HD-SESSION1-2026-08-19, HD-4a; repair item Q-01).**
+> The former chat-local citation placeholders in "AI and retrieval rationale" were removed in the local Q-01 repair candidate and replaced with durable first-party Microsoft Learn links. This status records citation hygiene only; it does not increase the document's theological or governance authority.
+
 This document defines the standard recursive architecture for canon nodes in the Logos Fractal Theological Architecture repository.
 
 ## Purpose
@@ -59,7 +62,7 @@ A single-file canon node should be promoted into a folder only when one or more 
 
 ## AI and retrieval rationale
 
-The repository should not oversplit too early. Microsoft’s guidance on RAG chunking and semantic document structure emphasizes semantically relevant chunks, strong heading structure, and preservation of document context rather than arbitrary fragmentation. In practice, that means a canon node should first be written as a dense, well-structured file, then promoted only when the content naturally divides into multiple coherent parts. See Microsoft Learn on semantic chunking and document-structure-based chunking for the retrieval logic behind this approach. citeturn0search0turn0search1turn0search3
+The repository should not oversplit too early. Microsoft Learn describes semantic chunks as meaningful units that preserve context and semantic relationships, and notes that Markdown headings can support section-based chunking. Its RAG architecture guidance likewise recommends defining document structure from headings, subheadings, and other structural elements. In practice, that means a canon node should first be written as a dense, well-structured file, then promoted only when the content naturally divides into multiple coherent parts. See [Chunk large documents for RAG and vector search in Azure AI Search](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) and [Develop a RAG solution on Azure: Chunking phase](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-chunking-phase).
 
 ## Relationship to the rest of the repository
 
