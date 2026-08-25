@@ -2,7 +2,7 @@
 object_type: fable_feedback_trace_matrix
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-07-07 by Codex after the owner requested a 100 percent auditable plan for Fable output and feedback. Updated 2026-07-09 after an independent post-Wave-2 audit to trace the owner's master brief separately from Fable's response and record fifteen newly identified correction gaps."
+provenance_note: "Created 2026-07-07 by Codex after the owner requested a 100 percent auditable plan for Fable output and feedback. Updated 2026-07-09 after an independent post-Wave-2 audit to trace the owner's master brief separately from Fable's response and record fifteen newly identified correction gaps. Updated 2026-08-20 by Fable 5 under owner decision HABITAT-HD-SESSION2P-2026-08-20 (HD-4g option 1B) to redact three local user-profile external_attachment_ref paths (PRV-F9) to identity-preserving stubs; no source_documents entry, field, or evaluative content was changed."
 reason_for_inclusion: "Future agents need a deterministic matrix showing every owner requirement and Fable feedback class, its disposition, evidence, remaining gate, and non-authorizations instead of relying on chat memory or treating response coverage as requirement coverage."
 ---
 schema_version: fable_feedback_trace_matrix.v1
@@ -45,11 +45,11 @@ source_documents:
   - source_id: owner-master-brief
     title: "Owner master brief for the Fable Wave-2 architecture pass"
     repo_path: docs/roadmap/fable-master-architecture-buildout-plan.md
-    external_attachment_ref: "C:/Users/lowel/.codex/attachments/84c88835-597b-49f3-9f21-791be3bd6e6e/pasted-text.txt"
+    external_attachment_ref: "local-only attachment 84c88835-597b-49f3-9f21-791be3bd6e6e (path redacted 2026-08-20 per HD-4g/PRV-F9; original retained offline by owner)"
   - source_id: fable-gap-pass-d1-d10
     title: "Fable Gap Pass after D1-D10"
     repo_path: docs/roadmap/fable-kernels/KERNEL-E-codex-theology-tripwire.md
-    external_attachment_ref: "C:/Users/lowel/.codex/attachments/799c2b4b-6e71-4855-8e36-3faf17214a91/pasted-text.txt"
+    external_attachment_ref: "local-only attachment 799c2b4b-6e71-4855-8e36-3faf17214a91 (path redacted 2026-08-20 per HD-4g/PRV-F9; original retained offline by owner)"
   - source_id: codex-handoff
     title: "Codex Handoff - Kernel Implementation Queue"
     repo_path: docs/roadmap/fable-kernels/CODEX_HANDOFF.md
@@ -62,7 +62,7 @@ source_documents:
   - source_id: wave2-handoff
     title: "Fable Wave-2 Architecture Handoff"
     repo_path: docs/roadmap/fable-kernels/WAVE2-ARCHITECTURE-HANDOFF.md
-    external_attachment_ref: "C:/Users/lowel/.codex/attachments/da320ed0-16c8-4c09-a4cc-cc41f5161f93/pasted-text.txt"
+    external_attachment_ref: "local-only attachment da320ed0-16c8-4c09-a4cc-cc41f5161f93 (path redacted 2026-08-20 per HD-4g/PRV-F9; original retained offline by owner)"
   - source_id: dad-outbox
     title: "DAD Lesson Outbox"
     repo_path: docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md
