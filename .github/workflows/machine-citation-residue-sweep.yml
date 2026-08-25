@@ -1,0 +1,34 @@
+name: Machine Citation Residue Sweep
+
+on:
+  schedule:
+    - cron: "37 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: machine-citation-residue-sweep
+  cancel-in-progress: false
+
+jobs:
+  all-origin-heads:
+    name: Scan every live origin head
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch the exact live origin head set
+        run: git fetch --prune --no-tags origin '+refs/heads/*:refs/remotes/origin/*'
+
+      - name: Validate all fetched origin heads
+        run: python scripts/validate_machine_citation_artifacts.py --all-origin-heads

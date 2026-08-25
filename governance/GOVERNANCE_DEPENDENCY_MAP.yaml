@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated through 2026-07-10 for the registered governance buildout. Updated 2026-07-11 to register D11 LLOS v1, its lesson schema, route registry, validator, child mirrors, and DAD read-only boundary. Updated 2026-08-24 to register the public evidence-bound portfolio front door and the validated specification-only Doctrine Mesh V2 release, then to bind the neutral four-repository AI audit route to snapshot_commit evidence and deterministic route regression coverage."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated through 2026-07-10 for the registered governance buildout. Updated 2026-07-11 to register D11 LLOS v1, its lesson schema, route registry, validator, child mirrors, and DAD read-only boundary. Updated 2026-08-24 to register the public evidence-bound portfolio front door and the validated specification-only Doctrine Mesh V2 release, bind the neutral four-repository AI audit route to snapshot_commit evidence and deterministic route regression coverage, and add the index-backed plus scheduled live-origin-head machine-residue gate."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -273,6 +273,7 @@ artifacts:
       - tests/test_portfolio_front_door.py
       - tests/test_validation_contracts.py
       - tests/test_rust_fast_internal_links.py
+      - .github/workflows/machine-citation-residue-sweep.yml
       - .github/workflows/validate-logos-structure.yml
     object_type: governance_validation_suite
     trust_zone: canonical
@@ -294,6 +295,8 @@ artifacts:
       - cross_repo_reference_manifest_validation
       - fable_feedback_trace_matrix_validation
       - machine_citation_artifact_recurrence_gate
+      - index_object_machine_residue_gate
+      - scheduled_live_origin_head_machine_residue_gate
       - public_portfolio_evidence_and_specification_boundary_gate
       - rust_fast_validator_shadow_parity_scope
     mirrored_by:
@@ -335,7 +338,7 @@ artifacts:
       - tests/test_validation_contracts.py
       - tests/test_rust_fast_internal_links.py
       - .github/workflows/
-    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks. Updated 2026-07-06 to include PR-4 doctrine-genealogy validators and tests, including the Kernel E Codex theology tripwire path. Updated 2026-07-06 to register the T462 Rust fast-validator shadow path for deterministic internal-link acceleration. Updated 2026-07-07 to include W2-1 cross-repo reference manifest validation and the Fable feedback trace matrix validator. Updated 2026-08-23 to reject private-use citation markers and non-resolvable chat-local citation locators across tracked public text. Updated 2026-08-24 to validate the public portfolio evidence manifest, navigation, privacy patterns, diagrams, and frozen Doctrine Mesh V2 boundary."
+    provenance_note: "Default validation suite backs local, CI, and semantic-merge checks. Updated 2026-07-06 to include PR-4 doctrine-genealogy validators and tests, including the Kernel E Codex theology tripwire path. Updated 2026-07-06 to register the T462 Rust fast-validator shadow path for deterministic internal-link acceleration. Updated 2026-07-07 to include W2-1 cross-repo reference manifest validation and the Fable feedback trace matrix validator. Updated 2026-08-23 to reject private-use citation markers and non-resolvable chat-local citation locators across tracked public text. Updated 2026-08-24 to validate the public portfolio evidence manifest, navigation, privacy patterns, diagrams, and frozen Doctrine Mesh V2 boundary, then to scan immutable index objects by default and all fetched live origin heads on a read-only schedule."
     reason_for_inclusion: "Validation scope changes can change effective governance; doctrine-genealogy schemas need fail-closed checks before any examples, data records, reviewed lineage, or repo creation."
   - artifact_id: GD-008
     title: Governance workflow and roadmap process
