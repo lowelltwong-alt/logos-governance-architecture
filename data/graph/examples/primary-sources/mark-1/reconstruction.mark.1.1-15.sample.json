@@ -20,7 +20,7 @@
     "source_domains": ["primary_sources", "scripture"]
   },
   "interfaces": ["reviewable_node", "scripture_grounded_node", "machine_readable_object"],
-  "trust_zone": "reviewed_specialized",
+  "trust_zone": "tradition-scoped",
   "reconstruction": {
     "passage_id": "text.mark.1.1-15",
     "linked_witnesses": ["witness.codex_sinaiticus.mark_sample"],
@@ -41,7 +41,7 @@
     "typed_edges": []
   },
   "provenance": {
-    "source_refs": ["turn0search5"],
+    "source_refs": [],
     "derived_from": ["witness.codex_sinaiticus.mark_sample", "transcription.sinaiticus.mark.1.1-35.sample"],
     "created_by": "author.lowell_t_wong",
     "last_modified_by": "author.lowell_t_wong",

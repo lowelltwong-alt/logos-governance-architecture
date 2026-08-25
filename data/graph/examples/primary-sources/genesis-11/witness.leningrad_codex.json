@@ -20,7 +20,7 @@
     "source_domains": ["primary_sources", "scripture"]
   },
   "interfaces": ["reviewable_node", "machine_readable_object"],
-  "trust_zone": "reviewed_specialized",
+  "trust_zone": "tradition-scoped",
   "witness": {
     "witness_kind": "hebrew_codex",
     "is_fragmentary": false,
@@ -50,7 +50,7 @@
     "typed_edges": []
   },
   "provenance": {
-    "source_refs": ["turn0search24"],
+    "source_refs": [],
     "derived_from": [],
     "created_by": "author.lowell_t_wong",
     "last_modified_by": "author.lowell_t_wong",
