@@ -23,6 +23,12 @@ def attachment_path() -> str:
     )
 
 
+def posix_attachment_path(home: str) -> str:
+    return "/".join(
+        (home.rstrip("/"), ".codex", "attachments", "id", "pasted-text.txt")
+    )
+
+
 def run_git(root: Path, *arguments: str) -> str:
     completed = subprocess.run(
         ["git", *arguments],
@@ -99,6 +105,10 @@ def test_encoded_private_use_markers_are_detected(value: str) -> None:
         "turn17" + chr(0x200B) + "search4",
         "turn17" + chr(0x202E) + "search4",
         "turn17" + chr(0x1F) + "search4",
+        *(
+            "turn17" + chr(code_point) + "search4"
+            for code_point in (0x0B, 0x0C, 0x1C, 0x1D, 0x1E, 0x85)
+        ),
         percent_encode("turn17" + chr(0x1F) + "search4"),
         "".join(("t", "&#x75;", "rn17search4")),
         percent_encode(locator()),
@@ -127,6 +137,10 @@ def test_encoded_or_invisible_locators_are_detected(value: str) -> None:
         "file:///" + attachment_path(),
         "file:///" + percent_encode(attachment_path()),
         attachment_path().replace("/", "\\"),
+        posix_attachment_path("/root"),
+        posix_attachment_path("~"),
+        "file://" + posix_attachment_path("/root"),
+        percent_encode(posix_attachment_path("~")),
     ],
 )
 def test_local_profile_attachment_paths_are_detected(value: str) -> None:

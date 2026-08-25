@@ -50,6 +50,7 @@ CHAT_LOCATOR_RE = re.compile(
     + r")[0-9]+",
     re.IGNORECASE,
 )
+_TRUE_LINE_BOUNDARY_RE = re.compile(r"\r\n|[\n\r\u2028\u2029]")
 _BACKSLASH_UNICODE_RE = re.compile(
     re.escape("\\") + r"(?:u([0-9a-fA-F]{4})|U([0-9a-fA-F]{8}))"
 )
@@ -183,15 +184,20 @@ def has_local_attachment_path(value: str) -> bool:
     profile_roots = (
         "/".join(("", "users", "")),
         "/".join(("", "home", "")),
+        "/".join(("", "root", "")),
     )
-    return attachment_root in normalized and any(
-        root in normalized for root in profile_roots
+    return "/".join(("~", attachment_root)) in normalized or (
+        attachment_root in normalized
+        and any(root in normalized for root in profile_roots)
     )
 
 
 def scan_text(path: str, text: str) -> list[Finding]:
     findings: list[Finding] = []
-    for line_number, line in enumerate(text.splitlines(), start=1):
+    # Split only on true newline boundaries. Other Cc/Cf controls—including
+    # separators recognized by str.splitlines()—must remain in the line so the
+    # obfuscation normalizer can remove them before locator matching.
+    for line_number, line in enumerate(_TRUE_LINE_BOUNDARY_RE.split(text), start=1):
         raw_private_use = any(is_private_use(character) for character in line)
         raw_locator = CHAT_LOCATOR_RE.search(line) is not None
         if raw_private_use:
