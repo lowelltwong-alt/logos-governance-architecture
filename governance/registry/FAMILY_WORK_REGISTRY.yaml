@@ -521,10 +521,18 @@ work_items:
     owner: Lowell Wong
     agent: Codex root
     started_at: "2026-08-24T15:25:04Z"
-    heartbeat_at: "2026-08-24T15:25:04Z"
+    heartbeat_at: "2026-08-25T03:23:45Z"
     stale_after_days: 7
     authority_ceiling: non_authorizing_public_hygiene_remote_ref_remediation_and_validation
     dependencies: [WORK-GOV-FAMILY-COORD-001, WORK-GOV-CITATION-RESIDUE-REPAIR-001]
     related_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-MAIN-EXPOSURE-HOTFIX-001, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001, WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001]
     overlap_resolution_ids: [OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-REPO-RESIDUE-001]
-    completion_evidence: []
+    completion_evidence:
+      - "The fresh owner-authorized one-time protected-hold-aware preflight passed from exact clean checkpoint 08eab8e3edf44ab22175e3e47b1828153a84d716 with eight exact clean non-writing suppressions, unchanged claim/lifecycle inputs, and no protected-hold mutation."
+      - "After exact live ancestry and merged-PR checks, only codex/logos-convergence-public-projection and fable/main-exposure-hotfix were deleted remotely; both had zero unique commits and remain preserved through main and retained local refs."
+      - "Ten contaminated heads containing nineteen unique commits advanced by ordinary non-force sole-parent child commits after exact expected-old checks; every old tip remains ancestral and no reset, rebase, force, or history rewrite occurred."
+      - "Independent read-only review passed exact parent, ancestry, nine-blob, Augustine-gate, branch-specific trace, path-scope, private-use, locator, attachment-path, and ordinary-index immutability checks for all ten candidates."
+      - "The post-repair live inventory contains thirteen heads. The hardened all-origin-head scan passed across 8,533 UTF text blobs with zero skipped objects and zero findings."
+      - "The validator now reads immutable index objects by default, supports exact-ref and all-origin-head modes, fails closed on malformed Git/text-like inputs, and detects bounded encoded or invisible-control obfuscations plus user-profile attachment paths. A daily read-only fetch-and-scan workflow is registered."
+      - "Independent staged-diff review found and blocked one ASCII-control locator bypass. The validator now removes invisible Cc and Cf controls only in its detection view; direct and encoded regressions were added, and the final focused validator/contract suite passed 59. Governance dependency-map validation passed."
+      - "The Augustine whole-node no-cite gate remains byte-identical at blob 1b68838d9ba92e74b5341c602ef647864f924b55 and qualified patristics review remains pending."
