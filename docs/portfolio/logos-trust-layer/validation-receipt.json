@@ -3,7 +3,7 @@
     "object_type": "logos_portfolio_validation_receipt",
     "trust_zone": "proposed",
     "lifecycle_status": "validated_release_candidate",
-    "provenance_note": "Reissued on 2026-08-25 for the neutral cross-repository AI audit route, deterministic route coverage, immutable release replay, and task-separated non-author review.",
+    "provenance_note": "Reissued on 2026-08-24 for the neutral cross-repository AI audit route, deterministic route coverage, immutable release replay, dependency-map closure, and task-separated non-author review.",
     "reason_for_inclusion": "Bind the public portfolio and doctrine-mesh specification to exact Git-object snapshots, checks, independent review, authority limits, and release state without treating narrative claims as proof."
   },
   "schema_version": "logos.portfolio_validation_receipt.v1",
@@ -16,25 +16,25 @@
     "scope": "All 111 post-V1 candidate paths except this self-describing validation receipt.",
     "path_count": 110,
     "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:455421e5742462e07d8db186824757beda8e7d00c5954f3cbfedfa5fb091b855"
+    "digest": "sha256:8bfe8a5d8cb29b78a0eea15aa5e1d11469e0219712b688722f15a845bf186223"
   },
   "full_pr_composite_scope": {
     "base_commit": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12",
-    "content_head_commit": "acada913a7e4a66621f034edecbdc1533ce92bbf",
+    "content_head_commit": "04a190bf091eea468a57f5604264a71ff97dd237",
     "scope": "All 131 base-to-content-head release paths except this self-describing validation receipt.",
     "path_count": 131,
     "fingerprinted_path_count": 130,
     "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:a3fc26b9106ff06fb3eb92a4f63d5e54cc45c4ae60643aaf815e6583736d1a86"
+    "digest": "sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc"
   },
   "post_v1_candidate_slice": {
     "parent_commit": "410c7e429290d34013c1dbf23c0335ebfe68e45f",
-    "content_head_commit": "acada913a7e4a66621f034edecbdc1533ce92bbf",
+    "content_head_commit": "04a190bf091eea468a57f5604264a71ff97dd237",
     "scope": "All 111 post-V1 candidate paths except this self-describing validation receipt.",
     "path_count": 111,
     "fingerprinted_path_count": 110,
     "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:455421e5742462e07d8db186824757beda8e7d00c5954f3cbfedfa5fb091b855"
+    "digest": "sha256:8bfe8a5d8cb29b78a0eea15aa5e1d11469e0219712b688722f15a845bf186223"
   },
   "doctrine_mesh_status": "validated_specification_only",
   "doctrine_mesh_payload_digest": "sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946",
@@ -255,6 +255,14 @@
       "reviewed_path_count": 3,
       "reviewed_digest": "sha256:c71131d30d9db03afe0ce47dbd592e0b9f63889e2902e6577387fdcad3236206",
       "scope_note": "Changed-input review verified neutral wording, the exact four-repository boundary, planned and external exclusions, snapshot_commit navigation, whitespace-normalized fail-closed route checks, public privacy, authority limits, and exact three-path scope after one field-name accuracy repair."
+    },
+    {
+      "review_id": "portfolio_dependency_map_review_009",
+      "role": "independent-governance-dependency-checker",
+      "status": "pass",
+      "reviewed_path_count": 1,
+      "reviewed_digest": "sha256:483e97cc758ed35e52e7dc7c070ebe78917b36d880e416e3e32a60e809d5cc45",
+      "scope_note": "Changed-input review verified the exact one-file map delta, truthful local-date provenance, existing route and validator coverage, specification-only authority boundaries, explicit changed-path validation, and no unrelated semantic change."
     }
   ],
   "unchanged_head_gate": "pass_local_exact_content_head_and_130_path_composite_fingerprint_pending_post_push_gate",
@@ -266,6 +274,6 @@
   "completed_doctrine_corpus": false,
   "qualified_theological_authority_granted": false,
   "mutation_performed_by_validation": false,
-  "observed_at": "2026-08-25T02:00:48.2082109Z",
-  "receipt_digest": "sha256:8b12d77e4cddbfa0c2fcaf77f78810485d87a33b77b6c4264fda1bc5951ed161"
+  "observed_at": "2026-08-25T02:15:20.1992463Z",
+  "receipt_digest": "sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff"
 }
