@@ -41,7 +41,7 @@
     "typed_edges": []
   },
   "provenance": {
-    "source_refs": ["turn0search5"],
+    "source_refs": [],
     "derived_from": ["witness.codex_sinaiticus.mark_sample", "transcription.sinaiticus.mark.1.1-35.sample"],
     "created_by": "author.lowell_t_wong",
     "last_modified_by": "author.lowell_t_wong",
