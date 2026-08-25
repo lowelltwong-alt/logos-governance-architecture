@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated through 2026-07-10 for the registered governance buildout. Updated 2026-07-11 to register D11 LLOS v1, its lesson schema, route registry, validator, child mirrors, and DAD read-only boundary. Updated 2026-08-24 to register the public evidence-bound portfolio front door and the validated specification-only Doctrine Mesh V2 release."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated through 2026-07-10 for the registered governance buildout. Updated 2026-07-11 to register D11 LLOS v1, its lesson schema, route registry, validator, child mirrors, and DAD read-only boundary. Updated 2026-08-24 to register the public evidence-bound portfolio front door and the validated specification-only Doctrine Mesh V2 release, then to bind the neutral four-repository AI audit route to snapshot_commit evidence and deterministic route regression coverage."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -1325,5 +1325,5 @@ artifacts:
       - tests/test_portfolio_front_door.py
       - governance/registry/FAMILY_WORK_REGISTRY.yaml
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
-    provenance_note: "Added 2026-08-24 for the owner-authorized public recruiter portfolio and the exact frozen 90-file Doctrine Mesh V2 design package after family-overlap reconciliation and protected-hold preflight. The mesh remains specification-only and non-authorizing."
+    provenance_note: "Added 2026-08-24 for the owner-authorized public recruiter portfolio and the exact frozen 90-file Doctrine Mesh V2 design package after family-overlap reconciliation and protected-hold preflight, then updated to record the neutral four-repository AI audit route, exact snapshot_commit navigation, and deterministic route regression coverage. The mesh remains specification-only and non-authorizing."
     reason_for_inclusion: "Recruiters, engineers, and their AI tools need one inspectable route from the large Logos architecture to exact code, schemas, graph contracts, validators, receipts, maturity labels, and explicit limits without confusing a validated design with runtime or theology."

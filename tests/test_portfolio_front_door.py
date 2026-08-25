@@ -73,6 +73,63 @@ def test_manifest_validates_against_public_schema() -> None:
     ).validate(load_manifest())
 
 
+def test_interrogation_prompt_covers_the_full_governed_repo_route() -> None:
+    prompt = (
+        ROOT
+        / "docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md"
+    ).read_text(encoding="utf-8")
+    prompt = " ".join(prompt.split())
+    repository_ids = {
+        row["repository_id"] for row in load_manifest()["repositories"]
+    }
+
+    assert (
+        validator._missing_interrogation_route_requirements(
+            prompt, repository_ids
+        )
+        == []
+    )
+
+
+@pytest.mark.parametrize(
+    "removed",
+    [
+        "logos-governance-architecture",
+        "logos-scripture-graph",
+        "logos-boundary-literature",
+        "logos-doctrine-genealogy",
+        "governance/LOGOS_REPO_REGISTRY.yaml",
+        "LOGOS_FAMILY_MAP.md",
+        "logos-chunking-harness",
+        "planned, not created",
+        "noesis-atlas",
+        "external advisory",
+        "AI_FRONT_DOOR.md",
+        "README.md",
+        "snapshot_commit",
+        "project-evidence.yaml",
+    ],
+)
+def test_interrogation_prompt_rejects_missing_route_requirements(
+    removed: str,
+) -> None:
+    prompt = (
+        ROOT
+        / "docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md"
+    ).read_text(encoding="utf-8")
+    prompt = " ".join(prompt.split())
+    repository_ids = {
+        row["repository_id"] for row in load_manifest()["repositories"]
+    }
+
+    missing = validator._missing_interrogation_route_requirements(
+        prompt.replace(removed, ""),
+        repository_ids,
+    )
+
+    assert removed in missing
+
+
 @pytest.mark.parametrize(
     "field",
     [

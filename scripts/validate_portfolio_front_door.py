@@ -52,6 +52,18 @@ EXPECTED_REPOSITORIES = {
     "logos-boundary-literature",
     "logos-doctrine-genealogy",
 }
+REQUIRED_INTERROGATION_ROUTE_TOKENS = {
+    "governance/LOGOS_REPO_REGISTRY.yaml",
+    "LOGOS_FAMILY_MAP.md",
+    "logos-chunking-harness",
+    "planned, not created",
+    "noesis-atlas",
+    "external advisory",
+    "AI_FRONT_DOOR.md",
+    "README.md",
+    "snapshot_commit",
+    "project-evidence.yaml",
+}
 EXPECTED_NAVIGATION_FILES = (
     "README.md",
     "AI_FRONT_DOOR.md",
@@ -488,6 +500,55 @@ def _check_repository_inventory(manifest: dict[str, Any]) -> list[Finding]:
         if declared_totals.get(field) != actual:
             findings.append(Finding("repository_total", "project-evidence.yaml", f"{field} total does not equal repository rows"))
     return findings
+
+
+def _missing_interrogation_route_requirements(
+    prompt_text: str, repository_ids: set[str]
+) -> list[str]:
+    lowered = " ".join(prompt_text.split()).lower()
+    required = {
+        *REQUIRED_INTERROGATION_ROUTE_TOKENS,
+        *repository_ids,
+    }
+    return sorted(
+        token
+        for token in required
+        if token.lower() not in lowered
+    )
+
+
+def _check_interrogation_route(
+    root: Path, manifest: dict[str, Any]
+) -> list[Finding]:
+    relative = Path(
+        "docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md"
+    )
+    try:
+        prompt_text = (root / relative).read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError) as exc:
+        raise PortfolioValidationError(
+            f"cannot read AI interrogation prompt: {exc}"
+        ) from exc
+
+    repository_ids = {
+        row["repository_id"]
+        for row in manifest.get("repositories", [])
+        if isinstance(row, dict) and isinstance(row.get("repository_id"), str)
+    }
+    missing = _missing_interrogation_route_requirements(
+        prompt_text, repository_ids
+    )
+    if not missing:
+        return []
+
+    return [
+        Finding(
+            "interrogation_route",
+            relative.as_posix(),
+            "missing required cross-repository route token(s): "
+            + ", ".join(missing),
+        )
+    ]
 
 
 def _check_agent_mesh(root: Path) -> list[Finding]:
@@ -1105,6 +1166,7 @@ def validate_repository(root: Path = ROOT) -> ValidationResult:
     findings.extend(_check_manifest_schema(manifest, schema, manifest_path, root))
     findings.extend(_check_evidence_references(manifest, root))
     findings.extend(_check_repository_inventory(manifest))
+    findings.extend(_check_interrogation_route(root, manifest))
     release_findings, release_metrics = _check_release_scope(
         manifest, portfolio_receipt, root
     )
