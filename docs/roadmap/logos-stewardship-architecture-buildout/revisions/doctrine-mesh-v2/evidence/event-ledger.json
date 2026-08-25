@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "object_type": "doctrine_mesh_audit_event_ledger",
+    "trust_zone": "proposed",
+    "lifecycle_status": "frozen_specification_evidence",
+    "provenance_note": "Recorded on 2026-08-24 by Codex root for the design-time completeness audit chain.",
+    "reason_for_inclusion": "Prove exact preflight, triggered midflight, and postflight audit-event presence without claiming a qualified controller executed them."
+  },
+  "schema_version": "logos.doctrine_mesh_audit_event_ledger.v2",
+  "execution_boundary": "manual_specification_coverage_review_only",
+  "events": [
+    {
+      "schema_version": "logos.doctrine_mesh_audit_event.v2",
+      "event_id": "DMA-PREFLIGHT-001",
+      "sequence": 1,
+      "phase": "preflight",
+      "execution_class": "manual_specification_coverage_review",
+      "trigger": "work_unit_opened",
+      "work_unit_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+      "work_unit_revision": "doctrine-mesh-v2-draft-1",
+      "input_manifest_ref": "evidence/inputs/preflight.json",
+      "input_manifest_digest": "sha256:04a5366517a5f5605dae21c7ba6efe8d4c2591316ed1a7f1c178c8c057f56260",
+      "required_before_event_id": null,
+      "expected_auditor_role_id": "doctrine-mesh-completeness-auditor",
+      "expected_checker_role_id": "independent-whole-work-checker",
+      "emitted_at": "2026-08-24T15:27:55Z",
+      "event_digest": "sha256:6d26ce3ab8019fd785cb9ef2389fbb85745fb742e36bfb5a3c08ad7bbb67121d"
+    },
+    {
+      "schema_version": "logos.doctrine_mesh_audit_event.v2",
+      "event_id": "DMA-MIDFLIGHT-001",
+      "sequence": 2,
+      "phase": "midflight",
+      "execution_class": "manual_specification_coverage_review",
+      "trigger": "scope_or_authority_change",
+      "work_unit_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+      "work_unit_revision": "doctrine-mesh-v2-draft-2",
+      "input_manifest_ref": "evidence/inputs/midflight.json",
+      "input_manifest_digest": "sha256:ead6a2f11aa811defb483229d49904b780338bd762f1c673ba42ec11f41c0d5a",
+      "required_before_event_id": "DMA-PREFLIGHT-001",
+      "expected_auditor_role_id": "doctrine-mesh-completeness-auditor",
+      "expected_checker_role_id": "independent-whole-work-checker",
+      "emitted_at": "2026-08-24T15:42:00Z",
+      "event_digest": "sha256:7851a8f96d29a45881434a32ab80a5af1ecad795a4239d4258c0ad82387ccc04"
+    },
+    {
+      "schema_version": "logos.doctrine_mesh_audit_event.v2",
+      "event_id": "DMA-POSTFLIGHT-001",
+      "sequence": 3,
+      "phase": "postflight",
+      "execution_class": "manual_specification_coverage_review",
+      "trigger": "before_completion",
+      "work_unit_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+      "work_unit_revision": "doctrine-mesh-v2-design-postflight-1",
+      "input_manifest_ref": "evidence/inputs/postflight.json",
+      "input_manifest_digest": "sha256:12bd20913d1c5d6ffbb468d56f3c201ad7356b68c91af590ba8cfd6c8980ee8e",
+      "required_before_event_id": "DMA-MIDFLIGHT-001",
+      "expected_auditor_role_id": "doctrine-mesh-completeness-auditor",
+      "expected_checker_role_id": "independent-whole-work-checker",
+      "emitted_at": "2026-08-24T16:50:20Z",
+      "event_digest": "sha256:462fcad3f85e2318ffba545c01e579030a1ec66535afa3083a19a230be34bd46"
+    }
+  ]
+}

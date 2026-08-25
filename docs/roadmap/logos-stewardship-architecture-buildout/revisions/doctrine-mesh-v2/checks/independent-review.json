@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "object_type": "doctrine_mesh_independent_specification_review",
+    "trust_zone": "proposed",
+    "lifecycle_status": "independently_checked",
+    "provenance_note": "Rebound on 2026-08-24 by Codex root after two task-separated read-only reviews independently replayed the claimed-scope traversal repair, 85-file payload freeze, schema semantics, and twenty-test adversarial suite.",
+    "reason_for_inclusion": "Bind the exact frozen payload to the final independent artifact-freeze verdict while retaining all runtime and human-authority limits."
+  },
+  "schema_version": "logos.doctrine_mesh_independent_specification_review.v2",
+  "review_id": "DM-INDEPENDENT-REVIEW-002",
+  "revision_manifest_ref": "revision-manifest.yaml",
+  "revision_manifest_digest": "sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1",
+  "payload_digest": "sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946",
+  "review_lineage_ref": "evidence/independence/review-lineage.yaml",
+  "review_lineage_digest": "sha256:6826ba13103cb50075ca129c93b48ac9d1a454a96cbab282809f9e95d87cdf3c",
+  "reviewer_lanes": [
+    "autonomy_authority_redteam",
+    "campaign_integration_checker",
+    "deterministic_schema_checker",
+    "path_scope_repair_checker",
+    "release_evidence_checker",
+    "release_authority_redteam"
+  ],
+  "independence_status": "partly_verified_non_authorizing",
+  "cross_provider_verified": false,
+  "status": "pass_specification_only",
+  "finding_counts": {"critical": 0, "high": 0, "medium": 0, "low": 0},
+  "unresolved_runtime_boundaries": [
+    "actual_source_researched_and_rights_cleared_ExpertPacks",
+    "authenticated_human_authority",
+    "cross_provider_independence",
+    "qualified_controller_and_semantic_runtime_fixtures",
+    "qualified_domain_humans",
+    "substantive_doctrine_research_and_decisions"
+  ],
+  "runtime_activation_authorized": false,
+  "research_authorized": false,
+  "source_ingestion_authorized": false,
+  "doctrine_decision_authorized": false,
+  "cross_repository_write_authorized": false,
+  "publication_authorized": false,
+  "observed_at": "2026-08-24T20:24:27Z",
+  "review_digest": "sha256:a4ad475cc54db85e6cbdc60353b1c790302f1a28aa614e46d95620e6402e158e"
+}

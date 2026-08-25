@@ -1,0 +1,44 @@
+metadata:
+  object_type: stewardship_architecture_atomic_job_catalog
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-23 by Codex root as a human-readable projection of campaign.json atomic jobs."
+  reason_for_inclusion: "Make dependencies, effect classes, roles, gates, and blocked future work easy to audit without treating the projection as controller state."
+schema_version: logos_stewardship_job_catalog.v1
+catalog_id: LOGOS-STEWARDSHIP-JOBS-001
+controller_execution_state: not_started
+projection_not_controller_state: true
+state_semantics:
+  current_state_describes_future_job_execution: true
+  authored_specification_artifacts_mark_jobs_complete: false
+  planned_means: specified_but_not_executed
+  blocked_human_means: specified_and_not_executable_without_exact_human_receipt
+bootstrap_evidence:
+  claim_checkpoint: 4424818c40382e52ab9521662ecb0922f61d8430
+  reconciled_checkpoint: 9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4
+  protected_hold_preflight_observed_at: "2026-08-23T20:11:49Z"
+jobs:
+  - {job_id: J-000, phase: P0, title: "Baseline capsule", depends_on: [], effect_class: validation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-001, phase: P0, title: "Claim checkpoint verification", depends_on: [J-000], effect_class: validation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-002, phase: P0, title: "Family preflight verification", depends_on: [J-001], effect_class: read_only, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-100, phase: P1, title: "Campaign constitution", depends_on: [J-002], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-110, phase: P1, title: "Source lock", depends_on: [J-002], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-120, phase: P1, title: "Exclusion and human-gate lock", depends_on: [J-110], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-130, phase: P1, title: "Typed dependency and provenance graph", depends_on: [J-100, J-110, J-120], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-140, phase: P1, title: "Task-local hierarchical mesh", depends_on: [J-130], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-150, phase: P1, title: "Controller qualification plan", depends_on: [J-130, J-140], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-200, phase: P2, title: "Research docket and expert matrix", depends_on: [J-120, J-130], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-210, phase: P2, title: "Evaluation baseline", depends_on: [J-200], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-220, phase: P2, title: "Conditional migration and rollback specification", depends_on: [J-120, J-210], effect_class: documentation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: planned}
+  - {job_id: J-300, phase: P3, title: "Runtime qualification probe", depends_on: [J-150, J-210], effect_class: read_only, planned_writer: specification-writer, checker: independent-authority-checker, current_state: blocked_human}
+  - {job_id: J-310, phase: P3, title: "Inert controller dry run", depends_on: [J-300], effect_class: validation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: blocked_human}
+  - {job_id: J-320, phase: P3, title: "Independent launch review", depends_on: [J-310], effect_class: validation, planned_writer: specification-writer, checker: independent-authority-checker, current_state: blocked_human}
+  - {job_id: J-400, phase: P4, title: "Future implementation gate", depends_on: [J-220, J-320], effect_class: documentation, planned_writer: specification-writer, checker: human-campaign-sponsor, current_state: blocked_human}
+global_job_rules:
+  max_direct_fanout: 3
+  max_delegation_depth: 1
+  original_attempts: 1
+  bounded_repairs: 1
+  same_state_deterministic_retry: false
+  worker_may_edit_controller_state: false
+  writer_may_check_own_output: false

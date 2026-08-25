@@ -1,0 +1,79 @@
+metadata:
+  object_type: doctrine_mesh_autonomy_envelope
+  trust_zone: proposed
+  lifecycle_status: dormant_until_human_activation
+  provenance_note: "Created on 2026-08-24 by Codex root to permit future routine role routing without delegating doctrine or authority."
+  reason_for_inclusion: "Define exactly what a future controller may automate and where it must stop."
+schema_version: logos_doctrine_autonomy_envelope.v2
+current_activation: false
+portable_core_actions:
+  automatically_permitted_only_after_separate_runtime_activation:
+    - deterministic requirement extraction from typed work-unit metadata
+    - reviewed-role lookup and exact capability matching
+    - task-local role composition from approved facets
+    - low_or_medium_risk assignment inside a preapproved source budget and scope
+    - citation locator, source quality, entailment, counterevidence, and alignment checks
+    - quarantine, abstention, retry suppression, and human escalation
+  never_automatic:
+    - doctrine, canon, normativity, orthodoxy, heresy, or tradition-policy decision
+    - source-authority promotion or corpus admission
+    - paid, credentialed, private, licensed, or restricted source access
+    - external messages, publication, promotion, implementation, or cross-repository write
+    - global skill or persistent agent creation
+    - changing prompts, gates, risk floors, budgets, or its own controller
+    - recursive delegation or worker-created work
+eligibility_floor:
+  risk_tier: [low, medium]
+  authority_change: false
+  novel_corpus_or_tradition: false
+  rights_privacy_or_credentials_unknown: false
+  source_allowlist_status: approved_for_exact_use
+  expert_pack_status: qualified_for_exact_task
+  checker_independence_status: verified_for_exact_assignment
+  maximum_delegation_depth: 1
+  maximum_parallel_lanes: 3
+  maximum_role_recovery_rounds_without_changed_evidence: 1
+  maximum_original_attempts: 1
+  maximum_repairs: 1
+cumulative_work_unit_ceilings:
+  maximum_audit_factory_generations: 2
+  maximum_generated_role_profiles: 12
+  maximum_audit_events: 12
+  maximum_total_assignments: 24
+  maximum_open_human_decision_packets: 5
+  terminal_state_on_excess: blocked_scope_growth
+  changed_evidence_does_not_reset_cumulative_counters: true
+  exact_numeric_budget_required_before_any_execution: [wall_clock, tokens, cost, storage, network_requests]
+  missing_or_unbounded_budget_behavior: block
+  controller_may_raise_ceiling: false
+campaign_ceiling:
+  exact_human_authorized_numeric_envelope_required: true
+  work_unit_ceiling_cannot_exceed_campaign_remainder: true
+  long_run_scaling_rule: "Scale through many bounded resumable work units; never by making one work unit unbounded."
+candidate_role_lifecycle:
+  initial_status: candidate_task_local
+  execution_authority: none_until_assigned_by_qualified_controller
+  expires_on: [work_unit_completion, source_manifest_change, prompt_revision_change, qualification_expiry, authority_change]
+  self_promotion_allowed: false
+  reusable_promotion_requires:
+    - repeated independent qualification on protected fixtures
+    - privacy-safe execution and independent grade history
+    - provider-neutral core plus runtime adapter evidence
+    - named human approval
+human_escalation_triggers:
+  - risk tier high or frontier
+  - unresolved material disagreement
+  - doctrine, canon, normativity, orthodoxy, heresy, or tradition self-description
+  - new tradition, language, corpus, edition, archaeological domain, or authority class
+  - source unavailable to the independent verifier
+  - rights, privacy, credentials, external provider, or paid-service question
+  - cross-repository contract, topology, schema, migration, or release effect
+  - role factory cannot prove qualification or checker independence
+  - postflight discovers a missing expert who could materially change a load-bearing result
+queue_health:
+  rule: "Stop intake instead of lowering review when the human queue exceeds its separately approved capacity."
+  default_maximum_open_packets_per_work_unit: 5
+  default_maximum_open_packets_per_campaign: 20
+  deduplication_key_fields: [normalized_question, authority_domain, affected_consumer_set_digest, source_snapshot_digest]
+  bundle_rule: "Questions with shared evidence, authority, or downstream consumers remain one risk bundle; decision slicing is blocking."
+  automatic_threshold_change_allowed: false

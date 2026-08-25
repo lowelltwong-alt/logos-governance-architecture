@@ -1,0 +1,287 @@
+metadata:
+  object_type: doctrine_mesh_revision_manifest
+  trust_zone: proposed
+  lifecycle_status: frozen_specification_payload
+  provenance_note: Regenerated on 2026-08-24 by Codex root from exact canonical payload bytes after the claimed-scope traversal regression repair; independent changed-input review is bound separately.
+  reason_for_inclusion: Bind every portable specification, project governance instance, dormant adapter, and revision-evidence file without treating volatile interpreter caches or self-referential administrative receipts as payload.
+schema_version: logos_doctrine_mesh_revision_manifest.v2
+manifest_id: LOGOS-DOCTRINE-MESH-REVISION-002
+work_id: WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
+revision_id: doctrine-mesh-v2
+revision_root: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2
+parent_checkpoint: 410c7e429290d34013c1dbf23c0335ebfe68e45f
+generated_at: '2026-08-24T20:14:29Z'
+authority: specification_only_no_runtime_research_doctrine_source_admission_or_publication
+capability_class_definitions:
+  portable_core: Provider-neutral schema, contract, prompt, or deterministic validator intended for separately qualified reuse.
+  runtime_adapter: Dormant environment or manual-provider handoff that grants no activation or authority.
+  project_governance_instance: This campaign's exact authority, taxonomy, graph, catalog, or roadmap instance.
+  revision_evidence: Design-time audit, review, fixture, premortem, or repair evidence for this exact revision.
+excluded_volatile_patterns:
+- '**/__pycache__/**'
+- '**/*.pyc'
+administrative_files_excluded_from_payload_digest:
+- FINAL-SAVED-VERSION.yaml
+- checks/independent-review.json
+- checks/validation-receipt.json
+- fable/fable-review-manifest.yaml
+- revision-manifest.yaml
+payload_file_count: 85
+payload_files:
+- path: README.md
+  sha256: sha256:ecc3473826a0388e708588f3e47373540b203eab0fd4f5e99bec09d23e286aeb
+  capability_class: project_governance_instance
+- path: campaign.yaml
+  sha256: sha256:d99351788114194c2e6245c35583fc14bc8757a3f1c4298ca18590403613a32b
+  capability_class: project_governance_instance
+- path: checks/README.md
+  sha256: sha256:6796bd4ec613375a8f20b46fa4f19880a113bf104e5c7012c74d63847329a8ea
+  capability_class: portable_core
+- path: checks/fixtures/negative-cases.json
+  sha256: sha256:ec53b9f6429c64139e277717652448b80996409c26bd2ae8cb115d4ba275272f
+  capability_class: revision_evidence
+- path: checks/test_validate_doctrine_mesh.py
+  sha256: sha256:bbaebe5afe4d98b9cb00db473e3ed2d91f030ae96d24c6a35cede187c1d7d882
+  capability_class: revision_evidence
+- path: checks/validate_doctrine_mesh.py
+  sha256: sha256:9474e653857da7baab809236557595285d335460a05045edca426c43331bdcb2
+  capability_class: portable_core
+- path: constitution.yaml
+  sha256: sha256:deb949de6aa7cfdbeb07025deeefe4f786fb996f9a65f81d2b116964d5bd01af
+  capability_class: project_governance_instance
+- path: evidence/coverage/midflight.yaml
+  sha256: sha256:1809381c1e07eb22bef1d08f10aa0d7ac70bcccd69f33f76c583f2818d775d47
+  capability_class: revision_evidence
+- path: evidence/coverage/postflight.yaml
+  sha256: sha256:b6e89fbb1f67c9237dbcc07c70def8f30b712afb49d3e317de115cfcd2238af4
+  capability_class: revision_evidence
+- path: evidence/coverage/preflight.yaml
+  sha256: sha256:3e019d564a8f603320fc4906f7556a9f47fa0e4ef50d0f2caccaa4a6e73ff0f1
+  capability_class: revision_evidence
+- path: evidence/event-ledger.json
+  sha256: sha256:b7e8ca7825d45c95dfecdaf7408b0842c47677ac38e012a06e02c017f912c14a
+  capability_class: revision_evidence
+- path: evidence/execution-attempts.json
+  sha256: sha256:77dcb69a8dd7e3d9fda3fc60ae3561ad0593d10c2eae57df3b97ba11494fc255
+  capability_class: revision_evidence
+- path: evidence/gaps/midflight.yaml
+  sha256: sha256:92c65840cdc25b9fc0be804264a6724af4915b119ddb71be2092d94c9845543c
+  capability_class: revision_evidence
+- path: evidence/gaps/postflight.yaml
+  sha256: sha256:f430ac8d8017a963a9dd1162042a63ae140b0b6bd74fd7a04fc467093f650e55
+  capability_class: revision_evidence
+- path: evidence/gaps/preflight.yaml
+  sha256: sha256:604957e66399f740c252830701a2be9a4358c823e4359e02759b8dbe8cfa0ea5
+  capability_class: revision_evidence
+- path: evidence/independence/review-lineage.yaml
+  sha256: sha256:6826ba13103cb50075ca129c93b48ac9d1a454a96cbab282809f9e95d87cdf3c
+  capability_class: revision_evidence
+- path: evidence/inputs/midflight.json
+  sha256: sha256:4d5caa70c181dba4e4a8c190a330e50fae33336dffafb0e8bd3aadbe16b41adf
+  capability_class: revision_evidence
+- path: evidence/inputs/postflight.json
+  sha256: sha256:906ad121b97ed80fdd8c3e389e930c4dc780831873dc2421aaed86c8ac877659
+  capability_class: revision_evidence
+- path: evidence/inputs/preflight.json
+  sha256: sha256:4c5e618b8de87d4dcdd79641957e5d9149d99a382ed211a837022bd72b9247cc
+  capability_class: revision_evidence
+- path: evidence/receipts/midflight.json
+  sha256: sha256:fd8ff3929635bd8fd43634197b7650bdef0e007a0241606c1b33bded882dda72
+  capability_class: revision_evidence
+- path: evidence/receipts/postflight.json
+  sha256: sha256:c6fffe56fceb2b33f859f0cf57d06c063a2128740ba0319e73e592516d958217
+  capability_class: revision_evidence
+- path: evidence/receipts/preflight.json
+  sha256: sha256:090ca5bc7109809f13bd31d427d6c99471402dee0c6eb20bd4cbcfbba1c73c31
+  capability_class: revision_evidence
+- path: evidence/timeline.json
+  sha256: sha256:6d40df9219d673329513d944cf53e67e45cb1202196d65b33bfa28f0af05cc88
+  capability_class: revision_evidence
+- path: fable/FABLE-REVIEW-BRIEF.md
+  sha256: sha256:f16e41f63e9b61a8397dd056a0cebcbcb43cade1c4dc921a559712b58bee3dad
+  capability_class: runtime_adapter
+- path: governance/authority-and-storage-boundaries.yaml
+  sha256: sha256:7df190b1286375ef62e840aaaa762c71c4fa8c391eb9977111c5e34c57a17de9
+  capability_class: project_governance_instance
+- path: governance/autonomy-envelope.yaml
+  sha256: sha256:e1c9576e2820e1858f89181a37345236dd4bab688a5cf1814f25a0240574d9af
+  capability_class: project_governance_instance
+- path: governance/campaign-budget-ledger.schema.json
+  sha256: sha256:7f52a906e0cff8ffaf9d113cf0755c7c2172d9be3335d70e2a0068fc3ddf5251
+  capability_class: portable_core
+- path: governance/consumer-authority-validator-contract.yaml
+  sha256: sha256:91a5bdf4ae58c8f3db860c010145ae0d75e2b65dd75521935974a1c9d5754018
+  capability_class: portable_core
+- path: governance/decision-and-risk-contract.yaml
+  sha256: sha256:c1e80b873097a911d2bdfbabfc60a24763b39a8ad85675126b8413a64844ab75
+  capability_class: portable_core
+- path: governance/decision-bundle.schema.json
+  sha256: sha256:64086291c857a91cb9c94e4454558489fb774a4d850ad9f75eff1861dae3272a
+  capability_class: portable_core
+- path: governance/decision-record.schema.json
+  sha256: sha256:7b9a3c3f9b89a9a9c4038d61bee5afbb7ff8b2a7cfcb24283148051217647b0a
+  capability_class: portable_core
+- path: governance/fable-review-manifest.schema.json
+  sha256: sha256:bb974ce970573e01ef1e812289e6d42be728725bfe85119c3fd38edd741fde89
+  capability_class: portable_core
+- path: governance/final-saved-version.schema.json
+  sha256: sha256:3ddd13ff0880b803fe12f35b6bf00a2d2d502912cf99e98beff410279df94ca5
+  capability_class: portable_core
+- path: governance/human-authorization-receipt.schema.json
+  sha256: sha256:c171e1826bc3c59c703e0a4ab889fcc5c8057006b86d3406467e9233ca1a8cee
+  capability_class: portable_core
+- path: governance/human-gates.yaml
+  sha256: sha256:77019f07b89ea2e2f31d52c9343a87b789a8979d6a8dc66164e481062d9d6eff
+  capability_class: project_governance_instance
+- path: governance/independent-specification-review.schema.json
+  sha256: sha256:163d5dec6d7747abb82fe8350360e8090cf922f7080c51450eaffed373560c68
+  capability_class: portable_core
+- path: governance/portable-capability-boundary.yaml
+  sha256: sha256:409cc4728804e7be102f5bbad989c99c9e356a562f5a8cf7d1b73cf1d489734b
+  capability_class: portable_core
+- path: governance/specification-validation-receipt.schema.json
+  sha256: sha256:c27d181045a3d47fd3cfca3a6f359c7f46dc9870054bdf160edd8021871a8969
+  capability_class: portable_core
+- path: graph/consumer-index.schema.json
+  sha256: sha256:25e6ff70efe54e0501060f51fe119a959115adfe63e9b586e783d22bf22e5b7c
+  capability_class: portable_core
+- path: graph/doctrine-mesh-graph.yaml
+  sha256: sha256:59b8d5e66e949951139b1e64af354edb0378b76d67828f62d9a197b093ce5626
+  capability_class: project_governance_instance
+- path: graph/influence-bridge.schema.json
+  sha256: sha256:51996af1b2b5c1833b0eb734a985a77b7759473eeaf107a4acb6058b6ddf396b
+  capability_class: portable_core
+- path: graph/staleness-propagation-contract.yaml
+  sha256: sha256:c83b0f7dc535bbe370c890946d30ee58258f87a8efb7160d685a0974ff991cbb
+  capability_class: portable_core
+- path: mesh/agent-mesh.v2.json
+  sha256: sha256:33b26c0b78d535428a1d26fc18a6df6a76e196c4ae4b10147bb49b6893ee0370
+  capability_class: project_governance_instance
+- path: mesh/attempt-lineage.schema.json
+  sha256: sha256:86a8c17cf0781e160efcd6fb3b21551e3922aa45bb13f0d238ab6ae211dad586
+  capability_class: portable_core
+- path: mesh/audit-event.schema.json
+  sha256: sha256:934d6b62d001e2bc627c097136daf0fbcef91c0cda9f554e7abc1397040091bd
+  capability_class: portable_core
+- path: mesh/audit-receipt.schema.json
+  sha256: sha256:9f737ca1c0c632048ebae333669e926cae43eeb78962cc64430b43c72ac80328
+  capability_class: portable_core
+- path: mesh/autonomous-role-factory.yaml
+  sha256: sha256:1b974e5c97981b9be21a97263db0d9ab1363ff3c0cb6a0570df868ad8c462d60
+  capability_class: project_governance_instance
+- path: mesh/completeness-auditor-contract.yaml
+  sha256: sha256:246aa9bc111b4df2086bf2ec5d7a63c71a7ad2286a2ad0d6c07006788cc2ae06
+  capability_class: portable_core
+- path: mesh/controller-runtime-receipt.schema.json
+  sha256: sha256:01e60d8d57c8b7764ddd75a2e3f247d5c2026a1479710ee937cb638fe5ff80c3
+  capability_class: portable_core
+- path: mesh/coverage-plan.schema.json
+  sha256: sha256:f5635bf5cf664d8f3231f91f40344d3497cbc1a9eaf003f36b9318992e7f7f15
+  capability_class: portable_core
+- path: mesh/expertise-taxonomy.yaml
+  sha256: sha256:f9542b3f6de488197b0733bcd1c9e99337d185205ddc4eb590d58cc634f2726f
+  capability_class: project_governance_instance
+- path: mesh/job-binding-contract.yaml
+  sha256: sha256:1e786bb701464ea58493dca27d011ad7b77d4e918f0ff1f1940c150bd229255f
+  capability_class: portable_core
+- path: mesh/job-binding.schema.json
+  sha256: sha256:b7da07fc779ef12a8948e957e15a1a095f0b05d8d365c5fc1352c77c907670b3
+  capability_class: portable_core
+- path: mesh/role-gap.schema.json
+  sha256: sha256:c826cc1e1a75bb62b619f9a581705a9d44763775a75d432082a9aebbd2fff768
+  capability_class: portable_core
+- path: mesh/role-requirement.schema.json
+  sha256: sha256:3da35306002edfdc5fd7a8a70a575919723d2d0f99a6db2d2747c958d4ab503b
+  capability_class: portable_core
+- path: prompts/Jewish-community-representation-auditor.md
+  sha256: sha256:e322e64d1af338c7142457d471d13d38ab999561a4e6f4fbeed027c42d1007f6
+  capability_class: portable_core
+- path: prompts/bounded-doctrine-researcher.md
+  sha256: sha256:8863654f3767759d57b289a9c68a1b2debabe093bd593f73bd37bd17cd301db1
+  capability_class: portable_core
+- path: prompts/bounded-evidence-integrator.md
+  sha256: sha256:167fe4002687faa540fae241b1807afa0e5183ed7ccaf957d06d8cfc69a10ee2
+  capability_class: portable_core
+- path: prompts/citation-locator-verifier.md
+  sha256: sha256:2d93f03eca78808f19fcb74dd2df3d436937fab9d9c99d55f42d878f03ee34dd
+  capability_class: portable_core
+- path: prompts/claim-entailment-context-verifier.md
+  sha256: sha256:23115bce5478df1a2c630c54ed2cd0d9b613e320bc0c33ec02e389fc1345f134
+  capability_class: portable_core
+- path: prompts/counterevidence-challenger.md
+  sha256: sha256:ed139737ca40a5bdaabf4fe3c32dc6fe8fed9db6ea6a74511e7f67f2e14f0f2d
+  capability_class: portable_core
+- path: prompts/cross-repository-custody-checker.md
+  sha256: sha256:eda528929eeda5eb4a6a6f6178f0da75b73dfb40a8b58b1924e54a23f3e5a10e
+  capability_class: portable_core
+- path: prompts/doctrine-mesh-completeness-auditor.md
+  sha256: sha256:4df005a8468824b49d85e9a5663f84406deb4587e8c6d24cd37443062cda2e80
+  capability_class: portable_core
+- path: prompts/doctrine-mesh-foreman.md
+  sha256: sha256:871987234e13724a8d64476ff3cdee1204141d5af63a1c1ef549b2a6c56363a9
+  capability_class: portable_core
+- path: prompts/external-frontier-research-handoff.md
+  sha256: sha256:ce8bb295bc708fcd49de2e8054c6695babb4bde6dbf7eea7b227ac540d746e46
+  capability_class: portable_core
+- path: prompts/goal-alignment-authority-auditor.md
+  sha256: sha256:845a348d2e17e531dd2f36d08563a94768daddbefd455b3ca314fa33cf0f23d0
+  capability_class: portable_core
+- path: prompts/independent-whole-work-checker.md
+  sha256: sha256:f4e086024bfc4e362da04ed7253dbdaa18bc1fa0daab423528fc83fafe20a36e
+  capability_class: portable_core
+- path: prompts/postflight-role-recovery.md
+  sha256: sha256:2d5097ec870b279206f6e159bebff42f63403217316cc7e55f611d5919d87278
+  capability_class: portable_core
+- path: prompts/rights-privacy-custody-verifier.md
+  sha256: sha256:db3fc69e00d91a3a71a8e00dfc002ad562a67f769b6ad0715b77d233c0ea4736
+  capability_class: portable_core
+- path: prompts/risk-human-gate-router.md
+  sha256: sha256:57f8ec79a78829cf8233ac4ecd595f5518f83ff1b9556642a39f9b63a4f645ce
+  capability_class: portable_core
+- path: prompts/source-quality-verifier.md
+  sha256: sha256:298a15b573f385182465397f3c387c641d6012584eee6b5648840a7898da2ee0
+  capability_class: portable_core
+- path: prompts/task-local-role-factory.md
+  sha256: sha256:8e6b52944010c28f00ac462c0cee359394be636cac1bf129f0f67ae9aed75133
+  capability_class: portable_core
+- path: prompts/tradition-representation-auditor.md
+  sha256: sha256:d70f9b38698aab5ef7ddc3ef744ec05d67c5e52092761fa2d6660a0c079211d3
+  capability_class: portable_core
+- path: prompts/translation-fidelity-verifier.md
+  sha256: sha256:ba693243ece3f34f04f52590f18ed97feb92c5adc3f0ee97e9899f28627864e3
+  capability_class: portable_core
+- path: redteam/premortem.yaml
+  sha256: sha256:e3dd45a009eaaaffca44474d886e0c5799aa955a6df58a717e12cdde1988706c
+  capability_class: revision_evidence
+- path: redteam/repair-ledger.yaml
+  sha256: sha256:cdfc161312cb11e7ccae659672817e10e7c18b303a56fc7f7089b291935014a4
+  capability_class: revision_evidence
+- path: research/evidence-check-receipt.schema.json
+  sha256: sha256:742deba8b8052cc573c0db19030e25032cb8881618e166c1e6b00d1c0493e676
+  capability_class: portable_core
+- path: research/evidence-source-manifest.schema.json
+  sha256: sha256:b99c4860d092b9a4a7849aeebd542a6b1e6ce4a2ba4d954499ec669e48de7e5b
+  capability_class: portable_core
+- path: research/expert-pack-blueprints.yaml
+  sha256: sha256:894a7ef9503a1dff6f8486bca3c0c93ac8fc51c7bf408aaae8a8d13e83b7277b
+  capability_class: project_governance_instance
+- path: research/expert-pack-contract.yaml
+  sha256: sha256:56075474984ea693c86b98298b4f21b65d3d434fa867df368c3d65b074db4b2b
+  capability_class: portable_core
+- path: research/manual-frontier-docket.yaml
+  sha256: sha256:dfec33088ed54c2eb40542217df09f416edb8018abf3376c94875b93d46a6fd0
+  capability_class: runtime_adapter
+- path: research/qualification-receipt.schema.json
+  sha256: sha256:9c7a7d6d34de7da7f5a95764a5aa67a7bd6966a1a0f1033eba49f1ec0a7c1c24
+  capability_class: portable_core
+- path: research/research-routing.yaml
+  sha256: sha256:f5e232137181a7fd9e59d8c245e77acbea5c9eeb655007cd045c362f276d1194
+  capability_class: project_governance_instance
+- path: research/source-authority-catalog.yaml
+  sha256: sha256:9789f2598a52976e6b4559c8d2471dbb35356b39ab5e83e80201e822f7aee550
+  capability_class: project_governance_instance
+- path: source-lock.yaml
+  sha256: sha256:a5af5dc7003b27ff656e5f870a9cc0d5aca820fcb1e0c859e9aabbbc50e08275
+  capability_class: project_governance_instance
+payload_digest: sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946
+manifest_digest: sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1

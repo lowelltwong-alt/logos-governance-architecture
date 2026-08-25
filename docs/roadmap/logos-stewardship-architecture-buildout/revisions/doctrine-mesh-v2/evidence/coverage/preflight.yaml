@@ -1,0 +1,46 @@
+metadata:
+  object_type: doctrine_expertise_coverage_plan
+  trust_zone: proposed
+  lifecycle_status: independently_checked_audit_output
+  provenance_note: "Produced on 2026-08-24 by the Doctrine Mesh Completeness Auditor function during design preflight."
+  reason_for_inclusion: "Preserve the beginning-of-work role coverage reasoning independently of later revisions."
+schema_version: logos_doctrine_expertise_coverage_plan.v2
+plan_id: DMCP-PREFLIGHT-001
+audit_event_id: DMA-PREFLIGHT-001
+phase: preflight
+input_manifest_ref: evidence/inputs/preflight.json
+input_manifest_digest: sha256:04a5366517a5f5605dae21c7ba6efe8d4c2591316ed1a7f1c178c8c057f56260
+required_capability_groups:
+  - {group: orchestration, roles: [doctrine-mesh-foreman, doctrine-mesh-completeness-auditor, doctrine-task-local-role-factory], unique_value: "Preserve plan, detect gaps, and staff bounded roles without recursive autonomy."}
+  - {group: domain_research, roles: [bounded-domain-researcher], unique_value: "Answer one neutral corpus-specific question from root evidence."}
+  - {group: source_truth, roles: [citation-locator-verifier, source-authority-verifier, claim-entailment-verifier], unique_value: "Separate locator existence, source fitness, and truthful claim support."}
+  - {group: adversarial_truth, roles: [counterevidence-challenger, goal-alignment-authority-auditor], unique_value: "Find contrary evidence, leading goals, scope drift, and authority leakage."}
+  - {group: community_fidelity, roles: [tradition-representation-auditor], unique_value: "Prevent era, jurisdiction, document-authority, and internal-diversity collapse."}
+  - {group: synthesis_and_risk, roles: [doctrine-evidence-integrator, risk-human-gate-router], unique_value: "Write one bounded candidate while preserving dissent and high-risk human gates."}
+  - {group: independent_final, roles: [independent-whole-work-checker], unique_value: "Re-derive coverage and replay evidence without writer or auditor self-check."}
+dynamic_domain_rule: >-
+  Do not instantiate every domain profile. Select a period, language, corpus,
+  archaeology, philosophy, theologian, or tradition specialist only when the
+  typed claim touches it and the role adds a unique error class or evidence route.
+explicitly_required_now:
+  - doctrine-mesh-completeness-auditor
+  - doctrine-task-local-role-factory
+  - citation-locator-verifier
+  - source-authority-verifier
+  - claim-entailment-verifier
+  - counterevidence-challenger
+  - goal-alignment-authority-auditor
+  - tradition-representation-auditor
+  - independent-whole-work-checker
+triggered_specialists:
+  - exact Scripture language or textual specialist
+  - exact periodized Jewish corpus specialist
+  - exact ancient civilization, archaeology, or material-culture specialist
+  - exact philosophy or concept-history specialist
+  - exact theologian-corpus, council, or patristic-language specialist
+  - one qualified role for every materially represented tradition
+omitted_as_ceremonial:
+  - {role: permanent_provider_named_expert, reason: "Provider identity is attempt metadata, not expertise or authority."}
+  - {role: generic_all_doctrine_researcher, reason: "It cannot demonstrate all languages, corpora, methods, traditions, and independent checks."}
+  - {role: standing_majority_vote_panel, reason: "Voting cannot settle truth, doctrine, authority, or source fitness."}
+status: independently_checked

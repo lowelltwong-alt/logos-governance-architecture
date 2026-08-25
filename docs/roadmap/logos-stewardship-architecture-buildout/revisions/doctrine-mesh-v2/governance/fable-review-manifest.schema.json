@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-mesh-fable-review-manifest-v2.json",
+  "title": "DoctrineMeshFableReviewManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_mesh_fable_review_manifest_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root after independent packet-binding review.",
+    "reason_for_inclusion": "Prevent mere Fable-packet file presence from satisfying a gate without exact frozen-artifact, custody, status, and review-output binding."
+  },
+  "required": ["metadata", "schema_version", "manifest_id", "job_id", "revision_manifest_ref", "revision_manifest_digest", "brief_ref", "brief_digest", "validation_receipt_ref", "validation_receipt_digest", "independent_review_ref", "independent_review_digest", "requested_output", "packet_integrity_status", "external_review_status", "review_authority", "runtime_activation_authorized", "research_authorized", "created_at", "manifest_digest"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"],
+      "properties": {
+        "object_type": {"const": "doctrine_mesh_fable_review_manifest"},
+        "trust_zone": {"const": "proposed"},
+        "lifecycle_status": {"const": "dormant_not_sent"},
+        "provenance_note": {"type": "string", "minLength": 1},
+        "reason_for_inclusion": {"type": "string", "minLength": 1}
+      }
+    },
+    "schema_version": {"const": "logos.doctrine_mesh_fable_review_manifest.v2"},
+    "manifest_id": {"type": "string", "pattern": "^FABLE-DM-MANIFEST-[0-9]+$"},
+    "job_id": {"const": "FABLE-DM-0002"},
+    "revision_manifest_ref": {"const": "revision-manifest.yaml"},
+    "revision_manifest_digest": {"$ref": "#/$defs/digest"},
+    "brief_ref": {"const": "fable/FABLE-REVIEW-BRIEF.md"},
+    "brief_digest": {"$ref": "#/$defs/digest"},
+    "validation_receipt_ref": {"const": "checks/validation-receipt.json"},
+    "validation_receipt_digest": {"$ref": "#/$defs/digest"},
+    "independent_review_ref": {"const": "checks/independent-review.json"},
+    "independent_review_digest": {"$ref": "#/$defs/digest"},
+    "requested_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["portable_path_token", "custody_class", "repository_write_allowed", "review_output_digest"],
+      "properties": {
+        "portable_path_token": {"type": "string", "pattern": "^user-downloads/[A-Z0-9._-]+\\.md$"},
+        "custody_class": {"const": "external_user_controlled_not_in_repository"},
+        "repository_write_allowed": {"const": false},
+        "review_output_digest": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/digest"}]}
+      }
+    },
+    "packet_integrity_status": {"enum": ["pass", "fail"]},
+    "external_review_status": {"enum": ["not_sent", "returned_untrusted_advisory", "accepted_as_advisory_evidence", "rejected"]},
+    "review_authority": {"const": "non_authorizing_advisory_only"},
+    "runtime_activation_authorized": {"const": false},
+    "research_authorized": {"const": false},
+    "created_at": {"type": "string", "format": "date-time"},
+    "manifest_digest": {"$ref": "#/$defs/digest"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"external_review_status": {"const": "not_sent"}}, "required": ["external_review_status"]},
+      "then": {"properties": {"requested_output": {"properties": {"review_output_digest": {"type": "null"}}, "required": ["review_output_digest"]}}}
+    },
+    {
+      "if": {"properties": {"external_review_status": {"enum": ["returned_untrusted_advisory", "accepted_as_advisory_evidence", "rejected"]}}, "required": ["external_review_status"]},
+      "then": {"properties": {"requested_output": {"properties": {"review_output_digest": {"$ref": "#/$defs/digest"}}, "required": ["review_output_digest"]}}}
+    }
+  ],
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

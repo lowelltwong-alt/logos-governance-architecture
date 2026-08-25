@@ -1,0 +1,59 @@
+metadata:
+  object_type: stewardship_architecture_block_registry
+  trust_zone: proposed
+  lifecycle_status: blocking
+  provenance_note: "Created on 2026-08-23 by Codex root from the integrated scrubbed advisory projection and exact terminal row coordinates."
+  reason_for_inclusion: "Make every advisory, P0/P1, residual, and SPECIAL block dominate campaign readiness until separately authorized evidence closes it."
+schema_version: logos_stewardship_block_registry.v1
+registry_id: LOGOS-STEWARDSHIP-BLOCKS-001
+consensus_advisory_rows:
+  authority: advisory_not_owner_approval
+  implementation_blocked_count: 7
+  rows:
+    - {issue_id: AB-R02-001, advisory_id: ADVISORY-001, sha256: 4e179aea2d3620c96d58ee5fcbf8dada52ca9c4960e30e57cc52210ac71c4c1f, implementation_blocked: true}
+    - {issue_id: AB-R02-002, advisory_id: ADVISORY-002, sha256: 9769d0f4453d4ec3f0049031208debc229bdbbfbae3fdf9cd1307c48854d3aad, implementation_blocked: true}
+    - {issue_id: AB-R02-003, advisory_id: ADVISORY-003, sha256: 5235a1607e495b5b7b3b7092bc3dc72a4ff3daaa29b42f9149f5dbc0e27a974b, implementation_blocked: true}
+    - {issue_id: AB-R02-006, advisory_id: ADVISORY-004, sha256: cac88001f2be264800c79b1c475ee9717a037b22f7bc29a0dba81da85bab8874, implementation_blocked: true}
+    - {issue_id: AB-R02-009, advisory_id: ADVISORY-005, sha256: 50272c5db8975a3072f700d864789f44897d6b7594d7d0428c57ff9e40be027e, implementation_blocked: true}
+    - {issue_id: AB-R02-013, advisory_id: ADVISORY-006, sha256: db6fcf1baa8788aafbfb3c7f33f489dd02b1ff19743a74fe34fce6f4372f0ddd, implementation_blocked: true}
+    - {issue_id: AB-R02-015, advisory_id: ADVISORY-007, sha256: 8db38fc52aa152a7f3d97e1f299f846a30082edc02a6fd661959448bd6473d62, implementation_blocked: true}
+blocked_p0_rows:
+  count: 2
+  rows:
+    - {issue_id: AB-R02-008, public_block_id: BLOCK-P0-001, title: "History-aware redaction and tested consumption", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-018, public_block_id: BLOCK-P0-002, title: "Historical P0 facts versus current disposition", owner_gate: true, implementation_blocked: true}
+blocked_p1_rows:
+  count: 10
+  rows:
+    - {issue_id: AB-R02-004, public_block_id: BLOCK-P1-001, title: "Typed genealogy and historical-evidence floors", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-005, public_block_id: BLOCK-P1-002, title: "Tradition scope and institution-authority separation", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-007, public_block_id: BLOCK-P1-003, title: "Board view as governed projection", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-010, public_block_id: BLOCK-P1-004, title: "Parent-cardinality evidence gap", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-011, public_block_id: BLOCK-P1-005, title: "Conditional custody modules versus universal traversal", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-012, public_block_id: BLOCK-P1-006, title: "Per-chain weakest-hop cap and independent authority bases", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-014, public_block_id: BLOCK-P1-007, title: "Warrant card as loss-bounded projection", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-016, public_block_id: BLOCK-P1-008, title: "Supported-consumer replay contract", owner_gate: false, implementation_blocked: true}
+    - {issue_id: AB-R02-017, public_block_id: BLOCK-P1-009, title: "Authenticated owner intent and adapter choice", owner_gate: true, implementation_blocked: true}
+    - {issue_id: AB-R02-019, public_block_id: BLOCK-P1-010, title: "Minimal launch set and control retirement", owner_gate: true, implementation_blocked: true}
+residual_rows:
+  count: 5
+  rows:
+    - {disagreement_id: AB-R03-DIS-001, public_residual_id: RESIDUAL-001, status: owner_decision_required, implementation_blocked: true}
+    - {disagreement_id: AB-R03-DIS-002, public_residual_id: RESIDUAL-002, status: experiment_recommended_not_authorized, implementation_blocked: true}
+    - {disagreement_id: AB-R03-DIS-003, public_residual_id: RESIDUAL-003, status: owner_decision_required, implementation_blocked: true}
+    - {disagreement_id: AB-R03-DIS-004, public_residual_id: RESIDUAL-004, status: owner_decision_required, implementation_blocked: true}
+    - {disagreement_id: AB-R03-DIS-005, public_residual_id: RESIDUAL-005, status: owner_decision_required, implementation_blocked: true}
+special_001:
+  discovery_status: UNKNOWN
+  exact_semantics_identified: false
+  numeric_parent_constraint_allowed: false
+  experiment_authorized: false
+  substantive_recommendation_allowed: false
+  owner_decision_required_before_change: true
+invariants:
+  findings_closed: 0
+  implementation_blocks_cleared: 0
+  rows_entering_implementation_scope: 0
+  model_consensus_can_clear_block: false
+  static_validation_can_clear_block: false
+  block_edges_dominate_readiness_edges: true

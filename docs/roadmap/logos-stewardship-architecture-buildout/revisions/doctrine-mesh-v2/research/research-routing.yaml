@@ -1,0 +1,65 @@
+metadata:
+  object_type: doctrine_research_routing_contract
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root to route distinct research questions to bounded experts and peer checks."
+  reason_for_inclusion: "Prevent one generic researcher from covering languages, history, doctrine, archaeology, traditions, sources, and verification at once."
+schema_version: logos_doctrine_research_routing.v2
+neutral_question_rule: >-
+  Assign a question to investigate or compare plausible explanations. Never ask
+  a role to prove, defend, refute, expose, or establish a preferred conclusion.
+  A human-approved confessional scope may define the normative frame, but it
+  does not change the evidence or citation standard.
+route_templates:
+  scripture_language_claim:
+    minimum_roles: [exact_language_or_textual_specialist, citation_locator_verifier, source_quality_verifier, entailment_context_verifier, counterevidence_challenger]
+    automatic_risk_floor: high_if_normative_else_medium
+  ancient_jewish_context_claim:
+    minimum_roles: [period_and_corpus_specific_Jewish_specialist, relevant_language_specialist, Jewish_community_representation_and_anti_projection_auditor, citation_locator_verifier, source_quality_verifier, anti_anachronism_entailment_verifier]
+    special_checks: [Jewish_plurality, source_redaction_date, later_rabbinic_projection, Christian_category_projection, anti_supersession]
+  Jewish_divine_agency_or_Two_Powers_comparison:
+    minimum_roles: [exact_period_Jewish_divine_agency_specialist, rabbinic_category_history_specialist, Christian_Christology_specialist_if_compared, Jewish_representation_auditor, entailment_and_anachronism_checker]
+    automatic_risk_floor: high
+    special_checks: [rabbinic_category_vs_earlier_evidence, scholarly_construct_vs_primary_language, no_Two_Persons_or_Trinity_equation, internal_Jewish_diversity]
+  ancient_external_context_claim:
+    minimum_roles: [civilization_and_period_specialist, archaeology_or_epigraphy_if_material, source_quality_verifier, contact_chain_challenger]
+    special_checks: [no_normative_force, similarity_not_influence, period_and_geography, provenance]
+  historical_influence_or_cultural_genealogy_claim:
+    minimum_roles: [source_domain_specialist, receiving_community_specialist, cultural_genealogy_specialist, counterevidence_challenger, human_gate_router]
+    automatic_risk_floor: high
+    required_evidence: [dated_contact_mechanism, primary_reception_rejection_or_reframing, alternatives, uncertainty]
+  patristic_or_conciliar_claim:
+    minimum_roles: [language_and_corpus_specialist, council_or_reception_specialist_if_applicable, citation_verifier, entailment_verifier, qualified_human_gate]
+    automatic_risk_floor: high
+  Aquinas_or_scholastic_argument:
+    minimum_roles: [Aquinas_corpus_specialist, philosophical_source_specialist, citation_verifier, objection_respondeo_structure_checker, reception_challenger]
+    special_checks: [objection_not_Thomas_position, sed_contra_role, corpus_chronology, Latin_term]
+  Luther_or_Reformation_claim:
+    minimum_roles: [Luther_primary_corpus_specialist, relevant_confessional_or_opponent_specialist, citation_verifier, genre_and_transmission_checker, counterevidence_challenger]
+    special_checks: [Table_Talk_source_criticism, chronology, personal_view_vs_confession]
+  tradition_comparison:
+    minimum_roles: [one_qualified_specialist_per_material_tradition, shared_source_quality_checker, independent_comparison_checker, dissent_representation_auditor]
+    automatic_risk_floor: high
+    special_checks: [era, jurisdiction, document_authority, internal_diversity, comparable_question]
+  archaeology_claim:
+    minimum_roles: [archaeologist, relevant_language_or_epigraphy_specialist, report_and_provenance_verifier, alternative_dating_or_interpretation_challenger]
+    automatic_risk_floor: medium_or_high_by_downstream_use
+  doctrine_synthesis:
+    minimum_roles: [systematic_method_specialist, Scripture_and_exegesis_route, historical_reception_route, philosophical_checker_if_conceptual, tradition_representation_route, qualified_human_gate]
+    automatic_risk_floor: frontier_if_normative
+  source_or_cross_repository_custody:
+    minimum_roles: [source_rights_privacy_and_custody_verifier, destination_repository_contract_checker, source_quality_verifier]
+    automatic_risk_floor: frontier_if_private_restricted_or_cross_repo_else_high
+    special_checks: [destination_readiness, namespace_and_reference_direction, exact_use_rights, retention, egress, secret_safe_pointer]
+cross_check_mesh:
+  writer_to_checker: "Every material claim goes to a non-author source and entailment checker."
+  checker_to_writer: "Checker returns claim IDs, exact evidence, and repair or block reason; no vague confidence score."
+  peer_to_peer: "Domain roles exchange source pointers and bounded challenges, not full transcripts or hidden reasoning."
+  upward: "Unresolved high-risk disagreement, missing qualification, or authority ambiguity goes to a HumanDecisionPacket."
+  downward: "Human decisions grant only exact scope and never rewrite source evidence."
+  appeal: "Any role may challenge an assignment, source status, or checker finding with exact evidence."
+completion_rule: >-
+  Research is incomplete if any material claim lacks root-source access,
+  source-quality review, entailment/context review, counterevidence review,
+  required tradition representation, a fresh completeness postflight, or an
+  applicable human gate.

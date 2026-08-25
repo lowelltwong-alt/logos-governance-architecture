@@ -1,0 +1,188 @@
+metadata:
+  object_type: doctrine_mesh_adversarial_premortem
+  trust_zone: proposed
+  lifecycle_status: independently_challenged_candidate
+  provenance_note: "Created on 2026-08-24 by Codex root from independent read-only determinism, autonomy, authority, and campaign reviews."
+  reason_for_inclusion: "Preserve how the doctrine mesh is most likely to fail, the earliest observable signals, and exact stop or repair routes before any runtime exists."
+schema_version: logos_doctrine_mesh_premortem.v2
+premortem_id: LOGOS-DOCTRINE-MESH-PREMORTEM-002
+scope: specification_only_no_runtime_or_research
+risk_scale: [critical, high, medium, low]
+failure_modes:
+  - mode_id: PM-001
+    severity: critical
+    failure: frozen_revision_invalidates_its_own_parent_lock
+    cause: "A validator confuses the immutable parent checkpoint with the later revision HEAD."
+    earliest_signal: "Validation passes before a checkpoint but fails after an append-only commit with unchanged parent blobs."
+    kill_criterion: "Parent is not an ancestor or any pinned parent blob/tree digest differs."
+    repair: "Verify parent ancestry, exact parent Git blobs, and the parent tree; bind the revision separately through its manifest."
+    residual_risk: low_after_replay
+  - mode_id: PM-002
+    severity: critical
+    failure: role_factory_becomes_dispatcher_or_creates_depth_two_work
+    cause: "A proposal edge, free-text prompt, or runtime convention is interpreted as lease authority."
+    earliest_signal: "A factory actor appears as assignment issuer, lease owner, or parent of another worker."
+    kill_criterion: "Any delegates_to edge or job lease originates outside the qualified controller."
+    repair: "Use proposes_profile_for from the factory; allow controller-only dispatch; validate assignment lineage and reject depth-two paths."
+    residual_risk: medium_until_runtime_negative_fixtures
+  - mode_id: PM-003
+    severity: critical
+    failure: audit_role_factory_loop_grows_without_bound
+    cause: "Every changed output creates a new trigger and changed evidence resets local retry logic."
+    earliest_signal: "Audit, generated-role, or assignment counts rise while no load-bearing claim closes."
+    kill_criterion: "Two audit/factory generations, twelve audit events, twelve generated profiles, twenty-four assignments, or a numeric budget ceiling is reached."
+    repair: "Use monotonic cumulative counters that changed evidence cannot reset and enter blocked_scope_growth."
+    residual_risk: medium_until_controller_fixture
+  - mode_id: PM-004
+    severity: critical
+    failure: same_actor_or_shared_context_launders_independence
+    cause: "Different role IDs or model names are treated as independent without actor, authorship, prompt, context, or source-exposure lineage."
+    earliest_signal: "Writer and checker share actor instance, independence group, authored artifact, or undisclosed context/source order."
+    kill_criterion: "Computed exact-assignment independence is absent or any actor-instance collision exists."
+    repair: "Bind privacy-safe attempt lineage, source/context exposure, authorship groups, and controller-computed independence; never use prestige or role-name difference."
+    residual_risk: medium_because_cross_provider_diversity_not_verified
+  - mode_id: PM-005
+    severity: high
+    failure: manual_design_receipt_impersonates_runtime_qualification
+    cause: "A design-time audit receipt is called a runtime receipt or accepted as controller proof."
+    earliest_signal: "Controller activation cites this revision's manual specification coverage events."
+    kill_criterion: "Execution class is absent, mismatched, or controller receipt lacks a separately qualified adapter and activation receipt."
+    repair: "Separate manual_specification_coverage_review from controller_execution_audit in schemas and receipts."
+    residual_risk: low_after_schema_replay
+  - mode_id: PM-006
+    severity: high
+    failure: boundary_context_becomes_normative_doctrine_support
+    cause: "A generic cites or derived_from edge, retrieval projection, or stripped prefix bypasses author guidance."
+    earliest_signal: "A boundary ID or noncanonical authority plane appears on a normative path or loses its authority metadata."
+    kill_criterion: "Any Jewish historical, external ancient, reception, or governance source reaches normative support without the exact allowed policy and human receipt."
+    repair: "Enforce consumer-side field, prefix, authority-plane, endpoint, and retrieval/export rules with negative traversal fixtures."
+    residual_risk: medium_until_cross_repository_consumer_implementation
+  - mode_id: PM-007
+    severity: high
+    failure: citation_existence_is_mistaken_for_entailment
+    cause: "One progressive review label compresses identity, locator, source fitness, translation, rights, and claim support."
+    earliest_signal: "A verified locator is cited as approval of a proposition without a claim-revision-bound entailment receipt."
+    kill_criterion: "Any material claim lacks distinct exact check receipts required by its route."
+    repair: "Use independent source verification dimensions and check-type receipts bound to exact claim/source revisions."
+    residual_risk: medium_until_behavioral_qualification
+  - mode_id: PM-008
+    severity: high
+    failure: stale_source_or_decision_remains_current_downstream
+    cause: "Authors list consumers manually and omit a descendant from invalidation."
+    earliest_signal: "Forward and reverse projections differ or a current conclusion reaches a stale ancestor."
+    kill_criterion: "Any load-bearing reverse-reachable consumer remains current after root invalidation."
+    repair: "Build symmetric projections, compute reverse breadth-first descendants, quarantine first, and bind descendant-set digests."
+    residual_risk: medium_until_graph_runtime_fixture
+  - mode_id: PM-009
+    severity: high
+    failure: decision_slicing_or_submitted_floor_lowers_risk
+    cause: "Materiality and floor are author-provided, or one decision is divided into apparently unrelated fragments."
+    earliest_signal: "Many medium records share evidence, authority, or downstream consumers for one high-risk effect."
+    kill_criterion: "Risk tags, bundle, graph projection, slicing check, or computed maximum floor is missing."
+    repair: "Compute floors from registered tags, require DecisionBundles, and keep materiality sticky across shared consumers."
+    residual_risk: medium_until_decision_instance_fixtures
+  - mode_id: PM-010
+    severity: high
+    failure: restricted_private_or_credentialed_source_leaks
+    cause: "Rights are a self-asserted label, a pointer contains a signed token, or provider egress is inferred from access."
+    earliest_signal: "Credential-required source has a nonblocked use state or a pointer contains secret-bearing material."
+    kill_criterion: "Exact-use rights, retention, privacy, custody, or egress is unknown for load-bearing use."
+    repair: "Separate rights/custody checks, prohibit tokenized pointers, bind exact-use receipts, and block credentialed egress by default."
+    residual_risk: medium_until_secret_and_rights_runtime_checks
+  - mode_id: PM-011
+    severity: high
+    failure: prompt_or_source_allowlist_manufactures_a_desired_answer
+    cause: "Neutral wording hides one-sided sources, biased decomposition, unequal search depth, or confirmatory stopping."
+    earliest_signal: "No null outcome, competing hypothesis, selection rule, falsifier, or stopping rule exists."
+    kill_criterion: "Any load-bearing assignment lacks an independently checked balanced research design."
+    repair: "Audit assignment, allowlist, decomposition, effort allocation, and stopping rules—not only words such as prove."
+    residual_risk: medium_because_behavioral_bias_is_not_fully_deterministic
+  - mode_id: PM-012
+    severity: high
+    failure: human_gate_queue_floods_or_silent_thresholds_drop
+    cause: "Every serious scholarly issue becomes a separate human question."
+    earliest_signal: "Duplicate packets, queue age, or open count rises without a dependent decision."
+    kill_criterion: "Five open packets per work unit or twenty per campaign, or missing deterministic deduplication key."
+    repair: "Bundle shared questions, escalate only when a dependent action needs resolution, and stop intake instead of lowering review."
+    residual_risk: low_to_medium
+  - mode_id: PM-013
+    severity: high
+    failure: provider_prestige_or_completion_phrase_launders_authority
+    cause: "Named frontier output is treated as expert qualification, source evidence, or approval."
+    earliest_signal: "A rationale cites what a provider found rather than independently re-accessed root evidence."
+    kill_criterion: "Provider output or completion phrase appears on a load-bearing evidence or authority edge."
+    repair: "Keep stable IDs provider-neutral, isolate named handoffs as dormant adapters, quarantine output, and replay every claim."
+    residual_risk: medium_due_to_human_prestige_bias
+  - mode_id: PM-014
+    severity: high
+    failure: Jewish_worlds_are_flattened_or_used_as_a_negative_foil
+    cause: "Christian tradition review substitutes for Jewish community representation and periodized corpora."
+    earliest_signal: "Judaism is singular, a later rabbinic text becomes a first-century transcript, or Jewish law exists only as contrast."
+    kill_criterion: "A material Christian-Jewish comparison lacks exact Jewish period/corpus and anti-projection review."
+    repair: "Trigger distinct tribal, Torah/scribal, exilic, temple, sect, diaspora, law/practice, divine-agency, and Jewish-representation capabilities."
+    residual_risk: medium_until_expert_packs_are_built
+  - mode_id: PM-015
+    severity: high
+    failure: Two_Powers_or_divine_agency_is_equated_with_Trinity
+    cause: "Later rabbinic category, earlier Jewish evidence, scholarly construct, and Christian comparison are collapsed."
+    earliest_signal: "Two persons, proto-Trinity, or continuity language appears without distinct periodized objects."
+    kill_criterion: "Any identity or causal conclusion lacks exact primary evidence, category history, counterevidence, and high-risk review."
+    repair: "Use a minimum-high route with separate Jewish divine-agency, rabbinic-category, Christian-comparison, and representation checks."
+    residual_risk: medium_until_source_research
+  - mode_id: PM-016
+    severity: high
+    failure: similarity_is_reported_as_ancient_influence_or_modern_genealogy
+    cause: "Parallel language replaces contact, reception, rejection, reframing, and alternatives."
+    earliest_signal: "Likely borrowed, carried forward, or came from appears without a dated bridge."
+    kill_criterion: "Influence claim lacks a valid InfluenceBridge or has similarity_only true."
+    repair: "Require source/receiving dates, geography, contact mechanism, primary reception evidence, alternatives, uncertainty, and no normative force."
+    residual_risk: medium_until_historical_review
+  - mode_id: PM-017
+    severity: high
+    failure: tradition_is_caricatured_or_wrong_era_jurisdiction_controls
+    cause: "One outsider summary or theologian is treated as an entire community's doctrine."
+    earliest_signal: "Era, jurisdiction, document authority, internal diversity, or self-description source is absent."
+    kill_criterion: "A material tradition claim lacks exact qualified representation review."
+    repair: "Trigger one exact tradition specialist and representation auditor only for materially represented scopes."
+    residual_risk: medium_until_qualification_packs
+  - mode_id: PM-018
+    severity: high
+    failure: midflight_audit_occurs_after_affected_research
+    cause: "Campaign models midflight as a sequential job following worker completion."
+    earliest_signal: "A changed source/domain/risk exists while the affected lease continues."
+    kill_criterion: "Affected lease is granted or renewed before its trigger event receipt."
+    repair: "Install a controller trigger barrier before work and block affected descendants per changed input revision."
+    residual_risk: low_after_controller_fixture
+  - mode_id: PM-019
+    severity: medium
+    failure: named_destination_repository_is_assumed_data_ready
+    cause: "A topology owner label substitutes for a live schema, claim, rights, migration, and consumer receipt."
+    earliest_signal: "A stored_in or cross-repository handoff is proposed without destination validation."
+    kill_criterion: "Fresh destination readiness and exact cross-repository authority is absent."
+    repair: "Mark all destinations with readiness states and block storage until live contracts and validators pass."
+    residual_risk: low
+  - mode_id: PM-020
+    severity: medium
+    failure: ceremonial_swarm_consumes_budget_without_new_error_coverage
+    cause: "Every taxonomy profile is instantiated or denominational balance is treated as completeness."
+    earliest_signal: "Role count rises without a named unique error class, source route, or affected claim."
+    kill_criterion: "A role lacks unique decision value or exact triggered claim scope."
+    repair: "Treat taxonomy entries as capability profiles; use deterministic control by default and instantiate only exact trigger-bound roles."
+    residual_risk: low
+  - mode_id: PM-021
+    severity: high
+    failure: resumed_job_duplicates_effect_or_uses_stale_dependencies
+    cause: "A lease/fence exists but an individual job lacks an idempotency key, content-addressed checkpoint, dependency map, effect/output reconciliation, or append-only transition receipt."
+    earliest_signal: "Two attempts share a logical job but disagree on dependency, output, effect, fence, or budget consumption."
+    kill_criterion: "Resume cannot prove expired prior lease, fresh dependencies, reconciled outputs/effects, unique idempotency behavior, and cumulative budget."
+    repair: "Bind these facts in every job assignment and a campaign budget ledger; reject stale, conflicting, or unreconciled resumes."
+    residual_risk: medium_until_controller_job_semantic_fixtures
+  - mode_id: PM-022
+    severity: critical
+    failure: semantic_validator_theater
+    cause: "Schemas, reference strings, and a green artifact validator are described as active protection although no instance linkage, authenticated authority, arithmetic, traversal, or adversarial runtime fixture exists."
+    earliest_signal: "A repair ledger says implemented while the final validator only confirms that its schema or contract file parses."
+    kill_criterion: "Any launch or substantive use cites this specification freeze as runtime, source, human-authority, rights, consumer, or doctrine qualification."
+    repair: "Classify each repair as replayable static control, authored dormant interface, or independently qualified runtime control; block activation for every dormant interface."
+    residual_risk: high_until_each_future_semantic_fixture_and_authority_gate_passes
+freeze_rule: "No critical or high mode may remain without an implemented control, explicit residual risk, independent replay, and a blocking future activation gate where runtime evidence does not yet exist."

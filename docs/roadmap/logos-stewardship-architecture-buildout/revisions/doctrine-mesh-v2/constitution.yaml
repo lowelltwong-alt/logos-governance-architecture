@@ -1,0 +1,82 @@
+metadata:
+  object_type: doctrine_mesh_revision_constitution
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root as the authority ceiling for the whole-doctrine mesh revision."
+  reason_for_inclusion: "Freeze the objective, non-authority, effects, source discipline, and shutdown rules before defining automatic role selection."
+schema_version: logos_doctrine_mesh_constitution.v2
+constitution_id: LOGOS-DOCTRINE-MESH-CONSTITUTION-002
+revision_id: doctrine-mesh-v2
+supersedes_for_future_planning_only: LOGOS-STEWARDSHIP-CONSTITUTION-001
+parent_checkpoint: 410c7e429290d34013c1dbf23c0335ebfe68e45f
+objective: >-
+  Specify a provider-neutral, source-governed, automatically routable expert
+  mesh for long-run Christian doctrine research while preserving Scripture,
+  source, tradition, repository, and human authority boundaries.
+current_mode: specification_only
+execution_authorized: false
+controller_selected: false
+unattended_operation_authorized: false
+research_execution_authorized: false
+source_ingestion_authorized: false
+cross_repository_write_authorized: false
+promotion_or_publication_authorized: false
+human_authority:
+  named_owner: Lowell Wong
+  doctrine_and_normative_assessment: qualified_human_review_plus_named_owner
+  canon_and_scripture_authority: qualified_primary_source_review_plus_named_owner
+  tradition_self_description: qualified_tradition_review_plus_named_owner
+  source_rights_privacy_and_custody: qualified_domain_review_plus_named_owner
+  reusable_role_promotion: named_owner_after_independent_qualification
+non_authorities:
+  - model identity, effort, prestige, agreement, or self-described expertise
+  - graph centrality, similarity, retrieval rank, or repeated citation
+  - an ExpertPack, KnowledgeGuide, agent summary, or generated role profile
+  - deterministic proof that an audit event ran
+  - a validator, independent model review, Fable review, or external research completion phrase
+source_invariants:
+  - Scripture text and canonical identity remain owned by logos-scripture-graph.
+  - Doctrine topics, views, assessments, and genealogy remain distinct objects.
+  - Boundary and reception sources may contextualize or document reception but cannot become normative Scripture or doctrine support.
+  - Jewish historical context remains distinct from both canonical Scripture and external ancient religions.
+  - Similarity never establishes borrowing, causation, influence, continuity, orthodoxy, or error.
+  - A source pointer must resolve to an exact work, edition or witness, locator, rights state, and review state before load-bearing use.
+agent_invariants:
+  - delegation depth is one
+  - one bounded writer per artifact
+  - every material output has a distinct checker
+  - workers cannot create workers or modify routing policy
+  - generated roles are task_local_candidates and expire with the work unit
+  - missing qualification blocks staffing instead of inventing expertise
+  - high-risk disagreement is preserved and routed to the named human
+automatic_actions_allowed_in_a_future_separately_authorized_runtime:
+  - select a reviewed existing role for a bounded low_or_medium_risk job
+  - compose a task-local candidate role from approved role facets and an approved ExpertPack
+  - enqueue one bounded source, citation, entailment, or counterevidence check
+  - quarantine a failed or stale candidate and stop its descendants
+automatic_actions_never_granted_by_this_revision:
+  - launch or schedule the controller
+  - call a model, provider, connector, paid service, or restricted corpus
+  - change Scripture, canon, doctrine, tradition policy, or source authority
+  - close a human gate or create a human approval receipt
+  - create global skills, persistent agents, recursive swarms, or self-modifying prompts
+  - promote, publish, merge, push, migrate, clean, reset, rebase, force, or delete
+safe_shutdown:
+  rule: >-
+    Stop before the next effect, revoke new leases, preserve append-only events
+    and receipts, quarantine partial outputs, expose missing experts and
+    disagreements, and require changed-input revalidation before resume.
+  destructive_recovery_allowed: false
+completion_boundary:
+  this_revision_complete_when:
+    - every declared file is hash-frozen
+    - schemas and deterministic positive and negative fixtures pass
+    - all preflight midflight and postflight audit events have valid receipts
+    - independent review and premortem repair have no unresolved critical or high artifact-freeze finding
+    - the Fable packet binds the exact frozen manifest
+  does_not_mean:
+    - doctrine_research_started
+    - every_expert_role_is_known
+    - controller_or_adapter_qualified
+    - human_gate_closed
+    - implementation_or_publication_ready

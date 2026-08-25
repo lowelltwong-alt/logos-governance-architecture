@@ -1,0 +1,46 @@
+metadata:
+  object_type: doctrine_mesh_portable_capability_boundary
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root under portable-capability governance."
+  reason_for_inclusion: "Keep reusable doctrine-mesh logic provider-neutral while isolating manual provider and local-environment handoffs as replaceable adapters."
+schema_version: logos_doctrine_portable_capability_boundary.v2
+classification_vocabulary:
+  portable_core: "Provider-neutral contract, schema, prompt, algorithm, graph rule, or test that can be adapted without changing authority semantics."
+  runtime_adapter: "Environment, provider, model, path, execution, or manual-handoff binding that must be independently qualified for an exact attempt."
+  project_governance_instance: "Logos-specific scope, authority, repository, campaign, or source-family configuration; provider-neutral but not a generic reusable capability."
+  revision_evidence: "Immutable input, receipt, review, red-team, validation, or freeze evidence; never executable authority."
+stable_identity_rules:
+  - role schema and graph identities must describe capability rather than provider, model, prestige, or current runtime
+  - capability tiers may express required consequence class but never permanently name a model
+  - provider and model identities belong only in attempt metadata and adapter receipts
+  - an adapter change cannot silently change portable-core prompts, gates, schemas, risk floors, or source authority
+adapter_components:
+  - path: research/manual-frontier-docket.yaml
+    purpose: "Human-gated example handoffs for a named external frontier provider."
+    activation: false
+    exact_attempt_authority_required: true
+  - path: prompts/external-frontier-research-handoff.md
+    purpose: "Sanitized manual output contract for a separately authorized frontier attempt."
+    activation: false
+    exact_attempt_authority_required: true
+  - path: fable/FABLE-REVIEW-BRIEF.md
+    purpose: "Manual external review adapter for the final frozen revision."
+    activation: false
+    exact_attempt_authority_required: true
+runtime_adapter_requirements:
+  - exact provider model runtime tools context source and prompt revisions
+  - privacy rights credentials effects budget retention and egress envelope
+  - protected deterministic and behavioral qualification fixtures
+  - independent reviewer with raw permitted evidence access
+  - bounded rollback kill criteria expiry and honest postflight
+  - named human authorization for each high frontier paid private or external attempt
+change_invalidation:
+  triggers: [provider, model, runtime, tool, context, prompt, source, schema, privacy, rights, effects, authority, scope]
+  behavior: "Invalidate only the affected capability and consumer slice, then rerun its exact deterministic and behavioral gates."
+no_portability_claims:
+  cross_model_diversity_verified: false
+  cross_provider_diversity_verified: false
+  runtime_adapter_qualified: false
+  unattended_operation_authorized: false
+revision_manifest_rule: "Every frozen payload row must declare exactly one classification from this vocabulary."

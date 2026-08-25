@@ -1,6 +1,6 @@
 # AI Work Start Here
 
-This file is the operational front door for AI agents, coding assistants, and future maintainers working inside this repository.
+This file is the operational front door for AI agents, coding assistants, and future maintainers working inside this repository. For a read-only recruiter or portfolio audit, begin with [`PORTFOLIO.md`](PORTFOLIO.md) and do not treat that public summary as repository authority.
 
 Human readers should start with [`README.md`](README.md). AI agents should start here, then consult [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md).
 
@@ -65,17 +65,17 @@ AI agents working in this repository must follow these guardrails:
 3. [`docs/governance/family-work-coordination.md`](docs/governance/family-work-coordination.md)
 4. [`docs/governance/logos-learning-loop-operating-standard.md`](docs/governance/logos-learning-loop-operating-standard.md)
 5. [`governance/registry/FAMILY_WORK_REGISTRY.yaml`](governance/registry/FAMILY_WORK_REGISTRY.yaml)
-5. [`docs/governance/README.md`](docs/governance/README.md)
-6. [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
-7. [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)
-8. [`docs/governance/tag-registry.md`](docs/governance/tag-registry.md)
-9. [`docs/governance/relationship-registry.md`](docs/governance/relationship-registry.md)
-10. [`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md)
-11. [`docs/governance/inference-policy.md`](docs/governance/inference-policy.md)
-12. [`docs/governance/node-types.md`](docs/governance/node-types.md)
-13. [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md)
-14. [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md)
-15. [`docs/governance/ai-workflow/goal-prompt-premortem-preflight.md`](docs/governance/ai-workflow/goal-prompt-premortem-preflight.md) before generating any goal prompt, next-agent prompt, handoff prompt, slash-style command prompt, or prompt sequence.
+6. [`docs/governance/README.md`](docs/governance/README.md)
+7. [`docs/governance/ontology-discipline.md`](docs/governance/ontology-discipline.md)
+8. [`docs/governance/anchor-conventions.md`](docs/governance/anchor-conventions.md)
+9. [`docs/governance/tag-registry.md`](docs/governance/tag-registry.md)
+10. [`docs/governance/relationship-registry.md`](docs/governance/relationship-registry.md)
+11. [`docs/governance/anti-guessing-and-evidence-discipline.md`](docs/governance/anti-guessing-and-evidence-discipline.md)
+12. [`docs/governance/inference-policy.md`](docs/governance/inference-policy.md)
+13. [`docs/governance/node-types.md`](docs/governance/node-types.md)
+14. [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md)
+15. [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md)
+16. [`docs/governance/ai-workflow/goal-prompt-premortem-preflight.md`](docs/governance/ai-workflow/goal-prompt-premortem-preflight.md) before generating any goal prompt, next-agent prompt, handoff prompt, slash-style command prompt, or prompt sequence.
 
 ## Preferred work pattern
 

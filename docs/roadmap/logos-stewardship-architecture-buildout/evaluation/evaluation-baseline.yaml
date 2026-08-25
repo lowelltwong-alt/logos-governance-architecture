@@ -1,0 +1,53 @@
+metadata:
+  object_type: stewardship_architecture_evaluation_baseline
+  trust_zone: proposed
+  lifecycle_status: dormant_experiment_design
+  provenance_note: "Created on 2026-08-23 by Codex root as an evaluation specification only; no benchmark execution or route selection is authorized."
+  reason_for_inclusion: "Define falsifiable comparison arms and measures before topology, model, or provider preferences can be proposed."
+schema_version: logos_stewardship_evaluation_baseline.v1
+evaluation_id: LOGOS-STEWARDSHIP-EVAL-001
+experiment_authorized: false
+dataset_selected: false
+protected_fixture_selected: false
+candidate_arms:
+  - human_only
+  - deterministic_only
+  - single_agent_with_independent_check
+  - bounded_hierarchical_mesh
+  - current_multi_agent_topology_as_benchmark_not_default
+required_metrics:
+  - accepted_defects_found
+  - independently_discovered_defects
+  - false_authority_findings
+  - source_coverage
+  - reverse_provenance_completeness
+  - privacy_or_rights_findings
+  - elapsed_minutes
+  - reviewer_minutes
+  - owner_minutes
+  - attempts_and_retries
+  - rework_and_rollback_events
+  - context_and_cost_units
+  - disagreement_calibration
+  - accessibility_and_maintainer_burden
+independence_evidence:
+  required: true
+  dimensions: [assignment_separation, source_context_separation, attempt_lineage, no_shared_authorship, challenge_replay]
+  different_model_label_alone_sufficient: false
+methodology_rules:
+  freeze_questions_fixtures_rubric_and_budget_before_comparison: true
+  use_matched_or_paired_evidence_where_possible: true
+  report_uncertainty_and_missing_power: true
+  protect_negative_and_no_winner_results: true
+  do_not_optimize_on_hidden_test_or_review_set: true
+  no_winner_is_valid: true
+route_selection:
+  current_result: no_winner
+  selection_authorized: false
+  human_gate_ids: [HG-010, HG-013]
+falsifiers:
+  - "A cheaper route fails a protected authority or privacy standard."
+  - "Claimed independent discovery is explained by shared context or authored fixtures."
+  - "The mesh adds coordination cost without accepted defect or evidence benefit."
+  - "A route's result cannot reverse-traverse to source evidence."
+  - "Reviewer or owner burden exceeds the declared ceiling."

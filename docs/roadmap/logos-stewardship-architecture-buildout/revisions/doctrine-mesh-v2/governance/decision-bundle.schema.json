@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-decision-bundle-v2.json",
+  "title": "DoctrineDecisionBundle",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_decision_bundle_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root after adversarial risk-slicing review.",
+    "reason_for_inclusion": "Keep fragments that share evidence, authority, or downstream consumers in one conservatively risked human decision."
+  },
+  "required": ["schema_version", "bundle_id", "normalized_question_digest", "authority_domain", "decision_refs", "shared_evidence_refs", "affected_consumer_set", "affected_consumer_set_digest", "source_snapshot_digest", "computed_floor", "material", "deduplication_key_digest", "status"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_decision_bundle.v2"},
+    "bundle_id": {"type": "string", "pattern": "^DMB-[A-Z0-9-]+$"},
+    "normalized_question_digest": {"$ref": "#/$defs/digest"}, "authority_domain": {"type": "string"},
+    "decision_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "shared_evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "affected_consumer_set": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "affected_consumer_set_digest": {"$ref": "#/$defs/digest"}, "source_snapshot_digest": {"$ref": "#/$defs/digest"},
+    "computed_floor": {"enum": ["low", "medium", "high", "frontier"]}, "material": {"type": "boolean"},
+    "deduplication_key_digest": {"$ref": "#/$defs/digest"},
+    "status": {"enum": ["candidate", "human_pending", "resolved_exact_scope", "superseded", "blocked"]}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

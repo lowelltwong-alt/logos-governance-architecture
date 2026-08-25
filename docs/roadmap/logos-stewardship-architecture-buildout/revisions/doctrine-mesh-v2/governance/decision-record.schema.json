@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-decision-record-v2.json",
+  "title": "DoctrineDecisionRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_decision_record_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root.",
+    "reason_for_inclusion": "Make question, evidence, dissent, risk, authority, lineage, rollback, and human ownership machine-readable."
+  },
+  "required": ["schema_version", "identity", "question", "scope", "options", "evidence", "outcome", "risk", "review", "authority", "validity", "lineage"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_decision_record.v2"},
+    "identity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["decision_id", "revision", "prior_hash", "record_hash"],
+      "properties": {
+        "decision_id": {"type": "string", "pattern": "^DMD-[A-Z0-9-]+$"},
+        "revision": {"type": "integer", "minimum": 1},
+        "prior_hash": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+        "record_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "question": {
+      "type": "object", "additionalProperties": false,
+      "required": ["crisp_question", "neutral_framing", "null_outcomes"],
+      "properties": {
+        "crisp_question": {"type": "string", "minLength": 10},
+        "neutral_framing": {"const": true},
+        "null_outcomes": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"enum": ["abstain", "unresolved", "incommensurable", "no_action"]}}
+      }
+    },
+    "scope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["work_id", "decision_bundle_ref", "material", "materiality_triggers", "protected_surfaces", "risk_tags", "graph_projection_digest", "source_classes", "affected_refs", "effects", "downstream_consumers"],
+      "properties": {
+        "work_id": {"type": "string", "minLength": 1},
+        "decision_bundle_ref": {"type": "string", "minLength": 1},
+        "material": {"type": "boolean"},
+        "materiality_triggers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["no_material_trigger", "supports_promotion_or_publication", "downstream_citation_or_inference_premise", "changes_doctrine_view_assessment_genealogy_authority_gate_or_source", "rights_privacy_credentials_cross_repository_or_irreversible_effect", "typed_dependency_propagation"]}},
+        "protected_surfaces": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["none", "formatting_or_locator_metadata", "descriptive_history", "task_local_role_composition", "ancient_non_normative_context", "scripture_interpretation", "doctrine_interpretation", "tradition_representation", "Jewish_community_representation", "disputed_source_fitness", "historical_influence", "rights_privacy", "canon_normativity_orthodoxy_heresy", "cross_repository_authority_or_topology", "systemic_autonomy_or_controller", "private_restricted_or_credentialed_corpus", "irreversible_publication"]}},
+        "risk_tags": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["formatting_or_locator_metadata_no_authority_effect", "bounded_descriptive_history", "task_local_role_composition", "non_normative_ancient_context", "doctrine_interpretation", "tradition_or_Jewish_community_representation", "disputed_source_fitness", "historical_influence_or_cultural_genealogy", "human_expert_gap", "canon_normativity_orthodoxy_heresy", "cross_repository_authority_or_topology", "systemic_autonomy_or_controller_change", "private_restricted_or_credentialed_corpus", "irreversible_publication"]}},
+        "graph_projection_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "source_classes": {"$ref": "#/$defs/stringSet"},
+        "affected_refs": {"$ref": "#/$defs/stringSet"},
+        "effects": {"$ref": "#/$defs/stringSet"},
+        "downstream_consumers": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "options": {"type": "array", "minItems": 2, "items": {"type": "object", "required": ["option_id", "description", "evidence_for_refs", "evidence_against_refs"], "properties": {"option_id": {"type": "string"}, "description": {"type": "string"}, "evidence_for_refs": {"$ref": "#/$defs/stringSet"}, "evidence_against_refs": {"$ref": "#/$defs/stringSet"}}, "additionalProperties": false}},
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["root_source_refs", "citation_receipt_refs", "source_quality_refs", "entailment_refs", "counterevidence_refs", "assumptions", "unknowns", "falsifiers"],
+      "properties": {
+        "root_source_refs": {"$ref": "#/$defs/stringSet"},
+        "citation_receipt_refs": {"$ref": "#/$defs/stringSet"},
+        "source_quality_refs": {"$ref": "#/$defs/stringSet"},
+        "entailment_refs": {"$ref": "#/$defs/stringSet"},
+        "counterevidence_refs": {"$ref": "#/$defs/stringSet"},
+        "assumptions": {"type": "array", "items": {"type": "string"}},
+        "unknowns": {"type": "array", "items": {"type": "string"}},
+        "falsifiers": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "outcome": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "selected_option", "rationale_ref", "dissent_refs"],
+      "properties": {
+        "status": {"enum": ["candidate", "accepted_candidate", "rejected_candidate", "unresolved_fact", "human_policy_choice", "blocked"]},
+        "selected_option": {"type": ["string", "null"]},
+        "rationale_ref": {"type": ["string", "null"]},
+        "dissent_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }
+    },
+    "risk": {
+      "type": "object", "additionalProperties": false,
+      "required": ["consequence", "uncertainty", "reversibility", "propagation", "dimension_reasons", "proposed_tier", "computed_minimum_floor", "floor_computation_ref", "computed_by_validator", "slicing_check_status", "classification_disagreement"],
+      "properties": {
+        "consequence": {"type": "integer", "minimum": 1, "maximum": 5},
+        "uncertainty": {"type": "integer", "minimum": 1, "maximum": 5},
+        "reversibility": {"type": "integer", "minimum": 1, "maximum": 5},
+        "propagation": {"type": "integer", "minimum": 1, "maximum": 5},
+        "dimension_reasons": {"type": "array", "minItems": 4, "items": {"type": "string"}},
+        "proposed_tier": {"enum": ["low", "medium", "high", "frontier"]},
+        "computed_minimum_floor": {"enum": ["low", "medium", "high", "frontier"]},
+        "floor_computation_ref": {"type": "string"},
+        "computed_by_validator": {"const": true},
+        "slicing_check_status": {"enum": ["pass_bundle_complete", "blocked_possible_slice", "inconclusive"]},
+        "classification_disagreement": {"type": ["string", "null"]}
+      }
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["writer_role_id", "writer_actor_instance_id", "checker_role_ids", "checker_actor_instance_ids", "challenger_role_ids", "challenger_actor_instance_ids", "attempt_lineage_refs", "qualification_refs", "independence_status"],
+      "properties": {
+        "writer_role_id": {"type": "string"},
+        "writer_actor_instance_id": {"type": "string"},
+        "checker_role_ids": {"$ref": "#/$defs/stringSet"},
+        "checker_actor_instance_ids": {"$ref": "#/$defs/stringSet"},
+        "challenger_role_ids": {"$ref": "#/$defs/stringSet"},
+        "challenger_actor_instance_ids": {"$ref": "#/$defs/stringSet"},
+        "attempt_lineage_refs": {"$ref": "#/$defs/stringSet"},
+        "qualification_refs": {"$ref": "#/$defs/stringSet"},
+        "independence_status": {"enum": ["verified", "partly_verified", "unverified", "failed"]}
+      }
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["required_gate_ids", "valid_receipt_refs", "authority_granted", "explicitly_not_granted", "human_owner"],
+      "properties": {
+        "required_gate_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "valid_receipt_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "authority_granted": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "explicitly_not_granted": {"$ref": "#/$defs/stringSet"},
+        "human_owner": {"type": "string", "minLength": 1}
+      }
+    },
+    "validity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["observed_at", "evidence_freshness", "authorization_expiry", "revalidation_triggers"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "evidence_freshness": {"enum": ["current", "watch", "stale", "superseded", "unknown"]},
+        "authorization_expiry": {"type": ["string", "null"], "format": "date-time"},
+        "revalidation_triggers": {"$ref": "#/$defs/stringSet"}
+      }
+    },
+    "lineage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["supersedes", "invalidates", "downstream_stale_refs", "rollback_ref", "kill_criteria", "transparency_anchor_ref"],
+      "properties": {
+        "supersedes": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "invalidates": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "downstream_stale_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "rollback_ref": {"type": "string"},
+        "kill_criteria": {"$ref": "#/$defs/stringSet"},
+        "transparency_anchor_ref": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {"stringSet": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}}
+}

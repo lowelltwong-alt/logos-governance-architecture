@@ -1,0 +1,86 @@
+metadata:
+  object_type: doctrine_mesh_typed_graph
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root as the vertical, horizontal, depth, and temporal graph for expert routing and evidence flow."
+  reason_for_inclusion: "Make source authority, role checks, disputes, human gates, repository planes, and audit lifecycle relationships inspectable and machine-testable."
+schema_version: logos_doctrine_mesh_graph.v2
+graph_id: LOGOS-DOCTRINE-MESH-GRAPH-002
+node_types:
+  - work_unit
+  - claim
+  - source_manifest
+  - evidence_packet
+  - role_requirement
+  - role_profile
+  - qualification_pack
+  - audit_event
+  - audit_receipt
+  - decision_record
+  - human_gate
+  - repository_plane
+  - validation_receipt
+  - dissent
+edge_types:
+  vertical: [governs, delegates_to, proposes_profile_for, escalates_to, blocked_by]
+  horizontal: [checks, challenges, appeals, represents, conflicts_with]
+  depth: [derived_from, cites, contextualizes, documents_reception, stored_in, qualified_by, validated_by]
+  temporal: [supersedes, invalidates, stale_due_to, triggered_by, precedes]
+  forbidden_load_bearing: [related_to]
+nodes:
+  - {node_id: N-WORK, type: work_unit, authority: named_human_and_repository_contract, revision: doctrine-mesh-v2}
+  - {node_id: N-SCRIPTURE, type: repository_plane, authority: logos-scripture-graph, revision: current_contract}
+  - {node_id: N-JEWISH-CONTEXT, type: repository_plane, authority: logos-boundary-literature, revision: proposed_internal_domain}
+  - {node_id: N-EXTERNAL-CONTEXT, type: repository_plane, authority: logos-boundary-literature, revision: proposed_internal_domain}
+  - {node_id: N-RECEPTION, type: repository_plane, authority: logos-boundary-literature, revision: current_contract}
+  - {node_id: N-DOCTRINE, type: repository_plane, authority: logos-doctrine-genealogy, revision: current_contract}
+  - {node_id: N-GOVERNANCE, type: repository_plane, authority: logos-governance-architecture, revision: current_contract}
+  - {node_id: N-REQUIREMENT, type: role_requirement, authority: candidate, revision: v2}
+  - {node_id: N-CONTROLLER, type: role_profile, authority: dormant_qualified_controller_runtime_adapter_only, revision: future_exact_attempt}
+  - {node_id: N-SCRIPTURE-SOURCE, type: source_manifest, authority: canonical_repository_pointer, revision: current_contract}
+  - {node_id: N-PREFLIGHT-EVENT, type: audit_event, authority: deterministic_control, revision: v2}
+  - {node_id: N-MIDFLIGHT-EVENT, type: audit_event, authority: deterministic_control, revision: v2}
+  - {node_id: N-POSTFLIGHT-EVENT, type: audit_event, authority: deterministic_control, revision: v2}
+  - {node_id: N-COVERAGE-AUDITOR, type: role_profile, authority: candidate_coverage_only, revision: v2}
+  - {node_id: N-ROLE-FACTORY, type: role_profile, authority: task_local_candidate_composition_only, revision: v2}
+  - {node_id: N-RESEARCHER, type: role_profile, authority: candidate_evidence_only, revision: v2}
+  - {node_id: N-CITATION, type: role_profile, authority: candidate_locator_status, revision: v2}
+  - {node_id: N-SOURCE-QUALITY, type: role_profile, authority: candidate_source_quality_status, revision: v2}
+  - {node_id: N-ENTAILMENT, type: role_profile, authority: candidate_claim_support_status, revision: v2}
+  - {node_id: N-COUNTER, type: role_profile, authority: candidate_challenge, revision: v2}
+  - {node_id: N-TRADITION, type: role_profile, authority: candidate_representation_status, revision: v2}
+  - {node_id: N-ALIGNMENT, type: role_profile, authority: candidate_alignment_status, revision: v2}
+  - {node_id: N-INTEGRATOR, type: role_profile, authority: single_candidate_writer, revision: v2}
+  - {node_id: N-INDEPENDENT, type: role_profile, authority: read_only_independent_verdict, revision: v2}
+  - {node_id: N-HUMAN-GATE, type: human_gate, authority: Lowell_and_qualified_human, revision: v2}
+edges:
+  - {edge_id: E-001, type: governs, from: N-HUMAN-GATE, to: N-WORK, authority: human}
+  - {edge_id: E-002, type: derived_from, from: N-REQUIREMENT, to: N-WORK, authority: candidate}
+  - {edge_id: E-003, type: triggered_by, from: N-PREFLIGHT-EVENT, to: N-WORK, authority: deterministic}
+  - {edge_id: E-004, type: precedes, from: N-PREFLIGHT-EVENT, to: N-ROLE-FACTORY, authority: deterministic}
+  - {edge_id: E-005, type: checks, from: N-COVERAGE-AUDITOR, to: N-REQUIREMENT, authority: candidate}
+  - {edge_id: E-006, type: qualified_by, from: N-ROLE-FACTORY, to: N-REQUIREMENT, authority: candidate}
+  - {edge_id: E-007, type: proposes_profile_for, from: N-ROLE-FACTORY, to: N-RESEARCHER, authority: candidate_only}
+  - {edge_id: E-008, type: checks, from: N-CITATION, to: N-RESEARCHER, authority: candidate}
+  - {edge_id: E-009, type: checks, from: N-SOURCE-QUALITY, to: N-RESEARCHER, authority: candidate}
+  - {edge_id: E-010, type: checks, from: N-ENTAILMENT, to: N-RESEARCHER, authority: candidate}
+  - {edge_id: E-011, type: challenges, from: N-COUNTER, to: N-RESEARCHER, authority: candidate}
+  - {edge_id: E-012, type: checks, from: N-TRADITION, to: N-RESEARCHER, authority: candidate}
+  - {edge_id: E-013, type: checks, from: N-ALIGNMENT, to: N-ROLE-FACTORY, authority: candidate}
+  - {edge_id: E-014, type: derived_from, from: N-INTEGRATOR, to: N-RESEARCHER, authority: candidate}
+  - {edge_id: E-015, type: validated_by, from: N-INTEGRATOR, to: N-INDEPENDENT, authority: candidate}
+  - {edge_id: E-016, type: challenges, from: N-INDEPENDENT, to: N-COVERAGE-AUDITOR, authority: independent}
+  - {edge_id: E-017, type: triggered_by, from: N-MIDFLIGHT-EVENT, to: N-REQUIREMENT, authority: deterministic}
+  - {edge_id: E-018, type: triggered_by, from: N-POSTFLIGHT-EVENT, to: N-INTEGRATOR, authority: deterministic}
+  - {edge_id: E-019, type: escalates_to, from: N-INDEPENDENT, to: N-HUMAN-GATE, authority: candidate}
+  - {edge_id: E-020, type: stored_in, from: N-CITATION, to: N-GOVERNANCE, authority: specification_only}
+  - {edge_id: E-021, type: stored_in, from: N-SCRIPTURE-SOURCE, to: N-SCRIPTURE, authority: repository_contract}
+  - {edge_id: E-022, type: contextualizes, from: N-JEWISH-CONTEXT, to: N-DOCTRINE, authority: no_normative_force}
+  - {edge_id: E-023, type: contextualizes, from: N-EXTERNAL-CONTEXT, to: N-DOCTRINE, authority: no_normative_force}
+  - {edge_id: E-024, type: documents_reception, from: N-RECEPTION, to: N-DOCTRINE, authority: no_normative_force}
+  - {edge_id: E-025, type: blocked_by, from: N-ROLE-FACTORY, to: N-HUMAN-GATE, authority: high_risk_or_new_authority}
+  - {edge_id: E-026, type: delegates_to, from: N-CONTROLLER, to: N-RESEARCHER, authority: future_qualified_controller_only}
+reverse_provenance_requirement: "Every conclusion must traverse through inference and evidence to a root source manifest; no agent summary can terminate the path."
+cycle_policy: "Only explicit appeal/challenge cycles are allowed; each has one response ceiling, a human escalation owner, and a stop condition."
+dispatch_policy: "Only N-CONTROLLER may originate delegates_to; the role factory proposes profiles and never grants leases or creates child work."
+freshness_policy: "A changed source, role, prompt, runtime, schema, authority, risk, or consumer triggers affected-slice invalidation and a new audit event."

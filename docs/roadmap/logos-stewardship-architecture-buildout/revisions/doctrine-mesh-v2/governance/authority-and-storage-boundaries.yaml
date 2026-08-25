@@ -1,0 +1,93 @@
+metadata:
+  object_type: doctrine_authority_and_storage_boundary_contract
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-24 by Codex root from live Logos repository contracts and Lowell's request to isolate non-Christian context from Christian doctrine."
+  reason_for_inclusion: "Prevent source, graph, and repository placement from laundering context into Scripture or doctrine authority."
+schema_version: logos_doctrine_authority_storage.v2
+planes:
+  canonical_scripture:
+    owner_repository: logos-scripture-graph
+    current_readiness: contract_pointer_only_revalidate_live_claim_and_schema_before_any_write
+    allowed_objects: [witness, transcription, translation, canon_metadata, textual_relation]
+    forbidden_inputs: [boundary_as_canon, generated_doctrine_as_scripture]
+  jewish_historical_context:
+    owner_repository: logos-boundary-literature
+    current_readiness: proposed_internal_domain_no_cross_repository_write_authorized
+    allowed_objects: [second_temple_text, qumran_source, philo_source, josephus_source, rabbinic_source, jewish_practice_history, jewish_interpretive_history]
+    normative_christian_doctrine_authority: none
+    special_rule: "Do not flatten Jewish historical evidence into pagan, heretical, or external-religion categories."
+  external_ancient_context:
+    owner_repository: logos-boundary-literature
+    current_readiness: proposed_internal_domain_no_cross_repository_write_authorized
+    allowed_objects: [egyptian_context, mesopotamian_context, canaanite_ugaritic_context, persian_context, greek_context, roman_context, archaeology, epigraphy, numismatics, comparative_religion]
+    normative_christian_doctrine_authority: none
+  christian_reception_sources:
+    owner_repository: logos-boundary-literature
+    current_readiness: contract_pointer_only_revalidate_live_claim_and_schema_before_any_write
+    allowed_objects: [patristic_source, council_source, theologian_work, confessional_document, commentary, reception_history]
+    rule: "A source may document a tradition or reception history but does not become canonical Scripture."
+  doctrine_genealogy:
+    owner_repository: logos-doctrine-genealogy
+    current_readiness: active_scaffold_not_assumed_data_ready_no_cross_repository_write_authorized
+    allowed_objects: [doctrine_topic, doctrine_view, doctrine_assessment, lineage_edge, tradition_profile, reception_comparison]
+    rule: "Doctrine topics, views, and assessments remain separate and reference source IDs instead of copying source authority."
+  governance_and_campaign:
+    owner_repository: logos-governance-architecture
+    current_readiness: this_revision_is_specification_only
+    allowed_objects: [contract, decision_record, human_gate, source_policy, campaign, mesh_manifest, validation_receipt]
+    normative_christian_doctrine_authority: none
+namespace_rules:
+  canonical_prefix: scripture_
+  boundary_prefix: boundary_
+  doctrine_prefix: doctrine_
+  evidence_prefix: evidence_
+doctrine_reference_fields:
+  normative_support_refs:
+    boundary_ids_allowed: false
+    purpose: "Record only support admitted by the governing Scripture/tradition policy and applicable human gate."
+  historical_context_refs:
+    boundary_ids_allowed: true
+    purpose: "Support descriptive historical context only."
+  reception_history_refs:
+    boundary_ids_allowed: true
+    purpose: "Document attested reception, use, rejection, or reformulation."
+  genealogy_refs:
+    doctrine_ids_allowed: true
+    purpose: "Record lineage without claiming truth from chronological succession."
+allowed_cross_plane_edges:
+  - {edge: contextualizes, normative_force: none, evidence_required: exact_source_locator}
+  - {edge: historical_parallel, normative_force: none, evidence_required: exact_source_locators_on_both_sides}
+  - {edge: possible_contact, normative_force: none, evidence_required: contact_chain_plus_uncertainty}
+  - {edge: documented_reception, normative_force: none, evidence_required: primary_reception_evidence}
+  - {edge: explicitly_rejected, normative_force: none, evidence_required: primary_rejection_evidence}
+  - {edge: explicitly_reframed, normative_force: none, evidence_required: primary_reframing_evidence}
+forbidden_automatic_edges:
+  - caused_doctrine
+  - proves_doctrine
+  - disproves_scripture
+  - borrowed_from
+  - is_same_as
+  - is_heresy
+  - is_orthodox
+influence_claim_rule: >-
+  Similarity cannot establish influence. A descriptive historical influence,
+  borrowing, rejection, or reframing claim requires a dated contact mechanism,
+  primary reception evidence, source-quality review, counterevidence review,
+  and explicit uncertainty. Even then it has no normative doctrinal force.
+future_repository_split_trigger:
+  current_decision: keep_metadata_and_context_pointers_in_logos_boundary_literature
+  create_new_repository_now: false
+  reconsider_only_if:
+    - rights-cleared corpora or media require a distinct custody model
+    - archaeology datasets exceed boundary repository lifecycle or storage needs
+    - independent release or validation cadence is proven necessary
+    - owner approves topology after blast-radius and migration review
+storage_activation_gate:
+  rule: >-
+    A named owner repository is a proposed authority/storage destination, not
+    proof that its live schema, claim, privacy boundary, migration path, or
+    validator is ready. Every future handoff requires a fresh destination claim,
+    schema and namespace compatibility receipt, consumer-boundary validation,
+    and exact cross-repository write authorization.
+  missing_readiness_behavior: block

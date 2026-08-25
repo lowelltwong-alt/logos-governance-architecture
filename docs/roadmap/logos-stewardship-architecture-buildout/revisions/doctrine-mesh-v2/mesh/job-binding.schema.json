@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-mesh-job-binding-v2.json",
+  "title": "DoctrineMeshJobBinding",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_mesh_job_binding_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root after independent mesh review.",
+    "reason_for_inclusion": "Bind every future job to one controller-owned lease, exact inputs, one writer, distinct checkers, capability evidence, scopes, budgets, and receipts."
+  },
+  "required": ["schema_version", "campaign_id", "assignment_id", "work_unit_id", "work_unit_revision", "job_id", "requirement_ref", "requirement_digest", "work_claim_ref", "work_claim_digest", "claimed_scope_ref", "claimed_scope_digest", "controller_revision_ref", "controller_revision_digest", "controller", "roles", "inputs", "outputs", "data_and_effects", "budget", "budget_binding", "resumption", "state"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_mesh_job_binding.v2"},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "assignment_id": {"type": "string", "pattern": "^DMJ-[A-Z0-9-]+$"},
+    "work_unit_id": {"type": "string", "minLength": 1},
+    "work_unit_revision": {"type": "string", "minLength": 1},
+    "job_id": {"type": "string", "minLength": 1},
+    "requirement_ref": {"type": "string", "minLength": 1},
+    "requirement_digest": {"$ref": "#/$defs/digest"},
+    "work_claim_ref": {"type": "string", "minLength": 1},
+    "work_claim_digest": {"$ref": "#/$defs/digest"},
+    "claimed_scope_ref": {"$ref": "#/$defs/repositoryRelativePath"},
+    "claimed_scope_digest": {"$ref": "#/$defs/digest"},
+    "controller_revision_ref": {"type": "string", "minLength": 1},
+    "controller_revision_digest": {"$ref": "#/$defs/digest"},
+    "controller": {
+      "type": "object", "additionalProperties": false,
+      "required": ["controller_attempt_ref", "controller_attempt_digest", "qualification_receipt_ref", "qualification_receipt_digest", "human_activation_receipt_ref", "human_activation_receipt_digest", "sole_dispatcher", "lease_id", "lease_fence", "lease_acquired_at", "lease_expires_at", "heartbeat_interval_seconds", "idempotency_key"],
+      "properties": {
+        "controller_attempt_ref": {"type": "string", "minLength": 1},
+        "controller_attempt_digest": {"$ref": "#/$defs/digest"},
+        "qualification_receipt_ref": {"type": "string", "minLength": 1},
+        "qualification_receipt_digest": {"$ref": "#/$defs/digest"},
+        "human_activation_receipt_ref": {"type": "string", "minLength": 1},
+        "human_activation_receipt_digest": {"$ref": "#/$defs/digest"},
+        "sole_dispatcher": {"const": true},
+        "lease_id": {"type": "string"},
+        "lease_fence": {"type": "integer", "minimum": 1},
+        "lease_acquired_at": {"type": "string", "format": "date-time"},
+        "lease_expires_at": {"type": "string", "format": "date-time"},
+        "heartbeat_interval_seconds": {"type": "integer", "minimum": 1},
+        "idempotency_key": {"type": "string", "minLength": 16}
+      }
+    },
+    "roles": {
+      "type": "object", "additionalProperties": false,
+      "required": ["writer", "checkers", "challengers"],
+      "properties": {
+        "writer": {"$ref": "#/$defs/roleBinding"},
+        "checkers": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/roleBinding"}},
+        "challengers": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/roleBinding"}}
+      }
+    },
+    "inputs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/artifactBinding"}},
+    "outputs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/artifactBinding"}},
+    "data_and_effects": {
+      "type": "object", "additionalProperties": false,
+      "required": ["data_classes", "read_scope", "write_scope", "external_effects", "source_egress_allowed"],
+      "properties": {
+        "data_classes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["public", "repository_internal", "licensed", "private", "credentialed", "unknown"]}},
+        "read_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "write_scope": {"type": "array", "maxItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryRelativePath"}},
+        "external_effects": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "source_egress_allowed": {"type": "boolean"}
+      }
+    },
+    "budget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["wall_clock_seconds", "token_ceiling", "cost_minor_units", "storage_bytes", "network_request_ceiling", "attempt_ceiling"],
+      "properties": {
+        "wall_clock_seconds": {"type": "integer", "minimum": 1},
+        "token_ceiling": {"type": "integer", "minimum": 1},
+        "cost_minor_units": {"type": "integer", "minimum": 0},
+        "storage_bytes": {"type": "integer", "minimum": 0},
+        "network_request_ceiling": {"type": "integer", "minimum": 0},
+        "attempt_ceiling": {"type": "integer", "minimum": 1, "maximum": 2}
+      }
+    },
+    "budget_binding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ledger_id", "campaign_id", "ledger_sequence", "ledger_snapshot_ref", "ledger_snapshot_digest", "reservation_idempotency_key", "reservation_receipt_ref", "reservation_receipt_digest", "debit_receipt_ref", "debit_receipt_digest"],
+      "properties": {
+        "ledger_id": {"type": "string", "minLength": 1},
+        "campaign_id": {"type": "string", "minLength": 1},
+        "ledger_sequence": {"type": "integer", "minimum": 1},
+        "ledger_snapshot_ref": {"type": "string", "pattern": "^evidence/budgets/[a-z0-9-]+\\.json$"},
+        "ledger_snapshot_digest": {"$ref": "#/$defs/digest"},
+        "reservation_idempotency_key": {"type": "string", "minLength": 16},
+        "reservation_receipt_ref": {"type": ["string", "null"], "minLength": 1},
+        "reservation_receipt_digest": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/digest"}]},
+        "debit_receipt_ref": {"type": ["string", "null"], "minLength": 1},
+        "debit_receipt_digest": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/digest"}]}
+      }
+    },
+    "resumption": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dependency_digest_map", "checkpoint_ref", "checkpoint_digest", "append_only_attempt_receipt_ref", "append_only_attempt_receipt_digest", "effect_reconciliation_ref", "effect_reconciliation_digest", "output_reconciliation_ref", "output_reconciliation_digest", "retry_class", "backoff_seconds", "repair_disposition", "resume_preconditions", "state_transition_receipt_ref", "state_transition_receipt_digest"],
+      "properties": {
+        "dependency_digest_map": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/digest"}},
+        "checkpoint_ref": {"type": "string"}, "checkpoint_digest": {"$ref": "#/$defs/digest"},
+        "append_only_attempt_receipt_ref": {"type": "string"}, "append_only_attempt_receipt_digest": {"$ref": "#/$defs/digest"},
+        "effect_reconciliation_ref": {"type": "string"}, "effect_reconciliation_digest": {"$ref": "#/$defs/digest"},
+        "output_reconciliation_ref": {"type": "string"}, "output_reconciliation_digest": {"$ref": "#/$defs/digest"},
+        "retry_class": {"enum": ["no_retry", "changed_input_repair", "transient_backoff", "human_reauthorized"]},
+        "backoff_seconds": {"type": "integer", "minimum": 0},
+        "repair_disposition": {"enum": ["none", "one_bounded_repair", "quarantined", "blocked"]},
+        "resume_preconditions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "state_transition_receipt_ref": {"type": "string"}, "state_transition_receipt_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "state": {"enum": ["candidate", "blocked", "authorized_unleased", "leased", "completed_candidate", "quarantined", "expired"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"enum": ["authorized_unleased", "leased", "completed_candidate"]}}, "required": ["state"]},
+      "then": {"properties": {"budget_binding": {"properties": {"reservation_receipt_ref": {"type": "string", "minLength": 1}, "reservation_receipt_digest": {"$ref": "#/$defs/digest"}}, "required": ["reservation_receipt_ref", "reservation_receipt_digest"]}}}
+    },
+    {
+      "if": {"properties": {"state": {"const": "completed_candidate"}}, "required": ["state"]},
+      "then": {"properties": {"budget_binding": {"properties": {"debit_receipt_ref": {"type": "string", "minLength": 1}, "debit_receipt_digest": {"$ref": "#/$defs/digest"}}, "required": ["debit_receipt_ref", "debit_receipt_digest"]}}}
+    }
+  ],
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "repositoryRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!.*\\/$)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?$)(?!.*\\/\\.\\.?/)(?!.*[\\u0000-\\u001F\\u007F]).+$"
+    },
+    "roleBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["role_id", "actor_instance_id", "capability_profile_refs", "effort_class", "expert_pack_ref", "expert_pack_digest", "qualification_receipt_ref", "qualification_receipt_digest", "attempt_lineage_ref", "attempt_lineage_digest", "independence_group", "write_scope"],
+      "properties": {
+        "role_id": {"type": "string"},
+        "actor_instance_id": {"type": "string"},
+        "capability_profile_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "effort_class": {"enum": ["low", "medium", "high", "frontier"]},
+        "expert_pack_ref": {"type": "string"},
+        "expert_pack_digest": {"$ref": "#/$defs/digest"},
+        "qualification_receipt_ref": {"type": "string", "minLength": 1},
+        "qualification_receipt_digest": {"$ref": "#/$defs/digest"},
+        "attempt_lineage_ref": {"type": "string", "minLength": 1},
+        "attempt_lineage_digest": {"$ref": "#/$defs/digest"},
+        "independence_group": {"type": "string", "minLength": 1},
+        "write_scope": {"type": "array", "maxItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryRelativePath"}}
+      }
+    },
+    "artifactBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifact_ref", "canonical_path", "digest", "revision", "authority_class", "work_claim_digest"],
+      "properties": {
+        "artifact_ref": {"type": "string", "minLength": 1},
+        "canonical_path": {"$ref": "#/$defs/repositoryRelativePath"},
+        "digest": {"$ref": "#/$defs/digest"},
+        "revision": {"type": "string", "minLength": 1},
+        "authority_class": {"type": "string", "minLength": 1},
+        "work_claim_digest": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}

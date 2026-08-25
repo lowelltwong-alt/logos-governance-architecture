@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-mesh-specification-validation-receipt-v2.json",
+  "title": "DoctrineMeshSpecificationValidationReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_mesh_specification_validation_receipt_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-24 by Codex root after final-gate semantic review.",
+    "reason_for_inclusion": "Prevent a Fable packet from binding an arbitrary file as its deterministic validation receipt."
+  },
+  "required": ["metadata", "schema_version", "receipt_id", "revision_manifest_ref", "revision_manifest_digest", "payload_digest", "validator_ref", "validator_digest", "test_ref", "test_digest", "final_replay_command", "test_command", "status", "validator_result", "test_result", "runtime_activation_authorized", "research_authorized", "mutation_performed", "observed_at", "receipt_digest"],
+  "properties": {
+    "metadata": {
+      "type": "object", "additionalProperties": false,
+      "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"],
+      "properties": {
+        "object_type": {"const": "doctrine_mesh_specification_validation_receipt"},
+        "trust_zone": {"const": "proposed"},
+        "lifecycle_status": {"const": "validated_specification_only"},
+        "provenance_note": {"type": "string", "minLength": 1},
+        "reason_for_inclusion": {"type": "string", "minLength": 1}
+      }
+    },
+    "schema_version": {"const": "logos.doctrine_mesh_specification_validation_receipt.v2"},
+    "receipt_id": {"const": "DM-VALIDATION-002"},
+    "revision_manifest_ref": {"const": "revision-manifest.yaml"},
+    "revision_manifest_digest": {"$ref": "#/$defs/digest"},
+    "payload_digest": {"$ref": "#/$defs/digest"},
+    "validator_ref": {"const": "checks/validate_doctrine_mesh.py"},
+    "validator_digest": {"$ref": "#/$defs/digest"},
+    "test_ref": {"const": "checks/test_validate_doctrine_mesh.py"},
+    "test_digest": {"$ref": "#/$defs/digest"},
+    "final_replay_command": {"type": "string", "minLength": 1},
+    "test_command": {"type": "string", "minLength": 1},
+    "status": {"const": "pass_artifact_specification_only"},
+    "validator_result": {
+      "type": "object", "additionalProperties": false,
+      "required": ["failure_count", "audit_failures", "internal_markdown_link_failures", "campaign_gate_evidence_refs"],
+      "properties": {"failure_count": {"const": 0}, "audit_failures": {"const": 0}, "internal_markdown_link_failures": {"const": 0}, "campaign_gate_evidence_refs": {"const": 10}}
+    },
+    "test_result": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "test_count", "skipped"],
+      "properties": {"status": {"const": "pass"}, "test_count": {"type": "integer", "minimum": 1}, "skipped": {"const": 0}}
+    },
+    "runtime_activation_authorized": {"const": false},
+    "research_authorized": {"const": false},
+    "mutation_performed": {"const": false},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "receipt_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

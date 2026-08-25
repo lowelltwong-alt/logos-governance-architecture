@@ -1,0 +1,58 @@
+metadata:
+  object_type: doctrine_mesh_independent_review_lineage
+  trust_zone: proposed
+  lifecycle_status: independently_checked_specification_evidence
+  provenance_note: "Recorded on 2026-08-24 by Codex root from three task-separated read-only challenge lanes and their changed-input rechecks."
+  reason_for_inclusion: "Disclose exactly what reviewer separation was observed, what was not verified, and why a specification pass grants no runtime or doctrinal authority."
+schema_version: logos_doctrine_mesh_independent_review_lineage.v2
+review_id: DM-INDEPENDENT-REVIEW-002
+writer_identity: codex_root_primary_specification_author
+reviewers:
+  - reviewer_id: deterministic_schema_checker
+    task_identity: fable_repo_fact_verifier
+    separation: read_only_nonwriting_task_lane
+    review_scope: schemas_digests_campaign_gates_and_deterministic_replay
+    shared_surrounding_context_disclosed: true
+    cross_provider_verified: false
+    final_changed_input_outcome: pass_no_remaining_artifact_freeze_defect
+  - reviewer_id: campaign_integration_checker
+    task_identity: campaign_mesh_challenge
+    separation: read_only_nonwriting_task_lane
+    review_scope: long_run_campaign_budget_job_resumption_and_Fable_packet_binding
+    shared_surrounding_context_disclosed: true
+    cross_provider_verified: false
+    final_changed_input_outcome: pass_no_critical_or_high_artifact_freeze_defect
+  - reviewer_id: autonomy_authority_redteam
+    task_identity: whole_theology_adversarial_premortem
+    separation: read_only_nonwriting_task_lane
+    review_scope: authority_autonomy_source_rights_expert_coverage_and_premortem
+    shared_surrounding_context_disclosed: true
+    cross_provider_verified: false
+    final_changed_input_outcome: pass_after_mechanical_timestamp_and_source_class_repairs
+independence_status: partly_verified_non_authorizing
+cross_provider_or_cross_model_independence_verified: false
+provider_identity_grants_authority: false
+resolved_artifact_freeze_findings:
+  - parent_source_lock_revision_coupling
+  - receipt_runtime_category_error
+  - role_independence_name_theater
+  - semantic_validator_theater
+  - qualification_expiry_and_vacuous_positive_state
+  - contradictory_normative_source_positive_state
+  - protected_surface_cardinality_false_failure
+  - campaign_gate_file_presence_only
+  - Fable_packet_unbound_to_exact_artifact
+  - cross_snapshot_budget_duplicate_and_job_ledger_join_gap
+  - repair_status_taxonomy_ambiguity
+  - design_time_validator_runtime_enforcement_overclaim
+unresolved_by_design:
+  - qualified_runtime_behavior
+  - authenticated_human_authority
+  - actual_source_researched_ExpertPacks
+  - qualified_domain_human_reviewers
+  - cross_provider_independence
+  - substantive_doctrine_research_or_decision
+final_specification_outcome: pass_no_unresolved_critical_or_high_artifact_freeze_finding
+runtime_activation_outcome: blocked
+research_execution_outcome: blocked
+observed_at: "2026-08-24T16:50:15Z"

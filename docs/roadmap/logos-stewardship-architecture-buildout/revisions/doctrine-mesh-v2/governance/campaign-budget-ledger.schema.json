@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-campaign-budget-ledger-v2.json",
+  "title": "DoctrineCampaignBudgetLedger",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_campaign_budget_ledger_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "dormant_until_runtime_activation",
+    "provenance_note": "Created on 2026-08-24 by Codex root after long-run resumption review.",
+    "reason_for_inclusion": "Keep campaign, work-unit, and job consumption cumulative across checkpoints, retries, and resumptions."
+  },
+  "required": ["schema_version", "ledger_id", "campaign_id", "campaign_revision", "sequence", "previous_ledger_digest", "authorized_ceiling", "consumed", "reserved", "remaining", "journal_entries", "work_units", "attempt_receipt_chain_digest", "observed_at", "ledger_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_campaign_budget_ledger.v2"},
+    "ledger_id": {"type": "string", "minLength": 1},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "campaign_revision": {"type": "string", "minLength": 1},
+    "sequence": {"type": "integer", "minimum": 1},
+    "previous_ledger_digest": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/digest"}]},
+    "authorized_ceiling": {"$ref": "#/$defs/budget"}, "consumed": {"$ref": "#/$defs/budget"}, "reserved": {"$ref": "#/$defs/budget"}, "remaining": {"$ref": "#/$defs/budget"},
+    "journal_entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["debit_id", "entry_type", "idempotency_key", "attempt_id", "work_unit_id", "assignment_id", "consumed_delta", "reserved_delta", "receipt_ref", "receipt_digest", "lease_fence", "observed_at"],
+        "properties": {
+          "debit_id": {"type": "string", "minLength": 1},
+          "entry_type": {"enum": ["reservation", "debit", "release"]},
+          "idempotency_key": {"type": "string", "minLength": 16},
+          "attempt_id": {"type": "string", "minLength": 1},
+          "work_unit_id": {"type": "string", "minLength": 1},
+          "assignment_id": {"type": "string", "minLength": 1},
+          "consumed_delta": {"$ref": "#/$defs/budget"},
+          "reserved_delta": {"$ref": "#/$defs/signedBudget"},
+          "receipt_ref": {"type": "string", "minLength": 1},
+          "receipt_digest": {"$ref": "#/$defs/digest"},
+          "lease_fence": {"type": "integer", "minimum": 1},
+          "observed_at": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "work_units": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["work_unit_id", "revision", "consumed", "reserved", "attempt_refs", "reservation_refs", "debit_refs", "status"], "properties": {"work_unit_id": {"type": "string", "minLength": 1}, "revision": {"type": "string", "minLength": 1}, "consumed": {"$ref": "#/$defs/budget"}, "reserved": {"$ref": "#/$defs/budget"}, "attempt_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "reservation_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "debit_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "status": {"enum": ["planned", "active", "paused", "blocked", "completed_candidate", "expired"]}}}},
+    "attempt_receipt_chain_digest": {"$ref": "#/$defs/digest"}, "observed_at": {"type": "string", "format": "date-time"}, "ledger_digest": {"$ref": "#/$defs/digest"}
+  },
+  "allOf": [
+    {"if": {"properties": {"sequence": {"const": 1}}, "required": ["sequence"]}, "then": {"properties": {"previous_ledger_digest": {"type": "null"}}}},
+    {"if": {"properties": {"sequence": {"minimum": 2}}, "required": ["sequence"]}, "then": {"properties": {"previous_ledger_digest": {"$ref": "#/$defs/digest"}}}}
+  ],
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "budget": {"type": "object", "additionalProperties": false, "required": ["wall_clock_seconds", "tokens", "cost_minor_units", "storage_bytes", "network_requests", "assignments", "audit_events", "generated_profiles", "human_packets"], "properties": {"wall_clock_seconds": {"type": "integer", "minimum": 0}, "tokens": {"type": "integer", "minimum": 0}, "cost_minor_units": {"type": "integer", "minimum": 0}, "storage_bytes": {"type": "integer", "minimum": 0}, "network_requests": {"type": "integer", "minimum": 0}, "assignments": {"type": "integer", "minimum": 0}, "audit_events": {"type": "integer", "minimum": 0}, "generated_profiles": {"type": "integer", "minimum": 0}, "human_packets": {"type": "integer", "minimum": 0}}},
+    "signedBudget": {"type": "object", "additionalProperties": false, "required": ["wall_clock_seconds", "tokens", "cost_minor_units", "storage_bytes", "network_requests", "assignments", "audit_events", "generated_profiles", "human_packets"], "properties": {"wall_clock_seconds": {"type": "integer"}, "tokens": {"type": "integer"}, "cost_minor_units": {"type": "integer"}, "storage_bytes": {"type": "integer"}, "network_requests": {"type": "integer"}, "assignments": {"type": "integer"}, "audit_events": {"type": "integer"}, "generated_profiles": {"type": "integer"}, "human_packets": {"type": "integer"}}}
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/doctrine-controller-runtime-receipt-v2.json",
+  "title": "DoctrineControllerRuntimeReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "x-logos-metadata": {
+    "object_type": "doctrine_controller_runtime_receipt_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "dormant_until_runtime_activation",
+    "provenance_note": "Created on 2026-08-24 by Codex root after adversarial runtime review.",
+    "reason_for_inclusion": "Prevent manual design receipts or role IDs from impersonating a qualified controller attempt."
+  },
+  "required": ["schema_version", "controller_attempt_id", "runtime_revision", "adapter_revision", "qualification_receipt_ref", "human_activation_receipt_ref", "authority_envelope_digest", "budget_envelope_digest", "lease_and_fencing_fixture_receipt_ref", "restart_and_duplicate_effect_fixture_receipt_ref", "shutdown_fixture_receipt_ref", "status", "observed_at", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_controller_runtime_receipt.v2"},
+    "controller_attempt_id": {"type": "string"},
+    "runtime_revision": {"type": "string"},
+    "adapter_revision": {"type": "string"},
+    "qualification_receipt_ref": {"type": "string"},
+    "human_activation_receipt_ref": {"type": "string"},
+    "authority_envelope_digest": {"$ref": "#/$defs/digest"},
+    "budget_envelope_digest": {"$ref": "#/$defs/digest"},
+    "lease_and_fencing_fixture_receipt_ref": {"type": "string"},
+    "restart_and_duplicate_effect_fixture_receipt_ref": {"type": "string"},
+    "shutdown_fixture_receipt_ref": {"type": "string"},
+    "status": {"enum": ["qualified_exact_revision", "blocked", "expired", "revoked"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "receipt_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

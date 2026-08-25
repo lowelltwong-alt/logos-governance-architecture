@@ -1,0 +1,103 @@
+{
+  "schema_version": "logos.doctrine_audit_execution_attempts.v2",
+  "metadata": {
+    "object_type": "doctrine_audit_execution_attempt_registry",
+    "trust_zone": "proposed",
+    "lifecycle_status": "candidate_evidence",
+    "provenance_note": "Created on 2026-08-24 by Codex root for task-local specification audit attempts.",
+    "reason_for_inclusion": "Bind audit receipts to attributable attempts without claiming a qualified unattended runtime."
+  },
+  "runtime_status": "manual_specification_coverage_review_not_runtime_qualified",
+  "attempts": [
+    {
+      "schema_version": "logos.doctrine_attempt_lineage.v2",
+      "attempt_id": "DMA-ATTEMPT-PREFLIGHT-001",
+      "event_id": "DMA-PREFLIGHT-001",
+      "actor_role_id": "doctrine-mesh-completeness-auditor",
+      "actor_instance_id": "codex-root-design-auditor-preflight-001",
+      "checker_role_id": "independent-whole-work-checker",
+      "checker_instance_id": "deterministic-schema-checker-readonly-001",
+      "execution_class": "manual_specification_coverage_review",
+      "prompt_revision_digest": "sha256:58f3096fcf4ab143f42a36da2aa53a2963f4c16dbebf0324f0375ffdcb99dc5b",
+      "context_snapshot_digest": "sha256:04a5366517a5f5605dae21c7ba6efe8d4c2591316ed1a7f1c178c8c057f56260",
+      "source_exposure_digest": "sha256:a5af5dc7003b27ff656e5f870a9cc0d5aca820fcb1e0c859e9aabbbc50e08275",
+      "authored_artifact_groups": ["preflight_coverage_plan", "preflight_role_gap_registry"],
+      "read_scope": ["evidence/inputs/preflight.json", "constitution.yaml", "governance/human-gates.yaml"],
+      "write_scope": ["evidence/coverage/preflight.yaml", "evidence/gaps/preflight.yaml"],
+      "independence_evidence": {
+        "status": "partly_verified_non_authorizing",
+        "computed_not_self_declared": true,
+        "shared_context_disclosed": true,
+        "cross_provider_verified": false,
+        "evidence_ref": "evidence/independence/review-lineage.yaml"
+      },
+      "provider_identity_grants_authority": false,
+      "started_at": "2026-08-24T15:28:10Z",
+      "auditor_completed_at": "2026-08-24T15:30:00Z",
+      "checker_started_at": "2026-08-24T16:47:00Z",
+      "checker_completed_at": "2026-08-24T16:47:30Z",
+      "completed_at": "2026-08-24T16:47:31Z",
+      "status": "completed_candidate"
+    },
+    {
+      "schema_version": "logos.doctrine_attempt_lineage.v2",
+      "attempt_id": "DMA-ATTEMPT-MIDFLIGHT-001",
+      "event_id": "DMA-MIDFLIGHT-001",
+      "actor_role_id": "doctrine-mesh-completeness-auditor",
+      "actor_instance_id": "codex-root-design-auditor-midflight-001",
+      "checker_role_id": "independent-whole-work-checker",
+      "checker_instance_id": "campaign-mesh-challenge-readonly-001",
+      "execution_class": "manual_specification_coverage_review",
+      "prompt_revision_digest": "sha256:58f3096fcf4ab143f42a36da2aa53a2963f4c16dbebf0324f0375ffdcb99dc5b",
+      "context_snapshot_digest": "sha256:ead6a2f11aa811defb483229d49904b780338bd762f1c673ba42ec11f41c0d5a",
+      "source_exposure_digest": "sha256:a5af5dc7003b27ff656e5f870a9cc0d5aca820fcb1e0c859e9aabbbc50e08275",
+      "authored_artifact_groups": ["midflight_coverage_plan", "midflight_role_gap_registry"],
+      "read_scope": ["evidence/inputs/midflight.json", "campaign.yaml", "research/source-authority-catalog.yaml", "mesh/autonomous-role-factory.yaml"],
+      "write_scope": ["evidence/coverage/midflight.yaml", "evidence/gaps/midflight.yaml"],
+      "independence_evidence": {
+        "status": "partly_verified_non_authorizing",
+        "computed_not_self_declared": true,
+        "shared_context_disclosed": true,
+        "cross_provider_verified": false,
+        "evidence_ref": "evidence/independence/review-lineage.yaml"
+      },
+      "provider_identity_grants_authority": false,
+      "started_at": "2026-08-24T15:42:10Z",
+      "auditor_completed_at": "2026-08-24T15:46:30Z",
+      "checker_started_at": "2026-08-24T16:47:32Z",
+      "checker_completed_at": "2026-08-24T16:48:00Z",
+      "completed_at": "2026-08-24T16:48:01Z",
+      "status": "completed_candidate"
+    },
+    {
+      "schema_version": "logos.doctrine_attempt_lineage.v2",
+      "attempt_id": "DMA-ATTEMPT-POSTFLIGHT-001",
+      "event_id": "DMA-POSTFLIGHT-001",
+      "actor_role_id": "doctrine-mesh-completeness-auditor",
+      "actor_instance_id": "codex-root-design-auditor-postflight-001",
+      "checker_role_id": "independent-whole-work-checker",
+      "checker_instance_id": "autonomy-authority-redteam-readonly-001",
+      "execution_class": "manual_specification_coverage_review",
+      "prompt_revision_digest": "sha256:58f3096fcf4ab143f42a36da2aa53a2963f4c16dbebf0324f0375ffdcb99dc5b",
+      "context_snapshot_digest": "sha256:12bd20913d1c5d6ffbb468d56f3c201ad7356b68c91af590ba8cfd6c8980ee8e",
+      "source_exposure_digest": "sha256:a5af5dc7003b27ff656e5f870a9cc0d5aca820fcb1e0c859e9aabbbc50e08275",
+      "authored_artifact_groups": ["postflight_coverage_plan", "postflight_role_gap_registry", "independent_review_lineage"],
+      "read_scope": ["evidence/inputs/postflight.json", "redteam/premortem.yaml", "redteam/repair-ledger.yaml", "checks/validate_doctrine_mesh.py"],
+      "write_scope": ["evidence/coverage/postflight.yaml", "evidence/gaps/postflight.yaml", "evidence/independence/review-lineage.yaml"],
+      "independence_evidence": {
+        "status": "partly_verified_non_authorizing",
+        "computed_not_self_declared": true,
+        "shared_context_disclosed": true,
+        "cross_provider_verified": false,
+        "evidence_ref": "evidence/independence/review-lineage.yaml"
+      },
+      "provider_identity_grants_authority": false,
+      "started_at": "2026-08-24T16:50:21Z",
+      "auditor_completed_at": "2026-08-24T16:50:35Z",
+      "checker_started_at": "2026-08-24T16:50:36Z",
+      "checker_completed_at": "2026-08-24T16:50:55Z",
+      "completed_at": "2026-08-24T16:50:56Z",
+      "status": "completed_candidate"
+    }
+  ]
+}

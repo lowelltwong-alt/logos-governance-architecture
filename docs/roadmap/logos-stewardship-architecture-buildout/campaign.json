@@ -1,0 +1,387 @@
+{
+  "metadata": {
+    "object_type": "stewardship_architecture_portable_campaign_manifest",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-23 by Codex root after the governed claim, exact main reconciliation, and protected-hold-aware family preflight passed.",
+    "reason_for_inclusion": "Provide a deterministic, resumable, provider-neutral job graph with explicit authority, budgets, gates, stops, receipts, and handoffs."
+  },
+  "schema_version": "long_run_campaign.v2",
+  "campaign_id": "logos-stewardship-architecture-buildout-v1",
+  "revision": "1-specification-only-20260823",
+  "title": "Logos Stewardship Architecture Buildout",
+  "objective": "Produce a validated, human-reviewable architecture buildout specification and research plan while preserving every advisory, P0/P1, residual, SPECIAL, authority, privacy, and implementation block.",
+  "completion_evidence": [
+    "checks/validation-receipt.json",
+    "checks/final-independent-review.json"
+  ],
+  "scope": {
+    "included": [
+      "docs/roadmap/logos-stewardship-architecture-buildout/"
+    ],
+    "excluded": [
+      "incoming/research/logos-architecture-ab-convergence/",
+      "incoming/research/logos-convergence-doc-validation/",
+      "docs/canon/",
+      "data/",
+      "schemas/",
+      "scripts/",
+      ".github/",
+      "governance/GOVERNANCE_DEPENDENCY_MAP.yaml"
+    ]
+  },
+  "source_authority": [
+    {"path": "AGENTS.md", "digest": "sha256:b0bdb3114c117edb136c27e3538336497ecf092bca16f3a86a621ca40776c401"},
+    {"path": "AI_FRONT_DOOR.md", "digest": "sha256:1befca06d9be4f89559082bbc61ad545b8703bf53e61fe59926800bff14aa25a"},
+    {"path": "governance/FAMILY_WORK_COORDINATION_STANDARD.yaml", "digest": "sha256:9b44c730b2217c262351b0c70c0efa49fc02c4b675ffa554242eae36c9079ae3"},
+    {"path": "governance/registry/FAMILY_WORK_REGISTRY.yaml", "digest": "sha256:271718a86238081d4e6bac34d13fc0fcff3d8df294c409f8702547d44a2b02d7"},
+    {"path": "docs/governance/logos-convergence-advisory-review.yaml", "digest": "sha256:63a14f2ae5d9d406abbbb171a33c5c47075ab1032cb02c9b55e3bcd21d0b69de"}
+  ],
+  "authority": {
+    "allowed_effects": [
+      "read pinned repository evidence",
+      "write only specification artifacts inside the claimed campaign tree",
+      "run local deterministic validation",
+      "produce candidate research and human-decision packets"
+    ],
+    "prohibited_effects": [
+      "substantive architecture or schema implementation",
+      "theological or source-authority decision",
+      "runtime or controller activation",
+      "external provider call or message",
+      "migration, publication, deployment, cleanup, reset, rebase, force operation, or deletion",
+      "push, pull request, or remote merge"
+    ],
+    "human_gates": [
+      "HG-001 theology or doctrine",
+      "HG-002 source authority or canonicity",
+      "HG-003 tradition or institutional policy",
+      "HG-004 privacy or publication",
+      "HG-005 governed exegesis home",
+      "HG-006 private store or migration",
+      "HG-007 authority matrix or authentication adapter",
+      "HG-008 SPECIAL-001 cardinality or experiment",
+      "HG-009 asserted basis and reviewer authority",
+      "HG-010 assurance independence or thresholds",
+      "HG-011 blocked P0/P1 scope",
+      "HG-012 controller/runtime activation",
+      "HG-013 budget or paid provider",
+      "HG-014 implementation, release, or publication"
+    ]
+  },
+  "execution": {
+    "mode": "specification_only",
+    "controller_role": "campaign-controller",
+    "state_root": "docs/roadmap/logos-stewardship-architecture-buildout/state/",
+    "receipt_log": "docs/roadmap/logos-stewardship-architecture-buildout/state/receipts.jsonl",
+    "authorized_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/state/"],
+    "durability_command": "not-authorized; qualification plan must supply an inert revision-bound command",
+    "adapter": {"name": "unselected-provider-neutral-adapter", "revision": "unbound"},
+    "launch_command": "not-authorized",
+    "shutdown_command": "not-authorized",
+    "qualification_evidence": "not-authorized",
+    "dry_run_evidence": "not-authorized",
+    "authorization_receipt": "not-authorized",
+    "independent_launch_review": "not-authorized"
+  },
+  "specialist_mesh": {
+    "synthetic_world_artifacts": false,
+    "truth_authority": "not-applicable",
+    "capability_matrix_evidence": "research/expert-qualification-matrix.yaml",
+    "whole_case_audit_gate": "not-applicable",
+    "voice_representation_audit_gate": "not-applicable"
+  },
+  "portability": {
+    "artifact_class": "portable_core",
+    "runtime_adapter_ref": "docs/roadmap/logos-stewardship-architecture-buildout/controller/runtime-adapter-contract.yaml",
+    "provider_or_model_names_in_core": false,
+    "portability_evidence_status": "unverified_without_qualified_runtime_harness",
+    "activation_blocked": true
+  },
+  "convergence_boundary": {
+    "advisory_issue_ids": ["AB-R02-001", "AB-R02-002", "AB-R02-003", "AB-R02-006", "AB-R02-009", "AB-R02-013", "AB-R02-015"],
+    "blocked_p0_issue_ids": ["AB-R02-008", "AB-R02-018"],
+    "blocked_p1_issue_ids": ["AB-R02-004", "AB-R02-005", "AB-R02-007", "AB-R02-010", "AB-R02-011", "AB-R02-012", "AB-R02-014", "AB-R02-016", "AB-R02-017", "AB-R02-019"],
+    "blocked_residual_ids": ["AB-R03-DIS-001", "AB-R03-DIS-002", "AB-R03-DIS-003", "AB-R03-DIS-004", "AB-R03-DIS-005"],
+    "special_001": "UNKNOWN",
+    "implementation_blocks_cleared": 0,
+    "implementation_authorized": false,
+    "experiment_authorized": false,
+    "migration_authorized": false
+  },
+  "budgets": {
+    "wall_clock_hours": 168,
+    "cost_units": 64,
+    "max_attempts_total": 32,
+    "max_parallel_jobs": 3,
+    "max_storage_mb": 256,
+    "max_context_tokens_per_job": 48000,
+    "max_job_minutes": 120,
+    "max_output_mb_per_job": 4
+  },
+  "gold_standards": [
+    {"id": "GS-001", "statement": "Pinned source bytes and Git identities replay exactly before affected work.", "gate_type": "deterministic", "evidence": "checks/source-lock.json"},
+    {"id": "GS-002", "statement": "The exact seven advisory, two P0, ten P1, five residual, and SPECIAL coordinates remain blocked.", "gate_type": "deterministic", "evidence": "checks/block-replay.json"},
+    {"id": "GS-003", "statement": "No generated artifact claims theology, owner approval, implementation, migration, runtime, or publication authority.", "gate_type": "independent", "evidence": "checks/authority-review.json"},
+    {"id": "GS-004", "statement": "Every material conclusion reverse-traverses through inference and evidence to an immutable source pointer.", "gate_type": "independent", "evidence": "checks/provenance-review.json"},
+    {"id": "GS-005", "statement": "One repository writer and a distinct independent checker remain identifiable for every material output.", "gate_type": "deterministic", "evidence": "checks/mesh-review.json"},
+    {"id": "GS-006", "statement": "Human gates never auto-advance and have no fabricated receipt.", "gate_type": "deterministic", "evidence": "checks/human-gates.json"},
+    {"id": "GS-007", "statement": "Private payloads, secrets, local workstation paths, and unapproved source content are absent.", "gate_type": "independent", "evidence": "checks/privacy-review.json"},
+    {"id": "GS-008", "statement": "The portable core has no permanent provider or model binding and the runtime adapter remains unbound.", "gate_type": "deterministic", "evidence": "checks/portability-review.json"},
+    {"id": "GS-009", "statement": "Migration and implementation surfaces remain dormant until every applicable human and technical gate passes.", "gate_type": "deterministic", "evidence": "checks/future-gates.json"},
+    {"id": "GS-010", "statement": "The campaign can stop safely and resume from append-only evidence without repeating unchanged failed work.", "gate_type": "independent", "evidence": "checks/resume-review.json"}
+  ],
+  "phases": [
+    {
+      "id": "P0", "title": "Governed entry", "depends_on": [],
+      "waves": [{
+        "id": "P0-W1", "title": "Baseline, claim, and preflight", "depends_on": [],
+        "subwaves": [{
+          "id": "P0-W1-S1", "title": "Entry gates", "depends_on": [],
+          "jobs": [
+            {
+              "id": "J-000", "title": "Baseline capsule", "job_kind": "baseline_validation", "effect_class": "validation",
+              "objective": "Bind repository identity, source authority, protected paths, and the unchanged exclusion boundary.",
+              "non_goals": ["modify source records", "clear any gate"], "depends_on": [], "dependency_digests": {},
+              "inputs": ["AGENTS.md", "AI_FRONT_DOOR.md", "governance/FAMILY_WORK_COORDINATION_STANDARD.yaml", "docs/governance/logos-convergence-advisory-review.yaml"],
+              "input_digests": {"AGENTS.md": "sha256:b0bdb3114c117edb136c27e3538336497ecf092bca16f3a86a621ca40776c401", "AI_FRONT_DOOR.md": "sha256:1befca06d9be4f89559082bbc61ad545b8703bf53e61fe59926800bff14aa25a", "governance/FAMILY_WORK_COORDINATION_STANDARD.yaml": "sha256:9b44c730b2217c262351b0c70c0efa49fc02c4b675ffa554242eae36c9079ae3", "docs/governance/logos-convergence-advisory-review.yaml": "sha256:63a14f2ae5d9d406abbbb171a33c5c47075ab1032cb02c9b55e3bcd21d0b69de"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/baseline-capsule.json"],
+              "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/baseline-capsule.json"],
+              "prohibited_actions": ["edit source authority", "external effect", "clear block"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker",
+              "required_capabilities": ["Git identity replay", "source hashing", "authority-boundary reading"],
+              "qualification_evidence": ["checks/qualifications/J-000.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-000:r1", "lease_minutes": 45, "heartbeat_minutes": 10,
+              "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 2, "time_ceiling_minutes": 60, "context_ceiling_tokens": 24000, "output_ceiling_mb": 2,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-000.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-000.receipts.jsonl",
+              "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false},
+              "escalation": {"owner": "human-campaign-sponsor", "conditions": ["source drift", "authority ambiguity", "validation inconclusive"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J000-BASELINE", "revision": "1", "type": "deterministic", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/baseline-capsule.json"], "command": "python docs/roadmap/logos-stewardship-architecture-buildout/checks/validate_stewardship_campaign.py", "rubric": "not-applicable", "evidence": "checks/baseline-capsule.json", "result_semantics": {"pass": "exact identity and hashes replay", "fail_repairable": "bounded receipt defect", "fail_terminal": "source or authority mismatch", "blocked_human": "owner decision required", "inconclusive": "evidence incomplete"}, "affects": ["J-000", "J-001", "J-002"], "revalidation_triggers": ["source digest change", "Git identity change", "policy revision change"]}]
+            },
+            {
+              "id": "J-001", "title": "Claim checkpoint verification", "job_kind": "claim_validation", "effect_class": "validation",
+              "objective": "Verify the durable stewardship family claim and its exact local checkpoint without creating a new claim.",
+              "non_goals": ["edit registry", "create branch", "publish claim"], "depends_on": ["J-000"], "dependency_digests": {"J-000": "unbound:execution-preflight-required"},
+              "inputs": ["governance/registry/FAMILY_WORK_REGISTRY.yaml"], "input_digests": {"governance/registry/FAMILY_WORK_REGISTRY.yaml": "sha256:271718a86238081d4e6bac34d13fc0fcff3d8df294c409f8702547d44a2b02d7"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/family-claim-checkpoint.json"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/family-claim-checkpoint.json"],
+              "prohibited_actions": ["modify unrelated claim", "clear overlap", "remote effect"], "owner_role": "specification-writer", "checker_role": "independent-authority-checker",
+              "required_capabilities": ["family claim parsing", "semantic diff verification"], "qualification_evidence": ["checks/qualifications/J-001.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-001:r1", "lease_minutes": 45, "heartbeat_minutes": 10, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 2, "time_ceiling_minutes": 45, "context_ceiling_tokens": 16000, "output_ceiling_mb": 2,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-001.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-001.receipts.jsonl", "durability_check": "controller-qualified durability check required",
+              "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["claim mismatch", "new overlap", "changed owner"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J001-CLAIM", "revision": "1", "type": "deterministic", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/family-claim-checkpoint.json"], "command": "python scripts/validate_family_work_registry.py", "rubric": "not-applicable", "evidence": "checks/family-claim-checkpoint.json", "result_semantics": {"pass": "exact claim and scope validate", "fail_repairable": "bounded receipt defect", "fail_terminal": "claim or authority conflict", "blocked_human": "owner reconciliation required", "inconclusive": "live state unavailable"}, "affects": ["J-001", "J-002"], "revalidation_triggers": ["registry change", "branch change", "claim policy change"]}]
+            },
+            {
+              "id": "J-002", "title": "Family preflight verification", "job_kind": "workspace_preflight", "effect_class": "read_only",
+              "objective": "Run the then-authorized claim-specific family preflight and preserve its non-authorization boundary.",
+              "non_goals": ["modify held worktree", "suppress dirty or active writer", "grant write permission"], "depends_on": ["J-001"], "dependency_digests": {"J-001": "unbound:execution-preflight-required"},
+              "inputs": ["governance/registry/FAMILY_WORK_REGISTRY.yaml"], "input_digests": {"governance/registry/FAMILY_WORK_REGISTRY.yaml": "sha256:271718a86238081d4e6bac34d13fc0fcff3d8df294c409f8702547d44a2b02d7"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/family-preflight.json"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/family-preflight.json"],
+              "prohibited_actions": ["write other worktree", "weaken blocker", "reuse consumed authorization"], "owner_role": "specification-writer", "checker_role": "independent-authority-checker",
+              "required_capabilities": ["workspace lifecycle verification", "family overlap audit"], "qualification_evidence": ["checks/qualifications/J-002.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-002:r1", "lease_minutes": 60, "heartbeat_minutes": 15, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 2, "time_ceiling_minutes": 90, "context_ceiling_tokens": 20000, "output_ceiling_mb": 2,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-002.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-002.receipts.jsonl", "durability_check": "controller-qualified durability check required",
+              "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["overlap blocker", "dirty hold", "changed lifecycle evidence"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J002-PREFLIGHT", "revision": "1", "type": "deterministic", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/family-preflight.json"], "command": "authorized read-only family preflight command bound at execution", "rubric": "not-applicable", "evidence": "checks/family-preflight.json", "result_semantics": {"pass": "no unresolved blocker after exact permitted suppressions", "fail_repairable": "receipt formatting defect", "fail_terminal": "unsafe or ambiguous overlap", "blocked_human": "owner resolution required", "inconclusive": "live evidence incomplete"}, "affects": ["J-002", "J-100", "J-110"], "revalidation_triggers": ["worktree state change", "registry change", "preflight revision change"]}]
+            }
+          ]
+        }]
+      }]
+    },
+    {
+      "id": "P1", "title": "Specification foundation", "depends_on": ["J-002"],
+      "waves": [{
+        "id": "P1-W1", "title": "Constitution, graph, mesh, and controller boundary", "depends_on": ["J-002"],
+        "subwaves": [{
+          "id": "P1-W1-S1", "title": "Portable core", "depends_on": ["J-002"],
+          "jobs": [
+            {
+              "id": "J-100", "title": "Campaign constitution", "job_kind": "governance_specification", "effect_class": "documentation",
+              "objective": "Freeze objective, source authority, effects, human gates, completion, and safe shutdown.", "non_goals": ["approve architecture", "select runtime"],
+              "depends_on": ["J-002"], "dependency_digests": {"J-002": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/README.md"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/README.md": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/constitution.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/constitution.yaml"], "prohibited_actions": ["clear human gate", "expand scope", "activate runtime"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["governance synthesis", "authority-boundary design"], "qualification_evidence": ["checks/qualifications/J-100.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-100:r1", "lease_minutes": 60, "heartbeat_minutes": 15, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 4, "time_ceiling_minutes": 90, "context_ceiling_tokens": 32000, "output_ceiling_mb": 2,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-100.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-100.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["authority ambiguity", "scope expansion", "human gate needed"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J100-AUTHORITY", "revision": "1", "type": "independent", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/constitution.yaml"], "command": "not-applicable", "rubric": "No sentence grants owner, theological, implementation, runtime, migration, or publication authority.", "evidence": "checks/authority-review.json", "result_semantics": {"pass": "authority boundary preserved", "fail_repairable": "bounded wording defect", "fail_terminal": "false authority or scope expansion", "blocked_human": "human policy choice required", "inconclusive": "source authority unavailable"}, "affects": ["J-100", "J-130", "J-150"], "revalidation_triggers": ["authority change", "scope change", "source change"]}]
+            },
+            {
+              "id": "J-110", "title": "Source lock", "job_kind": "source_binding", "effect_class": "documentation",
+              "objective": "Bind exact repository and advisory source bytes, Git identities, authority, and freshness triggers.", "non_goals": ["copy private packet", "promote advisory"],
+              "depends_on": ["J-002"], "dependency_digests": {"J-002": "unbound:execution-preflight-required"}, "inputs": ["AGENTS.md", "AI_FRONT_DOOR.md", "governance/FAMILY_WORK_COORDINATION_STANDARD.yaml", "governance/registry/FAMILY_WORK_REGISTRY.yaml", "docs/governance/logos-convergence-advisory-review.yaml"],
+              "input_digests": {"AGENTS.md": "sha256:b0bdb3114c117edb136c27e3538336497ecf092bca16f3a86a621ca40776c401", "AI_FRONT_DOOR.md": "sha256:1befca06d9be4f89559082bbc61ad545b8703bf53e61fe59926800bff14aa25a", "governance/FAMILY_WORK_COORDINATION_STANDARD.yaml": "sha256:9b44c730b2217c262351b0c70c0efa49fc02c4b675ffa554242eae36c9079ae3", "governance/registry/FAMILY_WORK_REGISTRY.yaml": "sha256:271718a86238081d4e6bac34d13fc0fcff3d8df294c409f8702547d44a2b02d7", "docs/governance/logos-convergence-advisory-review.yaml": "sha256:63a14f2ae5d9d406abbbb171a33c5c47075ab1032cb02c9b55e3bcd21d0b69de"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/source-lock.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/source-lock.yaml"], "prohibited_actions": ["reconstruct source", "record workstation path", "infer approval"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["content hashing", "Git object replay", "source authority classification"], "qualification_evidence": ["checks/qualifications/J-110.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-110:r1", "lease_minutes": 60, "heartbeat_minutes": 15, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 3, "time_ceiling_minutes": 60, "context_ceiling_tokens": 24000, "output_ceiling_mb": 2,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-110.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-110.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["digest mismatch", "private evidence request", "authority drift"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J110-SOURCE", "revision": "1", "type": "deterministic", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/source-lock.yaml"], "command": "python docs/roadmap/logos-stewardship-architecture-buildout/checks/validate_stewardship_campaign.py", "rubric": "not-applicable", "evidence": "checks/source-lock.json", "result_semantics": {"pass": "all source identities replay", "fail_repairable": "bounded lock formatting defect", "fail_terminal": "source mismatch or unsupported authority", "blocked_human": "source access decision required", "inconclusive": "source unavailable"}, "affects": ["J-110", "J-120", "J-130"], "revalidation_triggers": ["file hash change", "Git head change", "freshness state change"]}]
+            },
+            {
+              "id": "J-120", "title": "Exclusion and human-gate lock", "job_kind": "block_specification", "effect_class": "documentation",
+              "objective": "Replay and lock the exact 7/2/10/5/SPECIAL boundary and all human gates.", "non_goals": ["resolve block", "recommend cardinality", "approve experiment"],
+              "depends_on": ["J-110"], "dependency_digests": {"J-110": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/source-lock.yaml", "docs/governance/logos-convergence-advisory-review.yaml"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/source-lock.yaml": "unbound:execution-preflight-required", "docs/governance/logos-convergence-advisory-review.yaml": "sha256:63a14f2ae5d9d406abbbb171a33c5c47075ab1032cb02c9b55e3bcd21d0b69de"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml"], "prohibited_actions": ["clear block", "fabricate receipt", "make recommendation for SPECIAL-001"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["exact set replay", "authority-gate audit"], "qualification_evidence": ["checks/qualifications/J-120.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-120:r1", "lease_minutes": 60, "heartbeat_minutes": 15, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 3, "time_ceiling_minutes": 60, "context_ceiling_tokens": 24000, "output_ceiling_mb": 2,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-120.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-120.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["count mismatch", "block appears cleared", "receipt appears present"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J120-BLOCKS", "revision": "1", "type": "deterministic", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml"], "command": "python docs/roadmap/logos-stewardship-architecture-buildout/checks/validate_stewardship_campaign.py", "rubric": "not-applicable", "evidence": "checks/block-replay.json", "result_semantics": {"pass": "exact block and gate sets preserved", "fail_repairable": "bounded projection defect", "fail_terminal": "block cleared or coordinate changed", "blocked_human": "new owner decision required", "inconclusive": "source evidence incomplete"}, "affects": ["J-120", "J-130", "J-200", "J-220", "J-400"], "revalidation_triggers": ["advisory change", "human decision receipt", "block registry revision"]}]
+            },
+            {
+              "id": "J-130", "title": "Typed dependency and provenance graph", "job_kind": "graph_specification", "effect_class": "documentation",
+              "objective": "Define typed nodes, dependencies, block edges, provenance traversal, temporal state, and reverse blast radius.", "non_goals": ["create canonical graph data", "select storage", "promote inferred edge"],
+              "depends_on": ["J-100", "J-110", "J-120"], "dependency_digests": {"J-100": "unbound:execution-preflight-required", "J-110": "unbound:execution-preflight-required", "J-120": "unbound:execution-preflight-required"},
+              "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/constitution.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/source-lock.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml"],
+              "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/constitution.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/source-lock.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/graph/typed-dependency-graph.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/graph/typed-dependency-graph.yaml"], "prohibited_actions": ["use catch-all load-bearing edge", "promote candidate", "omit reverse consumer"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["typed graph design", "provenance engineering", "temporal and blast-radius analysis"], "qualification_evidence": ["checks/qualifications/J-130.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-130:r1", "lease_minutes": 90, "heartbeat_minutes": 20, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 5, "time_ceiling_minutes": 120, "context_ceiling_tokens": 40000, "output_ceiling_mb": 3,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-130.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-130.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["authority crossing", "cycle without exit", "missing consumer"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J130-GRAPH", "revision": "1", "type": "independent", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/graph/typed-dependency-graph.yaml"], "command": "not-applicable", "rubric": "Every load-bearing relation is typed, sourced, reviewable, temporal where needed, and reverse-traversable; block edges dominate readiness.", "evidence": "checks/provenance-review.json", "result_semantics": {"pass": "graph obligations satisfied", "fail_repairable": "bounded graph defect", "fail_terminal": "false authority, cycle, or lost source lineage", "blocked_human": "human relationship meaning required", "inconclusive": "consumer or source inventory incomplete"}, "affects": ["J-130", "J-140", "J-150", "J-200"], "revalidation_triggers": ["node or edge change", "authority change", "schema or consumer change"]}]
+            },
+            {
+              "id": "J-140", "title": "Task-local hierarchical mesh", "job_kind": "agent_mesh_specification", "effect_class": "documentation",
+              "objective": "Bind one writer, an independent checker, foreman, controller, lateral specialists, human experts, and bounded handoffs.", "non_goals": ["dispatch agent", "qualify runtime", "replace human authority"],
+              "depends_on": ["J-130"], "dependency_digests": {"J-130": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/graph/typed-dependency-graph.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/campaign.json"],
+              "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/graph/typed-dependency-graph.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/campaign.json": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/repository-metadata-adapter.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/role-cards.yaml"],
+              "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/repository-metadata-adapter.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/role-cards.yaml"],
+              "prohibited_actions": ["spawn from specification", "self-check", "delegate beyond depth one"], "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["hierarchical mesh design", "role boundary design", "independence review"], "qualification_evidence": ["checks/qualifications/J-140.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-140:r1", "lease_minutes": 90, "heartbeat_minutes": 20, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 4, "time_ceiling_minutes": 120, "context_ceiling_tokens": 40000, "output_ceiling_mb": 3,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-140.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-140.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["missing specialist", "writer checker overlap", "fan-out expansion"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J140-MESH", "revision": "1", "type": "deterministic", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/repository-metadata-adapter.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/role-cards.yaml"], "command": "python docs/roadmap/logos-stewardship-architecture-buildout/checks/validate_stewardship_campaign.py", "rubric": "not-applicable", "evidence": "checks/mesh-review.json", "result_semantics": {"pass": "mesh schema, digest, roles, and bindings validate", "fail_repairable": "bounded role contract defect", "fail_terminal": "self-check, lost authority, or unbounded delegation", "blocked_human": "expert or budget gate required", "inconclusive": "qualification evidence missing"}, "affects": ["J-140", "J-150", "J-200"], "revalidation_triggers": ["role change", "runtime change", "authority or scope change"]}]
+            },
+            {
+              "id": "J-150", "title": "Controller qualification plan", "job_kind": "controller_boundary_specification", "effect_class": "documentation",
+              "objective": "Specify but do not run controller, adapter, lease, receipt, budget, shutdown, and qualification obligations.", "non_goals": ["select controller", "launch", "perform dry run"],
+              "depends_on": ["J-130", "J-140"], "dependency_digests": {"J-130": "unbound:execution-preflight-required", "J-140": "unbound:execution-preflight-required"},
+              "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/campaign.json", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/campaign.json": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/controller/qualification-plan.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/controller/runtime-adapter-contract.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/controller/qualification-plan.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/controller/runtime-adapter-contract.yaml"],
+              "prohibited_actions": ["launch controller", "select provider", "create runtime state"], "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["controller contract design", "runtime adapter boundary", "safe shutdown planning"], "qualification_evidence": ["checks/qualifications/J-150.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-150:r1", "lease_minutes": 75, "heartbeat_minutes": 15, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 4, "time_ceiling_minutes": 90, "context_ceiling_tokens": 32000, "output_ceiling_mb": 2,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-150.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-150.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["adapter binding proposed", "live effect requested", "qualification ambiguity"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J150-NOT-QUALIFIED", "revision": "1", "type": "deterministic", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/controller/qualification-plan.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/controller/runtime-adapter-contract.yaml"], "command": "python docs/roadmap/logos-stewardship-architecture-buildout/checks/validate_stewardship_campaign.py", "rubric": "not-applicable", "evidence": "checks/portability-review.json", "result_semantics": {"pass": "controller and adapter remain explicitly unqualified and unbound", "fail_repairable": "bounded contract defect", "fail_terminal": "executable launch or false qualification", "blocked_human": "activation decision required", "inconclusive": "adapter evidence ambiguous"}, "affects": ["J-150", "J-300"], "revalidation_triggers": ["controller or adapter revision", "runtime or tool change", "human authorization"]}]
+            }
+          ]
+        }]
+      }]
+    },
+    {
+      "id": "P2", "title": "Research and evaluation design", "depends_on": ["J-130"],
+      "waves": [{
+        "id": "P2-W1", "title": "Docket, baseline, and rollback", "depends_on": ["J-130"],
+        "subwaves": [{
+          "id": "P2-W1-S1", "title": "Evidence design", "depends_on": ["J-130"],
+          "jobs": [
+            {
+              "id": "J-200", "title": "Research docket and expert matrix", "job_kind": "research_specification", "effect_class": "documentation",
+              "objective": "Define distinct research questions, source rules, expert qualifications, outputs, falsifiers, and human gates.", "non_goals": ["perform external research", "contact expert", "decide domain question"],
+              "depends_on": ["J-120", "J-130"], "dependency_digests": {"J-120": "unbound:execution-preflight-required", "J-130": "unbound:execution-preflight-required"},
+              "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/graph/typed-dependency-graph.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/graph/typed-dependency-graph.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/research/research-docket.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/research/expert-qualification-matrix.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/research/research-docket.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/research/expert-qualification-matrix.yaml"],
+              "prohibited_actions": ["browse restricted source", "copy private payload", "treat credential as authority"], "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["research decomposition", "source rights awareness", "expert qualification design"], "qualification_evidence": ["checks/qualifications/J-200.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-200:r1", "lease_minutes": 90, "heartbeat_minutes": 20, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 5, "time_ceiling_minutes": 120, "context_ceiling_tokens": 40000, "output_ceiling_mb": 3,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-200.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-200.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["missing expert class", "rights ambiguity", "research scope expansion"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J200-RESEARCH", "revision": "1", "type": "independent", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/research/research-docket.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/research/expert-qualification-matrix.yaml"], "command": "not-applicable", "rubric": "Each question is distinct, source-bounded, candidate-only, falsifiable, rights-aware, and routed to a qualified human where authority requires it.", "evidence": "checks/research-review.json", "result_semantics": {"pass": "research contracts are bounded and authority-safe", "fail_repairable": "bounded docket defect", "fail_terminal": "unsafe source, privacy, or false expert authority", "blocked_human": "expert or rights decision required", "inconclusive": "qualification evidence unavailable"}, "affects": ["J-200", "J-210"], "revalidation_triggers": ["research question change", "source rights change", "expert qualification change"]}]
+            },
+            {
+              "id": "J-210", "title": "Evaluation baseline", "job_kind": "evaluation_specification", "effect_class": "documentation",
+              "objective": "Define benchmark arms, protected measures, independence evidence, falsifiers, and a no-winner rule before route selection.", "non_goals": ["run experiment", "select model or topology", "spend budget"],
+              "depends_on": ["J-200"], "dependency_digests": {"J-200": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/research/research-docket.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/research/expert-qualification-matrix.yaml"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/research/research-docket.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/research/expert-qualification-matrix.yaml": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/evaluation/evaluation-baseline.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/evaluation/evaluation-baseline.yaml"], "prohibited_actions": ["execute benchmark", "declare winner", "infer independence from label"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["empirical methods", "evaluation design", "independence analysis"], "qualification_evidence": ["checks/qualifications/J-210.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-210:r1", "lease_minutes": 90, "heartbeat_minutes": 20, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 5, "time_ceiling_minutes": 120, "context_ceiling_tokens": 40000, "output_ceiling_mb": 3,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-210.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-210.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["experiment requested", "budget choice", "methodology disagreement"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J210-METHOD", "revision": "1", "type": "independent", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/evaluation/evaluation-baseline.yaml"], "command": "not-applicable", "rubric": "Measures are falsifiable, protect authority/privacy, separate independence from labels, include owner burden and cost, and permit no winner.", "evidence": "checks/evaluation-review.json", "result_semantics": {"pass": "methodology specification is reviewable", "fail_repairable": "bounded measurement defect", "fail_terminal": "biased or authority-unsafe evaluation", "blocked_human": "budget or threshold decision required", "inconclusive": "baseline evidence unavailable"}, "affects": ["J-210", "J-220", "J-300"], "revalidation_triggers": ["fixture change", "metric change", "runtime or budget change"]}]
+            },
+            {
+              "id": "J-220", "title": "Conditional migration and rollback specification", "job_kind": "migration_safety_specification", "effect_class": "documentation",
+              "objective": "Define inventory, compatibility, consumer, restoration, rollback, and kill obligations while migration remains forbidden.", "non_goals": ["select target", "copy data", "use credential"],
+              "depends_on": ["J-120", "J-210"], "dependency_digests": {"J-120": "unbound:execution-preflight-required", "J-210": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/evaluation/evaluation-baseline.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/evaluation/evaluation-baseline.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/migration/rollback-spec.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/migration/rollback-spec.yaml"], "prohibited_actions": ["migrate", "select store", "create backup with real data"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["migration safety", "schema compatibility", "rollback design", "privacy classification"], "qualification_evidence": ["checks/qualifications/J-220.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-220:r1", "lease_minutes": 90, "heartbeat_minutes": 20, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 4, "time_ceiling_minutes": 120, "context_ceiling_tokens": 36000, "output_ceiling_mb": 3,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-220.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-220.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["target proposed", "consumer missing", "privacy or restoration ambiguity"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": true,
+              "acceptance": [{"id": "G-J220-DORMANT", "revision": "1", "type": "deterministic", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/migration/rollback-spec.yaml"], "command": "python docs/roadmap/logos-stewardship-architecture-buildout/checks/validate_stewardship_campaign.py", "rubric": "not-applicable", "evidence": "checks/future-gates.json", "result_semantics": {"pass": "migration remains dormant with complete preconditions", "fail_repairable": "bounded safety-spec defect", "fail_terminal": "migration effect or missing rollback gate", "blocked_human": "store, privacy, or migration decision required", "inconclusive": "consumer inventory incomplete"}, "affects": ["J-220", "J-400"], "revalidation_triggers": ["schema or consumer change", "data classification change", "human migration decision"]}]
+            }
+          ]
+        }]
+      }]
+    },
+    {
+      "id": "P3", "title": "Dormant activation qualification", "depends_on": ["J-150", "J-210"],
+      "waves": [{
+        "id": "P3-W1", "title": "Probe, dry run, and launch review", "depends_on": ["J-150", "J-210"],
+        "subwaves": [{
+          "id": "P3-W1-S1", "title": "Human-gated qualification", "depends_on": ["J-150", "J-210"],
+          "jobs": [
+            {
+              "id": "J-300", "title": "Runtime qualification probe", "job_kind": "runtime_probe", "effect_class": "read_only",
+              "objective": "After exact human authorization only, collect revision-bound evidence that one runtime can satisfy a bounded inert job contract.", "non_goals": ["launch campaign", "write repository content", "select preferred provider"],
+              "depends_on": ["J-150", "J-210"], "dependency_digests": {"J-150": "unbound:execution-preflight-required", "J-210": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/controller/qualification-plan.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/evaluation/evaluation-baseline.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/controller/qualification-plan.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/evaluation/evaluation-baseline.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/runtime-probe.json"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/runtime-probe.json"], "prohibited_actions": ["external call without receipt", "repository write", "provider promotion"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["runtime qualification", "inert harness", "revision binding"], "qualification_evidence": ["checks/qualifications/J-300.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-300:r1", "lease_minutes": 60, "heartbeat_minutes": 15, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 3, "time_ceiling_minutes": 90, "context_ceiling_tokens": 24000, "output_ceiling_mb": 2,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-300.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-300.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["no exact authorization", "provider or budget change", "privacy concern"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": false,
+              "acceptance": [{"id": "G-J300-HUMAN", "revision": "1", "type": "human", "checker_role": "human-campaign-sponsor", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/runtime-probe.json"], "command": "not-authorized", "rubric": "Exact attempt, provider/runtime, budget, tools, privacy, effects, and harness authorization receipt is required before a probe.", "evidence": "checks/runtime-probe.json", "result_semantics": {"pass": "scoped human receipt and probe evidence both pass", "fail_repairable": "authorized bounded probe defect", "fail_terminal": "unauthorized or unsafe effect", "blocked_human": "authorization absent", "inconclusive": "probe evidence incomplete"}, "affects": ["J-300", "J-310"], "revalidation_triggers": ["runtime or provider change", "budget change", "authorization scope change"]}]
+            },
+            {
+              "id": "J-310", "title": "Inert controller dry run", "job_kind": "controller_dry_run", "effect_class": "validation",
+              "objective": "After qualification and human authorization only, replay controller transitions on an inert fixture with no repository or external effect.", "non_goals": ["launch live campaign", "write source tree", "consume real data"],
+              "depends_on": ["J-300"], "dependency_digests": {"J-300": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/campaign.json", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json", "docs/roadmap/logos-stewardship-architecture-buildout/controller/qualification-plan.yaml"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/campaign.json": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/controller/qualification-plan.yaml": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/controller-dry-run.json"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/controller-dry-run.json"], "prohibited_actions": ["live repository effect", "external effect", "fabricate receipt"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["controller dry run", "lease and resume testing", "effect reconciliation"], "qualification_evidence": ["checks/qualifications/J-310.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-310:r1", "lease_minutes": 90, "heartbeat_minutes": 20, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 3, "time_ceiling_minutes": 120, "context_ceiling_tokens": 32000, "output_ceiling_mb": 3,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-310.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-310.receipts.jsonl", "durability_check": "qualified inert durability command required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["effect detected", "state reconstruction failure", "authorization absent"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": false,
+              "acceptance": [{"id": "G-J310-HUMAN", "revision": "1", "type": "human", "checker_role": "human-campaign-sponsor", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/controller-dry-run.json"], "command": "not-authorized", "rubric": "Exact inert dry-run authority and qualified revisions are required; any live effect is terminal.", "evidence": "checks/controller-dry-run.json", "result_semantics": {"pass": "authorized inert forward test passes", "fail_repairable": "bounded dry-run defect", "fail_terminal": "live effect or unsafe controller behavior", "blocked_human": "authorization absent", "inconclusive": "state or receipt evidence incomplete"}, "affects": ["J-310", "J-320"], "revalidation_triggers": ["controller or adapter change", "campaign or mesh change", "authorization change"]}]
+            },
+            {
+              "id": "J-320", "title": "Independent launch review", "job_kind": "launch_review", "effect_class": "validation",
+              "objective": "Independently test the exact frozen campaign, mesh, controller, adapter, budgets, receipts, stops, and dry-run evidence without launching.", "non_goals": ["launch", "approve human domain gate", "rewrite candidate"],
+              "depends_on": ["J-310"], "dependency_digests": {"J-310": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/campaign.json", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json", "docs/roadmap/logos-stewardship-architecture-buildout/checks/controller-dry-run.json"], "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/campaign.json": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/mesh/agent-mesh.v1.json": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/checks/controller-dry-run.json": "unbound:execution-preflight-required"},
+              "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/independent-launch-review.json"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/independent-launch-review.json"], "prohibited_actions": ["launch", "self-review", "clear domain gate"],
+              "owner_role": "specification-writer", "checker_role": "independent-authority-checker", "required_capabilities": ["independent launch audit", "adversarial controller review", "authority verification"], "qualification_evidence": ["checks/qualifications/J-320.json"],
+              "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-320:r1", "lease_minutes": 90, "heartbeat_minutes": 20, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 4, "time_ceiling_minutes": 120, "context_ceiling_tokens": 40000, "output_ceiling_mb": 3,
+              "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-320.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-320.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["material finding", "changed head", "independence unavailable"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": false,
+              "acceptance": [
+                {"id": "G-J320-INDEPENDENT", "revision": "1", "type": "independent", "checker_role": "independent-authority-checker", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/independent-launch-review.json"], "command": "not-applicable", "rubric": "Re-derive every launch precondition from raw permitted evidence and report dissent, unknowns, and unchanged revisions.", "evidence": "checks/independent-launch-review.json", "result_semantics": {"pass": "independent review passes exact revisions", "fail_repairable": "bounded review artifact defect", "fail_terminal": "unsafe controller, authority, or privacy finding", "blocked_human": "human decision required", "inconclusive": "independence or evidence unavailable"}, "affects": ["J-320", "J-400"], "revalidation_triggers": ["any bound revision change", "new finding", "authority or budget change"]},
+                {"id": "G-J320-HUMAN", "revision": "1", "type": "human", "checker_role": "human-campaign-sponsor", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/checks/independent-launch-review.json"], "command": "not-authorized", "rubric": "A passing independent review does not activate the campaign; the exact human activation receipt remains separate.", "evidence": "checks/activation-authorization.json", "result_semantics": {"pass": "exact human activation receipt is verified", "fail_repairable": "receipt metadata defect", "fail_terminal": "scope or authority mismatch", "blocked_human": "activation not granted", "inconclusive": "receipt cannot be verified"}, "affects": ["J-320", "J-400"], "revalidation_triggers": ["campaign revision change", "receipt expiry", "runtime or budget change"]}
+              ]
+            }
+          ]
+        }]
+      }]
+    },
+    {
+      "id": "P4", "title": "Future implementation boundary", "depends_on": ["J-220", "J-320"],
+      "waves": [{
+        "id": "P4-W1", "title": "Owner-reserved gate", "depends_on": ["J-220", "J-320"],
+        "subwaves": [{
+          "id": "P4-W1-S1", "title": "No implementation under current revision", "depends_on": ["J-220", "J-320"],
+          "jobs": [{
+            "id": "J-400", "title": "Future implementation gate", "job_kind": "human_implementation_gate", "effect_class": "documentation",
+            "objective": "Keep implementation blocked until every applicable block, expert, claim, privacy, controller, and owner gate passes for an exact new scope.", "non_goals": ["implement", "publish", "infer approval"],
+            "depends_on": ["J-220", "J-320"], "dependency_digests": {"J-220": "unbound:execution-preflight-required", "J-320": "unbound:execution-preflight-required"}, "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/future/implementation-gate.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml", "docs/roadmap/logos-stewardship-architecture-buildout/checks/independent-launch-review.json"],
+            "input_digests": {"docs/roadmap/logos-stewardship-architecture-buildout/future/implementation-gate.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/block-registry.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/human-gates.yaml": "unbound:execution-preflight-required", "docs/roadmap/logos-stewardship-architecture-buildout/checks/independent-launch-review.json": "unbound:execution-preflight-required"},
+            "outputs": ["docs/roadmap/logos-stewardship-architecture-buildout/future/implementation-decision-receipt.yaml"], "allowed_paths": ["docs/roadmap/logos-stewardship-architecture-buildout/future/implementation-decision-receipt.yaml"], "prohibited_actions": ["write implementation", "fabricate approval", "remote effect"],
+            "owner_role": "specification-writer", "checker_role": "human-campaign-sponsor", "required_capabilities": ["human authority verification", "block-specific closure audit", "fresh family coordination"], "qualification_evidence": ["checks/qualifications/J-400.json"],
+            "idempotency_key": "logos-stewardship-architecture-buildout-v1:J-400:r1", "lease_minutes": 60, "heartbeat_minutes": 15, "max_attempts": 2, "repair_limit": 1, "max_transient_retries": 0, "cost_ceiling": 3, "time_ceiling_minutes": 90, "context_ceiling_tokens": 32000, "output_ceiling_mb": 2,
+            "checkpoint": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-400.checkpoint.json", "receipt": "docs/roadmap/logos-stewardship-architecture-buildout/state/J-400.receipts.jsonl", "durability_check": "controller-qualified durability check required", "retry_policy": {"classes": ["transient", "repairable_output", "stale_dependency", "authority_or_human", "security_privacy", "terminal_spec"], "backoff_seconds": [600], "same_state_deterministic_retry": false}, "escalation": {"owner": "human-campaign-sponsor", "conditions": ["any gate open", "scope changed", "implementation requested"]}, "handoff_states": ["complete", "failed", "blocked", "resumable"], "auto_advance": false,
+            "acceptance": [{"id": "G-J400-HUMAN", "revision": "1", "type": "human", "checker_role": "human-campaign-sponsor", "inputs": ["docs/roadmap/logos-stewardship-architecture-buildout/future/implementation-decision-receipt.yaml"], "command": "not-authorized", "rubric": "Only the named owner may authorize an exact future implementation scope after every applicable domain and technical gate passes.", "evidence": "checks/implementation-authorization.json", "result_semantics": {"pass": "exact scoped human decision and all prerequisites verify", "fail_repairable": "receipt metadata defect", "fail_terminal": "scope, authority, privacy, or block mismatch", "blocked_human": "implementation remains unapproved", "inconclusive": "evidence incomplete"}, "affects": ["J-400"], "revalidation_triggers": ["any source, block, gate, scope, runtime, privacy, or claim change"]}]
+          }]
+        }]
+      }]
+    }
+  ],
+  "stop_conditions": [
+    {"code": "user_interrupt", "detection": "controller or active agent receives an explicit user interruption", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-user.json", "shutdown": "stop before next effect and preserve append-only handoff", "release_leases": true, "recovery_owner": "human-campaign-sponsor", "resume_preconditions": ["affirmative scoped resume"]},
+    {"code": "budget_exhausted", "detection": "any hard campaign or job budget reaches its ceiling", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-budget.json", "shutdown": "stop before next effect", "release_leases": true, "recovery_owner": "human-campaign-sponsor", "resume_preconditions": ["approved budget and campaign revision"]},
+    {"code": "authority_boundary", "detection": "requested claim or effect exceeds constitution or human authority", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-authority.json", "shutdown": "block the effect and preserve evidence", "release_leases": true, "recovery_owner": "human-campaign-sponsor", "resume_preconditions": ["exact scoped human decision"]},
+    {"code": "human_gate_required", "detection": "a required human gate has no current verified receipt", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-human-gate.json", "shutdown": "do not auto-advance", "release_leases": true, "recovery_owner": "human-campaign-sponsor", "resume_preconditions": ["verified exact human receipt"]},
+    {"code": "repeated_failure", "detection": "one bounded repair fails or an unchanged deterministic failure repeats", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-repeated-failure.json", "shutdown": "preserve attempts and stop", "release_leases": true, "recovery_owner": "campaign-foreman", "resume_preconditions": ["new evidence or approved graph revision"]},
+    {"code": "gold_standard_failure", "detection": "any protected gold standard returns other than pass", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-gold-standard.json", "shutdown": "stop affected and downstream jobs", "release_leases": true, "recovery_owner": "human-campaign-sponsor", "resume_preconditions": ["standard passes on independently checked revision"]},
+    {"code": "security_or_privacy", "detection": "secret, private payload, rights, security, or custody signal appears", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-security-privacy.json", "shutdown": "fail closed without echoing sensitive payload", "release_leases": true, "recovery_owner": "privacy-security-custody-human", "resume_preconditions": ["human-reviewed clearance and repaired boundary"]},
+    {"code": "dependency_stale", "detection": "source, dependency, adapter, tool, or authority digest does not match", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-dependency.json", "shutdown": "block affected jobs", "release_leases": true, "recovery_owner": "campaign-controller", "resume_preconditions": ["approved source-lock and campaign revision"]},
+    {"code": "write_conflict", "detection": "write scope overlaps another writer, user change, held lane, or controller state", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-write-conflict.json", "shutdown": "stop conflicting effects and preserve both sides", "release_leases": true, "recovery_owner": "campaign-controller", "resume_preconditions": ["owner-coordinated non-overlapping scope and reconciled effects"]},
+    {"code": "validation_inconclusive", "detection": "required evidence or independent result is unavailable, ambiguous, or stale", "evidence": "docs/roadmap/logos-stewardship-architecture-buildout/state/stop-inconclusive.json", "shutdown": "do not auto-advance", "release_leases": true, "recovery_owner": "human-campaign-sponsor", "resume_preconditions": ["new evidence or explicit human disposition"]}
+  ]
+}
