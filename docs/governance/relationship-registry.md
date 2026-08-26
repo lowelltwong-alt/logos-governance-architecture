@@ -316,3 +316,18 @@ Use them carefully enough that a human or machine could reliably infer:
 
 The goal is not verbal variety.
 The goal is semantic discipline.
+
+## Academic domain-pack relationships
+
+Future academic packs may propose domain-specific predicates only inside their
+registered namespaces. They must use the qualified n-ary envelope in
+[`academic-extension-contract.md`](academic-extension-contract.md) whenever a
+relationship needs participant roles, time, place, measurement, uncertainty,
+method, competing hypotheses, or provenance. Concatenating those facts into a
+binary edge or reusing `related_to` to avoid modeling them is not a lossless
+assertion.
+
+A pack predicate remains proposed and non-authorizing. Connectivity to a
+doctrine or Scripture node does not let contextual, archaeological,
+philosophical, scientific, Jewish-studies, or ancient-religion material ground
+doctrine or determine exegesis.

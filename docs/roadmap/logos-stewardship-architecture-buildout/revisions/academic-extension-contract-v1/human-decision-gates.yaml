@@ -1,0 +1,43 @@
+schema_version: logos.academic-extension.human-gates.v1
+object_type: academic_extension_human_gate_registry
+trust_zone: canonical
+lifecycle_status: active
+authority_effect: preserve_blocks_only
+gates:
+  - gate_id: AE-HG-001
+    question: What canonical identity and IRI policy should future academic objects use?
+    owner: Lowell Wong
+    status: blocked_human
+  - gate_id: AE-HG-002
+    question: What normative authority lattice, if any, governs promotion across graph contexts?
+    owner: Lowell Wong
+    status: blocked_human
+  - gate_id: AE-HG-003
+    question: May any external standard become more than a revision-pinned adapter?
+    owner: Lowell Wong
+    status: blocked_human
+  - gate_id: AE-HG-004
+    question: Under what reviewed process may a derived projection be promoted?
+    owner: Lowell Wong
+    status: blocked_human
+  - gate_id: AE-HG-005
+    question: Who may steward, conflict-resolve, deprecate, or retire a real domain pack?
+    owner: Lowell Wong
+    status: blocked_human
+  - gate_id: AE-HG-006
+    question: What rights and access policy governs sources, transformations, retention, model transmission, embedding, redistribution, and publication?
+    owner: Lowell Wong
+    status: blocked_human
+  - gate_id: AE-HG-007
+    question: How may a winner among competing hypotheses ever be selected while retaining dissent and evidence?
+    owner: Lowell Wong
+    status: blocked_human
+  - gate_id: AE-HG-008
+    question: Which qualified human reviewer classes are required for each real academic domain and claim type?
+    owner: Lowell Wong
+    status: blocked_human
+rules:
+  - agents_may_raise_but_never_lower_a_gate_or_risk_floor
+  - validator_pass_does_not_close_a_gate
+  - no_gate_may_be_satisfied_by_agent_consensus_or_model_prestige
+  - a_real_domain_pack_requires_a_separate_exact_owner_authorization

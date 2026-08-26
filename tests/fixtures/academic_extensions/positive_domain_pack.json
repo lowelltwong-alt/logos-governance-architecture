@@ -1,0 +1,38 @@
+{
+  "schema_version": "logos.academic.domain-pack.v1",
+  "object_type": "academic_domain_pack_manifest",
+  "pack_id": "academic.synthetic-demonstration",
+  "pack_version": "0.1.0",
+  "namespace": "urn:logos:academic:synthetic-demo:",
+  "status": "candidate",
+  "owner": "synthetic_fixture_only",
+  "authority_ceiling": {
+    "effect": "non_authorizing_context_only",
+    "may_ground_doctrine": false,
+    "may_promote_canonical": false,
+    "requires_human_decision": true
+  },
+  "kernel_compatibility": {
+    "registry_version": "0.3.0",
+    "kernel_digest": "sha256:bca6f54cefec68199db4b131070974b5267802255ccf5bc086cdf735cc431be9",
+    "mutation_policy": "extension_only_kernel_byte_identity_required"
+  },
+  "extension_schemas": [
+    "schemas/academic_extensions/assertion_envelope.v1.schema.json"
+  ],
+  "reviewer_requirements": {
+    "human_required": true,
+    "qualification_classes": ["synthetic_fixture_reviewer"]
+  },
+  "external_mappings": [
+    {
+      "target_standard": "synthetic-standard",
+      "target_term": "SyntheticTerm",
+      "relation": "candidate_mapping",
+      "exactness": "non_exact_by_default",
+      "standard_revision": "fixture-v1"
+    }
+  ],
+  "rights_policy_ref": "synthetic://rights/not-applicable",
+  "unknown_fields_policy": "preserve_losslessly_in_extension_payload"
+}

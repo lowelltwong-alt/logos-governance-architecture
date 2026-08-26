@@ -1,0 +1,102 @@
+{
+  "schema_version": "dad.task_local_agent_mesh_manifest.v1",
+  "mesh_id": "dad:agent-mesh:logos-stewardship-buildout",
+  "task_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "revision_id": "dad:agent-mesh-revision:logos-stewardship-buildout:v2",
+  "supersedes_revision_id": "dad:agent-mesh-revision:logos-stewardship-buildout:v1",
+  "phase": "execution",
+  "status": "active",
+  "source_snapshot_digest": "sha256:14f5240aea4da594de3658e8184228eacb8d13b9eca50af5daaa7e234f894d6e",
+  "authority": {
+    "source_authority": "Repository contracts and exact owner authorization govern this specification-only revision; standards and agent output are non-authorizing evidence.",
+    "execution_authority": false,
+    "human_gate_required": true
+  },
+  "max_delegation_depth": 1,
+  "writer_role_id": "academic-extension-writer",
+  "checker_role_id": "academic-extension-checker",
+  "non_overlap_statement": "One writer edits only claimed Academic Extension Contract surfaces; one non-author checker is read-only; the human owner is not simulated; no worker delegates or launches runtime work.",
+  "roles": [
+    {
+      "role_id": "academic-extension-writer",
+      "why_needed": "Cross-cutting schema, registry, documentation, fixture, and validator changes require one accountable writer.",
+      "mission": "Author the proposed extension contract and deterministic local checks without doctrine change, source ingestion, runtime, or human decisions.",
+      "inputs": ["validated family claim", "one-time preflight receipt", "repository invariants", "revision-pinned standards evidence"],
+      "dependencies": [],
+      "authority": "Sole scoped writer; no implementation, source ingestion, doctrine promotion, publication, remote action, or human-decision authority.",
+      "model_effort_class": "high",
+      "writer_checker_relation": "writer",
+      "acceptance_conditions": ["Exact claimed scope", "deterministic validators and negative fixtures pass", "authority gates remain explicit"],
+      "stop_conditions": ["Preflight failure", "unrelated conflict", "authority leakage", "human decision required"],
+      "handoff": {"recipient_role_ids": ["academic-extension-checker"], "deliverables": ["frozen candidate diff", "validation receipt", "standards and decision-gate packet"], "readiness_conditions": ["Candidate inputs and digests are frozen."]}
+    },
+    {
+      "role_id": "academic-extension-checker",
+      "why_needed": "A non-author must re-derive schema, graph, provenance, portability, and authority claims from the frozen candidate.",
+      "mission": "Read-only review of scope, lossless extension behavior, source/projection separation, named-graph disagreement, adapter limits, and test credibility.",
+      "inputs": ["frozen candidate diff", "raw repository contracts", "deterministic test output", "standards evidence"],
+      "dependencies": ["academic-extension-writer"],
+      "authority": "Read-only checker; cannot edit, approve academic truth, close a human gate, or authorize release.",
+      "model_effort_class": "high",
+      "writer_checker_relation": "checker",
+      "acceptance_conditions": ["Independent findings and residual risks are explicit", "Reviewed revision is unchanged", "Material disagreement blocks completion"],
+      "stop_conditions": ["Candidate changes during review", "missing raw evidence", "shared authorship", "material unresolved disagreement"],
+      "handoff": {"recipient_role_ids": ["human-campaign-sponsor"], "deliverables": ["independent read-only review receipt"], "readiness_conditions": ["Exact revision and validation evidence are available."]}
+    },
+    {
+      "role_id": "human-campaign-sponsor",
+      "why_needed": "Identity, authority, standards posture, rights, stewardship, promotion, and hypothesis adjudication remain human-owned.",
+      "mission": "Approve, reject, or defer exact decision packets without being simulated by an agent.",
+      "inputs": ["decision packet", "independent review", "residual risk summary"],
+      "dependencies": [],
+      "authority": "Human owner only; not an agent worker and never automatically invoked.",
+      "model_effort_class": "frontier_manual",
+      "writer_checker_relation": "specialist",
+      "acceptance_conditions": ["Any decision names exact scope, revision, evidence, issuer, and authority domain."],
+      "stop_conditions": ["Evidence insufficient", "qualified domain reviewer required", "scope exceeds claim"],
+      "handoff": {"recipient_role_ids": [], "deliverables": ["human decision receipt or explicit deferral"], "readiness_conditions": ["A genuine human decision is required."]}
+    }
+  ],
+  "proof_obligations": [
+    {"obligation_id": "claim-and-preflight", "description": "Prove the additive claim was registry-valid and the one-time protected-hold-aware preflight passed before specification writes.", "evidence_required": ["family registry validation", "timestamped preflight receipt"], "owner_role_id": "academic-extension-writer", "checker_role_id": "academic-extension-checker", "status": "satisfied"},
+    {"obligation_id": "stable-kernel-and-lossless-extension", "description": "Prove domain packs cannot mutate the stable kernel and unknown extension payloads round-trip without loss.", "evidence_required": ["schema registry checks", "round-trip fixtures", "kernel-digest fixture"], "owner_role_id": "academic-extension-writer", "checker_role_id": "academic-extension-checker", "status": "pending"},
+    {"obligation_id": "nary-hypothesis-and-authority-separation", "description": "Prove qualified n-ary assertions and competing hypotheses remain distinct and contextual material cannot promote doctrine.", "evidence_required": ["flattening fixtures", "named-graph fixtures", "authority-leakage fixtures"], "owner_role_id": "academic-extension-writer", "checker_role_id": "academic-extension-checker", "status": "pending"},
+    {"obligation_id": "source-projection-and-adapter-bounds", "description": "Prove immutable source records, digest-bound projections, non-exact mappings, and reverse-consumer closure.", "evidence_required": ["source-drift tests", "adapter tests", "reverse-blast-radius tests"], "owner_role_id": "academic-extension-writer", "checker_role_id": "academic-extension-checker", "status": "pending"},
+    {"obligation_id": "portable-deterministic-local-only", "description": "Prove the validator is offline, deterministic, provider-neutral, and non-authorizing.", "evidence_required": ["offline tests", "capability classification", "exact-scope review"], "owner_role_id": "academic-extension-writer", "checker_role_id": "academic-extension-checker", "status": "pending"}
+  ],
+  "unresolved_decisions": [
+    {"decision_id": "canonical-identity-policy", "summary": "Canonical identity and IRI policy remain unselected.", "owner_role_id": "human-campaign-sponsor", "blocking": true, "status": "open"},
+    {"decision_id": "normative-authority-lattice", "summary": "Normative authority and promotion semantics remain human-gated.", "owner_role_id": "human-campaign-sponsor", "blocking": true, "status": "open"},
+    {"decision_id": "external-standard-posture", "summary": "External standards remain non-authorizing adapters unless a human approves another posture.", "owner_role_id": "human-campaign-sponsor", "blocking": true, "status": "open"},
+    {"decision_id": "projection-promotion", "summary": "No derived projection may be promoted without a separate human decision.", "owner_role_id": "human-campaign-sponsor", "blocking": true, "status": "open"},
+    {"decision_id": "pack-stewardship-and-conflict", "summary": "Pack stewardship, retirement, compatibility, and conflict policy remain undecided.", "owner_role_id": "human-campaign-sponsor", "blocking": true, "status": "open"},
+    {"decision_id": "rights-and-access-policy", "summary": "Rights, access, quotation, transformation, retention, model transmission, embedding, redistribution, and publication remain human-gated.", "owner_role_id": "human-campaign-sponsor", "blocking": true, "status": "open"},
+    {"decision_id": "hypothesis-adjudication", "summary": "Competing hypotheses retain no default winner; adjudication remains human-gated.", "owner_role_id": "human-campaign-sponsor", "blocking": true, "status": "open"},
+    {"decision_id": "qualified-domain-reviewers", "summary": "Qualified reviewer classes for each academic domain remain unselected.", "owner_role_id": "human-campaign-sponsor", "blocking": true, "status": "open"}
+  ],
+  "reconciliations": [
+    {"prior_role_id": "campaign-controller", "disposition": "removed", "current_role_ids": [], "reason": "Runtime coordination is outside this task.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "campaign-foreman", "disposition": "removed", "current_role_ids": [], "reason": "Research synthesis is outside this task.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "specification-writer", "disposition": "replaced", "current_role_ids": ["academic-extension-writer"], "reason": "Writer narrowed to the Academic Extension Contract.", "evidence_refs": ["validated family claim"], "material_drift": true},
+    {"prior_role_id": "independent-authority-checker", "disposition": "replaced", "current_role_ids": ["academic-extension-checker"], "reason": "Checker narrowed to this frozen candidate.", "evidence_refs": ["review route"], "material_drift": true},
+    {"prior_role_id": "provenance-graph-specialist", "disposition": "removed", "current_role_ids": [], "reason": "Checks are deterministic obligations here.", "evidence_refs": ["proof obligations"], "material_drift": true},
+    {"prior_role_id": "research-evidence-foreman", "disposition": "removed", "current_role_ids": [], "reason": "No source research is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "primary-source-researcher", "disposition": "removed", "current_role_ids": [], "reason": "No source research is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "original-language-routing-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No language analysis is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "historical-theology-researcher", "disposition": "removed", "current_role_ids": [], "reason": "No theology research is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "ontology-contract-specialist", "disposition": "removed", "current_role_ids": [], "reason": "Contract checks remain inside the writer-checker pair.", "evidence_refs": ["current route"], "material_drift": true},
+    {"prior_role_id": "information-retrieval-specialist", "disposition": "removed", "current_role_ids": [], "reason": "Retrieval work is outside scope.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "empirical-methods-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No experiment is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "statistical-review-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No experiment is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "evaluation-harness-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No runtime harness is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "privacy-security-custody-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No custody action is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "authentication-boundary-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No credentials or runtime are authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "source-rights-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No source intake is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "migration-safety-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No migration is authorized.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "schema-evolution-specialist", "disposition": "removed", "current_role_ids": [], "reason": "Schema checks remain inside the writer-checker pair.", "evidence_refs": ["current route"], "material_drift": true},
+    {"prior_role_id": "maintainer-workflow-specialist", "disposition": "removed", "current_role_ids": [], "reason": "Workflow redesign is outside scope.", "evidence_refs": ["authority ceiling"], "material_drift": true},
+    {"prior_role_id": "accessibility-review-specialist", "disposition": "removed", "current_role_ids": [], "reason": "No new interface is in scope.", "evidence_refs": ["claimed paths"], "material_drift": true},
+    {"prior_role_id": "human-campaign-sponsor", "disposition": "reused", "current_role_ids": ["human-campaign-sponsor"], "reason": "Human authority and non-simulation are unchanged while the wording is narrowed to this revision.", "evidence_refs": ["prior manifest", "authority ceiling"], "material_drift": true}
+  ],
+  "manifest_digest": "sha256:d92d972fdf97cd22a9e4ab551c80681eea4b1432b3fab8be497dbfcc8f9d74a1"
+}

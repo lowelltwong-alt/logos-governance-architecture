@@ -1,0 +1,7 @@
+{
+  "base_fixture": "positive_assertion.json",
+  "operation": "replace",
+  "path": ["hypothesis", "alternatives", 0],
+  "value": "urn:logos:graph:hypothesis:synthetic-a",
+  "expected_rule": "hypothesis_self_reference"
+}

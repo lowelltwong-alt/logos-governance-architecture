@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/academic_extensions/assertion_envelope.v1.schema.json",
+  "title": "Academic Assertion Envelope v1",
+  "$comment": "A qualified n-ary candidate assertion. Validation does not establish truth, doctrine, source fitness, or reviewer approval.",
+  "type": "object",
+  "x-governance": {
+    "object_type": "academic_assertion_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "draft",
+    "provenance_note": "Created 2026-08-25 for the Academic Extension Contract.",
+    "reason_for_inclusion": "Prevent lossy triple or prose flattening when academic claims require roles, qualifiers, disagreement, and provenance."
+  },
+  "required": ["schema_version", "object_type", "assertion_id", "domain_pack_id", "named_graph", "predicate", "roles", "qualifiers", "provenance", "hypothesis", "authority", "trust_zone", "lifecycle_status", "extension_payload"],
+  "properties": {
+    "schema_version": {"const": "logos.academic.assertion-envelope.v1"},
+    "object_type": {"const": "academic_assertion_envelope"},
+    "assertion_id": {"type": "string", "pattern": "^urn:logos:assertion:[a-z0-9][a-z0-9:._-]*$"},
+    "domain_pack_id": {"type": "string", "pattern": "^academic\\.[a-z0-9]+(?:[._-][a-z0-9]+)*$"},
+    "named_graph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["graph_id", "graph_kind", "default_winner"],
+      "properties": {
+        "graph_id": {"type": "string", "pattern": "^urn:logos:graph:[a-z0-9][a-z0-9:._-]*$"},
+        "graph_kind": {"enum": ["hypothesis", "contextual", "derived", "quarantine", "tradition_scoped"]},
+        "default_winner": {"const": false}
+      }
+    },
+    "predicate": {"type": "string", "pattern": "^urn:logos:relation:[a-z0-9][a-z0-9:._-]*$"},
+    "roles": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "entity_ref"],
+        "properties": {
+          "role": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "entity_ref": {"type": "string", "minLength": 1},
+          "role_qualifiers": {"type": "object", "additionalProperties": true}
+        }
+      }
+    },
+    "qualifiers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["temporal", "spatial", "measurement", "uncertainty"],
+      "properties": {
+        "temporal": {"$ref": "#/$defs/uncertainValue"},
+        "spatial": {"$ref": "#/$defs/uncertainValue"},
+        "measurement": {"$ref": "#/$defs/measurement"},
+        "uncertainty": {"$ref": "#/$defs/uncertainty"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_record_refs", "method", "asserted_by"],
+      "properties": {
+        "source_record_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "method": {"type": "string", "minLength": 1},
+        "asserted_by": {"type": "string", "minLength": 1}
+      }
+    },
+    "hypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "alternatives", "falsifiers"],
+      "properties": {
+        "status": {"enum": ["candidate", "competing", "unresolved", "incommensurable"]},
+        "alternatives": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^urn:logos:graph:[a-z0-9][a-z0-9:._-]*$"}},
+        "falsifiers": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "competing"}}, "required": ["status"]},
+          "then": {"properties": {"alternatives": {"minItems": 1}}}
+        }
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["effect", "may_ground_doctrine", "human_review_status"],
+      "properties": {
+        "effect": {"const": "none"},
+        "may_ground_doctrine": {"const": false},
+        "human_review_status": {"enum": ["not_reviewed", "review_pending"]}
+      }
+    },
+    "trust_zone": {"enum": ["proposed", "inferred", "learning-sidecar"]},
+    "lifecycle_status": {"enum": ["draft", "proposed", "deprecated"]},
+    "extension_payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["payload_schema_ref", "preservation_policy", "payload_digest", "payload_data"],
+      "properties": {
+        "payload_schema_ref": {"type": "string", "minLength": 1},
+        "preservation_policy": {"const": "preserve_exact_json_value"},
+        "payload_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "payload_data": {"type": "object", "additionalProperties": true}
+      }
+    }
+  },
+  "$defs": {
+    "uncertainValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "precision", "certainty"],
+      "properties": {
+        "value": {"type": ["string", "null"]},
+        "precision": {"enum": ["unknown", "approximate", "range", "exact_claimed"]},
+        "certainty": {"type": "number", "minimum": 0, "maximum": 1},
+        "basis": {"type": "string"}
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit", "uncertainty", "method"],
+      "properties": {
+        "value": {"type": ["number", "null"]},
+        "unit": {"type": ["string", "null"]},
+        "uncertainty": {"type": ["number", "null"], "minimum": 0},
+        "method": {"type": ["string", "null"]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"value": {"type": "number"}}, "required": ["value"]},
+          "then": {
+            "properties": {
+              "unit": {"type": "string", "minLength": 1},
+              "uncertainty": {"type": "number", "minimum": 0},
+              "method": {"type": "string", "minLength": 1}
+            }
+          },
+          "else": {
+            "properties": {
+              "unit": {"type": "null"},
+              "uncertainty": {"type": "null"},
+              "method": {"type": "null"}
+            }
+          }
+        }
+      ]
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "reasons"],
+      "properties": {
+        "level": {"enum": ["unknown", "low", "medium", "high"]},
+        "reasons": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+{
+  "base_fixture": "positive_derived_projection.json",
+  "operation": "add",
+  "path": ["source_payload"],
+  "value": {"silently_overwritten": true},
+  "expected_rule": "schema_validation"
+}

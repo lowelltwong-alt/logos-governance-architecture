@@ -1,0 +1,94 @@
+{
+  "object_type": "academic_source_locator_check_receipt",
+  "trust_zone": "proposed",
+  "lifecycle_status": "draft",
+  "provenance_note": "Replayed 2026-08-26 after independent academic review, then changed-input rechecked after correcting the Garstang article, ORACC inscription identity, and British Museum canonical object locator.",
+  "reason_for_inclusion": "Record locator coverage and bibliographic corrections without pretending URL resolution proves historical claim fidelity.",
+  "schema_version": "logos.biblical-evidence.source-locator-check.v1",
+  "observed_at": "2026-08-26T18:45:55.2483067Z",
+  "prior_full_replay_observed_at": "2026-08-26T17:58:03.7954511Z",
+  "method": "Retained unchanged prior outcomes and performed fresh redirect-following HTTP GET plus official-record identity checks for each changed locator: Garstang 1935 returned publisher access control, ORACC Q003496 resolved HTTP 200, and British Museum 124906 returned institution access control.",
+  "mutation_performed": false,
+  "summary": {
+    "source_count": 20,
+    "resolved_http_200": 12,
+    "access_controlled_http_403": 7,
+    "method_not_allowed_http_405": 1,
+    "dead_or_unresolved": 0,
+    "bibliographic_corrections_before_freeze": 11
+  },
+  "corrections": [
+    {
+      "source_id": "atiqot-lachish-gate-2023",
+      "correction": "Corrected the official publication year from 2024 to 'Atiqot 111 (2023)."
+    },
+    {
+      "source_id": "pnas-archaeomagnetic-lachish-2022",
+      "correction": "Narrowed the role to historical anchor and comparative archaeomagnetic chronology; the paper does not independently establish the 701 BCE attribution."
+    },
+    {
+      "source_id": "israel-museum-sennacherib-display-2025",
+      "correction": "Classified the page as museum exhibition interpretation rather than an independent holding-institution object record."
+    },
+    {
+      "source_id": "pilate-sherwin-white-1964",
+      "correction": "Classified the item as a scholarly review and preserved its 1964 review identity."
+    },
+    {
+      "source_id": "jericho-source-set",
+      "correction": "Removed the unrelated Early Bronze Age study from the Joshua-era source set and added Garstang, Kenyon, Middle Bronze radiocarbon, Late Bronze synthesis, and current excavation records."
+    },
+    {
+      "source_id": "jericho-garstang-1935",
+      "correction": "Replaced the unrelated 1936 sixth-season Early Bronze/Neolithic report with Garstang's directly relevant 1935 PEQ article, The Fall of Bronze Age Jericho, DOI 10.1179/peq.1935.67.2.61."
+    },
+    {
+      "source_id": "oracc-rinap-q003496",
+      "correction": "Replaced unrelated ORACC Q003945 / Sennacherib 140 with Q003496, the official RINAP record for Sennacherib 022 / Chicago-Taylor Prism."
+    },
+    {
+      "source_id": "bm-lachish-relief-124906",
+      "correction": "Corrected the canonical British Museum URL separator to W_1856-0909-14_2 and the official registration to 1856,0909.14 / museum number 124906."
+    },
+    {
+      "source_id": "jericho-nigro-yasine-2024",
+      "correction": "Corrected title, authors, journal, pages, excavation years, and DOI while using the resolving institutional PDF as locator."
+    },
+    {
+      "source_id": "hittites-bryce-2005",
+      "correction": "Classified Bryce as a scholarly monograph."
+    },
+    {
+      "source_id": "hittites-lipinski-2012",
+      "correction": "Corrected title and DOI and distinguished the 2012 issue year from the platform publication date 2015-11-06."
+    }
+  ],
+  "checks": [
+    {"source_id": "bm-sennacherib-prism-91032", "http_status": 403, "result": "institution_access_controlled_locator_retained", "locator_class": "holding_institution"},
+    {"source_id": "oracc-rinap-q003496", "http_status": 200, "result": "official_rinap_sennacherib_022_chicago_taylor_prism_record_resolved", "locator_class": "critical_corpus"},
+    {"source_id": "bm-lachish-relief-124906", "http_status": 403, "result": "institution_access_controlled_locator_retained", "locator_class": "holding_institution"},
+    {"source_id": "iaa-lachish-gate-2018", "http_status": 200, "result": "resolved", "locator_class": "excavation_publication"},
+    {"source_id": "atiqot-lachish-gate-2023", "http_status": 200, "result": "doi_resolved_to_official_2023_publication", "locator_class": "excavation_publication"},
+    {"source_id": "pnas-archaeomagnetic-lachish-2022", "http_status": 403, "result": "publisher_access_controlled_doi_metadata_verified", "locator_class": "peer_reviewed"},
+    {"source_id": "israel-museum-sennacherib-display-2025", "http_status": 200, "result": "resolved", "locator_class": "museum_exhibition_interpretation"},
+    {"source_id": "tel-dan-biran-naveh-1993", "http_status": 200, "result": "resolved", "locator_class": "primary_publication"},
+    {"source_id": "tel-dan-biran-naveh-1995", "http_status": 200, "result": "resolved", "locator_class": "primary_publication"},
+    {"source_id": "tel-dan-ben-zvi-1994", "http_status": 403, "result": "publisher_access_controlled_doi_metadata_verified", "locator_class": "peer_reviewed"},
+    {"source_id": "tel-dan-athas-2006", "http_status": 403, "result": "publisher_access_controlled_doi_metadata_verified", "locator_class": "peer_reviewed"},
+    {"source_id": "iip-caes0043", "http_status": 405, "result": "corpus_rejected_automated_GET_locator_retained_for_human_browser", "locator_class": "critical_corpus"},
+    {"source_id": "pilate-sherwin-white-1964", "http_status": 200, "result": "doi_resolved_and_review_metadata_verified", "locator_class": "scholarly_review"},
+    {"source_id": "jericho-garstang-1935", "http_status": 403, "result": "publisher_access_controlled_doi_metadata_verified", "locator_class": "primary_event_association_publication"},
+    {"source_id": "jericho-kenyon-holland-1981", "http_status": 200, "result": "worldcat_catalog_record_resolved", "locator_class": "final_excavation_report"},
+    {"source_id": "jericho-bruins-van-der-plicht-1995", "http_status": 200, "result": "doi_resolved_and_peer_review_metadata_verified", "locator_class": "peer_reviewed"},
+    {"source_id": "jericho-nigro-late-bronze-2023", "http_status": 200, "result": "institutional_research_record_resolved", "locator_class": "scholarly_synthesis"},
+    {"source_id": "jericho-nigro-yasine-2024", "http_status": 200, "result": "institutional_version_of_record_resolved_and_doi_recorded", "locator_class": "excavation_publication"},
+    {"source_id": "hittites-bryce-2005", "http_status": 403, "result": "publisher_access_controlled_locator_retained", "locator_class": "scholarly_monograph"},
+    {"source_id": "hittites-lipinski-2012", "http_status": 200, "result": "official_journal_page_resolved_and_doi_verified", "locator_class": "peer_reviewed"}
+  ],
+  "limitations": [
+    "HTTP resolution and DOI metadata do not prove that a source supports a public claim.",
+    "Access-controlled results require an independent reviewer with lawful access or a browser-accessible abstract or catalog record.",
+    "The Garstang publisher URL and DOI metadata identify the directly relevant 1935 article but do not license ingestion of its text.",
+    "The release remains fail closed on any later independent claim-fidelity or citation-fitness failure."
+  ]
+}

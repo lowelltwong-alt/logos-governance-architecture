@@ -1,0 +1,6 @@
+{
+  "base_fixture": "positive_derived_projection.json",
+  "operation": "remove",
+  "path": ["loss_profile"],
+  "expected_rule": "schema_validation"
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "logos.academic.extension-registry.v1",
+  "object_type": "academic_extension_registry",
+  "kernel_contract": {
+    "path": "schemas/schema_registry.json",
+    "digest": "sha256:bca6f54cefec68199db4b131070974b5267802255ccf5bc086cdf735cc431be9",
+    "mutation_policy": "byte_identity_required_for_pack_only_changes"
+  },
+  "packs": [
+    {
+      "pack_id": "academic.synthetic-demonstration",
+      "manifest_ref": "tests/fixtures/academic_extensions/positive_domain_pack.json",
+      "manifest_digest": "sha256:86a135a734ebac6aeb58dd70e5597c7c9151142721cb4171cefe761b8f825396",
+      "status": "candidate"
+    }
+  ],
+  "consumers": [
+    {
+      "consumer_id": "synthetic-validator-fixture",
+      "pack_id": "academic.synthetic-demonstration",
+      "contract_ref": "tests/test_academic_extension_contract.py",
+      "compatibility": "tested"
+    }
+  ],
+  "authority_ceiling": "registry_is_non_authorizing"
+}

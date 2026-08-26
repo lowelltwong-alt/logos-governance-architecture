@@ -59,6 +59,7 @@ a running system.
 | Boundary Literature | Active scaffold | Source/reception metadata, trust tiers, and contamination controls | It contains no admitted source-text corpus and cannot override Scripture authority |
 | Doctrine Genealogy | Active data-free scaffold | Schemas, admission gates, profile scoping, and fail-closed validators | It is not a populated doctrine corpus and has no theological authority |
 | Doctrine Mesh V2 | Validated specification only | A frozen 90-file design package: 85 payload files plus 5 administrative evidence files, static validator, fixtures, prompts, contracts, graph, and receipts | It is not a running system, not a completed doctrine corpus, and not qualified theological authority |
+| Academic Extension + Biblical Evidence Demo V1 | Validated static demonstration | A lossless extension contract plus one source-linked P66/archaeology slice with an exact licensed image, 20 source records, 5 bounded claim cases, 27 nodes, 45 edges, 11 separated mesh roles, 72 adversarial fixtures, and replayable receipts | It is not a running graph, completed academic or doctrine corpus, transcription, preferred reading, historical verdict, or theological authority |
 | Runtime, live research, and scale | Roadmap only | Contracts, decisions, risks, and activation prerequisites | No controller, source ingestion, substantive doctrine buildout, or deployment has been authorized here |
 
 The exact definitions and snapshot commits are in the
@@ -288,6 +289,49 @@ Inspect the [specification README](docs/roadmap/logos-stewardship-architecture-b
 [validation receipt](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validation-receipt.json),
 and [independent review](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/independent-review.json).
 
+## Academic extension architecture and one concrete evidence slice
+
+The next graph layer is specified in the
+[Academic Extension Contract](docs/governance/academic-extension-contract.md).
+It defines a stable-kernel/domain-pack pattern for future archaeology,
+manuscripts and codices, ancient context, Jewish studies, history, philosophy,
+science, apologetics, doctrine genealogy, and disciplines not yet anticipated.
+Its engineering focus is lossless qualified assertions, explicit uncertainty,
+competing named graphs, immutable source identity, digest-bound projections,
+non-exact standards adapters, and reverse blast-radius coverage.
+
+The [Biblical Evidence Graph Demonstration V1](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md)
+turns that abstract contract into one inspectable public slice. It joins two
+deliberately different paths without collapsing either:
+
+- an exact, byte-verified, CC BY 4.0 P66 image → physical witness and four
+  non-contiguous John 19 segments → public-domain English display → honest M7
+  candidate intersections and an explicit M8-pending state; and
+- museum objects, inscription corpora, excavation reports, chronology work,
+  published alternatives, and limitations → versioned historical claims →
+  comparison with Scripture anchors through non-authorizing edges.
+
+![P66 Cologne verso used in the public evidence demonstration](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/assets/p66-cologne-john19-verso.jpg)
+
+© Institut für Altertumskunde an der Universität zu Köln. Image: *Inv.
+04274+004298 / P.inv. 04274_04298v*, Kölner Papyrussammlung, TM 61627.
+[Official object record](https://papyri.uni-koeln.de/stueck/tm61627); licensed
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Repository filename
+normalized only; image content unmodified. The University of Cologne does not
+endorse this project.
+
+The static packet contains 20 academic source records, five bounded cases, 27
+graph nodes, 45 edges, 11 separated mesh roles, and 72 negative fixtures. Those
+figures are validated file-level evidence, not measures of historical truth.
+Independent source-fitness, rights, graph, mesh, privacy, and unchanged-head
+gates accompany the release. The packet creates no transcription or critical
+edition, selects no preferred reading, does not call M7 reviewed gold, records
+M8 John as unbuilt, and records M7/M8 convergence as not started.
+
+The extension contract and demonstration are validated static design, not a
+running system, not a completed academic or doctrine corpus, and not qualified
+theological authority. The production domain-pack registry remains empty.
+
 ## Why this is a trust layer
 
 The trust layer is the combination of five engineering properties:
@@ -367,6 +411,8 @@ From a clone of this repository:
 ```bash
 python scripts/validate_portfolio_front_door.py
 python -m pytest tests/test_portfolio_front_door.py
+python scripts/validate_biblical_evidence_demo.py
+python -m pytest tests/test_biblical_evidence_demo.py
 python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
 python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
 python scripts/validate_internal_links.py --all-markdown
@@ -385,4 +431,7 @@ A passing command proves only the contract that command states.
 - [Repository family map](LOGOS_FAMILY_MAP.md)
 - [Cross-repository data flow](DATA_FLOW_MAP.md)
 - [Doctrine Mesh V2 specification](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/README.md)
+- [Biblical Evidence Graph Demonstration V1](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md)
+- [P66 source, rights, and exact-byte record](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/sources/p66-source-and-rights.yaml)
+- [Academic evidence graph](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/evidence-graph.yaml)
 - [Stewardship architecture campaign](docs/roadmap/logos-stewardship-architecture-buildout/README.md)

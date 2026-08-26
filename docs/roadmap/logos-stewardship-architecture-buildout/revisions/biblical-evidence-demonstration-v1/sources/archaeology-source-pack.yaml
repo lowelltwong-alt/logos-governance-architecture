@@ -1,0 +1,310 @@
+schema_version: logos.biblical-evidence.archaeology-source-pack.v1
+object_type: bounded_academic_source_pack
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 from institution catalogs, inscription corpora, excavation reports, critical editions, and peer-reviewed scholarship independently checked for this demonstration."
+reason_for_inclusion: "Provide real source-backed cases while keeping artifact facts, reconstructions, interpretations, uncertainty, and biblical comparison distinct."
+pack_id: urn:logos:source-pack:biblical-evidence-demo-v1
+authority_ceiling: contextual_evidence_only_no_scripture_or_doctrine_promotion
+retrieved_on: "2026-08-26"
+source_role_order:
+  - holding_institution_object_record
+  - primary_inscription_or_excavation_publication
+  - final_excavation_report
+  - critical_edition_or_corpus
+  - peer_reviewed_analysis
+  - scholarly_review
+  - scholarly_monograph
+  - museum_exhibition_interpretation
+  - reception_history_or_scope_control
+source_catalog:
+  - source_id: bm-sennacherib-prism-91032
+    source_role: holding_institution_object_record
+    title: "The Sennacherib Prism"
+    responsible_body: British Museum
+    locator: https://www.britishmuseum.org/collection/object/W_1855-1003-1
+    object_number: "1855,1003.1 / museum number 91032"
+    supports: "Custody, object identity, material description, and museum catalog metadata for one prism copy."
+    cannot_establish: "A neutral or complete history of the 701 BCE campaign."
+  - source_id: oracc-rinap-q003496
+    source_role: critical_edition_or_corpus
+    title: "RINAP 3/1 Sennacherib 022, Chicago/Taylor Prism (Q003496)"
+    responsible_body: "Open Richly Annotated Cuneiform Corpus, University of Pennsylvania"
+    locator: https://oracc.museum.upenn.edu/rinap/rinap3/Q003496
+    supports: "A citable scholarly edition and translation route for the royal inscription."
+    cannot_establish: "That royal rhetoric is a disinterested account or that every historical inference is settled."
+  - source_id: bm-lachish-relief-124906
+    source_role: holding_institution_object_record
+    title: "Stone panel from the South-West Palace of Sennacherib"
+    responsible_body: British Museum
+    locator: https://www.britishmuseum.org/collection/object/W_1856-0909-14_2
+    object_number: "1856,0909.14 / museum number 124906"
+    supports: "Custody, palace context, object identity, and catalog description of a Lachish relief panel."
+    cannot_establish: "The full sequence, accuracy, or interpretation of every scene in the relief program."
+  - source_id: iaa-lachish-gate-2018
+    source_role: primary_inscription_or_excavation_publication
+    title: "Tel Lakhish (Tel Lachish)"
+    responsible_body: "Israel Antiquities Authority, Hadashot Arkheologiyot"
+    locator: https://hadashot.iaa.org.il/Report_Detail_Eng.aspx?id=25415
+    authors: [Saar Ganor, Igor Kreimerman]
+    publication_year: 2018
+    supports: "Excavation context and reported stratigraphic observations at the gate complex."
+    cannot_establish: "A complete city-wide destruction model without comparison to the wider excavation record."
+  - source_id: atiqot-lachish-gate-2023
+    source_role: primary_inscription_or_excavation_publication
+    title: "The Iron Age Inner City Gate and Gate Shrine at Tel Lakhish (Lachish)"
+    responsible_body: "'Atiqot"
+    locator: https://doi.org/10.70967/2948-040X.1073
+    authors: [Saar Ganor, Igor Kreimerman]
+    publication_year: 2023
+    supports: "Published archaeological analysis of the Iron Age gate complex and its sequence."
+    cannot_establish: "That all debated historical synchronisms follow automatically from one context."
+  - source_id: pnas-archaeomagnetic-lachish-2022
+    source_role: peer_reviewed_analysis
+    title: "Reconstructing biblical military campaigns using geomagnetic field data"
+    responsible_body: Proceedings of the National Academy of Sciences
+    locator: https://doi.org/10.1073/pnas.2209117119
+    authors:
+      - Yoav Vaknin
+      - Ron Shaar
+      - Oded Lipschits
+      - Amihai Mazar
+      - Aren M. Maeir
+      - Yosef Garfinkel
+      - Liora Freud
+      - Avraham Faust
+      - Ron E. Tappy
+      - Igor Kreimerman
+      - Saar Ganor
+      - Karen Covello-Paran
+      - Omer Sergi
+      - Zeev Herzog
+      - Rami Arav
+      - Zvi Lederman
+      - Stefan Münger
+      - Alexander Fantalkin
+      - Seymour Gitin
+      - Erez Ben-Yosef
+    publication_year: 2022
+    supports: "A comparative archaeomagnetic chronology whose 701 BCE Lachish III assignment is used as a historical anchor for testing other destruction contexts."
+    cannot_establish: "The Lachish-to-701 BCE attribution independently, theological causation, or a complete reconciliation of textual accounts."
+  - source_id: israel-museum-sennacherib-display-2025
+    source_role: museum_exhibition_interpretation
+    title: "The Assyrian Campaign in Judah as told in the Sennacherib Prism"
+    responsible_body: Israel Museum, Jerusalem
+    locator: https://www.imj.org.il/en/exhibitions/special-display-assyrian-campaign-judah-told-sennacherib-prism
+    publication_year: 2025
+    supports: "Museum custody/display context and a public object-level orientation."
+    cannot_establish: "Independent peer-reviewed adjudication of every historical claim in the display narrative."
+  - source_id: tel-dan-biran-naveh-1993
+    source_role: primary_inscription_or_excavation_publication
+    title: "An Aramaic Stele Fragment from Tel Dan"
+    responsible_body: Israel Exploration Journal
+    locator: https://www.jstor.org/stable/27926300
+    authors: [Avraham Biran, Joseph Naveh]
+    publication_year: 1993
+    supports: "Foundational publication, context, text, and proposed reading of the first fragment."
+    cannot_establish: "That every restoration or historical identification is uncontested."
+  - source_id: tel-dan-biran-naveh-1995
+    source_role: primary_inscription_or_excavation_publication
+    title: "The Tel Dan Inscription: A New Fragment"
+    responsible_body: Israel Exploration Journal
+    locator: https://www.jstor.org/stable/27926361
+    authors: [Avraham Biran, Joseph Naveh]
+    publication_year: 1995
+    supports: "Publication of the additional fragment and a revised reconstruction."
+    cannot_establish: "A single mandatory reading of every fragmentary sequence."
+  - source_id: tel-dan-ben-zvi-1994
+    source_role: peer_reviewed_analysis
+    title: "On the Reading 'Bytdwd' in the Aramaic Stele from Tel Dan"
+    responsible_body: Journal for the Study of the Old Testament
+    locator: https://doi.org/10.1177/030908929401906403
+    authors: [Ehud Ben Zvi]
+    publication_year: 1994
+    supports: "A published alternative analysis of the contested sequence."
+    cannot_establish: "That the debate can be represented as a binary between belief and disbelief."
+  - source_id: tel-dan-athas-2006
+    source_role: peer_reviewed_analysis
+    title: "Setting the Record Straight: What Are We Making of the Tel Dan Inscription?"
+    responsible_body: Journal of Semitic Studies
+    locator: https://doi.org/10.1093/jss/fgl001
+    authors: [George Athas]
+    publication_year: 2006
+    supports: "A later scholarly reassessment of readings, reconstruction, and historical use."
+    cannot_establish: "Consensus by citation count or the truth of claims beyond the inscription."
+  - source_id: iip-caes0043
+    source_role: critical_edition_or_corpus
+    title: "Building inscription mentioning Pontius Pilatus (caes0043)"
+    responsible_body: Inscriptions of Israel/Palestine
+    locator: https://search.inscriptionsisraelpalestine.org/inscriptions/caes0043
+    supports: "A scholarly corpus record separating extant Latin, restorations, translation, bibliography, and object context."
+    cannot_establish: "That every proposed restoration is certain or that a Gospel episode occurred as narrated."
+  - source_id: pilate-sherwin-white-1964
+    source_role: scholarly_review
+    title: "A. Frova, L'Iscrizione Di Ponzio Pilato A Cesarea (review)"
+    responsible_body: Journal of Roman Studies
+    locator: https://doi.org/10.2307/298724
+    authors: [A. N. Sherwin-White]
+    publication_year: 1964
+    supports: "Contemporary scholarly evaluation of the inscription and title problem."
+    cannot_establish: "A complete biography of Pilate or direct verification of any particular narrative scene."
+  - source_id: jericho-garstang-1935
+    source_role: primary_inscription_or_excavation_publication
+    title: "The Fall of Bronze Age Jericho"
+    responsible_body: "Palestine Exploration Quarterly 67(2)"
+    locator: https://www.tandfonline.com/doi/abs/10.1179/peq.1935.67.2.61
+    doi: 10.1179/peq.1935.67.2.61
+    authors: [John Garstang]
+    publication_year: 1935
+    pages: 61-68
+    supports: "Garstang's directly relevant published event association and interpretation of the Bronze Age destruction evidence."
+    cannot_establish: "That Garstang's phase assignment or Joshua association is uncontested or sufficient without later stratigraphic review."
+  - source_id: jericho-kenyon-holland-1981
+    source_role: final_excavation_report
+    title: "Excavations at Jericho. Volume 3, The Architecture and Stratigraphy of the Tell"
+    responsible_body: "British School of Archaeology in Jerusalem"
+    locator: https://search.worldcat.org/title/Excavations-at-Jericho.-Volume-3-the-architecture-and-stratigraphy-of-the-Tell/oclc/491590425
+    authors: [Kathleen M. Kenyon, Thomas A. Holland]
+    publication_year: 1981
+    supports: "The final architecture and stratigraphy report from Kenyon's excavation program, including a materially different chronological reconstruction from Garstang's."
+    cannot_establish: "That every later radiocarbon, ceramic, erosion, or phase-correlation question is thereby closed."
+  - source_id: jericho-bruins-van-der-plicht-1995
+    source_role: peer_reviewed_analysis
+    title: "Tell es-Sultan (Jericho): Radiocarbon Results of Short-Lived Cereal and Multiyear Charcoal Samples from the End of the Middle Bronze Age"
+    responsible_body: Radiocarbon
+    locator: https://doi.org/10.1017/S0033822200030666
+    authors: [Hendrik J. Bruins, Johannes van der Plicht]
+    publication_year: 1995
+    supports: "Independent radiocarbon measurements from Kenyon-excavated Middle Bronze Age samples and explicit calibration limitations."
+    cannot_establish: "A single exact calendar date, a Late Bronze Joshua association, or final agreement across excavation phase models."
+  - source_id: jericho-nigro-late-bronze-2023
+    source_role: peer_reviewed_analysis
+    title: "Tell es-Sultan/Jericho in the Late Bronze Age: An Overall Reconstruction in the Light of Most Recent Research"
+    responsible_body: "Durch die Zeiten / Through the Ages, Festschrift for Dieter Vieweger"
+    locator: https://iris.uniroma1.it/handle/11573/1700491
+    authors: [Lorenzo Nigro]
+    publication_year: 2023
+    supports: "A recent published reconstruction focused specifically on Jericho's Late Bronze Age evidence and wider regional context."
+    cannot_establish: "Uncontested consensus, an exact biblical event linkage, or a replacement for primary excavation records."
+  - source_id: jericho-nigro-yasine-2024
+    source_role: primary_inscription_or_excavation_publication
+    title: "Interim Report on the Excavations at Tell es-Sultan, Ancient Jericho (2019–2023): The Bronze and Iron Age Cities"
+    responsible_body: "Vicino Oriente 29"
+    locator: https://iris.uniroma1.it/retrieve/c19bebaa-2701-47df-83b5-25726d821c17/Nigro_interim-report-excavations_2024.pdf
+    doi: 10.53131/VO2724-587X2024-2_4
+    authors: [Lorenzo Nigro, Jehad Yasine]
+    publication_year: 2024
+    pages: 47-96
+    supports: "A current excavation-team interim report covering five seasons and an updated Bronze- and Iron-Age site sequence."
+    cannot_establish: "Final consensus while excavation, chronology, and synthesis remain active."
+  - source_id: hittites-bryce-2005
+    source_role: scholarly_monograph
+    title: "The Kingdom of the Hittites, second edition"
+    responsible_body: Oxford University Press
+    locator: https://academic.oup.com/book/36172
+    authors: [Trevor Bryce]
+    publication_year: 2005
+    supports: "A scholarly history of Hatti and the Hittite kingdom for terminology and chronology controls."
+    cannot_establish: "That every biblical use of a translated ethnonym denotes the imperial Hittite kingdom."
+  - source_id: hittites-lipinski-2012
+    source_role: peer_reviewed_analysis
+    title: "Hittites and Hurrians in the Bible"
+    responsible_body: The Biblical Annals
+    locator: https://czasopisma.kul.pl/index.php/ba/article/view/835
+    doi: 10.31743/ba.835
+    authors: [Edward Lipiński]
+    publication_year: 2012
+    issue: "2(1), 9-25"
+    platform_publication_date: "2015-11-06"
+    supports: "A focused philological and historical discussion of biblical terminology."
+    cannot_establish: "That modern reception slogans preserve the distinctions made in current scholarship."
+claim_records:
+  - claim_id: claim-sennacherib-campaign-judah
+    case_id: sennacherib-lachish
+    question: "What distinct inscriptional, iconographic, and archaeological evidence bears on the Assyrian campaign in Judah conventionally dated to 701 BCE?"
+    safe_assertion: "Assyrian royal inscriptions, palace reliefs depicting Lachish, and excavated destruction evidence are distinct evidence types relevant to reconstructing the campaign."
+    source_refs:
+      - bm-sennacherib-prism-91032
+      - oracc-rinap-q003496
+      - bm-lachish-relief-124906
+      - iaa-lachish-gate-2018
+      - atiqot-lachish-gate-2023
+      - pnas-archaeomagnetic-lachish-2022
+      - israel-museum-sennacherib-display-2025
+    scripture_comparison_anchors: [2Kgs.18-2Kgs.19, Isa.36-Isa.37, 2Chr.32]
+    uncertainty: medium
+    counterpositions:
+      - "Royal inscriptions are strategic self-presentation and omission is not neutral evidence."
+      - "Synchronizing individual destruction contexts with named campaigns requires independent chronological argument."
+      - "The sources do not by themselves explain the non-capture of Jerusalem or establish theological causation."
+    cannot_establish:
+      - complete_harmonization_of_all_accounts
+      - exact_reason_jerusalem_was_not_captured
+      - theological_causation
+    required_review_classes: [assyriologist, iron_age_levant_archaeologist, hebrew_bible_historian]
+    authority_effect: none
+  - claim_id: claim-tel-dan-bytdwd
+    case_id: tel-dan
+    question: "How should the fragmentary Aramaic sequence bytdwd be read and what limited historical claims can it bear?"
+    safe_assertion: "The commonly proposed reading 'House of David' is represented as a scholarly interpretation alongside published alternatives, not as an automatically decisive proof of every claim about David."
+    source_refs: [tel-dan-biran-naveh-1993, tel-dan-biran-naveh-1995, tel-dan-ben-zvi-1994, tel-dan-athas-2006]
+    scripture_comparison_anchors: [2Sam.1-2Sam.24, 1Kgs.1-1Kgs.2]
+    uncertainty: medium
+    counterpositions:
+      - "The word division, restoration, referent, and historical implications have each been disputed."
+      - "Secondary-use context complicates the relation between inscription date, event date, and deposition."
+    cannot_establish: [all_narrative_claims_about_david, theological_status_of_david, absence_of_alternative_readings]
+    required_review_classes: [northwest_semitic_epigrapher, iron_age_levant_archaeologist, hebrew_bible_historian]
+    authority_effect: none
+  - claim_id: claim-pilate-inscription
+    case_id: pilate-inscription
+    question: "What does the damaged Caesarea inscription securely preserve about Pontius Pilate and his office?"
+    safe_assertion: "The inscription provides a material and epigraphic anchor for the name and official context of Pontius Pilate, while extant letters, restorations, translation, and interpretation remain separate."
+    source_refs: [iip-caes0043, pilate-sherwin-white-1964]
+    scripture_comparison_anchors: [Matt.27, Mark.15, Luke.23, John.18-John.19]
+    uncertainty: medium
+    counterpositions:
+      - "The damaged title and building phrase require restoration."
+      - "An official's attestation does not independently verify a particular narrative scene."
+    cannot_establish: [complete_biography_of_pilate, historicity_of_each_gospel_scene, theological_meaning_of_the_passion]
+    required_review_classes: [latin_epigrapher, roman_historian, new_testament_historian]
+    authority_effect: none
+  - claim_id: claim-jericho-chronology-control
+    case_id: jericho-control
+    question: "How should competing stratigraphic and chronological models be represented without converting an active archaeological problem into a binary verdict?"
+    safe_assertion: "Jericho is used here as a stress test requiring explicit strata, samples, dating methods, excavation histories, and competing models rather than a confirmation/disproof scoreboard."
+    source_refs:
+      - jericho-garstang-1935
+      - jericho-kenyon-holland-1981
+      - jericho-bruins-van-der-plicht-1995
+      - jericho-nigro-late-bronze-2023
+      - jericho-nigro-yasine-2024
+    scripture_comparison_anchors: [Josh.2-Josh.6]
+    uncertainty: high
+    counterpositions:
+      - "Excavation interpretation and absolute chronology depend on context selection, sampling, calibration, and phase correlation."
+      - "Later excavation does not erase the need to represent earlier datasets and arguments accurately."
+      - "Garstang's event association and Kenyon's different stratigraphic chronology must remain distinguishable from later radiocarbon and current expedition syntheses."
+    cannot_establish: [simple_proof_or_disproof, final_site_chronology, theological_causation]
+    required_review_classes: [levant_archaeologist, radiocarbon_chronologist, hebrew_bible_historian]
+    authority_effect: none
+  - claim_id: claim-hittite-reception-control
+    case_id: hittite-reception-control
+    question: "Which historical entities and textual terms are being conflated when modern reception says archaeology 'proved the Hittites'?"
+    safe_assertion: "The demonstration separates the Bronze Age kingdom of Hatti, later Neo-Hittite polities, biblical ethnonyms and translation choices, and modern reception claims."
+    source_refs: [hittites-bryce-2005, hittites-lipinski-2012]
+    scripture_comparison_anchors: [Gen.23, Josh.1.4, 2Kgs.7]
+    uncertainty: medium
+    counterpositions:
+      - "Different passages may use terms with different social, geographic, or chronological referents."
+      - "A modern slogan about prior scholarly doubt requires its own dated reception-history evidence."
+    cannot_establish: [single_identity_for_every_term, universal_prior_scholarly_denial, automatic_biblical_confirmation]
+    required_review_classes: [anatolian_historian, ancient_near_east_historian, hebrew_lexicographer, reception_historian]
+    authority_effect: none
+pack_invariants:
+  artifact_directly_proves_scripture: false
+  contextual_evidence_establishes_doctrine: false
+  citation_count_decides_truth: false
+  primary_and_secondary_roles_are_distinct: true
+  counterposition_search_required: true
+  qualified_human_review_required_for_promotion: true

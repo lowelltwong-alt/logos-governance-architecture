@@ -1,0 +1,7 @@
+{
+  "base_fixture": "positive_assertion.json",
+  "operation": "replace",
+  "path": ["extension_payload", "payload_data", "future_unknown_field", "nested", 0],
+  "value": 999,
+  "expected_rule": "extension_payload_digest"
+}

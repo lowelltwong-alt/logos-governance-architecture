@@ -152,6 +152,8 @@ research, source ingestion, doctrine, or cross-repository writes.
 ```bash
 python scripts/validate_portfolio_front_door.py
 python -m pytest tests/test_portfolio_front_door.py
+python scripts/validate_biblical_evidence_demo.py
+python -m pytest tests/test_biblical_evidence_demo.py
 python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
 python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
 python scripts/validate_internal_links.py --all-markdown
@@ -159,6 +161,32 @@ python scripts/validate_internal_links.py --all-markdown
 
 Also inspect the exact Git diff and commit. A receipt is useful evidence, but the
 source and reproducible command remain stronger than a summary of either.
+
+## Academic extension and public evidence demonstration
+
+The [Academic Extension Contract](../../governance/academic-extension-contract.md)
+defines the lossless domain-pack boundary for future academic graph work. The
+[Biblical Evidence Graph Demonstration V1](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md)
+is its first public, concrete, source-linked demonstration. It includes the exact
+licensed P66 image, a rights and lineage record, a non-contiguous John 19
+crosswalk, bounded archaeology claim packets, a claim-mediated graph, a
+provider-neutral specialist mesh, deterministic negative fixtures, frozen
+digests, and independent reviews.
+
+Read the demonstration in this order:
+
+1. [scope and nonclaims](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/SCOPE.md);
+2. [P66 source and rights](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/sources/p66-source-and-rights.yaml);
+3. [academic source pack](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/sources/archaeology-source-pack.yaml);
+4. [evidence graph](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/evidence-graph.yaml);
+5. [agent mesh](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/agent-mesh.v3.json);
+6. [release manifest](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/release/public-release-manifest.yaml); and
+7. [validation receipt](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/validation-receipt.json).
+
+The image and static candidate records are public evidence; they are not a
+transcription, preferred reading, completed archaeology or doctrine corpus,
+running graph, reviewed-gold M7/M8 convergence result, or theological authority.
+The production academic domain-pack registry remains empty.
 
 ## Non-claims that must survive every summary
 

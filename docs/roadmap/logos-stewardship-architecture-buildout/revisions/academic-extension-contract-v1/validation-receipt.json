@@ -1,0 +1,107 @@
+{
+  "schema_version": "logos.academic-extension.validation-receipt.v1",
+  "object_type": "academic_extension_validation_receipt",
+  "trust_zone": "proposed",
+  "lifecycle_status": "draft",
+  "provenance_note": "Recorded 2026-08-26 after deterministic replay of the frozen Academic Extension Contract v1 candidate.",
+  "reason_for_inclusion": "Preserve machine-readable validation evidence without treating a specification or test result as academic, theological, activation, or release authority.",
+  "created_at": "2026-08-26T23:13:59Z",
+  "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "candidate_base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+  "frozen_content": {
+    "manifest": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/academic-extension-contract-v1/frozen-digests.json",
+    "manifest_sha256": "sha256:1c97ad843036fcc8721f85af26fac366ef338e37af0abcd2d6a1d74c79d14dfb",
+    "path_count": 47,
+    "content_digest": "sha256:539c6c020c6d6b81d227bdf2d4800be407ad5143664b95f57fd7bb6b1ee8a2ba",
+    "receipt_paths_excluded": true
+  },
+  "result": "pass",
+  "checks": [
+    {
+      "id": "academic-extension-contract",
+      "result": "pass",
+      "evidence": {
+        "schemas": 5,
+        "positive_fixtures": 5,
+        "adversarial_fixtures": 12,
+        "blocked_human_gates": 8,
+        "premortem_risks": 11,
+        "standards_sources": 9
+      }
+    },
+    {
+      "id": "focused-pytest",
+      "result": "pass",
+      "evidence": "25 passed"
+    },
+    {
+      "id": "full-pytest",
+      "result": "pass",
+      "evidence": "293 passed in 108.91 seconds"
+    },
+    {
+      "id": "repository-default-validation-suite",
+      "result": "out_of_scope_baseline_failure",
+      "evidence": "30 of 31 validators passed. The sole failure is ten pre-existing retrieval-neighborhood files at 51 days versus a 30-day freshness threshold; no data/retrieval path is in this candidate, and this receipt grants no authority to refresh or waive them."
+    },
+    {
+      "id": "task-local-mesh",
+      "result": "pass",
+      "evidence": "Three non-overlapping roles; maximum depth one; prior-role reconciliation present; manifest sha256:d92d972fdf97cd22a9e4ab551c80681eea4b1432b3fab8be497dbfcc8f9d74a1"
+    },
+    {
+      "id": "family-work-registry",
+      "result": "pass",
+      "evidence": "Schema and semantic validation passed; five unrelated stale-lease warnings remained warnings."
+    },
+    {
+      "id": "governance-dependency-map",
+      "result": "pass",
+      "evidence": "Academic Extension Contract dependency coverage validated."
+    },
+    {
+      "id": "internal-links",
+      "result": "pass",
+      "evidence": "466 Markdown files passed after final receipt materialization."
+    },
+    {
+      "id": "git-diff-check",
+      "result": "pass",
+      "evidence": "No whitespace errors."
+    },
+    {
+      "id": "exact-claim-scope",
+      "result": "pass",
+      "evidence": "82 candidate paths: 18 tracked modifications and 64 untracked additions; 0 staged; every path is covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001."
+    },
+    {
+      "id": "candidate-sensitive-patterns",
+      "result": "pass",
+      "evidence": "82 exact candidate paths checked: 81 UTF-8 text files scanned, the exact P66 JPEG skipped as binary, 0 read errors, and 0 candidate-added private locators, attachment locators, chat-local locators, email addresses, private-key markers, or recognized credential-token patterns."
+    },
+    {
+      "id": "changed-input-independent-review",
+      "result": "pass",
+      "evidence": "ACADEMIC-EXTENSION-REVIEW-002 at 2026-08-26T23:06:23Z independently reproduced all 47 row hashes and aggregate digest; all eight human gates remain blocked and the production domain-pack registry remains empty."
+    }
+  ],
+  "environment_note": {
+    "initial_restricted_run": "invalidated by Windows temporary-directory and Cargo-target access denials",
+    "authoritative_replay": "passed with task-specific retained temporary and Cargo storage outside the repository",
+    "repository_test_output_written": false,
+    "evidence_quality_replay": "The final privacy wrapper enumerated the exact NUL-delimited Git candidate set, asserted 82 paths, compared tracked files to exact HEAD blobs, scanned untracked text in full, failed on read errors, and passed with zero findings; the one binary skip is the digest-bound P66 JPEG."
+  },
+  "authority_ceiling": [
+    "specification_only",
+    "fixture_only",
+    "no_runtime_activation",
+    "no_source_ingestion",
+    "no_substantive_doctrine_change",
+    "no_academic_truth_promotion",
+    "no_publication_authority"
+  ],
+  "nonclaims": [
+    "A passing validator does not establish academic truth, source fitness, theological authority, standards conformance, runtime qualification, activation, or release readiness.",
+    "The empty domain-pack registry remains non-authorizing and all eight human gates remain blocked."
+  ]
+}

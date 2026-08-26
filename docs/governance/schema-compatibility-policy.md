@@ -172,3 +172,13 @@ Before changing a schema, ask:
 Machine-readable growth should be governed like architecture, not treated like decoration.
 
 Stable schemas let the repository grow recursively without becoming incompatible with itself.
+
+## Academic Extension Contract profile
+
+The [Academic Extension Contract](academic-extension-contract.md) applies the
+base-versus-extension rule to future academic disciplines. Pack-only changes
+must preserve the recorded kernel bytes, place unknown data in a lossless
+`extension_payload`, version pack schemas explicitly, default external mappings
+to non-exact, and register every known downstream consumer. An unknown consumer,
+namespace collision, missing migration, or source-digest drift blocks a
+compatibility claim.

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/academic_extensions/derived_projection.v1.schema.json",
+  "title": "Academic Derived Projection v1",
+  "$comment": "A digest-bound derivative. It cannot overwrite its source or gain authority through projection.",
+  "type": "object",
+  "x-governance": {"object_type": "academic_derived_projection_schema", "trust_zone": "inferred", "lifecycle_status": "draft", "provenance_note": "Created 2026-08-25 for the Academic Extension Contract.", "reason_for_inclusion": "Make derivation and invalidation explicit when sources change."},
+  "required": ["schema_version", "object_type", "projection_id", "source_record_ref", "source_digest", "projection_type", "projector", "projection_payload", "projection_digest", "loss_profile", "invalidation_policy", "authority_effect", "trust_zone", "lifecycle_status"],
+  "properties": {
+    "schema_version": {"const": "logos.academic.derived-projection.v1"},
+    "object_type": {"const": "academic_derived_projection"},
+    "projection_id": {"type": "string", "pattern": "^urn:logos:projection:[a-z0-9][a-z0-9:._-]*$"},
+    "source_record_ref": {"type": "string", "pattern": "^urn:logos:source:[a-z0-9][a-z0-9:._-]*$"},
+    "source_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "projection_type": {"enum": ["index", "summary_candidate", "feature_extraction", "crosswalk", "visualization", "other"]},
+    "projector": {"type": "object", "additionalProperties": false, "required": ["name", "version", "method"], "properties": {"name": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}, "method": {"type": "string", "minLength": 1}}},
+    "projection_payload": {"type": "object", "additionalProperties": true},
+    "projection_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "loss_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "lost_fields", "reversibility", "native_source_retained", "rationale"],
+      "properties": {
+        "mode": {"enum": ["lossless", "lossy"]},
+        "lost_fields": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "reversibility": {"enum": ["self_reversible", "reconstructable_from_pinned_source", "non_reversible"]},
+        "native_source_retained": {"const": true},
+        "rationale": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"mode": {"const": "lossless"}}, "required": ["mode"]},
+          "then": {"properties": {"lost_fields": {"maxItems": 0}, "reversibility": {"const": "self_reversible"}}},
+          "else": {"properties": {"lost_fields": {"minItems": 1}}}
+        }
+      ]
+    },
+    "invalidation_policy": {"const": "invalidate_on_source_digest_drift"},
+    "authority_effect": {"const": "none"},
+    "trust_zone": {"const": "inferred"},
+    "lifecycle_status": {"enum": ["draft", "proposed", "deprecated"]}
+  },
+  "additionalProperties": false
+}

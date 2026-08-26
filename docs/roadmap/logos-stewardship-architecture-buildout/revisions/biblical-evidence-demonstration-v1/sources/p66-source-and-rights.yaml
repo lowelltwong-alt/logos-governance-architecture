@@ -1,0 +1,97 @@
+schema_version: logos.biblical-evidence.p66-source-pack.v1
+object_type: manuscript_image_source_and_rights_record
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 from the University of Cologne object record, exact official image response, local byte verification, and independent rights review."
+reason_for_inclusion: "Bind the public P66 image to exact custody, catalog, coverage, rights, attribution, and transformation limits."
+record_id: urn:logos:source:p66-cologne-tm61627-verso
+object:
+  inventory_id: "P.inv. 04274+004298"
+  trismegistos_id: "TM 61627"
+  gregory_aland_id: "P66"
+  holding_institution: "Papyrussammlung Köln, Institut für Altertumskunde, Universität zu Köln"
+  object_type: codex
+  material: papyrus
+  language_script: Greek
+  date_catalog: "beginning of the 3rd century"
+  provenance_catalog: "Panopolis?"
+  provenance_certainty: uncertain
+  related_codex: "Bodmer Codex II / P. Bodmer II"
+  publication_locator: "P. Köln V, plate VII"
+asset:
+  repository_path: assets/p66-cologne-john19-verso.jpg
+  official_filename: "P.inv. 04274_04298v.jpg"
+  repository_filename: p66-cologne-john19-verso.jpg
+  media_type: image/jpeg
+  width_px: 1802
+  height_px: 1921
+  bytes: 1083773
+  sha256: "f7453af8d2523cc358148c7d26072d87b53c991aa03df667f8c5c54c7beef040"
+  object_record_url: https://papyri.uni-koeln.de/stueck/tm61627
+  official_image_url: "https://papyri.uni-koeln.de/stueck/DS_d1e18043/img/04274_04298/orig/P.inv.%2004274_04298v.jpg"
+  byte_verification:
+    verified_at: "2026-08-26"
+    http_status: 200
+    remote_bytes: 1083773
+    remote_sha256: "f7453af8d2523cc358148c7d26072d87b53c991aa03df667f8c5c54c7beef040"
+    local_remote_match: true
+rights:
+  license_id: CC-BY-4.0
+  license_url: https://creativecommons.org/licenses/by/4.0/
+  rights_statement_scope: "Publicly accessible metadata and images for this object"
+  copyright_notice: "© Institut für Altertumskunde an der Universität zu Köln"
+  attribution_text: "© Institut für Altertumskunde an der Universität zu Köln. Image: Inv. 04274+004298 / P.inv. 04274_04298v, Kölner Papyrussammlung, TM 61627. Source: https://papyri.uni-koeln.de/stueck/tm61627. Licensed CC BY 4.0."
+  attribution_required: true
+  license_link_required: true
+  source_link_required: true
+  change_indication_required: true
+  modification_status: filename_normalized_only_image_content_unmodified
+  endorsement_implied: false
+  redistribution: allowed_with_attribution
+  adaptation: allowed_with_attribution_and_change_notice
+  commercial_use: allowed_under_license_terms
+  non_copyright_permissions_asserted: false
+coverage_segments:
+  - segment_id: p66-john19-08-11
+    passage: John.19.8-John.19.11
+  - segment_id: p66-john19-13-15
+    passage: John.19.13-John.19.15
+  - segment_id: p66-john19-18-20
+    passage: John.19.18-John.19.20
+  - segment_id: p66-john19-23-24
+    passage: John.19.23-John.19.24
+coverage_is_non_contiguous: true
+forbidden_continuous_range: John.19.8-John.19.24
+layers:
+  - layer_id: physical_image
+    included: true
+    rights_basis: CC-BY-4.0
+  - layer_id: object_catalog_metadata
+    included: true
+    rights_basis: CC-BY-4.0
+  - layer_id: diplomatic_transcription
+    included: false
+    status: separately_sourced_layer_required
+    reason: "Image rights do not license or establish a transcription."
+  - layer_id: critical_greek_edition
+    included: false
+    status: separately_sourced_layer_required
+    reason: "No preferred reading or edition is selected."
+  - layer_id: english_translation_display
+    included: true
+    rights_basis: public_domain_eng_web_source_snapshot
+    source_ref: urn:logos:source:eng-web-2026-05-28
+authority:
+  image_is_translation: false
+  image_is_preferred_reading: false
+  image_is_canonical_authority: false
+  image_is_theological_authority: false
+  publication_approves_transcription: false
+review:
+  researcher_self_approval_allowed: false
+  independent_rights_review: pass
+  independent_rights_review_date: "2026-08-26"
+  residual_conditions:
+    - Preserve exact asset hash and attribution.
+    - Keep transcription, edition, translation, and doctrine rights separate.
+    - Do not imply institutional endorsement.

@@ -1,0 +1,28 @@
+schema_version: logos.biblical-evidence.query-stories.v1
+object_type: bounded_graph_query_contract
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 as human-readable query intent for the static demonstration graph."
+reason_for_inclusion: "Show what a future knowledge-graph runtime could answer while preventing a static design from being misrepresented as a running service."
+runtime_status: not_implemented
+queries:
+  - query_id: q-p66-lineage
+    question: "What exact rights, source, transformation, verse, English-display, and chunk-state path is visible for this P66 image?"
+    expected_surfaces: [source_record, physical_artifact, rights_record, witness_coverage_segment, scripture_anchor, text_or_translation_witness, candidate_chunk]
+    required_nonclaims: [no_transcription_from_image, no_direct_image_to_english, m7_candidate_only, m8_pending, convergence_not_started]
+  - query_id: q-sennacherib-evidence
+    question: "Which independent evidence types bear on the 701 BCE campaign question, and what can each not establish?"
+    expected_surfaces: [source_record, physical_artifact, archaeological_context, historical_claim, counterposition, review_gate]
+    required_nonclaims: [no_complete_harmonization, no_theological_causation, royal_rhetoric_is_not_neutral]
+  - query_id: q-disagreement
+    question: "Which claims have published alternatives or unresolved reconstruction and chronology issues?"
+    expected_surfaces: [historical_claim, counterposition, uncertainty_record, source_record]
+    required_nonclaims: [citation_count_does_not_decide_truth, disagreement_is_not_erased]
+  - query_id: q-human-gates
+    question: "Which specialist and human gates block promotion for each claim or source transformation?"
+    expected_surfaces: [review_gate, historical_claim, physical_artifact, doctrine_or_tradition_object]
+    required_nonclaims: [agent_review_is_not_expert_approval, graph_validation_is_not_truth]
+  - query_id: q-future-extension
+    question: "How can a new archaeology, manuscript, ancient-religion, doctrine, apologetics, or science domain attach without changing existing identities?"
+    expected_surfaces: [external_domain_extension, source_record, historical_claim, derived_projection_of]
+    required_nonclaims: [extension_cannot_overwrite_core, unknown_relation_cannot_confer_authority]

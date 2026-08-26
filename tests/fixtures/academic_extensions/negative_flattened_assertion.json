@@ -1,0 +1,7 @@
+{
+  "base_fixture": "positive_assertion.json",
+  "operation": "replace",
+  "path": ["roles"],
+  "value": "subject -- predicate -- object",
+  "expected_rule": "schema_validation"
+}

@@ -1,0 +1,7 @@
+{
+  "base_fixture": "positive_assertion.json",
+  "operation": "replace",
+  "path": ["named_graph", "default_winner"],
+  "value": true,
+  "expected_rule": "schema_validation"
+}

@@ -1,0 +1,53 @@
+schema_version: logos.academic-extension.acceptance-matrix.v1
+object_type: academic_extension_acceptance_test_matrix
+trust_zone: proposed
+lifecycle_status: draft
+rows:
+  - risk_id: AE-RISK-001
+    risk: universal_schema_creep
+    required_test: production_registry_kernel_digest_matches_exact_schema_registry_bytes
+    failure_effect: stop
+  - risk_id: AE-RISK-002
+    risk: triple_flattening
+    required_test: roles_must_be_typed_unique_by_role_and_flattened_or_duplicate_role_fixtures_must_fail
+    failure_effect: stop
+  - risk_id: AE-RISK-003
+    risk: context_becomes_doctrine
+    required_test: authority_effect_and_may_ground_doctrine_are_const_none_false
+    failure_effect: stop_and_human_route
+  - risk_id: AE-RISK-004
+    risk: hypothesis_collapse
+    required_test: default_winner_true_and_self_referential_alternative_graph_fixtures_must_fail
+    failure_effect: stop
+  - risk_id: AE-RISK-005
+    risk: source_projection_overwrite
+    required_test: source_payload_injection_and_missing_loss_profile_must_fail_and_source_digest_drift_invalidates
+    failure_effect: stop_and_replay_dependents
+  - risk_id: AE-RISK-006
+    risk: unknown_extension_loss
+    required_test: nested_unknown_extension_payload_roundtrip_and_payload_digest_must_remain_identical
+    failure_effect: stop
+  - risk_id: AE-RISK-007
+    risk: namespace_or_version_collision
+    required_test: pack_ids_namespaces_manifest_refs_and_registry_to_manifest_identity_are_closed
+    failure_effect: stop
+  - risk_id: AE-RISK-008
+    risk: false_temporal_spatial_measurement_precision
+    required_test: numeric_measurement_requires_nonempty_unit_numeric_uncertainty_and_nonempty_method
+    failure_effect: stop
+  - risk_id: AE-RISK-009
+    risk: reverse_blast_radius_gap
+    required_test: every_fixture_pack_has_a_declared_consumer_and_no_consumer_targets_unknown_pack
+    failure_effect: stop
+  - risk_id: AE-RISK-010
+    risk: adapter_overclaim
+    required_test: exact_mapping_fixture_must_fail_and_external_mapping_revision_is_required
+    failure_effect: stop
+  - risk_id: AE-RISK-011
+    risk: rights_facet_collapse
+    required_test: source_rights_require_access_quotation_transformation_retention_model_transmission_embedding_redistribution_and_publication
+    failure_effect: stop_and_human_route
+nonclaims:
+  - tests_do_not_prove_semantic_truth_or_completeness
+  - synthetic_fixtures_are_not_academic_evidence
+  - passing_tests_do_not_authorize_pack_activation

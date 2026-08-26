@@ -1,0 +1,28 @@
+{
+  "schema_version": "logos.academic.source-record.v1",
+  "object_type": "academic_source_record",
+  "source_record_id": "urn:logos:source:synthetic-demo-001",
+  "source_payload": {
+    "source_kind": "other",
+    "title": "Synthetic contract fixture; no source content",
+    "version_or_edition": "fixture-v1",
+    "custodial_identity": "local synthetic test fixture",
+    "locators": ["fixture:synthetic:1"],
+    "provenance": {"generated_for": "deterministic schema test"},
+    "rights": {
+      "access": "allowed",
+      "quotation": "allowed",
+      "transformation": "allowed",
+      "retention": "allowed",
+      "model_transmission": "allowed",
+      "embedding": "allowed",
+      "redistribution": "allowed",
+      "publication": "allowed",
+      "review_required": true
+    },
+    "uncertainty": ["This is not a real source and cannot support any claim."]
+  },
+  "record_digest": "sha256:a59bd00dd69c8a53a2977236221a4ce0195dec3fa9d6d250d08803de1ec71291",
+  "trust_zone": "proposed",
+  "lifecycle_status": "draft"
+}

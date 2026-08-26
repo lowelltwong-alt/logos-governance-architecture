@@ -612,6 +612,26 @@ Current Bridge Pack v1 examples include:
 
 This is the preferred next step when the research packet is strong enough to show a derivation path, but not yet strong enough to justify claim-object or graph-object promotion.
 
+## Academic extension horizon
+
+For future archaeology, manuscript and codex, ancient-context, Jewish-studies,
+historical, philosophical, scientific, apologetic, doctrine-genealogy, or other
+academic graph work, start with
+[`docs/governance/academic-extension-contract.md`](docs/governance/academic-extension-contract.md).
+The package is specification-only: no production domain pack is registered, no
+source is ingested, no academic assertion is approved, and no contextual graph
+may ground doctrine. Use the linked schemas, synthetic fixtures, human gates,
+and validator before proposing a real pack.
+
+For a concrete, public, non-authorizing application of that contract, inspect
+[`docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md`](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md).
+It includes the exact CC BY 4.0 P66 image, source and rights lineage, public-domain
+English crosswalk, candid M7/M8 status, bounded archaeology sources and
+counterpositions, claim-mediated graph edges, a separated specialist-agent mesh,
+negative fixtures, frozen digests, and review receipts. Read its `SCOPE.md` and
+release manifest before summarizing it. It is validated static design, not a
+running graph, source corpus, historical verdict, doctrine, or authority.
+
 ## Final principle
 
 The Logos repository should become easier to contribute to without becoming easier to corrupt.

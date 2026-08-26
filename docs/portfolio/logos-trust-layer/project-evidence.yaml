@@ -2,7 +2,7 @@ metadata:
   object_type: logos_public_project_evidence_manifest
   trust_zone: proposed
   lifecycle_status: public_release_candidate
-  provenance_note: "Prepared on 2026-08-24 from exact public origin/main commits, the historical V1 campaign checkpoint, and the repaired frozen doctrine-mesh-v2 specification candidate."
+  provenance_note: "Prepared on 2026-08-24 from exact public origin/main commits, the historical V1 campaign checkpoint, and the repaired frozen doctrine-mesh-v2 specification candidate; extended 2026-08-26 with a separately validated static P66 and archaeology evidence demonstration."
   reason_for_inclusion: "Give recruiters, engineers, reviewers, and their AI tools a skeptical, machine-checkable route from project claims to inspectable evidence and explicit limits."
 schema_version: logos.project_evidence.v2
 project_id: logos-trust-layer
@@ -269,6 +269,22 @@ capabilities:
       - kind: local_path
         target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/research/expert-pack-contract.yaml
         supports: "Source-bound ExpertPack contract without treating summaries as evidence."
+  - capability_id: claim-mediated-academic-evidence-demonstration
+    title: "Claim-mediated manuscript and archaeology demonstration"
+    maturity: dated_validation_snapshot
+    mechanism: "An exact licensed P66 image, non-contiguous witness coverage, separately sourced public-domain English display, honest M7/M8 candidate state, bounded archaeology claims, source-role hierarchy, counterpositions, claim-mediated edges, specialist-role separation, and adversarial checks are frozen together."
+    demonstrates: "How the stable Academic Extension Contract can preserve rights, provenance, disagreement, uncertainty, graph semantics, and human authority in one concrete public slice."
+    does_not_prove: "A transcription, preferred reading, historical verdict, complete academic corpus, running graph, reviewed-gold M7/M8 convergence, doctrine, or qualified theological authority."
+    evidence:
+      - kind: local_path
+        target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md
+        supports: "Human-readable P66 and archaeology slice, diagrams, status table, limitations, and replay route."
+      - kind: local_path
+        target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/release/public-release-manifest.yaml
+        supports: "Machine-readable asset, corpus, runtime, authority, and release-gate boundaries."
+      - kind: local_path
+        target: scripts/validate_biblical_evidence_demo.py
+        supports: "Offline deterministic asset, source, graph, mesh, fixture, and frozen-digest validator."
   - capability_id: public-ai-interrogation-surface
     title: "AI-interrogable public portfolio"
     maturity: dated_validation_snapshot
@@ -346,6 +362,16 @@ evidence_routes:
       - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/revision-manifest.yaml
       - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validation-receipt.json
       - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/independent-review.json
+  - route_id: biblical-evidence-demonstration
+    question: "How does one real P66 and archaeology slice preserve source rights, uncertainty, disagreement, graph boundaries, agent separation, and honest incompleteness?"
+    start_at: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md
+    then_read:
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/SCOPE.md
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/sources/p66-source-and-rights.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/sources/archaeology-source-pack.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/evidence-graph.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/agent-mesh.v3.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/validation-receipt.json
   - route_id: trust-and-custody
     question: "How are authority, evidence, trust zones, and cross-repository custody kept separate?"
     start_at: AI_FRONT_DOOR.md
@@ -388,6 +414,7 @@ explicit_non_claims:
   - "A deterministic validator pass proves only its bounded structural and policy contract, not semantic or theological correctness."
   - "Graph proximity, embeddings, generated confidence, or agent consensus cannot promote a candidate to governed truth."
   - "The recorded independent review is partly verified and does not claim cross-provider independence."
+  - "The P66 and archaeology demonstration is not a transcription, preferred reading, historical verdict, running graph, completed academic or doctrine corpus, or theological authority."
   - "Roadmap horizons are possible applications, not delivered features, schedules, or standing authorization."
 verification:
   schema: docs/portfolio/logos-trust-layer/project-evidence.schema.json
@@ -398,6 +425,8 @@ verification:
   commands:
     - python scripts/validate_portfolio_front_door.py
     - python -m pytest tests/test_portfolio_front_door.py
+    - python scripts/validate_biblical_evidence_demo.py
+    - python -m pytest tests/test_biblical_evidence_demo.py
     - python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
     - python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
     - python scripts/validate_internal_links.py --all-markdown

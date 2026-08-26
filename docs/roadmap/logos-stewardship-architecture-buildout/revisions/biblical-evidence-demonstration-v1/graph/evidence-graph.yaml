@@ -1,0 +1,97 @@
+schema_version: logos.biblical-evidence.graph.v1
+object_type: static_claim_mediated_evidence_graph
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 from the frozen demonstration source records, exact P66 rights record, and candidate-only chunk observations."
+reason_for_inclusion: "Provide an inspectable graph projection in which evidence can support or challenge bounded claims without acquiring Scripture or doctrine authority."
+graph_id: urn:logos:graph:biblical-evidence-demo-v1
+named_graph:
+  graph_class: public_academic_demonstration_candidate
+  promotion_authority: none
+  runtime_activated: false
+  canonical: false
+  theological_authority: false
+nodes:
+  - {id: src:p66-cologne, kind: source_record, label: "Cologne P66 object and rights record", trust_zone: proposed, status: candidate}
+  - {id: artifact:p66-verso, kind: physical_artifact, label: "P66 Cologne verso JPEG", trust_zone: proposed, status: byte_verified}
+  - {id: rights:p66-cc-by-4, kind: rights_record, label: "P66 image CC BY 4.0 record", trust_zone: proposed, status: independently_checked}
+  - {id: segment:p66-08-11, kind: witness_coverage_segment, label: "John 19:8-11", trust_zone: proposed, status: cataloged}
+  - {id: segment:p66-13-15, kind: witness_coverage_segment, label: "John 19:13-15", trust_zone: proposed, status: cataloged}
+  - {id: segment:p66-18-20, kind: witness_coverage_segment, label: "John 19:18-20", trust_zone: proposed, status: cataloged}
+  - {id: segment:p66-23-24, kind: witness_coverage_segment, label: "John 19:23-24", trust_zone: proposed, status: cataloged}
+  - {id: text:eng-web, kind: text_or_translation_witness, label: "World English Bible Classic source snapshot", trust_zone: proposed, status: public_domain_source}
+  - {id: chunk:m7-public-009, kind: candidate_chunk, label: "M7 public held candidate John-009", trust_zone: proposed, status: candidate_only_non_authorizing}
+  - {id: chunk:m7-local-057, kind: candidate_chunk, label: "M7 local non-durable candidate John-057", trust_zone: learning-sidecar, status: untracked_observation}
+  - {id: chunk:m7-local-058, kind: candidate_chunk, label: "M7 local non-durable candidate John-058", trust_zone: learning-sidecar, status: untracked_observation}
+  - {id: state:m8-john, kind: candidate_chunk, label: "M8 John state", trust_zone: proposed, status: pending_not_built}
+  - {id: scripture:john19, kind: scripture_anchor, label: "John 19 verse identities", trust_zone: canonical, status: identity_pointer_only}
+  - {id: claim:sennacherib, kind: historical_claim, source_claim_id: claim-sennacherib-campaign-judah, label: "Sennacherib campaign in Judah bounded claim", trust_zone: proposed, status: awaiting_qualified_review}
+  - {id: claim:tel-dan, kind: historical_claim, source_claim_id: claim-tel-dan-bytdwd, label: "Tel Dan bytdwd bounded claim", trust_zone: proposed, status: awaiting_qualified_review}
+  - {id: claim:pilate, kind: historical_claim, source_claim_id: claim-pilate-inscription, label: "Pilate inscription bounded claim", trust_zone: proposed, status: awaiting_qualified_review}
+  - {id: claim:jericho-control, kind: historical_claim, source_claim_id: claim-jericho-chronology-control, label: "Jericho chronology control claim", trust_zone: proposed, status: contested_high_uncertainty}
+  - {id: claim:hittite-control, kind: historical_claim, source_claim_id: claim-hittite-reception-control, label: "Hittite reception control claim", trust_zone: proposed, status: awaiting_qualified_review}
+  - {id: scripture:sennacherib-passages, kind: scripture_anchor, label: "2 Kings 18-19; Isaiah 36-37; 2 Chronicles 32", trust_zone: canonical, status: identity_pointer_only}
+  - {id: scripture:david-passages, kind: scripture_anchor, label: "David narrative anchors", trust_zone: canonical, status: identity_pointer_only}
+  - {id: scripture:pilate-passages, kind: scripture_anchor, label: "Pilate narrative anchors", trust_zone: canonical, status: identity_pointer_only}
+  - {id: scripture:jericho-passages, kind: scripture_anchor, label: "Joshua 2-6 anchors", trust_zone: canonical, status: identity_pointer_only}
+  - {id: scripture:hittite-passages, kind: scripture_anchor, label: "Selected biblical Hittite-term anchors", trust_zone: canonical, status: identity_pointer_only}
+  - {id: gate:papyrology, kind: review_gate, label: "NT papyrology and textual-criticism gate", trust_zone: proposed, status: required_if_textual_inference}
+  - {id: gate:assyriology, kind: review_gate, label: "Assyriology and Levant archaeology gate", trust_zone: proposed, status: required}
+  - {id: gate:epigraphy, kind: review_gate, label: "Qualified epigraphy gate", trust_zone: proposed, status: required_if_new_reading}
+  - {id: gate:doctrine, kind: review_gate, label: "Separate theological authority gate", trust_zone: proposed, status: not_requested}
+edges:
+  - {id: e001, from: src:p66-cologne, relation: identifies, to: artifact:p66-verso, authority_effect: none}
+  - {id: e002, from: artifact:p66-verso, relation: governed_by_rights, to: rights:p66-cc-by-4, authority_effect: none}
+  - {id: e003, from: artifact:p66-verso, relation: has_coverage_segment, to: segment:p66-08-11, authority_effect: none}
+  - {id: e004, from: artifact:p66-verso, relation: has_coverage_segment, to: segment:p66-13-15, authority_effect: none}
+  - {id: e005, from: artifact:p66-verso, relation: has_coverage_segment, to: segment:p66-18-20, authority_effect: none}
+  - {id: e006, from: artifact:p66-verso, relation: has_coverage_segment, to: segment:p66-23-24, authority_effect: none}
+  - {id: e007, from: segment:p66-08-11, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
+  - {id: e008, from: segment:p66-13-15, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
+  - {id: e009, from: segment:p66-18-20, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
+  - {id: e010, from: segment:p66-23-24, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
+  - {id: e011, from: scripture:john19, relation: displayed_through, to: text:eng-web, authority_effect: none}
+  - {id: e012, from: segment:p66-08-11, relation: verse_identity_intersects, to: chunk:m7-public-009, authority_effect: none}
+  - {id: e013, from: segment:p66-13-15, relation: verse_identity_intersects, to: chunk:m7-local-057, authority_effect: none}
+  - {id: e014, from: segment:p66-18-20, relation: verse_identity_intersects, to: chunk:m7-local-058, authority_effect: none}
+  - {id: e015, from: segment:p66-23-24, relation: verse_identity_intersects, to: chunk:m7-public-009, authority_effect: none}
+  - {id: e016, from: artifact:p66-verso, relation: requires_review, to: gate:papyrology, authority_effect: none}
+  - {id: e017, from: claim:sennacherib, relation: compared_with, to: scripture:sennacherib-passages, authority_effect: none}
+  - {id: e018, from: claim:tel-dan, relation: compared_with, to: scripture:david-passages, authority_effect: none}
+  - {id: e019, from: claim:pilate, relation: compared_with, to: scripture:pilate-passages, authority_effect: none}
+  - {id: e020, from: claim:jericho-control, relation: compared_with, to: scripture:jericho-passages, authority_effect: none}
+  - {id: e021, from: claim:hittite-control, relation: compared_with, to: scripture:hittite-passages, authority_effect: none}
+  - {id: e022, from: claim:sennacherib, relation: requires_review, to: gate:assyriology, authority_effect: none}
+  - {id: e023, from: claim:tel-dan, relation: requires_review, to: gate:epigraphy, authority_effect: none}
+  - {id: e024, from: claim:pilate, relation: requires_review, to: gate:epigraphy, authority_effect: none}
+  - {id: e025, from: claim:sennacherib, relation: requires_review, to: gate:doctrine, authority_effect: none}
+source_claim_edges:
+  - {source: bm-sennacherib-prism-91032, relation: supports, claim: claim:sennacherib, scope: object_identity_and_royal_account, authority_effect: none}
+  - {source: oracc-rinap-q003496, relation: supports, claim: claim:sennacherib, scope: critical_edition_of_chicago_taylor_prism_royal_account, authority_effect: none}
+  - {source: bm-lachish-relief-124906, relation: supports, claim: claim:sennacherib, scope: iconographic_object_and_provenance, authority_effect: none}
+  - {source: iaa-lachish-gate-2018, relation: supports, claim: claim:sennacherib, scope: excavated_context, authority_effect: none}
+  - {source: atiqot-lachish-gate-2023, relation: supports, claim: claim:sennacherib, scope: published_gate_context_and_reported_701_BCE_destruction_attribution, authority_effect: none}
+  - {source: pnas-archaeomagnetic-lachish-2022, relation: challenges_or_qualifies, claim: claim:sennacherib, scope: historical_anchor_and_comparative_archaeomagnetic_chronology, authority_effect: none}
+  - {source: israel-museum-sennacherib-display-2025, relation: challenges_or_qualifies, claim: claim:sennacherib, scope: museum_public_interpretation_not_independent_adjudication, authority_effect: none}
+  - {source: tel-dan-biran-naveh-1993, relation: supports, claim: claim:tel-dan, scope: initial_publication_and_reading, authority_effect: none}
+  - {source: tel-dan-biran-naveh-1995, relation: supports, claim: claim:tel-dan, scope: additional_fragment_and_revised_reconstruction, authority_effect: none}
+  - {source: tel-dan-ben-zvi-1994, relation: challenges_or_qualifies, claim: claim:tel-dan, scope: alternative_reading_analysis, authority_effect: none}
+  - {source: tel-dan-athas-2006, relation: challenges_or_qualifies, claim: claim:tel-dan, scope: later_reassessment, authority_effect: none}
+  - {source: iip-caes0043, relation: supports, claim: claim:pilate, scope: extant_text_restoration_translation_separation, authority_effect: none}
+  - {source: pilate-sherwin-white-1964, relation: challenges_or_qualifies, claim: claim:pilate, scope: title_and_interpretation_discussion, authority_effect: none}
+  - {source: jericho-garstang-1935, relation: supports, claim: claim:jericho-control, scope: garstang_event_association_and_bronze_age_destruction_interpretation, authority_effect: none}
+  - {source: jericho-kenyon-holland-1981, relation: challenges_or_qualifies, claim: claim:jericho-control, scope: final_stratigraphic_report_and_competing_chronology, authority_effect: none}
+  - {source: jericho-bruins-van-der-plicht-1995, relation: challenges_or_qualifies, claim: claim:jericho-control, scope: middle_bronze_radiocarbon_measurements_and_calibration_limits, authority_effect: none}
+  - {source: jericho-nigro-late-bronze-2023, relation: challenges_or_qualifies, claim: claim:jericho-control, scope: recent_late_bronze_reconstruction, authority_effect: none}
+  - {source: jericho-nigro-yasine-2024, relation: challenges_or_qualifies, claim: claim:jericho-control, scope: continuing_excavation_and_updated_site_sequence, authority_effect: none}
+  - {source: hittites-bryce-2005, relation: supports, claim: claim:hittite-control, scope: hittite_historical_entities, authority_effect: none}
+  - {source: hittites-lipinski-2012, relation: challenges_or_qualifies, claim: claim:hittite-control, scope: biblical_term_distinctions_with_issue_year_and_platform_date_distinguished, authority_effect: none}
+invariants:
+  every_edge_endpoint_exists: true
+  every_edge_authority_effect_is_none: true
+  artifacts_reach_scripture_only_through_claim_or_segment_identity: true
+  archaeology_reaches_scripture_only_through_historical_claim: true
+  no_path_promotes_to_doctrine: true
+  m7_candidate_state_preserved: true
+  m8_john_pending: true
+  convergence_not_started: true
