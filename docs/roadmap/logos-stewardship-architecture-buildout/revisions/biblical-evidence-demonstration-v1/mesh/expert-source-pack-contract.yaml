@@ -1,0 +1,72 @@
+schema_version: logos.biblical-evidence.expert-source-pack.v1
+object_type: expert_role_and_source_pack_contract
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 to require material knowledge, high-signal sources, independent citation checking, and bounded authority for dynamically selected academic roles."
+reason_for_inclusion: "Prevent thin expert personas and goal-biased instructions from producing plausible but unsupported research."
+minimum_role_instruction:
+  required_fields:
+    - neutral_research_question
+    - claim_and_transformation_classes
+    - source_role_hierarchy
+    - named_high_signal_repositories_or_search_methods
+    - inclusion_and_exclusion_rules
+    - uncertainty_and_counterposition_requirements
+    - authority_ceiling
+    - independent_checker
+    - deliverable_schema
+    - stop_conditions
+  forbidden_goal_forms:
+    - prove_the_bible_is_true
+    - prove_the_bible_is_false
+    - defend_a_named_doctrine
+    - refute_a_named_tradition
+    - find_only_supporting_evidence
+source_fitness:
+  preferred_order:
+    - holding_institution_or_excavation_record
+    - primary_publication_or_inscription_edition
+    - critical_corpus_or_catalog
+    - peer_reviewed_analysis
+    - scholarly_reference_work
+    - reception_history_for_reception_claims_only
+  disallowed_as_sole_support:
+    - search_result_snippet
+    - unsourced_summary
+    - model_memory
+    - advocacy_page_for_academic_consensus
+    - citation_count
+  every_source_record_requires:
+    - stable_locator
+    - responsible_body_or_authors
+    - publication_or_retrieval_date
+    - source_role
+    - exact_supported_scope
+    - cannot_establish
+  correction_checks:
+    - verify_current_object_or_article_identity
+    - search_for_retraction_correction_or_superseding_edition
+    - distinguish_original_publication_from_later_reception
+    - disclose_paywall_or_unavailable_full_text
+research_output:
+  every_claim_requires:
+    - bounded_claim_text
+    - source_refs
+    - source_to_claim_fidelity_note
+    - uncertainty
+    - limitations
+    - counterposition_search_result
+    - qualified_reviewer_class
+    - authority_effect_none
+  prohibited_shortcuts:
+    - model_agreement_as_truth
+    - source_quantity_as_truth
+    - absence_claim_without_defined_search_corpus
+    - direct_context_to_doctrine_edge
+independent_check:
+  checker_must_not_be_original_researcher: true
+  checker_must_open_locators_independently: true
+  checker_must_search_for_counterpositions: true
+  checker_must_compare_public_wording_to_source_scope: true
+  unresolved_material_disagreement_routes_to_human: true
+  checker_pass_does_not_equal_qualified_expert_approval: true

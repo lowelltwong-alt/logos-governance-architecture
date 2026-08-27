@@ -65,6 +65,12 @@ Preferred order of extension:
 - `noncanonical-and-heresy-classification.md` — classification framework for noncanonical, pseudepigraphal, forged, and heretical materials
 - `translation-trust-and-sectarian-classification.md` — trust and boundary framework for Bible translations and disputed renderings
 - `internal-link-conventions.md` — canonical style guide for internal relative links and file naming policy
+- `academic-extension-contract.md` — lossless, non-authorizing contract for future academic domain packs, qualified n-ary assertions, named hypothesis graphs, immutable source records, and reverse-consumer checks
+
+The first public application is the
+[`Biblical Evidence Graph Demonstration V1`](../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md).
+It remains a proposed static demonstration governed by this folder; it does not
+become a canonical academic pack, source corpus, running graph, or doctrine.
 
 ### Machine-readable registries
 - `../../governance/registry/entity_ids.yaml` - shared identity registry scaffold for persons, councils, schools/movements, and instruments

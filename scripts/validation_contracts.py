@@ -381,6 +381,14 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "command": [python, "scripts/validate_governance_dependency_map.py"],
         },
         {
+            "name": "academic_extension_contract",
+            "command": [python, "scripts/validate_academic_extension_contract.py"],
+        },
+        {
+            "name": "biblical_evidence_demonstration",
+            "command": [python, "scripts/validate_biblical_evidence_demo.py"],
+        },
+        {
             "name": "doctrine_vocabulary",
             "command": [python, "scripts/validate_doctrine_vocabulary.py"],
         },

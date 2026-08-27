@@ -1,0 +1,7 @@
+{
+  "base_fixture": "positive_assertion.json",
+  "operation": "replace",
+  "path": ["authority", "effect"],
+  "value": "grounds_doctrine",
+  "expected_rule": "schema_validation"
+}

@@ -1,0 +1,169 @@
+{
+  "schema_version": "logos.biblical-evidence.agent-mesh.v3",
+  "object_type": "provider_neutral_bounded_academic_agent_mesh",
+  "trust_zone": "proposed",
+  "lifecycle_status": "draft",
+  "provenance_note": "Created 2026-08-26 from the Doctrine Mesh V2 separation-of-duties model, the Academic Extension Contract, and an entry/midflight role-completeness audit for this exact demonstration.",
+  "reason_for_inclusion": "Make research, rights, citation, claim-fidelity, graph, red-team, and completeness responsibilities explicit without pretending AI review is qualified human approval.",
+  "mesh_id": "urn:logos:mesh:biblical-evidence-demo-v1",
+  "runtime_status": "specification_only_not_activated",
+  "portable_core": true,
+  "tested_runtime_adapters": [],
+  "model_policy": {
+    "capability_tiers_are_mutable_labels": true,
+    "permanent_model_identity_binding": false,
+    "frontier_escalation_requires_named_failure_mode": true,
+    "ultra_effort_requires_owner_authorization": true,
+    "cross_model_diversity_claimed": false
+  },
+  "execution_invariants": {
+    "single_writer": true,
+    "researchers_are_read_only": true,
+    "reviewers_are_read_only": true,
+    "writer_cannot_approve_own_output": true,
+    "researcher_cannot_certify_own_citations": true,
+    "rights_reviewer_is_distinct_from_asset_researcher": true,
+    "maximum_delegation_depth": 1,
+    "maximum_parallel_roles": 4,
+    "high_risk_disagreement_routes_to_human": true,
+    "no_agent_can_promote_scripture_or_doctrine": true,
+    "no_runtime_or_source_ingestion_authority": true
+  },
+  "roles": [
+    {
+      "role_id": "mesh-coordinator-single-writer",
+      "class": "orchestrator_writer",
+      "mode": "write_bounded",
+      "purpose": "Own the exact claimed paths, serialize edits, preserve gates, and assemble receipts.",
+      "knowledge_base_contract": ["repository governance", "claim scope", "Academic Extension Contract", "source-pack and graph schemas"],
+      "may_not": ["self_approve", "invent_source_claims", "promote_doctrine", "write_other_repositories", "launch_runtime"]
+    },
+    {
+      "role_id": "role-completeness-auditor",
+      "class": "deterministic_mesh_auditor",
+      "mode": "read_only",
+      "purpose": "At entry, midflight, and exit ask which specialist or checker is required, what concrete failure mode it closes, and whether later evidence revealed a missing role.",
+      "knowledge_base_contract": ["task scope", "risk taxonomy", "source classes", "claim classes", "role independence matrix"],
+      "may_not": ["add_roles_without_failure_mode", "approve_domain_truth", "edit_candidate"]
+    },
+    {
+      "role_id": "archaeology-history-researcher",
+      "class": "neutral_domain_researcher",
+      "mode": "read_only",
+      "purpose": "Find primary object/context records, excavation publications, critical editions, peer-reviewed alternatives, and limitations for bounded historical questions.",
+      "knowledge_base_contract": ["museum and excavation catalogs", "ancient Near Eastern history", "archaeological method", "chronology", "reception-history distinction"],
+      "may_not": ["start_from_prove_or_disprove", "erase_counterpositions", "claim_theological_causation", "self_certify_sources"]
+    },
+    {
+      "role_id": "manuscript-transmission-researcher",
+      "class": "neutral_domain_researcher",
+      "mode": "read_only",
+      "purpose": "Separate physical witness, catalog metadata, image, transcription, edition, alignment, translation, and candidate-chunk states.",
+      "knowledge_base_contract": ["papyrology catalogs", "New Testament textual criticism", "codicology", "versification", "translation-witness provenance"],
+      "may_not": ["ocr_as_authority", "infer_translation_from_image", "select_preferred_reading", "self_approve_rights"]
+    },
+    {
+      "role_id": "source-rights-reviewer",
+      "class": "independent_rights_checker",
+      "mode": "read_only",
+      "purpose": "Verify exact asset identity, custodian, license scope, attribution, source URL, modification statement, and non-copyright caveats.",
+      "knowledge_base_contract": ["license legal code", "holding-institution rights statement", "content hashes", "public-release boundary"],
+      "may_not": ["review_own_asset_research", "extend_image_license_to_text", "waive_privacy_or_provenance"]
+    },
+    {
+      "role_id": "citation-source-fitness-checker",
+      "class": "independent_academic_checker",
+      "mode": "read_only",
+      "purpose": "Open every public locator independently, distinguish source roles, test whether each claim is faithful to its sources, and search for material counterpositions.",
+      "knowledge_base_contract": ["primary-source hierarchy", "critical editions", "peer review", "precise locators", "retraction and correction awareness"],
+      "may_not": ["accept_researcher_summary_as_proof", "rank_truth_by_citation_count", "repair_candidate"]
+    },
+    {
+      "role_id": "claim-fidelity-checker",
+      "class": "independent_semantic_checker",
+      "mode": "read_only",
+      "purpose": "Compare every public sentence and graph assertion with the cited source role, scope limit, uncertainty, and counterposition record.",
+      "knowledge_base_contract": ["claim envelopes", "epistemic modality", "scope and quantifier checking", "source-to-claim entailment limits"],
+      "may_not": ["add_unreviewed_claims", "convert_possible_to_certain", "approve_doctrine"]
+    },
+    {
+      "role_id": "graph-contract-engineer",
+      "class": "graph_engineer",
+      "mode": "read_only_design_advice",
+      "purpose": "Check identity, n-ary claim mediation, named-graph boundaries, source drift invalidation, extension preservation, and reverse blast-radius paths.",
+      "knowledge_base_contract": ["property graph and RDF patterns", "ontology and taxonomy", "provenance graphs", "schema evolution", "dependency maps"],
+      "may_not": ["certify_historical_truth", "create_authority_edges", "approve_own_graph"]
+    },
+    {
+      "role_id": "graph-invariant-red-team",
+      "class": "independent_graph_checker",
+      "mode": "read_only",
+      "purpose": "Try to construct forbidden artifact-to-Scripture, evidence-to-doctrine, direct-image-to-translation, or lower-trust-to-canonical paths.",
+      "knowledge_base_contract": ["graph reachability", "trust-zone monotonicity", "negative fixtures", "authority non-interference"],
+      "may_not": ["edit_failing_graph", "treat_absence_of_found_path_as_completeness", "treat_passing_fixtures_as_proof_of_all_future_graph_paths"]
+    },
+    {
+      "role_id": "privacy-provenance-release-checker",
+      "class": "independent_release_checker",
+      "mode": "read_only",
+      "purpose": "Check public paths for secrets, private locators, unlicensed payloads, misleading completion claims, and immutable evidence consistency.",
+      "knowledge_base_contract": ["repository privacy boundary", "source licensing", "Git evidence", "release manifest", "sensitive-pattern scanning"],
+      "may_not": ["publish", "merge", "waive_failed_gate"]
+    },
+    {
+      "role_id": "human-decision-steward",
+      "class": "human_gate_router",
+      "mode": "decision_packet_only",
+      "purpose": "Route high-risk disagreement, architecture choices, qualified-expert requirements, doctrine questions, and promotion decisions to the named human authority.",
+      "knowledge_base_contract": ["decision risk metadata", "dissent record", "authority ceiling", "review evidence"],
+      "may_not": ["infer_human_approval", "silence_dissent", "delegate_final_authority_to_model"]
+    }
+  ],
+  "conditional_specialist_factory": {
+    "default": "do_not_instantiate",
+    "selection_questions": [
+      "What exact claim or transformation is being attempted?",
+      "Which knowledge boundary or failure mode is not covered by current roles?",
+      "Would the missing specialist materially change evidence selection, interpretation, or risk?",
+      "Can a primary source or qualified published edition close the gap without a new agent?",
+      "What independent checker prevents the specialist from self-certifying?"
+    ],
+    "candidate_classes": [
+      {"class": "assyriologist", "trigger": "new cuneiform reading, translation, royal-inscription interpretation, or campaign synthesis"},
+      {"class": "iron_age_levant_archaeologist", "trigger": "new stratigraphic, destruction, site-formation, or event-linkage inference"},
+      {"class": "northwest_semitic_epigrapher", "trigger": "new Tel Dan or related inscription reading, restoration, transliteration, or translation"},
+      {"class": "latin_epigrapher", "trigger": "new Pilate inscription restoration, Latin reading, or title inference"},
+      {"class": "new_testament_papyrologist_textual_critic", "trigger": "P66 transcription, textual variant, dating, or preferred-reading inference"},
+      {"class": "greek_hebrew_translation_reviewer", "trigger": "new original-language alignment or translation judgment"},
+      {"class": "radiocarbon_or_archaeometry_specialist", "trigger": "new laboratory result, calibration, or chronological synthesis"},
+      {"class": "ancient_near_east_religions_historian", "trigger": "Egyptian, Babylonian, Canaanite, Persian, Greek, or Roman religious context is interpreted"},
+      {"class": "second_temple_judaism_historian", "trigger": "Jewish movement, mystical, legal, sectarian, or teacher-development claim is introduced"},
+      {"class": "patristics_medieval_reformation_or_tradition_specialist", "trigger": "a doctrine genealogy or tradition-scoped interpretation is introduced"},
+      {"class": "philosophy_historian", "trigger": "Platonic, Aristotelian, Stoic, or other conceptual lineage is claimed"},
+      {"class": "science_domain_specialist", "trigger": "an apologetics-science interface makes a domain-science claim"}
+    ],
+    "required_metadata": ["role_id", "triggered_failure_mode", "source_pack", "authority_ceiling", "independent_checker", "expiry_or_exit_condition"],
+    "do_not_instantiate_for_this_release": [
+      "generic_apologist",
+      "generic_theologian",
+      "epigrapher_when_only_linking_qualified_published_editions"
+    ]
+  },
+  "mesh_sequence": [
+    "entry_role_completeness_audit",
+    "parallel_read_only_domain_and_rights_research",
+    "single_writer_candidate_assembly",
+    "midflight_role_completeness_audit",
+    "deterministic_validation_and_adversarial_fixtures",
+    "independent_citation_claim_rights_and_graph_reviews",
+    "exit_role_completeness_audit",
+    "human_high_risk_disagreement_gate",
+    "immutable_release_gate"
+  ],
+  "risk_routing": {
+    "low": "deterministic validation plus one independent checker",
+    "medium": "two independent relevant checkers and explicit dissent metadata",
+    "high": "stop and route evidence packet to human; qualified-domain review may be required",
+    "critical": "fail closed; no publication or promotion"
+  }
+}

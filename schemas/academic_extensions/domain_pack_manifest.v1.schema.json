@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/academic_extensions/domain_pack_manifest.v1.schema.json",
+  "title": "Academic Domain Pack Manifest v1",
+  "$comment": "Specification-only, non-authorizing extension contract. A valid pack is not approved scholarship, doctrine, source authority, or runtime activation.",
+  "type": "object",
+  "x-governance": {
+    "object_type": "academic_domain_pack_schema",
+    "trust_zone": "proposed",
+    "lifecycle_status": "draft",
+    "provenance_note": "Created 2026-08-25 under WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001 as the lossless Academic Extension Contract.",
+    "reason_for_inclusion": "Permit bounded academic graph growth without changing the Logos kernel or silently granting authority."
+  },
+  "required": ["schema_version", "object_type", "pack_id", "pack_version", "namespace", "status", "owner", "authority_ceiling", "kernel_compatibility", "extension_schemas", "reviewer_requirements", "external_mappings", "rights_policy_ref", "unknown_fields_policy"],
+  "properties": {
+    "schema_version": {"const": "logos.academic.domain-pack.v1"},
+    "object_type": {"const": "academic_domain_pack_manifest"},
+    "pack_id": {"type": "string", "pattern": "^academic\\.[a-z0-9]+(?:[._-][a-z0-9]+)*$"},
+    "pack_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "namespace": {"type": "string", "pattern": "^urn:logos:academic:[a-z0-9][a-z0-9:._-]*:$"},
+    "status": {"enum": ["candidate", "review_pending", "deprecated"]},
+    "owner": {"type": "string", "minLength": 1},
+    "authority_ceiling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["effect", "may_ground_doctrine", "may_promote_canonical", "requires_human_decision"],
+      "properties": {
+        "effect": {"const": "non_authorizing_context_only"},
+        "may_ground_doctrine": {"const": false},
+        "may_promote_canonical": {"const": false},
+        "requires_human_decision": {"const": true}
+      }
+    },
+    "kernel_compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["registry_version", "kernel_digest", "mutation_policy"],
+      "properties": {
+        "registry_version": {"type": "string", "minLength": 1},
+        "kernel_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "mutation_policy": {"const": "extension_only_kernel_canonical_content_identity_required"}
+      }
+    },
+    "extension_schemas": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^schemas/academic_extensions/[a-z0-9._-]+\\.schema\\.json$"}
+    },
+    "reviewer_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["human_required", "qualification_classes"],
+      "properties": {
+        "human_required": {"const": true},
+        "qualification_classes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "external_mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target_standard", "target_term", "relation", "exactness", "standard_revision"],
+        "properties": {
+          "target_standard": {"type": "string", "minLength": 1},
+          "target_term": {"type": "string", "minLength": 1},
+          "relation": {"enum": ["broad_match", "narrow_match", "close_match", "related_match", "candidate_mapping"]},
+          "exactness": {"const": "non_exact_by_default"},
+          "standard_revision": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "rights_policy_ref": {"type": "string", "minLength": 1},
+    "unknown_fields_policy": {"const": "preserve_losslessly_in_extension_payload"}
+  },
+  "additionalProperties": false
+}

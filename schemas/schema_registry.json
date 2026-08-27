@@ -1,5 +1,5 @@
 {
-  "registry_version": "0.2.0",
+  "registry_version": "0.3.0",
   "controlled_vocabulary_source": {
     "path": "docs/governance/controlled-value-registry.md",
     "fields": [
@@ -111,6 +111,43 @@
       "applies_to": [],
       "validation_kind": "logos_learning_loop_candidate",
       "notes": "D11 LLOS v1 lesson contract. Candidate lessons remain non-authorizing and may cross to DAD only as allowlisted metadata."
+    },
+    {
+      "name": "academic_domain_pack_manifest_v1",
+      "path": "schemas/academic_extensions/domain_pack_manifest.v1.schema.json",
+      "applies_to": [],
+      "validation_kind": "academic_extension_contract",
+      "notes": "Specification-only domain-pack manifest. Registration never establishes scholarship, doctrine, source authority, or runtime activation."
+    },
+    {
+      "name": "academic_assertion_envelope_v1",
+      "path": "schemas/academic_extensions/assertion_envelope.v1.schema.json",
+      "applies_to": [],
+      "validation_kind": "academic_extension_contract",
+      "notes": "Lossless qualified n-ary candidate assertion with named-graph disagreement and an explicit no-authority ceiling."
+    },
+    {
+      "name": "academic_source_record_v1",
+      "path": "schemas/academic_extensions/source_record.v1.schema.json",
+      "applies_to": [],
+      "validation_kind": "academic_extension_contract",
+      "notes": "Immutable source identity, provenance, rights, and uncertainty record; it does not attest source fitness or truth."
+    },
+    {
+      "name": "academic_derived_projection_v1",
+      "path": "schemas/academic_extensions/derived_projection.v1.schema.json",
+      "applies_to": [],
+      "validation_kind": "academic_extension_contract",
+      "notes": "Digest-bound non-authorizing derivative that invalidates when its source record digest changes."
+    },
+    {
+      "name": "academic_extension_registry_v1",
+      "path": "schemas/academic_extensions/extension_registry.v1.schema.json",
+      "applies_to": [
+        "governance/registry/ACADEMIC_DOMAIN_PACK_REGISTRY.yaml"
+      ],
+      "validation_kind": "academic_extension_registry",
+      "notes": "Kernel pin, candidate-pack registration, and reverse-consumer closure contract; production pack entries remain empty in this specification revision."
     }
   ]
 }

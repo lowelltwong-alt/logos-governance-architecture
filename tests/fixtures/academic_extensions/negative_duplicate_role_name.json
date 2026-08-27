@@ -1,0 +1,7 @@
+{
+  "base_fixture": "positive_assertion.json",
+  "operation": "replace",
+  "path": ["roles", 1, "role"],
+  "value": "observed_object",
+  "expected_rule": "nary_role_uniqueness"
+}

@@ -1,0 +1,16 @@
+---
+object_type: academic_domain_pack_registry
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-25 under WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001 as a specification-only empty production registry."
+reason_for_inclusion: "Reserve a governed, reverse-consumer-aware entry point for future academic domain packs without approving any pack, source, assertion, or runtime."
+---
+schema_version: logos.academic.extension-registry.v1
+object_type: academic_extension_registry
+kernel_contract:
+  path: schemas/schema_registry.json
+  digest: sha256:d93c259ffa5c136a0cb489ca6f3146023ce1923b84640b609962a6686ead1270
+  mutation_policy: canonical_content_identity_required_for_pack_only_changes
+packs: []
+consumers: []
+authority_ceiling: registry_is_non_authorizing

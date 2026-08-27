@@ -96,3 +96,13 @@ That means the same logic may apply to:
 A mature ontology should preserve graph context as part of meaning.
 
 Named trust boundaries are one of the strongest ways to do that.
+
+## Academic hypothesis and context graphs
+
+The [Academic Extension Contract](academic-extension-contract.md) adds a draft
+interoperability rule for future domain packs: competing hypotheses occupy
+distinct named graphs and no default graph supplies an automatic winner.
+Contextual material remains in its domain and trust graph. Graph reachability,
+centrality, model confidence, or consensus cannot raise its authority or let it
+ground doctrine. Any later adjudication must preserve alternatives, evidence,
+dissent, and the human decision record.

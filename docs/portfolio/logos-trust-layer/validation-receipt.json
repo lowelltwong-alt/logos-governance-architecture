@@ -1,40 +1,83 @@
 {
-  "metadata": {
-    "object_type": "logos_portfolio_validation_receipt",
-    "trust_zone": "proposed",
-    "lifecycle_status": "validated_release_candidate",
-    "provenance_note": "Reissued on 2026-08-24 for the neutral cross-repository AI audit route, deterministic route coverage, immutable release replay, dependency-map closure, and task-separated non-author review.",
-    "reason_for_inclusion": "Bind the public portfolio and doctrine-mesh specification to exact Git-object snapshots, checks, independent review, authority limits, and release state without treating narrative claims as proof."
-  },
-  "schema_version": "logos.portfolio_validation_receipt.v1",
-  "receipt_id": "LOGOS-PORTFOLIO-RELEASE-001",
+  "schema_version": "logos.portfolio_validation_receipt.v2",
+  "object_type": "logos_portfolio_validation_receipt",
+  "trust_zone": "proposed",
+  "lifecycle_status": "public_release_candidate",
+  "provenance_note": "Recorded after the exact 85-path refrozen content checkpoint, independent changed-input review, hash-pinned preservation of one non-authorizing pre-publication receipt, and immutable replay of the prior public release evidence.",
+  "reason_for_inclusion": "Bind this public candidate to one exact branch increment without rewriting preserved history, absorbing an unrelated integrated pull request, or waiving its disclosed baseline privacy finding.",
+  "receipt_id": "LOGOS-PORTFOLIO-RELEASE-003",
   "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
-  "candidate_parent": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12",
-  "status": "pass_release_candidate",
-  "candidate_content_fingerprint": {
-    "status": "superseded_alias_of_post_v1_candidate_slice",
-    "scope": "All 111 post-V1 candidate paths except this self-describing validation receipt.",
-    "path_count": 110,
-    "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:8bfe8a5d8cb29b78a0eea15aa5e1d11469e0219712b688722f15a845bf186223"
-  },
-  "full_pr_composite_scope": {
-    "base_commit": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12",
-    "content_head_commit": "04a190bf091eea468a57f5604264a71ff97dd237",
-    "scope": "All 131 base-to-content-head release paths except this self-describing validation receipt.",
-    "path_count": 131,
-    "fingerprinted_path_count": 130,
-    "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc"
-  },
-  "post_v1_candidate_slice": {
-    "parent_commit": "410c7e429290d34013c1dbf23c0335ebfe68e45f",
-    "content_head_commit": "04a190bf091eea468a57f5604264a71ff97dd237",
-    "scope": "All 111 post-V1 candidate paths except this self-describing validation receipt.",
-    "path_count": 111,
-    "fingerprinted_path_count": 110,
-    "algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-    "digest": "sha256:8bfe8a5d8cb29b78a0eea15aa5e1d11469e0219712b688722f15a845bf186223"
+  "status": "pass_scoped_incremental_release_candidate",
+  "release_chain": {
+    "mode": "direct_parent_incremental_v2",
+    "receipt_path": "docs/portfolio/logos-trust-layer/validation-receipt.json",
+    "active_increment": {
+      "branch_base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+      "content_head_commit": "6bb775321f93fe97dff5a90a3c3bdca42f42edfb",
+      "content_tree_sha": "a9307538e127d87fdc987f6c86921401679286e5",
+      "content_path_count": 85,
+      "receipt_path_count": 1,
+      "total_release_path_count": 86,
+      "fingerprinted_content_path_count": 85,
+      "added_path_count": 64,
+      "modified_path_count": 21,
+      "deleted_path_count": 0,
+      "renamed_path_count": 0,
+      "canonical_digest_algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
+      "content_digest": "sha256:7b7a4885889ee32ef38d83cbb1008204c990d34cfce0c7decdfa3fc923be16ab"
+    },
+    "privacy": {
+      "mode": "exact_base_candidate_added_occurrences",
+      "baseline_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+      "content_source": "active_increment.content_head_commit",
+      "receipt_source": "derived_latest_receipt_commit",
+      "candidate_added_finding_count": 0,
+      "invalid_utf8_count": 0,
+      "repository_wide_privacy_pass_claimed": false
+    },
+    "external_baseline_finding": {
+      "baseline_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+      "path": "tests/test_machine_citation_artifacts.py",
+      "rule": "file_uri",
+      "occurrence_count": 3,
+      "integrated_via_pr": 120,
+      "disposition": "unresolved_preexisting_not_waived"
+    },
+    "intermediate_receipt": {
+      "status": "superseded_prepublication_non_authorizing_checkpoint",
+      "content_head_commit": "9128c6b710a35fe70115efadfef65ea54ed50ebb",
+      "content_tree_sha": "e0fdc9e3087675ba9ab1713400945ab644f4342b",
+      "receipt_commit": "36ba16eab3dbf9dafb35184528c6ce68346e5c29",
+      "receipt_tree_sha": "96760b23e366ad9368848ec116bad6ed68d79847",
+      "receipt_raw_sha256": "sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6",
+      "receipt_digest": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f",
+      "content_path_count": 85,
+      "total_release_path_count": 86,
+      "fingerprinted_content_path_count": 85,
+      "added_path_count": 64,
+      "modified_path_count": 21,
+      "deleted_path_count": 0,
+      "renamed_path_count": 0,
+      "content_digest": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"
+    },
+    "prior_release": {
+      "base_commit": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12",
+      "content_head_commit": "04a190bf091eea468a57f5604264a71ff97dd237",
+      "receipt_commit": "54be8f8b5e75aeda994ff5fc6b858c9e1edad6cd",
+      "merge_commit": "91fa8560fecade6b7dd557edad8edf91609efd9b",
+      "receipt_raw_sha256": "sha256:c6a9b91c81ecc024dd82c183c16a02c455fda94fc9255bae90e9f15cab93b450",
+      "path_count": 131,
+      "fingerprinted_path_count": 130,
+      "canonical_digest_algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
+      "content_digest": "sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc",
+      "receipt_digest": "sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff",
+      "merge_tree_sha": "4542d66e88bd8cb14cb77487e52c88c184b4de30",
+      "protected_drift_to_current_base_count": 0
+    },
+    "historical_v1": {
+      "reference": "project-evidence.yaml#/release_scope/historical_v1",
+      "status": "historical_evidence_only"
+    }
   },
   "doctrine_mesh_status": "validated_specification_only",
   "doctrine_mesh_payload_digest": "sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946",
@@ -43,7 +86,7 @@
   "preflight": {
     "status": "pass",
     "checkpoint": "08eab8e3edf44ab22175e3e47b1828153a84d716",
-    "observed_at": "2026-08-25T01:37:03Z",
+    "observed_at": "2026-08-26T16:57:30.1585139Z",
     "protected_hold_suppressions": 8,
     "mutation_performed": false
   },
@@ -57,223 +100,149 @@
     {
       "check_id": "doctrine_mesh_final_replay",
       "status": "pass_artifact_specification_only",
-      "result": "66 structured files; 13 roles; 68 domain profiles; 25 nodes; 26 edges; zero failures."
+      "result": "66 structured files, 13 roles, 68 domain profiles, 25 nodes, 26 edges, and zero static failures."
     },
     {
       "check_id": "doctrine_mesh_adversarial_tests",
       "status": "pass",
-      "result": "20 passed, zero skipped, including claimed-path traversal and sibling-prefix regression coverage."
+      "result": "20 deterministic adversarial tests passed; no runtime, source ingestion, or doctrinal authority was activated."
     },
     {
-      "check_id": "controlled_vocabulary",
+      "check_id": "academic_extension_validator",
       "status": "pass",
-      "result": "All governed lifecycle and trust-zone values pass the repository vocabulary contract; V2 dormancy and specification-only meaning remains encoded in explicit activation, authority, and prose boundaries."
+      "result": "The refrozen 47-row contract passed with five schemas, five positive fixtures, twelve negative fixtures, nine standards records, and eight blocked human gates."
     },
     {
-      "check_id": "historical_v1_campaign_validator_current_tree",
-      "status": "expected_changed_revision_fail_not_current_gate",
-      "result": "The frozen V1 command reports exactly governed-metadata, source-lock-replay, family-claim, and scope-privacy-and-hygiene against the expanded tree. Its pass bound the staged V1 candidate over parent 9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4, later committed as 410c7e429290d34013c1dbf23c0335ebfe68e45f; neither ordinary checkout is an exact replay. The runbook and handoff classify this as historical evidence, not a current V2 or portfolio gate."
-    },
-    {
-      "check_id": "all_markdown_internal_links",
+      "check_id": "academic_extension_focused_tests",
       "status": "pass",
-      "result": "452 Markdown files checked."
+      "result": "27 isolated focused tests passed, including canonical LF digest and raw-binary preservation cases."
     },
     {
-      "check_id": "full_pytest_frozen_candidate",
+      "check_id": "biblical_evidence_validator",
       "status": "pass",
-      "result": "188 passed, zero skipped after receipt finalization."
+      "result": "The exact 21-file freeze, licensed P66 asset, 20 sources, 27 nodes, 45 edges, 11 roles, and 72 negative fixtures passed."
     },
     {
-      "check_id": "portfolio_front_door_focused_tests",
+      "check_id": "biblical_evidence_focused_tests",
       "status": "pass",
-      "result": "54 passed, zero skipped, including release accounting, merge-tree integrity, immutable-object cache correctness, neutral cross-repository route coverage, path portability, baseline-aware sensitive scanning, invalid-UTF-8 fail-closed behavior, and authority-boundary regressions."
+      "result": "50 isolated focused tests passed, including malformed, duplicate, missing, extra, and reordered frozen-row challenges."
     },
     {
-      "check_id": "portfolio_git_object_cache_performance",
-      "status": "pass",
-      "result": "The focused suite improved from 159.48 seconds to 52.68 seconds (approximately 67 percent), and an explicit cold/warm parity replay returned identical results at 25.193 and 5.025 seconds with 893 cache hits and 287 misses. Cache keys bind the resolved repository root, exact 40-character commit, and normalized path; mutable HEAD, branch, YAML, and filesystem reads are not cached."
-    },
-    {
-      "check_id": "default_validation_suite_frozen_candidate",
-      "status": "fail_with_documented_unrelated_baseline",
-      "result": "28 of 29 validators passed. The sole failure is retrieval-neighborhood freshness for ten unchanged 49-day artifacts against a 30-day threshold outside this claim; governance-dependency-map validation now passes. The unrelated freshness failure is disclosed, not waived."
-    },
-    {
-      "check_id": "machine_citation_frozen_committed_surface",
-      "status": "pass",
-      "result": "839 UTF-8 tracked text files scanned with zero skipped across the committed release surface."
-    },
-    {
-      "check_id": "governance_metadata",
-      "status": "pass",
-      "result": "114 frontmatter-bearing files checked."
+      "check_id": "portfolio_prefinalization_tests",
+      "status": "binding_post_finalization",
+      "result": "The complete 67-test portfolio suite must replay after this exact receipt-only finalization; no prior-head result substitutes for that gate."
     },
     {
       "check_id": "family_registry",
       "status": "pass_with_unrelated_warnings",
-      "result": "Schema and semantics passed; five pre-existing stale-lease warnings remain outside this claim."
+      "result": "Family registry schema and semantics passed; five pre-existing stale-lease warnings remain outside this claim."
     },
     {
-      "check_id": "governance_dependency_map_exact_scope",
+      "check_id": "governance_dependency_map",
       "status": "pass",
-      "result": "Every changed watched path is covered and the map is declared updated."
+      "result": "The materially changed portfolio validator and its exact dependency-map revision passed changed-path coverage."
     },
     {
-      "check_id": "public_repository_inventory_replay",
+      "check_id": "all_markdown_internal_links",
       "status": "pass",
-      "result": "Four exact origin/main snapshots independently reproduce 4,035 tracked paths, 249 JSON paths, 676 YAML paths, 82 conservative schema-like paths, 218 validator-like paths, and 274 test-like paths."
+      "result": "466 Markdown files passed the complete internal-link audit."
     },
     {
-      "check_id": "public_sensitive_pattern_scan",
-      "status": "pass_bounded_current_candidate",
-      "result": "All 131 release paths decoded as UTF-8 text and the exact base-delta scan found no candidate-added private locator, chat locator, credential-shaped token, or private-use marker. The independent release review additionally found no candidate email, formatted phone, or attachment locator. Stronger secret scanners were unavailable and Git history/all refs were not claimed scanned."
+      "check_id": "global_workspace_policy",
+      "status": "pass",
+      "result": "Policy revision 1.0.0 passed across 80 registered worktrees; M8 remained protected and untouched; mutation_performed was false."
     },
     {
       "check_id": "git_diff_check",
       "status": "pass",
-      "result": "No whitespace error."
+      "result": "The preserved correction history, four-file refreeze checkpoint, and exact 85-path branch candidate contain no whitespace errors."
+    },
+    {
+      "check_id": "superseded_receipt_preservation",
+      "status": "pass_content_checkpoint",
+      "result": "The prior direct-parent receipt is retained byte-for-byte, hash-pinned, explicitly non-authorizing, and excluded from the 85-path nonreceipt fingerprint without history rewriting."
+    },
+    {
+      "check_id": "incremental_privacy_contract",
+      "status": "binding_post_finalization",
+      "result": "The validator must replay all 86 release paths after this receipt-only commit; the unrelated three-occurrence baseline is disclosed and not waived."
+    },
+    {
+      "check_id": "full_pytest",
+      "status": "binding_post_finalization",
+      "result": "The complete isolated suite must pass after direct-parent receipt materialization and before any push."
+    },
+    {
+      "check_id": "required_ci_and_merge",
+      "status": "pending",
+      "result": "Required pull-request CI, an unchanged-head independent gate, and a normal non-bypass merge remain mandatory."
     }
   ],
   "independent_reviews": [
     {
-      "review_id": "portfolio_evidence_fact_check_001",
-      "role": "evidence-fact-checker",
-      "status": "pass",
-      "reviewed_path_count": 106,
-      "reviewed_digest": "sha256:8049bb23034f84a99709ba06365923761c480c2025f52aa28acb3aaabd3bcfad",
-      "scope_note": "Initial full candidate including the draft receipt; all material repository metrics and evidence claims reproduced."
+      "review_id": "AE-XPLAT-DIGEST-REVIEW-20260827T000334Z",
+      "role": "independent-academic-extension-checker",
+      "status": "pass_specification_only",
+      "reviewed_path_count": 47,
+      "reviewed_digest": "sha256:ccb6f70ed925af51bfb3a545c619012b6a46989f7fa88f5d6735a59adee2424b",
+      "scope_note": "Reproduced all 47 canonical frozen rows, cross-platform Git-blob equivalence, aggregate digest, and all eight blocked human gates.",
+      "observed_at": "2026-08-27T00:03:34.255Z"
     },
     {
-      "review_id": "recruiter_experience_review_001",
-      "role": "recruiter-experience-reviewer",
-      "status": "pass",
-      "reviewed_path_count": 105,
-      "reviewed_digest": "sha256:c0e5f2a497e6bdee0475f80ffb5cb5fb2cbbdf2b9a93f173bed235d195fde12a",
-      "scope_note": "Changed-input non-receipt review passed after three clarity repairs; navigation, maturity labels, six diagram/prose pairs, and evidence drill-down remained intact."
+      "review_id": "REVIEW-GRAPH-MESH-008",
+      "role": "independent-graph-mesh-checker",
+      "status": "pass_static_non_authorizing",
+      "reviewed_path_count": 21,
+      "reviewed_digest": "sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490",
+      "scope_note": "Reproduced the frozen P66 and evidence-graph package and verified fail-closed duplicate, malformed, missing, extra, and order challenges.",
+      "observed_at": "2026-08-27T00:03:30Z"
     },
     {
-      "review_id": "privacy_authority_redteam_001",
-      "role": "privacy-authority-redteam",
-      "status": "pass",
-      "reviewed_path_count": 105,
-      "reviewed_digest": "sha256:9e41811f2bba20625a222794939184454ac73629e4bd79a5e64f762339c77aa3",
-      "scope_note": "Final non-receipt review passed after catching and verifying correction of one misapplied registry evidence hunk; the paused residue claim is restored except for the authorized reciprocal overlap."
+      "review_id": "REVIEW-RELEASE-CHAIN-010",
+      "role": "independent-release-integration-checker",
+      "status": "pass_changed_input",
+      "reviewed_path_count": 85,
+      "reviewed_digest": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39",
+      "scope_note": "Caught two fail-closed defects, then verified their correction plus the exact 64-addition and 21-modification chain, prior-release replay, and non-waiver boundary.",
+      "observed_at": "2026-08-27T01:09:40.076176Z"
     },
     {
-      "review_id": "portfolio_evidence_fact_check_002",
-      "role": "evidence-fact-checker",
-      "status": "pass",
-      "reviewed_path_count": 110,
-      "reviewed_digest": "sha256:49a8afcd1f4b416326cb0f217c8b11c62980cb278bb779e5cac299f5b7bf1048",
-      "scope_note": "Changed-input final review reproduced the complete V2 digest chain, exact registry scope, authority limits, controlled vocabulary, and corrected staged-candidate history for the historical V1 validator."
+      "review_id": "REVIEW-SUPERSEDING-RECEIPT-011",
+      "role": "independent-release-integration-checker",
+      "status": "pass_preserved_history",
+      "reviewed_path_count": 85,
+      "reviewed_digest": "sha256:3e49466797c5930dd14028f239bcfd80d029709546bdb6ab7aadc27de4a2b5cf",
+      "scope_note": "Verified the pinned intermediate receipt, exact retained bytes, 85-path exclusion, fail-closed Release 003 contract, corrected stale-head test, prior-release replay, and privacy non-waiver.",
+      "observed_at": "2026-08-27T01:26:18.010835Z"
     },
     {
-      "review_id": "privacy_authority_redteam_002",
-      "role": "privacy-authority-redteam",
-      "status": "pass",
-      "reviewed_path_count": 110,
-      "reviewed_digest": "sha256:49a8afcd1f4b416326cb0f217c8b11c62980cb278bb779e5cac299f5b7bf1048",
-      "scope_note": "Final changed-input red-team passed privacy, scope, historical-replay truthfulness, dormancy, theological-authority, and release-boundary checks; stronger secret scanners and Git-history/all-ref scanning remain unavailable and unclaimed."
+      "review_id": "AEX-REFREEZE-IR-20260827T014156Z",
+      "role": "independent-academic-extension-checker",
+      "status": "pass_refrozen_specification_only",
+      "reviewed_path_count": 47,
+      "reviewed_digest": "sha256:f07c6a75879802c953268b192850c79e8ea1c116443c9b47c9a37464e2a434df",
+      "scope_note": "Reproduced all 47 refrozen canonical rows, the updated dependency-map identity, exact exclusions, empty production registry, and eight blocked human gates.",
+      "observed_at": "2026-08-27T01:41:56.786535Z"
     },
     {
-      "review_id": "portfolio_evidence_fact_check_003",
-      "role": "evidence-fact-checker",
-      "status": "pass",
-      "reviewed_path_count": 110,
-      "reviewed_digest": "sha256:117e30fb3dcd920a2280bfad6b1f17bdd58343d842ab480ddecb949417014026",
-      "scope_note": "Final whole-candidate review reproduced all 85 payload bindings, the complete Doctrine V2 administrative digest chain, portfolio evidence bindings, exact registry scope, links, and authority limits after four parse-tree-equivalent EOF repairs."
-    },
-    {
-      "review_id": "privacy_authority_redteam_003",
-      "role": "privacy-authority-redteam",
-      "status": "pass",
-      "reviewed_path_count": 110,
-      "reviewed_digest": "sha256:117e30fb3dcd920a2280bfad6b1f17bdd58343d842ab480ddecb949417014026",
-      "scope_note": "Final whole-candidate red-team passed privacy, authority, registry-scope, historical-V1, frozen-specification, and four-byte whitespace-repair checks; stronger secret scanners and Git-history/all-ref scanning remain unavailable and unclaimed."
-    },
-    {
-      "review_id": "portfolio_evidence_fact_check_004",
-      "role": "evidence-fact-checker",
-      "status": "pass",
-      "reviewed_path_count": 110,
-      "reviewed_digest": "sha256:5dd6329c196786d62fabf78b20cc0aa5b498abd04436f832a20a3ee3645fe94d",
-      "scope_note": "Final release review reproduced the newline-stable fingerprint, all 85 Doctrine payload bindings, the full administrative chain, nineteen tests, public schema/count consistency, exact registry scope, and authority limits."
-    },
-    {
-      "review_id": "privacy_authority_redteam_004",
-      "role": "privacy-authority-redteam",
-      "status": "pass",
-      "reviewed_path_count": 110,
-      "reviewed_digest": "sha256:5dd6329c196786d62fabf78b20cc0aa5b498abd04436f832a20a3ee3645fe94d",
-      "scope_note": "Final release red-team passed privacy, authority, specification-only, historical-V1, registry, count, portability, and evidence checks; stronger secret scanners and Git-history/all-ref scanning remain unavailable and unclaimed."
-    },
-    {
-      "review_id": "portfolio_evidence_fact_check_005",
-      "role": "evidence-fact-checker",
-      "status": "pass",
-      "reviewed_path_count": 110,
-      "reviewed_digest": "sha256:a20a7e7cf7957165822e440a906e63dde1f82dddfbefd7484a2ef77dd72745fb",
-      "scope_note": "Changed-input final review independently reproduced the exact 90-plus-21 path composition, newline-stable fingerprint, Doctrine V2 digest chain and nineteen tests, public evidence counts, historical V1 boundary, registry scope, links, privacy limitations, and authority gates after the one-LF README EOF repair."
-    },
-    {
-      "review_id": "privacy_authority_redteam_005",
-      "role": "privacy-authority-redteam",
-      "status": "pass",
-      "reviewed_path_count": 110,
-      "reviewed_digest": "sha256:a20a7e7cf7957165822e440a906e63dde1f82dddfbefd7484a2ef77dd72745fb",
-      "scope_note": "Changed-input final red-team independently reproduced the exact fingerprint and passed privacy, provenance, specification-only dormancy, theological-authority, historical-V1, registry, count, portability, and evidence-overclaim checks; the README delta is exactly one redundant terminal LF with no semantic effect."
-    },
-    {
-      "review_id": "release_accounting_and_validator_review_006",
-      "role": "independent-release-accounting-checker",
-      "status": "pass",
-      "reviewed_path_count": 130,
-      "reviewed_digest": "sha256:67bf4843859c3d2bd27bab8641c1d39a804ac202dccdd10a1ec037f649f80af3",
-      "scope_note": "Changed-input review reproduced the full 131-path and post-V1 111-path partitions, both historical V1 digests, merge-anchor equality, durable public-surface protection, strict path canonicality, base-delta sensitive scanning, invalid-UTF-8 failure, and the integration-snapshot wording."
-    },
-    {
-      "review_id": "privacy_authority_redteam_006",
-      "role": "independent-privacy-authority-redteam",
-      "status": "pass",
-      "reviewed_path_count": 130,
-      "reviewed_digest": "sha256:67bf4843859c3d2bd27bab8641c1d39a804ac202dccdd10a1ec037f649f80af3",
-      "scope_note": "Final 17-file content review reproduced the complete release and Doctrine digest chains, 452 links, exact repository metrics, UTF-8 and candidate-added privacy results, path hardening, and every specification-only and theological-authority boundary; no material blocker remained."
-    },
-    {
-      "review_id": "portfolio_cache_correctness_review_007",
-      "role": "independent-performance-correctness-checker",
-      "status": "pass",
-      "reviewed_path_count": 2,
-      "reviewed_digest": "sha256:6bb2f10913d70f92ddc7229119725acd6e77461972c775431c2c6801d1b82dcd",
-      "scope_note": "Changed-input review verified exact immutable cache keys, cached missing-base results, fail-closed error behavior, cache isolation in tests, and no caching of mutable HEAD, branch, YAML, or filesystem reads; supplied cold/warm parity and focused-suite timing evidence were sufficient."
-    },
-    {
-      "review_id": "portfolio_repository_route_review_008",
-      "role": "independent-portfolio-route-checker",
-      "status": "pass",
-      "reviewed_path_count": 3,
-      "reviewed_digest": "sha256:c71131d30d9db03afe0ce47dbd592e0b9f63889e2902e6577387fdcad3236206",
-      "scope_note": "Changed-input review verified neutral wording, the exact four-repository boundary, planned and external exclusions, snapshot_commit navigation, whitespace-normalized fail-closed route checks, public privacy, authority limits, and exact three-path scope after one field-name accuracy repair."
-    },
-    {
-      "review_id": "portfolio_dependency_map_review_009",
-      "role": "independent-governance-dependency-checker",
-      "status": "pass",
-      "reviewed_path_count": 1,
-      "reviewed_digest": "sha256:483e97cc758ed35e52e7dc7c070ebe78917b36d880e416e3e32a60e809d5cc45",
-      "scope_note": "Changed-input review verified the exact one-file map delta, truthful local-date provenance, existing route and validator coverage, specification-only authority boundaries, explicit changed-path validation, and no unrelated semantic change."
+      "review_id": "AEX-REFREEZE-STAGED-20260827T014715Z",
+      "role": "independent-release-integration-checker",
+      "status": "pass_exact_staged_correction",
+      "reviewed_path_count": 4,
+      "reviewed_digest": "sha256:f9b040862fd8448bd79d165edd8e2cfcf886a0406c2e6a867820e34218dd2d2f",
+      "scope_note": "Verified the exact four-file staged refreeze, byte-identical intermediate receipt, reproducible Academic digests, and zero authority elevation.",
+      "observed_at": "2026-08-27T01:47:15.231897Z"
     }
   ],
-  "unchanged_head_gate": "pass_local_exact_content_head_and_130_path_composite_fingerprint_pending_post_push_gate",
-  "required_ci": "pending_pr_required_checks",
-  "normal_merge": "pending_pr",
+  "unchanged_head_gate": "pass_local_exact_content_head_6bb775321f93fe97dff5a90a3c3bdca42f42edfb; receipt finalization and remote unchanged-head gates remain pending",
+  "required_ci": "pending_at_receipt_finalization",
+  "normal_merge": "pending_at_receipt_finalization",
   "runtime_activation_authorized": false,
   "source_ingestion_authorized": false,
   "substantive_doctrine_implementation_authorized": false,
   "completed_doctrine_corpus": false,
   "qualified_theological_authority_granted": false,
   "mutation_performed_by_validation": false,
-  "observed_at": "2026-08-25T02:15:20.1992463Z",
-  "receipt_digest": "sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff"
+  "observed_at": "2026-08-27T01:49:25.4188613Z",
+  "receipt_digest": "sha256:35e046eae2b684c2196bb44dc299e0a8e0882a399738360f25f98156821f2d57"
 }

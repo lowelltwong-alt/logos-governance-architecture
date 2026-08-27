@@ -1,0 +1,112 @@
+schema_version: logos.biblical-evidence.p66-chunk-crosswalk.v1
+object_type: manuscript_translation_chunk_crosswalk
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 from the Cologne P66 catalog ranges, the pinned eng-web source manifest, immutable M7 public metadata, a separately disclosed local corrective observation, and the protected M8 checkpoint."
+reason_for_inclusion: "Demonstrate a loss-aware manuscript-to-English-to-candidate-chunk path without pretending the photograph supplies a transcription or translation."
+crosswalk_id: urn:logos:crosswalk:p66-cologne-john19-to-candidate-chunks
+source_layers:
+  p66:
+    record_ref: urn:logos:source:p66-cologne-tm61627-verso
+    coverage_basis: official_object_catalog_metadata
+  english:
+    source_record_ref: urn:logos:source:eng-web-2026-05-28
+    title: World English Bible Classic
+    source_url: https://ebible.org/find/details.php?id=eng-web
+    source_archive_sha256: "a745365f53ab95570e9c39a60a7d245ba10bbf6c863832006876b01ea8654f8e"
+    rights: public-domain
+    display_label: public-domain English excerpt derived from eng-web
+    display_transformation: "USFM word-study markup, footnote, and cross-reference markup removed; lexical wording retained; omission disclosed"
+  m7_public_metadata:
+    repository: lowelltwong-alt/logos-scripture-graph
+    public_ref: codex/t611-m7-publication
+    public_ref_head_observed: "9701dd84ff5f96d4527b8f7c16f11ae7577a20c7"
+    publication_path: docs/publications/m7-sol-candidate-v1/README.md
+    source_snapshot_pointer: "eaf31a940d3166b49c38ca26eb279392e0a3b25b"
+    durable_candidate:
+      decision_id: M7_sol-John-009
+      span: John.18.1-John.19.42
+      candidate_only: true
+      non_authorizing: true
+      lifecycle: hold_with_findings
+  m7_local_corrective_observation:
+    source_path: .ai/scratch/multi_model_bible_chunking/M7_sol/book_chunks/John/chunks.jsonl
+    source_sha256: "3966595805e41226999134409b7d62e15dbfc8b8bda31266802ae8f2137383a8"
+    tracked_at_observation: false
+    public_endpoint: null
+    durable: false
+    authority_effect: none
+    observed_candidates:
+      - decision_id: M7_sol-John-057
+        span: John.18.28-John.19.16
+        working_title: Roman Trial Sequence
+        candidate_only: true
+        non_authorizing: true
+      - decision_id: M7_sol-John-058
+        span: John.19.17-John.19.37
+        working_title: Crucifixion Death And Witness
+        candidate_only: true
+        non_authorizing: true
+  m8:
+    repository: lowelltwong-alt/logos-scripture-graph
+    branch: scratch/t423-m8-fable
+    checkpoint_head: "35dc82b391ae8971e059c405edf0f3df77489f3e"
+    books_completed: 22
+    books_total: 66
+    current_book: Isa
+    john_status: pending_not_built
+    convergence_status: not_started
+segments:
+  - segment_id: p66-john19-08-11
+    passage: John.19.8-John.19.11
+    m7_durable_candidate_refs: [M7_sol-John-009]
+    m7_local_observation_refs: [M7_sol-John-057]
+    verses:
+      - verse: John.19.8
+        english: "When therefore Pilate heard this saying, he was more afraid."
+      - verse: John.19.9
+        english: "He entered into the Praetorium again, and said to Jesus, ‘Where are you from?’ But Jesus gave him no answer."
+      - verse: John.19.10
+        english: "Pilate therefore said to him, ‘Aren’t you speaking to me? Don’t you know that I have power to release you and have power to crucify you?’"
+      - verse: John.19.11
+        english: "Jesus answered, ‘You would have no power at all against me, unless it were given to you from above. Therefore he who delivered me to you has greater sin.’"
+  - segment_id: p66-john19-13-15
+    passage: John.19.13-John.19.15
+    m7_durable_candidate_refs: [M7_sol-John-009]
+    m7_local_observation_refs: [M7_sol-John-057]
+    verses:
+      - verse: John.19.13
+        english: "When Pilate therefore heard these words, he brought Jesus out and sat down on the judgment seat at a place called ‘The Pavement’, but in Hebrew, ‘Gabbatha.’"
+      - verse: John.19.14
+        english: "Now it was the Preparation Day of the Passover, at about the sixth hour. He said to the Jews, ‘Behold, your King!’"
+      - verse: John.19.15
+        english: "They cried out, ‘Away with him! Away with him! Crucify him!’ Pilate said to them, ‘Shall I crucify your King?’ The chief priests answered, ‘We have no king but Caesar!’"
+  - segment_id: p66-john19-18-20
+    passage: John.19.18-John.19.20
+    m7_durable_candidate_refs: [M7_sol-John-009]
+    m7_local_observation_refs: [M7_sol-John-058]
+    verses:
+      - verse: John.19.18
+        english: "where they crucified him, and with him two others, on either side one, and Jesus in the middle."
+      - verse: John.19.19
+        english: "Pilate wrote a title also, and put it on the cross. There was written, ‘JESUS OF NAZARETH, THE KING OF THE JEWS.’"
+      - verse: John.19.20
+        english: "Therefore many of the Jews read this title, for the place where Jesus was crucified was near the city; and it was written in Hebrew, in Latin, and in Greek."
+  - segment_id: p66-john19-23-24
+    passage: John.19.23-John.19.24
+    m7_durable_candidate_refs: [M7_sol-John-009]
+    m7_local_observation_refs: [M7_sol-John-058]
+    verses:
+      - verse: John.19.23
+        english: "Then the soldiers, when they had crucified Jesus, took his garments and made four parts, to every soldier a part; and also the tunic. Now the tunic was without seam, woven from the top throughout."
+      - verse: John.19.24
+        english: "Then they said to one another, ‘Let’s not tear it, but cast lots for it to decide whose it will be,’ that the Scripture might be fulfilled, which says, ‘They parted my garments among them. They cast lots for my clothing.’ Therefore the soldiers did these things."
+invariants:
+  segment_count: 4
+  coverage_is_non_contiguous: true
+  image_to_english_direct_edge_allowed: false
+  transcription_claimed_from_image: false
+  m7_candidate_only: true
+  m8_complete: false
+  convergence_started: false
+  authority_effect: none

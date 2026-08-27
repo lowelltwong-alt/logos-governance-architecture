@@ -27,6 +27,13 @@ Start with these files in this repository:
 4. docs/portfolio/logos-trust-layer/README.md
 5. docs/portfolio/logos-trust-layer/validation-receipt.json
 6. AI_FRONT_DOOR.md
+7. docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md
+8. docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/release/public-release-manifest.yaml
+9. docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/validation-receipt.json
+10. docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/sources/archaeology-source-pack.yaml
+11. docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/evidence-graph.yaml
+12. docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/agent-mesh.v3.json
+13. docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/frozen-digests.json
 
 Before evaluating claims, establish the project boundary from
 `governance/LOGOS_REPO_REGISTRY.yaml` and `LOGOS_FAMILY_MAP.md`. The current
@@ -91,10 +98,31 @@ Independently verify these high-risk boundaries:
    same relationship without the diagram.
 9. The four repository metrics are tied to exact public commits and described as
    path signals rather than current CI or capability counts.
+10. The Biblical Evidence Graph Demonstration includes the exact P66 JPEG at the
+    declared SHA-256 and CC BY 4.0 attribution; models four non-contiguous John
+    19 segments; does not infer transcription or English text from the image;
+    keeps M7 candidate-only, M8 John unbuilt, and convergence not started; and
+    never gives archaeology, model agreement, graph reachability, or citation
+    count authority over Scripture or doctrine. Reproduce its declared 20 source
+    records, 5 bounded claims, 27 nodes, 45 edges, 11 roles, and 72 adversarial
+    fixtures from the machine-readable files; do not accept the counts from prose.
+    count authority over Scripture or doctrine.
+11. Its archaeology source pack distinguishes holding-institution records,
+    primary publications, critical editions/corpora, peer-reviewed analysis,
+    and reception controls. Check every public locator independently, compare
+    each bounded claim with its stated limitations and counterpositions, and
+    report any source that is inaccessible, mischaracterized, retracted,
+    corrected, or too weak for the public wording.
+12. Its agent mesh separates researchers, rights review, citation/source-fitness
+    review, claim-fidelity checking, graph engineering, graph red-team, release
+    checking, and entry/midflight/exit completeness audit. Do not infer that a
+    role profile is a qualified human expert or a running agent.
 
 If you can run local commands safely, rerun:
 - python scripts/validate_portfolio_front_door.py
 - python -m pytest tests/test_portfolio_front_door.py
+- python scripts/validate_biblical_evidence_demo.py
+- python -m pytest tests/test_biblical_evidence_demo.py
 - python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
 - python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
 - python scripts/validate_internal_links.py --all-markdown
@@ -108,12 +136,15 @@ A. Executive assessment (five sentences maximum).
 B. Claim audit table: claim, evidence, maturity, verdict, limitation.
 C. Architecture assessment: custody, provenance, graph/schema design, validation,
    agent mesh, human gates, and release discipline.
-D. Three strongest transferable AI-engineering signals, with evidence.
-E. Three largest gaps or unproven assumptions, with the next evidence needed.
-F. Anti-hype check: list any overstatement or say none found.
-G. Recruiter assessment: which roles this work supports, what interview questions
+D. Academic demonstration assessment: P66 rights/lineage, manuscript-to-chunk
+   boundary, archaeology source fitness, claim fidelity, uncertainty,
+   counterpositions, and forbidden authority paths.
+E. Three strongest transferable AI-engineering signals, with evidence.
+F. Three largest gaps or unproven assumptions, with the next evidence needed.
+G. Anti-hype check: list any overstatement or say none found.
+H. Recruiter assessment: which roles this work supports, what interview questions
    to ask, and what should not be inferred.
-H. Final verdict: impressive, credible, and bounded; credible but overstated;
+I. Final verdict: impressive, credible, and bounded; credible but overstated;
    promising but mostly design; or insufficiently evidenced. Explain why.
 
 Treat disagreement as useful evidence. Do not soften a material contradiction to

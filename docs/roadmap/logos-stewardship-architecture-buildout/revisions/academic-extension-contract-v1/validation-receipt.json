@@ -1,0 +1,107 @@
+{
+  "schema_version": "logos.academic-extension.validation-receipt.v1",
+  "object_type": "academic_extension_validation_receipt",
+  "trust_zone": "proposed",
+  "lifecycle_status": "draft",
+  "provenance_note": "Regenerated 2026-08-27 after deterministic replay and independent review of the Academic Extension refreeze required by the release-integrated governance dependency map.",
+  "reason_for_inclusion": "Preserve machine-readable validation evidence without treating a specification or test result as academic, theological, activation, or release authority.",
+  "created_at": "2026-08-27T01:41:56.786535Z",
+  "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "candidate_base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+  "frozen_content": {
+    "manifest": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/academic-extension-contract-v1/frozen-digests.json",
+    "manifest_sha256": "sha256:8cb6e7001c7d11b61f273c55f7285fe1045dabc1fa7c3da141a6d652b50f0446",
+    "path_count": 47,
+    "content_digest": "sha256:f07c6a75879802c953268b192850c79e8ea1c116443c9b47c9a37464e2a434df",
+    "receipt_paths_excluded": true
+  },
+  "result": "pass",
+  "checks": [
+    {
+      "id": "academic-extension-contract",
+      "result": "pass",
+      "evidence": {
+        "schemas": 5,
+        "positive_fixtures": 5,
+        "adversarial_fixtures": 12,
+        "blocked_human_gates": 8,
+        "premortem_risks": 11,
+        "standards_sources": 9
+      }
+    },
+    {
+      "id": "focused-pytest",
+      "result": "pass",
+      "evidence": "27 passed in an isolated local replay"
+    },
+    {
+      "id": "full-pytest",
+      "result": "deferred_to_receipt_finalization",
+      "evidence": "No whole-suite pass is claimed at this content checkpoint because the direct-parent portfolio receipt must be finalized afterward; the complete suite remains a binding post-finalization gate."
+    },
+    {
+      "id": "repository-default-validation-suite",
+      "result": "out_of_scope_baseline_failure",
+      "evidence": "30 of 31 validators passed. The sole failure is ten pre-existing retrieval-neighborhood files at 51 days versus a 30-day freshness threshold; no data/retrieval path is in this candidate, and this receipt grants no authority to refresh or waive them."
+    },
+    {
+      "id": "task-local-mesh",
+      "result": "pass",
+      "evidence": "Three non-overlapping roles; maximum depth one; prior-role reconciliation present; manifest sha256:d92d972fdf97cd22a9e4ab551c80681eea4b1432b3fab8be497dbfcc8f9d74a1"
+    },
+    {
+      "id": "family-work-registry",
+      "result": "pass",
+      "evidence": "Schema and semantic validation passed; five unrelated stale-lease warnings remained warnings."
+    },
+    {
+      "id": "governance-dependency-map",
+      "result": "pass",
+      "evidence": "Academic Extension Contract dependency coverage validated."
+    },
+    {
+      "id": "internal-links",
+      "result": "pass",
+      "evidence": "466 Markdown files passed after final receipt materialization."
+    },
+    {
+      "id": "git-diff-check",
+      "result": "pass",
+      "evidence": "No whitespace errors."
+    },
+    {
+      "id": "exact-claim-scope",
+      "result": "pass",
+      "evidence": "85 base-to-content-candidate paths remain covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001; this refreeze updates three existing claimed academic evidence paths and adds no new file."
+    },
+    {
+      "id": "candidate-sensitive-patterns",
+      "result": "pass",
+      "evidence": "85 exact content-candidate paths checked: 84 UTF-8 text files scanned, the exact P66 JPEG classified as non-text, 0 read errors, and 0 candidate-added private locators, attachment locators, chat-local locators, email addresses, private-key markers, or recognized credential-token patterns."
+    },
+    {
+      "id": "changed-input-independent-review",
+      "result": "pass",
+      "evidence": "AEX-REFREEZE-IR-20260827T014156Z independently reproduced all 47 canonical rows, the exact dependency-map row, and the aggregate digest; all eight human gates remain blocked and the production domain-pack registry remains empty."
+    }
+  ],
+  "environment_note": {
+    "initial_restricted_run": "invalidated by Windows temporary-directory and Cargo-target access denials",
+    "authoritative_replay": "Direct validators and isolated focused tests passed. Pytest plugin autoload, cache, and fault-handler output were disabled for the authoritative local replay after this Windows host emitted handled first-chance access-violation diagnostics during otherwise exit-zero runs; required Linux CI remains binding.",
+    "repository_test_output_written": false,
+    "evidence_quality_replay": "The final privacy wrapper enumerated the exact NUL-delimited 85-path content candidate, compared text paths against exact base and content blobs, failed on read errors or invalid UTF-8 text, and passed with zero candidate-added findings; the digest-bound P66 JPEG is intentionally classified as non-text."
+  },
+  "authority_ceiling": [
+    "specification_only",
+    "fixture_only",
+    "no_runtime_activation",
+    "no_source_ingestion",
+    "no_substantive_doctrine_change",
+    "no_academic_truth_promotion",
+    "no_publication_authority"
+  ],
+  "nonclaims": [
+    "A passing validator does not establish academic truth, source fitness, theological authority, standards conformance, runtime qualification, activation, or release readiness.",
+    "The empty domain-pack registry remains non-authorizing and all eight human gates remain blocked."
+  ]
+}

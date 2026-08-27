@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/schemas/academic_extensions/extension_registry.v1.schema.json",
+  "title": "Academic Extension Registry v1",
+  "$comment": "A dependency and reverse-consumer registry; registration does not approve a pack or its contents.",
+  "type": "object",
+  "x-governance": {"object_type": "academic_extension_registry_schema", "trust_zone": "proposed", "lifecycle_status": "draft", "provenance_note": "Created 2026-08-25 for the Academic Extension Contract.", "reason_for_inclusion": "Make compatibility and reverse blast radius machine-checkable before any future pack activation."},
+  "required": ["schema_version", "object_type", "kernel_contract", "packs", "consumers", "authority_ceiling"],
+  "properties": {
+    "schema_version": {"const": "logos.academic.extension-registry.v1"},
+    "object_type": {"const": "academic_extension_registry"},
+    "kernel_contract": {"type": "object", "additionalProperties": false, "required": ["path", "digest", "mutation_policy"], "properties": {"path": {"const": "schemas/schema_registry.json"}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "mutation_policy": {"const": "canonical_content_identity_required_for_pack_only_changes"}}},
+    "packs": {"type": "array", "uniqueItems": true, "items": {"type": "object", "additionalProperties": false, "required": ["pack_id", "manifest_ref", "manifest_digest", "status"], "properties": {"pack_id": {"type": "string", "pattern": "^academic\\.[a-z0-9]+(?:[._-][a-z0-9]+)*$"}, "manifest_ref": {"type": "string", "minLength": 1}, "manifest_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "status": {"enum": ["candidate", "review_pending", "deprecated"]}}}},
+    "consumers": {"type": "array", "uniqueItems": true, "items": {"type": "object", "additionalProperties": false, "required": ["consumer_id", "pack_id", "contract_ref", "compatibility"], "properties": {"consumer_id": {"type": "string", "minLength": 1}, "pack_id": {"type": "string", "minLength": 1}, "contract_ref": {"type": "string", "minLength": 1}, "compatibility": {"enum": ["declared", "tested", "blocked"]}}}},
+    "authority_ceiling": {"const": "registry_is_non_authorizing"}
+  },
+  "additionalProperties": false
+}

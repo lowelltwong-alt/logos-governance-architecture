@@ -1,6 +1,6 @@
 # AI Work Start Here
 
-This file is the operational front door for AI agents, coding assistants, and future maintainers working inside this repository. For a read-only recruiter or portfolio audit, begin with [`PORTFOLIO.md`](PORTFOLIO.md) and do not treat that public summary as repository authority.
+This file is the operational front door for AI agents, coding assistants, and future maintainers working inside this repository. For a read-only recruiter or portfolio audit, begin with [`PORTFOLIO.md`](PORTFOLIO.md), follow its neutral AI interrogation prompt, and inspect the linked [Biblical Evidence Graph Demonstration V1](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md) as a concrete static slice. Do not treat either public summary as repository, academic, or theological authority.
 
 Human readers should start with [`README.md`](README.md). AI agents should start here, then consult [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md).
 
@@ -128,6 +128,13 @@ Before changing files:
     doctrine-genealogy queue, use
     [`docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md`](docs/roadmap/fable-kernels/DAD-LESSON-OUTBOX.md).
 
+11. For any proposed academic domain, read
+    [`docs/governance/academic-extension-contract.md`](docs/governance/academic-extension-contract.md)
+    before designing nodes or edges. Preserve qualified n-ary roles, named-graph
+    disagreement, source/projection separation, uncertainty, rights, reverse
+    consumers, and the non-authorizing ceiling. Do not register a real domain
+    pack or ingest a source without a fresh exact claim and human authorization.
+
 ## Output expectations for AI work
 
 When producing patches or recommendations, report:
@@ -145,4 +152,3 @@ When producing patches or recommendations, report:
 ## Maintenance commands
 
 Long maintenance runs belong in [`docs/maintenance.md`](docs/maintenance.md). Do not keep operational runbook details in the README unless they are needed by first-time readers.
-

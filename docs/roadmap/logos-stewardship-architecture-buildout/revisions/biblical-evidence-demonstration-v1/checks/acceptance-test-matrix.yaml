@@ -1,0 +1,39 @@
+schema_version: logos.biblical-evidence.acceptance-matrix.v1
+object_type: bounded_acceptance_test_matrix
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 to distinguish machine proof, independent AI review, qualified-human review, and claims that remain unproved."
+reason_for_inclusion: "Prevent a green test suite from being presented as academic or theological validation."
+checks:
+  - check_id: asset-identity
+    mechanism: deterministic
+    proves: [exact_repository_sha256, exact_byte_count, exact_jpeg_dimensions]
+    does_not_prove: [catalog_assignment, image_interpretation]
+  - check_id: rights-fields
+    mechanism: deterministic_plus_independent_rights_review
+    proves: [required_attribution_present, license_and_source_links_present, modification_status_declared]
+    does_not_prove: [every_non_copyright_permission, institutional_endorsement]
+  - check_id: p66-segments
+    mechanism: deterministic
+    proves: [four_declared_non_contiguous_ranges, continuous_range_rejected]
+    does_not_prove: [transcription_accuracy, preferred_reading]
+  - check_id: english-crosswalk
+    mechanism: deterministic_provenance
+    proves: [source_snapshot_declared, display_transformation_disclosed, verse_and_chunk_refs_consistent]
+    does_not_prove: [translation_quality, image_to_english_alignment]
+  - check_id: archaeology-source-pack
+    mechanism: deterministic_structure_plus_independent_academic_review
+    proves: [source_roles_locators_limits_counterpositions_present]
+    does_not_prove: [historical_truth, scholarly_consensus, expert_approval]
+  - check_id: graph-invariants
+    mechanism: deterministic_reachability_plus_independent_red_team
+    proves: [tested_forbidden_edges_rejected, relation_endpoint_kinds_enforced, lower_trust_to_canonical_paths_rejected, source_claim_projection_exact, m7_m8_status_consistent, endpoints_and_authority_fields_valid, exact_document_envelopes, reserved_namespace_kind_alignment, lossless_quarantined_extension_payloads, confusable_safe_unknown_relation_identifiers]
+    does_not_prove: [ontology_completeness, all_future_attack_paths]
+  - check_id: mesh-completeness
+    mechanism: deterministic_contract_plus_entry_midflight_exit_review
+    proves: [assigned_roles_and_permissions_checked, input_digests_replayed, entry_midflight_exit_receipts_bound_to_current_candidate, missing_role_questions_recorded, structured_late_discovery_resolution_codes_and_evidence_bound, fixture_rejections_differential_from_known_valid_baseline]
+    does_not_prove: [actual_human_expertise, runtime_behavior]
+  - check_id: public-release
+    mechanism: exact_scope_privacy_provenance_link_CI_and_unchanged_head_gates
+    proves: [frozen_candidate_matches_reviewed_candidate]
+    does_not_prove: [doctrine_authority, completed_corpus, running_system]

@@ -1,0 +1,49 @@
+schema_version: logos.academic-extension.standards-evidence.v1
+object_type: academic_extension_standards_evidence
+trust_zone: proposed
+lifecycle_status: draft
+checked_at: 2026-08-25
+authority_effect: none
+adapter_rule: native_logos_contract_remains_lossless_and_authoritative_for_local_governance
+sources:
+  - standard_id: w3c-rdf-1-2-concepts
+    official_url: https://www.w3.org/TR/rdf12-concepts/
+    evidence_function: graph_and_dataset_model
+    use_boundary: revision_status_must_be_repinned_before_adapter_activation
+  - standard_id: w3c-json-ld-1-1
+    official_url: https://www.w3.org/TR/json-ld11/
+    evidence_function: linked_data_serialization
+    use_boundary: serialization_does_not_grant_semantic_or_governance_authority
+  - standard_id: w3c-shacl
+    official_url: https://www.w3.org/TR/shacl/
+    evidence_function: graph_constraint_patterns
+    use_boundary: constraint_conformance_does_not_prove_truth
+  - standard_id: w3c-prov-o
+    official_url: https://www.w3.org/TR/prov-o/
+    evidence_function: provenance_vocabulary
+    use_boundary: provenance_record_does_not_prove_source_fitness
+  - standard_id: w3c-skos
+    official_url: https://www.w3.org/TR/skos-reference/
+    evidence_function: bounded_concept_mapping
+    use_boundary: exact_mapping_is_forbidden_by_default
+  - standard_id: w3c-web-annotation
+    official_url: https://www.w3.org/TR/annotation-model/
+    evidence_function: target_selector_and_annotation_patterns
+    use_boundary: annotation_is_not_source_mutation_or_claim_approval
+  - standard_id: tei-p5-4-12-0
+    official_url: https://www.tei-c.org/release/doc/tei-p5-doc/en/html/index.html
+    evidence_function: textual_scholarship_manuscript_and_standoff_patterns
+    use_boundary: tei_adapter_must_preserve_native_object_identity_and_declared_loss
+  - standard_id: iiif-presentation-3-0
+    official_url: https://iiif.io/api/presentation/3.0/
+    evidence_function: digitized_object_presentation
+    use_boundary: presentation_manifest_is_not_source_or_rights_authority
+  - standard_id: cidoc-crm-version-records
+    official_url: https://cidoc-crm.org/versions-of-the-cidoc-crm
+    evidence_function: cultural_heritage_mapping_candidates
+    use_boundary: version_7_3_2_is_listed_as_draft_and_must_not_be_called_official_stable
+nonclaims:
+  - no_external_standard_is_adopted_or_activated
+  - no_mapping_is_claimed_exact
+  - no_standard_overrides_logos_authority_or_human_gates
+  - no_interoperability_claim_exists_without_revision_bound_tests

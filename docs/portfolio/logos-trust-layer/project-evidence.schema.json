@@ -107,27 +107,77 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "status", "base_commit", "v1_checkpoint_commit",
+        "status", "base_commit", "current_content_path_count",
         "total_unique_path_count", "receipt_excluded_path_count",
-        "v1_checkpoint_path_count", "v1_only_path_count",
-        "v2_path_count", "post_v1_portfolio_path_count", "shared_path_count",
-        "post_v1_candidate_path_count", "post_v1_receipt_excluded_path_count",
-        "canonical_digest_algorithm", "historical_v1"
+        "added_path_count", "modified_path_count", "deleted_path_count",
+        "renamed_path_count",
+        "canonical_digest_algorithm", "intermediate_receipt", "prior_release",
+        "historical_v1"
       ],
       "properties": {
-        "status": {"const": "full_pr_composite_release_candidate"},
-        "base_commit": {"const": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12"},
-        "v1_checkpoint_commit": {"const": "410c7e429290d34013c1dbf23c0335ebfe68e45f"},
-        "total_unique_path_count": {"const": 131},
-        "receipt_excluded_path_count": {"const": 130},
-        "v1_checkpoint_path_count": {"const": 25},
-        "v1_only_path_count": {"const": 20},
-        "v2_path_count": {"const": 90},
-        "post_v1_portfolio_path_count": {"const": 21},
-        "shared_path_count": {"const": 5},
-        "post_v1_candidate_path_count": {"const": 111},
-        "post_v1_receipt_excluded_path_count": {"const": 110},
+        "status": {"const": "chained_incremental_release_candidate"},
+        "base_commit": {"const": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca"},
+        "current_content_path_count": {"const": 85},
+        "total_unique_path_count": {"const": 86},
+        "receipt_excluded_path_count": {"const": 85},
+        "added_path_count": {"const": 64},
+        "modified_path_count": {"const": 21},
+        "deleted_path_count": {"const": 0},
+        "renamed_path_count": {"const": 0},
         "canonical_digest_algorithm": {"type": "string", "minLength": 80},
+        "intermediate_receipt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status", "content_head_commit", "content_tree_sha", "receipt_commit",
+            "receipt_tree_sha", "receipt_raw_sha256", "receipt_digest",
+            "content_path_count", "total_release_path_count",
+            "fingerprinted_content_path_count", "added_path_count",
+            "modified_path_count", "deleted_path_count", "renamed_path_count",
+            "content_digest"
+          ],
+          "properties": {
+            "status": {"const": "superseded_prepublication_non_authorizing_checkpoint"},
+            "content_head_commit": {"const": "9128c6b710a35fe70115efadfef65ea54ed50ebb"},
+            "content_tree_sha": {"const": "e0fdc9e3087675ba9ab1713400945ab644f4342b"},
+            "receipt_commit": {"const": "36ba16eab3dbf9dafb35184528c6ce68346e5c29"},
+            "receipt_tree_sha": {"const": "96760b23e366ad9368848ec116bad6ed68d79847"},
+            "receipt_raw_sha256": {"const": "sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6"},
+            "receipt_digest": {"const": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f"},
+            "content_path_count": {"const": 85},
+            "total_release_path_count": {"const": 86},
+            "fingerprinted_content_path_count": {"const": 85},
+            "added_path_count": {"const": 64},
+            "modified_path_count": {"const": 21},
+            "deleted_path_count": {"const": 0},
+            "renamed_path_count": {"const": 0},
+            "content_digest": {"const": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"}
+          }
+        },
+        "prior_release": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "base_commit", "content_head_commit", "receipt_commit", "merge_commit",
+            "receipt_raw_sha256", "path_count", "fingerprinted_path_count",
+            "canonical_digest_algorithm", "content_digest", "receipt_digest",
+            "merge_tree_sha", "protected_drift_to_current_base_count"
+          ],
+          "properties": {
+            "base_commit": {"const": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12"},
+            "content_head_commit": {"const": "04a190bf091eea468a57f5604264a71ff97dd237"},
+            "receipt_commit": {"const": "54be8f8b5e75aeda994ff5fc6b858c9e1edad6cd"},
+            "merge_commit": {"const": "91fa8560fecade6b7dd557edad8edf91609efd9b"},
+            "receipt_raw_sha256": {"const": "sha256:c6a9b91c81ecc024dd82c183c16a02c455fda94fc9255bae90e9f15cab93b450"},
+            "path_count": {"const": 131},
+            "fingerprinted_path_count": {"const": 130},
+            "canonical_digest_algorithm": {"type": "string", "minLength": 80},
+            "content_digest": {"const": "sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc"},
+            "receipt_digest": {"const": "sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff"},
+            "merge_tree_sha": {"const": "4542d66e88bd8cb14cb77487e52c88c184b4de30"},
+            "protected_drift_to_current_base_count": {"const": 0}
+          }
+        },
         "historical_v1": {
           "type": "object",
           "additionalProperties": false,
@@ -308,6 +358,229 @@
         "kind": {"enum": ["local_path", "github_url"]},
         "target": {"type": "string", "minLength": 3},
         "supports": {"type": "string", "minLength": 10}
+      }
+    },
+    "portfolioValidationReceiptV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "object_type", "trust_zone", "lifecycle_status",
+        "provenance_note", "reason_for_inclusion", "receipt_id", "work_id",
+        "status", "release_chain", "doctrine_mesh_status",
+        "doctrine_mesh_payload_digest", "doctrine_mesh_revision_manifest_digest",
+        "doctrine_mesh_final_saved_version_digest", "preflight", "dad_unavailable_ack",
+        "checks", "independent_reviews", "unchanged_head_gate", "required_ci",
+        "normal_merge",
+        "runtime_activation_authorized", "source_ingestion_authorized",
+        "substantive_doctrine_implementation_authorized", "completed_doctrine_corpus",
+        "qualified_theological_authority_granted", "mutation_performed_by_validation",
+        "observed_at", "receipt_digest"
+      ],
+      "properties": {
+        "schema_version": {"const": "logos.portfolio_validation_receipt.v2"},
+        "object_type": {"const": "logos_portfolio_validation_receipt"},
+        "trust_zone": {"const": "proposed"},
+        "lifecycle_status": {"const": "public_release_candidate"},
+        "provenance_note": {"type": "string", "minLength": 30},
+        "reason_for_inclusion": {"type": "string", "minLength": 30},
+        "receipt_id": {"const": "LOGOS-PORTFOLIO-RELEASE-003"},
+        "work_id": {"const": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001"},
+        "status": {"const": "pass_scoped_incremental_release_candidate"},
+        "release_chain": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode", "receipt_path", "active_increment", "privacy",
+            "external_baseline_finding", "intermediate_receipt", "prior_release",
+            "historical_v1"
+          ],
+          "properties": {
+            "mode": {"const": "direct_parent_incremental_v2"},
+            "receipt_path": {"const": "docs/portfolio/logos-trust-layer/validation-receipt.json"},
+            "active_increment": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "branch_base_commit", "content_head_commit", "content_tree_sha",
+                "content_path_count", "receipt_path_count", "total_release_path_count",
+                "fingerprinted_content_path_count", "added_path_count",
+                "modified_path_count", "deleted_path_count", "renamed_path_count",
+                "canonical_digest_algorithm", "content_digest"
+              ],
+              "properties": {
+                "branch_base_commit": {"const": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca"},
+                "content_head_commit": {"$ref": "#/$defs/sha1"},
+                "content_tree_sha": {"$ref": "#/$defs/sha1"},
+                "content_path_count": {"const": 85},
+                "receipt_path_count": {"const": 1},
+                "total_release_path_count": {"const": 86},
+                "fingerprinted_content_path_count": {"const": 85},
+                "added_path_count": {"const": 64},
+                "modified_path_count": {"const": 21},
+                "deleted_path_count": {"const": 0},
+                "renamed_path_count": {"const": 0},
+                "canonical_digest_algorithm": {"type": "string", "minLength": 80},
+                "content_digest": {"$ref": "#/$defs/sha256"}
+              }
+            },
+            "privacy": {
+              "const": {
+                "mode": "exact_base_candidate_added_occurrences",
+                "baseline_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+                "content_source": "active_increment.content_head_commit",
+                "receipt_source": "derived_latest_receipt_commit",
+                "candidate_added_finding_count": 0,
+                "invalid_utf8_count": 0,
+                "repository_wide_privacy_pass_claimed": false
+              }
+            },
+            "external_baseline_finding": {
+              "const": {
+                "baseline_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+                "path": "tests/test_machine_citation_artifacts.py",
+                "rule": "file_uri",
+                "occurrence_count": 3,
+                "integrated_via_pr": 120,
+                "disposition": "unresolved_preexisting_not_waived"
+              }
+            },
+            "intermediate_receipt": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status", "content_head_commit", "content_tree_sha", "receipt_commit",
+                "receipt_tree_sha", "receipt_raw_sha256", "receipt_digest",
+                "content_path_count", "total_release_path_count",
+                "fingerprinted_content_path_count", "added_path_count",
+                "modified_path_count", "deleted_path_count", "renamed_path_count",
+                "content_digest"
+              ],
+              "properties": {
+                "status": {"const": "superseded_prepublication_non_authorizing_checkpoint"},
+                "content_head_commit": {"const": "9128c6b710a35fe70115efadfef65ea54ed50ebb"},
+                "content_tree_sha": {"const": "e0fdc9e3087675ba9ab1713400945ab644f4342b"},
+                "receipt_commit": {"const": "36ba16eab3dbf9dafb35184528c6ce68346e5c29"},
+                "receipt_tree_sha": {"const": "96760b23e366ad9368848ec116bad6ed68d79847"},
+                "receipt_raw_sha256": {"const": "sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6"},
+                "receipt_digest": {"const": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f"},
+                "content_path_count": {"const": 85},
+                "total_release_path_count": {"const": 86},
+                "fingerprinted_content_path_count": {"const": 85},
+                "added_path_count": {"const": 64},
+                "modified_path_count": {"const": 21},
+                "deleted_path_count": {"const": 0},
+                "renamed_path_count": {"const": 0},
+                "content_digest": {"const": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"}
+              }
+            },
+            "prior_release": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "base_commit", "content_head_commit", "receipt_commit", "merge_commit",
+                "receipt_raw_sha256", "path_count", "fingerprinted_path_count",
+                "canonical_digest_algorithm", "content_digest", "receipt_digest",
+                "merge_tree_sha", "protected_drift_to_current_base_count"
+              ],
+              "properties": {
+                "base_commit": {"const": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12"},
+                "content_head_commit": {"const": "04a190bf091eea468a57f5604264a71ff97dd237"},
+                "receipt_commit": {"const": "54be8f8b5e75aeda994ff5fc6b858c9e1edad6cd"},
+                "merge_commit": {"const": "91fa8560fecade6b7dd557edad8edf91609efd9b"},
+                "receipt_raw_sha256": {"const": "sha256:c6a9b91c81ecc024dd82c183c16a02c455fda94fc9255bae90e9f15cab93b450"},
+                "path_count": {"const": 131},
+                "fingerprinted_path_count": {"const": 130},
+                "canonical_digest_algorithm": {"type": "string", "minLength": 80},
+                "content_digest": {"const": "sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc"},
+                "receipt_digest": {"const": "sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff"},
+                "merge_tree_sha": {"const": "4542d66e88bd8cb14cb77487e52c88c184b4de30"},
+                "protected_drift_to_current_base_count": {"const": 0}
+              }
+            },
+            "historical_v1": {
+              "const": {
+                "reference": "project-evidence.yaml#/release_scope/historical_v1",
+                "status": "historical_evidence_only"
+              }
+            }
+          }
+        },
+        "doctrine_mesh_status": {"const": "validated_specification_only"},
+        "doctrine_mesh_payload_digest": {"$ref": "#/$defs/sha256"},
+        "doctrine_mesh_revision_manifest_digest": {"$ref": "#/$defs/sha256"},
+        "doctrine_mesh_final_saved_version_digest": {"$ref": "#/$defs/sha256"},
+        "preflight": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status", "checkpoint", "observed_at",
+            "protected_hold_suppressions", "mutation_performed"
+          ],
+          "properties": {
+            "status": {"const": "pass"},
+            "checkpoint": {"const": "08eab8e3edf44ab22175e3e47b1828153a84d716"},
+            "observed_at": {"type": "string", "format": "date-time"},
+            "protected_hold_suppressions": {"type": "integer", "minimum": 0},
+            "mutation_performed": {"const": false}
+          }
+        },
+        "dad_unavailable_ack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "reviewed_by", "created_at", "authority_boundary"],
+          "properties": {
+            "operation": {"const": "public_release"},
+            "reviewed_by": {"const": "Lowell Wong"},
+            "created_at": {"type": "string", "format": "date-time"},
+            "authority_boundary": {"type": "string", "minLength": 40}
+          }
+        },
+        "checks": {
+          "type": "array",
+          "minItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["check_id", "status", "result"],
+            "properties": {
+              "check_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]+$"},
+              "status": {"type": "string", "minLength": 4},
+              "result": {"type": "string", "minLength": 12}
+            }
+          }
+        },
+        "independent_reviews": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "review_id", "role", "status", "reviewed_path_count",
+              "reviewed_digest", "scope_note", "observed_at"
+            ],
+            "properties": {
+              "review_id": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
+              "role": {"type": "string", "minLength": 8},
+              "status": {"type": "string", "minLength": 4},
+              "reviewed_path_count": {"type": "integer", "minimum": 1},
+              "reviewed_digest": {"$ref": "#/$defs/sha256"},
+              "scope_note": {"type": "string", "minLength": 30},
+              "observed_at": {"type": "string", "format": "date-time"}
+            }
+          }
+        },
+        "unchanged_head_gate": {"type": "string", "minLength": 20},
+        "required_ci": {"const": "pending_at_receipt_finalization"},
+        "normal_merge": {"const": "pending_at_receipt_finalization"},
+        "runtime_activation_authorized": {"const": false},
+        "source_ingestion_authorized": {"const": false},
+        "substantive_doctrine_implementation_authorized": {"const": false},
+        "completed_doctrine_corpus": {"const": false},
+        "qualified_theological_authority_granted": {"const": false},
+        "mutation_performed_by_validation": {"const": false},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "receipt_digest": {"$ref": "#/$defs/sha256"}
       }
     },
     "maturity": {

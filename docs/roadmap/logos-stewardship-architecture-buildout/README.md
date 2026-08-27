@@ -31,6 +31,20 @@ disagreements, `SPECIAL-001`, and the substantive human gates remain blocked.
 10. [`checks/README.md`](checks/README.md) — deterministic and independent validation.
 11. [`handoff.md`](handoff.md) — current frontier and safe resume.
 
+## Governed revisions
+
+- [`revisions/doctrine-mesh-v2/README.md`](revisions/doctrine-mesh-v2/README.md)
+  is the frozen specification-only doctrine mesh; it is not runtime-activated or
+  theological authority.
+- [`revisions/academic-extension-contract-v1/README.md`](revisions/academic-extension-contract-v1/README.md)
+  is the lossless, non-authorizing domain-extension contract with an empty
+  production registry.
+- [`revisions/biblical-evidence-demonstration-v1/README.md`](revisions/biblical-evidence-demonstration-v1/README.md)
+  is a public, validated static P66 and archaeology evidence slice. It includes
+  one exact licensed image, linked academic sources, claim-mediated graph edges,
+  separated agent checks, negative fixtures, and receipts. It is not a running
+  system, completed corpus, textual edition, historical verdict, or doctrine.
+
 ## Present authorization
 
 Allowed now:

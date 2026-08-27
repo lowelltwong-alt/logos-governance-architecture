@@ -409,9 +409,9 @@ work_items:
     repo: logos-governance-architecture
     task_id: LOGOS-STEWARDSHIP-BUILDOUT-001
     objective_key: logos_stewardship_architecture_buildout_campaign
-    objective: "Author a governed, resumable Logos Stewardship Architecture buildout and a public recruiter-facing AI project front door that explains the cross-repository trust layer, typed graphs, schemas, validators, evidence receipts, specialist meshes, maturity boundaries, and AI interrogation routes without implying completed doctrine, runtime activation, or production deployment."
-    status: awaiting_review
-    board_column: review
+    objective: "Author a governed, resumable Logos Stewardship Architecture buildout and public recruiter-facing AI project front door; specify a lossless Academic Extension Contract; and publish one claim-scoped academic evidence demonstration that joins neutral biblical-archaeology research with the exact CC BY 4.0 P66 Cologne image, manuscript-to-text provenance, public-domain English alignment, candidate chunk intersections, uncertainty, counterpositions, rights gates, graph/mesh contracts, and deterministic validation without implying completed doctrine, settled academic truth, runtime activation, or production deployment."
+    status: active
+    board_column: in_progress
     claim_mode: additive_write
     claimed_paths:
       - governance/registry/FAMILY_WORK_REGISTRY.yaml
@@ -426,17 +426,32 @@ work_items:
       - scripts/validate_portfolio_front_door.py
       - scripts/validation_contracts.py
       - tests/test_portfolio_front_door.py
-    semantic_tags: [architecture_buildout, long_run_campaign, agent_orchestration, public_portfolio, ai_front_door, evidence_manifest, governance_authority, graph_retrieval_vector_truth, theology_authority]
-    roadmap_refs: [LOGOS-STEWARDSHIP-ARCHITECTURE-BUILDOUT-V1, LOGOS-PUBLIC-PORTFOLIO-FRONT-DOOR-V1]
-    branch: codex/logos-stewardship-buildout
+      - docs/governance/academic-extension-contract.md
+      - docs/governance/README.md
+      - docs/governance/relationship-registry.md
+      - docs/governance/ontology-discipline.md
+      - docs/governance/address-migration-model.md
+      - docs/governance/named-graphs-and-trust-boundaries.md
+      - docs/governance/schema-compatibility-policy.md
+      - schemas/academic_extensions/
+      - schemas/schema_registry.json
+      - governance/registry/ACADEMIC_DOMAIN_PACK_REGISTRY.yaml
+      - scripts/validate_academic_extension_contract.py
+      - tests/test_academic_extension_contract.py
+      - tests/fixtures/academic_extensions/
+      - scripts/validate_biblical_evidence_demo.py
+      - tests/test_biblical_evidence_demo.py
+    semantic_tags: [architecture_buildout, long_run_campaign, agent_orchestration, public_portfolio, ai_front_door, evidence_manifest, governance_authority, graph_retrieval_vector_truth, theology_authority, academic_extension, domain_pack, graph_extension, interoperability, n_ary_assertion, hypothesis_graph, lossless_projection, academic_research, biblical_archaeology, manuscript_witness, p66, cc_by_4_0, claim_mediation, source_rights, bible_chunk_alignment, uncertainty, counterposition]
+    roadmap_refs: [LOGOS-STEWARDSHIP-ARCHITECTURE-BUILDOUT-V1, LOGOS-PUBLIC-PORTFOLIO-FRONT-DOOR-V1, LOGOS-ACADEMIC-EXTENSION-CONTRACT-V1, LOGOS-BIBLICAL-EVIDENCE-DEMONSTRATION-V1]
+    branch: codex/logos-stewardship-academic-extension
     issue_url: null
     pr_url: null
     owner: Lowell Wong
     agent: Codex root
     started_at: "2026-08-23T15:44:30Z"
-    heartbeat_at: "2026-08-24T18:46:43Z"
+    heartbeat_at: "2026-08-26T18:32:53Z"
     stale_after_days: 7
-    authority_ceiling: public_documentation_and_specification_only_no_substantive_doctrine_runtime_or_release_self_authority
+    authority_ceiling: public_academic_demonstration_and_exact_cc_by_4_p66_asset_only_no_substantive_doctrine_runtime_or_other_source_ingestion_release_only_through_governed_pr_ci_and_normal_merge
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001]
     overlap_resolution_ids: [OVERLAP-W27-STEWARD-BUILDOUT-001, OVERLAP-W27-STEWARD-CITATION-001, OVERLAP-W27-STEWARD-REPO-RESIDUE-001]
@@ -447,6 +462,13 @@ work_items:
       - "The recruiter front door, evidence schema and manifest, AI interrogation prompt, six Mermaid diagrams with prose equivalents, validator, focused tests, navigation, dependency-map coverage, and validation-contract registration are present in the claimed scope."
       - "Task-separated evidence, recruiter-experience, and privacy/authority reviews found no release-blocking defect; privacy review found no candidate-added private locator, chat locator, or credential-shaped signal and explicitly did not claim all-history or all-ref cleanliness."
       - "Runtime activation, source ingestion, substantive doctrine implementation, completed-corpus status, and qualified theological authority remain false and separately human-gated; non-force publication, required CI, unchanged-head review, and normal merge remain the next release gates."
+      - "The prior portfolio and Doctrine Mesh V2 feature head was normally merged through PR #119 and remains retained. This continuation starts from exact live origin/main f159e3f54d96755cd93dc5cfcd069085be4fb2ca on a separate branch; it does not rewrite or reopen that release."
+      - "Lowell authorized the Academic Extension Contract and biblical-evidence demonstration continuation after lifecycle enforcement reconciliation, owner coordination, claim extension, and a checkpoint-pinned protected-hold-aware family preflight; publication is limited to a non-force governed PR, required CI, independent unchanged-head review, and normal merge, while runtime, unrelated source ingestion, substantive doctrine, bypass, and destructive operations remain prohibited."
+      - "The exact global workspace validator passed after the M8 checkpoint and dashboard-current-count enforcement reconciliation, at the clean integrated boundary, after lifecycle activation, and after the continuation branch was truthfully registered."
+      - "The retained residue-repair lane's recorded owner reported a clean integrated 0/0/0 state, exact containment in origin/main, no active writer or Git operation, and cleanup denied; that worktree remains untouched while the existing serialized overlap boundary is preserved."
+      - "Lowell authorized one claim-scoped public academic evidence demonstration, the exact byte-verified P66 Cologne image licensed CC BY 4.0, neutral archaeology and manuscript research, deterministic graph/rights/authority checks, independent non-author review, scoped local commits, non-force push, governed PR, required CI, unchanged-head gate, and normal merge; M8 mutation, force, bypass, cleanup, reset, rebase, deletion, runtime launch, substantive doctrine, and every other source intake remain prohibited."
+      - "The one-time changed-input work-ID-only protected-hold preflight passed at 2026-08-26T16:57:30.1585139Z from checkpoint 08eab8e3edf44ab22175e3e47b1828153a84d716 with eight exact clean non-writing suppressions, no remaining work-ID blocker, no registry mutation, and no use of the optional cleanup-audit flag."
+      - "Independent review caught and blocked an unrelated Garstang 1936 Jericho source before release; the candidate now uses the directly relevant 1935 PEQ article and code-pins relation endpoints, M7/M8 identities, canonical trust-zone limits, exact machine-document root keys, strict duplicate-key parsing, exact role contracts, and typed completeness receipts with seventy-two differential adversarial fixtures."
   - work_id: WORK-GOV-CITATION-RESIDUE-REPAIR-001
     repo: logos-governance-architecture
     task_id: CITATION-RESIDUE-REPAIR-001

@@ -133,3 +133,13 @@ Promote repeated patterns into reusable nodes.
 Document vocabulary before letting it spread.
 
 That is the core discipline of this repository.
+
+## Academic extension rule
+
+Future academic domains extend the stable shell through versioned domain packs;
+they do not expand one universal kernel until it contains every discipline. A
+pack must preserve unknown extension data losslessly, use a stable namespace,
+declare its consumers, and remain within the authority ceiling in
+[`academic-extension-contract.md`](academic-extension-contract.md). A new domain
+is not evidence that an existing identity, relationship, or trust rule should be
+silently redefined.

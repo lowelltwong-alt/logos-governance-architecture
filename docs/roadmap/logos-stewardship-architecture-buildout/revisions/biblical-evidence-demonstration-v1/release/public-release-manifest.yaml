@@ -1,0 +1,77 @@
+schema_version: logos.biblical-evidence.public-release-manifest.v1
+object_type: public_academic_demonstration_release_manifest
+trust_zone: proposed
+lifecycle_status: active
+provenance_note: "Created 2026-08-26 for the owner-authorized governed public release and changed-input repair cycle; validated-static status requires the exact frozen receipts, CI, and unchanged-head gate recorded by this package."
+reason_for_inclusion: "Expose what is published, what remains incomplete, which asset rights apply, and what no release gate is allowed to imply."
+release_id: LOGOS-BIBLICAL-EVIDENCE-DEMONSTRATION-V1
+work_id: WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
+candidate_base_commit: f159e3f54d96755cd93dc5cfcd069085be4fb2ca
+release_status: validated_static_demonstration
+public_path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/
+content_status:
+  validated_static_design: true
+  runtime_activated: false
+  completed_archaeology_corpus: false
+  completed_manuscript_corpus: false
+  completed_doctrine_corpus: false
+  qualified_theological_authority: false
+  m7_reviewed_gold: false
+  m8_john_built: false
+  m7_m8_converged: false
+validated_structure_metrics:
+  academic_source_records: 20
+  bounded_claim_cases: 5
+  graph_nodes: 27
+  graph_edges_including_source_claim_projection: 45
+  separated_mesh_roles: 11
+  adversarial_fixtures: 72
+asset_release:
+  p66_image_included: true
+  attribution_record: release/asset-attribution.yaml
+  exact_sha256: "f7453af8d2523cc358148c7d26072d87b53c991aa03df667f8c5c54c7beef040"
+  license: CC-BY-4.0
+  image_content_modified: false
+source_payload_boundary:
+  ingested_assets: [assets/p66-cologne-john19-verso.jpg]
+  linked_not_ingested:
+    - archaeology_publications
+    - p66_transcription_or_critical_edition
+    - scripture_graph_m7_metadata
+    - scripture_graph_m7_local_observation
+    - scripture_graph_m8_state
+  prohibited: [other_source_assets, paywalled_full_text, unlicensed_transcription, unlicensed_translation]
+required_release_gates:
+  - exact_claimed_scope
+  - deterministic_demo_validator
+  - relation_kind_and_authority_path_checks
+  - exact_source_claim_projection_check
+  - adversarial_fixture_tests
+  - academic_source_and_claim_fidelity_review
+  - independent_source_locator_and_bibliographic_check
+  - independent_rights_review
+  - independent_graph_and_mesh_review
+  - entry_midflight_exit_role_completeness_audit
+  - changed_input_completeness_digest_replay
+  - privacy_and_sensitive_pattern_scan
+  - internal_and_external_link_check
+  - family_registry_validation
+  - global_workspace_validation
+  - governed_pull_request
+  - required_CI
+  - independent_unchanged_head_gate
+  - normal_merge_without_bypass
+authority:
+  publication_promotes_claims: false
+  publication_approves_doctrine: false
+  publication_approves_transcription_or_translation: false
+  publication_activates_agents_or_graph: false
+  human_theological_gates_preserved: true
+frozen_evidence:
+  digest_manifest: frozen-digests.json
+  validation_receipt: validation-receipt.json
+  independent_reviews:
+    - release/independent-academic-review.md
+    - release/independent-rights-review.md
+    - release/independent-graph-mesh-review.md
+    - release/exit-completeness-audit.yaml

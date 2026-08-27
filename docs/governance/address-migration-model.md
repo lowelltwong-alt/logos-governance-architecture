@@ -59,3 +59,13 @@ Systems using the repository should be able to:
 ## Summary principle
 
 Address changes are governance-significant events, not silent renames.
+
+## Academic extension identities
+
+Domain-pack IDs, namespaces, assertion IDs, source-record IDs, projection IDs,
+and named-graph IDs follow the same preservation rule. A pack version change may
+supersede an address or schema, but it must retain the old identity, migration
+record, compatibility class, and reverse-consumer impact. Canonical IRI policy
+remains a human decision; the draft examples in
+[`academic-extension-contract.md`](academic-extension-contract.md) do not settle
+it.

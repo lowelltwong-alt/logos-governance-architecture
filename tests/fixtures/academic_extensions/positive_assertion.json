@@ -1,0 +1,48 @@
+{
+  "schema_version": "logos.academic.assertion-envelope.v1",
+  "object_type": "academic_assertion_envelope",
+  "assertion_id": "urn:logos:assertion:synthetic-demo-001",
+  "domain_pack_id": "academic.synthetic-demonstration",
+  "named_graph": {
+    "graph_id": "urn:logos:graph:hypothesis:synthetic-a",
+    "graph_kind": "hypothesis",
+    "default_winner": false
+  },
+  "predicate": "urn:logos:relation:synthetic-contextual-association",
+  "roles": [
+    {"role": "observed_object", "entity_ref": "synthetic:object:a"},
+    {"role": "proposed_context", "entity_ref": "synthetic:context:b"},
+    {"role": "observer", "entity_ref": "synthetic:observer:c", "role_qualifiers": {"stance": "undetermined"}}
+  ],
+  "qualifiers": {
+    "temporal": {"value": null, "precision": "unknown", "certainty": 0, "basis": "synthetic fixture"},
+    "spatial": {"value": "synthetic region", "precision": "approximate", "certainty": 0.25, "basis": "synthetic fixture"},
+    "measurement": {"value": null, "unit": null, "uncertainty": null, "method": null},
+    "uncertainty": {"level": "high", "reasons": ["synthetic fixture carries no real-world claim"]}
+  },
+  "provenance": {
+    "source_record_refs": ["urn:logos:source:synthetic-demo-001"],
+    "method": "synthetic_contract_fixture",
+    "asserted_by": "synthetic_fixture_generator"
+  },
+  "hypothesis": {
+    "status": "competing",
+    "alternatives": ["urn:logos:graph:hypothesis:synthetic-b"],
+    "falsifiers": ["Any use as a real-world or doctrinal assertion invalidates this fixture."]
+  },
+  "authority": {
+    "effect": "none",
+    "may_ground_doctrine": false,
+    "human_review_status": "not_reviewed"
+  },
+  "trust_zone": "proposed",
+  "lifecycle_status": "draft",
+  "extension_payload": {
+    "payload_schema_ref": "urn:logos:academic:synthetic-demo:payload-schema:v1",
+    "preservation_policy": "preserve_exact_json_value",
+    "payload_digest": "sha256:6babf847005ec70290f308028e7bcd2941de8dfdabe1d7e2248f2dffc77b8abc",
+    "payload_data": {
+      "future_unknown_field": {"nested": [1, "two", {"preserve": true}]}
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "logos.academic.derived-projection.v1",
+  "object_type": "academic_derived_projection",
+  "projection_id": "urn:logos:projection:synthetic-demo-001",
+  "source_record_ref": "urn:logos:source:synthetic-demo-001",
+  "source_digest": "sha256:a59bd00dd69c8a53a2977236221a4ce0195dec3fa9d6d250d08803de1ec71291",
+  "projection_type": "index",
+  "projector": {"name": "synthetic_fixture_projector", "version": "1.0.0", "method": "deterministic_fixture"},
+  "projection_payload": {"normalized_terms": ["candidate-a"], "note": "synthetic fixture only"},
+  "projection_digest": "sha256:84f567677936d68cc424f66f9bde1b44a56124270e3768c47a86070ce9a3a2c7",
+  "loss_profile": {
+    "mode": "lossy",
+    "lost_fields": ["all source fields not represented in the index payload"],
+    "reversibility": "reconstructable_from_pinned_source",
+    "native_source_retained": true,
+    "rationale": "The index is intentionally partial and the immutable pinned source remains the reconstruction authority."
+  },
+  "invalidation_policy": "invalidate_on_source_digest_drift",
+  "authority_effect": "none",
+  "trust_zone": "inferred",
+  "lifecycle_status": "draft"
+}

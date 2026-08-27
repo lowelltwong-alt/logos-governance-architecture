@@ -1,0 +1,173 @@
+schema_version: logos.biblical-evidence.node-edge-catalog.v1
+object_type: extensible_graph_vocabulary
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 by specializing the Academic Extension Contract for manuscript, archaeology, historical-claim, Scripture-anchor, chunk, review, and rights evidence."
+reason_for_inclusion: "Make the demonstration useful now without closing the graph to future archaeological, textual, doctrinal, scientific, or reception-history domains."
+catalog_id: urn:logos:vocabulary:biblical-evidence-demo-v1
+extension_policy:
+  closed_world: false
+  unknown_extension_payloads_preserved_losslessly: true
+  new_core_type_requires_human_architecture_decision: true
+  domain_pack_types_require_registry_and_validator: true
+  unknown_relation_behavior: preserve_but_do_not_traverse_for_authority
+  unknown_relation_requirements:
+    - extension_relation_true
+    - extension_payload_present
+    - traversable_for_authority_false
+    - authority_effect_none
+    - existing_endpoints
+  external_node_requirements:
+    identifier_pattern: "^ext:[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$"
+    trust_zone: proposed
+    status: extension_unreviewed_non_authorizing
+    extension_node: true
+    authority_effect: none
+    traversable_for_authority: false
+    nonempty_opaque_payload_required: true
+    reserved_core_namespaces_forbidden: true
+    protected_m7_m8_canonical_and_promotion_semantics_forbidden_in_outer_envelope: true
+  unknown_identifier_requirements:
+    ascii_lowercase_nfkc_exact: true
+    relation_pattern: "^ext:[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$"
+    edge_pattern: "^ext-edge:[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$"
+    normalized_local_tail_must_not_collide_with_registered_or_forbidden_relation: true
+  future_domain_examples_are_illustrative_non_authorizing: true
+node_kinds:
+  - kind: source_record
+    identity_rule: stable_source_id_plus_edition_or_object_number
+    examples: [museum_object_record, excavation_report, critical_edition, peer_reviewed_analysis]
+  - kind: physical_artifact
+    identity_rule: holding_institution_plus_inventory_id
+    examples: [manuscript_folio, inscription, relief, prism, excavated_object]
+  - kind: archaeological_context
+    identity_rule: site_plus_excavation_unit_plus_publication_locator
+    examples: [stratum, locus, destruction_context, sample_context]
+  - kind: witness_coverage_segment
+    identity_rule: witness_id_plus_non_contiguous_segment_id
+    examples: [p66_john19_08_11]
+  - kind: text_or_translation_witness
+    identity_rule: edition_plus_version_plus_content_digest
+    examples: [eng_web_source_snapshot, future_diplomatic_transcription]
+  - kind: candidate_chunk
+    identity_rule: model_run_plus_book_plus_candidate_id_plus_source_snapshot
+    examples: [m7_public_held_candidate, m7_non_durable_local_candidate]
+  - kind: historical_claim
+    identity_rule: versioned_claim_id
+    examples: [sennacherib_campaign_claim, tel_dan_reading_claim]
+  - kind: scripture_anchor
+    identity_rule: versification_system_plus_canonical_locator
+    examples: [John_19_8_11, 2_Kings_18_19]
+  - kind: counterposition
+    identity_rule: claim_id_plus_position_id_plus_source_scope
+    examples: [royal_rhetoric_limit, alternative_epigraphic_reading]
+  - kind: uncertainty_record
+    identity_rule: claim_id_plus_assessment_revision
+    examples: [chronology_uncertainty, restoration_uncertainty]
+  - kind: rights_record
+    identity_rule: asset_digest_plus_license_assertion_revision
+    examples: [p66_cc_by_4_record]
+  - kind: review_gate
+    identity_rule: claim_or_asset_id_plus_reviewer_class_plus_gate_revision
+    examples: [papyrology_gate, assyriology_gate, doctrine_authority_gate]
+  - kind: doctrine_or_tradition_object
+    identity_rule: owning_repository_plus_tradition_scope_plus_object_id
+    examples: [future_doctrine_topic, future_doctrine_view, future_reception_lineage]
+  - kind: external_domain_extension
+    identity_rule: registered_domain_pack_plus_local_object_id
+    examples: [future_archaeometry_result, future_science_apologetics_claim, future_babylonian_context]
+relation_kinds:
+  - relation: identifies
+    from_kinds: [source_record]
+    to_kinds: [physical_artifact, archaeological_context, text_or_translation_witness]
+    authority_effect: none
+  - relation: depicts
+    from_kinds: [physical_artifact]
+    to_kinds: [historical_claim]
+    claim_mediation_required: true
+    authority_effect: none
+  - relation: attests_bounded_claim
+    from_kinds: [source_record, physical_artifact, archaeological_context]
+    to_kinds: [historical_claim]
+    claim_mediation_required: true
+    authority_effect: none
+  - relation: supports
+    from_kinds: [source_record, physical_artifact, archaeological_context, counterposition]
+    to_kinds: [historical_claim]
+    claim_mediation_required: true
+    authority_effect: none
+  - relation: challenges_or_qualifies
+    from_kinds: [source_record, counterposition, uncertainty_record]
+    to_kinds: [historical_claim]
+    claim_mediation_required: true
+    authority_effect: none
+  - relation: compared_with
+    from_kinds: [historical_claim]
+    to_kinds: [scripture_anchor]
+    comparison_is_not_entailment: true
+    authority_effect: none
+  - relation: has_coverage_segment
+    from_kinds: [physical_artifact]
+    to_kinds: [witness_coverage_segment]
+    authority_effect: none
+  - relation: verse_identity_intersects
+    from_kinds: [witness_coverage_segment]
+    to_kinds: [scripture_anchor, candidate_chunk]
+    authority_effect: none
+  - relation: displayed_through
+    from_kinds: [scripture_anchor]
+    to_kinds: [text_or_translation_witness]
+    source_rights_required: true
+    authority_effect: none
+  - relation: governed_by_rights
+    from_kinds: [physical_artifact, text_or_translation_witness]
+    to_kinds: [rights_record]
+    authority_effect: none
+  - relation: requires_review
+    from_kinds: [historical_claim, physical_artifact, candidate_chunk, doctrine_or_tradition_object]
+    to_kinds: [review_gate]
+    authority_effect: none
+  - relation: derived_projection_of
+    from_kinds: [external_domain_extension]
+    to_kinds: [source_record, historical_claim]
+    invalidates_on_source_digest_drift: true
+    authority_effect: none
+forbidden_relations:
+  - proves_scripture
+  - proves_doctrine
+  - image_directly_translates_to
+  - evidence_count_decides_truth
+  - model_consensus_promotes
+  - graph_reachability_promotes
+  - context_overwrites_canonical
+  - inferred_overwrites_source
+validation_invariants:
+  registered_relation_endpoint_kinds_enforced: true
+  unknown_relations_non_authorizing_and_non_traversable: true
+  lower_trust_authority_path_to_canonical_forbidden: true
+  source_claim_projection_exact_and_exhaustive: true
+  graph_and_source_statuses_cross_checked: true
+  evidence_path_to_doctrine_forbidden: true
+  document_identity_and_authority_envelopes_exact: true
+  reserved_namespace_kind_alignment_enforced: true
+  external_node_payload_lossless_and_quarantined: true
+  source_claim_identity_kind_and_global_uniqueness_enforced: true
+  unknown_relation_identifiers_confusable_safe: true
+  forbidden_and_registered_relation_sets_non_overlapping: true
+cross_repository_rules:
+  required_pointer_fields: [repository, ref_or_commit, path, object_id, lifecycle_status]
+  absent_or_uncommitted_pointer_status: non_durable_observation
+  high_trust_dependency_on_lower_trust: forbidden
+  contextual_non_christian_material_default_owner: logos-boundary-literature
+  scripture_identity_default_owner: logos-scripture-graph
+  doctrine_lineage_default_owner: logos-doctrine-genealogy
+  governance_contract_default_owner: logos-governance-architecture
+future_domain_examples:
+  - biblical_archaeology_and_archaeometry
+  - greek_and_hebrew_manuscript_witnesses
+  - ancient_near_eastern_religions_and_literatures
+  - second_temple_and_early_jewish_movements
+  - patristic_medieval_reformation_and_denominational_doctrine
+  - apologetics_and_science_interfaces
+  - reception_history_ethics_law_geography_and_linguistics
+  - new_academic_domains_not_yet_known

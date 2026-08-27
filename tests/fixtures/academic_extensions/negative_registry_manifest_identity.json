@@ -1,0 +1,7 @@
+{
+  "base_fixture": "positive_extension_registry.json",
+  "operation": "replace",
+  "path": ["packs", 0, "pack_id"],
+  "value": "academic.registry-mismatch",
+  "expected_rule": "registry_manifest_identity"
+}

@@ -1,0 +1,27 @@
+schema_version: logos.biblical-evidence.asset-attribution.v1
+object_type: public_asset_attribution_record
+trust_zone: proposed
+lifecycle_status: draft
+provenance_note: "Created 2026-08-26 from the University of Cologne object record, exact byte-match receipt, CC BY 4.0 legal terms, and independent rights review."
+reason_for_inclusion: "Keep machine-readable attribution beside the publicly displayed P66 image."
+asset_id: urn:logos:asset:p66-cologne-john19-verso
+repository_path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/assets/p66-cologne-john19-verso.jpg
+source_filename: "P.inv. 04274_04298v.jpg"
+repository_filename: p66-cologne-john19-verso.jpg
+sha256: "f7453af8d2523cc358148c7d26072d87b53c991aa03df667f8c5c54c7beef040"
+bytes: 1083773
+dimensions: {width: 1802, height: 1921}
+credit: "© Institut für Altertumskunde an der Universität zu Köln"
+object_label: "Inv. 04274+004298 / P.inv. 04274_04298v, Kölner Papyrussammlung, TM 61627"
+source_url: https://papyri.uni-koeln.de/stueck/tm61627
+official_image_url: "https://papyri.uni-koeln.de/stueck/DS_d1e18043/img/04274_04298/orig/P.inv.%2004274_04298v.jpg"
+license_id: CC-BY-4.0
+license_url: https://creativecommons.org/licenses/by/4.0/
+modification_status: filename_normalized_only_image_content_unmodified
+institutional_endorsement: false
+rights_scope: image_and_public_object_metadata_only
+excluded_rights: [transcription, critical_edition, transliteration, english_translation, doctrine_claim]
+remote_byte_verification:
+  date: "2026-08-26"
+  result: exact_match
+  http_status: 200
