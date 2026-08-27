@@ -2,14 +2,14 @@
 object_type: academic_extension_independent_review_receipt
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Recorded 2026-08-26 from the changed-input independent high-rigor read-only review of the exact refrozen Academic Extension Contract v1 content set."
+provenance_note: "Recorded 2026-08-27 from the changed-input independent read-only review of the cross-platform Academic Extension Contract v1 digest repair."
 reason_for_inclusion: "Preserve the checker verdict, challenged counterexamples, repairs, and remaining nonclaims without converting review into academic, theological, activation, or release authority."
-reviewer_attempt_id: ACADEMIC-EXTENSION-REVIEW-002
+reviewer_attempt_id: AE-XPLAT-DIGEST-REVIEW-20260827T000334Z
 reviewer_independence: true
 result: pass
-observed_at: "2026-08-26T23:06:23Z"
-manifest_sha256: "sha256:1c97ad843036fcc8721f85af26fac366ef338e37af0abcd2d6a1d74c79d14dfb"
-content_digest: "sha256:539c6c020c6d6b81d227bdf2d4800be407ad5143664b95f57fd7bb6b1ee8a2ba"
+observed_at: "2026-08-27T00:03:34.255Z"
+manifest_sha256: "sha256:267d0b43a73955d42f884e6bf0ee016ec266439409d9f19531fcf68b6eb1c5ad"
+content_digest: "sha256:ccb6f70ed925af51bfb3a545c619012b6a46989f7fa88f5d6735a59adee2424b"
 mutation_performed: false
 authority_granted: false
 ---
@@ -18,11 +18,11 @@ authority_granted: false
 
 ## Verdict
 
-**PASS** for the exact 47-file specification-and-fixture content set recorded in
+**PASS** for the exact 47-file canonical specification-and-fixture content set recorded in
 [`frozen-digests.json`](frozen-digests.json), at aggregate digest
-`sha256:539c6c020c6d6b81d227bdf2d4800be407ad5143664b95f57fd7bb6b1ee8a2ba`
+`sha256:ccb6f70ed925af51bfb3a545c619012b6a46989f7fa88f5d6735a59adee2424b`
 and manifest SHA-256
-`1c97ad843036fcc8721f85af26fac366ef338e37af0abcd2d6a1d74c79d14dfb`.
+`267d0b43a73955d42f884e6bf0ee016ec266439409d9f19531fcf68b6eb1c5ad`.
 
 This verdict is read-only, non-authorizing, and limited to structural and
 deterministic evidence. It does not approve a domain pack, source, assertion,
@@ -32,21 +32,27 @@ doctrine, runtime, standards adapter, activation, or publication.
 
 - Role: independent high-rigor read-only checker; no candidate writes.
 - Base: `f159e3f54d96755cd93dc5cfcd069085be4fb2ca`.
-- Frozen paths: 47, sorted, with zero missing, extra, or mismatched hashes.
+- Frozen paths: 47, sorted and unique, with zero missing, extra, or mismatched hashes.
 - Reproduced aggregate: exact match.
-- Changed-input proof: reconstructing the prior two row hashes and aggregate
-  reproduces the exact prior manifest; the other 45 rows are unchanged.
-- The checker ran the contract validator, focused tests, internal-link validator,
-  dependency-map validator, family-work-registry validator, and Git whitespace
-  check independently.
+- Changed-input proof: all 47 rows reproduced; 38 unchanged rows also matched
+  canonicalized Git blobs, nine dirty rows matched their prospective LF blobs,
+  and thirteen CRLF checkout files reproduced their canonical LF identities.
+- Canonicalization challenges passed for LF/CRLF equivalence, lone CR to LF,
+  and exact preservation of non-UTF-8 binary bytes.
+- The checker ran the contract validator, focused tests, an in-memory canonical
+  hash/Git-blob replay, and Git whitespace validation independently.
 
 ## Challenge and repair record
 
-The first review failed closed on five material gaps: incomplete rights facets;
+An earlier review failed closed on five material gaps: incomplete rights facets;
 fixture-only duplicate-role and self-alternative protections; incomplete
 registry-to-manifest identity and namespace closure; no mandatory projection
 loss declaration; and false numeric measurement precision. One bounded
 changed-input repair added schema, semantic, and adversarial-fixture enforcement.
+
+The pull-request review then exposed a Windows-checkout defect: raw CRLF bytes
+differed from Git's LF blobs. This changed-input review confirmed that the
+repair uses canonical UTF-8 LF content while retaining exact non-UTF-8 bytes.
 
 The checker then confirmed that the repaired candidate rejects:
 
@@ -62,16 +68,13 @@ The checker then confirmed that the repaired candidate rejects:
 
 - Academic validator: PASS — 5 schemas, 5 positive fixtures, 12 adversarial
   fixtures, 8 blocked human gates, 11 premortem risks, and 9 standards sources.
-- Focused tests: 25 passed.
-- Internal links: passed for the pre-receipt frozen candidate.
-- Dependency map and family work registry: passed; unrelated stale-lease
-  warnings remained warnings.
+- Focused tests: 27 passed.
 - Git whitespace check: passed.
 - Scope and authority review: no leakage found; the production registry remains
   empty and all eight human gates remain blocked.
-- Changed rows: only `PORTFOLIO.md` and
-  `governance/registry/FAMILY_WORK_REGISTRY.yaml`; both preserve static-design,
-  no-runtime, no-truth-promotion, and governed-release boundaries.
+- Cross-platform repair: 22 frozen rows changed, including thirteen
+  canonicalization-only rows and nine substantive contract, schema, validator,
+  fixture, and test rows. The production registry remains empty.
 
 ## Residual nonclaims
 

@@ -67,7 +67,10 @@ registry is intentionally empty in this revision.
 
 Kernel stability is enforced through three rules:
 
-1. Pack-only changes must leave the recorded kernel contract byte-identical.
+1. Pack-only changes must leave the recorded kernel contract
+   canonical-content-identical under the versioned digest algorithm. UTF-8 line
+   endings normalize to LF so Git checkout conversion cannot change identity;
+   non-UTF-8 files retain exact binary bytes.
 2. A pack uses its own stable namespace and version; it cannot mint a competing
    grammar for a kernel object.
 3. Unknown pack data lives inside a schema-identified `extension_payload` with

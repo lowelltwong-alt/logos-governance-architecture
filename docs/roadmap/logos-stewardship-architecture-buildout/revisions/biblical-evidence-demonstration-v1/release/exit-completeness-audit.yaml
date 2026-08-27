@@ -2,7 +2,7 @@ schema_version: logos.biblical-evidence.mesh-completeness-receipt.v1
 object_type: deterministic_role_completeness_audit_receipt
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: Created 2026-08-26 from fresh changed-input deterministic entry, midflight, and exit replays after independent
+provenance_note: Created 2026-08-27 from fresh changed-input deterministic entry, midflight, and exit replays after independent
   academic, rights/release, and graph/mesh reviews closed all discovered blockers.
 reason_for_inclusion: Bind deterministic role-completeness decisions to exact frozen, code, test, fixture, review, risk, and
   execution inputs without granting academic, theological, runtime, publication, or promotion authority.
@@ -21,10 +21,10 @@ input_digests:
   assigned_role_manifest_digest: sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc
   frozen_manifest_digest: sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523
   candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
-  validator_digest: sha256:39d5b352509ad4920d6640ec8b9da8b8ee713d311a507f1b628800eb5723a0dc
-  focused_test_digest: sha256:8d87b5e89ca43b5c0a68e1c4de559dc8f43603ff430c1ef76b077c323fbfcddb
+  validator_digest: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
+  focused_test_digest: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
   adversarial_fixture_digest: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
-  independent_review_evidence_digest: sha256:b12271d6cbe0bea3eff3edb9f7724bf54e4144158b51ef8942410281e65a2bb6
+  independent_review_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
   execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
 phase_receipts:
 - phase: entry
@@ -39,10 +39,10 @@ phase_receipts:
     assigned_role_manifest_digest: sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc
     frozen_manifest_digest: sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523
     candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
-    validator_digest: sha256:39d5b352509ad4920d6640ec8b9da8b8ee713d311a507f1b628800eb5723a0dc
-    focused_test_digest: sha256:8d87b5e89ca43b5c0a68e1c4de559dc8f43603ff430c1ef76b077c323fbfcddb
+    validator_digest: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
+    focused_test_digest: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
     adversarial_fixture_digest: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
-    independent_review_evidence_digest: sha256:b12271d6cbe0bea3eff3edb9f7724bf54e4144158b51ef8942410281e65a2bb6
+    independent_review_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
     execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
   assigned_roles:
   - mesh-coordinator-single-writer
@@ -79,10 +79,10 @@ phase_receipts:
   result: pass
   reviewer_independence: true
   reviewer_role: role-completeness-auditor
-  observed_at: '2026-08-26T23:08:00Z'
+  observed_at: '2026-08-27T00:07:16Z'
   changed_input_replay: true
-  reviewer_attempt_id: REVIEW-COMPLETENESS-ENTRY-004
-  reviewer_evidence_digest: sha256:b12271d6cbe0bea3eff3edb9f7724bf54e4144158b51ef8942410281e65a2bb6
+  reviewer_attempt_id: REVIEW-COMPLETENESS-ENTRY-007
+  reviewer_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
 - phase: midflight
   input_digests:
     exact_scope_digest: sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490
@@ -95,10 +95,10 @@ phase_receipts:
     assigned_role_manifest_digest: sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc
     frozen_manifest_digest: sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523
     candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
-    validator_digest: sha256:39d5b352509ad4920d6640ec8b9da8b8ee713d311a507f1b628800eb5723a0dc
-    focused_test_digest: sha256:8d87b5e89ca43b5c0a68e1c4de559dc8f43603ff430c1ef76b077c323fbfcddb
+    validator_digest: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
+    focused_test_digest: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
     adversarial_fixture_digest: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
-    independent_review_evidence_digest: sha256:b12271d6cbe0bea3eff3edb9f7724bf54e4144158b51ef8942410281e65a2bb6
+    independent_review_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
     execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
   assigned_roles:
   - mesh-coordinator-single-writer
@@ -149,9 +149,9 @@ phase_receipts:
     - path: checks/adversarial-fixtures.yaml
       sha256: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
     - path: scripts/validate_biblical_evidence_demo.py
-      sha256: sha256:39d5b352509ad4920d6640ec8b9da8b8ee713d311a507f1b628800eb5723a0dc
+      sha256: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
     - path: tests/test_biblical_evidence_demo.py
-      sha256: sha256:8d87b5e89ca43b5c0a68e1c4de559dc8f43603ff430c1ef76b077c323fbfcddb
+      sha256: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
     authority_effect: none
     publication_allowed: false
     status: detected_and_routed
@@ -168,7 +168,7 @@ phase_receipts:
     - path: release/public-release-manifest.yaml
       sha256: sha256:a02aacee9e972f86f0f0706d41dde9010475c59075a8904a53b64fc55b184b67
     - path: scripts/validate_biblical_evidence_demo.py
-      sha256: sha256:39d5b352509ad4920d6640ec8b9da8b8ee713d311a507f1b628800eb5723a0dc
+      sha256: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
     authority_effect: none
     publication_allowed: false
     status: detected_and_routed
@@ -188,10 +188,10 @@ phase_receipts:
   result: pass
   reviewer_independence: true
   reviewer_role: role-completeness-auditor
-  observed_at: '2026-08-26T23:08:01Z'
+  observed_at: '2026-08-27T00:07:17Z'
   changed_input_replay: true
-  reviewer_attempt_id: REVIEW-COMPLETENESS-MIDFLIGHT-005
-  reviewer_evidence_digest: sha256:b12271d6cbe0bea3eff3edb9f7724bf54e4144158b51ef8942410281e65a2bb6
+  reviewer_attempt_id: REVIEW-COMPLETENESS-MIDFLIGHT-008
+  reviewer_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
 - phase: exit
   input_digests:
     exact_scope_digest: sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490
@@ -204,10 +204,10 @@ phase_receipts:
     assigned_role_manifest_digest: sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc
     frozen_manifest_digest: sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523
     candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
-    validator_digest: sha256:39d5b352509ad4920d6640ec8b9da8b8ee713d311a507f1b628800eb5723a0dc
-    focused_test_digest: sha256:8d87b5e89ca43b5c0a68e1c4de559dc8f43603ff430c1ef76b077c323fbfcddb
+    validator_digest: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
+    focused_test_digest: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
     adversarial_fixture_digest: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
-    independent_review_evidence_digest: sha256:b12271d6cbe0bea3eff3edb9f7724bf54e4144158b51ef8942410281e65a2bb6
+    independent_review_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
     execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
   assigned_roles:
   - mesh-coordinator-single-writer
@@ -258,9 +258,9 @@ phase_receipts:
     - path: checks/adversarial-fixtures.yaml
       sha256: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
     - path: scripts/validate_biblical_evidence_demo.py
-      sha256: sha256:39d5b352509ad4920d6640ec8b9da8b8ee713d311a507f1b628800eb5723a0dc
+      sha256: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
     - path: tests/test_biblical_evidence_demo.py
-      sha256: sha256:8d87b5e89ca43b5c0a68e1c4de559dc8f43603ff430c1ef76b077c323fbfcddb
+      sha256: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
     authority_effect: none
     publication_allowed: true
     status: closed_by_existing_roles
@@ -277,7 +277,7 @@ phase_receipts:
     - path: release/public-release-manifest.yaml
       sha256: sha256:a02aacee9e972f86f0f0706d41dde9010475c59075a8904a53b64fc55b184b67
     - path: scripts/validate_biblical_evidence_demo.py
-      sha256: sha256:39d5b352509ad4920d6640ec8b9da8b8ee713d311a507f1b628800eb5723a0dc
+      sha256: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
     authority_effect: none
     publication_allowed: true
     status: closed_by_existing_roles
@@ -297,8 +297,8 @@ phase_receipts:
   result: pass
   reviewer_independence: true
   reviewer_role: role-completeness-auditor
-  observed_at: '2026-08-26T23:08:02Z'
+  observed_at: '2026-08-27T00:07:18Z'
   changed_input_replay: true
-  reviewer_attempt_id: REVIEW-COMPLETENESS-EXIT-006
-  reviewer_evidence_digest: sha256:b12271d6cbe0bea3eff3edb9f7724bf54e4144158b51ef8942410281e65a2bb6
+  reviewer_attempt_id: REVIEW-COMPLETENESS-EXIT-009
+  reviewer_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
 status: pass

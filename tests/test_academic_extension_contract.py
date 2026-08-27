@@ -107,6 +107,27 @@ def test_frozen_digest_manifest_replays() -> None:
     assert validator.validate_frozen_digests(ROOT) == []
 
 
+def test_file_digest_is_stable_across_lf_and_crlf_checkouts(tmp_path: Path) -> None:
+    lf_path = tmp_path / "lf.txt"
+    crlf_path = tmp_path / "crlf.txt"
+    cr_path = tmp_path / "cr.txt"
+    lf_path.write_bytes(b"first\nsecond\n")
+    crlf_path.write_bytes(b"first\r\nsecond\r\n")
+    cr_path.write_bytes(b"first\rsecond\r")
+
+    assert validator.file_digest(lf_path) == validator.file_digest(crlf_path)
+    assert validator.file_digest(lf_path) == validator.file_digest(cr_path)
+
+
+def test_file_digest_preserves_non_utf8_binary_bytes(tmp_path: Path) -> None:
+    first_path = tmp_path / "first.bin"
+    second_path = tmp_path / "second.bin"
+    first_path.write_bytes(b"\xff\r\n")
+    second_path.write_bytes(b"\xff\n")
+
+    assert validator.file_digest(first_path) != validator.file_digest(second_path)
+
+
 def test_duplicate_pack_namespace_is_rejected() -> None:
     fixture_root = ROOT / "tests" / "fixtures" / "academic_extensions"
     registry = json.loads((fixture_root / "positive_extension_registry.json").read_text(encoding="utf-8"))

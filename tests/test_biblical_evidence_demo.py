@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -392,3 +393,26 @@ def test_frozen_manifest_covers_exact_non_receipt_package() -> None:
     observed = {row["path"] for row in manifest["files"]}
     assert observed == set(validator.expected_frozen_paths(ROOT))
     assert validator._frozen_findings(ROOT) == []
+
+
+@pytest.mark.parametrize("mutation", ["duplicate", "missing", "extra", "malformed", "reordered"])
+def test_frozen_manifest_rejects_invalid_row_sets(tmp_path: Path, mutation: str) -> None:
+    source = ROOT / validator.PACKAGE_REL
+    target = tmp_path / validator.PACKAGE_REL
+    shutil.copytree(source, target)
+    manifest_path = target / "frozen-digests.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if mutation == "duplicate":
+        manifest["files"].append(dict(manifest["files"][0]))
+    elif mutation == "missing":
+        manifest["files"].pop()
+    elif mutation == "extra":
+        manifest["files"].append({"path": "unexpected.txt", "sha256": "0" * 64, "bytes": 0})
+    elif mutation == "malformed":
+        manifest["files"].append({"sha256": "0" * 64, "bytes": 0})
+    else:
+        manifest["files"][0], manifest["files"][1] = manifest["files"][1], manifest["files"][0]
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+    findings = validator._frozen_findings(tmp_path)
+    assert "frozen_digest_manifest" in {finding.rule for finding in findings}

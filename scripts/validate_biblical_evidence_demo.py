@@ -2143,9 +2143,32 @@ def _frozen_findings(root: Path) -> list[Finding]:
         manifest = _load_json(path)
     except DemoInputError as exc:
         return [_finding("frozen_digest_manifest", str(path.relative_to(root)), str(exc))]
-    rows = manifest.get("files", [])
-    observed = {row.get("path"): row for row in rows if isinstance(row, dict)}
     expected = expected_frozen_paths(root)
+    rows = manifest.get("files") if isinstance(manifest, dict) else None
+    if not isinstance(rows, list):
+        return [_finding("frozen_digest_manifest", str(path.relative_to(root)), "files must be an array")]
+    raw_paths: list[str] = []
+    malformed_rows: list[int] = []
+    for index, row in enumerate(rows):
+        relative = row.get("path") if isinstance(row, dict) else None
+        if not isinstance(relative, str) or not relative:
+            malformed_rows.append(index)
+            continue
+        raw_paths.append(relative)
+    if malformed_rows:
+        findings.append(_finding("frozen_digest_manifest", str(path.relative_to(root)), f"rows with invalid paths: {malformed_rows}"))
+    if len(rows) != len(expected):
+        findings.append(_finding("frozen_digest_manifest", str(path.relative_to(root)), f"row count differs: expected={len(expected)}, observed={len(rows)}"))
+    duplicate_paths = sorted({relative for relative in raw_paths if raw_paths.count(relative) > 1})
+    if duplicate_paths:
+        findings.append(_finding("frozen_digest_manifest", str(path.relative_to(root)), f"duplicate paths: {duplicate_paths}"))
+    if raw_paths != sorted(raw_paths):
+        findings.append(_finding("frozen_digest_manifest", str(path.relative_to(root)), "paths are not sorted"))
+    observed = {
+        row["path"]: row
+        for row in rows
+        if isinstance(row, dict) and isinstance(row.get("path"), str) and row.get("path")
+    }
     if set(observed) != set(expected):
         findings.append(_finding("frozen_digest_manifest", str(path.relative_to(root)), f"path set differs: missing={sorted(set(expected)-set(observed))}, extra={sorted(set(observed)-set(expected))}"))
     for relative in sorted(set(expected) & set(observed)):

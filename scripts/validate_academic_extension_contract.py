@@ -123,8 +123,22 @@ def canonical_digest(value: Any) -> str:
     return "sha256:" + hashlib.sha256(encoded).hexdigest()
 
 
+def canonical_file_bytes(path: Path) -> bytes:
+    """Return stable file bytes across Git's LF/CRLF checkout conversion.
+
+    UTF-8 text is normalized to LF before hashing. Files that are not valid
+    UTF-8 are treated as opaque binary and retain their exact bytes.
+    """
+    payload = path.read_bytes()
+    try:
+        text = payload.decode("utf-8")
+    except UnicodeDecodeError:
+        return payload
+    return text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+
+
 def file_digest(path: Path) -> str:
-    return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+    return "sha256:" + hashlib.sha256(canonical_file_bytes(path)).hexdigest()
 
 
 def schema_errors(instance: Any, schema: dict[str, Any]) -> list[str]:
@@ -322,7 +336,7 @@ def _semantic_fixture_findings(
     if registry["kernel_contract"]["digest"] != kernel_digest:
         findings.append(Finding("fixture_registry_kernel_digest", "positive_extension_registry.json", "fixture registry does not pin the exact kernel digest"))
     if file_digest(fixture_root / "positive_domain_pack.json") != registry["packs"][0]["manifest_digest"]:
-        findings.append(Finding("fixture_manifest_digest", "positive_extension_registry.json", "pack manifest digest does not match exact fixture bytes"))
+        findings.append(Finding("fixture_manifest_digest", "positive_extension_registry.json", "pack manifest digest does not match canonical fixture content"))
     findings.extend(_registry_semantic_findings(registry, root))
     if assertion["domain_pack_id"] != pack["pack_id"]:
         findings.append(Finding("fixture_pack_link", "positive_assertion.json", "assertion pack does not match the synthetic pack"))
@@ -365,10 +379,10 @@ def validate_frozen_digests(root: Path = ROOT) -> list[Finding]:
             findings.append(Finding("frozen_digest_path", path.as_posix(), f"invalid frozen path {relative!r}"))
             continue
         if row.get("sha256") != file_digest(candidate):
-            findings.append(Finding("frozen_digest_file", str(relative), "raw-byte SHA-256 mismatch"))
+            findings.append(Finding("frozen_digest_file", str(relative), "canonical-content SHA-256 mismatch"))
     if manifest.get("content_digest") != canonical_digest(rows):
         findings.append(Finding("frozen_digest_aggregate", path.as_posix(), "content digest does not match canonical files array"))
-    if manifest.get("algorithm") != "sha256(canonical_json(sorted([{path,sha256(raw_bytes)}])))":
+    if manifest.get("algorithm") != "sha256(canonical_json(sorted([{path,sha256(canonical_utf8_lf_bytes_or_raw_binary_bytes)}])))":
         findings.append(Finding("frozen_digest_algorithm", path.as_posix(), "algorithm identifier is not exact"))
     return findings
 
@@ -415,7 +429,7 @@ def validate_repository(root: Path = ROOT) -> ValidationResult:
         expected_kernel_digest = file_digest(root / "schemas" / "schema_registry.json")
         observed_kernel_digest = production_registry.get("kernel_contract", {}).get("digest")
         if observed_kernel_digest != expected_kernel_digest:
-            findings.append(Finding("kernel_digest", "governance/registry/ACADEMIC_DOMAIN_PACK_REGISTRY.yaml", "recorded kernel digest does not match exact schema_registry.json bytes"))
+            findings.append(Finding("kernel_digest", "governance/registry/ACADEMIC_DOMAIN_PACK_REGISTRY.yaml", "recorded kernel digest does not match canonical schema_registry.json content"))
 
         fixtures = {name: _load_json(root / "tests" / "fixtures" / "academic_extensions" / name) for name in POSITIVE_FIXTURES}
         for name, schema_key in POSITIVE_FIXTURES.items():

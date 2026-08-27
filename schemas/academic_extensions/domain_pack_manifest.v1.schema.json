@@ -38,7 +38,7 @@
       "properties": {
         "registry_version": {"type": "string", "minLength": 1},
         "kernel_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
-        "mutation_policy": {"const": "extension_only_kernel_byte_identity_required"}
+        "mutation_policy": {"const": "extension_only_kernel_canonical_content_identity_required"}
       }
     },
     "extension_schemas": {

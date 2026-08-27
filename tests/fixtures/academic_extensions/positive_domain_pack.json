@@ -14,8 +14,8 @@
   },
   "kernel_compatibility": {
     "registry_version": "0.3.0",
-    "kernel_digest": "sha256:bca6f54cefec68199db4b131070974b5267802255ccf5bc086cdf735cc431be9",
-    "mutation_policy": "extension_only_kernel_byte_identity_required"
+    "kernel_digest": "sha256:d93c259ffa5c136a0cb489ca6f3146023ce1923b84640b609962a6686ead1270",
+    "mutation_policy": "extension_only_kernel_canonical_content_identity_required"
   },
   "extension_schemas": [
     "schemas/academic_extensions/assertion_envelope.v1.schema.json"

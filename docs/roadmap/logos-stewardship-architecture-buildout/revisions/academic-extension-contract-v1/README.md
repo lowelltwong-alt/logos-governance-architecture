@@ -20,7 +20,7 @@ assertions, doctrine changes, approved domain packs, or publication authority.
 3. `human-decision-gates.yaml`
 4. `acceptance-test-matrix.yaml`
 5. `mesh/agent-mesh.v2.json`
-6. `frozen-digests.json` for the exact reviewed content bytes and replay algorithm
+6. `frozen-digests.json` for reviewed canonical content identities and the exact replay algorithm (UTF-8 line endings normalize to LF; non-UTF-8 files retain exact binary bytes)
 7. `validation-receipt.json` after deterministic validation
 8. `independent-review-receipt.md` after a non-author review
 

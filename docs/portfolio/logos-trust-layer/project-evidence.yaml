@@ -32,15 +32,15 @@ release_scope:
   status: full_pr_composite_release_candidate
   base_commit: 4f00f6f9d50e870d4e9805f29a69feb33e6f4d12
   v1_checkpoint_commit: 410c7e429290d34013c1dbf23c0335ebfe68e45f
-  total_unique_path_count: 131
-  receipt_excluded_path_count: 130
+  total_unique_path_count: 207
+  receipt_excluded_path_count: 206
   v1_checkpoint_path_count: 25
   v1_only_path_count: 20
   v2_path_count: 90
-  post_v1_portfolio_path_count: 21
+  post_v1_portfolio_path_count: 97
   shared_path_count: 5
-  post_v1_candidate_path_count: 111
-  post_v1_receipt_excluded_path_count: 110
+  post_v1_candidate_path_count: 187
+  post_v1_receipt_excluded_path_count: 186
   canonical_digest_algorithm: >-
     Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF
     and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase

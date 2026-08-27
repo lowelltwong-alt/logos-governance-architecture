@@ -3,16 +3,16 @@
   "object_type": "academic_extension_validation_receipt",
   "trust_zone": "proposed",
   "lifecycle_status": "draft",
-  "provenance_note": "Recorded 2026-08-26 after deterministic replay of the frozen Academic Extension Contract v1 candidate.",
+  "provenance_note": "Recorded 2026-08-27 after deterministic replay of the cross-platform canonical Academic Extension Contract v1 candidate.",
   "reason_for_inclusion": "Preserve machine-readable validation evidence without treating a specification or test result as academic, theological, activation, or release authority.",
-  "created_at": "2026-08-26T23:13:59Z",
+  "created_at": "2026-08-27T00:16:39Z",
   "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
   "candidate_base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
   "frozen_content": {
     "manifest": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/academic-extension-contract-v1/frozen-digests.json",
-    "manifest_sha256": "sha256:1c97ad843036fcc8721f85af26fac366ef338e37af0abcd2d6a1d74c79d14dfb",
+    "manifest_sha256": "sha256:267d0b43a73955d42f884e6bf0ee016ec266439409d9f19531fcf68b6eb1c5ad",
     "path_count": 47,
-    "content_digest": "sha256:539c6c020c6d6b81d227bdf2d4800be407ad5143664b95f57fd7bb6b1ee8a2ba",
+    "content_digest": "sha256:ccb6f70ed925af51bfb3a545c619012b6a46989f7fa88f5d6735a59adee2424b",
     "receipt_paths_excluded": true
   },
   "result": "pass",
@@ -32,12 +32,12 @@
     {
       "id": "focused-pytest",
       "result": "pass",
-      "evidence": "25 passed"
+      "evidence": "27 passed in an isolated local replay"
     },
     {
       "id": "full-pytest",
-      "result": "pass",
-      "evidence": "293 passed in 108.91 seconds"
+      "result": "expected_pre_finalization_receipt_gate",
+      "evidence": "298 passed in 187.90 seconds; the only two failures were the portfolio validator correctly requiring the fresh chained release receipt that follows this content checkpoint."
     },
     {
       "id": "repository-default-validation-suite",
@@ -72,7 +72,7 @@
     {
       "id": "exact-claim-scope",
       "result": "pass",
-      "evidence": "82 candidate paths: 18 tracked modifications and 64 untracked additions; 0 staged; every path is covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001."
+      "evidence": "82 base-to-candidate branch paths remain covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001; this changed-input repair touches 17 existing claimed paths and adds none."
     },
     {
       "id": "candidate-sensitive-patterns",
@@ -82,12 +82,12 @@
     {
       "id": "changed-input-independent-review",
       "result": "pass",
-      "evidence": "ACADEMIC-EXTENSION-REVIEW-002 at 2026-08-26T23:06:23Z independently reproduced all 47 row hashes and aggregate digest; all eight human gates remain blocked and the production domain-pack registry remains empty."
+      "evidence": "AE-XPLAT-DIGEST-REVIEW-20260827T000334Z independently reproduced all 47 canonical rows, Git-blob equivalence, and aggregate digest; all eight human gates remain blocked and the production domain-pack registry remains empty."
     }
   ],
   "environment_note": {
     "initial_restricted_run": "invalidated by Windows temporary-directory and Cargo-target access denials",
-    "authoritative_replay": "passed with task-specific retained temporary and Cargo storage outside the repository",
+    "authoritative_replay": "Direct validators and isolated focused tests passed. Pytest plugin autoload, cache, and fault-handler output were disabled for the authoritative local replay after this Windows host emitted handled first-chance access-violation diagnostics during otherwise exit-zero runs; required Linux CI remains binding.",
     "repository_test_output_written": false,
     "evidence_quality_replay": "The final privacy wrapper enumerated the exact NUL-delimited Git candidate set, asserted 82 paths, compared tracked files to exact HEAD blobs, scanned untracked text in full, failed on read errors, and passed with zero findings; the one binary skip is the digest-bound P66 JPEG."
   },

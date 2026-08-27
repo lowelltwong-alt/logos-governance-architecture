@@ -9,8 +9,8 @@ schema_version: logos.academic.extension-registry.v1
 object_type: academic_extension_registry
 kernel_contract:
   path: schemas/schema_registry.json
-  digest: sha256:bca6f54cefec68199db4b131070974b5267802255ccf5bc086cdf735cc431be9
-  mutation_policy: byte_identity_required_for_pack_only_changes
+  digest: sha256:d93c259ffa5c136a0cb489ca6f3146023ce1923b84640b609962a6686ead1270
+  mutation_policy: canonical_content_identity_required_for_pack_only_changes
 packs: []
 consumers: []
 authority_ceiling: registry_is_non_authorizing
