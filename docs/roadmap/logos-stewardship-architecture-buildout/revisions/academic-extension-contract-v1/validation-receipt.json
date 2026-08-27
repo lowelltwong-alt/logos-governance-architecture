@@ -72,12 +72,12 @@
     {
       "id": "exact-claim-scope",
       "result": "pass",
-      "evidence": "82 base-to-candidate branch paths remain covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001; this changed-input repair touches 17 existing claimed paths and adds none."
+      "evidence": "84 base-to-candidate branch paths remain covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001; this changed-input repair touches 19 existing claimed paths and adds no new file."
     },
     {
       "id": "candidate-sensitive-patterns",
       "result": "pass",
-      "evidence": "82 exact candidate paths checked: 81 UTF-8 text files scanned, the exact P66 JPEG skipped as binary, 0 read errors, and 0 candidate-added private locators, attachment locators, chat-local locators, email addresses, private-key markers, or recognized credential-token patterns."
+      "evidence": "84 exact candidate paths checked: 83 UTF-8 text files scanned, the exact P66 JPEG skipped as binary, 0 read errors, and 0 candidate-added private locators, attachment locators, chat-local locators, email addresses, private-key markers, or recognized credential-token patterns."
     },
     {
       "id": "changed-input-independent-review",

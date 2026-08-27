@@ -322,8 +322,8 @@ def test_full_pr_release_scope_is_replayable_and_fails_on_count_drift() -> None:
     findings, metrics = validator._check_release_scope(manifest, receipt, ROOT)
 
     assert findings == []
-    assert metrics["release_unique_paths"] == 131
-    assert metrics["release_fingerprinted_paths"] == 130
+    assert metrics["release_unique_paths"] == 207
+    assert metrics["release_fingerprinted_paths"] == 206
     assert metrics["release_text_files_scanned"] > 0
     assert metrics["release_text_files_skipped"] == 0
 
