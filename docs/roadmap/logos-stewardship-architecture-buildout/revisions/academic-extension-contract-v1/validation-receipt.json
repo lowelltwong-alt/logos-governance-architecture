@@ -36,8 +36,8 @@
     },
     {
       "id": "full-pytest",
-      "result": "expected_pre_finalization_receipt_gate",
-      "evidence": "298 passed in 187.90 seconds; the only two failures were the portfolio validator correctly requiring the fresh chained release receipt that follows this content checkpoint."
+      "result": "deferred_to_receipt_finalization",
+      "evidence": "No whole-suite pass is claimed at this content checkpoint because the direct-parent portfolio receipt must be finalized afterward; the complete suite remains a binding post-finalization gate."
     },
     {
       "id": "repository-default-validation-suite",
@@ -72,12 +72,12 @@
     {
       "id": "exact-claim-scope",
       "result": "pass",
-      "evidence": "84 base-to-candidate branch paths remain covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001; this changed-input repair touches 19 existing claimed paths and adds no new file."
+      "evidence": "85 base-to-content-candidate paths remain covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001; this changed-input repair touches 20 existing claimed paths and adds no new file."
     },
     {
       "id": "candidate-sensitive-patterns",
       "result": "pass",
-      "evidence": "84 exact candidate paths checked: 83 UTF-8 text files scanned, the exact P66 JPEG skipped as binary, 0 read errors, and 0 candidate-added private locators, attachment locators, chat-local locators, email addresses, private-key markers, or recognized credential-token patterns."
+      "evidence": "85 exact content-candidate paths checked: 84 UTF-8 text files scanned, the exact P66 JPEG classified as non-text, 0 read errors, and 0 candidate-added private locators, attachment locators, chat-local locators, email addresses, private-key markers, or recognized credential-token patterns."
     },
     {
       "id": "changed-input-independent-review",
@@ -89,7 +89,7 @@
     "initial_restricted_run": "invalidated by Windows temporary-directory and Cargo-target access denials",
     "authoritative_replay": "Direct validators and isolated focused tests passed. Pytest plugin autoload, cache, and fault-handler output were disabled for the authoritative local replay after this Windows host emitted handled first-chance access-violation diagnostics during otherwise exit-zero runs; required Linux CI remains binding.",
     "repository_test_output_written": false,
-    "evidence_quality_replay": "The final privacy wrapper enumerated the exact NUL-delimited Git candidate set, asserted 82 paths, compared tracked files to exact HEAD blobs, scanned untracked text in full, failed on read errors, and passed with zero findings; the one binary skip is the digest-bound P66 JPEG."
+    "evidence_quality_replay": "The final privacy wrapper enumerated the exact NUL-delimited 85-path content candidate, compared text paths against exact base and content blobs, failed on read errors or invalid UTF-8 text, and passed with zero candidate-added findings; the digest-bound P66 JPEG is intentionally classified as non-text."
   },
   "authority_ceiling": [
     "specification_only",

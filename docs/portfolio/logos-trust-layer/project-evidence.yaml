@@ -29,23 +29,37 @@ snapshot:
     validator_like_paths: 218
     test_like_paths: 274
 release_scope:
-  status: full_pr_composite_release_candidate
-  base_commit: 4f00f6f9d50e870d4e9805f29a69feb33e6f4d12
-  v1_checkpoint_commit: 410c7e429290d34013c1dbf23c0335ebfe68e45f
-  total_unique_path_count: 207
-  receipt_excluded_path_count: 206
-  v1_checkpoint_path_count: 25
-  v1_only_path_count: 20
-  v2_path_count: 90
-  post_v1_portfolio_path_count: 97
-  shared_path_count: 5
-  post_v1_candidate_path_count: 187
-  post_v1_receipt_excluded_path_count: 186
+  status: chained_incremental_release_candidate
+  base_commit: f159e3f54d96755cd93dc5cfcd069085be4fb2ca
+  current_content_path_count: 85
+  total_unique_path_count: 86
+  receipt_excluded_path_count: 85
+  added_path_count: 64
+  modified_path_count: 21
+  deleted_path_count: 0
+  renamed_path_count: 0
   canonical_digest_algorithm: >-
     Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF
     and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase
     SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8
     concatenation including the final LF.
+  prior_release:
+    base_commit: 4f00f6f9d50e870d4e9805f29a69feb33e6f4d12
+    content_head_commit: 04a190bf091eea468a57f5604264a71ff97dd237
+    receipt_commit: 54be8f8b5e75aeda994ff5fc6b858c9e1edad6cd
+    merge_commit: 91fa8560fecade6b7dd557edad8edf91609efd9b
+    receipt_raw_sha256: sha256:c6a9b91c81ecc024dd82c183c16a02c455fda94fc9255bae90e9f15cab93b450
+    path_count: 131
+    fingerprinted_path_count: 130
+    canonical_digest_algorithm: >-
+      Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF
+      and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase
+      SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8
+      concatenation including the final LF.
+    content_digest: sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc
+    receipt_digest: sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff
+    merge_tree_sha: 4542d66e88bd8cb14cb77487e52c88c184b4de30
+    protected_drift_to_current_base_count: 0
   historical_v1:
     staged_candidate_parent: 9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4
     artifact_commit: 410c7e429290d34013c1dbf23c0335ebfe68e45f

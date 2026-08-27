@@ -1304,6 +1304,9 @@ artifacts:
       - diagram_and_plain_language_architecture_projection
       - doctrine_mesh_specification_not_runtime_boundary
       - frozen_digest_and_receipt_replay
+      - chained_incremental_receipt_and_prior_release_replay
+      - exact_base_delta_privacy_without_external_finding_waiver
+      - normal_two_parent_merge_and_post_merge_release_path_integrity
       - public_privacy_and_sensitive_pattern_gate
       - one_writer_independent_review_release_mesh
     mirrored_by: [none_authorized]
@@ -1328,7 +1331,7 @@ artifacts:
       - tests/test_portfolio_front_door.py
       - governance/registry/FAMILY_WORK_REGISTRY.yaml
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
-    provenance_note: "Added 2026-08-24 for the owner-authorized public recruiter portfolio and the exact frozen 90-file Doctrine Mesh V2 design package after family-overlap reconciliation and protected-hold preflight, then updated to record the neutral four-repository AI audit route, exact snapshot_commit navigation, and deterministic route regression coverage. The mesh remains specification-only and non-authorizing."
+    provenance_note: "Added 2026-08-24 for the owner-authorized public recruiter portfolio and the exact frozen 90-file Doctrine Mesh V2 design package after family-overlap reconciliation and protected-hold preflight, then updated to record the neutral four-repository AI audit route, exact snapshot_commit navigation, and deterministic route regression coverage. Updated 2026-08-26 to require a direct-parent incremental receipt, immutable prior-release replay, bounded base-delta privacy evidence, and a normal two-parent merge without waiving unrelated baseline findings. The mesh remains specification-only and non-authorizing."
     reason_for_inclusion: "Recruiters, engineers, and their AI tools need one inspectable route from the large Logos architecture to exact code, schemas, graph contracts, validators, receipts, maturity labels, and explicit limits without confusing a validated design with runtime or theology."
   - artifact_id: GD-028
     title: Academic Extension Contract V1 specification and deterministic guardrails

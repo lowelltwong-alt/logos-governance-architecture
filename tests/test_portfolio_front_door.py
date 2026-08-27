@@ -73,6 +73,19 @@ def test_manifest_validates_against_public_schema() -> None:
     ).validate(load_manifest())
 
 
+def test_release_receipt_validates_against_embedded_v2_schema() -> None:
+    assert validator._check_receipt_schema(load_receipt(), load_schema()) == []
+
+
+def test_release_receipt_schema_rejects_unknown_authority_claim() -> None:
+    receipt = copy.deepcopy(load_receipt())
+    receipt["publication_authorized"] = True
+
+    findings = validator._check_receipt_schema(receipt, load_schema())
+
+    assert any(finding.rule == "portfolio_receipt_schema" for finding in findings)
+
+
 def test_interrogation_prompt_covers_the_full_governed_repo_route() -> None:
     prompt = (
         ROOT
@@ -220,12 +233,47 @@ def test_release_snapshot_fails_closed_on_invalid_utf8_text(
     assert skipped == 1
 
 
+def test_release_snapshot_fails_closed_on_invalid_utf8_baseline(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes",
+        lambda _root, _commit, _path: b"candidate text",
+    )
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes_if_present",
+        lambda _root, _commit, _path: b"\xff",
+    )
+
+    findings, scanned, skipped = validator._scan_release_snapshot(
+        ROOT,
+        "base",
+        "content",
+        "receipt",
+        ["candidate.md"],
+    )
+
+    assert findings == [
+        validator.Finding(
+            "release_scope_privacy_baseline",
+            "candidate.md",
+            "baseline text is not valid UTF-8, so added-occurrence comparison is unavailable",
+        )
+    ]
+    assert scanned == 0
+    assert skipped == 1
+
+
 def test_git_object_cache_uses_exact_immutable_keys(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     calls: list[tuple[str, str]] = []
 
     def fake_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        if command[1:3] == ["cat-file", "-e"]:
+            return subprocess.CompletedProcess(command, 0, stdout=b"", stderr=b"")
         commit, path = command[2].split(":", 1)
         calls.append((commit, path))
         return subprocess.CompletedProcess(
@@ -235,6 +283,7 @@ def test_git_object_cache_uses_exact_immutable_keys(
             stderr=b"",
         )
 
+    validator._git_commit_exists_record.cache_clear()
     validator._git_object_record.cache_clear()
     monkeypatch.setattr(validator.subprocess, "run", fake_run)
     try:
@@ -244,6 +293,7 @@ def test_git_object_cache_uses_exact_immutable_keys(
         changed_commit = validator._git_object_bytes(ROOT, "b" * 40, "one.md")
     finally:
         validator._git_object_record.cache_clear()
+        validator._git_commit_exists_record.cache_clear()
 
     assert first == repeated
     assert changed_path != first
@@ -258,13 +308,17 @@ def test_git_object_cache_uses_exact_immutable_keys(
 def test_git_object_cache_retains_exact_missing_base_result(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    calls = 0
+    calls: list[str] = []
 
     def fake_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
-        nonlocal calls
-        calls += 1
-        return subprocess.CompletedProcess(command, 128, stdout=b"", stderr=b"missing")
+        calls.append(command[1])
+        if command[1:3] == ["cat-file", "-e"]:
+            return subprocess.CompletedProcess(command, 0, stdout=b"", stderr=b"")
+        if command[1] == "show":
+            return subprocess.CompletedProcess(command, 128, stdout=b"", stderr=b"missing")
+        return subprocess.CompletedProcess(command, 0, stdout=b"", stderr=b"")
 
+    validator._git_commit_exists_record.cache_clear()
     validator._git_object_record.cache_clear()
     monkeypatch.setattr(validator.subprocess, "run", fake_run)
     try:
@@ -272,10 +326,84 @@ def test_git_object_cache_retains_exact_missing_base_result(
         repeated = validator._git_object_bytes_if_present(ROOT, "a" * 40, "missing.md")
     finally:
         validator._git_object_record.cache_clear()
+        validator._git_commit_exists_record.cache_clear()
 
     assert first is None
     assert repeated is None
-    assert calls == 1
+    assert calls == ["cat-file", "show", "ls-tree"]
+
+
+def test_git_object_lookup_does_not_conflate_read_error_with_absence(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def fake_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        if command[1:3] == ["cat-file", "-e"]:
+            return subprocess.CompletedProcess(command, 0, stdout=b"", stderr=b"")
+        return subprocess.CompletedProcess(command, 128, stdout=b"", stderr=b"denied")
+
+    validator._git_commit_exists_record.cache_clear()
+    validator._git_object_record.cache_clear()
+    monkeypatch.setattr(validator.subprocess, "run", fake_run)
+    try:
+        with pytest.raises(validator.PortfolioValidationError):
+            validator._git_object_bytes_if_present(ROOT, "a" * 40, "blocked.md")
+    finally:
+        validator._git_object_record.cache_clear()
+        validator._git_commit_exists_record.cache_clear()
+
+
+def test_nul_safe_git_delta_preserves_status_and_rejects_deletion(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(validator, "_git_revision", lambda _root, revision: revision)
+
+    def successful_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        return subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=b"M\0safe.md\0A\0new.json\0",
+            stderr=b"",
+        )
+
+    monkeypatch.setattr(validator.subprocess, "run", successful_run)
+    assert validator._git_delta_entries(ROOT, "a" * 40, "b" * 40) == [
+        validator.GitDeltaEntry("A", "new.json"),
+        validator.GitDeltaEntry("M", "safe.md"),
+    ]
+
+    def deletion_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        return subprocess.CompletedProcess(
+            command, 0, stdout=b"D\0removed.md\0", stderr=b""
+        )
+
+    monkeypatch.setattr(validator.subprocess, "run", deletion_run)
+    with pytest.raises(validator.PortfolioValidationError):
+        validator._git_delta_entries(ROOT, "a" * 40, "b" * 40)
+
+
+@pytest.mark.parametrize(
+    "payload",
+    [
+        b"M\0duplicate.md\0A\0duplicate.md\0",
+        b"M\0unterminated.md",
+        b"M\0unsafe\\path.md\0",
+        b"M\0bad-utf8-\xff.md\0",
+    ],
+)
+def test_nul_safe_git_delta_rejects_ambiguous_paths(
+    monkeypatch: pytest.MonkeyPatch, payload: bytes
+) -> None:
+    monkeypatch.setattr(validator, "_git_revision", lambda _root, revision: revision)
+    monkeypatch.setattr(
+        validator.subprocess,
+        "run",
+        lambda command, **_kwargs: subprocess.CompletedProcess(
+            command, 0, stdout=payload, stderr=b""
+        ),
+    )
+
+    with pytest.raises(validator.PortfolioValidationError):
+        validator._git_delta_entries(ROOT, "a" * 40, "b" * 40)
 
 
 @pytest.mark.parametrize(
@@ -316,19 +444,19 @@ def test_repository_count_totals_are_reproducible_from_rows() -> None:
         )
 
 
-def test_full_pr_release_scope_is_replayable_and_fails_on_count_drift() -> None:
+def test_chained_incremental_release_scope_is_replayable_and_fails_on_count_drift() -> None:
     manifest = load_manifest()
     receipt = load_receipt()
     findings, metrics = validator._check_release_scope(manifest, receipt, ROOT)
 
     assert findings == []
-    assert metrics["release_unique_paths"] == 207
-    assert metrics["release_fingerprinted_paths"] == 206
+    assert metrics["release_unique_paths"] == 86
+    assert metrics["release_fingerprinted_paths"] == 85
     assert metrics["release_text_files_scanned"] > 0
     assert metrics["release_text_files_skipped"] == 0
 
     drifted = copy.deepcopy(manifest)
-    drifted["release_scope"]["total_unique_path_count"] = 111
+    drifted["release_scope"]["total_unique_path_count"] = 85
     findings, _ = validator._check_release_scope(drifted, receipt, ROOT)
     assert any(finding.rule == "release_scope_arithmetic" for finding in findings)
 
@@ -336,13 +464,45 @@ def test_full_pr_release_scope_is_replayable_and_fails_on_count_drift() -> None:
 def test_release_scope_rejects_a_stale_content_head() -> None:
     manifest = load_manifest()
     receipt = copy.deepcopy(load_receipt())
-    receipt["full_pr_composite_scope"]["content_head_commit"] = manifest[
-        "release_scope"
-    ]["v1_checkpoint_commit"]
+    receipt["release_chain"]["active_increment"]["content_head_commit"] = (
+        manifest["release_scope"]["prior_release"]["content_head_commit"]
+    )
 
     findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
 
     assert any(finding.rule == "release_scope_finalization" for finding in findings)
+
+
+def test_release_scope_rejects_a_mismatched_prior_release_snapshot() -> None:
+    manifest = load_manifest()
+    receipt = copy.deepcopy(load_receipt())
+    receipt["release_chain"]["prior_release"]["path_count"] -= 1
+
+    findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
+
+    assert any(finding.rule == "release_scope_prior_receipt" for finding in findings)
+
+
+def test_release_scope_rejects_a_changed_chain_anchor() -> None:
+    manifest = copy.deepcopy(load_manifest())
+    receipt = load_receipt()
+    manifest["release_scope"]["prior_release"]["merge_commit"] = manifest[
+        "release_scope"
+    ]["prior_release"]["receipt_commit"]
+
+    findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
+
+    assert any(finding.rule == "release_scope_prior_chain" for finding in findings)
+
+
+def test_release_scope_requires_the_chained_incremental_mode() -> None:
+    manifest = load_manifest()
+    receipt = copy.deepcopy(load_receipt())
+    receipt["release_chain"]["mode"] = "unbounded_cumulative"
+
+    findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
+
+    assert any(finding.rule == "release_scope_receipt" for finding in findings)
 
 
 def test_historical_v1_digest_is_reproduced_without_promoting_its_convention() -> None:
