@@ -43,6 +43,22 @@ release_scope:
     and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase
     SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8
     concatenation including the final LF.
+  intermediate_receipt:
+    status: superseded_prepublication_non_authorizing_checkpoint
+    content_head_commit: 9128c6b710a35fe70115efadfef65ea54ed50ebb
+    content_tree_sha: e0fdc9e3087675ba9ab1713400945ab644f4342b
+    receipt_commit: 36ba16eab3dbf9dafb35184528c6ce68346e5c29
+    receipt_tree_sha: 96760b23e366ad9368848ec116bad6ed68d79847
+    receipt_raw_sha256: sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6
+    receipt_digest: sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f
+    content_path_count: 85
+    total_release_path_count: 86
+    fingerprinted_content_path_count: 85
+    added_path_count: 64
+    modified_path_count: 21
+    deleted_path_count: 0
+    renamed_path_count: 0
+    content_digest: sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39
   prior_release:
     base_commit: 4f00f6f9d50e870d4e9805f29a69feb33e6f4d12
     content_head_commit: 04a190bf091eea468a57f5604264a71ff97dd237

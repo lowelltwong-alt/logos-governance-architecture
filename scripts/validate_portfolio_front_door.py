@@ -1075,6 +1075,156 @@ def _check_historical_v1_evidence(
     return findings
 
 
+def _check_intermediate_receipt_checkpoint(
+    scope: dict[str, Any], root: Path, current_content_head: str
+) -> list[Finding]:
+    """Replay one superseded pre-publication receipt without granting authority."""
+
+    findings: list[Finding] = []
+    checkpoint = scope.get("intermediate_receipt", {})
+    receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    base = scope.get("base_commit")
+    content_head = checkpoint.get("content_head_commit")
+    receipt_commit = checkpoint.get("receipt_commit")
+    if any(
+        not isinstance(value, str) or re.fullmatch(r"[0-9a-f]{40}", value) is None
+        for value in (base, content_head, receipt_commit)
+    ):
+        return [
+            Finding(
+                "release_scope_intermediate_receipt",
+                receipt_path,
+                "intermediate checkpoint commits must be exact",
+            )
+        ]
+    assert all(isinstance(value, str) for value in (base, content_head, receipt_commit))
+
+    if (
+        _git_parents(root, receipt_commit) != [content_head]
+        or _git_delta_entries(root, content_head, receipt_commit)
+        != [GitDeltaEntry("M", receipt_path)]
+        or not _git_is_ancestor(root, receipt_commit, current_content_head)
+        or _git_object_bytes(root, current_content_head, receipt_path)
+        != _git_object_bytes(root, receipt_commit, receipt_path)
+    ):
+        findings.append(
+            Finding(
+                "release_scope_intermediate_receipt",
+                receipt_path,
+                "intermediate receipt is not an exact retained direct-parent checkpoint",
+            )
+        )
+
+    raw = _git_object_bytes(root, receipt_commit, receipt_path)
+    payload = _load_json_at_commit(root, receipt_commit, receipt_path)
+    if (
+        f"sha256:{hashlib.sha256(raw).hexdigest()}"
+        != checkpoint.get("receipt_raw_sha256")
+        or payload.get("receipt_digest") != checkpoint.get("receipt_digest")
+        or payload.get("receipt_digest")
+        != _canonical_digest(payload, ("receipt_digest",))
+        or _git_tree_sha(root, receipt_commit) != checkpoint.get("receipt_tree_sha")
+    ):
+        findings.append(
+            Finding(
+                "release_scope_intermediate_receipt",
+                receipt_path,
+                "intermediate receipt raw bytes, self-digest, or tree identity drifted",
+            )
+        )
+
+    if (
+        checkpoint.get("status")
+        != "superseded_prepublication_non_authorizing_checkpoint"
+        or payload.get("schema_version") != "logos.portfolio_validation_receipt.v2"
+        or payload.get("receipt_id") != "LOGOS-PORTFOLIO-RELEASE-002"
+        or payload.get("status") != "pass_scoped_incremental_release_candidate"
+        or payload.get("release_chain", {}).get("prior_release")
+        != scope.get("prior_release")
+    ):
+        findings.append(
+            Finding(
+                "release_scope_intermediate_receipt",
+                receipt_path,
+                "intermediate receipt identity, status, or prior-release anchor drifted",
+            )
+        )
+    for field in (
+        "runtime_activation_authorized",
+        "source_ingestion_authorized",
+        "substantive_doctrine_implementation_authorized",
+        "completed_doctrine_corpus",
+        "qualified_theological_authority_granted",
+    ):
+        if payload.get(field) is not False:
+            findings.append(
+                Finding(
+                    "release_scope_intermediate_authority",
+                    receipt_path,
+                    f"intermediate receipt elevated {field}",
+                )
+            )
+
+    entries = _git_delta_entries(root, base, content_head)
+    if any(entry.path == receipt_path for entry in entries):
+        findings.append(
+            Finding(
+                "release_scope_intermediate_receipt",
+                receipt_path,
+                "intermediate content checkpoint included its own receipt",
+            )
+        )
+    paths = [entry.path for entry in entries]
+    operations = Counter(entry.status for entry in entries)
+    active = payload.get("release_chain", {}).get("active_increment", {})
+    comparisons = {
+        "content_head_commit": content_head,
+        "content_tree_sha": checkpoint.get("content_tree_sha"),
+        "content_path_count": checkpoint.get("content_path_count"),
+        "total_release_path_count": checkpoint.get("total_release_path_count"),
+        "fingerprinted_content_path_count": checkpoint.get(
+            "fingerprinted_content_path_count"
+        ),
+        "added_path_count": checkpoint.get("added_path_count"),
+        "modified_path_count": checkpoint.get("modified_path_count"),
+        "deleted_path_count": checkpoint.get("deleted_path_count"),
+        "renamed_path_count": checkpoint.get("renamed_path_count"),
+        "content_digest": checkpoint.get("content_digest"),
+    }
+    for field, expected in comparisons.items():
+        if active.get(field) != expected:
+            findings.append(
+                Finding(
+                    "release_scope_intermediate_receipt",
+                    receipt_path,
+                    f"intermediate active_increment.{field} mismatch",
+                )
+            )
+    if (
+        active.get("branch_base_commit") != base
+        or active.get("canonical_digest_algorithm")
+        != scope.get("canonical_digest_algorithm")
+        or len(paths) != checkpoint.get("content_path_count")
+        or len(paths) + 1 != checkpoint.get("total_release_path_count")
+        or len(paths) != checkpoint.get("fingerprinted_content_path_count")
+        or operations["A"] != checkpoint.get("added_path_count")
+        or operations["M"] != checkpoint.get("modified_path_count")
+        or checkpoint.get("deleted_path_count") != 0
+        or checkpoint.get("renamed_path_count") != 0
+        or _git_tree_sha(root, content_head) != checkpoint.get("content_tree_sha")
+        or _git_path_fingerprint(root, content_head, paths)
+        != checkpoint.get("content_digest")
+    ):
+        findings.append(
+            Finding(
+                "release_scope_intermediate_replay",
+                receipt_path,
+                "intermediate content scope, operations, tree, or digest did not replay",
+            )
+        )
+    return findings
+
+
 def _check_chained_release_scope(
     manifest: dict[str, Any], receipt: dict[str, Any], root: Path
 ) -> tuple[list[Finding], dict[str, int]]:
@@ -1086,6 +1236,8 @@ def _check_chained_release_scope(
     active = chain.get("active_increment", {})
     privacy = chain.get("privacy", {})
     external = chain.get("external_baseline_finding", {})
+    intermediate = scope.get("intermediate_receipt", {})
+    receipt_intermediate = chain.get("intermediate_receipt", {})
     prior = scope.get("prior_release", {})
     receipt_prior = chain.get("prior_release", {})
     receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
@@ -1155,6 +1307,14 @@ def _check_chained_release_scope(
                 "release_scope_prior_receipt",
                 receipt_path,
                 "release_chain.prior_release does not match the manifest chain anchor",
+            )
+        )
+    if receipt_intermediate != intermediate:
+        findings.append(
+            Finding(
+                "release_scope_intermediate_receipt",
+                receipt_path,
+                "release_chain.intermediate_receipt does not match the manifest checkpoint",
             )
         )
     if prior.get("canonical_digest_algorithm") != scope.get(
@@ -1232,16 +1392,21 @@ def _check_chained_release_scope(
             )
         )
 
-    entries = _git_delta_entries(root, base, content_head)
-    content_paths = [entry.path for entry in entries]
-    if receipt_path in content_paths:
+    findings.extend(
+        _check_intermediate_receipt_checkpoint(scope, root, content_head)
+    )
+    all_entries = _git_delta_entries(root, base, content_head)
+    receipt_entries = [entry for entry in all_entries if entry.path == receipt_path]
+    if receipt_entries != [GitDeltaEntry("M", receipt_path)]:
         findings.append(
             Finding(
-                "release_scope_finalization",
+                "release_scope_intermediate_receipt",
                 receipt_path,
-                "the self-describing receipt changed before its receipt-only finalization commit",
+                "the content checkpoint must retain exactly one pinned intermediate receipt delta",
             )
         )
+    entries = [entry for entry in all_entries if entry.path != receipt_path]
+    content_paths = [entry.path for entry in entries]
     release_paths = sorted({*content_paths, receipt_path})
     operations = Counter(entry.status for entry in entries)
     observed_counts = {
@@ -1921,7 +2086,7 @@ def _check_receipt_payload(receipt: dict[str, Any]) -> list[Finding]:
     if receipt.get("schema_version") == "logos.portfolio_validation_receipt.v2":
         required = {
             "schema_version": "logos.portfolio_validation_receipt.v2",
-            "receipt_id": "LOGOS-PORTFOLIO-RELEASE-002",
+            "receipt_id": "LOGOS-PORTFOLIO-RELEASE-003",
             "status": "pass_scoped_incremental_release_candidate",
             "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
             "doctrine_mesh_status": "validated_specification_only",

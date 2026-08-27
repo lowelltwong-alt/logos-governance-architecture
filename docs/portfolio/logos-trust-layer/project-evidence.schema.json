@@ -111,7 +111,8 @@
         "total_unique_path_count", "receipt_excluded_path_count",
         "added_path_count", "modified_path_count", "deleted_path_count",
         "renamed_path_count",
-        "canonical_digest_algorithm", "prior_release", "historical_v1"
+        "canonical_digest_algorithm", "intermediate_receipt", "prior_release",
+        "historical_v1"
       ],
       "properties": {
         "status": {"const": "chained_incremental_release_candidate"},
@@ -124,6 +125,35 @@
         "deleted_path_count": {"const": 0},
         "renamed_path_count": {"const": 0},
         "canonical_digest_algorithm": {"type": "string", "minLength": 80},
+        "intermediate_receipt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status", "content_head_commit", "content_tree_sha", "receipt_commit",
+            "receipt_tree_sha", "receipt_raw_sha256", "receipt_digest",
+            "content_path_count", "total_release_path_count",
+            "fingerprinted_content_path_count", "added_path_count",
+            "modified_path_count", "deleted_path_count", "renamed_path_count",
+            "content_digest"
+          ],
+          "properties": {
+            "status": {"const": "superseded_prepublication_non_authorizing_checkpoint"},
+            "content_head_commit": {"const": "9128c6b710a35fe70115efadfef65ea54ed50ebb"},
+            "content_tree_sha": {"const": "e0fdc9e3087675ba9ab1713400945ab644f4342b"},
+            "receipt_commit": {"const": "36ba16eab3dbf9dafb35184528c6ce68346e5c29"},
+            "receipt_tree_sha": {"const": "96760b23e366ad9368848ec116bad6ed68d79847"},
+            "receipt_raw_sha256": {"const": "sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6"},
+            "receipt_digest": {"const": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f"},
+            "content_path_count": {"const": 85},
+            "total_release_path_count": {"const": 86},
+            "fingerprinted_content_path_count": {"const": 85},
+            "added_path_count": {"const": 64},
+            "modified_path_count": {"const": 21},
+            "deleted_path_count": {"const": 0},
+            "renamed_path_count": {"const": 0},
+            "content_digest": {"const": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"}
+          }
+        },
         "prior_release": {
           "type": "object",
           "additionalProperties": false,
@@ -353,7 +383,7 @@
         "lifecycle_status": {"const": "public_release_candidate"},
         "provenance_note": {"type": "string", "minLength": 30},
         "reason_for_inclusion": {"type": "string", "minLength": 30},
-        "receipt_id": {"const": "LOGOS-PORTFOLIO-RELEASE-002"},
+        "receipt_id": {"const": "LOGOS-PORTFOLIO-RELEASE-003"},
         "work_id": {"const": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001"},
         "status": {"const": "pass_scoped_incremental_release_candidate"},
         "release_chain": {
@@ -361,7 +391,8 @@
           "additionalProperties": false,
           "required": [
             "mode", "receipt_path", "active_increment", "privacy",
-            "external_baseline_finding", "prior_release", "historical_v1"
+            "external_baseline_finding", "intermediate_receipt", "prior_release",
+            "historical_v1"
           ],
           "properties": {
             "mode": {"const": "direct_parent_incremental_v2"},
@@ -411,6 +442,35 @@
                 "occurrence_count": 3,
                 "integrated_via_pr": 120,
                 "disposition": "unresolved_preexisting_not_waived"
+              }
+            },
+            "intermediate_receipt": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status", "content_head_commit", "content_tree_sha", "receipt_commit",
+                "receipt_tree_sha", "receipt_raw_sha256", "receipt_digest",
+                "content_path_count", "total_release_path_count",
+                "fingerprinted_content_path_count", "added_path_count",
+                "modified_path_count", "deleted_path_count", "renamed_path_count",
+                "content_digest"
+              ],
+              "properties": {
+                "status": {"const": "superseded_prepublication_non_authorizing_checkpoint"},
+                "content_head_commit": {"const": "9128c6b710a35fe70115efadfef65ea54ed50ebb"},
+                "content_tree_sha": {"const": "e0fdc9e3087675ba9ab1713400945ab644f4342b"},
+                "receipt_commit": {"const": "36ba16eab3dbf9dafb35184528c6ce68346e5c29"},
+                "receipt_tree_sha": {"const": "96760b23e366ad9368848ec116bad6ed68d79847"},
+                "receipt_raw_sha256": {"const": "sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6"},
+                "receipt_digest": {"const": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f"},
+                "content_path_count": {"const": 85},
+                "total_release_path_count": {"const": 86},
+                "fingerprinted_content_path_count": {"const": 85},
+                "added_path_count": {"const": 64},
+                "modified_path_count": {"const": 21},
+                "deleted_path_count": {"const": 0},
+                "renamed_path_count": {"const": 0},
+                "content_digest": {"const": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"}
               }
             },
             "prior_release": {

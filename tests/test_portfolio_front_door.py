@@ -464,8 +464,11 @@ def test_chained_incremental_release_scope_is_replayable_and_fails_on_count_drif
 def test_release_scope_rejects_a_stale_content_head() -> None:
     manifest = load_manifest()
     receipt = copy.deepcopy(load_receipt())
+    current_content_head = receipt["release_chain"]["active_increment"][
+        "content_head_commit"
+    ]
     receipt["release_chain"]["active_increment"]["content_head_commit"] = (
-        manifest["release_scope"]["prior_release"]["content_head_commit"]
+        validator._git_parents(ROOT, current_content_head)[0]
     )
 
     findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
@@ -481,6 +484,21 @@ def test_release_scope_rejects_a_mismatched_prior_release_snapshot() -> None:
     findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
 
     assert any(finding.rule == "release_scope_prior_receipt" for finding in findings)
+
+
+def test_release_scope_rejects_intermediate_receipt_drift() -> None:
+    manifest = load_manifest()
+    receipt = copy.deepcopy(load_receipt())
+    receipt["release_chain"]["intermediate_receipt"]["receipt_digest"] = (
+        "sha256:" + "0" * 64
+    )
+
+    findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
+
+    assert any(
+        finding.rule == "release_scope_intermediate_receipt"
+        for finding in findings
+    )
 
 
 def test_release_scope_rejects_a_changed_chain_anchor() -> None:
