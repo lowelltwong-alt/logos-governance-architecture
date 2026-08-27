@@ -3,16 +3,16 @@
   "object_type": "academic_extension_validation_receipt",
   "trust_zone": "proposed",
   "lifecycle_status": "draft",
-  "provenance_note": "Recorded 2026-08-27 after deterministic replay of the cross-platform canonical Academic Extension Contract v1 candidate.",
+  "provenance_note": "Regenerated 2026-08-27 after deterministic replay and independent review of the Academic Extension refreeze required by the release-integrated governance dependency map.",
   "reason_for_inclusion": "Preserve machine-readable validation evidence without treating a specification or test result as academic, theological, activation, or release authority.",
-  "created_at": "2026-08-27T00:16:39Z",
+  "created_at": "2026-08-27T01:41:56.786535Z",
   "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
   "candidate_base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
   "frozen_content": {
     "manifest": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/academic-extension-contract-v1/frozen-digests.json",
-    "manifest_sha256": "sha256:267d0b43a73955d42f884e6bf0ee016ec266439409d9f19531fcf68b6eb1c5ad",
+    "manifest_sha256": "sha256:8cb6e7001c7d11b61f273c55f7285fe1045dabc1fa7c3da141a6d652b50f0446",
     "path_count": 47,
-    "content_digest": "sha256:ccb6f70ed925af51bfb3a545c619012b6a46989f7fa88f5d6735a59adee2424b",
+    "content_digest": "sha256:f07c6a75879802c953268b192850c79e8ea1c116443c9b47c9a37464e2a434df",
     "receipt_paths_excluded": true
   },
   "result": "pass",
@@ -72,7 +72,7 @@
     {
       "id": "exact-claim-scope",
       "result": "pass",
-      "evidence": "85 base-to-content-candidate paths remain covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001; this changed-input repair touches 20 existing claimed paths and adds no new file."
+      "evidence": "85 base-to-content-candidate paths remain covered by WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001; this refreeze updates three existing claimed academic evidence paths and adds no new file."
     },
     {
       "id": "candidate-sensitive-patterns",
@@ -82,7 +82,7 @@
     {
       "id": "changed-input-independent-review",
       "result": "pass",
-      "evidence": "AE-XPLAT-DIGEST-REVIEW-20260827T000334Z independently reproduced all 47 canonical rows, Git-blob equivalence, and aggregate digest; all eight human gates remain blocked and the production domain-pack registry remains empty."
+      "evidence": "AEX-REFREEZE-IR-20260827T014156Z independently reproduced all 47 canonical rows, the exact dependency-map row, and the aggregate digest; all eight human gates remain blocked and the production domain-pack registry remains empty."
     }
   ],
   "environment_note": {

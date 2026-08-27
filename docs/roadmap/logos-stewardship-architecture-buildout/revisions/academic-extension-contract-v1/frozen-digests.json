@@ -13,7 +13,7 @@
     "docs/roadmap/logos-stewardship-architecture-buildout/revisions/academic-extension-contract-v1/validation-receipt.json"
   ],
   "path_count": 47,
-  "content_digest": "sha256:ccb6f70ed925af51bfb3a545c619012b6a46989f7fa88f5d6735a59adee2424b",
+  "content_digest": "sha256:f07c6a75879802c953268b192850c79e8ea1c116443c9b47c9a37464e2a434df",
   "files": [
     {"path": "AI_FRONT_DOOR.md", "sha256": "sha256:5c41153d64fa09561e09ff9c447063e9ed7ea18773847c945cf61c3cd3730461"},
     {"path": "AI_TABLE_OF_CONTENTS.md", "sha256": "sha256:0675d714c24633603fa0286c2c06a73bf1fdbd0080bfc4e1911a7c3870ad2ee9"},
@@ -33,7 +33,7 @@
     {"path": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/academic-extension-contract-v1/human-decision-gates.yaml", "sha256": "sha256:6ce2385f8a76334153f0245948eb74a85697ad242e6c141508aa3a3d09143502"},
     {"path": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/academic-extension-contract-v1/mesh/agent-mesh.v2.json", "sha256": "sha256:f08d91a14a34bb5e25866e30d2dc79bb7cd5cd5f8cb1c75884533dc0d0b03f19"},
     {"path": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/academic-extension-contract-v1/standards-evidence.yaml", "sha256": "sha256:c4cd9d322b40ed7dfa4c7b01c519a98a074015f8ac5d2b0d09278736d4e1063f"},
-    {"path": "governance/GOVERNANCE_DEPENDENCY_MAP.yaml", "sha256": "sha256:b1e4e51d3fbc33e2189ca5fa76a5fa44e420d18e7b8cc1f14cff1324774f2881"},
+    {"path": "governance/GOVERNANCE_DEPENDENCY_MAP.yaml", "sha256": "sha256:7ec04b76490eaba89f1d79765016439853630647d9ad138249cf312543522e95"},
     {"path": "governance/registry/ACADEMIC_DOMAIN_PACK_REGISTRY.yaml", "sha256": "sha256:774503a9e099b75f3261b06fad59139ffe767340c43dd5a074281f678b390a6b"},
     {"path": "governance/registry/FAMILY_WORK_REGISTRY.yaml", "sha256": "sha256:4ab6eb0199a254ed1a03da39703d25f6e13d63a73653d8462573be34c0928e18"},
     {"path": "schemas/academic_extensions/assertion_envelope.v1.schema.json", "sha256": "sha256:20a4df4be0192b7fc33180ceb447e040e1356b1c74731c1751d04a7579eb03c7"},
