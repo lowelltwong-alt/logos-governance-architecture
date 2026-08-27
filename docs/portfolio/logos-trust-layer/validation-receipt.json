@@ -3,9 +3,9 @@
   "object_type": "logos_portfolio_validation_receipt",
   "trust_zone": "proposed",
   "lifecycle_status": "public_release_candidate",
-  "provenance_note": "Recorded after the exact 85-path incremental content checkpoint, independent changed-input review, and immutable replay of the prior public release evidence.",
-  "reason_for_inclusion": "Bind this public candidate to one exact branch increment without absorbing an unrelated integrated pull request or waiving its disclosed baseline privacy finding.",
-  "receipt_id": "LOGOS-PORTFOLIO-RELEASE-002",
+  "provenance_note": "Recorded after the exact 85-path superseding content checkpoint, independent changed-input review, hash-pinned preservation of one non-authorizing pre-publication receipt, and immutable replay of the prior public release evidence.",
+  "reason_for_inclusion": "Bind this public candidate to one exact branch increment without rewriting preserved history, absorbing an unrelated integrated pull request, or waiving its disclosed baseline privacy finding.",
+  "receipt_id": "LOGOS-PORTFOLIO-RELEASE-003",
   "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
   "status": "pass_scoped_incremental_release_candidate",
   "release_chain": {
@@ -13,8 +13,8 @@
     "receipt_path": "docs/portfolio/logos-trust-layer/validation-receipt.json",
     "active_increment": {
       "branch_base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
-      "content_head_commit": "9128c6b710a35fe70115efadfef65ea54ed50ebb",
-      "content_tree_sha": "e0fdc9e3087675ba9ab1713400945ab644f4342b",
+      "content_head_commit": "6a84b3579270bce49abc44633f545f79582aae78",
+      "content_tree_sha": "d0497f40b5f3bdf0584b5f3efe8cea6d974bf9b5",
       "content_path_count": 85,
       "receipt_path_count": 1,
       "total_release_path_count": 86,
@@ -24,7 +24,7 @@
       "deleted_path_count": 0,
       "renamed_path_count": 0,
       "canonical_digest_algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-      "content_digest": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"
+      "content_digest": "sha256:3e49466797c5930dd14028f239bcfd80d029709546bdb6ab7aadc27de4a2b5cf"
     },
     "privacy": {
       "mode": "exact_base_candidate_added_occurrences",
@@ -42,6 +42,23 @@
       "occurrence_count": 3,
       "integrated_via_pr": 120,
       "disposition": "unresolved_preexisting_not_waived"
+    },
+    "intermediate_receipt": {
+      "status": "superseded_prepublication_non_authorizing_checkpoint",
+      "content_head_commit": "9128c6b710a35fe70115efadfef65ea54ed50ebb",
+      "content_tree_sha": "e0fdc9e3087675ba9ab1713400945ab644f4342b",
+      "receipt_commit": "36ba16eab3dbf9dafb35184528c6ce68346e5c29",
+      "receipt_tree_sha": "96760b23e366ad9368848ec116bad6ed68d79847",
+      "receipt_raw_sha256": "sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6",
+      "receipt_digest": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f",
+      "content_path_count": 85,
+      "total_release_path_count": 86,
+      "fingerprinted_content_path_count": 85,
+      "added_path_count": 64,
+      "modified_path_count": 21,
+      "deleted_path_count": 0,
+      "renamed_path_count": 0,
+      "content_digest": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"
     },
     "prior_release": {
       "base_commit": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12",
@@ -138,7 +155,12 @@
     {
       "check_id": "git_diff_check",
       "status": "pass",
-      "result": "The exact six-file content repair and 85-path branch candidate contain no whitespace errors."
+      "result": "The initial six-file repair, preserved five-file superseding checkpoint, and 85-path branch candidate contain no whitespace errors."
+    },
+    {
+      "check_id": "superseded_receipt_preservation",
+      "status": "pass_content_checkpoint",
+      "result": "The prior direct-parent receipt is retained byte-for-byte, hash-pinned, explicitly non-authorizing, and excluded from the 85-path nonreceipt fingerprint without history rewriting."
     },
     {
       "check_id": "incremental_privacy_contract",
@@ -183,9 +205,18 @@
       "reviewed_digest": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39",
       "scope_note": "Caught two fail-closed defects, then verified their correction plus the exact 64-addition and 21-modification chain, prior-release replay, and non-waiver boundary.",
       "observed_at": "2026-08-27T01:09:40.076176Z"
+    },
+    {
+      "review_id": "REVIEW-SUPERSEDING-RECEIPT-011",
+      "role": "independent-release-integration-checker",
+      "status": "pass_preserved_history",
+      "reviewed_path_count": 85,
+      "reviewed_digest": "sha256:3e49466797c5930dd14028f239bcfd80d029709546bdb6ab7aadc27de4a2b5cf",
+      "scope_note": "Verified the pinned intermediate receipt, exact retained bytes, 85-path exclusion, fail-closed Release 003 contract, corrected stale-head test, prior-release replay, and privacy non-waiver.",
+      "observed_at": "2026-08-27T01:26:18.010835Z"
     }
   ],
-  "unchanged_head_gate": "pass_local_exact_content_head_9128c6b710a35fe70115efadfef65ea54ed50ebb; receipt finalization and remote unchanged-head gates remain pending",
+  "unchanged_head_gate": "pass_local_exact_content_head_6a84b3579270bce49abc44633f545f79582aae78; receipt finalization and remote unchanged-head gates remain pending",
   "required_ci": "pending_at_receipt_finalization",
   "normal_merge": "pending_at_receipt_finalization",
   "runtime_activation_authorized": false,
@@ -194,6 +225,6 @@
   "completed_doctrine_corpus": false,
   "qualified_theological_authority_granted": false,
   "mutation_performed_by_validation": false,
-  "observed_at": "2026-08-27T01:12:00.1230354Z",
-  "receipt_digest": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f"
+  "observed_at": "2026-08-27T01:29:00Z",
+  "receipt_digest": "sha256:e8b4dade2923bbe97c0b768c4e73c311154c984a7e470dbba7d8e28e33c7a5fd"
 }
