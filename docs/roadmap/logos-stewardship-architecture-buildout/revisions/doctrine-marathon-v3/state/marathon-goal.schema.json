@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.goal.v3",
+  "title": "Doctrine Marathon durable goal",
+  "description": "object_type=doctrine_marathon_goal_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Validate durable goal and authority fields independently of chat context.",
+  "type": "object",
+  "required": ["schema_version", "goal_id", "revision_id", "objective", "canonical_prompt_ref", "canonical_prompt_sha256", "authority_ceiling", "completion_requires", "current_progress", "terminal_contract"],
+  "properties": {
+    "metadata": {"type": "object"},
+    "schema_version": {"const": "logos.doctrine_marathon.goal.v3"},
+    "goal_id": {"const": "LOGOS-DOCTRINE-MARATHON-003"},
+    "revision_id": {"const": "doctrine-marathon-v3"},
+    "objective": {"type": "string", "minLength": 120},
+    "canonical_prompt_ref": {"const": "DOCTRINE_MARATHON_MASTER_PROMPT.md"},
+    "canonical_prompt_sha256": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "authority_ceiling": {
+      "type": "object",
+      "required": ["current_mode", "research_execution_authorized", "source_ingestion_authorized", "substantive_doctrine_implementation_authorized", "runtime_activation_authorized"],
+      "properties": {
+        "current_mode": {"const": "specification_only"},
+        "research_execution_authorized": {"const": false},
+        "source_ingestion_authorized": {"const": false},
+        "substantive_doctrine_implementation_authorized": {"const": false},
+        "runtime_activation_authorized": {"const": false}
+      },
+      "additionalProperties": true
+    },
+    "completion_requires": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string"}},
+    "current_progress": {"type": "object", "required": ["runtime", "research_units_completed", "doctrine_claims_promoted", "qualified_human_reviews_completed"]},
+    "terminal_contract": {"type": "object", "required": ["allowed_statuses", "next_prompt_required_for", "next_prompt_forbidden_for"]}
+  },
+  "additionalProperties": true
+}

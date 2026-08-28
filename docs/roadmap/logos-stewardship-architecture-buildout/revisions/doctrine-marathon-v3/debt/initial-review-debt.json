@@ -1,0 +1,115 @@
+[
+  {
+    "schema_version": "logos.doctrine-marathon.expert-review-debt.v3",
+    "debt_id": "DMV3-DEBT-1CLEMENT-SOURCEPACK",
+    "subject_node_ids": [
+      "DMV3-PAT-SOURCEPLAN"
+    ],
+    "required_capability_ids": [
+      "apostolic_fathers",
+      "manuscript_codicology_and_papyrology",
+      "source_identity_locator_and_rights",
+      "privacy_public_boundary_and_custody",
+      "original_language_and_translation_fidelity",
+      "quotation_context_and_entailment",
+      "counterevidence_and_alternative_hypotheses",
+      "role_qualification_and_independence"
+    ],
+    "missing_source_access": [
+      "qualified_primary_text_or_witness",
+      "qualified_critical_edition",
+      "qualified_translation_if_used"
+    ],
+    "blocking": true,
+    "risk_tier": "high",
+    "risk_reasons": [
+      "source_pack_unqualified",
+      "language_review_missing",
+      "future_downstream_foundation"
+    ],
+    "downstream_consumer_ids": [
+      "DMV3-PILOT-1CLEMENT"
+    ],
+    "blast_radius_count": 1,
+    "source_fragility": "unknown",
+    "freshness_state": "unknown",
+    "opened_at": "2026-08-27T18:57:00Z",
+    "prior_failed_review_count": 0,
+    "review_packet_ref": "research/patristic-source-qualification-plan.yaml",
+    "acceptance_rubric_ref": "research/father-expert-pack-contract.yaml",
+    "status": "open",
+    "required_human_gate_ids": [
+      "patristics_or_period_specialist_review_when_material",
+      "original_language_or_translation_review_when_material",
+      "source_rights_privacy_and_custody_review",
+      "named_owner_promotion_decision"
+    ],
+    "proposed_role_gap_ids": [
+      "DMV3-GAP-PATRISTIC-GREEK",
+      "DMV3-GAP-PATRISTIC-TEXTUAL-HISTORY",
+      "DMV3-GAP-EARLY-CHRISTIAN-CHRONOLOGY",
+      "DMV3-GAP-ROMAN-CORINTHIAN-ECCLESIAL-CONTEXT"
+    ],
+    "load_bearing_downstream_consumer_ids": [
+      "DMV3-PILOT-1CLEMENT"
+    ],
+    "direct_load_bearing_prerequisite_ids": [
+      "DMV3-CONSTITUTION"
+    ],
+    "load_bearing_blast_radius_count": 1,
+    "dependency_graph_ref": "graph/example-graph.json",
+    "dependency_graph_digest": "sha256:474a3b790228069175c1feb90cd26759e202718ad6aefbe0a00303fb0cb23702",
+    "capability_catalog_ref": "mesh/role-catalog.yaml",
+    "capability_catalog_digest": "sha256:3b37c1c1a301f3113474dcabe48a0aa65d90676b48859da183c034c16843834c",
+    "human_gate_registry_ref": "constitution.yaml",
+    "human_gate_registry_digest": "sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe",
+    "review_packet_digest": "sha256:598b700d653390bc9a9b9c7c6fd19c37f65d003bb50d8e64f59c9ce92946aaf7",
+    "acceptance_rubric_digest": "sha256:b946a937a38355d52d612f0316e35d15695165d4116dfb92010c3b12d37f772c"
+  },
+  {
+    "schema_version": "logos.doctrine-marathon.expert-review-debt.v3",
+    "debt_id": "DMV3-DEBT-NORMATIVE-FRAME",
+    "subject_node_ids": [
+      "DMV3-NORMATIVE-FRAME"
+    ],
+    "required_capability_ids": [
+      "tradition_representation",
+      "counterevidence_and_alternative_hypotheses",
+      "prompt_alignment_and_authority",
+      "role_qualification_and_independence"
+    ],
+    "missing_source_access": [],
+    "blocking": true,
+    "risk_tier": "frontier",
+    "risk_reasons": [
+      "no_human_approved_normative_frame",
+      "ai_cannot_create_normative_authority"
+    ],
+    "downstream_consumer_ids": [],
+    "blast_radius_count": 0,
+    "source_fragility": "none",
+    "freshness_state": "current",
+    "opened_at": "2026-08-27T18:57:00Z",
+    "prior_failed_review_count": 0,
+    "review_packet_ref": "graph/normative-frame.schema.json",
+    "acceptance_rubric_ref": "constitution.yaml",
+    "status": "open",
+    "required_human_gate_ids": [
+      "qualified_theologian_review",
+      "relevant_tradition_representative_review",
+      "named_owner_promotion_decision"
+    ],
+    "proposed_role_gap_ids": [],
+    "load_bearing_downstream_consumer_ids": [],
+    "direct_load_bearing_prerequisite_ids": [],
+    "load_bearing_blast_radius_count": 0,
+    "dependency_graph_ref": "graph/example-graph.json",
+    "dependency_graph_digest": "sha256:474a3b790228069175c1feb90cd26759e202718ad6aefbe0a00303fb0cb23702",
+    "capability_catalog_ref": "mesh/role-catalog.yaml",
+    "capability_catalog_digest": "sha256:3b37c1c1a301f3113474dcabe48a0aa65d90676b48859da183c034c16843834c",
+    "human_gate_registry_ref": "constitution.yaml",
+    "human_gate_registry_digest": "sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe",
+    "review_packet_digest": "sha256:a0a497264fb1d0450ba3488309143f823b33a88d4e52e42588bbd14ab8956f03",
+    "acceptance_rubric_digest": "sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe"
+  }
+]

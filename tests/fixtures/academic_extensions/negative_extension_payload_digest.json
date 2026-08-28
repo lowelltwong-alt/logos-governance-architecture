@@ -3,5 +3,7 @@
   "operation": "replace",
   "path": ["extension_payload", "payload_data", "future_unknown_field", "nested", 0],
   "value": 999,
-  "expected_rule": "extension_payload_digest"
+  "expected_rule": "extension_payload_digest",
+  "expected_first_rule": "extension_payload_digest",
+  "expected_rules_exact": ["extension_payload_digest"]
 }

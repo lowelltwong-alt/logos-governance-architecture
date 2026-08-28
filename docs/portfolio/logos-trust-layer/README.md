@@ -150,13 +150,15 @@ research, source ingestion, doctrine, or cross-repository writes.
 ## Reproduce the packet checks
 
 ```bash
-python scripts/validate_portfolio_front_door.py
-python -m pytest tests/test_portfolio_front_door.py
-python scripts/validate_biblical_evidence_demo.py
-python -m pytest tests/test_biblical_evidence_demo.py
-python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
-python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
-python scripts/validate_internal_links.py --all-markdown
+python -B scripts/validate_portfolio_front_door.py
+python -B -m pytest -q --assert=plain -p no:cacheprovider tests/test_portfolio_front_door.py
+python -B scripts/validate_biblical_evidence_demo.py
+python -B -m pytest -q --assert=plain -p no:cacheprovider tests/test_biblical_evidence_demo.py
+python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
+python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
+python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validate_doctrine_marathon.py --mode final
+python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py
+python -B scripts/validate_internal_links.py --all-markdown
 ```
 
 Also inspect the exact Git diff and commit. A receipt is useful evidence, but the
@@ -168,7 +170,8 @@ The [Academic Extension Contract](../../governance/academic-extension-contract.m
 defines the lossless domain-pack boundary for future academic graph work. The
 [Biblical Evidence Graph Demonstration V1](../../roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md)
 is its first public, concrete, source-linked demonstration. It includes the exact
-licensed P66 image, a rights and lineage record, a non-contiguous John 19
+licensed P66 verso image, a separate combined-object record, an explicit
+unresolved side-coverage boundary, a non-contiguous object-catalog John 19
 crosswalk, bounded archaeology claim packets, a claim-mediated graph, a
 provider-neutral specialist mesh, deterministic negative fixtures, frozen
 digests, and independent reviews.
@@ -187,6 +190,72 @@ The image and static candidate records are public evidence; they are not a
 transcription, preferred reading, completed archaeology or doctrine corpus,
 running graph, reviewed-gold M7/M8 convergence result, or theological authority.
 The production academic domain-pack registry remains empty.
+
+## Doctrine Marathon V3 receipt chain
+
+The [Doctrine Marathon V3 entrypoint](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md)
+documents the long-run campaign control plane. It is an 83-file blocked
+specification-only public design: 78 payload files plus five administrative
+records. Strict prefinal validation passes, but final validation must expose
+exactly one `adversarial_harness_release_gate` until the repository-specific V4
+adapter, registry, per-case receipts, clean-checkout CI binding, and unchanged-
+head evidence exist. Review its
+[canonical prompt](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/DOCTRINE_MARATHON_MASTER_PROMPT.md),
+[agent mesh](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/agent-mesh.v3.json),
+[completeness auditor](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/completeness-auditor-v3.yaml),
+[design-time assignment and independence fixture](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/examples/design-time-independence-fixture.json),
+[runtime assignment-bundle contract](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-assignment-bundle.schema.json),
+[typed qualification registry](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-registry.json),
+[qualification-receipt contract](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-receipt.schema.json),
+[correlation-exception contract](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/correlation-acceptance-receipt.schema.json),
+[role and capability catalog](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-catalog.yaml),
+[typed evidence registry](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-registry.json),
+[evidence-review receipt contract](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-review-receipt.schema.json),
+[changed-input trigger matrix](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/trigger-matrix.yaml),
+[action-to-checker requirements](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/action-checker-requirements.yaml),
+[prompt-neutrality review contract](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/prompt-neutrality-contract.yaml),
+[empty append-only event ledger](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/events/event-ledger.json),
+[fresh-context verification receipt contract](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/fresh-context-verification-receipt.schema.json),
+[unresolved weekly-gate fixture](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/examples/initial-weekly-fresh-context-gate.json),
+[dependency firewall](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/event-driven-invalidation-contract.yaml),
+[inactive human-identity authority root](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/human-identity-authority-root.yaml),
+[empty human-authority registry](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/authority-registry.yaml),
+[review-debt queue](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/debt/initial-review-debt.json),
+[repair ledger](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/repair-ledger.yaml),
+[public mistake-escalation receipt](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/ai-mistake-escalation-2026-08-27.yaml),
+[root-cause and sibling-recurrence report](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/ADVERSARIAL_HARNESS_ROOT_FIX.md),
+[public V4 receipt / V3 registry contract summary](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/DETERMINISTIC_ADVERSARIAL_HARNESS_CONTRACT.md),
+[blocked repository migration contract](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/adversarial-harness-migration.yaml),
+[164-case legacy component catalog](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/negative-cases.json),
+[33-case exact-ordered isolated catalog](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/strict-isolated-cases.json),
+[four-case aggregate sentinel subset](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/aggregate-sentinel-cases.json),
+[copied-root aggregate runner](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/run_adversarial_harness.py),
+[aggregate-runner regression tests](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_run_adversarial_harness.py),
+[revision manifest](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/revision-manifest.yaml),
+[bounded public-release authorization](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/public-release-authorization.json),
+[final saved-version index](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/FINAL-SAVED-VERSION.yaml),
+[validation receipt](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validation-receipt.json),
+and [independent review](../../roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/independent-review.json).
+
+The package freezes a blocked design only when its manifest, saved-version
+index, validation receipt, independent review, and exact one-blocker final replay
+agree; it is not aggregate-assured, protected-release eligible, a runtime, or a
+body of doctrine. No patristic source is ingested, no expert is qualified merely
+by an agent role, and a required prompt-review binding does not prove neutrality
+or that a checker ran. The weekly fixture remains unverified and authorizes no
+continuation. The human-identity root is deliberately inactive, the authority
+registry has no qualified approver or active frame, and V3 rejects activation
+until a separate reviewed identity-and-authority mechanism is implemented.
+
+The outer portfolio oracle has five copied-input aggregate sentinels for V3
+maturity overclaim, migration-gate erasure, authority elevation, required-route
+omission, and Release 004 chain drift. It also binds one start/end input
+snapshot, rejects duplicate JSON/YAML keys, derives every alternate-root path
+from that root, reads the release receipt once, and preserves raw finding order
+and duplicates. Those controls are implemented in the
+[portfolio validator](../../../scripts/validate_portfolio_front_door.py) and
+[tests](../../../tests/test_portfolio_front_door.py); they do not complete the
+still-blocked V3 repository migration.
 
 ## Non-claims that must survive every summary
 

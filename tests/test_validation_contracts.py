@@ -17,6 +17,23 @@ def test_machine_citation_validator_is_registered_once() -> None:
     ]
 
 
+def test_doctrine_marathon_v3_validator_is_registered_once() -> None:
+    commands = default_validation_commands("python")
+    matches = [item for item in commands if item["name"] == "doctrine_marathon_v3"]
+
+    assert matches == [
+        {
+            "name": "doctrine_marathon_v3",
+            "command": [
+                "python",
+                "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validate_doctrine_marathon.py",
+                "--mode",
+                "final",
+            ],
+        }
+    ]
+
+
 def test_structure_workflow_runs_machine_citation_validator_once() -> None:
     root = Path(__file__).resolve().parents[1]
     workflow = (root / ".github" / "workflows" / "validate-logos-structure.yml").read_text(

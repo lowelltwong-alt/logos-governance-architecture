@@ -2,7 +2,7 @@
 object_type: governance_dependency_map
 trust_zone: canonical
 lifecycle_status: active
-provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated through 2026-07-10 for the registered governance buildout. Updated 2026-07-11 to register D11 LLOS v1, its lesson schema, route registry, validator, child mirrors, and DAD read-only boundary. Updated 2026-08-24 to register the public evidence-bound portfolio front door and the validated specification-only Doctrine Mesh V2 release, bind the neutral four-repository AI audit route to snapshot_commit evidence and deterministic route regression coverage, and add the index-backed plus scheduled live-origin-head machine-residue gate. Updated 2026-08-25 to register the specification-only Academic Extension Contract, its lossless domain-pack schemas, empty registry, deterministic fixtures, validator, and human-gate packet. Updated 2026-08-26 to register the public P66 and archaeology evidence-graph demonstration, exact asset-rights pin, specialist mesh, adversarial validator, and portfolio interrogation route."
+provenance_note: "Created 2026-06-17 by owner request to make governance artifacts, decisions, dependencies, and downstream control surfaces deterministic across the Logos repo family. Updated through 2026-07-10 for the registered governance buildout. Updated 2026-07-11 to register D11 LLOS v1, its lesson schema, route registry, validator, child mirrors, and DAD read-only boundary. Updated 2026-08-24 to register the public evidence-bound portfolio front door and the validated specification-only Doctrine Mesh V2 release, bind the neutral four-repository AI audit route to snapshot_commit evidence and deterministic route regression coverage, and add the index-backed plus scheduled live-origin-head machine-residue gate. Updated 2026-08-25 to register the specification-only Academic Extension Contract, its lossless domain-pack schemas, empty registry, deterministic fixtures, validator, and human-gate packet. Updated 2026-08-26 to register the public P66 and archaeology evidence-graph demonstration, exact asset-rights pin, specialist mesh, adversarial validator, and portfolio interrogation route. Updated 2026-08-27 to register the specification-only Doctrine Marathon V3 control plane, deterministic role meta-audits, compounded-error firewall, instance invalidation graph, expert-review debt, durable prompt/state, and public audit route."
 reason_for_inclusion: "Prevent governance changes from becoming informal notes by requiring a machine-readable dependency map and validator-backed updates."
 ---
 schema_version: governance_dependency_map.v1
@@ -1474,3 +1474,69 @@ artifacts:
       - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
     provenance_note: "Added 2026-08-26 after the exact work-ID-only protected-hold-aware preflight passed and the global workspace validator remained green. The only ingested source asset is the exact byte-verified CC BY 4.0 P66 JPEG; archaeology publications remain linked source records."
     reason_for_inclusion: "Recruiters, scholars, engineers, and their AI tools need one real end-to-end slice that demonstrates rights, provenance, source fitness, uncertainty, disagreement, graph boundaries, specialist-agent separation, deterministic rejection tests, and honest incompleteness without creating academic or theological authority."
+  - artifact_id: GD-030
+    title: Doctrine Marathon V3 durable doctrine-research control plane
+    repo: logos-governance-architecture
+    paths:
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/
+      - docs/roadmap/logos-stewardship-architecture-buildout/README.md
+      - PORTFOLIO.md
+      - docs/portfolio/logos-trust-layer/
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+      - scripts/validate_portfolio_front_door.py
+      - scripts/validation_contracts.py
+      - tests/test_portfolio_front_door.py
+      - tests/test_validation_contracts.py
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    object_type: public_specification_only_doctrine_marathon_control_plane
+    trust_zone: proposed
+    lifecycle_status: active
+    authorized_by: owner_authorized_doctrine_marathon_v3_specification_and_governed_release_2026-08-27
+    owner_decision_ref: WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
+    depends_on: [GD-001, GD-002, GD-003, GD-007, GD-010, GD-018, GD-020, GD-023, GD-027, GD-028, GD-029]
+    downstream_controls:
+      - canonical_hash_bound_marathon_prompt_goal_and_resume_state
+      - weekly_and_changed_input_fresh_context_gate
+      - chronological_navigation_constrained_by_dependency_readiness
+      - deterministic_entry_midflight_exit_role_completeness_audit
+      - role_qualification_instruction_alignment_expected_value_and_independence_meta_check
+      - father_specific_and_environment_specific_ExpertPack_contracts
+      - attributed_historical_labels_and_requirement_for_human_approved_NormativeFrame
+      - source_laundering_translation_context_and_entailment_firewall
+      - weakest_premise_and_compounded_error_quarantine
+      - consumer_to_prerequisite_graph_and_generated_reverse_invalidation
+      - ranked_bidirectional_retroactive_expert_review_debt
+      - terminal_continue_blocked_complete_and_exact_next_prompt_contract
+      - public_safe_prompts_mesh_fixtures_receipts_premortem_and_nonclaims
+      - specification_not_runtime_research_corpus_doctrine_or_theological_authority
+    mirrored_by: [none_authorized]
+    validators:
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validate_doctrine_marathon.py
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py
+      - scripts/validate_portfolio_front_door.py
+      - tests/test_portfolio_front_door.py
+      - scripts/validate_internal_links.py
+      - scripts/validate_machine_citation_artifacts.py
+      - scripts/validate_governance_dependency_map.py
+      - scripts/validate_family_work_registry.py
+      - tests/test_validation_contracts.py
+      - scripts/run_validation_suite.py
+    update_triggers:
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/
+      - docs/roadmap/logos-stewardship-architecture-buildout/README.md
+      - PORTFOLIO.md
+      - docs/portfolio/logos-trust-layer/
+      - AI_FRONT_DOOR.md
+      - AI_TABLE_OF_CONTENTS.md
+      - AI_WORK_START_HERE.md
+      - scripts/validate_portfolio_front_door.py
+      - scripts/validation_contracts.py
+      - tests/test_portfolio_front_door.py
+      - tests/test_validation_contracts.py
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - governance/GOVERNANCE_DEPENDENCY_MAP.yaml
+    provenance_note: "Added 2026-08-27 after exact P66 candidate import, reciprocal serialized overlap resolution, and one-time work-ID-only protected-hold-aware preflight. The revision is additive to frozen Doctrine Mesh V2 and contains only public specification, schemas, synthetic fixtures, deterministic checks, receipts, and non-authorizing status evidence."
+    reason_for_inclusion: "A multi-year, multi-agent doctrine project needs durable state, real source and expertise qualification, deterministic dependency and audit enforcement, visible expert-review debt, and a public route that makes both the engineering depth and every unclosed authority gate independently inspectable."

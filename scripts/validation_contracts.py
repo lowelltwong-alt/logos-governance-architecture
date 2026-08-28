@@ -389,6 +389,15 @@ def default_validation_commands(python_executable: str | None = None) -> list[di
             "command": [python, "scripts/validate_biblical_evidence_demo.py"],
         },
         {
+            "name": "doctrine_marathon_v3",
+            "command": [
+                python,
+                "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validate_doctrine_marathon.py",
+                "--mode",
+                "final",
+            ],
+        },
+        {
             "name": "doctrine_vocabulary",
             "command": [python, "scripts/validate_doctrine_vocabulary.py"],
         },

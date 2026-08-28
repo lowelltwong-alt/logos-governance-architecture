@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import subprocess
 from pathlib import Path
@@ -14,6 +15,218 @@ from scripts.validation_contracts import default_validation_commands
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+P66_DEMO_ROOT = Path(
+    "docs/roadmap/logos-stewardship-architecture-buildout/"
+    "revisions/biblical-evidence-demonstration-v1"
+)
+P66_PUBLIC_ROUTE = (
+    P66_DEMO_ROOT / "assets/p66-cologne-john19-verso.jpg",
+    P66_DEMO_ROOT / "sources/p66-source-and-rights.yaml",
+    P66_DEMO_ROOT / "graph/p66-chunk-crosswalk.yaml",
+    P66_DEMO_ROOT / "graph/evidence-graph.yaml",
+    P66_DEMO_ROOT / "graph/node-edge-catalog.yaml",
+    P66_DEMO_ROOT / "mesh/agent-mesh.v3.json",
+    P66_DEMO_ROOT / "mesh/completeness-audit-contract.yaml",
+    P66_DEMO_ROOT / "release/exit-completeness-audit.yaml",
+    P66_DEMO_ROOT / "validation-receipt.json",
+)
+DOCTRINE_MARATHON_ROOT = Path(
+    "docs/roadmap/logos-stewardship-architecture-buildout/"
+    "revisions/doctrine-marathon-v3"
+)
+DOCTRINE_MARATHON_HARNESS_PUBLIC_EVIDENCE = (
+    DOCTRINE_MARATHON_ROOT / "checks/adversarial-harness-migration.yaml",
+    DOCTRINE_MARATHON_ROOT / "checks/ADVERSARIAL_HARNESS_ROOT_FIX.md",
+    DOCTRINE_MARATHON_ROOT / "checks/DETERMINISTIC_ADVERSARIAL_HARNESS_CONTRACT.md",
+    DOCTRINE_MARATHON_ROOT / "checks/fixtures/strict-isolated-cases.json",
+    DOCTRINE_MARATHON_ROOT / "checks/fixtures/aggregate-sentinel-cases.json",
+    DOCTRINE_MARATHON_ROOT / "checks/run_adversarial_harness.py",
+    DOCTRINE_MARATHON_ROOT / "checks/test_run_adversarial_harness.py",
+)
+DOCTRINE_MARATHON_PUBLIC_ROUTE = (
+    DOCTRINE_MARATHON_ROOT / "README.md",
+    DOCTRINE_MARATHON_ROOT / "DOCTRINE_MARATHON_MASTER_PROMPT.md",
+    DOCTRINE_MARATHON_ROOT / "state/goal.yaml",
+    DOCTRINE_MARATHON_ROOT / "mesh/agent-mesh.v3.json",
+    DOCTRINE_MARATHON_ROOT / "mesh/completeness-auditor-v3.yaml",
+    DOCTRINE_MARATHON_ROOT / "mesh/examples/design-time-independence-fixture.json",
+    DOCTRINE_MARATHON_ROOT / "mesh/role-assignment-bundle.schema.json",
+    DOCTRINE_MARATHON_ROOT / "mesh/role-catalog.yaml",
+    DOCTRINE_MARATHON_ROOT / "mesh/qualification-registry.json",
+    DOCTRINE_MARATHON_ROOT / "mesh/qualification-receipt.schema.json",
+    DOCTRINE_MARATHON_ROOT / "mesh/correlation-acceptance-receipt.schema.json",
+    DOCTRINE_MARATHON_ROOT / "evidence/evidence-registry.json",
+    DOCTRINE_MARATHON_ROOT / "evidence/evidence-review-receipt.schema.json",
+    DOCTRINE_MARATHON_ROOT / "research/father-expert-pack-contract.yaml",
+    DOCTRINE_MARATHON_ROOT / "research/environment-pack-contract.yaml",
+    DOCTRINE_MARATHON_ROOT / "firewall/epistemic-integrity-contract.yaml",
+    DOCTRINE_MARATHON_ROOT / "firewall/trigger-matrix.yaml",
+    DOCTRINE_MARATHON_ROOT / "firewall/action-checker-requirements.yaml",
+    DOCTRINE_MARATHON_ROOT / "firewall/prompt-neutrality-contract.yaml",
+    DOCTRINE_MARATHON_ROOT / "events/marathon-event.schema.json",
+    DOCTRINE_MARATHON_ROOT / "events/event-ledger.json",
+    DOCTRINE_MARATHON_ROOT / "state/fresh-context-verification-receipt.schema.json",
+    DOCTRINE_MARATHON_ROOT / "state/examples/initial-weekly-fresh-context-gate.json",
+    DOCTRINE_MARATHON_ROOT / "graph/event-driven-invalidation-contract.yaml",
+    DOCTRINE_MARATHON_ROOT / "graph/human-identity-authority-root.yaml",
+    DOCTRINE_MARATHON_ROOT / "graph/authority-registry.yaml",
+    DOCTRINE_MARATHON_ROOT / "debt/initial-review-debt.json",
+    DOCTRINE_MARATHON_ROOT / "redteam/premortem.yaml",
+    DOCTRINE_MARATHON_ROOT / "redteam/repair-ledger.yaml",
+    DOCTRINE_MARATHON_ROOT / "redteam/ai-mistake-escalation-2026-08-27.yaml",
+    DOCTRINE_MARATHON_ROOT / "checks/fixtures/negative-cases.json",
+    DOCTRINE_MARATHON_ROOT / "revision-manifest.yaml",
+    DOCTRINE_MARATHON_ROOT / "FINAL-SAVED-VERSION.yaml",
+    DOCTRINE_MARATHON_ROOT / "checks/validation-receipt.json",
+    DOCTRINE_MARATHON_ROOT / "checks/independent-review.json",
+    DOCTRINE_MARATHON_ROOT / "checks/public-release-authorization.json",
+) + DOCTRINE_MARATHON_HARNESS_PUBLIC_EVIDENCE
+DOCTRINE_MARATHON_FRONT_DOOR_ROUTE = tuple(
+    path
+    for path in DOCTRINE_MARATHON_PUBLIC_ROUTE
+    if path not in DOCTRINE_MARATHON_HARNESS_PUBLIC_EVIDENCE
+)
+
+
+def test_portfolio_content_digest_is_checkout_newline_stable() -> None:
+    assert validator._canonical_content_bytes(b"alpha\nbeta\n") == validator._canonical_content_bytes(
+        b"alpha\r\nbeta\r\n"
+    )
+
+
+def test_raw_validation_result_preserves_order_and_duplicate_identities() -> None:
+    findings = [
+        validator.Finding("z_rule", "z", "emitted first"),
+        validator.Finding("a_rule", "a", "emitted second"),
+        validator.Finding("z_rule", "z", "emitted first"),
+    ]
+
+    result = validator._raw_validation_result(findings, {"fixture": 1})
+
+    assert result.findings == tuple(findings)
+    assert len(result.findings) == 3
+
+    payload = validator._result_payload(result)
+    assert payload["findings_raw"] == [
+        {"rule": item.rule, "path": item.path, "detail": item.detail}
+        for item in findings
+    ]
+    assert payload["findings"] == [item.render() for item in findings]
+    assert len(payload["findings"]) == 3
+    assert payload["findings_presentation"] == sorted(
+        {item.render() for item in findings}
+    )
+
+
+def test_public_structured_loaders_reject_duplicate_keys(tmp_path: Path) -> None:
+    duplicate_json = tmp_path / "duplicate.json"
+    duplicate_json.write_text('{"maturity": false, "maturity": true}\n', encoding="utf-8")
+    with pytest.raises(validator.PortfolioValidationError, match="duplicate key"):
+        validator._load_json(duplicate_json)
+
+    duplicate_yaml = tmp_path / "duplicate.yaml"
+    duplicate_yaml.write_text("maturity: false\nmaturity: true\n", encoding="utf-8")
+    with pytest.raises(validator.PortfolioValidationError, match="duplicate key"):
+        validator._load_yaml(duplicate_yaml)
+
+
+def test_validation_input_snapshot_changes_with_exact_bytes(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    target = tmp_path / "input.txt"
+    target.write_text("before\n", encoding="utf-8")
+    monkeypatch.setattr(validator, "EXPECTED_PUBLIC_FILES", ("input.txt",))
+    monkeypatch.setattr(validator, "EXPECTED_NAVIGATION_FILES", ())
+
+    before, before_count = validator._validation_input_snapshot(tmp_path, {})
+    target.write_text("after\n", encoding="utf-8")
+    after, after_count = validator._validation_input_snapshot(tmp_path, {})
+
+    assert before_count == after_count
+    assert before_count >= 1
+    assert before != after
+
+
+def test_loaded_aggregate_oracle_derives_marathon_paths_from_supplied_root(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    observed: dict[str, Path] = {}
+    monkeypatch.setattr(validator, "EXPECTED_PUBLIC_FILES", ())
+    monkeypatch.setattr(validator, "_check_manifest_schema", lambda *args: [])
+    monkeypatch.setattr(validator, "_check_receipt_schema", lambda *args: [])
+    monkeypatch.setattr(validator, "_check_evidence_references", lambda *args: [])
+    monkeypatch.setattr(validator, "_check_repository_inventory", lambda *args: [])
+    monkeypatch.setattr(validator, "_check_interrogation_route", lambda *args: [])
+    monkeypatch.setattr(validator, "_check_release_scope", lambda *args: ([], {}))
+    monkeypatch.setattr(validator, "_check_agent_mesh", lambda *args: [])
+    monkeypatch.setattr(validator, "_check_doctrine_freeze", lambda *args: ([], {}))
+    monkeypatch.setattr(validator, "_check_portfolio_prose", lambda *args: ([], {}))
+    monkeypatch.setattr(validator, "_check_navigation", lambda *args: [])
+    monkeypatch.setattr(validator, "_check_receipt_payload", lambda *args: [])
+
+    def fake_marathon(
+        manifest: dict, marathon_root: Path, validator_path: Path, root: Path
+    ) -> tuple[list[validator.Finding], dict[str, int]]:
+        observed["root"] = marathon_root
+        observed["validator"] = validator_path
+        return [], {}
+
+    monkeypatch.setattr(validator, "_check_marathon_freeze", fake_marathon)
+    result = validator._validate_loaded_repository(
+        tmp_path, manifest={}, schema={}, portfolio_receipt={}
+    )
+
+    expected_root = (
+        tmp_path
+        / "docs/roadmap/logos-stewardship-architecture-buildout/"
+        "revisions/doctrine-marathon-v3"
+    ).resolve()
+    assert result.findings == ()
+    assert observed["root"] == expected_root
+    assert observed["validator"] == (
+        expected_root / "checks/validate_doctrine_marathon.py"
+    )
+
+
+def test_duplicate_evidence_route_ids_fail_without_dict_collapse(tmp_path: Path) -> None:
+    route = {
+        "route_id": "duplicate-route",
+        "question": "synthetic",
+        "start_at": "https://example.invalid/start",
+        "then_read": [],
+    }
+    findings = validator._check_evidence_references(
+        {"evidence_routes": [copy.deepcopy(route), copy.deepcopy(route)]},
+        tmp_path,
+    )
+    assert findings == [
+        validator.Finding(
+            "evidence_route_identity",
+            "project-evidence.yaml",
+            "evidence route IDs must be non-empty and unique",
+        )
+    ]
+
+
+def test_v3_final_replay_accepts_only_the_declared_blocker_in_order() -> None:
+    blocker = validator.DECLARED_V3_FINAL_BLOCKER
+
+    assert validator._v3_final_replay_is_exact([blocker]) is True
+    assert validator._v3_final_replay_is_exact([blocker, "unexpected"]) is False
+    assert validator._v3_final_replay_is_exact([]) is False
+
+
+def test_evidence_resolver_requires_an_in_root_regular_file(tmp_path: Path) -> None:
+    regular = tmp_path / "evidence" / "receipt.json"
+    regular.parent.mkdir()
+    regular.write_text("{}\n", encoding="utf-8")
+
+    assert validator._resolve_in_root_regular_file(
+        tmp_path, Path("evidence/receipt.json")
+    ) == regular.resolve(strict=True)
+    with pytest.raises(validator.PortfolioValidationError, match="regular file"):
+        validator._resolve_in_root_regular_file(tmp_path, Path("evidence"))
 
 
 def load_manifest() -> dict:
@@ -42,14 +255,330 @@ def load_receipt() -> dict:
     )
 
 
+def _canonical_loaded_bytes(value: object) -> bytes:
+    return json.dumps(
+        value, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    ).encode("utf-8")
+
+
+def _marathon_catalog_source_digests() -> dict[str, str]:
+    return {
+        relative: hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+        for relative in (
+            (
+                DOCTRINE_MARATHON_ROOT
+                / "checks/fixtures/negative-cases.json"
+            ).as_posix(),
+            (
+                DOCTRINE_MARATHON_ROOT
+                / "checks/fixtures/strict-isolated-cases.json"
+            ).as_posix(),
+            (
+                DOCTRINE_MARATHON_ROOT
+                / "checks/fixtures/aggregate-sentinel-cases.json"
+            ).as_posix(),
+        )
+    }
+
+
+PORTFOLIO_ORACLE_SENTINELS = (
+    (
+        "portfolio-v3-maturity-overclaim",
+        validator.Finding(
+            "marathon_maturity",
+            "project-evidence.yaml",
+            "V3 maturity must remain blocked_specification_only until the aggregate exact-oracle migration is complete and independently reviewed",
+        ),
+        {"manifest", "schema"},
+    ),
+    (
+        "portfolio-v3-migration-gate-erasure",
+        validator.Finding(
+            "marathon_declared_blocker",
+            "project-evidence.yaml",
+            "V3 declared final blocker must equal the aggregate exact-oracle release gate",
+        ),
+        {"manifest", "schema"},
+    ),
+    (
+        "portfolio-v3-authority-elevation",
+        validator.Finding(
+            "marathon_authority_boundary",
+            "project-evidence.yaml",
+            "qualified_theological_authority must remain false",
+        ),
+        {"manifest", "schema"},
+    ),
+    (
+        "portfolio-v3-required-route-omission",
+        validator.Finding(
+            "marathon_public_evidence_route",
+            "project-evidence.yaml",
+            "V3 audit route is missing or not exact",
+        ),
+        {"manifest"},
+    ),
+    (
+        "portfolio-release-chain-drift",
+        validator.Finding(
+            "release_scope_digest",
+            "docs/portfolio/logos-trust-layer/validation-receipt.json",
+            "Release 004 active increment did not replay exactly",
+        ),
+        {"receipt"},
+    ),
+)
+
+
+def _mutate_portfolio_oracle_inputs(
+    case_id: str,
+    manifest: dict,
+    schema: dict,
+    receipt: dict,
+) -> None:
+    marathon_schema = schema["$defs"]["doctrineMarathon"]
+    marathon = manifest["doctrine_marathon_specification"]
+    if case_id == "portfolio-v3-maturity-overclaim":
+        marathon["maturity"] = "validated_specification_only"
+        marathon_schema["properties"]["maturity"]["const"] = (
+            "validated_specification_only"
+        )
+    elif case_id == "portfolio-v3-migration-gate-erasure":
+        marathon.pop("declared_final_blocker")
+        marathon_schema["required"].remove("declared_final_blocker")
+    elif case_id == "portfolio-v3-authority-elevation":
+        marathon["qualified_theological_authority"] = True
+        marathon_schema["properties"]["qualified_theological_authority"][
+            "const"
+        ] = True
+    elif case_id == "portfolio-v3-required-route-omission":
+        route = next(
+            row
+            for row in manifest["evidence_routes"]
+            if row["route_id"] == "doctrine-marathon-v3-audit"
+        )
+        route["then_read"].remove(
+            (
+                DOCTRINE_MARATHON_ROOT
+                / "checks/adversarial-harness-migration.yaml"
+            ).as_posix()
+        )
+    elif case_id == "portfolio-release-chain-drift":
+        assert receipt["schema_version"] == "logos.portfolio_validation_receipt.v3"
+        receipt["release_chain"]["active_increment"]["content_digest"] = (
+            "sha256:" + "0" * 64
+        )
+        receipt["receipt_digest"] = validator._canonical_digest(
+            receipt, ("receipt_digest",)
+        )
+    else:  # pragma: no cover - the parametrized catalog is closed above
+        raise AssertionError(case_id)
+
+
+@pytest.mark.parametrize(
+    ("case_id", "expected", "changed_inputs"),
+    PORTFOLIO_ORACLE_SENTINELS,
+    ids=[row[0] for row in PORTFOLIO_ORACLE_SENTINELS],
+)
+def test_portfolio_aggregate_oracle_sentinels_are_exact_and_isolated(
+    case_id: str,
+    expected: validator.Finding,
+    changed_inputs: set[str],
+) -> None:
+    source_digests = _marathon_catalog_source_digests()
+    baseline_inputs = {
+        "manifest": load_manifest(),
+        "schema": load_schema(),
+        "receipt": load_receipt(),
+    }
+    baseline_result = validator._validate_loaded_repository(
+        ROOT,
+        manifest=baseline_inputs["manifest"],
+        schema=baseline_inputs["schema"],
+        portfolio_receipt=baseline_inputs["receipt"],
+    )
+    assert baseline_result.findings == ()
+    assert baseline_result.metrics["marathon_component_source_case_count"] == 197
+    assert (
+        baseline_result.metrics["marathon_aggregate_sentinel_subset_case_count"]
+        == 4
+    )
+
+    candidate = copy.deepcopy(baseline_inputs)
+    before = {
+        key: _canonical_loaded_bytes(value)
+        for key, value in candidate.items()
+    }
+    _mutate_portfolio_oracle_inputs(
+        case_id,
+        candidate["manifest"],
+        candidate["schema"],
+        candidate["receipt"],
+    )
+    after = {
+        key: _canonical_loaded_bytes(value)
+        for key, value in candidate.items()
+    }
+    assert {key for key in before if before[key] != after[key]} == changed_inputs
+
+    candidate_result = validator._validate_loaded_repository(
+        ROOT,
+        manifest=candidate["manifest"],
+        schema=candidate["schema"],
+        portfolio_receipt=candidate["receipt"],
+    )
+    assert candidate_result.findings == (expected,)
+    assert candidate_result.metrics["marathon_component_source_case_count"] == 197
+    assert (
+        candidate_result.metrics["marathon_aggregate_sentinel_subset_case_count"]
+        == 4
+    )
+
+    replay_inputs = {
+        "manifest": load_manifest(),
+        "schema": load_schema(),
+        "receipt": load_receipt(),
+    }
+    replay_result = validator._validate_loaded_repository(
+        ROOT,
+        manifest=replay_inputs["manifest"],
+        schema=replay_inputs["schema"],
+        portfolio_receipt=replay_inputs["receipt"],
+    )
+    assert replay_result.findings == ()
+    assert _marathon_catalog_source_digests() == source_digests
+
+
+def load_p66_yaml(relative_path: str) -> dict:
+    return yaml.safe_load(
+        (ROOT / P66_DEMO_ROOT / relative_path).read_text(encoding="utf-8")
+    )
+
+
+def load_p66_json(relative_path: str) -> dict:
+    return json.loads(
+        (ROOT / P66_DEMO_ROOT / relative_path).read_text(encoding="utf-8")
+    )
+
+
 def test_public_portfolio_candidate_passes() -> None:
     result = validator.validate_repository(ROOT)
 
     assert result.findings == ()
     assert result.metrics["doctrine_managed_files"] == 90
     assert result.metrics["doctrine_static_failures"] == 0
+    assert result.metrics["marathon_managed_files"] == 83
+    assert result.metrics["marathon_static_failures"] == 1
+    assert result.metrics["marathon_unexpected_final_findings"] == 0
     assert result.metrics["mermaid_diagrams"] >= 5
     assert result.metrics["diagram_prose_readings"] == result.metrics["mermaid_diagrams"]
+
+
+@pytest.mark.parametrize("entry_point", ["PORTFOLIO.md", "AI_FRONT_DOOR.md"])
+def test_p66_public_route_is_direct_complete_and_non_translation_claiming(
+    entry_point: str,
+) -> None:
+    text = (ROOT / entry_point).read_text(encoding="utf-8")
+    normalized = " ".join(text.split())
+
+    for relative_path in P66_PUBLIC_ROUTE:
+        assert (ROOT / relative_path).is_file()
+        assert f"({relative_path.as_posix()})" in text
+
+    required_boundaries = (
+        "The English display is not translated from the image.",
+        "Diplomatic transcription",
+        "Greek alignment",
+        "textual-variant analysis",
+        "witness-specific translation",
+        "qualified specialist review",
+        "explicit human approval remain future gates",
+        "entry, midflight, and exit",
+    )
+    for boundary in required_boundaries:
+        assert boundary.casefold() in normalized.casefold()
+
+
+def test_p66_linked_records_preserve_translation_and_authority_boundaries() -> None:
+    source = load_p66_yaml("sources/p66-source-and-rights.yaml")
+    crosswalk = load_p66_yaml("graph/p66-chunk-crosswalk.yaml")
+    graph = load_p66_yaml("graph/evidence-graph.yaml")
+    catalog = load_p66_yaml("graph/node-edge-catalog.yaml")
+    mesh = load_p66_json("mesh/agent-mesh.v3.json")
+    contract = load_p66_yaml("mesh/completeness-audit-contract.yaml")
+    exit_audit = load_p66_yaml("release/exit-completeness-audit.yaml")
+    receipt = load_p66_json("validation-receipt.json")
+
+    assert source["rights"]["license_id"] == "CC-BY-4.0"
+    assert source["asset"]["byte_verification"]["local_remote_match"] is True
+    assert len(source["object_catalog_coverage_segments"]) == 4
+    assert source["object_catalog_coverage_is_non_contiguous"] is True
+    assert source["authority"]["image_is_translation"] is False
+    source_layers = {row["layer_id"]: row for row in source["layers"]}
+    assert source_layers["diplomatic_transcription"]["included"] is False
+    assert source_layers["critical_greek_edition"]["included"] is False
+    assert source_layers["english_translation_display"]["source_ref"] != source[
+        "record_id"
+    ]
+
+    assert crosswalk["source_layers"]["english"]["rights"] == "public-domain"
+    assert crosswalk["source_layers"]["english"]["source_record_ref"] != crosswalk[
+        "source_layers"
+    ]["p66"]["record_ref"]
+    assert crosswalk["invariants"]["image_to_english_direct_edge_allowed"] is False
+    assert crosswalk["invariants"]["transcription_claimed_from_image"] is False
+    assert crosswalk["invariants"]["m8_complete"] is False
+    assert crosswalk["invariants"]["convergence_started"] is False
+
+    assert all(edge["authority_effect"] == "none" for edge in graph["edges"])
+    assert graph["invariants"]["no_path_promotes_to_doctrine"] is True
+    assert "image_directly_translates_to" in catalog["forbidden_relations"]
+
+    completeness_role = next(
+        role for role in mesh["roles"] if role["role_id"] == "role-completeness-auditor"
+    )
+    assert "entry, midflight, and exit" in completeness_role["purpose"]
+    assert contract["phases"] == ["entry", "midflight", "exit"]
+    assert [row["phase"] for row in exit_audit["phase_receipts"]] == [
+        "entry",
+        "midflight",
+        "exit",
+    ]
+    assert all(row["result"] == "pass" for row in exit_audit["phase_receipts"])
+    assert exit_audit["status"] == "pass"
+    assert receipt["status"] == "validated_static_demonstration"
+    assert receipt["authority_granted"] is False
+    assert receipt["mutation_performed"] is False
+
+
+def test_p66_claim_bookkeeping_uses_a_durable_authorization_reference() -> None:
+    registry = yaml.safe_load(
+        (ROOT / "governance/registry/FAMILY_WORK_REGISTRY.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    resolution = next(
+        row
+        for row in registry["overlap_resolutions"]
+        if row["resolution_id"] == "OVERLAP-W27-P66-PORTFOLIO-CLARITY-001"
+    )
+    claim = next(
+        row
+        for row in registry["work_items"]
+        if row["work_id"] == "WORK-GOV-P66-PORTFOLIO-CLARITY-001"
+    )
+
+    assert resolution["owner_decision_ref"] == (
+        "lowell_owner_authorization_2026-08-27_p66_portfolio_clarity"
+    )
+    assert "chat" not in resolution["owner_decision_ref"].casefold()
+    assert set(claim["claimed_paths"]) == {
+        "governance/registry/FAMILY_WORK_REGISTRY.yaml",
+        "PORTFOLIO.md",
+        "AI_FRONT_DOOR.md",
+        "tests/test_portfolio_front_door.py",
+    }
+    assert "no_source_ingestion_translation" in claim["authority_ceiling"]
 
 
 def test_portfolio_validator_is_registered_once() -> None:
@@ -67,13 +596,33 @@ def test_portfolio_validator_is_registered_once() -> None:
     ]
 
 
+def test_doctrine_marathon_validator_is_registered_once() -> None:
+    matches = [
+        item
+        for item in default_validation_commands("python")
+        if item["name"] == "doctrine_marathon_v3"
+    ]
+
+    assert matches == [
+        {
+            "name": "doctrine_marathon_v3",
+            "command": [
+                "python",
+                "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validate_doctrine_marathon.py",
+                "--mode",
+                "final",
+            ],
+        }
+    ]
+
+
 def test_manifest_validates_against_public_schema() -> None:
     jsonschema.Draft202012Validator(
         load_schema(), format_checker=jsonschema.FormatChecker()
     ).validate(load_manifest())
 
 
-def test_release_receipt_validates_against_embedded_v2_schema() -> None:
+def test_release_receipt_validates_against_versioned_embedded_schema() -> None:
     assert validator._check_receipt_schema(load_receipt(), load_schema()) == []
 
 
@@ -83,7 +632,10 @@ def test_release_receipt_schema_rejects_unknown_authority_claim() -> None:
 
     findings = validator._check_receipt_schema(receipt, load_schema())
 
-    assert any(finding.rule == "portfolio_receipt_schema" for finding in findings)
+    assert len(findings) == 1
+    assert findings[0].rule == "portfolio_receipt_schema"
+    assert findings[0].path == validator.PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    assert "Additional properties are not allowed" in findings[0].detail
 
 
 def test_interrogation_prompt_covers_the_full_governed_repo_route() -> None:
@@ -159,7 +711,10 @@ def test_schema_rejects_promoted_doctrine_mesh_authority(field: str) -> None:
 
     errors = list(jsonschema.Draft202012Validator(load_schema()).iter_errors(candidate))
 
-    assert errors
+    assert len(errors) == 1
+    assert list(errors[0].absolute_path) == ["doctrine_mesh_specification", field]
+    assert errors[0].validator == "const"
+    assert errors[0].validator_value is False
 
 
 def test_public_text_scan_detects_private_path_without_echoing_payload() -> None:
@@ -264,6 +819,149 @@ def test_release_snapshot_fails_closed_on_invalid_utf8_baseline(
     ]
     assert scanned == 0
     assert skipped == 1
+
+
+def test_merge_free_content_chain_rejects_a_merge(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    first = "2" * 40
+    merge = "3" * 40
+    side = "4" * 40
+    monkeypatch.setattr(validator, "_git_revision", lambda _root, revision: revision)
+    monkeypatch.setattr(
+        validator,
+        "_git_parents",
+        lambda _root, commit: {
+            first: [base],
+            merge: [first, side],
+        }[commit],
+    )
+
+    with pytest.raises(
+        validator.PortfolioValidationError,
+        match="merge-free first-parent chain",
+    ):
+        validator._git_merge_free_content_chain(ROOT, base, merge)
+
+
+def test_merge_free_content_chain_accepts_an_ordered_three_commit_chain(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    first = "2" * 40
+    second = "3" * 40
+    third = "4" * 40
+    monkeypatch.setattr(validator, "_git_revision", lambda _root, revision: revision)
+    monkeypatch.setattr(
+        validator,
+        "_git_parents",
+        lambda _root, commit: {
+            first: [base],
+            second: [first],
+            third: [second],
+        }[commit],
+    )
+
+    assert validator._git_merge_free_content_chain(ROOT, base, third) == [
+        first,
+        second,
+        third,
+    ]
+
+
+def test_content_history_scope_rejects_a_transient_path(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    first = "2" * 40
+    second = "3" * 40
+    monkeypatch.setattr(
+        validator,
+        "_git_delta_entries",
+        lambda _root, parent, commit: {
+            (base, first): [
+                validator.GitDeltaEntry("M", "kept.md"),
+                validator.GitDeltaEntry("M", "reverted.md"),
+            ],
+            (first, second): [validator.GitDeltaEntry("M", "reverted.md")],
+        }[(parent, commit)],
+    )
+
+    with pytest.raises(
+        validator.PortfolioValidationError,
+        match="per-commit content paths",
+    ):
+        validator._validate_content_history_scope(
+            ROOT,
+            base,
+            [first, second],
+            [validator.GitDeltaEntry("M", "kept.md")],
+        )
+
+
+def test_content_history_scan_rejects_an_intermediate_sensitive_occurrence(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    commit = "2" * 40
+    private_path = "".join(("C:", "\\", "wt", "\\", "intermediate"))
+    monkeypatch.setattr(
+        validator,
+        "_git_delta_entries",
+        lambda _root, _parent, _commit: [
+            validator.GitDeltaEntry("M", "candidate.md")
+        ],
+    )
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes",
+        lambda _root, _commit, _path: private_path.encode("utf-8"),
+    )
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes_if_present",
+        lambda _root, _commit, _path: b"clean baseline",
+    )
+
+    findings = validator._scan_content_history(ROOT, base, [commit])
+
+    assert findings == [
+        validator.Finding(
+            "release_scope_history_privacy",
+            "candidate.md",
+            "windows_private_path at content commit 222222222222: "
+            "1 candidate-added occurrence(s)",
+        )
+    ]
+    assert private_path not in findings[0].render()
+
+
+def test_content_history_scan_rejects_intermediate_invalid_utf8(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    commit = "2" * 40
+    monkeypatch.setattr(
+        validator,
+        "_git_delta_entries",
+        lambda _root, _parent, _commit: [
+            validator.GitDeltaEntry("M", "candidate.md")
+        ],
+    )
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes",
+        lambda _root, _commit, _path: b"\xff",
+    )
+
+    assert validator._scan_content_history(ROOT, base, [commit]) == [
+        validator.Finding(
+            "release_scope_history_privacy",
+            "candidate.md",
+            "text blob at content commit 222222222222 is not valid UTF-8",
+        )
+    ]
 
 
 def test_git_object_cache_uses_exact_immutable_keys(
@@ -380,6 +1078,15 @@ def test_nul_safe_git_delta_preserves_status_and_rejects_deletion(
     with pytest.raises(validator.PortfolioValidationError):
         validator._git_delta_entries(ROOT, "a" * 40, "b" * 40)
 
+    def rename_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        return subprocess.CompletedProcess(
+            command, 0, stdout=b"R100\0old.md\0new.md\0", stderr=b""
+        )
+
+    monkeypatch.setattr(validator.subprocess, "run", rename_run)
+    with pytest.raises(validator.PortfolioValidationError):
+        validator._git_delta_entries(ROOT, "a" * 40, "b" * 40)
+
 
 @pytest.mark.parametrize(
     "payload",
@@ -450,15 +1157,15 @@ def test_chained_incremental_release_scope_is_replayable_and_fails_on_count_drif
     findings, metrics = validator._check_release_scope(manifest, receipt, ROOT)
 
     assert findings == []
-    assert metrics["release_unique_paths"] == 86
-    assert metrics["release_fingerprinted_paths"] == 85
+    assert metrics["release_unique_paths"] == 142
+    assert metrics["release_fingerprinted_paths"] == 141
     assert metrics["release_text_files_scanned"] > 0
     assert metrics["release_text_files_skipped"] == 0
 
     drifted = copy.deepcopy(manifest)
-    drifted["release_scope"]["total_unique_path_count"] = 85
+    drifted["release_scope"]["total_unique_path_count"] = 141
     findings, _ = validator._check_release_scope(drifted, receipt, ROOT)
-    assert any(finding.rule == "release_scope_arithmetic" for finding in findings)
+    assert any(finding.rule == "release_scope_path_count" for finding in findings)
 
 
 def test_release_scope_rejects_a_stale_content_head() -> None:
@@ -476,29 +1183,74 @@ def test_release_scope_rejects_a_stale_content_head() -> None:
     assert any(finding.rule == "release_scope_finalization" for finding in findings)
 
 
+def test_release_scope_rejects_an_omitted_content_commit() -> None:
+    scope = {
+        "content_history_mode": "exact_merge_free_first_parent_chain",
+    }
+    derived = ["1" * 40, "2" * 40, "3" * 40]
+    active = {
+        "content_history_mode": scope["content_history_mode"],
+        "content_commit_count": 2,
+        "content_commit_chain": derived[1:],
+    }
+
+    findings = validator._check_receipt_content_chain(
+        active, scope, derived, "receipt.json"
+    )
+
+    assert findings == [
+        validator.Finding(
+            "release_scope_content_chain",
+            "receipt.json",
+            "receipt content history does not match the exact derived chain",
+        )
+    ]
+
+
+def test_release_scope_rejects_a_reordered_content_chain() -> None:
+    scope = {
+        "content_history_mode": "exact_merge_free_first_parent_chain",
+    }
+    derived = ["1" * 40, "2" * 40, "3" * 40]
+    active = {
+        "content_history_mode": scope["content_history_mode"],
+        "content_commit_count": 3,
+        "content_commit_chain": [derived[1], derived[0], derived[2]],
+    }
+
+    findings = validator._check_receipt_content_chain(
+        active, scope, derived, "receipt.json"
+    )
+
+    assert findings == [
+        validator.Finding(
+            "release_scope_content_chain",
+            "receipt.json",
+            "receipt content history does not match the exact derived chain",
+        )
+    ]
+
+
 def test_release_scope_rejects_a_mismatched_prior_release_snapshot() -> None:
     manifest = load_manifest()
     receipt = copy.deepcopy(load_receipt())
-    receipt["release_chain"]["prior_release"]["path_count"] -= 1
+    receipt["release_chain"]["prior_release"]["total_release_path_count"] -= 1
 
     findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
 
-    assert any(finding.rule == "release_scope_prior_receipt" for finding in findings)
+    assert any(finding.rule == "release_scope_receipt" for finding in findings)
 
 
-def test_release_scope_rejects_intermediate_receipt_drift() -> None:
+def test_release_scope_rejects_prior_receipt_digest_drift() -> None:
     manifest = load_manifest()
     receipt = copy.deepcopy(load_receipt())
-    receipt["release_chain"]["intermediate_receipt"]["receipt_digest"] = (
+    receipt["release_chain"]["prior_release"]["receipt_digest"] = (
         "sha256:" + "0" * 64
     )
 
     findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
 
-    assert any(
-        finding.rule == "release_scope_intermediate_receipt"
-        for finding in findings
-    )
+    assert any(finding.rule == "release_scope_receipt" for finding in findings)
 
 
 def test_release_scope_rejects_a_changed_chain_anchor() -> None:
@@ -510,7 +1262,7 @@ def test_release_scope_rejects_a_changed_chain_anchor() -> None:
 
     findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
 
-    assert any(finding.rule == "release_scope_prior_chain" for finding in findings)
+    assert any(finding.rule == "release_scope_prior_receipt" for finding in findings)
 
 
 def test_release_scope_requires_the_chained_incremental_mode() -> None:
@@ -605,7 +1357,24 @@ def test_portfolio_receipt_rejects_authority_elevation(field: str) -> None:
 
     findings = validator._check_receipt_payload(receipt)
 
-    assert any(finding.rule == "portfolio_receipt_authority" for finding in findings)
+    assert findings == [
+        validator.Finding(
+            "portfolio_receipt_authority",
+            validator.PORTFOLIO_RECEIPT_RELATIVE.as_posix(),
+            {
+                "runtime_activation_authorized": "runtime activation",
+                "source_ingestion_authorized": "source ingestion",
+                "substantive_doctrine_implementation_authorized": (
+                    "substantive doctrine implementation"
+                ),
+                "completed_doctrine_corpus": "completed doctrine corpus",
+                "qualified_theological_authority_granted": (
+                    "qualified theological authority"
+                ),
+            }[field]
+            + " must remain false",
+        )
+    ]
 
 
 def test_release_mesh_keeps_one_writer_and_distinct_checker() -> None:
@@ -636,3 +1405,256 @@ def test_doctrine_mesh_freeze_retains_specification_only_flags() -> None:
     assert doctrine["substantive_doctrine_implementation_authorized"] is False
     assert doctrine["completed_doctrine_corpus"] is False
     assert doctrine["qualified_theological_authority"] is False
+
+
+def test_doctrine_marathon_v3_is_directly_routed_and_non_authorizing() -> None:
+    marathon = load_manifest()["doctrine_marathon_specification"]
+
+    assert marathon["maturity"] == "blocked_specification_only"
+    assert marathon["declared_final_blocker"] == validator.DECLARED_V3_FINAL_BLOCKER
+    assert (
+        marathon["final_replay_status"]
+        == "blocked_by_declared_aggregate_exact_oracle_gate"
+    )
+    assert marathon["release_file_count"] == 83
+    assert marathon["payload_file_count"] == 78
+    assert marathon["administrative_file_count"] == 5
+    assert marathon["role_count"] == 18
+    assert marathon["trigger_count"] == 19
+    assert marathon["assignment_fixture_count"] == 3
+    assert marathon["runtime_assignment_count"] == 0
+    assert marathon["expert_pack_count"] == 0
+    assert marathon["qualification_receipt_count"] == 0
+    assert marathon["correlation_acceptance_count"] == 0
+    assert marathon["event_count"] == 0
+    assert marathon["evidence_record_count"] == 0
+    assert marathon["mistake_receipt_count"] == 1
+    assert marathon["corrective_action_count"] == 6
+    assert marathon["preventive_action_count"] == 5
+    assert marathon["repair_ledger_entry_count"] == 40
+    assert marathon["legacy_component_case_count"] == 164
+    assert marathon["strict_isolated_component_case_count"] == 33
+    assert marathon["component_only_executable_case_count"] == 197
+    assert marathon["aggregate_sentinel_subset_case_count"] == 4
+    assert marathon["negative_case_catalog_count"] == 164
+    assert marathon["isolated_regression_case_count"] == 33
+    assert marathon["negative_case_count"] == 197
+    assert marathon["open_expert_review_debt"] == 2
+    assert marathon["independent_review_status"] == "pass_blocked_specification_only"
+    assert (
+        marathon["independence_status"]
+        == "non_author_read_only_cross_provider_unverified"
+    )
+    assert marathon["cross_provider_verified"] is False
+    assert marathon["runtime_activation_authorized"] is False
+    assert marathon["research_execution_authorized"] is False
+    assert marathon["source_ingestion_authorized"] is False
+    assert marathon["substantive_doctrine_implementation_authorized"] is False
+    assert marathon["completed_doctrine_corpus"] is False
+    assert marathon["qualified_theological_authority"] is False
+
+    for relative in DOCTRINE_MARATHON_PUBLIC_ROUTE:
+        assert (ROOT / relative).is_file()
+
+    evidence_targets = tuple(
+        row["target"]
+        for row in marathon["evidence"]
+        if row["target"]
+        in {path.as_posix() for path in DOCTRINE_MARATHON_HARNESS_PUBLIC_EVIDENCE}
+    )
+    assert evidence_targets == tuple(
+        path.as_posix() for path in DOCTRINE_MARATHON_HARNESS_PUBLIC_EVIDENCE
+    )
+    audit_route = next(
+        row
+        for row in load_manifest()["evidence_routes"]
+        if row["route_id"] == "doctrine-marathon-v3-audit"
+    )
+    route_harness_targets = tuple(
+        path
+        for path in audit_route["then_read"]
+        if path
+        in {item.as_posix() for item in DOCTRINE_MARATHON_HARNESS_PUBLIC_EVIDENCE}
+    )
+    assert route_harness_targets == tuple(
+        path.as_posix() for path in DOCTRINE_MARATHON_HARNESS_PUBLIC_EVIDENCE
+    )
+    assert (
+        "python -B -m pytest -q --assert=plain -p no:cacheprovider "
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+        "doctrine-marathon-v3/checks/test_run_adversarial_harness.py"
+        in load_manifest()["verification"]["commands"]
+    )
+    commands = load_manifest()["verification"]["commands"]
+    assert all(command.startswith("python -B ") for command in commands)
+    assert all(
+        "-p no:cacheprovider" in command
+        for command in commands
+        if "-m pytest" in command
+    )
+    assert load_manifest()["verification"]["oracle_controls"] == {
+        "input_snapshot_bound": True,
+        "duplicate_structured_keys_rejected": True,
+        "ordered_duplicate_findings_preserved": True,
+        "alternate_root_isolated": True,
+        "single_receipt_read": True,
+        "sentinel_count": 5,
+        "sentinel_ids": [row[0] for row in PORTFOLIO_ORACLE_SENTINELS],
+    }
+
+    front_door = (ROOT / "AI_FRONT_DOOR.md").read_text(encoding="utf-8")
+    for relative in DOCTRINE_MARATHON_FRONT_DOOR_ROUTE:
+        assert f"({relative.as_posix()})" in front_door
+
+    for entry_point in (
+        "PORTFOLIO.md",
+        "AI_FRONT_DOOR.md",
+        "AI_TABLE_OF_CONTENTS.md",
+        "AI_WORK_START_HERE.md",
+        "docs/portfolio/logos-trust-layer/README.md",
+        "docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md",
+    ):
+        text = (ROOT / entry_point).read_text(encoding="utf-8")
+        assert "doctrine-marathon-v3" in text
+        for immutable in (
+            "revision-manifest.yaml",
+            "FINAL-SAVED-VERSION.yaml",
+            "checks/validation-receipt.json",
+            "checks/independent-review.json",
+            "checks/public-release-authorization.json",
+            "checks/fixtures/negative-cases.json",
+        ):
+            assert immutable in text
+
+
+def test_doctrine_marathon_v3_meta_audit_graph_and_terminal_contracts() -> None:
+    mesh = json.loads(
+        (ROOT / DOCTRINE_MARATHON_ROOT / "mesh/agent-mesh.v3.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    role_ids = {role["role_id"] for role in mesh["roles"]}
+    assert "role-qualification-and-independence-auditor" in role_ids
+    assert "doctrine-mesh-completeness-auditor" in role_ids
+    assert "frontier-compounded-error-sentinel" in role_ids
+
+    assignments = json.loads(
+        (
+            ROOT
+            / DOCTRINE_MARATHON_ROOT
+            / "mesh/examples/design-time-independence-fixture.json"
+        ).read_text(encoding="utf-8")
+    )["assignments"]
+    by_role = {row["role_id"]: row for row in assignments}
+    assert list(by_role).count("role-qualification-and-independence-auditor") == 1
+    assert list(by_role).count("independent-whole-work-checker") == 1
+    factory_id = by_role["task-local-role-factory"]["assignment_id"]
+    meta = by_role["role-qualification-and-independence-auditor"]
+    whole = by_role["independent-whole-work-checker"]
+    assert set(meta["checks_assignment_ids"]) == {
+        factory_id,
+        whole["assignment_id"],
+    }
+    assert set(whole["checks_assignment_ids"]) == {
+        factory_id,
+        meta["assignment_id"],
+    }
+
+    action_requirements = yaml.safe_load(
+        (
+            ROOT
+            / DOCTRINE_MARATHON_ROOT
+            / "firewall/action-checker-requirements.yaml"
+        ).read_text(encoding="utf-8")
+    )
+    assert action_requirements["unknown_action_policy"] == "block"
+    assert all(row["required_roles"] for row in action_requirements["requirements"])
+    assert all(
+        row["required_capabilities"] for row in action_requirements["requirements"]
+    )
+
+    evidence_review_schema = json.loads(
+        (
+            ROOT
+            / DOCTRINE_MARATHON_ROOT
+            / "evidence/evidence-review-receipt.schema.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert {
+        "producer_assignment_ref",
+        "producer_assignment_digest",
+    }.issubset(evidence_review_schema["required"])
+
+    event_schema = json.loads(
+        (
+            ROOT / DOCTRINE_MARATHON_ROOT / "events/marathon-event.schema.json"
+        ).read_text(encoding="utf-8")
+    )
+    action_result = event_schema["properties"]["details"]["properties"][
+        "action_results"
+    ]["items"]
+    assert {
+        "evidence_bindings",
+        "checker_assignment_ref",
+        "checker_assignment_digest",
+    }.issubset(action_result["required"])
+
+    prompt_contract = yaml.safe_load(
+        (
+            ROOT
+            / DOCTRINE_MARATHON_ROOT
+            / "firewall/prompt-neutrality-contract.yaml"
+        ).read_text(encoding="utf-8")
+    )
+    assert prompt_contract["deterministic_lexical_screen_is_only_a_floor"] is True
+    assert prompt_contract["independent_semantic_alignment_review_required"] is True
+    assert "No lexical rule proves a prompt neutral" in prompt_contract["semantic_nonclaim"]
+
+    weekly = json.loads(
+        (
+            ROOT
+            / DOCTRINE_MARATHON_ROOT
+            / "state/examples/initial-weekly-fresh-context-gate.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert weekly["verification"] is None
+    assert weekly["continuation_authorized"] is False
+    assert weekly["result"] == "fresh_context_required"
+
+    identity_root = yaml.safe_load(
+        (
+            ROOT
+            / DOCTRINE_MARATHON_ROOT
+            / "graph/human-identity-authority-root.yaml"
+        ).read_text(encoding="utf-8")
+    )
+    authority_registry = yaml.safe_load(
+        (
+            ROOT / DOCTRINE_MARATHON_ROOT / "graph/authority-registry.yaml"
+        ).read_text(encoding="utf-8")
+    )
+    assert identity_root["active"] is False
+    assert identity_root["recorded_by_human"] is False
+    assert authority_registry["qualified_approvers"] == []
+    assert authority_registry["normative_frames"] == []
+    assert authority_registry["normative_authority_active"] is False
+
+    graph = json.loads(
+        (ROOT / DOCTRINE_MARATHON_ROOT / "graph/example-graph.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert graph["canonical_edge_direction"] == "consumer_to_prerequisite"
+    assert graph["reverse_index_generated"] is True
+
+    goal = yaml.safe_load(
+        (ROOT / DOCTRINE_MARATHON_ROOT / "state/goal.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert goal["terminal_contract"]["allowed_statuses"] == [
+        "CONTINUE",
+        "BLOCKED",
+        "CAMPAIGN_COMPLETE",
+    ]
+    assert goal["authority_ceiling"]["runtime_activation_authorized"] is False

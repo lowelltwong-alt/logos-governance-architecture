@@ -2,5 +2,7 @@
   "base_fixture": "positive_source_record.json",
   "operation": "remove",
   "path": ["source_payload", "rights", "model_transmission"],
-  "expected_rule": "schema_validation"
+  "expected_rule": "schema_validation",
+  "expected_first_rule": "schema_validation",
+  "expected_rules_exact": ["schema_validation", "source_digest"]
 }

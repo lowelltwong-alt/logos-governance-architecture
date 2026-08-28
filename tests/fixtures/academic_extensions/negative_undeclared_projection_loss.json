@@ -2,5 +2,7 @@
   "base_fixture": "positive_derived_projection.json",
   "operation": "remove",
   "path": ["loss_profile"],
-  "expected_rule": "schema_validation"
+  "expected_rule": "schema_validation",
+  "expected_first_rule": "schema_validation",
+  "expected_rules_exact": ["schema_validation"]
 }

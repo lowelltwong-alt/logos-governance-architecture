@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "object_type": "doctrine_marathon_public_release_authorization",
+    "trust_zone": "proposed",
+    "lifecycle_status": "authorized_public_specification_release",
+    "provenance_note": "Recorded on 2026-08-27 by Codex root from Lowell Wong's direct bounded publication instruction and rebound on 2026-08-28 to the exact blocked-specification payload after the portable harness root repair.",
+    "reason_for_inclusion": "Bind the owner's public-release authority to one exact transparently blocked specification payload without implying V4 protected-release eligibility, runtime, research, doctrine, or theological authority."
+  },
+  "schema_version": "logos.doctrine_marathon.public_release_authorization.v3",
+  "authorization_id": "DMV3-PUBLIC-RELEASE-003",
+  "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+  "revision_id": "doctrine-marathon-v3",
+  "revision_root": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3",
+  "status": "authorized_for_one_public_specification_release",
+  "authorization_source": "direct_owner_instruction_in_active_codex_task",
+  "authorizing_principal": "Lowell Wong",
+  "recorded_by": "Codex root",
+  "bound_payload": {
+    "payload_file_count": 78,
+    "payload_digest": "sha256:4a77843f3b0e7fae6ea5f6847d43cb40066ff9e1411fa65db51c662dedc80001",
+    "revision_manifest_ref": "revision-manifest.yaml",
+    "revision_manifest_raw_sha256": "sha256:b3082cf1966840435ead72c7b652ffffd9763fdfd3101f48c77be53807ca7bda",
+    "revision_manifest_object_sha256": "sha256:817acfdafe227da0b7223da7f690e9b95e8897a5a9fbf2ed962cf53f328e4a1b"
+  },
+  "release_scope": {
+    "content_set": "manifest_payload_plus_exact_final_admin_allowlist",
+    "final_admin_allowlist": [
+      "FINAL-SAVED-VERSION.yaml",
+      "checks/independent-review.json",
+      "checks/public-release-authorization.json",
+      "checks/validation-receipt.json",
+      "revision-manifest.yaml"
+    ],
+    "excludes": [
+      "all_other_repository_paths",
+      "local_machine_artifacts",
+      "private_conversations_and_raw_reasoning",
+      "restricted_source_content",
+      "secrets_credentials_and_signed_links"
+    ]
+  },
+  "authority_limits": {
+    "public_artifact_release_only": true,
+    "runtime_activation_authorized": false,
+    "research_execution_authorized": false,
+    "source_ingestion_authorized": false,
+    "substantive_doctrine_implementation_authorized": false,
+    "completed_doctrine_corpus": false,
+    "qualified_theological_authority": false
+  },
+  "verification": {
+    "attestation_mode": "direct_owner_instruction_procedurally_observed",
+    "cryptographic_signature_verified": false,
+    "human_identity_credential_verified": false,
+    "verification_nonclaim": "This public receipt records a scoped instruction; it is not a cryptographic identity proof."
+  },
+  "observed_at": "2026-08-28T16:33:42.3730701Z",
+  "authorization_digest": "sha256:079ebde75686f07cf724cb76e02e10381273f57c8f9aede15406c4ef206da078"
+}

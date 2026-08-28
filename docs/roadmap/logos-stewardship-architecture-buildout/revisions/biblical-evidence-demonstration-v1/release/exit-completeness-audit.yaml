@@ -1,52 +1,66 @@
-schema_version: logos.biblical-evidence.mesh-completeness-receipt.v1
+schema_version: logos.biblical-evidence.mesh-completeness-receipt.v2
 object_type: deterministic_role_completeness_audit_receipt
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: Created 2026-08-27 from fresh changed-input deterministic entry, midflight, and exit replays after independent
-  academic, rights/release, and graph/mesh reviews closed all discovered blockers.
-reason_for_inclusion: Bind deterministic role-completeness decisions to exact frozen, code, test, fixture, review, risk, and
-  execution inputs without granting academic, theological, runtime, publication, or promotion authority.
-audit_id: urn:logos:audit-receipt:biblical-evidence-role-completeness-v1
+provenance_note: Created 2026-08-28 from fresh serialized entry, midflight, and exit audits by a read-only primary auditor,
+  each independently replayed by a distinct read-only checker against exact frozen inputs.
+reason_for_inclusion: Bind deterministic actor-separated role-completeness decisions to exact scope, code, tests, fixtures,
+  reviews, gates, and candidate evidence without granting academic, theological, runtime, publication, or promotion authority.
+audit_id: urn:logos:audit-receipt:biblical-evidence-role-completeness-v2
+writer_actor_id: urn:logos:actor:codex-root-doctrine-marathon-v3
 mutation_performed: false
 authority_granted: false
 changed_input_invalidates_pass: true
 input_digests:
-  exact_scope_digest: sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490
+  exact_scope_digest: sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81
   claim_class_set: sha256:cfc488b7669b8c9a2670a46e8c2e11c2f31f396656bb1c3ee9cce854e04af6b1
   transformation_class_set: sha256:ee50ce0490db78fc9c91e9b04b6cd64c9e70d853a5231e98d2068e574542c152
   source_role_set: sha256:d330a6dc4781cea6576b54088c943d886af8859afd4be30f47abc5d536a59c46
   rights_class_set: sha256:b9a6e2263520f465bc4f97984bc8667aa5fe38d8aa08fa605e9ae18f53560920
-  graph_relation_set: sha256:8365685b15c0669cc4601f3bc3f1a6df149e2f519122d5e5e7eea09244612df0
-  risk_register_digest: sha256:8e07736a16b641626400ffb31ea49f2e8519500209991dfd334f49a4dbaeb977
-  assigned_role_manifest_digest: sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc
-  frozen_manifest_digest: sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523
+  graph_relation_set: sha256:8696d11f8fa083d4023342fbff55f3a962312004528c621727025e395fb609c2
+  risk_register_digest: sha256:4acd31c7401e986b101b2f5c313d380690ad567e3c6b0d2e6865f43fd9f846c3
+  assigned_role_manifest_digest: sha256:33dba824158b5ca974e9dbc8cb7bcaf20605ca28880ba86cca8dc1e5882f1c88
+  frozen_manifest_digest: sha256:7671341b23c70e806a05acba23d9721eb4762e3104c8ead104756adacdce1e9f
   candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
-  validator_digest: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
-  focused_test_digest: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
-  adversarial_fixture_digest: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
-  independent_review_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
+  validator_digest: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
+  focused_test_digest: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
+  adversarial_fixture_digest: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
+  independent_review_evidence_digest: sha256:8af5091e13b308b1f347963fda5272c2b0804f4a8277c5cdf9784c40133f8c85
   execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
+  changed_input_delta_digest: sha256:b1d2c0b2770d8147ca05345eeb7fb63864f5a1fb4cb3434d15dbafc984b15c75
+  validation_receipt_digest: sha256:93126abd38d3f8851a7eb445557e67b79fd98f230ac53ba7005ead97408a9464
+  unresolved_gate_register_digest: sha256:f636c0a03681be54b6e7c512301d238f423ae44a211cd46220a76b3d9bc1e225
+  final_candidate_digest: sha256:228617bb986d2de77e1c9c680b5fcab7ede88ceb634f789fc30c5f4dec87030f
 phase_receipts:
 - phase: entry
-  input_digests:
-    exact_scope_digest: sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490
-    claim_class_set: sha256:cfc488b7669b8c9a2670a46e8c2e11c2f31f396656bb1c3ee9cce854e04af6b1
-    transformation_class_set: sha256:ee50ce0490db78fc9c91e9b04b6cd64c9e70d853a5231e98d2068e574542c152
-    source_role_set: sha256:d330a6dc4781cea6576b54088c943d886af8859afd4be30f47abc5d536a59c46
-    rights_class_set: sha256:b9a6e2263520f465bc4f97984bc8667aa5fe38d8aa08fa605e9ae18f53560920
-    graph_relation_set: sha256:8365685b15c0669cc4601f3bc3f1a6df149e2f519122d5e5e7eea09244612df0
-    risk_register_digest: sha256:8e07736a16b641626400ffb31ea49f2e8519500209991dfd334f49a4dbaeb977
-    assigned_role_manifest_digest: sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc
-    frozen_manifest_digest: sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523
-    candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
-    validator_digest: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
-    focused_test_digest: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
-    adversarial_fixture_digest: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
-    independent_review_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
-    execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
+  phase_evidence:
+    profile_id: completeness-entry-v1
+    input_digests:
+      exact_scope_digest: sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81
+      claim_class_set: sha256:cfc488b7669b8c9a2670a46e8c2e11c2f31f396656bb1c3ee9cce854e04af6b1
+      transformation_class_set: sha256:ee50ce0490db78fc9c91e9b04b6cd64c9e70d853a5231e98d2068e574542c152
+      source_role_set: sha256:d330a6dc4781cea6576b54088c943d886af8859afd4be30f47abc5d536a59c46
+      rights_class_set: sha256:b9a6e2263520f465bc4f97984bc8667aa5fe38d8aa08fa605e9ae18f53560920
+      graph_relation_set: sha256:8696d11f8fa083d4023342fbff55f3a962312004528c621727025e395fb609c2
+      risk_register_digest: sha256:4acd31c7401e986b101b2f5c313d380690ad567e3c6b0d2e6865f43fd9f846c3
+      assigned_role_manifest_digest: sha256:33dba824158b5ca974e9dbc8cb7bcaf20605ca28880ba86cca8dc1e5882f1c88
+      candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
+      execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
+    evidence_refs:
+    - path: SCOPE.md
+      sha256: sha256:903876e4f2c388724e0138b4280bb8669b08ed13de7eaab976ac3fa4da1646c6
+    - path: mesh/agent-mesh.v3.json
+      sha256: sha256:c55551939e84adbdf83a144504d3a51af7b3ac2d195619f5f415d7e6a3dd678e
+    - path: mesh/completeness-audit-contract.yaml
+      sha256: sha256:98255c38649edfd85d28b70fc8584d4de8abaa046f6b7afac32a4ca909e70bcb
+    - path: release/public-release-manifest.yaml
+      sha256: sha256:172f8b0634260ef347282e1e1fc096574337890fb4f3681a4b5705ca81a5c150
+    prior_phase_pair_digest: null
+    digest: sha256:e1e06c5ecc5ca253e37588818362ec41d3f83935c6db2b176bb83d8028c19f22
   assigned_roles:
   - mesh-coordinator-single-writer
   - role-completeness-auditor
+  - completeness-audit-checker
   - archaeology-history-researcher
   - manuscript-transmission-researcher
   - source-rights-reviewer
@@ -59,9 +73,10 @@ phase_receipts:
   missing_roles: []
   rejected_unnecessary_roles:
   - role: generic_apologist
-    reason: No apologetic conclusion is in scope; the role would add goal bias without closing a release failure mode.
+    reason: No apologetic conclusion is in scope; adding this role would bias the research question without closing a release
+      failure mode.
   - role: generic_theologian
-    reason: No doctrine synthesis or promotion is in scope; a separate human theological authority gate remains required.
+    reason: No doctrine synthesis or promotion is in scope; the separate theological authority gate is the correct boundary.
   late_discoveries: []
   risk_routing:
   - risk: low
@@ -76,33 +91,65 @@ phase_receipts:
   - risk: critical
     route: fail_closed_no_publication_or_promotion
     status: preserved
-  result: pass
-  reviewer_independence: true
-  reviewer_role: role-completeness-auditor
-  observed_at: '2026-08-27T00:07:16Z'
   changed_input_replay: true
-  reviewer_attempt_id: REVIEW-COMPLETENESS-ENTRY-007
-  reviewer_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
+  auditor:
+    role_id: role-completeness-auditor
+    actor_id: urn:logos:actor:codex-subagent-p66-graph-mesh-review-v2
+    attempt_id: AUDIT-COMPLETENESS-ENTRY-001
+    independence: true
+    result: pass
+    authority_effect: none
+    mutation_performed: false
+    observed_at: '2026-08-28T15:40:59Z'
+  checker:
+    role_id: completeness-audit-checker
+    actor_id: urn:logos:actor:codex-subagent-p66-academic-review
+    attempt_id: REVIEW-COMPLETENESS-CHECK-ENTRY-001
+    subject_audit_receipt_digest: sha256:682dca2e763235d83fe91d48bc1f25a6f7a3f4f664d5f5906b3f2005779007f6
+    replayed_phase_evidence_digest: sha256:e1e06c5ecc5ca253e37588818362ec41d3f83935c6db2b176bb83d8028c19f22
+    independence_basis: distinct_actor_no_candidate_mutation_no_audit_authorship
+    findings: []
+    result: verified
+    authority_effect: none
+    mutation_performed: false
+    observed_at: '2026-08-28T15:44:03Z'
+  auditor_receipt_digest: sha256:682dca2e763235d83fe91d48bc1f25a6f7a3f4f664d5f5906b3f2005779007f6
+  checker_receipt_digest: sha256:11590d1d85e40a97e94a9b166a3ded6a9ac68f8c40ea9ad0ec70c84d92a58e97
+  phase_pair_digest: sha256:183ac74ede511ac757b991c88f4bc5ca254a2598346efb539a6a213a9abe72e0
+  result: pass
 - phase: midflight
-  input_digests:
-    exact_scope_digest: sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490
-    claim_class_set: sha256:cfc488b7669b8c9a2670a46e8c2e11c2f31f396656bb1c3ee9cce854e04af6b1
-    transformation_class_set: sha256:ee50ce0490db78fc9c91e9b04b6cd64c9e70d853a5231e98d2068e574542c152
-    source_role_set: sha256:d330a6dc4781cea6576b54088c943d886af8859afd4be30f47abc5d536a59c46
-    rights_class_set: sha256:b9a6e2263520f465bc4f97984bc8667aa5fe38d8aa08fa605e9ae18f53560920
-    graph_relation_set: sha256:8365685b15c0669cc4601f3bc3f1a6df149e2f519122d5e5e7eea09244612df0
-    risk_register_digest: sha256:8e07736a16b641626400ffb31ea49f2e8519500209991dfd334f49a4dbaeb977
-    assigned_role_manifest_digest: sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc
-    frozen_manifest_digest: sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523
-    candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
-    validator_digest: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
-    focused_test_digest: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
-    adversarial_fixture_digest: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
-    independent_review_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
-    execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
+  phase_evidence:
+    profile_id: completeness-midflight-v1
+    input_digests:
+      exact_scope_digest: sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81
+      changed_input_delta_digest: sha256:b1d2c0b2770d8147ca05345eeb7fb63864f5a1fb4cb3434d15dbafc984b15c75
+      assigned_role_manifest_digest: sha256:33dba824158b5ca974e9dbc8cb7bcaf20605ca28880ba86cca8dc1e5882f1c88
+      validator_digest: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
+      focused_test_digest: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
+      adversarial_fixture_digest: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
+    evidence_refs:
+    - path: sources/p66-source-and-rights.yaml
+      sha256: sha256:bb27df5fe6a0cfb485e0d17f5934a6f584bf3f3126964b4c128439464b003663
+    - path: graph/evidence-graph.yaml
+      sha256: sha256:380ba2bfacc6b4204c0515e2fd790ff17e234cbbd0b35adeba6b384d3e96dc51
+    - path: graph/node-edge-catalog.yaml
+      sha256: sha256:2acdd09a05516d80689556728a10f78b9f3c9c99ec5bda3e3528ec9fa677a1a4
+    - path: graph/p66-chunk-crosswalk.yaml
+      sha256: sha256:385fde5e53e1340a7c6499af9eaf90a5bcd9d7b41a4299c0e0b1a72a2dfd63c5
+    - path: mesh/agent-mesh.v3.json
+      sha256: sha256:c55551939e84adbdf83a144504d3a51af7b3ac2d195619f5f415d7e6a3dd678e
+    - path: checks/adversarial-fixtures.yaml
+      sha256: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
+    - path: scripts/validate_biblical_evidence_demo.py
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
+    - path: tests/test_biblical_evidence_demo.py
+      sha256: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
+    prior_phase_pair_digest: sha256:183ac74ede511ac757b991c88f4bc5ca254a2598346efb539a6a213a9abe72e0
+    digest: sha256:26fb3e07ab0fab88f0076baee692af2a914c01f38c395ece19c54b19671f658a
   assigned_roles:
   - mesh-coordinator-single-writer
   - role-completeness-auditor
+  - completeness-audit-checker
   - archaeology-history-researcher
   - manuscript-transmission-researcher
   - source-rights-reviewer
@@ -115,9 +162,10 @@ phase_receipts:
   missing_roles: []
   rejected_unnecessary_roles:
   - role: generic_apologist
-    reason: No apologetic conclusion is in scope; the role would add goal bias without closing a release failure mode.
+    reason: No apologetic conclusion is in scope; adding this role would bias the research question without closing a release
+      failure mode.
   - role: generic_theologian
-    reason: No doctrine synthesis or promotion is in scope; a separate human theological authority gate remains required.
+    reason: No doctrine synthesis or promotion is in scope; the separate theological authority gate is the correct boundary.
   late_discoveries:
   - discovery_id: academic-source-identity-failures
     failure_mode: misidentified_or_incompletely_bounded_academic_source_records
@@ -132,7 +180,44 @@ phase_receipts:
     - path: release/source-locator-check.json
       sha256: sha256:f1ea07c01322aebaa968db9ad58aaa50808cd552903179489b28fb148412fda3
     authority_effect: none
-    publication_allowed: false
+    eligible_for_downstream_release_evaluation: false
+    status: detected_and_routed
+  - discovery_id: adversarial-fixture-path-binding-gap
+    failure_mode: fixture_outcome_bound_without_exact_primary_and_reseal_path_scope
+    resolution_code: bounded_role_added
+    resolved_by_role_ids:
+    - graph-invariant-red-team
+    - completeness-audit-checker
+    risk_level: medium
+    evidence_refs:
+    - path: checks/adversarial-fixtures.yaml
+      sha256: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
+    - path: scripts/validate_biblical_evidence_demo.py
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
+    - path: tests/test_biblical_evidence_demo.py
+      sha256: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
+    authority_effect: none
+    eligible_for_downstream_release_evaluation: false
+    status: detected_and_routed
+  - discovery_id: completeness-self-attestation-gap
+    failure_mode: role_completeness_auditor_certified_its_own_output_with_aliased_phase_evidence
+    resolution_code: bounded_role_added
+    resolved_by_role_ids:
+    - role-completeness-auditor
+    - completeness-audit-checker
+    - graph-invariant-red-team
+    risk_level: medium
+    evidence_refs:
+    - path: mesh/agent-mesh.v3.json
+      sha256: sha256:c55551939e84adbdf83a144504d3a51af7b3ac2d195619f5f415d7e6a3dd678e
+    - path: mesh/completeness-audit-contract.yaml
+      sha256: sha256:98255c38649edfd85d28b70fc8584d4de8abaa046f6b7afac32a4ca909e70bcb
+    - path: scripts/validate_biblical_evidence_demo.py
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
+    - path: tests/test_biblical_evidence_demo.py
+      sha256: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
+    authority_effect: none
+    eligible_for_downstream_release_evaluation: false
     status: detected_and_routed
   - discovery_id: graph-mesh-semantic-bypasses
     failure_mode: graph_identity_authority_or_completeness_semantic_bypass
@@ -143,20 +228,43 @@ phase_receipts:
     risk_level: medium
     evidence_refs:
     - path: graph/node-edge-catalog.yaml
-      sha256: sha256:6f64f81f63fb2271077e6559ce3dc8de83ac127612de07c3634abce50e888e88
+      sha256: sha256:2acdd09a05516d80689556728a10f78b9f3c9c99ec5bda3e3528ec9fa677a1a4
     - path: graph/evidence-graph.yaml
-      sha256: sha256:c5397232df6b2af7ab33d8821e9717287943d45953b10063975980d79a4c0668
+      sha256: sha256:380ba2bfacc6b4204c0515e2fd790ff17e234cbbd0b35adeba6b384d3e96dc51
     - path: checks/adversarial-fixtures.yaml
-      sha256: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
+      sha256: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
     - path: scripts/validate_biblical_evidence_demo.py
-      sha256: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
     - path: tests/test_biblical_evidence_demo.py
-      sha256: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
+      sha256: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
     authority_effect: none
-    publication_allowed: false
+    eligible_for_downstream_release_evaluation: false
+    status: detected_and_routed
+  - discovery_id: p66-object-asset-scope-mismatch
+    failure_mode: combined_recto_and_verso_catalog_coverage_attributed_to_single_verso_asset
+    resolution_code: existing_role_replay
+    resolved_by_role_ids:
+    - manuscript-transmission-researcher
+    - citation-source-fitness-checker
+    - graph-contract-engineer
+    - graph-invariant-red-team
+    risk_level: medium
+    evidence_refs:
+    - path: sources/p66-source-and-rights.yaml
+      sha256: sha256:bb27df5fe6a0cfb485e0d17f5934a6f584bf3f3126964b4c128439464b003663
+    - path: graph/p66-chunk-crosswalk.yaml
+      sha256: sha256:385fde5e53e1340a7c6499af9eaf90a5bcd9d7b41a4299c0e0b1a72a2dfd63c5
+    - path: graph/node-edge-catalog.yaml
+      sha256: sha256:2acdd09a05516d80689556728a10f78b9f3c9c99ec5bda3e3528ec9fa677a1a4
+    - path: graph/evidence-graph.yaml
+      sha256: sha256:380ba2bfacc6b4204c0515e2fd790ff17e234cbbd0b35adeba6b384d3e96dc51
+    - path: checks/adversarial-fixtures.yaml
+      sha256: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
+    authority_effect: none
+    eligible_for_downstream_release_evaluation: false
     status: detected_and_routed
   - discovery_id: receipt-provenance-drift
-    failure_mode: release_or_completeness_receipt_not_bound_to_current_candidate
+    failure_mode: release_or_completeness_receipt_not_bound_to_current_candidate_or_self_referential_digest
     resolution_code: existing_role_replay
     resolved_by_role_ids:
     - role-completeness-auditor
@@ -164,13 +272,13 @@ phase_receipts:
     risk_level: medium
     evidence_refs:
     - path: mesh/completeness-audit-contract.yaml
-      sha256: sha256:a13de960d7bae6fdd2b7e986c126b076dd03302950483d86d0a45f202cbf3a23
+      sha256: sha256:98255c38649edfd85d28b70fc8584d4de8abaa046f6b7afac32a4ca909e70bcb
     - path: release/public-release-manifest.yaml
-      sha256: sha256:a02aacee9e972f86f0f0706d41dde9010475c59075a8904a53b64fc55b184b67
+      sha256: sha256:172f8b0634260ef347282e1e1fc096574337890fb4f3681a4b5705ca81a5c150
     - path: scripts/validate_biblical_evidence_demo.py
-      sha256: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
     authority_effect: none
-    publication_allowed: false
+    eligible_for_downstream_release_evaluation: false
     status: detected_and_routed
   risk_routing:
   - risk: low
@@ -185,33 +293,62 @@ phase_receipts:
   - risk: critical
     route: fail_closed_no_publication_or_promotion
     status: preserved
-  result: pass
-  reviewer_independence: true
-  reviewer_role: role-completeness-auditor
-  observed_at: '2026-08-27T00:07:17Z'
   changed_input_replay: true
-  reviewer_attempt_id: REVIEW-COMPLETENESS-MIDFLIGHT-008
-  reviewer_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
+  auditor:
+    role_id: role-completeness-auditor
+    actor_id: urn:logos:actor:codex-subagent-p66-graph-mesh-review-v2
+    attempt_id: AUDIT-COMPLETENESS-MIDFLIGHT-001
+    independence: true
+    result: pass
+    authority_effect: none
+    mutation_performed: false
+    observed_at: '2026-08-28T15:55:27Z'
+  checker:
+    role_id: completeness-audit-checker
+    actor_id: urn:logos:actor:codex-subagent-p66-academic-review
+    attempt_id: REVIEW-COMPLETENESS-CHECK-MIDFLIGHT-001
+    subject_audit_receipt_digest: sha256:3767310b47e23dc5280af91ff76b75f2510a2f0517653cc30ac1749c662f9835
+    replayed_phase_evidence_digest: sha256:26fb3e07ab0fab88f0076baee692af2a914c01f38c395ece19c54b19671f658a
+    independence_basis: distinct_actor_no_candidate_mutation_no_audit_authorship
+    findings: []
+    result: verified
+    authority_effect: none
+    mutation_performed: false
+    observed_at: '2026-08-28T15:58:44Z'
+  auditor_receipt_digest: sha256:3767310b47e23dc5280af91ff76b75f2510a2f0517653cc30ac1749c662f9835
+  checker_receipt_digest: sha256:23c84efacfa2db7f900a02987a8a820e2991bf8842e3a1ccb96beb3a739b7238
+  phase_pair_digest: sha256:63c6b069d65ab7f797aa5a8c836b69a002893c720dbe228d65a61da5790b72eb
+  result: pass
 - phase: exit
-  input_digests:
-    exact_scope_digest: sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490
-    claim_class_set: sha256:cfc488b7669b8c9a2670a46e8c2e11c2f31f396656bb1c3ee9cce854e04af6b1
-    transformation_class_set: sha256:ee50ce0490db78fc9c91e9b04b6cd64c9e70d853a5231e98d2068e574542c152
-    source_role_set: sha256:d330a6dc4781cea6576b54088c943d886af8859afd4be30f47abc5d536a59c46
-    rights_class_set: sha256:b9a6e2263520f465bc4f97984bc8667aa5fe38d8aa08fa605e9ae18f53560920
-    graph_relation_set: sha256:8365685b15c0669cc4601f3bc3f1a6df149e2f519122d5e5e7eea09244612df0
-    risk_register_digest: sha256:8e07736a16b641626400ffb31ea49f2e8519500209991dfd334f49a4dbaeb977
-    assigned_role_manifest_digest: sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc
-    frozen_manifest_digest: sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523
-    candidate_base_commit_digest: sha256:a8a17ddadd8bd48915600b966c9806f113d85b1df1992a642ef67d9a07c03826
-    validator_digest: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
-    focused_test_digest: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
-    adversarial_fixture_digest: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
-    independent_review_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
-    execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
+  phase_evidence:
+    profile_id: completeness-exit-v1
+    input_digests:
+      exact_scope_digest: sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81
+      frozen_manifest_digest: sha256:7671341b23c70e806a05acba23d9721eb4762e3104c8ead104756adacdce1e9f
+      validation_receipt_digest: sha256:93126abd38d3f8851a7eb445557e67b79fd98f230ac53ba7005ead97408a9464
+      independent_review_evidence_digest: sha256:8af5091e13b308b1f347963fda5272c2b0804f4a8277c5cdf9784c40133f8c85
+      unresolved_gate_register_digest: sha256:f636c0a03681be54b6e7c512301d238f423ae44a211cd46220a76b3d9bc1e225
+      final_candidate_digest: sha256:228617bb986d2de77e1c9c680b5fcab7ede88ceb634f789fc30c5f4dec87030f
+      execution_environment_fingerprint_digest: sha256:e603065c5d1e3512e1b95eea192d78ec80ac745aaae34558e4cece1725df6536
+    evidence_refs:
+    - path: frozen-digests.json
+      sha256: sha256:7671341b23c70e806a05acba23d9721eb4762e3104c8ead104756adacdce1e9f
+    - path: validation-receipt.json
+      sha256: sha256:83e578f9627265091fdd3824779120e5a5f4b2464703f09110f0a8f7779697e5
+    - path: release/independent-academic-review.md
+      sha256: sha256:efec3d64e52fe4801742dc161cb3814f876385bf211e2a64f5f6f697b8d515f2
+    - path: release/independent-rights-review.md
+      sha256: sha256:cfeba81b8179ba2df4dd8fe82dcc17c5e6a8865f578b04c1fa46a8e95eb91f52
+    - path: release/independent-graph-mesh-review.md
+      sha256: sha256:2974a504a0cc16c5056b6c41ecd4d96f5deed733cfaa7b6312f4c5aa96b1a854
+    - path: release/public-release-manifest.yaml
+      sha256: sha256:172f8b0634260ef347282e1e1fc096574337890fb4f3681a4b5705ca81a5c150
+    prior_phase_pair_digest: sha256:63c6b069d65ab7f797aa5a8c836b69a002893c720dbe228d65a61da5790b72eb
+    digest: sha256:999c353d558627d67609b1473e67c567060569350172d736f7bb8b197e7f69c5
   assigned_roles:
   - mesh-coordinator-single-writer
   - role-completeness-auditor
+  - completeness-audit-checker
   - archaeology-history-researcher
   - manuscript-transmission-researcher
   - source-rights-reviewer
@@ -224,9 +361,10 @@ phase_receipts:
   missing_roles: []
   rejected_unnecessary_roles:
   - role: generic_apologist
-    reason: No apologetic conclusion is in scope; the role would add goal bias without closing a release failure mode.
+    reason: No apologetic conclusion is in scope; adding this role would bias the research question without closing a release
+      failure mode.
   - role: generic_theologian
-    reason: No doctrine synthesis or promotion is in scope; a separate human theological authority gate remains required.
+    reason: No doctrine synthesis or promotion is in scope; the separate theological authority gate is the correct boundary.
   late_discoveries:
   - discovery_id: academic-source-identity-failures
     failure_mode: misidentified_or_incompletely_bounded_academic_source_records
@@ -241,8 +379,45 @@ phase_receipts:
     - path: release/source-locator-check.json
       sha256: sha256:f1ea07c01322aebaa968db9ad58aaa50808cd552903179489b28fb148412fda3
     authority_effect: none
-    publication_allowed: true
+    eligible_for_downstream_release_evaluation: true
     status: closed_by_existing_roles
+  - discovery_id: adversarial-fixture-path-binding-gap
+    failure_mode: fixture_outcome_bound_without_exact_primary_and_reseal_path_scope
+    resolution_code: bounded_role_added
+    resolved_by_role_ids:
+    - graph-invariant-red-team
+    - completeness-audit-checker
+    risk_level: medium
+    evidence_refs:
+    - path: checks/adversarial-fixtures.yaml
+      sha256: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
+    - path: scripts/validate_biblical_evidence_demo.py
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
+    - path: tests/test_biblical_evidence_demo.py
+      sha256: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
+    authority_effect: none
+    eligible_for_downstream_release_evaluation: true
+    status: closed_by_bounded_role
+  - discovery_id: completeness-self-attestation-gap
+    failure_mode: role_completeness_auditor_certified_its_own_output_with_aliased_phase_evidence
+    resolution_code: bounded_role_added
+    resolved_by_role_ids:
+    - role-completeness-auditor
+    - completeness-audit-checker
+    - graph-invariant-red-team
+    risk_level: medium
+    evidence_refs:
+    - path: mesh/agent-mesh.v3.json
+      sha256: sha256:c55551939e84adbdf83a144504d3a51af7b3ac2d195619f5f415d7e6a3dd678e
+    - path: mesh/completeness-audit-contract.yaml
+      sha256: sha256:98255c38649edfd85d28b70fc8584d4de8abaa046f6b7afac32a4ca909e70bcb
+    - path: scripts/validate_biblical_evidence_demo.py
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
+    - path: tests/test_biblical_evidence_demo.py
+      sha256: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
+    authority_effect: none
+    eligible_for_downstream_release_evaluation: true
+    status: closed_by_bounded_role
   - discovery_id: graph-mesh-semantic-bypasses
     failure_mode: graph_identity_authority_or_completeness_semantic_bypass
     resolution_code: existing_role_replay
@@ -252,20 +427,43 @@ phase_receipts:
     risk_level: medium
     evidence_refs:
     - path: graph/node-edge-catalog.yaml
-      sha256: sha256:6f64f81f63fb2271077e6559ce3dc8de83ac127612de07c3634abce50e888e88
+      sha256: sha256:2acdd09a05516d80689556728a10f78b9f3c9c99ec5bda3e3528ec9fa677a1a4
     - path: graph/evidence-graph.yaml
-      sha256: sha256:c5397232df6b2af7ab33d8821e9717287943d45953b10063975980d79a4c0668
+      sha256: sha256:380ba2bfacc6b4204c0515e2fd790ff17e234cbbd0b35adeba6b384d3e96dc51
     - path: checks/adversarial-fixtures.yaml
-      sha256: sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6
+      sha256: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
     - path: scripts/validate_biblical_evidence_demo.py
-      sha256: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
     - path: tests/test_biblical_evidence_demo.py
-      sha256: sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd
+      sha256: sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3
     authority_effect: none
-    publication_allowed: true
+    eligible_for_downstream_release_evaluation: true
+    status: closed_by_existing_roles
+  - discovery_id: p66-object-asset-scope-mismatch
+    failure_mode: combined_recto_and_verso_catalog_coverage_attributed_to_single_verso_asset
+    resolution_code: existing_role_replay
+    resolved_by_role_ids:
+    - manuscript-transmission-researcher
+    - citation-source-fitness-checker
+    - graph-contract-engineer
+    - graph-invariant-red-team
+    risk_level: medium
+    evidence_refs:
+    - path: sources/p66-source-and-rights.yaml
+      sha256: sha256:bb27df5fe6a0cfb485e0d17f5934a6f584bf3f3126964b4c128439464b003663
+    - path: graph/p66-chunk-crosswalk.yaml
+      sha256: sha256:385fde5e53e1340a7c6499af9eaf90a5bcd9d7b41a4299c0e0b1a72a2dfd63c5
+    - path: graph/node-edge-catalog.yaml
+      sha256: sha256:2acdd09a05516d80689556728a10f78b9f3c9c99ec5bda3e3528ec9fa677a1a4
+    - path: graph/evidence-graph.yaml
+      sha256: sha256:380ba2bfacc6b4204c0515e2fd790ff17e234cbbd0b35adeba6b384d3e96dc51
+    - path: checks/adversarial-fixtures.yaml
+      sha256: sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf
+    authority_effect: none
+    eligible_for_downstream_release_evaluation: true
     status: closed_by_existing_roles
   - discovery_id: receipt-provenance-drift
-    failure_mode: release_or_completeness_receipt_not_bound_to_current_candidate
+    failure_mode: release_or_completeness_receipt_not_bound_to_current_candidate_or_self_referential_digest
     resolution_code: existing_role_replay
     resolved_by_role_ids:
     - role-completeness-auditor
@@ -273,13 +471,13 @@ phase_receipts:
     risk_level: medium
     evidence_refs:
     - path: mesh/completeness-audit-contract.yaml
-      sha256: sha256:a13de960d7bae6fdd2b7e986c126b076dd03302950483d86d0a45f202cbf3a23
+      sha256: sha256:98255c38649edfd85d28b70fc8584d4de8abaa046f6b7afac32a4ca909e70bcb
     - path: release/public-release-manifest.yaml
-      sha256: sha256:a02aacee9e972f86f0f0706d41dde9010475c59075a8904a53b64fc55b184b67
+      sha256: sha256:172f8b0634260ef347282e1e1fc096574337890fb4f3681a4b5705ca81a5c150
     - path: scripts/validate_biblical_evidence_demo.py
-      sha256: sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0
+      sha256: sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b
     authority_effect: none
-    publication_allowed: true
+    eligible_for_downstream_release_evaluation: true
     status: closed_by_existing_roles
   risk_routing:
   - risk: low
@@ -294,11 +492,30 @@ phase_receipts:
   - risk: critical
     route: fail_closed_no_publication_or_promotion
     status: preserved
-  result: pass
-  reviewer_independence: true
-  reviewer_role: role-completeness-auditor
-  observed_at: '2026-08-27T00:07:18Z'
   changed_input_replay: true
-  reviewer_attempt_id: REVIEW-COMPLETENESS-EXIT-009
-  reviewer_evidence_digest: sha256:8f8ab8be661e469faba9f7b273e616d2db6bfd0982d274ec0d99a4b24ab3b6a0
+  auditor:
+    role_id: role-completeness-auditor
+    actor_id: urn:logos:actor:codex-subagent-p66-graph-mesh-review-v2
+    attempt_id: AUDIT-COMPLETENESS-EXIT-001
+    independence: true
+    result: pass
+    authority_effect: none
+    mutation_performed: false
+    observed_at: '2026-08-28T16:00:02Z'
+  checker:
+    role_id: completeness-audit-checker
+    actor_id: urn:logos:actor:codex-subagent-p66-academic-review
+    attempt_id: REVIEW-COMPLETENESS-CHECK-EXIT-001
+    subject_audit_receipt_digest: sha256:f336e552183f41584d465e79bf80baf844ea5d750c769864f9f7fcf10385add4
+    replayed_phase_evidence_digest: sha256:999c353d558627d67609b1473e67c567060569350172d736f7bb8b197e7f69c5
+    independence_basis: distinct_actor_no_candidate_mutation_no_audit_authorship
+    findings: []
+    result: verified
+    authority_effect: none
+    mutation_performed: false
+    observed_at: '2026-08-28T16:03:57Z'
+  auditor_receipt_digest: sha256:f336e552183f41584d465e79bf80baf844ea5d750c769864f9f7fcf10385add4
+  checker_receipt_digest: sha256:4ba2151e3a75ca40e28c10ef9235f34964e50891712a326b751a6a01f80d9dc1
+  phase_pair_digest: sha256:25d5c2a4487fba2420699bf1328b79bcc1ec9cf79b0c0c3f71983ec5d8acfea5
+  result: pass
 status: pass

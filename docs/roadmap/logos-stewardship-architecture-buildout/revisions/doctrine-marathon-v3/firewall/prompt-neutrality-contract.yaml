@@ -1,0 +1,38 @@
+metadata:
+  object_type: doctrine_marathon_prompt_neutrality_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root after independent desired-conclusion bypass review."
+  reason_for_inclusion: "Prevent prompts from manufacturing agreement by instructing researchers or checkers to establish, confirm, defend, or selectively support a preferred conclusion."
+schema_version: logos.doctrine_marathon.prompt_neutrality.v3
+structured_instruction_requires:
+  - exact research question or verification question
+  - authorized scope and non-authority boundary
+  - source classes and exclusion rules
+  - counterevidence and alternative-hypothesis search
+  - abstention and uncertainty requirements
+  - output schema and citation fields
+  - independence and answer-context exposure
+  - decision owner and unresolved human gates
+forbidden_directive_families:
+  - prove_or_establish_preferred_conclusion
+  - demonstrate_or_confirm_named_view_is_correct
+  - defend_a_position_without_equal_counterevidence_search
+  - assume_the_answer_or_treat_dissent_as_error
+  - gather_only_supporting_evidence
+  - hide_uncertainty_variants_or_live_disagreement
+required_neutral_verbs:
+  - investigate
+  - test
+  - compare
+  - verify
+  - falsify_if_warranted
+deterministic_lexical_screen_is_only_a_floor: true
+independent_semantic_alignment_review_required: true
+desired_conclusion_detected_action:
+  - block_assignment
+  - preserve_prompt_and_finding
+  - rewrite_neutrally
+  - rerun_role_qualification_and_independence_audit
+  - issue_new_prompt_digest_and_changed_input_event
+semantic_nonclaim: "No lexical rule proves a prompt neutral; an independent alignment reviewer must inspect meaning, framing, omitted alternatives, and authority transfer."

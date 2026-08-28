@@ -1,0 +1,35 @@
+metadata:
+  object_type: doctrine_marathon_publication_scrub_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as the public transparency and privacy boundary."
+  reason_for_inclusion: "Publish inspectable engineering evidence while excluding private reasoning, restricted sources, secrets, and false maturity claims."
+schema_version: logos.doctrine_marathon.publication_scrub.v3
+publishable:
+  - constitution_campaign_and_authority_boundaries
+  - provider_neutral_role_cards_and_ExpertPack_contracts
+  - source_manifests_without_restricted_source_content
+  - canonical_public_prompts
+  - schemas_synthetic_fixtures_and_validators
+  - graph_contracts_and_sanitized_projections
+  - decisions_disagreements_risk_metadata_and_review_debt
+  - validation_receipts_premortems_and_repairs
+  - honest_progress_diagrams_and_nonclaims
+forbidden:
+  - raw_chain_of_thought
+  - private_conversations_or_unapproved_reviewer_identity
+  - secrets_credentials_tokens_or_signed_links
+  - local_absolute_paths_or_machine_identifiers
+  - copyrighted_or_restricted_source_corpora_without_verified_rights
+  - AI_output_presented_as_primary_or_scholarly_source
+  - runtime_or_research_completion_claim_without_execution_evidence
+  - qualified_theological_authority_claim_without_human_approval
+checks:
+  - exact_release_scope_manifest
+  - secret_and_sensitive_pattern_scan
+  - local_path_and_private_locator_scan
+  - source_rights_and_attribution_check
+  - internal_and_external_link_provenance_check
+  - maturity_and_nonclaim_schema_validation
+  - independent_non_author_review
+  - unchanged_head_release_gate

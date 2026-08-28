@@ -4,7 +4,7 @@ metadata:
   lifecycle_status: public_release_candidate
   provenance_note: "Prepared on 2026-08-24 from exact public origin/main commits, the historical V1 campaign checkpoint, and the repaired frozen doctrine-mesh-v2 specification candidate; extended 2026-08-26 with a separately validated static P66 and archaeology evidence demonstration."
   reason_for_inclusion: "Give recruiters, engineers, reviewers, and their AI tools a skeptical, machine-checkable route from project claims to inspectable evidence and explicit limits."
-schema_version: logos.project_evidence.v2
+schema_version: logos.project_evidence.v3
 project_id: logos-trust-layer
 title: "Logos: an evidence-bound trust layer for AI-assisted Christian knowledge work"
 public_entry: PORTFOLIO.md
@@ -30,12 +30,15 @@ snapshot:
     test_like_paths: 274
 release_scope:
   status: chained_incremental_release_candidate
-  base_commit: f159e3f54d96755cd93dc5cfcd069085be4fb2ca
-  current_content_path_count: 85
-  total_unique_path_count: 86
-  receipt_excluded_path_count: 85
-  added_path_count: 64
-  modified_path_count: 21
+  release_id: LOGOS-PORTFOLIO-RELEASE-004
+  base_commit: f320d8430c10f82d4fdd80567c4d533fa90c25d5
+  content_history_mode: exact_merge_free_first_parent_chain
+  content_commit_count: 3
+  current_content_path_count: 141
+  total_unique_path_count: 142
+  receipt_excluded_path_count: 141
+  added_path_count: 83
+  modified_path_count: 58
   deleted_path_count: 0
   renamed_path_count: 0
   canonical_digest_algorithm: >-
@@ -43,14 +46,19 @@ release_scope:
     and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase
     SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8
     concatenation including the final LF.
-  intermediate_receipt:
-    status: superseded_prepublication_non_authorizing_checkpoint
-    content_head_commit: 9128c6b710a35fe70115efadfef65ea54ed50ebb
-    content_tree_sha: e0fdc9e3087675ba9ab1713400945ab644f4342b
-    receipt_commit: 36ba16eab3dbf9dafb35184528c6ce68346e5c29
-    receipt_tree_sha: 96760b23e366ad9368848ec116bad6ed68d79847
-    receipt_raw_sha256: sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6
-    receipt_digest: sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f
+  prior_release:
+    release_id: LOGOS-PORTFOLIO-RELEASE-003
+    base_commit: f159e3f54d96755cd93dc5cfcd069085be4fb2ca
+    content_head_commit: 6bb775321f93fe97dff5a90a3c3bdca42f42edfb
+    content_tree_sha: a9307538e127d87fdc987f6c86921401679286e5
+    receipt_commit: 424cd882da0ac0f8271254b8c27149acb1f5b571
+    merge_commit: f320d8430c10f82d4fdd80567c4d533fa90c25d5
+    receipt_tree_sha: 565e9b71faff3f7296d35e310ad3c31110403df9
+    merge_tree_sha: 565e9b71faff3f7296d35e310ad3c31110403df9
+    receipt_raw_sha256: sha256:448449c335e7c67295f94195f415b1b3a0952447f1a6057ce1545a2d36f17851
+    receipt_digest: sha256:35e046eae2b684c2196bb44dc299e0a8e0882a399738360f25f98156821f2d57
+    manifest_raw_sha256: sha256:fe201b881d8b5b62fdb9d862db43eea1b8ae7f4969294355ebbaf50a535b664f
+    release_chain_digest: sha256:e3ad5952f884602e472c4070754141afa27a517c090f890eba0be91c3e075d31
     content_path_count: 85
     total_release_path_count: 86
     fingerprinted_content_path_count: 85
@@ -58,23 +66,12 @@ release_scope:
     modified_path_count: 21
     deleted_path_count: 0
     renamed_path_count: 0
-    content_digest: sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39
-  prior_release:
-    base_commit: 4f00f6f9d50e870d4e9805f29a69feb33e6f4d12
-    content_head_commit: 04a190bf091eea468a57f5604264a71ff97dd237
-    receipt_commit: 54be8f8b5e75aeda994ff5fc6b858c9e1edad6cd
-    merge_commit: 91fa8560fecade6b7dd557edad8edf91609efd9b
-    receipt_raw_sha256: sha256:c6a9b91c81ecc024dd82c183c16a02c455fda94fc9255bae90e9f15cab93b450
-    path_count: 131
-    fingerprinted_path_count: 130
     canonical_digest_algorithm: >-
       Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF
       and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase
       SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8
       concatenation including the final LF.
-    content_digest: sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc
-    receipt_digest: sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff
-    merge_tree_sha: 4542d66e88bd8cb14cb77487e52c88c184b4de30
+    content_digest: sha256:7b7a4885889ee32ef38d83cbb1008204c990d34cfce0c7decdfa3fc923be16ab
     protected_drift_to_current_base_count: 0
   historical_v1:
     staged_candidate_parent: 9a8a0dd4e9c07040d23ceeb3bf1bf10003d45ee4
@@ -113,6 +110,9 @@ maturity_vocabulary:
   - code: active_scaffold
     definition: "A guarded repository foundation whose schemas and validators intentionally precede substantive data admission."
     does_not_imply: "A populated corpus, completed domain model, or permission to import sources and make doctrine claims."
+  - code: release_candidate_specification_only
+    definition: "A specification candidate whose target scope is known but whose final manifest, saved-version index, validation receipt, or independent review is not yet complete."
+    does_not_imply: "A validated freeze, running system, qualified expert, live research, source ingestion, doctrinal correctness, publication, or production readiness."
   - code: validated_specification_only
     definition: "A frozen design package whose structure, contracts, links, fixtures, and digests passed bounded static checks."
     does_not_imply: "A running system, qualified experts, live research, source ingestion, doctrinal correctness, or production readiness."
@@ -302,9 +302,9 @@ capabilities:
   - capability_id: claim-mediated-academic-evidence-demonstration
     title: "Claim-mediated manuscript and archaeology demonstration"
     maturity: dated_validation_snapshot
-    mechanism: "An exact licensed P66 image, non-contiguous witness coverage, separately sourced public-domain English display, honest M7/M8 candidate state, bounded archaeology claims, source-role hierarchy, counterpositions, claim-mediated edges, specialist-role separation, and adversarial checks are frozen together."
+    mechanism: "An exact licensed P66 verso image, a distinct combined recto-and-verso object with object-level non-contiguous catalog coverage, an explicit unresolved side-mapping boundary, separately sourced public-domain English display, honest M7/M8 candidate state, bounded archaeology claims, source-role hierarchy, counterpositions, claim-mediated edges, specialist-role separation, and adversarial checks are frozen together."
     demonstrates: "How the stable Academic Extension Contract can preserve rights, provenance, disagreement, uncertainty, graph semantics, and human authority in one concrete public slice."
-    does_not_prove: "A transcription, preferred reading, historical verdict, complete academic corpus, running graph, reviewed-gold M7/M8 convergence, doctrine, or qualified theological authority."
+    does_not_prove: "A side-specific passage map for the JPEG, transcription, preferred reading, historical verdict, complete academic corpus, running graph, reviewed-gold M7/M8 convergence, doctrine, or qualified theological authority."
     evidence:
       - kind: local_path
         target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md
@@ -341,10 +341,10 @@ doctrine_mesh_specification:
   expert_profile_count: 68
   graph_node_count: 25
   graph_edge_count: 26
-  adversarial_test_count: 20
-  payload_digest: sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946
-  revision_manifest_digest: sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1
-  final_saved_version_digest: sha256:a5f4bcdd3cbba5e24afd1edfbfb8351c92e10a92ae5ab1e054e5ec0255db3a13
+  adversarial_test_count: 21
+  payload_digest: sha256:6fdc5507d69ed5e6cdeb0aa9b79ed6365aa6b38cce258a0649ee527ba5e15fa8
+  revision_manifest_digest: sha256:5187ad96a294c5b6aa3dcfad7af67635ceceac562068abc6314a896dbcde2f9e
+  final_saved_version_digest: sha256:1fdff84a9c1a8d34523183e6a8b1fe0ef70c53bde4ad3e054b94faa4a9b3076c
   independent_review_status: pass_specification_only
   independence_status: partly_verified_non_authorizing
   cross_provider_verified: false
@@ -367,10 +367,83 @@ doctrine_mesh_specification:
       supports: "Terminal saved-version index and freeze-time authority flags."
     - kind: local_path
       target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validation-receipt.json
-      supports: "Bounded deterministic artifact validation and 20-test result, including claimed-path traversal regression coverage."
+      supports: "Bounded deterministic artifact validation and 21-test result, including claimed-path traversal regression coverage."
     - kind: local_path
       target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/independent-review.json
       supports: "Specification-only review status, partial independence, and unresolved runtime boundaries."
+doctrine_marathon_specification:
+  path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3
+  maturity: blocked_specification_only
+  declared_final_blocker: "adversarial_harness_release_gate: V3 cannot release until the aggregate exact-oracle migration is complete and independently reviewed"
+  final_replay_status: blocked_by_declared_aggregate_exact_oracle_gate
+  release_file_count: 83
+  payload_file_count: 78
+  administrative_file_count: 5
+  role_count: 18
+  trigger_count: 19
+  assignment_fixture_count: 3
+  runtime_assignment_count: 0
+  expert_pack_count: 0
+  qualification_receipt_count: 0
+  correlation_acceptance_count: 0
+  event_count: 0
+  evidence_record_count: 0
+  graph_node_count: 5
+  graph_edge_count: 3
+  mistake_receipt_count: 1
+  corrective_action_count: 6
+  preventive_action_count: 5
+  repair_ledger_entry_count: 40
+  legacy_component_case_count: 164
+  strict_isolated_component_case_count: 33
+  component_only_executable_case_count: 197
+  aggregate_sentinel_subset_case_count: 4
+  negative_case_catalog_count: 164
+  isolated_regression_case_count: 33
+  negative_case_count: 197
+  open_expert_review_debt: 2
+  payload_digest: sha256:4a77843f3b0e7fae6ea5f6847d43cb40066ff9e1411fa65db51c662dedc80001
+  revision_manifest_file_digest: sha256:b3082cf1966840435ead72c7b652ffffd9763fdfd3101f48c77be53807ca7bda
+  final_saved_version_digest: sha256:a13cf70c636308d1d4f59648dcea84e72f9dff677ce0108b8750c0415711747c
+  independent_review_status: pass_blocked_specification_only
+  independence_status: non_author_read_only_cross_provider_unverified
+  cross_provider_verified: false
+  runtime_activation_authorized: false
+  research_execution_authorized: false
+  source_ingestion_authorized: false
+  substantive_doctrine_implementation_authorized: false
+  completed_doctrine_corpus: false
+  qualified_theological_authority: false
+  evidence:
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md, supports: "Scope, read order, design maturity, and non-authority boundary."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-catalog.yaml, supports: "Governed role and capability requirements for the bounded agent mesh."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/examples/design-time-independence-fixture.json, supports: "Synthetic non-runtime meta-checker and whole-work-checker topology."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-registry.json, supports: "Empty runtime qualification state and generation-zero boundary."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-registry.json, supports: "Empty runtime evidence state and typed evidence surfaces."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-review-receipt.schema.json, supports: "Producer and qualified independent-reviewer binding contract."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/action-checker-requirements.yaml, supports: "Exact action-to-role, capability, checker, and evidence requirements."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/prompt-neutrality-contract.yaml, supports: "Prompt-review requirements and explicit nonclaim that lexical checks prove neutrality."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/fresh-context-verification-receipt.schema.json, supports: "Typed verification contract for a future fresh-context reset."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/examples/initial-weekly-fresh-context-gate.json, supports: "Unresolved design fixture with no verification or continuation authority."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/human-identity-authority-root.yaml, supports: "Intentionally inactive human-identity root; activation is unimplemented."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/authority-registry.yaml, supports: "Empty qualified-approver and NormativeFrame registry."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/events/event-ledger.json, supports: "Empty append-only runtime event ledger."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/repair-ledger.yaml, supports: "Forty tracked design repairs and their evidence obligations."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/ai-mistake-escalation-2026-08-27.yaml, supports: "Contained pre-publication mistake escalation and CAPA record."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/negative-cases.json, supports: "Declarative catalog of 164 adversarial mutations."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/adversarial-harness-migration.yaml, supports: "Explicit blocked migration state and the non-release classification for retained component-only harness evidence."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/ADVERSARIAL_HARNESS_ROOT_FIX.md, supports: "Root-cause analysis and the required aggregate exact-oracle repair boundary."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/DETERMINISTIC_ADVERSARIAL_HARNESS_CONTRACT.md, supports: "Portable aggregate-harness contract; not proof that the migration is complete."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/strict-isolated-cases.json, supports: "Thirty-three source-derived component-only strict isolated cases; they are not aggregate release assurance."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/aggregate-sentinel-cases.json, supports: "Four named aggregate sentinel cases, a subset of the legacy catalog; they do not increase the 197 component-only inventory."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/run_adversarial_harness.py, supports: "Aggregate sentinel runner entrypoint; its four-case scope is explicitly narrower than full legacy migration."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_run_adversarial_harness.py, supports: "Aggregate sentinel runner tests; neither component nor sentinel checks grant release eligibility."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py, supports: "Component harness for 164 legacy cases plus 33 source-derived strict isolated cases; blocked from aggregate release assurance."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/revision-manifest.yaml, supports: "Exact 78-file blocked-specification payload and canonical digests."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/public-release-authorization.json, supports: "Bounded non-runtime release authority; subject to final regeneration."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validation-receipt.json, supports: "Deterministic replay receipt; subject to final regeneration."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/independent-review.json, supports: "Fresh non-author review required before validated status."}
+    - {kind: local_path, target: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/FINAL-SAVED-VERSION.yaml, supports: "Final saved-version binding required before validated status."}
 evidence_routes:
   - route_id: recruiter-overview
     question: "What was designed, what exists now, and why is it relevant to an AI engineering or engagement role?"
@@ -417,6 +490,38 @@ evidence_routes:
       - tests/test_portfolio_front_door.py
       - scripts/validation_contracts.py
       - docs/portfolio/logos-trust-layer/validation-receipt.json
+  - route_id: doctrine-marathon-v3-audit
+    question: "How can an independent reviewer reproduce the Doctrine Marathon V3 control, non-runtime, CAPA, and frozen-release claims?"
+    start_at: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md
+    then_read:
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-catalog.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/examples/design-time-independence-fixture.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-registry.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-registry.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-review-receipt.schema.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/action-checker-requirements.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/prompt-neutrality-contract.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/fresh-context-verification-receipt.schema.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/examples/initial-weekly-fresh-context-gate.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/human-identity-authority-root.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/authority-registry.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/events/event-ledger.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/repair-ledger.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/ai-mistake-escalation-2026-08-27.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/negative-cases.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/adversarial-harness-migration.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/ADVERSARIAL_HARNESS_ROOT_FIX.md
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/DETERMINISTIC_ADVERSARIAL_HARNESS_CONTRACT.md
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/strict-isolated-cases.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/aggregate-sentinel-cases.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/run_adversarial_harness.py
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_run_adversarial_harness.py
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/revision-manifest.yaml
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/public-release-authorization.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validation-receipt.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/independent-review.json
+      - docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/FINAL-SAVED-VERSION.yaml
 planned_value_horizons:
   - horizon_id: nonprofit-christian-knowledge-stewardship
     status: roadmap_only
@@ -439,12 +544,14 @@ explicit_non_claims:
   - "The doctrine mesh is not a running system and no controller has been activated."
   - "The doctrine mesh is not a completed doctrine corpus and contains no substantive doctrine decisions."
   - "The doctrine mesh is not qualified theological authority and cannot approve Scripture, exegesis, doctrine, or tradition policy."
+  - "Doctrine Marathon V3 is a release-candidate specification until its final manifest, saved-version index, validation receipt, and independent review agree; none of its role, prompt, freshness, or authority contracts proves that an agent ran or a human gate closed."
+  - "The V3 weekly fixture has no verification receipt and no continuation authority; its human-identity root is inactive, and identity or authority activation is not implemented."
   - "No ExpertPack in the doctrine-mesh specification is currently qualified or execution-ready."
   - "No source corpus was ingested by the doctrine-mesh specification campaign."
   - "A deterministic validator pass proves only its bounded structural and policy contract, not semantic or theological correctness."
   - "Graph proximity, embeddings, generated confidence, or agent consensus cannot promote a candidate to governed truth."
   - "The recorded independent review is partly verified and does not claim cross-provider independence."
-  - "The P66 and archaeology demonstration is not a transcription, preferred reading, historical verdict, running graph, completed academic or doctrine corpus, or theological authority."
+  - "The P66 and archaeology demonstration does not assign the combined-object catalog ranges to its verso JPEG and is not a transcription, preferred reading, historical verdict, running graph, completed academic or doctrine corpus, or theological authority."
   - "Roadmap horizons are possible applications, not delivered features, schedules, or standing authorization."
 verification:
   schema: docs/portfolio/logos-trust-layer/project-evidence.schema.json
@@ -452,11 +559,28 @@ verification:
   validator: scripts/validate_portfolio_front_door.py
   tests: tests/test_portfolio_front_door.py
   ai_interrogation_prompt: docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md
+  oracle_controls:
+    input_snapshot_bound: true
+    duplicate_structured_keys_rejected: true
+    ordered_duplicate_findings_preserved: true
+    alternate_root_isolated: true
+    single_receipt_read: true
+    sentinel_count: 5
+    sentinel_ids:
+      - portfolio-v3-maturity-overclaim
+      - portfolio-v3-migration-gate-erasure
+      - portfolio-v3-authority-elevation
+      - portfolio-v3-required-route-omission
+      - portfolio-release-chain-drift
   commands:
-    - python scripts/validate_portfolio_front_door.py
-    - python -m pytest tests/test_portfolio_front_door.py
-    - python scripts/validate_biblical_evidence_demo.py
-    - python -m pytest tests/test_biblical_evidence_demo.py
-    - python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
-    - python docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
-    - python scripts/validate_internal_links.py --all-markdown
+    - python -B scripts/validate_portfolio_front_door.py
+    - python -B -m pytest -q --assert=plain -p no:cacheprovider tests/test_portfolio_front_door.py
+    - python -B scripts/validate_biblical_evidence_demo.py
+    - python -B -m pytest -q --assert=plain -p no:cacheprovider tests/test_biblical_evidence_demo.py
+    - python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/validate_doctrine_mesh.py --mode final
+    - python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2/checks/test_validate_doctrine_mesh.py
+    - python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validate_doctrine_marathon.py --mode final
+    - python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py
+    - python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/run_adversarial_harness.py
+    - python -B -m pytest -q --assert=plain -p no:cacheprovider docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_run_adversarial_harness.py
+    - python -B scripts/validate_internal_links.py --all-markdown

@@ -3,7 +3,7 @@
   "object_type": "provider_neutral_bounded_academic_agent_mesh",
   "trust_zone": "proposed",
   "lifecycle_status": "draft",
-  "provenance_note": "Created 2026-08-26 from the Doctrine Mesh V2 separation-of-duties model, the Academic Extension Contract, and an entry/midflight role-completeness audit for this exact demonstration.",
+  "provenance_note": "Created 2026-08-26 from the Doctrine Mesh V2 separation-of-duties model, the Academic Extension Contract, and an entry/midflight role-completeness audit for this exact demonstration; corrected 2026-08-28 so a distinct meta-checker, not the completeness auditor, certifies each phase receipt.",
   "reason_for_inclusion": "Make research, rights, citation, claim-fidelity, graph, red-team, and completeness responsibilities explicit without pretending AI review is qualified human approval.",
   "mesh_id": "urn:logos:mesh:biblical-evidence-demo-v1",
   "runtime_status": "specification_only_not_activated",
@@ -23,6 +23,11 @@
     "writer_cannot_approve_own_output": true,
     "researcher_cannot_certify_own_citations": true,
     "rights_reviewer_is_distinct_from_asset_researcher": true,
+    "completeness_auditor_checked_by_distinct_meta_checker": true,
+    "completeness_auditor_and_checker_actor_ids_must_differ": true,
+    "completeness_auditor_and_checker_must_differ_from_writer_actor": true,
+    "completeness_checker_cannot_override_auditor_failure": true,
+    "completeness_checker_authority_effect_is_none": true,
     "maximum_delegation_depth": 1,
     "maximum_parallel_roles": 4,
     "high_risk_disagreement_routes_to_human": true,
@@ -44,7 +49,15 @@
       "mode": "read_only",
       "purpose": "At entry, midflight, and exit ask which specialist or checker is required, what concrete failure mode it closes, and whether later evidence revealed a missing role.",
       "knowledge_base_contract": ["task scope", "risk taxonomy", "source classes", "claim classes", "role independence matrix"],
-      "may_not": ["add_roles_without_failure_mode", "approve_domain_truth", "edit_candidate"]
+      "may_not": ["add_roles_without_failure_mode", "approve_domain_truth", "edit_candidate", "self_attest_completeness_result"]
+    },
+    {
+      "role_id": "completeness-audit-checker",
+      "class": "independent_meta_checker",
+      "mode": "read_only",
+      "purpose": "Independently replay each entry, midflight, and exit completeness audit; verify the auditor's role coverage, evidence, independence, path scope, and failure routing; and fail closed on self-attestation or aliased phase evidence.",
+      "knowledge_base_contract": ["completeness-audit contract", "role and capability coverage", "separation of duties", "deterministic evidence digests", "adversarial fixture scope and reseal policy"],
+      "may_not": ["act_as_role_completeness_auditor", "author_primary_completeness_audit", "change_required_role_set", "repair_audit_or_candidate", "waive_or_override_failed_audit", "edit_candidate", "approve_domain_truth", "grant_publication_or_theological_authority"]
     },
     {
       "role_id": "archaeology-history-researcher",
@@ -151,12 +164,15 @@
   },
   "mesh_sequence": [
     "entry_role_completeness_audit",
+    "entry_independent_completeness_meta_check",
     "parallel_read_only_domain_and_rights_research",
     "single_writer_candidate_assembly",
     "midflight_role_completeness_audit",
+    "midflight_independent_completeness_meta_check",
     "deterministic_validation_and_adversarial_fixtures",
     "independent_citation_claim_rights_and_graph_reviews",
     "exit_role_completeness_audit",
+    "exit_independent_completeness_meta_check",
     "human_high_risk_disagreement_gate",
     "immutable_release_gate"
   ],

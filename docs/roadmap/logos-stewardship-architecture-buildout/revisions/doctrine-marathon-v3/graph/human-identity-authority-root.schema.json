@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.human-identity-authority-root.v3",
+  "title": "Doctrine Marathon human identity authority root",
+  "description": "object_type=human_identity_authority_root_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent authority-chain review; reason_for_inclusion=Keep human identity admission fail-closed until a named human records an immutable protected-commit anchor.",
+  "type": "object",
+  "required": ["metadata", "schema_version", "anchor_id", "active", "authorized_identity_issuer_ids", "authorized_signer_ids", "recorded_by_human", "created_by_ai", "protected_commit", "anchor_digest"],
+  "properties": {
+    "metadata": {"type": "object", "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"], "additionalProperties": true},
+    "schema_version": {"const": "logos.doctrine-marathon.human-identity-authority-root.v3"},
+    "anchor_id": {"const": "DMV3-HUMAN-IDENTITY-AUTHORITY-ROOT"},
+    "active": {"type": "boolean"},
+    "authorized_identity_issuer_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^HUMAN-[A-Za-z0-9._-]+$"}},
+    "authorized_signer_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^HUMAN-[A-Za-z0-9._-]+$"}},
+    "recorded_by_human": {"type": "boolean"},
+    "created_by_ai": {"type": "boolean"},
+    "protected_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+    "anchor_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"active": {"const": false}}}, "then": {"properties": {"authorized_identity_issuer_ids": {"maxItems": 0}, "authorized_signer_ids": {"maxItems": 0}, "recorded_by_human": {"const": false}, "protected_commit": {"type": "null"}}}},
+    {"if": {"properties": {"active": {"const": true}}}, "then": {"properties": {"authorized_identity_issuer_ids": {"minItems": 1}, "authorized_signer_ids": {"minItems": 1}, "recorded_by_human": {"const": true}, "created_by_ai": {"const": false}, "protected_commit": {"type": "string"}}}}
+  ],
+  "additionalProperties": false
+}

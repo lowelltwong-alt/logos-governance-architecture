@@ -21,6 +21,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import os
 import re
 import subprocess
 from collections import Counter
@@ -44,7 +45,32 @@ DOCTRINE_ROOT = (
     / "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2"
 )
 DOCTRINE_VALIDATOR_PATH = DOCTRINE_ROOT / "checks/validate_doctrine_mesh.py"
+MARATHON_ROOT = (
+    ROOT
+    / "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3"
+)
+MARATHON_VALIDATOR_PATH = MARATHON_ROOT / "checks/validate_doctrine_marathon.py"
 ARTIFACT_CLASS = "portable_core"
+DECLARED_V3_FINAL_BLOCKER = (
+    "adversarial_harness_release_gate: V3 cannot release until the aggregate "
+    "exact-oracle migration is complete and independently reviewed"
+)
+MARATHON_HARNESS_EVIDENCE_TARGETS = (
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+    "doctrine-marathon-v3/checks/adversarial-harness-migration.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+    "doctrine-marathon-v3/checks/ADVERSARIAL_HARNESS_ROOT_FIX.md",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+    "doctrine-marathon-v3/checks/DETERMINISTIC_ADVERSARIAL_HARNESS_CONTRACT.md",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+    "doctrine-marathon-v3/checks/fixtures/strict-isolated-cases.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+    "doctrine-marathon-v3/checks/fixtures/aggregate-sentinel-cases.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+    "doctrine-marathon-v3/checks/run_adversarial_harness.py",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+    "doctrine-marathon-v3/checks/test_run_adversarial_harness.py",
+)
 
 EXPECTED_REPOSITORIES = {
     "logos-governance-architecture",
@@ -80,6 +106,29 @@ EXPECTED_PUBLIC_FILES = (
     "docs/portfolio/logos-trust-layer/validation-receipt.json",
     "scripts/validate_portfolio_front_door.py",
     "tests/test_portfolio_front_door.py",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/revision-manifest.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/FINAL-SAVED-VERSION.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validation-receipt.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/independent-review.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/public-release-authorization.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/examples/design-time-independence-fixture.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-catalog.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-registry.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/events/event-ledger.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-registry.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-review-receipt.schema.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/action-checker-requirements.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/prompt-neutrality-contract.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/fresh-context-verification-receipt.schema.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/examples/initial-weekly-fresh-context-gate.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/human-identity-authority-root.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/authority-registry.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/repair-ledger.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/ai-mistake-escalation-2026-08-27.yaml",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/negative-cases.json",
+    "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py",
+    *MARATHON_HARNESS_EVIDENCE_TARGETS,
 )
 REQUIRED_BOUNDARY_TEXT = (
     "validated design, not a running system",
@@ -117,6 +166,42 @@ class PortfolioValidationError(RuntimeError):
     """Raised when a required portfolio input cannot be validated safely."""
 
 
+class _DuplicateKeyError(ValueError):
+    """Raised when a structured public input contains an ambiguous duplicate key."""
+
+
+def _reject_duplicate_object_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    value: dict[str, Any] = {}
+    for key, item in pairs:
+        if key in value:
+            raise _DuplicateKeyError(f"duplicate key {key!r}")
+        value[key] = item
+    return value
+
+
+class _UniqueKeyLoader(yaml.SafeLoader):
+    """Safe YAML loader that rejects last-key-wins ambiguity."""
+
+
+def _construct_unique_mapping(
+    loader: _UniqueKeyLoader, node: yaml.nodes.MappingNode, deep: bool = False
+) -> dict[Any, Any]:
+    loader.flatten_mapping(node)
+    value: dict[Any, Any] = {}
+    for key_node, value_node in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in value:
+            raise _DuplicateKeyError(f"duplicate key {key!r}")
+        value[key] = loader.construct_object(value_node, deep=deep)
+    return value
+
+
+_UniqueKeyLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
+    _construct_unique_mapping,
+)
+
+
 @dataclass(frozen=True, order=True)
 class Finding:
     rule: str
@@ -143,17 +228,36 @@ class ValidationResult:
         return not self.findings
 
 
+def _raw_validation_result(
+    findings: Iterable[Finding], metrics: dict[str, Any]
+) -> ValidationResult:
+    """Retain exact validator emission order and duplicate finding identities."""
+
+    return ValidationResult(tuple(findings), metrics)
+
+
+def _v3_final_replay_is_exact(failures: Iterable[Any]) -> bool:
+    """Accept only the one declared V3 aggregate-harness release blocker."""
+
+    return tuple(str(failure) for failure in failures) == (
+        DECLARED_V3_FINAL_BLOCKER,
+    )
+
+
 def _load_json(path: Path) -> Any:
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        return json.loads(
+            path.read_text(encoding="utf-8"),
+            object_pairs_hook=_reject_duplicate_object_pairs,
+        )
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, _DuplicateKeyError) as exc:
         raise PortfolioValidationError(f"cannot load JSON {path}: {exc}") from exc
 
 
 def _load_yaml(path: Path) -> Any:
     try:
-        return yaml.safe_load(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, yaml.YAMLError) as exc:
+        return yaml.load(path.read_text(encoding="utf-8"), Loader=_UniqueKeyLoader)
+    except (OSError, UnicodeDecodeError, yaml.YAMLError, _DuplicateKeyError) as exc:
         raise PortfolioValidationError(f"cannot load YAML {path}: {exc}") from exc
 
 
@@ -349,6 +453,90 @@ def _git_parents(root: Path, commit: str) -> list[str]:
     return fields[1:]
 
 
+def _git_merge_free_content_chain(
+    root: Path, base_commit: str, content_head: str
+) -> list[str]:
+    """Return the exact ordered one-parent chain from base (exclusive) to head."""
+
+    for label, commit in (("base", base_commit), ("content head", content_head)):
+        if re.fullmatch(r"[0-9a-f]{40}", commit) is None:
+            raise PortfolioValidationError(f"release {label} is not an exact commit")
+        if _git_revision(root, commit) != commit:
+            raise PortfolioValidationError(
+                f"release {label} does not resolve to its exact commit"
+            )
+    reverse_chain: list[str] = []
+    seen: set[str] = set()
+    current = content_head
+    while current != base_commit:
+        if current in seen:
+            raise PortfolioValidationError("content history contains a parent cycle")
+        if len(reverse_chain) >= 256:
+            raise PortfolioValidationError("content history exceeds the bounded chain limit")
+        seen.add(current)
+        parents = _git_parents(root, current)
+        if len(parents) != 1:
+            raise PortfolioValidationError(
+                "content history must be a merge-free first-parent chain"
+            )
+        reverse_chain.append(current)
+        current = parents[0]
+    if not reverse_chain:
+        raise PortfolioValidationError("content history must contain at least one commit")
+    return list(reversed(reverse_chain))
+
+
+def _validate_content_history_scope(
+    root: Path,
+    base_commit: str,
+    content_chain: Iterable[str],
+    cumulative_entries: Iterable[GitDeltaEntry],
+) -> None:
+    """Reject transient paths and non-additive operations hidden by a cumulative diff."""
+
+    touched_paths: set[str] = set()
+    parent = base_commit
+    for commit in content_chain:
+        entries = _git_delta_entries(root, parent, commit)
+        touched_paths.update(entry.path for entry in entries)
+        parent = commit
+    cumulative_paths = {entry.path for entry in cumulative_entries}
+    if touched_paths != cumulative_paths:
+        raise PortfolioValidationError(
+            "per-commit content paths do not equal the cumulative release scope"
+        )
+
+
+def _check_receipt_content_chain(
+    active_increment: dict[str, Any],
+    scope: dict[str, Any],
+    content_chain: Iterable[str],
+    receipt_path: str,
+) -> list[Finding]:
+    """Bind the receipt to the exact derived content history without omissions."""
+
+    derived = list(content_chain)
+    observed = {
+        "content_history_mode": active_increment.get("content_history_mode"),
+        "content_commit_count": active_increment.get("content_commit_count"),
+        "content_commit_chain": active_increment.get("content_commit_chain"),
+    }
+    expected = {
+        "content_history_mode": scope.get("content_history_mode"),
+        "content_commit_count": len(derived),
+        "content_commit_chain": derived,
+    }
+    if observed == expected:
+        return []
+    return [
+        Finding(
+            "release_scope_content_chain",
+            receipt_path,
+            "receipt content history does not match the exact derived chain",
+        )
+    ]
+
+
 def _git_is_ancestor(root: Path, ancestor: str, descendant: str) -> bool:
     return (
         subprocess.run(
@@ -520,6 +708,33 @@ def _safe_repo_path(value: str) -> Path:
     return Path(*segments)
 
 
+def _resolve_in_root_regular_file(root: Path, relative: Path) -> Path:
+    """Resolve one public-evidence file without following links or reparse points."""
+
+    try:
+        resolved_root = root.resolve(strict=True)
+        candidate = root / relative
+        current = candidate
+        while current != root and current != current.parent:
+            if current.is_symlink() or (
+                hasattr(os.path, "isjunction") and os.path.isjunction(current)
+            ):
+                raise PortfolioValidationError(
+                    f"evidence path traverses a link or junction: {relative.as_posix()}"
+                )
+            current = current.parent
+        resolved = candidate.resolve(strict=True)
+    except (OSError, RuntimeError, ValueError) as exc:
+        raise PortfolioValidationError(
+            f"evidence path is missing or unreadable: {relative.as_posix()}"
+        ) from exc
+    if not resolved.is_relative_to(resolved_root) or not resolved.is_file():
+        raise PortfolioValidationError(
+            f"evidence path is not an in-root regular file: {relative.as_posix()}"
+        )
+    return resolved
+
+
 def _is_private_use(character: str) -> bool:
     code_point = ord(character)
     return (
@@ -585,6 +800,22 @@ def _load_doctrine_validator(validator_path: Path) -> ModuleType:
         ) from exc
 
 
+def _load_marathon_validator(validator_path: Path) -> ModuleType:
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "logos_doctrine_marathon_static_validator", validator_path
+        )
+        if spec is None or spec.loader is None:
+            raise PortfolioValidationError("cannot create marathon validator module")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+    except (OSError, ImportError, AttributeError) as exc:
+        raise PortfolioValidationError(
+            f"cannot import marathon validator: {exc}"
+        ) from exc
+
+
 def _check_manifest_schema(
     manifest: dict[str, Any], schema: dict[str, Any], manifest_path: Path, root: Path
 ) -> list[Finding]:
@@ -601,9 +832,22 @@ def _check_manifest_schema(
 def _check_receipt_schema(
     receipt: dict[str, Any], schema: dict[str, Any]
 ) -> list[Finding]:
+    definition_by_version = {
+        "logos.portfolio_validation_receipt.v2": "portfolioValidationReceiptV2",
+        "logos.portfolio_validation_receipt.v3": "portfolioValidationReceiptV3",
+    }
+    definition = definition_by_version.get(receipt.get("schema_version"))
+    if definition is None or definition not in schema.get("$defs", {}):
+        return [
+            Finding(
+                "portfolio_receipt_schema",
+                PORTFOLIO_RECEIPT_RELATIVE.as_posix(),
+                "unsupported receipt schema version",
+            )
+        ]
     receipt_schema = {
         "$schema": schema.get("$schema", "https://json-schema.org/draft/2020-12/schema"),
-        "$ref": "#/$defs/portfolioValidationReceiptV2",
+        "$ref": f"#/$defs/{definition}",
         "$defs": schema.get("$defs", {}),
     }
     validator = jsonschema.Draft202012Validator(
@@ -630,6 +874,7 @@ def _check_evidence_references(manifest: dict[str, Any], root: Path) -> list[Fin
     for capability in manifest.get("capabilities", []):
         references.extend(capability.get("evidence", []))
     references.extend(manifest.get("doctrine_mesh_specification", {}).get("evidence", []))
+    references.extend(manifest.get("doctrine_marathon_specification", {}).get("evidence", []))
 
     for reference in references:
         if reference.get("kind") == "github_url":
@@ -642,11 +887,32 @@ def _check_evidence_references(manifest: dict[str, Any], root: Path) -> list[Fin
         except PortfolioValidationError as exc:
             findings.append(Finding("local_evidence_path", "project-evidence.yaml", str(exc)))
             continue
-        candidate = root / relative
-        if not candidate.exists():
-            findings.append(Finding("local_evidence_missing", relative.as_posix(), "referenced evidence does not exist"))
+        try:
+            _resolve_in_root_regular_file(root, relative)
+        except PortfolioValidationError as exc:
+            findings.append(
+                Finding("local_evidence_missing", relative.as_posix(), str(exc))
+            )
 
-    for route in manifest.get("evidence_routes", []):
+    routes = manifest.get("evidence_routes", [])
+    route_ids = [
+        route.get("route_id") for route in routes if isinstance(route, dict)
+    ]
+    if (
+        len(route_ids) != len(routes)
+        or any(not isinstance(route_id, str) or not route_id for route_id in route_ids)
+        or len(route_ids) != len(set(route_ids))
+    ):
+        findings.append(
+            Finding(
+                "evidence_route_identity",
+                "project-evidence.yaml",
+                "evidence route IDs must be non-empty and unique",
+            )
+        )
+    for route in routes:
+        if not isinstance(route, dict):
+            continue
         for value in [route.get("start_at", ""), *route.get("then_read", [])]:
             if value.startswith("https://"):
                 continue
@@ -655,8 +921,12 @@ def _check_evidence_references(manifest: dict[str, Any], root: Path) -> list[Fin
             except PortfolioValidationError as exc:
                 findings.append(Finding("route_path", "project-evidence.yaml", str(exc)))
                 continue
-            if not (root / relative).exists():
-                findings.append(Finding("route_target_missing", relative.as_posix(), "route target does not exist"))
+            try:
+                _resolve_in_root_regular_file(root, relative)
+            except PortfolioValidationError as exc:
+                findings.append(
+                    Finding("route_target_missing", relative.as_posix(), str(exc))
+                )
     return findings
 
 
@@ -830,11 +1100,435 @@ def _check_doctrine_freeze(
     }
 
 
+def _check_marathon_freeze(
+    manifest: dict[str, Any], marathon_root: Path, validator_path: Path, root: Path
+) -> tuple[list[Finding], dict[str, int]]:
+    findings: list[Finding] = []
+    public = manifest.get("doctrine_marathon_specification", {})
+    managed_files = [
+        path
+        for path in marathon_root.rglob("*")
+        if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc"
+    ]
+    if len(managed_files) != public.get("release_file_count"):
+        findings.append(
+            Finding(
+                "marathon_release_count",
+                str(marathon_root.relative_to(root)),
+                "managed file count does not match public evidence",
+            )
+        )
+
+    revision = _load_yaml(marathon_root / "revision-manifest.yaml")
+    saved_path = marathon_root / "FINAL-SAVED-VERSION.yaml"
+    review_path = marathon_root / "checks/independent-review.json"
+    saved = _load_yaml(saved_path) if saved_path.is_file() else {}
+    receipt = _load_json(marathon_root / "checks/validation-receipt.json")
+    review = _load_json(review_path) if review_path.is_file() else {}
+    negative_cases = _load_json(
+        marathon_root / "checks/fixtures/negative-cases.json"
+    )
+    strict_isolated_catalog = _load_json(
+        marathon_root / "checks/fixtures/strict-isolated-cases.json"
+    )
+    aggregate_sentinel_catalog = _load_json(
+        marathon_root / "checks/fixtures/aggregate-sentinel-cases.json"
+    )
+    graph = _load_json(marathon_root / "graph/example-graph.json")
+    mesh = _load_json(marathon_root / "mesh/agent-mesh.v3.json")
+    assignments = _load_json(
+        marathon_root / "mesh/examples/design-time-independence-fixture.json"
+    )
+    qualification = _load_json(marathon_root / "mesh/qualification-registry.json")
+    triggers = _load_yaml(marathon_root / "firewall/trigger-matrix.yaml")
+    ledger = _load_json(marathon_root / "events/event-ledger.json")
+    evidence = _load_json(marathon_root / "evidence/evidence-registry.json")
+    debt = _load_json(marathon_root / "debt/initial-review-debt.json")
+    repairs = _load_yaml(marathon_root / "redteam/repair-ledger.yaml")
+    mistake = _load_yaml(
+        marathon_root / "redteam/ai-mistake-escalation-2026-08-27.yaml"
+    )
+
+    evidence_record_count = sum(
+        len(evidence.get(key, []))
+        for key in (
+            "source_records",
+            "translation_lineages",
+            "influence_hypotheses",
+            "historical_attributions",
+            "claim_records",
+            "evidence_review_receipts",
+        )
+    )
+    runtime_assignment_count = (
+        len(assignments.get("assignments", []))
+        if assignments.get("runtime_assignments") is True
+        else 0
+    )
+    if not isinstance(negative_cases, list) or not all(
+        isinstance(row, dict) and isinstance(row.get("case_id"), str)
+        for row in negative_cases
+    ):
+        raise PortfolioValidationError("V3 legacy negative-case catalog is malformed")
+    if not isinstance(strict_isolated_catalog, dict) or not isinstance(
+        strict_isolated_catalog.get("cases"), list
+    ):
+        raise PortfolioValidationError("V3 strict isolated-case catalog is malformed")
+    strict_isolated_cases = strict_isolated_catalog["cases"]
+    if not all(
+        isinstance(row, dict) and isinstance(row.get("case_id"), str)
+        for row in strict_isolated_cases
+    ):
+        raise PortfolioValidationError("V3 strict isolated-case catalog lacks stable case IDs")
+    if not isinstance(aggregate_sentinel_catalog, dict) or not isinstance(
+        aggregate_sentinel_catalog.get("cases"), list
+    ):
+        raise PortfolioValidationError("V3 aggregate-sentinel catalog is malformed")
+    aggregate_sentinel_cases = aggregate_sentinel_catalog["cases"]
+    if not all(
+        isinstance(row, dict)
+        and isinstance(row.get("case_id"), str)
+        and isinstance(row.get("source_case_id"), str)
+        for row in aggregate_sentinel_cases
+    ):
+        raise PortfolioValidationError("V3 aggregate-sentinel catalog lacks stable source bindings")
+    legacy_case_ids = [row["case_id"] for row in negative_cases]
+    strict_isolated_case_ids = [row["case_id"] for row in strict_isolated_cases]
+    aggregate_source_case_ids = [
+        row["source_case_id"] for row in aggregate_sentinel_cases
+    ]
+    if len(set(legacy_case_ids)) != len(legacy_case_ids):
+        raise PortfolioValidationError("V3 legacy negative-case catalog has duplicate IDs")
+    if len(set(strict_isolated_case_ids)) != len(strict_isolated_case_ids):
+        raise PortfolioValidationError("V3 strict isolated-case catalog has duplicate IDs")
+    if len(set(aggregate_source_case_ids)) != len(aggregate_source_case_ids) or not set(
+        aggregate_source_case_ids
+    ).issubset(legacy_case_ids):
+        raise PortfolioValidationError(
+            "V3 aggregate-sentinel cases must be unique named subsets of legacy cases"
+        )
+
+    comparisons = {
+        "payload_file_count": revision.get("payload_file_count"),
+        "administrative_file_count": len(
+            revision.get("administrative_files_excluded_from_payload_digest", [])
+        ),
+        "payload_digest": revision.get("payload_digest"),
+        "revision_manifest_file_digest": (
+            saved.get("revision_manifest_digest")
+            if saved
+            else "sha256:"
+            + hashlib.sha256(
+                _canonical_content_bytes(
+                    (marathon_root / "revision-manifest.yaml").read_bytes()
+                )
+            ).hexdigest()
+        ),
+        "final_saved_version_digest": saved.get("final_digest"),
+        "independent_review_status": (
+            review.get("result") if review else "pending_final_receipts"
+        ),
+        "independence_status": (
+            review.get("independence_status")
+            if review
+            else "pending_non_author_read_only_review"
+        ),
+        "role_count": len(mesh.get("roles", [])),
+        "trigger_count": len(triggers.get("triggers", [])),
+        "assignment_fixture_count": len(assignments.get("assignments", [])),
+        "runtime_assignment_count": runtime_assignment_count,
+        "expert_pack_count": len(qualification.get("expert_packs", [])),
+        "qualification_receipt_count": len(
+            qualification.get("qualification_receipts", [])
+        ),
+        "correlation_acceptance_count": len(
+            qualification.get("correlation_acceptance_receipts", [])
+        ),
+        "event_count": len(ledger.get("events", [])),
+        "evidence_record_count": evidence_record_count,
+        "graph_node_count": len(graph.get("nodes", [])),
+        "graph_edge_count": len(graph.get("edges", [])),
+        "legacy_component_case_count": len(negative_cases),
+        "strict_isolated_component_case_count": len(strict_isolated_cases),
+        "component_only_executable_case_count": len(negative_cases)
+        + len(strict_isolated_cases),
+        "aggregate_sentinel_subset_case_count": len(aggregate_sentinel_cases),
+        "negative_case_catalog_count": len(negative_cases),
+        "isolated_regression_case_count": len(strict_isolated_cases),
+        "negative_case_count": len(negative_cases) + len(strict_isolated_cases),
+        "open_expert_review_debt": sum(
+            1 for row in debt if row.get("status") == "open"
+        ),
+        "mistake_receipt_count": len(
+            list((marathon_root / "redteam").glob("ai-mistake-escalation-*.yaml"))
+        ),
+        "corrective_action_count": len(
+            mistake.get("capa", {}).get("corrective_actions", [])
+        ),
+        "preventive_action_count": len(
+            mistake.get("capa", {}).get("preventive_actions", [])
+        ),
+        "repair_ledger_entry_count": len(repairs.get("repairs", [])),
+    }
+    for field, observed in comparisons.items():
+        if public.get(field) != observed:
+            findings.append(
+                Finding(
+                    "marathon_freeze_value",
+                    "project-evidence.yaml",
+                    f"{field} disagrees with frozen V3 evidence",
+                )
+            )
+
+    expected_evidence_targets = [
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-catalog.yaml",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/examples/design-time-independence-fixture.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-registry.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-registry.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-review-receipt.schema.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/action-checker-requirements.yaml",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/prompt-neutrality-contract.yaml",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/fresh-context-verification-receipt.schema.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/examples/initial-weekly-fresh-context-gate.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/human-identity-authority-root.yaml",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/authority-registry.yaml",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/events/event-ledger.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/repair-ledger.yaml",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/ai-mistake-escalation-2026-08-27.yaml",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/negative-cases.json",
+        *MARATHON_HARNESS_EVIDENCE_TARGETS,
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/revision-manifest.yaml",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/public-release-authorization.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validation-receipt.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/independent-review.json",
+        "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/FINAL-SAVED-VERSION.yaml",
+    ]
+    observed_evidence_targets = [
+        row.get("target")
+        for row in public.get("evidence", [])
+        if isinstance(row, dict)
+    ]
+    if observed_evidence_targets != expected_evidence_targets:
+        findings.append(
+            Finding(
+                "marathon_public_evidence_route",
+                "project-evidence.yaml",
+                "V3 evidence targets must equal the exact public audit set",
+            )
+        )
+
+    expected_route = {
+        "route_id": "doctrine-marathon-v3-audit",
+        "question": (
+            "How can an independent reviewer reproduce the Doctrine Marathon V3 "
+            "control, non-runtime, CAPA, and frozen-release claims?"
+        ),
+        "start_at": (
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/"
+            "doctrine-marathon-v3/README.md"
+        ),
+        "then_read": [
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-catalog.yaml",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/examples/design-time-independence-fixture.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-registry.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-registry.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-review-receipt.schema.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/action-checker-requirements.yaml",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/prompt-neutrality-contract.yaml",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/fresh-context-verification-receipt.schema.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/examples/initial-weekly-fresh-context-gate.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/human-identity-authority-root.yaml",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/authority-registry.yaml",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/events/event-ledger.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/repair-ledger.yaml",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/ai-mistake-escalation-2026-08-27.yaml",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/negative-cases.json",
+            *MARATHON_HARNESS_EVIDENCE_TARGETS,
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/revision-manifest.yaml",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/public-release-authorization.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validation-receipt.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/independent-review.json",
+            "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/FINAL-SAVED-VERSION.yaml",
+        ],
+    }
+    matching_routes = [
+        row
+        for row in manifest.get("evidence_routes", [])
+        if isinstance(row, dict)
+        and row.get("route_id") == "doctrine-marathon-v3-audit"
+    ]
+    if matching_routes != [expected_route]:
+        findings.append(
+            Finding(
+                "marathon_public_evidence_route",
+                "project-evidence.yaml",
+                "V3 audit route is missing or not exact",
+            )
+        )
+
+    required_commands = {
+        "python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validate_doctrine_marathon.py --mode final",
+        "python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_validate_doctrine_marathon.py",
+        "python -B docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/run_adversarial_harness.py",
+        "python -B -m pytest -q --assert=plain -p no:cacheprovider docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_run_adversarial_harness.py",
+    }
+    observed_commands = set(manifest.get("verification", {}).get("commands", []))
+    if not required_commands.issubset(observed_commands):
+        findings.append(
+            Finding(
+                "marathon_public_validation_route",
+                "project-evidence.yaml",
+                "V3 validation commands are missing from the public replay route",
+            )
+        )
+
+    expected_false = (
+        "cross_provider_verified",
+        "runtime_activation_authorized",
+        "research_execution_authorized",
+        "source_ingestion_authorized",
+        "substantive_doctrine_implementation_authorized",
+        "completed_doctrine_corpus",
+        "qualified_theological_authority",
+    )
+    for field in expected_false:
+        if public.get(field) is not False:
+            findings.append(
+                Finding(
+                    "marathon_authority_boundary",
+                    "project-evidence.yaml",
+                    f"{field} must remain false",
+                )
+            )
+    design_time_flags = {
+        "runtime_assignments": assignments.get("runtime_assignments"),
+        "qualification_runtime_records": qualification.get("runtime_records"),
+        "event_runtime_records": ledger.get("runtime_events"),
+        "evidence_runtime_records": evidence.get("runtime_records"),
+    }
+    for field, observed in design_time_flags.items():
+        if observed is not False:
+            findings.append(
+                Finding(
+                    "marathon_runtime_nonclaim",
+                    "project-evidence.yaml",
+                    f"{field} must remain false",
+                )
+            )
+    if public.get("maturity") != "blocked_specification_only":
+        findings.append(
+            Finding(
+                "marathon_maturity",
+                "project-evidence.yaml",
+                "V3 maturity must remain blocked_specification_only until the aggregate exact-oracle migration is complete and independently reviewed",
+            )
+        )
+
+    expected_oracle_controls = {
+        "input_snapshot_bound": True,
+        "duplicate_structured_keys_rejected": True,
+        "ordered_duplicate_findings_preserved": True,
+        "alternate_root_isolated": True,
+        "single_receipt_read": True,
+        "sentinel_count": 5,
+        "sentinel_ids": [
+            "portfolio-v3-maturity-overclaim",
+            "portfolio-v3-migration-gate-erasure",
+            "portfolio-v3-authority-elevation",
+            "portfolio-v3-required-route-omission",
+            "portfolio-release-chain-drift",
+        ],
+    }
+    if manifest.get("verification", {}).get("oracle_controls") != expected_oracle_controls:
+        findings.append(
+            Finding(
+                "portfolio_oracle_contract",
+                "project-evidence.yaml",
+                "portfolio oracle controls and five exact sentinels are not bound",
+            )
+        )
+    if public.get("declared_final_blocker") != DECLARED_V3_FINAL_BLOCKER:
+        findings.append(
+            Finding(
+                "marathon_declared_blocker",
+                "project-evidence.yaml",
+                "V3 declared final blocker must equal the aggregate exact-oracle release gate",
+            )
+        )
+    if receipt.get("result") != "pass" or receipt.get("mode") != "prefinal":
+        findings.append(
+            Finding(
+                "marathon_receipt",
+                "checks/validation-receipt.json",
+                "unexpected V3 final receipt result",
+            )
+        )
+
+    module = _load_marathon_validator(validator_path)
+    try:
+        marathon_failures, metrics = module.validate_all("final")
+    except Exception as exc:
+        raise PortfolioValidationError(
+            f"marathon validator failed to execute: {exc}"
+        ) from exc
+    if not _v3_final_replay_is_exact(marathon_failures):
+        findings.append(
+            Finding(
+                "marathon_final_replay",
+                str(validator_path.relative_to(root)),
+                "final replay must contain exactly the declared aggregate exact-oracle release gate and no unexpected findings",
+            )
+        )
+    if metrics.get("payload_file_count") != public.get("payload_file_count"):
+        findings.append(
+            Finding(
+                "marathon_metric",
+                "project-evidence.yaml",
+                "payload_file_count disagrees with static replay",
+            )
+        )
+    metric_comparisons = {
+        "assignment_fixture_count": metrics.get("assignment_fixture_count"),
+        "event_count": metrics.get("event_count"),
+        "evidence_record_count": metrics.get("evidence_record_count"),
+        "graph_node_count": metrics.get("graph_node_count"),
+        "graph_edge_count": metrics.get("graph_edge_count"),
+        "open_expert_review_debt": metrics.get("open_expert_review_debt"),
+    }
+    for field, observed in metric_comparisons.items():
+        if public.get(field) != observed:
+            findings.append(
+                Finding(
+                    "marathon_metric",
+                    "project-evidence.yaml",
+                    f"{field} disagrees with final static replay",
+                )
+            )
+    return findings, {
+        "marathon_managed_files": len(managed_files),
+        "marathon_static_failures": len(marathon_failures),
+        "marathon_unexpected_final_findings": int(
+            not _v3_final_replay_is_exact(marathon_failures)
+        ),
+        "marathon_component_source_case_count": len(negative_cases)
+        + len(strict_isolated_cases),
+        "marathon_aggregate_sentinel_subset_case_count": len(
+            aggregate_sentinel_cases
+        ),
+    }
+
+
 def _load_json_at_commit(root: Path, commit: str, path: str) -> dict[str, Any]:
     raw = _git_object_bytes(root, commit, path)
     try:
-        value = json.loads(raw.decode("utf-8"))
-    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        value = json.loads(
+            raw.decode("utf-8"),
+            object_pairs_hook=_reject_duplicate_object_pairs,
+        )
+    except (UnicodeDecodeError, json.JSONDecodeError, _DuplicateKeyError) as exc:
         raise PortfolioValidationError(
             f"cannot parse historical JSON {commit}:{path}: {exc}"
         ) from exc
@@ -892,6 +1586,65 @@ def _scan_release_snapshot(
         scanned += 1
         findings.extend(scan_candidate_added_text(path, text, baseline_text))
     return findings, scanned, skipped
+
+
+def _scan_content_history(
+    root: Path,
+    base_commit: str,
+    content_chain: Iterable[str],
+) -> list[Finding]:
+    """Scan every changed text blob in publishable history, not only the final tree."""
+
+    findings: list[Finding] = []
+    parent = base_commit
+    baseline_cache: dict[str, str | None] = {}
+    for commit in content_chain:
+        entries = _git_delta_entries(root, parent, commit)
+        for entry in entries:
+            path = entry.path
+            if PurePosixPath(path).suffix.lower() not in TEXT_SUFFIXES:
+                continue
+            raw = _git_object_bytes(root, commit, path)
+            try:
+                text = raw.decode("utf-8")
+            except UnicodeDecodeError:
+                findings.append(
+                    Finding(
+                        "release_scope_history_privacy",
+                        path,
+                        f"text blob at content commit {commit[:12]} is not valid UTF-8",
+                    )
+                )
+                continue
+            if path not in baseline_cache:
+                baseline_raw = _git_object_bytes_if_present(root, base_commit, path)
+                if baseline_raw is None:
+                    baseline_cache[path] = ""
+                else:
+                    try:
+                        baseline_cache[path] = baseline_raw.decode("utf-8")
+                    except UnicodeDecodeError:
+                        baseline_cache[path] = None
+            baseline_text = baseline_cache[path]
+            if baseline_text is None:
+                findings.append(
+                    Finding(
+                        "release_scope_history_privacy",
+                        path,
+                        "baseline text is not valid UTF-8, so history comparison is unavailable",
+                    )
+                )
+                continue
+            for finding in scan_candidate_added_text(path, text, baseline_text):
+                findings.append(
+                    Finding(
+                        "release_scope_history_privacy",
+                        path,
+                        f"{finding.rule} at content commit {commit[:12]}: {finding.detail}",
+                    )
+                )
+        parent = commit
+    return findings
 
 
 def _composed_snapshot_drift(
@@ -1715,12 +2468,490 @@ def _check_chained_release_scope(
     }
 
 
+def _check_prior_release_003(
+    scope: dict[str, Any], root: Path
+) -> tuple[list[Finding], list[str]]:
+    """Replay the exact integrated Release 003 anchor used by Release 004."""
+
+    findings: list[Finding] = []
+    prior = scope.get("prior_release", {})
+    receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    exact = {
+        "release_id": "LOGOS-PORTFOLIO-RELEASE-003",
+        "base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+        "content_head_commit": "6bb775321f93fe97dff5a90a3c3bdca42f42edfb",
+        "content_tree_sha": "a9307538e127d87fdc987f6c86921401679286e5",
+        "receipt_commit": "424cd882da0ac0f8271254b8c27149acb1f5b571",
+        "merge_commit": "f320d8430c10f82d4fdd80567c4d533fa90c25d5",
+        "receipt_tree_sha": "565e9b71faff3f7296d35e310ad3c31110403df9",
+        "merge_tree_sha": "565e9b71faff3f7296d35e310ad3c31110403df9",
+        "receipt_raw_sha256": "sha256:448449c335e7c67295f94195f415b1b3a0952447f1a6057ce1545a2d36f17851",
+        "receipt_digest": "sha256:35e046eae2b684c2196bb44dc299e0a8e0882a399738360f25f98156821f2d57",
+        "manifest_raw_sha256": "sha256:fe201b881d8b5b62fdb9d862db43eea1b8ae7f4969294355ebbaf50a535b664f",
+        "release_chain_digest": "sha256:e3ad5952f884602e472c4070754141afa27a517c090f890eba0be91c3e075d31",
+        "content_path_count": 85,
+        "total_release_path_count": 86,
+        "fingerprinted_content_path_count": 85,
+        "added_path_count": 64,
+        "modified_path_count": 21,
+        "deleted_path_count": 0,
+        "renamed_path_count": 0,
+        "content_digest": "sha256:7b7a4885889ee32ef38d83cbb1008204c990d34cfce0c7decdfa3fc923be16ab",
+        "protected_drift_to_current_base_count": 0,
+    }
+    for field, expected in exact.items():
+        if prior.get(field) != expected:
+            findings.append(
+                Finding(
+                    "release_scope_prior_receipt",
+                    receipt_path,
+                    f"Release 003 {field} is not the immutable anchor",
+                )
+            )
+    if prior.get("canonical_digest_algorithm") != scope.get(
+        "canonical_digest_algorithm"
+    ):
+        findings.append(
+            Finding(
+                "release_scope_prior_receipt",
+                receipt_path,
+                "Release 003 and Release 004 fingerprint algorithms differ",
+            )
+        )
+
+    prior_base = exact["base_commit"]
+    prior_content = exact["content_head_commit"]
+    prior_receipt = exact["receipt_commit"]
+    prior_merge = exact["merge_commit"]
+    entries = _git_delta_entries(root, prior_base, prior_content)
+    receipt_entries = [entry for entry in entries if entry.path == receipt_path]
+    content_entries = [entry for entry in entries if entry.path != receipt_path]
+    content_paths = [entry.path for entry in content_entries]
+    release_paths = sorted({*content_paths, receipt_path})
+    operations = Counter(entry.status for entry in content_entries)
+    if (
+        receipt_entries != [GitDeltaEntry("M", receipt_path)]
+        or len(content_paths) != exact["content_path_count"]
+        or len(release_paths) != exact["total_release_path_count"]
+        or operations["A"] != exact["added_path_count"]
+        or operations["M"] != exact["modified_path_count"]
+        or _git_path_fingerprint(root, prior_content, content_paths)
+        != exact["content_digest"]
+        or _git_tree_sha(root, prior_content) != exact["content_tree_sha"]
+    ):
+        findings.append(
+            Finding(
+                "release_scope_prior_replay",
+                receipt_path,
+                "Release 003 path set, operations, content digest, or tree did not replay",
+            )
+        )
+    if (
+        _git_parents(root, prior_receipt) != [prior_content]
+        or _git_delta_entries(root, prior_content, prior_receipt)
+        != [GitDeltaEntry("M", receipt_path)]
+        or len(_git_parents(root, prior_merge)) != 2
+        or _git_parents(root, prior_merge)[1] != prior_receipt
+        or _git_tree_sha(root, prior_receipt) != exact["receipt_tree_sha"]
+        or _git_tree_sha(root, prior_merge) != exact["merge_tree_sha"]
+    ):
+        findings.append(
+            Finding(
+                "release_scope_prior_chain",
+                receipt_path,
+                "Release 003 direct receipt and normal merge chain did not replay",
+            )
+        )
+    prior_raw = _git_object_bytes(root, prior_receipt, receipt_path)
+    prior_payload = _load_json_at_commit(root, prior_receipt, receipt_path)
+    prior_chain = prior_payload.get("release_chain", {})
+    prior_active = prior_chain.get("active_increment", {})
+    manifest_raw = _git_object_bytes(
+        root,
+        prior_receipt,
+        "docs/portfolio/logos-trust-layer/project-evidence.yaml",
+    )
+    if (
+        "sha256:" + hashlib.sha256(prior_raw).hexdigest()
+        != exact["receipt_raw_sha256"]
+        or prior_payload.get("receipt_digest") != exact["receipt_digest"]
+        or prior_payload.get("receipt_digest")
+        != _canonical_digest(prior_payload, ("receipt_digest",))
+        or _canonical_digest(prior_chain) != exact["release_chain_digest"]
+        or "sha256:" + hashlib.sha256(manifest_raw).hexdigest()
+        != exact["manifest_raw_sha256"]
+        or prior_payload.get("schema_version")
+        != "logos.portfolio_validation_receipt.v2"
+        or prior_payload.get("receipt_id") != exact["release_id"]
+    ):
+        findings.append(
+            Finding(
+                "release_scope_prior_receipt",
+                receipt_path,
+                "Release 003 receipt, manifest, chain digest, or identity drifted",
+            )
+        )
+    prior_active_expected = {
+        "branch_base_commit": prior_base,
+        "content_head_commit": prior_content,
+        "content_tree_sha": exact["content_tree_sha"],
+        "content_path_count": exact["content_path_count"],
+        "receipt_path_count": 1,
+        "total_release_path_count": exact["total_release_path_count"],
+        "fingerprinted_content_path_count": exact["fingerprinted_content_path_count"],
+        "added_path_count": exact["added_path_count"],
+        "modified_path_count": exact["modified_path_count"],
+        "deleted_path_count": 0,
+        "renamed_path_count": 0,
+        "canonical_digest_algorithm": scope.get("canonical_digest_algorithm"),
+        "content_digest": exact["content_digest"],
+    }
+    if prior_active != prior_active_expected:
+        findings.append(
+            Finding(
+                "release_scope_prior_receipt",
+                receipt_path,
+                "Release 003 active increment is not exact",
+            )
+        )
+    if _composed_snapshot_drift(
+        root, prior_merge, prior_content, prior_receipt, release_paths
+    ):
+        findings.append(
+            Finding(
+                "release_scope_prior_merge_tree",
+                receipt_path,
+                "Release 003 merge bytes differ from its reviewed composition",
+            )
+        )
+    return findings, release_paths
+
+
+def _release_004_content_entries(
+    scope: dict[str, Any], root: Path, content_head: str
+) -> tuple[list[Finding], list[GitDeltaEntry], list[str]]:
+    findings: list[Finding] = []
+    receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    base = scope.get("base_commit", "")
+    content_chain: list[str] = []
+    try:
+        content_chain = _git_merge_free_content_chain(root, base, content_head)
+    except PortfolioValidationError as exc:
+        findings.append(
+            Finding(
+                "release_scope_content_chain",
+                receipt_path,
+                str(exc),
+            )
+        )
+    entries = _git_delta_entries(root, base, content_head)
+    if (
+        scope.get("content_history_mode")
+        != "exact_merge_free_first_parent_chain"
+        or scope.get("content_commit_count") != len(content_chain)
+    ):
+        findings.append(
+            Finding(
+                "release_scope_content_chain",
+                "project-evidence.yaml",
+                "Release 004 content-history mode or commit count does not replay exactly",
+            )
+        )
+    if content_chain:
+        try:
+            _validate_content_history_scope(root, base, content_chain, entries)
+        except PortfolioValidationError as exc:
+            findings.append(
+                Finding(
+                    "release_scope_history_scope",
+                    receipt_path,
+                    str(exc),
+                )
+            )
+    if any(entry.path == receipt_path for entry in entries):
+        findings.append(
+            Finding(
+                "release_scope_content_receipt",
+                receipt_path,
+                "Release 004 content checkpoint must retain the prior receipt unchanged",
+            )
+        )
+    operations = Counter(entry.status for entry in entries)
+    observed = {
+        "current_content_path_count": len(entries),
+        "total_unique_path_count": len(entries) + 1,
+        "receipt_excluded_path_count": len(entries),
+        "added_path_count": operations["A"],
+        "modified_path_count": operations["M"],
+        "deleted_path_count": 0,
+        "renamed_path_count": 0,
+    }
+    for field, value in observed.items():
+        if scope.get(field) != value:
+            findings.append(
+                Finding(
+                    "release_scope_path_count",
+                    "project-evidence.yaml",
+                    f"Release 004 {field} does not match the exact Git delta",
+                )
+            )
+    return findings, entries, content_chain
+
+
+def _check_release_004_content_checkpoint(
+    manifest: dict[str, Any], receipt: dict[str, Any], root: Path
+) -> tuple[list[Finding], dict[str, int]]:
+    findings: list[Finding] = []
+    scope = manifest.get("release_scope", {})
+    prior_findings, _ = _check_prior_release_003(scope, root)
+    findings.extend(prior_findings)
+    head = _git_revision(root, "HEAD")
+    content_findings, entries, content_chain = _release_004_content_entries(
+        scope, root, head
+    )
+    findings.extend(content_findings)
+    if content_chain:
+        findings.extend(
+            _scan_content_history(root, scope.get("base_commit", ""), content_chain)
+        )
+    prior_receipt = scope.get("prior_release", {}).get("receipt_commit", "")
+    receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    if (
+        receipt.get("schema_version") != "logos.portfolio_validation_receipt.v2"
+        or receipt.get("receipt_id") != "LOGOS-PORTFOLIO-RELEASE-003"
+        or _git_object_bytes(root, head, receipt_path)
+        != _git_object_bytes(root, prior_receipt, receipt_path)
+    ):
+        findings.append(
+            Finding(
+                "release_scope_content_receipt",
+                receipt_path,
+                "content checkpoint does not preserve the exact Release 003 receipt",
+            )
+        )
+    paths = [entry.path for entry in entries]
+    release_paths = sorted({*paths, receipt_path})
+    scan_findings, scanned, skipped = _scan_release_snapshot(
+        root, scope.get("base_commit", ""), head, prior_receipt, release_paths
+    )
+    findings.extend(scan_findings)
+    return findings, {
+        "release_unique_paths": len(release_paths),
+        "release_fingerprinted_paths": len(paths),
+        "release_text_files_scanned": scanned,
+        "release_text_files_skipped": skipped,
+    }
+
+
+def _check_release_004_finalized(
+    manifest: dict[str, Any], receipt: dict[str, Any], root: Path
+) -> tuple[list[Finding], dict[str, int]]:
+    findings: list[Finding] = []
+    scope = manifest.get("release_scope", {})
+    chain = receipt.get("release_chain", {})
+    active = chain.get("active_increment", {})
+    receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
+    prior_findings, prior_paths = _check_prior_release_003(scope, root)
+    findings.extend(prior_findings)
+    if (
+        chain.get("mode") != "merge_free_first_parent_incremental_v3"
+        or chain.get("receipt_path") != receipt_path
+        or chain.get("prior_release") != scope.get("prior_release")
+        or chain.get("historical_v1")
+        != {
+            "reference": "project-evidence.yaml#/release_scope/historical_v1",
+            "status": "historical_evidence_only",
+        }
+    ):
+        findings.append(
+            Finding(
+                "release_scope_receipt",
+                receipt_path,
+                "Release 004 mode, path, or prior anchors are invalid",
+            )
+        )
+    content_head = active.get("content_head_commit")
+    if not isinstance(content_head, str) or re.fullmatch(r"[0-9a-f]{40}", content_head) is None:
+        findings.append(Finding("release_scope_head", receipt_path, "content head is not exact"))
+        return findings, {
+            "release_unique_paths": 0,
+            "release_fingerprinted_paths": 0,
+            "release_text_files_scanned": 0,
+            "release_text_files_skipped": 0,
+        }
+    content_findings, entries, content_chain = _release_004_content_entries(
+        scope, root, content_head
+    )
+    findings.extend(content_findings)
+    if content_chain:
+        findings.extend(
+            _scan_content_history(root, scope.get("base_commit", ""), content_chain)
+        )
+        findings.extend(
+            _check_receipt_content_chain(active, scope, content_chain, receipt_path)
+        )
+    paths = [entry.path for entry in entries]
+    release_paths = sorted({*paths, receipt_path})
+    active_expected = {
+        "branch_base_commit": scope.get("base_commit"),
+        "content_head_commit": content_head,
+        "content_tree_sha": _git_tree_sha(root, content_head),
+        "content_history_mode": scope.get("content_history_mode"),
+        "content_commit_count": len(content_chain),
+        "content_commit_chain": content_chain,
+        "content_path_count": len(paths),
+        "receipt_path_count": 1,
+        "total_release_path_count": len(release_paths),
+        "fingerprinted_content_path_count": len(paths),
+        "added_path_count": Counter(entry.status for entry in entries)["A"],
+        "modified_path_count": Counter(entry.status for entry in entries)["M"],
+        "deleted_path_count": 0,
+        "renamed_path_count": 0,
+        "canonical_digest_algorithm": scope.get("canonical_digest_algorithm"),
+        "content_digest": _git_path_fingerprint(root, content_head, paths),
+    }
+    if active != active_expected:
+        findings.append(
+            Finding(
+                "release_scope_digest",
+                receipt_path,
+                "Release 004 active increment did not replay exactly",
+            )
+        )
+    head = _git_revision(root, "HEAD")
+    receipt_commit = _git_latest_path_commit(root, head, receipt_path)
+    if (
+        _git_parents(root, receipt_commit) != [content_head]
+        or _git_delta_entries(root, content_head, receipt_commit)
+        != [GitDeltaEntry("M", receipt_path)]
+        or not _git_is_ancestor(root, receipt_commit, head)
+    ):
+        findings.append(
+            Finding(
+                "release_scope_finalization",
+                receipt_path,
+                "Release 004 finalization must be a retained receipt-only direct child",
+            )
+        )
+    release_anchor: str | None = receipt_commit
+    if head != receipt_commit:
+        try:
+            merge_candidates = subprocess.check_output(
+                [
+                    "git",
+                    "rev-list",
+                    "--merges",
+                    "--ancestry-path",
+                    f"{receipt_commit}..{head}",
+                ],
+                cwd=root,
+                text=True,
+                stderr=subprocess.PIPE,
+            ).splitlines()
+        except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+            raise PortfolioValidationError(
+                f"cannot locate Release 004 merge anchor: {exc}"
+            ) from exc
+        release_anchor = next(
+            (
+                commit
+                for commit in merge_candidates
+                if len(_git_parents(root, commit)) == 2
+                and _git_parents(root, commit)[1] == receipt_commit
+            ),
+            None,
+        )
+        if release_anchor is None:
+            findings.append(
+                Finding(
+                    "release_scope_finalization",
+                    receipt_path,
+                    "HEAD does not retain the normal two-parent Release 004 merge",
+                )
+            )
+        else:
+            if _composed_snapshot_drift(
+                root, release_anchor, content_head, receipt_commit, release_paths
+            ):
+                findings.append(
+                    Finding(
+                        "release_scope_merge_tree",
+                        receipt_path,
+                        "Release 004 merge bytes differ from the reviewed composition",
+                    )
+                )
+            protected = set(release_paths) | set(prior_paths)
+            drift = sorted(
+                {entry.path for entry in _git_delta_entries(root, release_anchor, head)}
+                & protected
+            )
+            if drift:
+                findings.append(
+                    Finding(
+                        "release_scope_post_merge_drift",
+                        receipt_path,
+                        f"{len(drift)} current or prior release paths changed without a fresh receipt",
+                    )
+                )
+    privacy_expected = {
+        "mode": "exact_base_candidate_added_occurrences",
+        "baseline_commit": scope.get("base_commit"),
+        "content_source": "active_increment.content_head_commit",
+        "receipt_source": "derived_latest_receipt_commit",
+        "candidate_added_finding_count": 0,
+        "invalid_utf8_count": 0,
+        "repository_wide_privacy_pass_claimed": False,
+    }
+    external_expected = {
+        "baseline_commit": scope.get("base_commit"),
+        "path": "tests/test_machine_citation_artifacts.py",
+        "rule": "file_uri",
+        "occurrence_count": 3,
+        "integrated_via_pr": 120,
+        "disposition": "unresolved_preexisting_not_waived",
+    }
+    if chain.get("privacy") != privacy_expected:
+        findings.append(Finding("release_scope_privacy_contract", receipt_path, "privacy boundary drifted"))
+    if chain.get("external_baseline_finding") != external_expected:
+        findings.append(Finding("release_scope_external_baseline", receipt_path, "external baseline record drifted"))
+    external_text = _git_object_bytes(
+        root, scope.get("base_commit", ""), external_expected["path"]
+    ).decode("utf-8")
+    if len(FILE_URI.findall(external_text)) != external_expected["occurrence_count"]:
+        findings.append(Finding("release_scope_external_baseline", external_expected["path"], "baseline occurrence count drifted"))
+    findings.extend(
+        _check_historical_v1_evidence(
+            scope, root, scope.get("prior_release", {}).get("content_head_commit", "")
+        )
+    )
+    scan_findings, scanned, skipped = _scan_release_snapshot(
+        root,
+        scope.get("base_commit", ""),
+        content_head,
+        receipt_commit,
+        release_paths,
+    )
+    findings.extend(scan_findings)
+    if skipped != 0:
+        findings.append(Finding("release_scope_privacy_contract", receipt_path, "invalid UTF-8 count differs from zero"))
+    return findings, {
+        "release_unique_paths": len(release_paths),
+        "release_fingerprinted_paths": len(paths),
+        "release_text_files_scanned": scanned,
+        "release_text_files_skipped": skipped,
+    }
+
+
 def _check_release_scope(
     manifest: dict[str, Any], receipt: dict[str, Any], root: Path
 ) -> tuple[list[Finding], dict[str, int]]:
     findings: list[Finding] = []
     scope = manifest.get("release_scope", {})
     if scope.get("status") == "chained_incremental_release_candidate":
+        if scope.get("release_id") == "LOGOS-PORTFOLIO-RELEASE-004":
+            if receipt.get("schema_version") == "logos.portfolio_validation_receipt.v2":
+                return _check_release_004_content_checkpoint(manifest, receipt, root)
+            return _check_release_004_finalized(manifest, receipt, root)
         return _check_chained_release_scope(manifest, receipt, root)
     full = receipt.get("full_pr_composite_scope", {})
     post_v1 = receipt.get("post_v1_candidate_slice", {})
@@ -2083,7 +3314,23 @@ def _check_navigation(root: Path) -> list[Finding]:
 def _check_receipt_payload(receipt: dict[str, Any]) -> list[Finding]:
     relative = PORTFOLIO_RECEIPT_RELATIVE
     findings: list[Finding] = []
-    if receipt.get("schema_version") == "logos.portfolio_validation_receipt.v2":
+    schema_version = receipt.get("schema_version")
+    if schema_version == "logos.portfolio_validation_receipt.v3":
+        required = {
+            "schema_version": "logos.portfolio_validation_receipt.v3",
+            "receipt_id": "LOGOS-PORTFOLIO-RELEASE-004",
+            "status": "pass_scoped_incremental_release_candidate",
+            "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
+            "doctrine_mesh_status": "validated_specification_only",
+            "doctrine_marathon_status": "blocked_specification_only",
+            "doctrine_marathon_declared_final_blocker": (
+                DECLARED_V3_FINAL_BLOCKER
+            ),
+            "doctrine_marathon_independence_status": (
+                "non_author_read_only_cross_provider_unverified"
+            ),
+        }
+    elif schema_version == "logos.portfolio_validation_receipt.v2":
         required = {
             "schema_version": "logos.portfolio_validation_receipt.v2",
             "receipt_id": "LOGOS-PORTFOLIO-RELEASE-003",
@@ -2108,6 +3355,8 @@ def _check_receipt_payload(receipt: dict[str, Any]) -> list[Finding]:
         "completed_doctrine_corpus": "completed doctrine corpus",
         "qualified_theological_authority_granted": "qualified theological authority",
     }
+    if schema_version == "logos.portfolio_validation_receipt.v3":
+        authority_fields["research_execution_authorized"] = "research execution"
     for field, label in authority_fields.items():
         if receipt.get(field) is not False:
             findings.append(
@@ -2126,23 +3375,128 @@ def _check_receipt(root: Path) -> list[Finding]:
     return _check_receipt_payload(_load_json(root / PORTFOLIO_RECEIPT_RELATIVE))
 
 
-def validate_repository(root: Path = ROOT) -> ValidationResult:
+def _validation_input_snapshot(
+    root: Path, manifest: dict[str, Any]
+) -> tuple[str, int]:
+    """Fingerprint every local file the aggregate validator can consult."""
+
+    relative_paths = {
+        *EXPECTED_PUBLIC_FILES,
+        *EXPECTED_NAVIGATION_FILES,
+        PORTFOLIO_RECEIPT_RELATIVE.as_posix(),
+    }
+    references: list[dict[str, Any]] = []
+    for repository in manifest.get("repositories", []):
+        if isinstance(repository, dict):
+            references.extend(repository.get("evidence", []))
+    for capability in manifest.get("capabilities", []):
+        if isinstance(capability, dict):
+            references.extend(capability.get("evidence", []))
+    references.extend(
+        manifest.get("doctrine_mesh_specification", {}).get("evidence", [])
+    )
+    references.extend(
+        manifest.get("doctrine_marathon_specification", {}).get("evidence", [])
+    )
+    for reference in references:
+        if not isinstance(reference, dict) or reference.get("kind") == "github_url":
+            continue
+        try:
+            relative_paths.add(
+                _safe_repo_path(reference.get("target", "")).as_posix()
+            )
+        except PortfolioValidationError:
+            continue
+    for route in manifest.get("evidence_routes", []):
+        if not isinstance(route, dict):
+            continue
+        for value in [route.get("start_at", ""), *route.get("then_read", [])]:
+            if isinstance(value, str) and value.startswith("https://"):
+                continue
+            try:
+                relative_paths.add(_safe_repo_path(value).as_posix())
+            except PortfolioValidationError:
+                continue
+    for subtree in (
+        Path(
+            "docs/roadmap/logos-stewardship-architecture-buildout/"
+            "revisions/doctrine-mesh-v2"
+        ),
+        Path(
+            "docs/roadmap/logos-stewardship-architecture-buildout/"
+            "revisions/doctrine-marathon-v3"
+        ),
+    ):
+        subtree_root = root / subtree
+        if not subtree_root.is_dir():
+            continue
+        for path in subtree_root.rglob("*"):
+            if (
+                path.is_file()
+                and "__pycache__" not in path.parts
+                and path.suffix != ".pyc"
+            ):
+                relative_paths.add(path.relative_to(root).as_posix())
+
+    rows: list[dict[str, Any]] = []
+    for relative in sorted(relative_paths):
+        path = root / relative
+        is_junction = bool(getattr(path, "is_junction", lambda: False)())
+        if path.is_symlink() or is_junction:
+            rows.append({"path": relative, "state": "linked"})
+        elif not path.is_file():
+            rows.append({"path": relative, "state": "missing_or_nonregular"})
+        else:
+            try:
+                raw = path.read_bytes()
+            except OSError as exc:
+                raise PortfolioValidationError(
+                    f"cannot snapshot validation input {relative}: {exc}"
+                ) from exc
+            rows.append(
+                {
+                    "path": relative,
+                    "state": "regular",
+                    "size": len(raw),
+                    "sha256": hashlib.sha256(raw).hexdigest(),
+                }
+            )
+    digest = hashlib.sha256(
+        json.dumps(rows, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    return f"sha256:{digest}", len(rows)
+
+
+def _validate_loaded_repository(
+    root: Path,
+    *,
+    manifest: dict[str, Any],
+    schema: dict[str, Any],
+    portfolio_receipt: dict[str, Any],
+) -> ValidationResult:
+    """Run the one aggregate oracle over already loaded, attempt-local inputs."""
+
     root = root.resolve()
     packet_root = root / "docs/portfolio/logos-trust-layer"
     manifest_path = packet_root / "project-evidence.yaml"
-    schema_path = packet_root / "project-evidence.schema.json"
     doctrine_root = root / "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2"
     doctrine_validator_path = doctrine_root / "checks/validate_doctrine_mesh.py"
+    marathon_root = root / "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3"
+    marathon_validator_path = marathon_root / "checks/validate_doctrine_marathon.py"
 
     for relative in EXPECTED_PUBLIC_FILES:
-        if not (root / relative).is_file():
-            raise PortfolioValidationError(f"required public file is missing: {relative}")
-
-    manifest = _load_yaml(manifest_path)
-    schema = _load_json(schema_path)
-    portfolio_receipt = _load_json(root / PORTFOLIO_RECEIPT_RELATIVE)
-    if not isinstance(manifest, dict) or not isinstance(schema, dict):
-        raise PortfolioValidationError("manifest and schema must be objects")
+        try:
+            _resolve_in_root_regular_file(root, Path(relative))
+        except PortfolioValidationError as exc:
+            raise PortfolioValidationError(
+                f"required public file is missing or unsafe: {relative}: {exc}"
+            ) from exc
+    if (
+        not isinstance(manifest, dict)
+        or not isinstance(schema, dict)
+        or not isinstance(portfolio_receipt, dict)
+    ):
+        raise PortfolioValidationError("manifest, schema, and receipt must be objects")
 
     findings: list[Finding] = []
     findings.extend(_check_manifest_schema(manifest, schema, manifest_path, root))
@@ -2159,19 +3513,79 @@ def validate_repository(root: Path = ROOT) -> ValidationResult:
         manifest, doctrine_root, doctrine_validator_path, root
     )
     findings.extend(doctrine_findings)
+    marathon_findings, marathon_metrics = _check_marathon_freeze(
+        manifest, marathon_root, marathon_validator_path, root
+    )
+    findings.extend(marathon_findings)
     prose_findings, prose_metrics = _check_portfolio_prose(root)
     findings.extend(prose_findings)
     findings.extend(_check_navigation(root))
-    findings.extend(_check_receipt(root))
+    findings.extend(_check_receipt_payload(portfolio_receipt))
 
     metrics = {
         "manifest_repositories": len(manifest.get("repositories", [])),
         "manifest_capabilities": len(manifest.get("capabilities", [])),
         **doctrine_metrics,
+        **marathon_metrics,
         **release_metrics,
         **prose_metrics,
     }
-    return ValidationResult(tuple(sorted(set(findings))), metrics)
+    return _raw_validation_result(findings, metrics)
+
+
+def validate_repository(root: Path = ROOT) -> ValidationResult:
+    root = root.resolve()
+    manifest_path = root / "docs/portfolio/logos-trust-layer/project-evidence.yaml"
+    schema_path = root / "docs/portfolio/logos-trust-layer/project-evidence.schema.json"
+    seed_manifest = _load_yaml(manifest_path)
+    if not isinstance(seed_manifest, dict):
+        raise PortfolioValidationError("manifest must be an object")
+    snapshot_before, input_count = _validation_input_snapshot(root, seed_manifest)
+    manifest = _load_yaml(manifest_path)
+    schema = _load_json(schema_path)
+    portfolio_receipt = _load_json(root / PORTFOLIO_RECEIPT_RELATIVE)
+    if manifest != seed_manifest:
+        raise PortfolioValidationError(
+            "validation inputs changed while the aggregate snapshot was established"
+        )
+    result = _validate_loaded_repository(
+        root,
+        manifest=manifest,
+        schema=schema,
+        portfolio_receipt=portfolio_receipt,
+    )
+    snapshot_after, after_count = _validation_input_snapshot(root, manifest)
+    findings = list(result.findings)
+    if snapshot_after != snapshot_before or after_count != input_count:
+        findings.append(
+            Finding(
+                "validation_input_drift",
+                "<aggregate-input-snapshot>",
+                "validation inputs changed during the aggregate run",
+            )
+        )
+    return _raw_validation_result(
+        findings,
+        {**result.metrics, "validation_input_file_count": input_count},
+    )
+
+
+def _result_payload(result: ValidationResult) -> dict[str, Any]:
+    return {
+        "status": "pass" if result.passed else "fail",
+        "artifact_class": ARTIFACT_CLASS,
+        "metrics": result.metrics,
+        "findings_raw": [
+            {"rule": item.rule, "path": item.path, "detail": item.detail}
+            for item in result.findings
+        ],
+        "findings": [item.render() for item in result.findings],
+        "findings_presentation": sorted(
+            {item.render() for item in result.findings}
+        ),
+        "mutation_performed": False,
+        "authority_granted": False,
+    }
 
 
 def main() -> int:
@@ -2183,14 +3597,7 @@ def main() -> int:
     except PortfolioValidationError as exc:
         print(json.dumps({"status": "fail", "error": str(exc)}, sort_keys=True))
         return 1
-    payload = {
-        "status": "pass" if result.passed else "fail",
-        "artifact_class": ARTIFACT_CLASS,
-        "metrics": result.metrics,
-        "findings": [finding.render() for finding in result.findings],
-        "mutation_performed": False,
-        "authority_granted": False,
-    }
+    payload = _result_payload(result)
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0 if result.passed else 1
 

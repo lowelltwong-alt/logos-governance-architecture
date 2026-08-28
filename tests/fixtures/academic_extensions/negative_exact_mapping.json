@@ -3,5 +3,7 @@
   "operation": "replace",
   "path": ["external_mappings", 0, "relation"],
   "value": "exact_match",
-  "expected_rule": "schema_validation"
+  "expected_rule": "schema_validation",
+  "expected_first_rule": "schema_validation",
+  "expected_rules_exact": ["schema_validation"]
 }

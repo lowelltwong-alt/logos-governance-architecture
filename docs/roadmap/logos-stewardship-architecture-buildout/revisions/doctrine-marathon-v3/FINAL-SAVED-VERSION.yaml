@@ -1,0 +1,34 @@
+metadata:
+  object_type: doctrine_marathon_final_saved_version
+  trust_zone: proposed
+  lifecycle_status: saved_specification_only
+  provenance_note: Created by Codex root after exact payload freeze, zero-error validation, fresh independent non-author review, and bounded public-release authorization.
+  reason_for_inclusion: Provide one terminal acyclic digest index for the validated specification artifact without granting runtime, research, doctrine, or theological authority.
+schema_version: logos.doctrine_marathon.final_saved_version.v3
+save_id: DMV3-SAVED-003
+work_id: WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
+revision_id: doctrine-marathon-v3
+status: saved_specification_only
+revision_manifest_ref: revision-manifest.yaml
+revision_manifest_digest: sha256:b3082cf1966840435ead72c7b652ffffd9763fdfd3101f48c77be53807ca7bda
+revision_manifest_object_digest: sha256:817acfdafe227da0b7223da7f690e9b95e8897a5a9fbf2ed962cf53f328e4a1b
+payload_digest: sha256:4a77843f3b0e7fae6ea5f6847d43cb40066ff9e1411fa65db51c662dedc80001
+payload_file_count: 78
+validation_receipt_ref: checks/validation-receipt.json
+validation_receipt_file_digest: sha256:5cd649bac91e833f7d6434958193631f4127b403d456f8ead1e03e58626c4c3c
+validation_receipt_object_digest: sha256:d94b2c31f44ef36947e9e660996be228a0b1842ed38bdcfacd472c141a1c53c2
+independent_review_ref: checks/independent-review.json
+independent_review_file_digest: sha256:81c7586f20c4cf20002a6a1ef126fbcc79e2cf9731085c8e0f950aa61293b382
+independent_review_object_digest: sha256:7e0f9628c40b2c762ecda689aa7e6d2371f84163b38a2d09ed90b3c431e7140c
+public_release_authorization_ref: checks/public-release-authorization.json
+public_release_authorization_file_digest: sha256:15015f00876956ee55fd5ae8acf411da090ae522105df9cd6e2b8bd4b01d6122
+public_release_authorization_object_digest: sha256:079ebde75686f07cf724cb76e02e10381273f57c8f9aede15406c4ef206da078
+artifact_freeze_readiness: ready_specification_artifact_only
+runtime_activation_authorized: false
+research_execution_authorized: false
+source_ingestion_authorized: false
+substantive_doctrine_implementation_authorized: false
+completed_doctrine_corpus: false
+qualified_theological_authority: false
+saved_at: '2026-08-28T16:37:24.1694009Z'
+final_digest: sha256:a13cf70c636308d1d4f59648dcea84e72f9dff677ce0108b8750c0415711747c

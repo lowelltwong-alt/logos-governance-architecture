@@ -1,0 +1,58 @@
+metadata:
+  object_type: doctrine_marathon_constitution
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-27 by Codex root as the immutable authority ceiling for Doctrine Marathon V3."
+  reason_for_inclusion: "Prevent a long-running campaign or its agents from converting research coordination into doctrinal, canonical, or runtime authority."
+schema_version: logos.doctrine_marathon.constitution.v3
+constitution_id: LOGOS-DOCTRINE-MARATHON-CONSTITUTION-003
+revision_id: doctrine-marathon-v3
+parent_revision:
+  revision_id: doctrine-mesh-v2
+  payload_digest: sha256:6fdc5507d69ed5e6cdeb0aa9b79ed6365aa6b38cce258a0649ee527ba5e15fa8
+  final_saved_digest: sha256:1fdff84a9c1a8d34523183e6a8b1fe0ef70c53bde4ad3e054b94faa4a9b3076c
+objective: >-
+  Specify a durable, evidence-preserving, provider-neutral control plane for a
+  multi-year Christian doctrine and reception-history campaign while protecting
+  Scripture, sources, traditions, contextual disciplines, and human authority.
+mode: specification_only
+authority:
+  named_owner: Lowell Wong
+  runtime_activation_authorized: false
+  research_execution_authorized: false
+  source_ingestion_authorized: false
+  substantive_doctrine_implementation_authorized: false
+  witness_translation_authorized: false
+  cross_repository_write_authorized: false
+  persistent_agent_activation_authorized: false
+  publication_authorized_by_artifact: false
+  normative_frame_creation_by_ai: false
+human_gates:
+  - qualified_theologian_review
+  - relevant_tradition_representative_review
+  - original_language_or_translation_review_when_material
+  - patristics_or_period_specialist_review_when_material
+  - source_rights_privacy_and_custody_review
+  - named_owner_promotion_decision
+non_authorities:
+  - model output, model agreement, effort level, or model prestige
+  - graph centrality, vector similarity, retrieval rank, repetition, or popularity
+  - ExpertPack, KnowledgeGuide, generated role, summary, or prior agent memory
+  - deterministic validation or an independent AI review
+  - chronology, majority tradition, or an unattributed orthodoxy or heresy label
+invariants:
+  - canonical Scripture is never rewritten by this campaign
+  - source, claim, synthesis, inference, tradition view, and normative assessment remain distinct
+  - contextual evidence has no implicit normative force
+  - historical judgments are attributable; AI never autonomously decides orthodoxy or heresy
+  - every material output has a distinct checker and reverse dependency visibility
+  - missing expertise and disagreement are preserved, ranked, and routed rather than hidden
+  - changed or invalid prerequisites quarantine all affected consumers
+  - no prompt or checkpoint can broaden authority beyond this constitution
+  - every nonterminal run returns exactly one next prompt
+safe_shutdown:
+  revoke_new_leases: true
+  preserve_append_only_events: true
+  quarantine_partial_outputs: true
+  require_changed_input_revalidation: true
+  destructive_recovery_allowed: false

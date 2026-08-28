@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.instance-dependency-graph.v3",
+  "title": "Doctrine Marathon instance dependency graph",
+  "description": "object_type=instance_dependency_graph_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Make exact consumer-to-prerequisite lineage and reverse invalidation deterministic across long-running work.",
+  "type": "object",
+  "required": ["schema_version", "graph_id", "canonical_edge_direction", "nodes", "edges", "reverse_consumer_index", "reverse_index_generated", "graph_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_marathon.instance-dependency-graph.v3"},
+    "graph_id": {"type": "string", "pattern": "^DMV3-GRAPH-[A-Za-z0-9._-]+$"},
+    "canonical_edge_direction": {"const": "consumer_to_prerequisite"},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["node_id", "revision_id", "object_type", "state", "authority_plane", "content_ref", "content_digest", "weakest_premise_state", "derived_authority_taints", "normative_frame_ref", "normative_frame_digest"],
+        "properties": {
+          "node_id": {"type": "string", "minLength": 3},
+          "revision_id": {"type": "string", "minLength": 1},
+          "object_type": {"type": "string", "minLength": 2},
+          "state": {"enum": ["planned", "ready", "blocked", "active", "candidate_complete", "quarantined", "review_required", "accepted", "stale", "invalidated", "superseded"]},
+          "authority_plane": {"enum": ["scripture", "source", "historical_attribution", "context", "tradition_view", "normative_assessment", "governance", "review", "public_projection"]},
+          "content_ref": {"type": "string", "minLength": 3},
+          "content_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "weakest_premise_state": {"enum": ["not_applicable", "accepted", "candidate", "disputed", "blocked", "stale", "invalidated"]},
+          "derived_authority_taints": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["scripture", "source", "historical_attribution", "context", "tradition_view", "normative_assessment", "governance", "review", "public_projection"]}},
+          "normative_frame_ref": {"type": ["string", "null"], "pattern": "^normative-frame:NFRAME-[A-Za-z0-9._-]+$"},
+          "normative_frame_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["edge_id", "consumer_id", "prerequisite_id", "edge_type", "load_bearing", "normative_force", "basis_refs", "basis_digests", "review_state"],
+        "properties": {
+          "edge_id": {"type": "string", "minLength": 3},
+          "consumer_id": {"type": "string", "minLength": 3},
+          "prerequisite_id": {"type": "string", "minLength": 3},
+          "edge_type": {"enum": ["derived_from", "cites_for_evidence", "translated_from", "influence_hypothesis", "qualified_by", "reviewed_by", "governed_by", "contextualized_by", "disputed_by", "projected_from"]},
+          "load_bearing": {"type": "boolean"},
+          "normative_force": {"enum": ["none", "frame_scoped"]},
+          "basis_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+          "basis_digests": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+          "basis_observed_at": {"type": ["string", "null"], "format": "date-time"},
+          "review_state": {"enum": ["unreviewed", "candidate", "accepted", "disputed", "stale", "rejected"]}
+        },
+        "allOf": [
+          {"if": {"properties": {"edge_type": {"const": "qualified_by"}, "review_state": {"const": "accepted"}}, "required": ["edge_type", "review_state"]}, "then": {"required": ["basis_observed_at"], "properties": {"basis_observed_at": {"type": "string"}}}}
+        ],
+        "additionalProperties": false
+      }
+    },
+    "reverse_consumer_index": {"type": "object", "additionalProperties": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}},
+    "reverse_index_generated": {"const": true},
+    "graph_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

@@ -1,10 +1,10 @@
-schema_version: logos.biblical-evidence.mesh-completeness-audit.v1
+schema_version: logos.biblical-evidence.mesh-completeness-audit.v2
 object_type: deterministic_role_completeness_audit_contract
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Created 2026-08-26 from the owner's requirement that role fitness be checked at entry, midflight, and exit and rerun when evidence reveals a missing expert."
-reason_for_inclusion: "Prevent a superficially broad agent list from hiding missing expertise, unnecessary roles, self-review, or late-discovered coverage gaps."
-audit_id: urn:logos:audit-contract:biblical-evidence-role-completeness-v1
+provenance_note: "Created 2026-08-26 from the owner's requirement that role fitness be checked at entry, midflight, and exit; corrected 2026-08-28 so fresh actor-bound auditor/checker pairs replay differentiated, chained phase evidence and cannot grant release authority."
+reason_for_inclusion: "Prevent a superficially broad agent list from hiding missing expertise, unnecessary roles, self-review, aliased phase evidence, or late-discovered coverage gaps."
+audit_id: urn:logos:audit-contract:biblical-evidence-role-completeness-v2
 phases: [entry, midflight, exit]
 deterministic_inputs:
   - exact_scope_digest
@@ -22,50 +22,61 @@ deterministic_inputs:
   - adversarial_fixture_digest
   - independent_review_evidence_digest
   - execution_environment_fingerprint_digest
+  - changed_input_delta_digest
+  - validation_receipt_digest
+  - unresolved_gate_register_digest
+  - final_candidate_digest
+phase_profiles:
+  entry:
+    bound_input_names: [exact_scope_digest, claim_class_set, transformation_class_set, source_role_set, rights_class_set, graph_relation_set, risk_register_digest, assigned_role_manifest_digest, candidate_base_commit_digest, execution_environment_fingerprint_digest]
+    required_evidence_refs: [SCOPE.md, mesh/agent-mesh.v3.json, mesh/completeness-audit-contract.yaml, release/public-release-manifest.yaml]
+    prior_phase_pair_digest: forbidden
+  midflight:
+    bound_input_names: [exact_scope_digest, changed_input_delta_digest, assigned_role_manifest_digest, validator_digest, focused_test_digest, adversarial_fixture_digest]
+    required_evidence_refs: [sources/p66-source-and-rights.yaml, graph/evidence-graph.yaml, graph/node-edge-catalog.yaml, graph/p66-chunk-crosswalk.yaml, mesh/agent-mesh.v3.json, checks/adversarial-fixtures.yaml, scripts/validate_biblical_evidence_demo.py, tests/test_biblical_evidence_demo.py]
+    prior_phase_pair_digest: required
+  exit:
+    bound_input_names: [exact_scope_digest, frozen_manifest_digest, validation_receipt_digest, independent_review_evidence_digest, unresolved_gate_register_digest, final_candidate_digest, execution_environment_fingerprint_digest]
+    required_evidence_refs: [frozen-digests.json, validation-receipt.json, release/independent-academic-review.md, release/independent-rights-review.md, release/independent-graph-mesh-review.md, release/public-release-manifest.yaml]
+    prior_phase_pair_digest: required
 questions:
-  - question_id: required-role-present
-    text: "Is every claim, source transformation, rights decision, graph invariant, and release effect assigned to a capable role?"
-    failure_rule: missing_required_role
-  - question_id: missing-role-value
-    text: "For each proposed missing role, what concrete failure mode would it close and what real added value would it provide?"
-    failure_rule: role_without_failure_mode_or_value
-  - question_id: independence
-    text: "Can any researcher, writer, graph engineer, or rights researcher approve its own material output?"
-    failure_rule: self_review_or_collapsed_role
-  - question_id: knowledge-base
-    text: "Does each role name the source classes, methods, and authority boundary it must know rather than rely on a thin persona label?"
-    failure_rule: thin_role_instruction
-  - question_id: late-discovery
-    text: "Did new evidence, disagreement, transformation, or risk reveal a specialist or checker that was absent at entry?"
-    failure_rule: discovered_gap_not_routed
-  - question_id: unnecessary-role
-    text: "Would any assigned role broaden authority or cost without changing evidence quality or closing a named failure mode?"
-    failure_rule: unjustified_role_fanout
-  - question_id: human-gate
-    text: "Are high-risk disagreement, doctrine, architecture, promotion, and qualified-expert decisions still routed to humans?"
-    failure_rule: human_gate_missing
+  - {question_id: required-role-present, text: "Is every claim, source transformation, rights decision, graph invariant, and release effect assigned to a capable role?", failure_rule: missing_required_role}
+  - {question_id: missing-role-value, text: "For each proposed missing role, what concrete failure mode would it close and what real added value would it provide?", failure_rule: role_without_failure_mode_or_value}
+  - {question_id: independence, text: "Can any researcher, writer, graph engineer, rights researcher, completeness auditor, or completeness checker approve its own material output?", failure_rule: self_review_or_collapsed_actor}
+  - {question_id: completeness-meta-check, text: "Did a distinct read-only actor replay the auditor's exact phase evidence and exact auditor receipt without overriding a failure?", failure_rule: completeness_auditor_self_attestation_or_aliased_evidence}
+  - {question_id: knowledge-base, text: "Does each role name the source classes, methods, and authority boundary it must know rather than rely on a thin persona label?", failure_rule: thin_role_instruction}
+  - {question_id: late-discovery, text: "Did new evidence, disagreement, transformation, or risk reveal a specialist or checker that was absent at entry?", failure_rule: discovered_gap_not_routed}
+  - {question_id: unnecessary-role, text: "Would any assigned role broaden authority or cost without changing evidence quality or closing a named failure mode?", failure_rule: unjustified_role_fanout}
+  - {question_id: human-gate, text: "Are high-risk disagreement, doctrine, architecture, promotion, and qualified-expert decisions still routed to humans?", failure_rule: human_gate_missing}
 outputs:
-  required_fields:
-    - phase
-    - input_digests
-    - assigned_roles
-    - missing_roles
-    - rejected_unnecessary_roles
-    - late_discoveries
-    - risk_routing
-    - result
-    - reviewer_independence
-    - reviewer_role
-    - observed_at
-    - changed_input_replay
-    - reviewer_attempt_id
-    - reviewer_evidence_digest
+  required_fields: [phase, phase_evidence, assigned_roles, missing_roles, rejected_unnecessary_roles, late_discoveries, risk_routing, changed_input_replay, auditor, auditor_receipt_digest, checker, checker_receipt_digest, phase_pair_digest, result]
   allowed_results: [pass, fail_closed]
   no_unknown_result: true
+actor_identity:
+  receipt_root_field: writer_actor_id
+  phase_actor_fields: [auditor_actor_id, checker_actor_id]
+  actor_id_pattern: "^urn:logos:actor:[a-z0-9][a-z0-9._:-]{2,127}$"
+  semantic_rules: [auditor_actor_id_differs_from_checker_actor_id, auditor_actor_id_differs_from_writer_actor_id, checker_actor_id_differs_from_writer_actor_id]
+phase_chain:
+  phase_evidence_digest_formula: canonical_phase_evidence_without_digest
+  auditor_receipt_digest_formula: canonical_phase_audit_payload
+  checker_subject_digest: auditor_receipt_digest
+  checker_replayed_evidence_digest: phase_evidence_digest
+  checker_receipt_digest_formula: canonical_phase_and_checker_payload
+  phase_pair_digest_formula: canonical_phase_and_auditor_checker_digests
+  next_phase_must_bind_prior_phase_pair_digest: true
+  stale_v1_receipt_status: fail_closed_superseded_by_fresh_v2_replay
 receipt_semantics:
-  reviewer_role: role-completeness-auditor
-  reviewer_attempt_id_pattern: "^REVIEW-COMPLETENESS-(ENTRY|MIDFLIGHT|EXIT)-[0-9]{3}$"
-  reviewer_evidence_must_match_independent_review_input: true
+  auditor_role: role-completeness-auditor
+  checker_role: completeness-audit-checker
+  auditor_and_checker_actor_ids_must_be_distinct: true
+  auditor_and_checker_must_differ_from_writer_actor: true
+  auditor_attempt_id_pattern: "^AUDIT-COMPLETENESS-(ENTRY|MIDFLIGHT|EXIT)-[0-9]{3}$"
+  checker_attempt_id_pattern: "^REVIEW-COMPLETENESS-CHECK-(ENTRY|MIDFLIGHT|EXIT)-[0-9]{3}$"
+  checker_cannot_override_auditor_failure: true
+  checker_authority_effect: none
+  checker_mutation_performed: false
+  phase_evidence_digests_must_be_unique: true
   assigned_and_rejected_roles_must_be_disjoint: true
   required_rejected_unnecessary_roles: [generic_apologist, generic_theologian]
   risk_routes:
@@ -77,54 +88,17 @@ receipt_semantics:
   late_discovery_statuses:
     entry: []
     midflight: [detected_and_routed]
-    exit: [closed_by_existing_roles]
-  late_discovery_required_fields:
-    - discovery_id
-    - failure_mode
-    - resolution_code
-    - resolved_by_role_ids
-    - risk_level
-    - evidence_refs
-    - authority_effect
-    - publication_allowed
-    - status
+    exit: [closed_by_existing_roles, closed_by_bounded_role]
+  late_discovery_required_fields: [discovery_id, failure_mode, resolution_code, resolved_by_role_ids, risk_level, evidence_refs, authority_effect, eligible_for_downstream_release_evaluation, status]
   allowed_resolution_codes: [existing_role_replay, bounded_role_added, human_escalated, fail_closed]
   evidence_reference_fields: [path, sha256]
-  semantic_rules:
-    - ignored_or_unresolved_discovery_forces_fail_closed
-    - authority_effect_is_always_none
-    - publication_remains_blocked_before_exit_closure
-    - high_risk_requires_human_escalated
-    - critical_risk_requires_fail_closed
-  timestamps: strict_real_utc_nondecreasing_not_future
-rerun_triggers:
-  - scope_digest_change
-  - claim_or_transformation_class_change
-  - source_or_rights_class_change
-  - new_material_disagreement
-  - validator_or_review_finding
-  - runtime_provider_tool_or_model_change
-  - candidate_head_change
-this_slice_entry_decision:
-  required_roles:
-    - mesh-coordinator-single-writer
-    - role-completeness-auditor
-    - archaeology-history-researcher
-    - manuscript-transmission-researcher
-    - source-rights-reviewer
-    - citation-source-fitness-checker
-    - claim-fidelity-checker
-    - graph-contract-engineer
-    - graph-invariant-red-team
-    - privacy-provenance-release-checker
-    - human-decision-steward
-  conditional_roles:
-    - northwest_semitic_epigrapher_if_new_inscription_reading
-    - latin_epigrapher_if_new_inscription_reading
-    - new_testament_papyrologist_if_new_p66_textual_inference
+  semantic_rules: [ignored_or_unresolved_discovery_forces_fail_closed, authority_effect_is_always_none, publication_allowed_field_is_forbidden, downstream_release_eligibility_is_non_authorizing, high_risk_requires_human_escalated, critical_risk_requires_fail_closed]
+  timestamps: strict_real_utc_auditor_then_checker_nondecreasing_not_future
+rerun_triggers: [scope_digest_change, claim_or_transformation_class_change, source_or_rights_class_change, new_material_disagreement, validator_or_review_finding, runtime_provider_tool_or_model_change, candidate_head_change]
+this_slice_entry_requirements:
+  status: pending_receipt
+  required_roles: [mesh-coordinator-single-writer, role-completeness-auditor, completeness-audit-checker, archaeology-history-researcher, manuscript-transmission-researcher, source-rights-reviewer, citation-source-fitness-checker, claim-fidelity-checker, graph-contract-engineer, graph-invariant-red-team, privacy-provenance-release-checker, human-decision-steward]
+  conditional_roles: [northwest_semitic_epigrapher_if_new_inscription_reading, latin_epigrapher_if_new_inscription_reading, new_testament_papyrologist_if_new_p66_textual_inference]
   rejected_as_unnecessary:
-    - role: generic_apologist
-      reason: "No apologetic conclusion is in scope; adding this role would bias the research question without closing a release failure mode."
-    - role: generic_theologian
-      reason: "No doctrine synthesis or promotion is in scope; the separate theological authority gate is the correct boundary."
-  result: pass
+    - {role: generic_apologist, reason: "No apologetic conclusion is in scope; adding this role would bias the research question without closing a release failure mode."}
+    - {role: generic_theologian, reason: "No doctrine synthesis or promotion is in scope; the separate theological authority gate is the correct boundary."}

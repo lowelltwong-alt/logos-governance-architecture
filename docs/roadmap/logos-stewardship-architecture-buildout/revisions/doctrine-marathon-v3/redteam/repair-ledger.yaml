@@ -1,0 +1,214 @@
+metadata:
+  object_type: doctrine_marathon_repair_ledger
+  trust_zone: proposed
+  lifecycle_status: active
+  provenance_note: "Created on 2026-08-27 by Codex root to preserve red-team dispositions and one process surprise without mutating external evidence."
+  reason_for_inclusion: "Show which design weaknesses were repaired, deferred, or kept human-gated before public release."
+schema_version: logos.doctrine_marathon.repair_ledger.v3
+repairs:
+  - repair_id: DMV3-R-001
+    finding: generic_chronological_run_could_skip_dependencies
+    disposition: repaired
+    evidence: campaign.yaml
+    change: chronology_is_navigation_and_dependency_readiness_controls_execution
+  - repair_id: DMV3-R-002
+    finding: historical_heresy_language_could_become_autonomous_AI_verdict
+    disposition: repaired
+    evidence: graph/historical-attribution.schema.json
+    change: actor_document_locator_and_normative_force_none_are_mandatory
+  - repair_id: DMV3-R-003
+    finding: present_normative_frame_was_implicit
+    disposition: repaired_and_human_gated
+    evidence: graph/normative-frame.schema.json
+    change: AI_cannot_create_or_default_a_frame
+  - repair_id: DMV3-R-004
+    finding: many_role_labels_do_not_prove_expertise_or_independence
+    disposition: repaired
+    evidence: mesh/role-assignment.schema.json
+    change: qualified_ExpertPack_expected_information_gain_and_independence_lineage_required
+  - repair_id: DMV3-R-005
+    finding: preflight_role_list_could_be_reused_after_scope_changed
+    disposition: repaired
+    evidence: mesh/completeness-auditor-v3.yaml
+    change: exit_requirements_are_rederived_and_material_gaps_force_quarantine_and_replay
+  - repair_id: DMV3-R-006
+    finding: repeated_small_errors_could_pass_individual_thresholds
+    disposition: repaired
+    evidence: firewall/frontier-adversarial-sentinel.yaml
+    change: three_minor_findings_on_one_dependency_chain_trigger_frontier_review
+  - repair_id: DMV3-R-007
+    finding: DAD_read_only_metadata_query_generated_two_ignored_context_pack_files
+    disposition: contained_and_recorded
+    evidence: workspace_lifecycle_receipt_only
+    change: no_further_DAD_write_command_used_external_files_preserved_and_not_published
+    note: This process event changed no Logos file and is not evidence for doctrine or architecture correctness.
+  - repair_id: DMV3-R-008
+    finding: append_only_event_memory_was_prose_only
+    disposition: repaired
+    evidence: events/event-ledger.schema.json and checks/validate_doctrine_marathon.py
+    change: event_schema_sequence_hash_time_order_prior_snapshot_prefix_and_terminal_order_are_checked
+  - repair_id: DMV3-R-009
+    finding: role_independence_could_be_asserted_without_concrete_attempt_lineage
+    disposition: repaired
+    evidence: mesh/role-assignment.schema.json and mesh/examples/design-time-independence-fixture.json
+    change: pairwise_actor_attempt_prompt_answer_source_order_KnowledgeGuide_and_runtime_correlations_are_derived
+  - repair_id: DMV3-R-010
+    finding: context_plane_could_gain_normative_force_through_a_non_context_edge_type
+    disposition: repaired
+    evidence: graph/event-driven-invalidation-contract.yaml and checks/validate_doctrine_marathon.py
+    change: cross_plane_rules_follow_node_authority_planes_not_only_edge_labels
+  - repair_id: DMV3-R-011
+    finding: stale_or_disputed_weakest_premise_state_could_be_ignored
+    disposition: repaired
+    evidence: graph/instance-dependency-graph.schema.json and checks/validate_doctrine_marathon.py
+    change: transitive_effective_state_is_rederived_from_nodes_edges_and_review_states
+  - repair_id: DMV3-R-012
+    finding: arbitrary_strings_could_impersonate_human_normative_approval
+    disposition: repaired_and_human_gated
+    evidence: graph/human-decision-receipt.schema.json and graph/authority-registry.yaml
+    change: signer_scope_subject_dates_receipt_and_registry_digests_must_resolve_and_no_approver_is_currently_registered
+  - repair_id: DMV3-R-013
+    finding: material_triggers_could_omit_midflight_or_required_recovery_actions
+    disposition: repaired
+    evidence: firewall/trigger-matrix.yaml
+    change: every_trigger_starts_with_a_midflight_barrier_and_has_exact_resolvable_role_capability_and_action_requirements
+  - repair_id: DMV3-R-014
+    finding: desired_conclusion_prompts_had_synonym_bypasses
+    disposition: repaired_with_residual_human_gate
+    evidence: firewall/prompt-neutrality-contract.yaml
+    change: structured_neutral_instructions_expanded_lexical_adversaries_and_independent_semantic_review_required
+  - repair_id: DMV3-R-015
+    finding: Jewish_context_nonflattening_was_prose_only
+    disposition: repaired_with_residual_specialist_gate
+    evidence: research/jewish-context-pack.schema.json
+    change: named_community_period_geography_self_or_contemporary_sources_disputes_and_later_source_bridge_are_required
+  - repair_id: DMV3-R-016
+    finding: chronology_or_similarity_could_be_smuggled_as_causation
+    disposition: repaired_with_residual_specialist_gate
+    evidence: graph/influence-hypothesis.schema.json
+    change: contact_reception_mechanism_alternatives_counterevidence_and_qualified_sources_are_mandatory
+  - repair_id: DMV3-R-017
+    finding: source_summary_translation_and_claim_status_could_be_laundered_across_one_generic_edge
+    disposition: repaired
+    evidence: evidence/evidence-registry.json
+    change: root_source_claim_translation_and_influence_records_are_typed_resolvable_and_separately_checked
+  - repair_id: DMV3-R-018
+    finding: weekly_reset_and_terminal_checkpoint_references_were_not_fully_enforced
+    disposition: repaired
+    evidence: state/examples/initial-weekly-fresh-context-gate.json and state/examples/terminal-handoff-blocked.json
+    change: seven_day_interval_checkpoint_prompt_deadline_status_and_blocking_gate_equality_are_checked
+  - repair_id: DMV3-R-019
+    finding: administrative_receipts_could_drift_after_payload_freeze
+    disposition: repaired
+    evidence: checks/validate_doctrine_marathon.py
+    change: manifest_receipt_review_file_object_and_final_self_digests_are_cross_bound
+  - repair_id: DMV3-R-020
+    finding: recomputed_checksums_could_hide_semantically_incomplete_or_authority_elevating_admin_records
+    disposition: repaired
+    evidence: checks/validate_doctrine_marathon.py and checks/fixtures/negative-cases.json
+    change: exact_shapes_identities_commands_payload_rows_metrics_reviewer_lineage_findings_human_gates_and_authority_ceilings_are_checked_after_digest_recomputation
+  - repair_id: DMV3-R-021
+    finding: a_link_or_junction_inside_the_frozen_tree_could_hash_or_scan_bytes_outside_the_declared_package
+    disposition: repaired
+    evidence: checks/validate_doctrine_marathon.py
+    change: final_and_prefinal_validation_reject_every_symlink_or_junction_in_the_revision_tree
+  - repair_id: DMV3-R-022
+    finding: a_validation_receipt_could_self_declare_a_final_pass_before_its_own_bytes_and_terminal_index_existed
+    disposition: repaired
+    evidence: checks/validate_doctrine_marathon.py and checks/test_validate_doctrine_marathon.py
+    change: receipt_binds_a_strict_prefinal_replay_and_the_harness_requires_a_separate_positive_final_integration_after_all_admin_records_exist
+  - repair_id: DMV3-R-023
+    finding: completion_review_could_self_attest_or_substitute_a_writer
+    disposition: repaired
+    evidence: events/marathon-event.schema.json and checks/validate_doctrine_marathon.py
+    change: latest_requirement_event_exact_output_qualified_producer_two_reviewers_evidence_decisions_and_use_time_are_bound
+  - repair_id: DMV3-R-024
+    finding: completeness_capability_selection_could_be_weakened_after_entry
+    disposition: repaired
+    evidence: mesh/completeness-auditor-v3.yaml and checks/test_validate_doctrine_marathon.py
+    change: entry_midflight_exit_and_check_events_bind_the_exact_qualified_auditor_capability_set_and_requirement_digest
+  - repair_id: DMV3-R-025
+    finding: accepted_correlation_exception_could_exist_without_a_consumer
+    disposition: repaired
+    evidence: mesh/correlation-acceptance-receipt.schema.json and checks/validate_doctrine_marathon.py
+    change: immutable_bundle_ID_plus_exactly_one_ledger_reachable_checker_target_relation_is_required_without_a_digest_cycle
+  - repair_id: DMV3-R-026
+    finding: load_bearing_graph_basis_could_be_fictitious_or_stale
+    disposition: repaired
+    evidence: graph/instance-dependency-graph.schema.json and checks/validate_doctrine_marathon.py
+    change: every_basis_resolves_by_type_with_an_exact_parallel_digest_state_and_use_time
+  - repair_id: DMV3-R-027
+    finding: evidence_review_could_omit_bindings_capabilities_or_freshness
+    disposition: repaired
+    evidence: evidence/evidence-review-receipt.schema.json and checks/validate_doctrine_marathon.py
+    change: exact_subject_and_supporting_bindings_reviewer_capability_union_work_unit_and_qualification_time_are_enforced
+  - repair_id: DMV3-R-028
+    finding: qualification_hashes_could_be_mistaken_for_real_identity
+    disposition: repaired_and_human_gated
+    evidence: mesh/qualification-receipt.schema.json and README.md
+    change: generation_zero_requires_bounded_human_bootstrap_and_production_identity_still_requires_a_protected_or_signed_anchor
+  - repair_id: DMV3-R-029
+    finding: unresolved_material_trigger_could_be_bypassed_with_a_disjoint_affected_ID
+    disposition: repaired
+    evidence: events/event-ledger-contract.yaml and checks/validate_doctrine_marathon.py
+    change: every_affected_ID_resolves_and_every_prior_unresolved_trigger_blocks_all_continuation_events
+  - repair_id: DMV3-R-030
+    finding: initial_machine_contract_was_stronger_at_top_level_than_at_nested_authority_relations
+    disposition: contained_repaired_and_publicly_disclosed
+    evidence: redteam/ai-mistake-escalation-2026-08-27.yaml
+    change: independent_reproduction_sibling_audit_CAPA_197_component_cases_and_four_non_authorizing_aggregate_sentinels_preserve_the_learning_without_claiming_runtime_proof
+  - repair_id: DMV3-R-031
+    finding: midflight_action_results_could_name_arbitrary_checkers_and_unresolved_evidence
+    disposition: implemented_regression_pass_independent_review_pending
+    evidence: firewall/action-checker-requirements.yaml and events/marathon-event.schema.json
+    change: every_action_binds_a_resolved_assignment_object_role_capability_actor_attempt_and_evidence_digest
+  - repair_id: DMV3-R-032
+    finding: role_meta_checker_did_not_cover_every_assigned_role_and_whole_work_review_could_skip_meta
+    disposition: implemented_regression_pass_independent_review_pending
+    evidence: mesh/agent-mesh.v3.json and mesh/role-assignment-bundle.schema.json
+    change: exact_one_meta_exact_one_whole_meta_total_coverage_and_whole_to_meta_edge_are_required
+  - repair_id: DMV3-R-033
+    finding: task_prompts_and_semantic_neutrality_reviews_were_not_assignment_bound
+    disposition: implemented_regression_pass_independent_review_pending
+    evidence: mesh/role-assignment.schema.json and mesh/role-assignment-bundle.schema.json
+    change: runtime_prompt_file_digest_assignment_scope_independent_reviewer_dimensions_and_receipt_digest_are_required
+  - repair_id: DMV3-R-034
+    finding: evidence_review_did_not_bind_the_producer_or_a_governed_review_kind_capability_set
+    disposition: implemented_regression_pass_independent_review_pending
+    evidence: evidence/evidence-review-receipt.schema.json and mesh/role-catalog.yaml
+    change: producer_identity_digest_checker_edges_and_exact_review_kind_capabilities_are_enforced
+  - repair_id: DMV3-R-035
+    finding: ExpertPack_source_manifests_and_fixture_results_could_be_unresolved_strings
+    disposition: implemented_regression_pass_independent_review_pending
+    evidence: checks/validate_doctrine_marathon.py
+    change: every_pack_source_and_fixture_ref_resolves_with_exact_content_digest_and_qualified_fixture_pass
+  - repair_id: DMV3-R-036
+    finding: weekly_fresh_context_verification_could_reference_a_nonexistent_self_attested_receipt
+    disposition: implemented_regression_pass_independent_review_pending
+    evidence: state/fresh-context-verification-receipt.schema.json
+    change: exact_gate_checkpoint_prompt_times_actor_attempt_and_ordered_core_control_digests_are_required
+  - repair_id: DMV3-R-037
+    finding: a_load_bearing_graph_edge_could_cite_a_valid_consumer_file_instead_of_its_prerequisite
+    disposition: implemented_regression_pass_independent_review_pending
+    evidence: graph/instance-dependency-graph.schema.json and graph/example-graph.json
+    change: each_node_resolves_content_ref_and_each_load_bearing_edge_contains_the_exact_prerequisite_ref_digest_pair
+  - repair_id: DMV3-R-038
+    finding: human_approver_qualification_and_decision_attestation_refs_were_not_resolved
+    disposition: blocked_by_design_regression_verified_pending_separate_human_identity_control_revision
+    evidence: graph/human-identity-authority-root.yaml and graph/authority-registry.schema.json
+    change: qualification_and_attestation_bindings_resolve_but_any_identity_root_activation_is_deliberately_rejected_in_V3
+  - repair_id: DMV3-R-039
+    finding: adversarial_cases_could_pass_with_unrelated_errors_cache_warmth_or_order_contamination
+    disposition: implemented_regression_pass_independent_review_pending
+    evidence: checks/test_validate_doctrine_marathon.py
+    change: clean_temp_baselines_exact_rule_sets_cache_clears_source_sentinels_and_forward_reverse_order_equivalence
+  - repair_id: DMV3-R-040
+    finding: systemic_adversarial_harness_receipts_could_false_green_on_inert_invocation_unbound_substrate_reseal_collapse_output_aliasing_or_representative_only_catalog_coverage
+    disposition: root_v4_independently_reviewed_repository_migration_blocked
+    evidence: checks/ADVERSARIAL_HARNESS_ROOT_FIX.md and checks/adversarial-harness-migration.yaml
+    change: portable_v4_receipts_and_v3_registry_discovery_now_fail_closed_on_exact_snapshots_delta_cardinality_dependency_reachability_actual_invocation_raw_outputs_stable_physical_identity_and_catalog_receipt_bijection_while_V3_remains_blocked_pending_adapter_receipts_CI_and_unchanged_head_review
+deferred_human_gates:
+  - qualified_theologian_and_tradition_review
+  - source_rights_and_patristics_pack_qualification
+  - exact_NormativeFrame_decision
+  - future_runtime_and_research_authority

@@ -1,0 +1,56 @@
+metadata:
+  object_type: doctrine_marathon_event_ledger_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as the append-only V3 campaign memory contract."
+  reason_for_inclusion: "Replace fragile chat memory with replayable, hash-linked state transitions and material-trigger evidence."
+schema_version: logos.doctrine_marathon.event_ledger_contract.v3
+event_schema_ref: marathon-event.schema.json
+canonicalization: json_sorted_keys_compact_utf8
+event_hash_rule: sha256_of_event_without_event_hash
+chain_rule: current_prior_event_hash_equals_previous_event_hash
+sequence_rule: contiguous_starting_at_one
+append_only: true
+rewrite_or_delete_prior_event_allowed: false
+runtime_false_requires_empty_events: true
+ordering_constraints:
+  - completeness_entry follows a work_unit_classified event for every affected work unit
+  - role_assigned and research_started follow completeness_entry
+  - completeness_midflight names a prior material_trigger and precedes affected continuation
+  - candidate_created cannot pass an unmatched prior material trigger
+  - checkpoint_frozen follows completeness_exit
+  - terminal_handoff follows checkpoint_frozen and is the final event when present
+required_material_events:
+  - work_unit_classified
+  - completeness_entry
+  - material_trigger
+  - completeness_midflight
+  - gap_discovered
+  - completeness_exit
+  - checkpoint_frozen
+  - terminal_handoff
+event_requirements:
+  material_trigger:
+    - trigger_matrix_id
+    - changed_input_digest
+    - affected_work_and_consumer_ids
+  completeness_entry:
+    - coverage_input_digest
+    - requirement_and_assignment_refs
+  completeness_midflight:
+    - prior_trigger_event_id
+    - fresh_changed_input_digest
+    - must_precede_affected_work_continuation
+  completeness_exit:
+    - final_output_digest
+    - independently_rederived_requirements
+    - discovered_gap_and_replay_refs
+  terminal_handoff:
+    - checkpoint_digest
+    - terminal_status
+    - exact_next_prompt_or_explicit_none_if_complete
+privacy_boundary:
+  store_raw_chain_of_thought: false
+  store_private_conversation: false
+  store_secrets_or_credentials: false
+  store_structured_decisions_evidence_and_digests: true

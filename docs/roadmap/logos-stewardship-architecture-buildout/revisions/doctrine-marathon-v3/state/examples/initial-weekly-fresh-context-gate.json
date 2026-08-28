@@ -1,0 +1,16 @@
+{
+  "schema_version": "logos.doctrine_marathon.weekly-fresh-context-gate.v3",
+  "gate_id": "DMV3-WEEK-0001",
+  "fixture_kind": "design_time_simulation",
+  "authority_effect": "none",
+  "opened_at": "2026-08-27T19:00:00Z",
+  "must_reset_by": "2026-09-03T19:00:00Z",
+  "trigger": "seven_day_maximum",
+  "checkpoint_ref": "state/examples/initial-resume-checkpoint.json",
+  "checkpoint_digest": "sha256:f6092ec11926914230ffaa86d682644e47c40bec686a2392302cd2d1144c4833",
+  "canonical_resume_prompt": "QUICK_RESUME_PROMPT.md",
+  "canonical_resume_prompt_digest": "sha256:0525e8b970f30775373a04380a58cfcf83239c282e2720431d045e8f40fe0e85",
+  "verification": null,
+  "continuation_authorized": false,
+  "result": "fresh_context_required"
+}

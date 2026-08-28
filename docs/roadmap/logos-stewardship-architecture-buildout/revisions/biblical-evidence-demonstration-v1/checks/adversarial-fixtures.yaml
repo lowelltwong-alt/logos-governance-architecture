@@ -1,439 +1,1235 @@
-schema_version: logos.biblical-evidence.adversarial-fixtures.v1
+schema_version: logos.biblical-evidence.adversarial-fixtures.v5
 object_type: deterministic_negative_fixture_catalog
 trust_zone: proposed
 lifecycle_status: draft
 provenance_note: "Created 2026-08-26 from independent rights, graph, academic-source, and premortem review."
-reason_for_inclusion: "Turn the most tempting overclaims and authority leaks into deterministic rejection tests."
+reason_for_inclusion: "Turn the most tempting overclaims and authority leaks into deterministic rejection tests whose exact primary mutation and derived synthetic-reseal path sets are independently reproducible."
+path_binding_contract:
+  schema_version: logos.biblical-evidence.fixture-path-binding.v2
+  primary_path_by_target:
+    agent_mesh: mesh/agent-mesh.v3.json
+    archaeology_source_pack: sources/archaeology-source-pack.yaml
+    completeness_receipt: release/exit-completeness-audit.yaml
+    evidence_graph: graph/evidence-graph.yaml
+    node_edge_catalog: graph/node-edge-catalog.yaml
+    p66_crosswalk: graph/p66-chunk-crosswalk.yaml
+    p66_source: sources/p66-source-and-rights.yaml
+  strict_parser_primary_path_by_mutation:
+    parse_duplicate_yaml_root_key: graph/evidence-graph.yaml
+    parse_duplicate_json_nested_key: mesh/agent-mesh.v3.json
+    parse_duplicate_review_frontmatter_key: release/independent-graph-mesh-review.md
+  primary_paths_by_mutation:
+    widen_displayed_through_and_add_image_edge:
+      - graph/evidence-graph.yaml
+      - graph/node-edge-catalog.yaml
+  reseal_policy_paths:
+    none: []
+    synthetic_completeness_receipt_only:
+      - release/exit-completeness-audit.yaml
+  reseal_policy_by_target:
+    agent_mesh: synthetic_completeness_receipt_only
+    archaeology_source_pack: synthetic_completeness_receipt_only
+    completeness_receipt: none
+    evidence_graph: synthetic_completeness_receipt_only
+    node_edge_catalog: synthetic_completeness_receipt_only
+    p66_crosswalk: synthetic_completeness_receipt_only
+    p66_source: synthetic_completeness_receipt_only
+    strict_parser: none
+  reseal_policy_by_mutation: {}
+  default_reseal_policy: none
+  actual_changed_paths_must_equal_declared_union: true
+  primary_and_resealed_paths_must_be_disjoint: true
 fixtures:
   - fixture_id: reject-contiguous-p66-range
     target: p66_source
     mutation: collapse_four_segments_to_John.19.8-John.19.24
+    intended_rule: p66_non_contiguous_coverage
     expected_rule: p66_non_contiguous_coverage
+    expected_first_rule: p66_non_contiguous_coverage
+    expected_rules_exact: [p66_non_contiguous_coverage]
+    expected_findings_ordered:
+      - rule: p66_non_contiguous_coverage
+        identity: "sources/p66-source-and-rights.yaml: exact four non-contiguous combined-object catalog ranges are required"
+        causal_role: intended_primary
     risk: high
     reason: "The cataloged folio has gaps; a continuous range silently invents coverage."
+  - fixture_id: reject-verso-inherits-combined-object-coverage
+    target: evidence_graph
+    mutation: attach_combined_object_coverage_to_verso_asset
+    intended_rule: p66_asset_side_scope
+    expected_rule: p66_asset_side_scope
+    expected_first_rule: p66_asset_side_scope
+    expected_rules_exact: [graph_invariant_consistency, p66_asset_side_scope, relation_kind_compatibility]
+    expected_findings_ordered:
+      - rule: p66_asset_side_scope
+        identity: "graph/evidence-graph.yaml: the single-side verso asset must not inherit combined-object catalog coverage"
+        causal_role: intended_primary
+      - rule: relation_kind_compatibility
+        identity: "graph/evidence-graph.yaml: negative-verso-coverage uses 'has_coverage_segment' with 'digital_asset'->'witness_coverage_segment'"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: negative-verso-coverage adds an unreviewed registered-relation edge"
+        causal_role: causal_cascade
+      - rule: p66_asset_side_scope
+        identity: "graph/evidence-graph.yaml: P66 source, object, verso asset, rights, review, and object-coverage topology drifted"
+        causal_role: causal_cascade
+      - rule: p66_asset_side_scope
+        identity: "graph/evidence-graph.yaml: asset:p66-verso has a forbidden forward path to object coverage or Scripture"
+        causal_role: causal_cascade
+    risk: critical
+    reason: "The official Cologne record assigns four ranges collectively to recto and verso; one side image cannot inherit those object-level ranges without qualified side mapping."
   - fixture_id: reject-p66-hash-drift
     target: p66_source
     mutation: replace_asset_sha256_with_zero_digest
+    intended_rule: p66_asset_identity
     expected_rule: p66_asset_identity
+    expected_first_rule: p66_asset_identity
+    expected_rules_exact: [p66_asset_identity]
+    expected_findings_ordered:
+      - rule: p66_asset_identity
+        identity: "sources/p66-source-and-rights.yaml: declared hash or byte count drifted"
+        causal_role: intended_primary
     risk: high
     reason: "Rights and provenance are bound to the exact verified image bytes."
   - fixture_id: reject-missing-p66-attribution
     target: p66_source
     mutation: remove_attribution_text
+    intended_rule: p66_rights_attribution
     expected_rule: p66_rights_attribution
+    expected_first_rule: p66_rights_attribution
+    expected_rules_exact: [p66_rights_attribution]
+    expected_findings_ordered:
+      - rule: p66_rights_attribution
+        identity: "sources/p66-source-and-rights.yaml: required attribution is absent"
+        causal_role: intended_primary
     risk: high
     reason: "Public display requires attribution and license/source links."
   - fixture_id: reject-image-license-for-translation
     target: p66_source
     mutation: set_english_translation_rights_basis_to_CC-BY-4.0-image
+    intended_rule: p66_layer_rights_separation
     expected_rule: p66_layer_rights_separation
+    expected_first_rule: p66_layer_rights_separation
+    expected_rules_exact: [p66_layer_rights_separation]
+    expected_findings_ordered:
+      - rule: p66_layer_rights_separation
+        identity: "sources/p66-source-and-rights.yaml: English rights must come from eng-web, not image rights"
+        causal_role: intended_primary
     risk: critical
     reason: "Image rights do not automatically license a transcription, edition, or translation."
   - fixture_id: reject-m7-promotion
     target: p66_crosswalk
     mutation: set_m7_candidate_only_false
+    intended_rule: m7_candidate_boundary
     expected_rule: m7_candidate_boundary
+    expected_first_rule: m7_candidate_boundary
+    expected_rules_exact: [crosswalk_provenance_integrity, m7_candidate_boundary]
+    expected_findings_ordered:
+      - rule: m7_candidate_boundary
+        identity: "graph/p66-chunk-crosswalk.yaml: M7 public candidate must remain held, candidate-only, and non-authorizing"
+        causal_role: intended_primary
+      - rule: crosswalk_provenance_integrity
+        identity: "graph/p66-chunk-crosswalk.yaml: P66, English, M7, or M8 source-layer identity drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "The public M7 object remains held and non-authorizing."
   - fixture_id: reject-m8-convergence
     target: p66_crosswalk
     mutation: set_m8_convergence_status_complete
+    intended_rule: m8_pending_boundary
     expected_rule: m8_pending_boundary
+    expected_first_rule: m8_pending_boundary
+    expected_rules_exact: [crosswalk_provenance_integrity, m8_pending_boundary]
+    expected_findings_ordered:
+      - rule: m8_pending_boundary
+        identity: "graph/p66-chunk-crosswalk.yaml: M8 must remain 22/66, Isa current, John pending, convergence not started"
+        causal_role: intended_primary
+      - rule: crosswalk_provenance_integrity
+        identity: "graph/p66-chunk-crosswalk.yaml: P66, English, M7, or M8 source-layer identity drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "M8 has not built John and M7/M8 convergence has not started."
   - fixture_id: reject-image-to-english-edge
     target: evidence_graph
     mutation: add_image_directly_translates_to_edge
+    intended_rule: forbidden_relation
     expected_rule: forbidden_relation
+    expected_first_rule: forbidden_relation
+    expected_rules_exact: [forbidden_relation, graph_authority_noninterference, p66_asset_side_scope]
+    expected_findings_ordered:
+      - rule: forbidden_relation
+        identity: "graph/evidence-graph.yaml: negative-image_directly_translates_to uses 'image_directly_translates_to'"
+        causal_role: intended_primary
+      - rule: graph_authority_noninterference
+        identity: "graph/evidence-graph.yaml: negative-image_directly_translates_to authority effect is not none"
+        causal_role: causal_cascade
+      - rule: p66_asset_side_scope
+        identity: "graph/evidence-graph.yaml: P66 source, object, verso asset, rights, review, and object-coverage topology drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "A photograph cannot supply or license English wording."
   - fixture_id: reject-artifact-proves-scripture
     target: evidence_graph
     mutation: add_proves_scripture_edge
+    intended_rule: forbidden_relation
     expected_rule: forbidden_relation
+    expected_first_rule: forbidden_relation
+    expected_rules_exact: [forbidden_relation, graph_authority_noninterference, p66_asset_side_scope]
+    expected_findings_ordered:
+      - rule: forbidden_relation
+        identity: "graph/evidence-graph.yaml: negative-proves_scripture uses 'proves_scripture'"
+        causal_role: intended_primary
+      - rule: graph_authority_noninterference
+        identity: "graph/evidence-graph.yaml: negative-proves_scripture authority effect is not none"
+        causal_role: causal_cascade
+      - rule: p66_asset_side_scope
+        identity: "graph/evidence-graph.yaml: P66 source, object, verso asset, rights, review, and object-coverage topology drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "Contextual evidence must be mediated through a bounded historical claim and comparison edge."
   - fixture_id: reject-context-proves-doctrine
     target: evidence_graph
     mutation: add_proves_doctrine_edge
+    intended_rule: forbidden_relation
     expected_rule: forbidden_relation
+    expected_first_rule: forbidden_relation
+    expected_rules_exact: [forbidden_relation, graph_authority_noninterference, p66_asset_side_scope]
+    expected_findings_ordered:
+      - rule: forbidden_relation
+        identity: "graph/evidence-graph.yaml: negative-proves_doctrine uses 'proves_doctrine'"
+        causal_role: intended_primary
+      - rule: graph_authority_noninterference
+        identity: "graph/evidence-graph.yaml: negative-proves_doctrine authority effect is not none"
+        causal_role: causal_cascade
+      - rule: p66_asset_side_scope
+        identity: "graph/evidence-graph.yaml: P66 source, object, verso asset, rights, review, and object-coverage topology drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "No archaeology or historical claim can confer doctrine authority."
   - fixture_id: reject-source-without-limit
     target: archaeology_source_pack
     mutation: remove_first_claim_cannot_establish
+    intended_rule: academic_claim_boundaries
     expected_rule: academic_claim_boundaries
+    expected_first_rule: academic_claim_boundaries
+    expected_rules_exact: [academic_claim_boundaries]
+    expected_findings_ordered:
+      - rule: academic_claim_boundaries
+        identity: "sources/archaeology-source-pack.yaml: claim-sennacherib-campaign-judah lacks ['cannot_establish']"
+        causal_role: intended_primary
     risk: high
     reason: "A positive source list without explicit limits invites overclaim."
   - fixture_id: reject-source-without-counterposition
     target: archaeology_source_pack
     mutation: remove_first_claim_counterpositions
+    intended_rule: academic_claim_boundaries
     expected_rule: academic_claim_boundaries
+    expected_first_rule: academic_claim_boundaries
+    expected_rules_exact: [academic_claim_boundaries]
+    expected_findings_ordered:
+      - rule: academic_claim_boundaries
+        identity: "sources/archaeology-source-pack.yaml: claim-sennacherib-campaign-judah lacks ['counterpositions']"
+        causal_role: intended_primary
     risk: high
     reason: "Material alternatives and source bias must remain inspectable."
   - fixture_id: reject-researcher-self-approval
     target: agent_mesh
     mutation: set_researcher_cannot_certify_own_citations_false
+    intended_rule: mesh_independence
     expected_rule: mesh_independence
+    expected_first_rule: mesh_independence
+    expected_rules_exact: [mesh_governance_contract, mesh_independence]
+    expected_findings_ordered:
+      - rule: mesh_independence
+        identity: "mesh/agent-mesh.v3.json: one or more required separation-of-duty invariants are false"
+        causal_role: intended_primary
+      - rule: mesh_governance_contract
+        identity: "mesh/agent-mesh.v3.json: execution invariants drifted or acquired hidden permissions"
+        causal_role: causal_cascade
     risk: high
     reason: "Research and independent source-fitness review are separate roles."
   - fixture_id: reject-unknown-relation-authority
     target: node_edge_catalog
     mutation: set_unknown_relation_authority_traversal_allowed
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/node-edge-catalog.yaml: extension governance contract drifted"
+        causal_role: intended_primary
+      - rule: extension_authority_noninterference
+        identity: "graph/node-edge-catalog.yaml: extension policy became lossy or authority-traversable"
+        causal_role: causal_cascade
     risk: critical
     reason: "Future extension must preserve unknown data without granting it authority semantics."
   - fixture_id: reject-known-relation-wrong-kinds-image-to-english
     target: evidence_graph
     mutation: add_image_displayed_through_english_edge
+    intended_rule: relation_kind_compatibility
     expected_rule: relation_kind_compatibility
+    expected_first_rule: relation_kind_compatibility
+    expected_rules_exact: [graph_invariant_consistency, p66_asset_side_scope, relation_kind_compatibility]
+    expected_findings_ordered:
+      - rule: relation_kind_compatibility
+        identity: "graph/evidence-graph.yaml: negative-image-display uses 'displayed_through' with 'digital_asset'->'text_or_translation_witness'"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: negative-image-display adds an unreviewed registered-relation edge"
+        causal_role: causal_cascade
+      - rule: p66_asset_side_scope
+        identity: "graph/evidence-graph.yaml: P66 source, object, verso asset, rights, review, and object-coverage topology drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "A registered relation name cannot be reused with endpoint kinds that create a direct image-to-translation path."
   - fixture_id: reject-known-relation-wrong-kinds-context-to-doctrine
     target: evidence_graph
     mutation: add_context_requires_review_doctrine_edge
+    intended_rule: relation_kind_compatibility
     expected_rule: relation_kind_compatibility
+    expected_first_rule: relation_kind_compatibility
+    expected_rules_exact: [graph_authority_noninterference, graph_invariant_consistency, relation_kind_compatibility]
+    expected_findings_ordered:
+      - rule: relation_kind_compatibility
+        identity: "graph/evidence-graph.yaml: negative-context-doctrine uses 'requires_review' with 'archaeological_context'->'doctrine_or_tradition_object'"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: negative-context-doctrine adds an unreviewed registered-relation edge"
+        causal_role: causal_cascade
+      - rule: graph_authority_noninterference
+        identity: "graph/evidence-graph.yaml: context:negative reaches doctrine or tradition material"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "A review relation cannot be repurposed as an archaeology-to-doctrine edge."
   - fixture_id: reject-lower-trust-to-canonical-path
     target: evidence_graph
-    mutation: add_lower_trust_verse_identity_to_canonical_edge
+    mutation: set_lower_trust_claim_with_existing_canonical_path
+    intended_rule: trust_zone_authority_path
     expected_rule: trust_zone_authority_path
+    expected_first_rule: trust_zone_authority_path
+    expected_rules_exact: [graph_invariant_consistency, trust_zone_authority_path]
+    expected_findings_ordered:
+      - rule: trust_zone_authority_path
+        identity: "graph/evidence-graph.yaml: e019 connects lower-trust material to canonical identity"
+        causal_role: intended_primary
+      - rule: trust_zone_authority_path
+        identity: "graph/evidence-graph.yaml: claim:sennacherib has a path to canonical Scripture"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "An untracked learning-sidecar observation may not become an upstream canonical dependency."
   - fixture_id: reject-graph-m7-status-laundering
     target: evidence_graph
     mutation: set_graph_m7_status_reviewed_gold
+    intended_rule: m7_candidate_boundary
     expected_rule: m7_candidate_boundary
+    expected_first_rule: m7_candidate_boundary
+    expected_rules_exact: [graph_invariant_consistency, m7_candidate_boundary]
+    expected_findings_ordered:
+      - rule: m7_candidate_boundary
+        identity: "graph/evidence-graph.yaml: chunk:m7-public-009 state drifted"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "The graph must agree with the held candidate-only M7 source state."
   - fixture_id: reject-graph-m8-status-laundering
     target: evidence_graph
-    mutation: set_graph_m8_built_and_invariant_false
+    mutation: set_graph_m8_status_built_and_converged
+    intended_rule: m8_pending_boundary
     expected_rule: m8_pending_boundary
+    expected_first_rule: m8_pending_boundary
+    expected_rules_exact: [graph_invariant_consistency, m8_pending_boundary]
+    expected_findings_ordered:
+      - rule: m8_pending_boundary
+        identity: "graph/evidence-graph.yaml: state:m8-john state drifted"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "The graph cannot claim M8 John is built or converged when the crosswalk records it pending."
   - fixture_id: reject-false-graph-invariant
     target: evidence_graph
     mutation: set_graph_invariant_false
+    intended_rule: graph_invariant_consistency
     expected_rule: graph_invariant_consistency
+    expected_first_rule: graph_invariant_consistency
+    expected_rules_exact: [graph_invariant_consistency]
+    expected_findings_ordered:
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: graph invariants are incomplete or false"
+        causal_role: intended_primary
     risk: high
     reason: "Every public graph invariant must be complete and true, not merely present as prose."
   - fixture_id: reject-invented-source-claim-mapping
     target: evidence_graph
     mutation: link_known_source_to_invented_graph_claim
+    intended_rule: graph_claim_identity
     expected_rule: graph_claim_identity
+    expected_first_rule: graph_claim_identity
+    expected_rules_exact: [graph_claim_identity, graph_invariant_consistency]
+    expected_findings_ordered:
+      - rule: graph_claim_identity
+        identity: "graph/evidence-graph.yaml: source-pack and graph historical claim identities are not one-to-one"
+        causal_role: intended_primary
+      - rule: graph_claim_identity
+        identity: "graph/evidence-graph.yaml: source-claim edge projection is not exact and exhaustive"
+        causal_role: causal_cascade
+      - rule: graph_claim_identity
+        identity: "graph/evidence-graph.yaml: source-claim relation polarity, scope, ordering, or authority semantics drifted"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "Known sources may connect only to the exact bounded claims declared by the source pack."
   - fixture_id: reject-writable-rights-reviewer
     target: agent_mesh
     mutation: set_rights_reviewer_write_bounded
+    intended_rule: mesh_role_permissions
     expected_rule: mesh_role_permissions
+    expected_first_rule: mesh_role_permissions
+    expected_rules_exact: [mesh_role_instruction_depth, mesh_role_permissions]
+    expected_findings_ordered:
+      - rule: mesh_role_permissions
+        identity: "mesh/agent-mesh.v3.json: source-rights-reviewer mode is 'write_bounded', expected 'read_only'"
+        causal_role: intended_primary
+      - rule: mesh_role_permissions
+        identity: "mesh/agent-mesh.v3.json: source-rights-reviewer acquired write authority"
+        causal_role: causal_cascade
+      - rule: mesh_role_instruction_depth
+        identity: "mesh/agent-mesh.v3.json: exact reviewed role contracts drifted"
+        causal_role: causal_cascade
     risk: high
     reason: "The independent rights reviewer must remain read-only and distinct from candidate assembly."
   - fixture_id: reject-stale-completeness-input
     target: completeness_receipt
     mutation: stale_completeness_input_digest
+    intended_rule: completeness_input_drift
     expected_rule: completeness_input_drift
+    expected_first_rule: completeness_input_drift
+    expected_rules_exact: [completeness_input_drift]
+    expected_findings_ordered:
+      - rule: completeness_input_drift
+        identity: "release/exit-completeness-audit.yaml: receipt inputs do not match the current deterministic candidate"
+        causal_role: intended_primary
     risk: high
     reason: "Any input digest change invalidates entry, midflight, and exit completeness decisions."
   - fixture_id: reject-catalog-widening-image-to-english
     target: node_edge_catalog
     mutation: widen_displayed_through_and_add_image_edge
+    intended_rule: relation_kind_compatibility
     expected_rule: relation_kind_compatibility
+    expected_first_rule: relation_kind_compatibility
+    expected_rules_exact: [graph_invariant_consistency, p66_asset_side_scope, relation_kind_compatibility]
+    expected_findings_ordered:
+      - rule: relation_kind_compatibility
+        identity: "graph/node-edge-catalog.yaml: complete registered-relation semantics drifted"
+        causal_role: intended_primary
+      - rule: relation_kind_compatibility
+        identity: "graph/node-edge-catalog.yaml: 'displayed_through' endpoint contract drifted"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: negative-catalog-widening adds an unreviewed registered-relation edge"
+        causal_role: causal_cascade
+      - rule: p66_asset_side_scope
+        identity: "graph/evidence-graph.yaml: P66 source, object, verso asset, rights, review, and object-coverage topology drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "A mutable catalog cannot widen a code-reviewed endpoint contract and thereby legalize a forbidden image-to-English shortcut."
   - fixture_id: reject-canonical-external-extension
     target: evidence_graph
     mutation: add_canonical_external_node
+    intended_rule: trust_zone_authority_path
     expected_rule: trust_zone_authority_path
+    expected_first_rule: trust_zone_authority_path
+    expected_rules_exact: [extension_authority_noninterference, trust_zone_authority_path]
+    expected_findings_ordered:
+      - rule: trust_zone_authority_path
+        identity: "graph/evidence-graph.yaml: ext:fixture:canonical non-Scripture node entered the canonical trust zone"
+        causal_role: intended_primary
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext:fixture:canonical external-node envelope, namespace, payload, or non-authority status is invalid"
+        causal_role: causal_cascade
     risk: critical
     reason: "An external-domain extension may remain lossless and queryable but cannot enter the canonical Scripture identity trust zone."
   - fixture_id: reject-canonical-doctrine-node
     target: evidence_graph
     mutation: add_canonical_doctrine_node
+    intended_rule: trust_zone_authority_path
     expected_rule: trust_zone_authority_path
+    expected_first_rule: trust_zone_authority_path
+    expected_rules_exact: [graph_invariant_consistency, trust_zone_authority_path]
+    expected_findings_ordered:
+      - rule: trust_zone_authority_path
+        identity: "graph/evidence-graph.yaml: doctrine:negative-canonical non-Scripture node entered the canonical trust zone"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "Doctrine and tradition objects remain tradition-scoped or proposed; this static graph cannot relabel them as canonical Scripture identity."
   - fixture_id: reject-m7-misleading-label
     target: evidence_graph
     mutation: set_graph_m7_label_reviewed_gold
+    intended_rule: m7_candidate_boundary
     expected_rule: m7_candidate_boundary
+    expected_first_rule: m7_candidate_boundary
+    expected_rules_exact: [graph_invariant_consistency, m7_candidate_boundary]
+    expected_findings_ordered:
+      - rule: m7_candidate_boundary
+        identity: "graph/evidence-graph.yaml: chunk:m7-public-009 state drifted"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "A truthful status field cannot cure a misleading public label that implies M7 gold review."
   - fixture_id: reject-m7-alias-node
     target: evidence_graph
     mutation: add_graph_m7_alias_node
+    intended_rule: m7_candidate_boundary
     expected_rule: m7_candidate_boundary
+    expected_first_rule: m7_candidate_boundary
+    expected_rules_exact: [graph_invariant_consistency, m7_candidate_boundary]
+    expected_findings_ordered:
+      - rule: m7_candidate_boundary
+        identity: "graph/evidence-graph.yaml: candidate-chunk identity set differs from the exact M7 release set"
+        causal_role: intended_primary
+      - rule: m7_candidate_boundary
+        identity: "graph/evidence-graph.yaml: reserved M7 graph identity set drifted"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "Reserved M7 graph identities prevent an alias node from laundering a held candidate into a second apparent state."
   - fixture_id: reject-m8-misleading-label
     target: evidence_graph
     mutation: set_graph_m8_label_built
+    intended_rule: m8_pending_boundary
     expected_rule: m8_pending_boundary
+    expected_first_rule: m8_pending_boundary
+    expected_rules_exact: [graph_invariant_consistency, m8_pending_boundary]
+    expected_findings_ordered:
+      - rule: m8_pending_boundary
+        identity: "graph/evidence-graph.yaml: state:m8-john state drifted"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "M8 John remains pending even when a misleading label leaves the status field unchanged."
   - fixture_id: reject-m8-alias-node
     target: evidence_graph
     mutation: add_graph_m8_alias_node
+    intended_rule: m8_pending_boundary
     expected_rule: m8_pending_boundary
+    expected_first_rule: m8_pending_boundary
+    expected_rules_exact: [graph_invariant_consistency, m8_pending_boundary]
+    expected_findings_ordered:
+      - rule: m8_pending_boundary
+        identity: "graph/evidence-graph.yaml: candidate-chunk identity set differs from the exact M8 release set"
+        causal_role: intended_primary
+      - rule: m8_pending_boundary
+        identity: "graph/evidence-graph.yaml: reserved M8 graph identity set drifted"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "Reserved M8 graph identities prevent a second node from implying a built or reviewed John state."
   - fixture_id: reject-semantic-role-padding
     target: agent_mesh
     mutation: pad_rights_reviewer_purpose
+    intended_rule: mesh_role_instruction_depth
     expected_rule: mesh_role_instruction_depth
+    expected_first_rule: mesh_role_instruction_depth
+    expected_rules_exact: [mesh_role_instruction_depth]
+    expected_findings_ordered:
+      - rule: mesh_role_instruction_depth
+        identity: "mesh/agent-mesh.v3.json: exact reviewed role contracts drifted"
+        causal_role: intended_primary
     risk: high
     reason: "Exact reviewed role contracts detect semantically empty padding even when minimum word-count checks still pass."
   - fixture_id: reject-reviewer-class-change
     target: agent_mesh
     mutation: change_rights_reviewer_class_to_writer
+    intended_rule: mesh_role_permissions
     expected_rule: mesh_role_permissions
+    expected_first_rule: mesh_role_permissions
+    expected_rules_exact: [mesh_role_instruction_depth, mesh_role_permissions]
+    expected_findings_ordered:
+      - rule: mesh_role_permissions
+        identity: "mesh/agent-mesh.v3.json: source-rights-reviewer class is 'orchestrator_writer', expected 'independent_rights_checker'"
+        causal_role: intended_primary
+      - rule: mesh_role_instruction_depth
+        identity: "mesh/agent-mesh.v3.json: exact reviewed role contracts drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "A reviewer cannot acquire a writer class while retaining a superficially read-only mode."
   - fixture_id: reject-hidden-reviewer-write-authority
     target: agent_mesh
     mutation: add_rights_reviewer_write_authority
+    intended_rule: mesh_role_permissions
     expected_rule: mesh_role_permissions
+    expected_first_rule: mesh_role_permissions
+    expected_rules_exact: [mesh_role_instruction_depth, mesh_role_permissions]
+    expected_findings_ordered:
+      - rule: mesh_role_permissions
+        identity: "mesh/agent-mesh.v3.json: source-rights-reviewer acquired authority-bearing fields ['write_authority']"
+        causal_role: intended_primary
+      - rule: mesh_role_instruction_depth
+        identity: "mesh/agent-mesh.v3.json: exact reviewed role contracts drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "Authority-bearing fields are rejected even if the role's primary mode string remains read-only."
   - fixture_id: reject-wrong-type-completeness-receipt
     target: completeness_receipt
     mutation: set_completeness_semantic_fields_to_wrong_types
+    intended_rule: mesh_role_completeness
     expected_rule: mesh_role_completeness
+    expected_first_rule: mesh_role_completeness
+    expected_rules_exact: [mesh_role_completeness]
+    expected_findings_ordered:
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: entry assigned-role semantics are invalid"
+        causal_role: intended_primary
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: entry lacks a distinct actor-bound auditor/checker pass over exact chained evidence"
+        causal_role: causal_cascade
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: entry auditor lacks an exact UTC observation timestamp"
+        causal_role: causal_cascade
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: entry has unresolved missing roles or no risk routing"
+        causal_role: causal_cascade
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: auditor attempt IDs are missing, reused, or aliased to checker attempts"
+        causal_role: causal_cascade
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: auditor/checker observation timestamps are missing or not nondecreasing"
+        causal_role: causal_cascade
     risk: high
     reason: "Truth-like strings and mapping-shaped risk fields cannot satisfy typed deterministic completeness evidence."
   - fixture_id: reject-nonreserved-m7-alias
     target: evidence_graph
     mutation: add_nonreserved_m7_alias_edge
+    intended_rule: m7_candidate_boundary
     expected_rule: m7_candidate_boundary
+    expected_first_rule: m7_candidate_boundary
+    expected_rules_exact: [graph_invariant_consistency, m7_candidate_boundary]
+    expected_findings_ordered:
+      - rule: m7_candidate_boundary
+        identity: "graph/evidence-graph.yaml: candidate-chunk identity set differs from the exact M7 release set"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: negative-nonreserved-m7 adds an unreviewed registered-relation edge"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "Candidate-state protection applies to every candidate_chunk identity, not only IDs using the reserved M7 prefix."
   - fixture_id: reject-nonreserved-m8-alias
     target: evidence_graph
     mutation: add_nonreserved_m8_alias_edge
+    intended_rule: m8_pending_boundary
     expected_rule: m8_pending_boundary
+    expected_first_rule: m8_pending_boundary
+    expected_rules_exact: [graph_invariant_consistency, m8_pending_boundary]
+    expected_findings_ordered:
+      - rule: m8_pending_boundary
+        identity: "graph/evidence-graph.yaml: candidate-chunk identity set differs from the exact M8 release set"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: negative-nonreserved-m8 adds an unreviewed registered-relation edge"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "A non-reserved alias cannot represent M8 John as built or converged."
   - fixture_id: reject-hidden-candidate-promotion-fields
     target: evidence_graph
     mutation: add_hidden_candidate_promotion_fields
+    intended_rule: graph_authority_noninterference
     expected_rule: graph_authority_noninterference
+    expected_first_rule: graph_authority_noninterference
+    expected_rules_exact: [graph_authority_noninterference, graph_invariant_consistency]
+    expected_findings_ordered:
+      - rule: graph_authority_noninterference
+        identity: "graph/evidence-graph.yaml: chunk:m7-public-009 has unreviewed fields ['reviewed_gold']"
+        causal_role: intended_primary
+      - rule: graph_authority_noninterference
+        identity: "graph/evidence-graph.yaml: state:m8-john has unreviewed fields ['convergence_status']"
+        causal_role: causal_cascade
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "Extra truth-like fields cannot contradict exact M7/M8 labels and statuses."
   - fixture_id: reject-invented-canonical-scripture-anchor
     target: evidence_graph
     mutation: add_invented_canonical_scripture_anchor
+    intended_rule: graph_invariant_consistency
     expected_rule: graph_invariant_consistency
+    expected_first_rule: graph_invariant_consistency
+    expected_rules_exact: [graph_invariant_consistency]
+    expected_findings_ordered:
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: negative-invented-scripture adds an unreviewed registered-relation edge"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "The static release pins its six Scripture identity anchors; arbitrary canonical identities require separate governed intake."
   - fixture_id: reject-canonical-node-theological-authority
     target: evidence_graph
     mutation: add_canonical_node_theological_authority
+    intended_rule: graph_authority_noninterference
     expected_rule: graph_authority_noninterference
+    expected_first_rule: graph_authority_noninterference
+    expected_rules_exact: [graph_authority_noninterference, graph_invariant_consistency]
+    expected_findings_ordered:
+      - rule: graph_authority_noninterference
+        identity: "graph/evidence-graph.yaml: scripture:john19 has unreviewed fields ['theological_authority']"
+        causal_role: intended_primary
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: causal_cascade
     risk: critical
     reason: "A canonical identity pointer cannot acquire theological promotion authority through an extra field."
   - fixture_id: reject-relation-semantic-flag-drift
     target: node_edge_catalog
     mutation: drift_registered_relation_semantics
+    intended_rule: relation_kind_compatibility
     expected_rule: relation_kind_compatibility
+    expected_first_rule: relation_kind_compatibility
+    expected_rules_exact: [relation_kind_compatibility]
+    expected_findings_ordered:
+      - rule: relation_kind_compatibility
+        identity: "graph/node-edge-catalog.yaml: complete registered-relation semantics drifted"
+        causal_role: intended_primary
     risk: critical
     reason: "Endpoint compatibility is insufficient if comparison or invalidation semantics can be reversed."
   - fixture_id: reject-disabled-extension-human-gate
     target: node_edge_catalog
     mutation: disable_extension_human_gate
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/node-edge-catalog.yaml: extension governance contract drifted"
+        causal_role: intended_primary
     risk: critical
     reason: "New core types remain human-gated even though unknown payloads are preserved losslessly."
   - fixture_id: reject-unknown-edge-outer-promotion
     target: evidence_graph
     mutation: add_unknown_edge_outer_promotion_field
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext-edge:fixture:negative-promotes unknown relation outer fields are not exact"
+        causal_role: intended_primary
     risk: critical
     reason: "Future data belongs inside extension_payload; the edge envelope has an exact non-authorizing key set."
   - fixture_id: reject-source-claim-polarity-and-scope-corruption
     target: evidence_graph
     mutation: corrupt_source_claim_polarity_and_scope
+    intended_rule: graph_claim_identity
     expected_rule: graph_claim_identity
+    expected_first_rule: graph_claim_identity
+    expected_rules_exact: [graph_claim_identity]
+    expected_findings_ordered:
+      - rule: graph_claim_identity
+        identity: "graph/evidence-graph.yaml: source-claim relation polarity, scope, ordering, or authority semantics drifted"
+        causal_role: intended_primary
     risk: critical
     reason: "Exact source-claim projection includes polarity and bounded scope, not merely endpoint pairs."
   - fixture_id: reject-claim-label-proof-laundering
     target: evidence_graph
     mutation: relabel_bounded_claim_as_proof
+    intended_rule: graph_invariant_consistency
     expected_rule: graph_invariant_consistency
+    expected_first_rule: graph_invariant_consistency
+    expected_rules_exact: [graph_invariant_consistency]
+    expected_findings_ordered:
+      - rule: graph_invariant_consistency
+        identity: "graph/evidence-graph.yaml: released core node identity, label, status, or field contract drifted"
+        causal_role: intended_primary
     risk: critical
     reason: "A bounded claim node cannot be relabeled as proof while retaining structurally valid edges."
   - fixture_id: reject-english-source-digest-drift
     target: p66_crosswalk
     mutation: drift_crosswalk_english_digest
+    intended_rule: crosswalk_provenance_integrity
     expected_rule: crosswalk_provenance_integrity
+    expected_first_rule: crosswalk_provenance_integrity
+    expected_rules_exact: [crosswalk_provenance_integrity]
+    expected_findings_ordered:
+      - rule: crosswalk_provenance_integrity
+        identity: "graph/p66-chunk-crosswalk.yaml: P66, English, M7, or M8 source-layer identity drifted"
+        causal_role: intended_primary
     risk: critical
     reason: "The public-domain English display is bound to one exact eng-web archive, not image rights or an arbitrary text."
   - fixture_id: reject-m7-public-head-drift
     target: p66_crosswalk
     mutation: drift_crosswalk_m7_public_head
+    intended_rule: crosswalk_provenance_integrity
     expected_rule: crosswalk_provenance_integrity
+    expected_first_rule: crosswalk_provenance_integrity
+    expected_rules_exact: [crosswalk_provenance_integrity]
+    expected_findings_ordered:
+      - rule: crosswalk_provenance_integrity
+        identity: "graph/p66-chunk-crosswalk.yaml: P66, English, M7, or M8 source-layer identity drifted"
+        causal_role: intended_primary
     risk: high
     reason: "M7 public metadata must retain the exact reviewed ref, head, path, snapshot, decision, and held status."
   - fixture_id: reject-m7-local-observation-drift
     target: p66_crosswalk
     mutation: drift_crosswalk_m7_local_digest
+    intended_rule: crosswalk_provenance_integrity
     expected_rule: crosswalk_provenance_integrity
+    expected_first_rule: crosswalk_provenance_integrity
+    expected_rules_exact: [crosswalk_provenance_integrity]
+    expected_findings_ordered:
+      - rule: crosswalk_provenance_integrity
+        identity: "graph/p66-chunk-crosswalk.yaml: P66, English, M7, or M8 source-layer identity drifted"
+        causal_role: intended_primary
     risk: high
     reason: "A non-durable local observation remains bound to the exact disclosed path and digest."
   - fixture_id: reject-m8-checkpoint-drift
     target: p66_crosswalk
     mutation: drift_crosswalk_m8_checkpoint
+    intended_rule: crosswalk_provenance_integrity
     expected_rule: crosswalk_provenance_integrity
+    expected_first_rule: crosswalk_provenance_integrity
+    expected_rules_exact: [crosswalk_provenance_integrity]
+    expected_findings_ordered:
+      - rule: crosswalk_provenance_integrity
+        identity: "graph/p66-chunk-crosswalk.yaml: P66, English, M7, or M8 source-layer identity drifted"
+        causal_role: intended_primary
     risk: critical
     reason: "The demonstration may report only the owner-ratified 35dc82b checkpoint and its exact 22/66 pending-John state."
   - fixture_id: reject-contradictory-crosswalk-invariants
     target: p66_crosswalk
     mutation: contradict_crosswalk_invariants
+    intended_rule: crosswalk_provenance_integrity
     expected_rule: crosswalk_provenance_integrity
+    expected_first_rule: crosswalk_provenance_integrity
+    expected_rules_exact: [crosswalk_provenance_integrity]
+    expected_findings_ordered:
+      - rule: crosswalk_provenance_integrity
+        identity: "graph/p66-chunk-crosswalk.yaml: crosswalk invariants drifted or contradicted the source state"
+        causal_role: intended_primary
     risk: critical
     reason: "Invariant declarations cannot contradict the pinned source-layer values."
   - fixture_id: reject-removed-human-mesh-gate
     target: agent_mesh
     mutation: remove_mesh_human_gate
+    intended_rule: mesh_governance_contract
     expected_rule: mesh_governance_contract
+    expected_first_rule: mesh_governance_contract
+    expected_rules_exact: [mesh_governance_contract]
+    expected_findings_ordered:
+      - rule: mesh_governance_contract
+        identity: "mesh/agent-mesh.v3.json: mesh sequence drifted or lost its human gate"
+        causal_role: intended_primary
     risk: critical
     reason: "The complete sequence—not only role records—must retain its high-risk human gate."
   - fixture_id: reject-high-risk-auto-promotion
     target: agent_mesh
     mutation: set_mesh_high_risk_auto_promote
+    intended_rule: mesh_governance_contract
     expected_rule: mesh_governance_contract
+    expected_first_rule: mesh_governance_contract
+    expected_rules_exact: [mesh_governance_contract]
+    expected_findings_ordered:
+      - rule: mesh_governance_contract
+        identity: "mesh/agent-mesh.v3.json: risk routing drifted or permits automatic promotion"
+        causal_role: intended_primary
     risk: critical
     reason: "High-risk disagreement routes to a named human and can never auto-promote."
   - fixture_id: reject-goal-biased-generic-specialist
     target: agent_mesh
     mutation: add_goal_biased_generic_specialist
+    intended_rule: mesh_governance_contract
     expected_rule: mesh_governance_contract
+    expected_first_rule: mesh_governance_contract
+    expected_rules_exact: [mesh_governance_contract]
+    expected_findings_ordered:
+      - rule: mesh_governance_contract
+        identity: "mesh/agent-mesh.v3.json: conditional specialist factory drifted or became goal-biased"
+        causal_role: intended_primary
     risk: critical
     reason: "Specialists close named knowledge failures; they are not instantiated to prove a desired conclusion."
   - fixture_id: reject-semantic-false-completeness-pass
     target: completeness_receipt
     mutation: set_completeness_semantic_false_pass
+    intended_rule: mesh_role_completeness
     expected_rule: mesh_role_completeness
+    expected_first_rule: mesh_role_completeness
+    expected_rules_exact: [mesh_role_completeness]
+    expected_findings_ordered:
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: midflight has unresolved missing roles or no risk routing"
+        causal_role: intended_primary
     risk: critical
     reason: "Valid-shaped receipts still fail when routes auto-promote, assigned roles are rejected, discoveries are ignored, or dates are impossible."
   - fixture_id: reject-stale-validator-completeness-input
     target: completeness_receipt
     mutation: stale_completeness_validator_digest
+    intended_rule: completeness_input_drift
     expected_rule: completeness_input_drift
+    expected_first_rule: completeness_input_drift
+    expected_rules_exact: [completeness_input_drift]
+    expected_findings_ordered:
+      - rule: completeness_input_drift
+        identity: "release/exit-completeness-audit.yaml: receipt inputs do not match the current deterministic candidate"
+        causal_role: intended_primary
     risk: high
     reason: "Completeness evidence binds the validator, focused tests, fixtures, frozen manifest, independent reviews, base commit, and execution fingerprint."
   - fixture_id: reject-external-m7-impersonator
     target: evidence_graph
     mutation: add_external_m7_impersonator
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext:fixture:m7-reviewed external-node envelope, namespace, payload, or non-authority status is invalid"
+        causal_role: intended_primary
     risk: critical
     reason: "An opaque extension cannot impersonate a reviewed M7 candidate in its public envelope."
   - fixture_id: reject-external-reserved-scripture-namespace
     target: evidence_graph
     mutation: add_external_reserved_scripture_namespace
+    intended_rule: graph_identity
     expected_rule: graph_identity
+    expected_first_rule: graph_identity
+    expected_rules_exact: [extension_authority_noninterference, graph_identity]
+    expected_findings_ordered:
+      - rule: graph_identity
+        identity: "graph/evidence-graph.yaml: scripture:invented-extension uses a reserved namespace for 'scripture_anchor'"
+        causal_role: intended_primary
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: scripture:invented-extension external-node envelope, namespace, payload, or non-authority status is invalid"
+        causal_role: causal_cascade
     risk: critical
     reason: "Reserved Scripture identities can be used only by exact Scripture identity-pointer nodes."
   - fixture_id: reject-external-promoted-status
     target: evidence_graph
     mutation: add_external_promoted_status
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext:fixture:promoted external-node envelope, namespace, payload, or non-authority status is invalid"
+        causal_role: intended_primary
     risk: critical
     reason: "External nodes remain explicitly unreviewed and non-authorizing regardless of their opaque payload."
   - fixture_id: reject-external-source-claim-reuse
     target: evidence_graph
     mutation: add_external_source_claim_reuse
+    intended_rule: graph_claim_identity
     expected_rule: graph_claim_identity
+    expected_first_rule: graph_claim_identity
+    expected_rules_exact: [extension_authority_noninterference, graph_claim_identity]
+    expected_findings_ordered:
+      - rule: graph_claim_identity
+        identity: "graph/evidence-graph.yaml: ext:fixture:claim-reuse illegally carries source_claim_id outside a historical claim"
+        causal_role: intended_primary
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext:fixture:claim-reuse external-node envelope, namespace, payload, or non-authority status is invalid"
+        causal_role: causal_cascade
+      - rule: graph_claim_identity
+        identity: "graph/evidence-graph.yaml: source_claim_id values must be globally unique lowercase ASCII normalized identities"
+        causal_role: causal_cascade
     risk: critical
     reason: "Only historical-claim nodes may carry globally unique source-claim identities."
   - fixture_id: reject-external-confusable-namespace
     target: evidence_graph
     mutation: add_external_confusable_identifier
-    expected_rule: extension_authority_noninterference
+    intended_rule: graph_identity
+    expected_rule: graph_identity
+    expected_first_rule: graph_identity
+    expected_rules_exact: [extension_authority_noninterference, graph_identity]
+    expected_findings_ordered:
+      - rule: graph_identity
+        identity: "graph/evidence-graph.yaml: 'ｅｘｔ:fixture:confusable' is not an exact lowercase ASCII normalized identity"
+        causal_role: intended_primary
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ｅｘｔ:fixture:confusable external-node envelope, namespace, payload, or non-authority status is invalid"
+        causal_role: causal_cascade
     risk: high
     reason: "Unicode-confusable outer identities cannot masquerade as the normalized extension namespace."
   - fixture_id: reject-external-punctuation-authority-label
     target: evidence_graph
     mutation: add_external_punctuation_impersonator
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext:fixture:authority-label external-node envelope, namespace, payload, or non-authority status is invalid"
+        causal_role: intended_primary
     risk: critical
     reason: "Hyphen or underscore variants cannot disguise authority-bearing language in an extension envelope."
   - fixture_id: reject-unknown-relation-whitespace-spoof
     target: evidence_graph
     mutation: add_unknown_relation_whitespace_spoof
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext-edge:fixture:spoof unknown relation or edge identity is not normalized and namespaced"
+        causal_role: intended_primary
     risk: critical
     reason: "Whitespace cannot turn a registered relation into an apparently unknown extension."
   - fixture_id: reject-unknown-relation-case-spoof
     target: evidence_graph
     mutation: add_unknown_relation_case_spoof
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext-edge:fixture:spoof unknown relation or edge identity is not normalized and namespaced"
+        causal_role: intended_primary
     risk: critical
     reason: "Case changes cannot disguise a forbidden relation from downstream consumers."
   - fixture_id: reject-unknown-relation-confusable-spoof
     target: evidence_graph
     mutation: add_unknown_relation_confusable_spoof
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext-edge:fixture:spoof unknown relation or edge identity is not normalized and namespaced"
+        causal_role: intended_primary
     risk: critical
     reason: "Non-ASCII confusables are forbidden in authority-adjacent relation identifiers."
   - fixture_id: reject-unknown-relation-protected-local-tail
     target: evidence_graph
     mutation: add_unknown_relation_protected_tail
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext-edge:fixture:spoof unknown relation or edge identity is not normalized and namespaced"
+        causal_role: intended_primary
     risk: critical
     reason: "A namespace cannot legalize an extension relation whose local semantic name collides with a protected relation."
   - fixture_id: reject-unknown-relation-punctuation-tail
     target: evidence_graph
     mutation: add_unknown_relation_punctuation_spoof
+    intended_rule: extension_authority_noninterference
     expected_rule: extension_authority_noninterference
+    expected_first_rule: extension_authority_noninterference
+    expected_rules_exact: [extension_authority_noninterference]
+    expected_findings_ordered:
+      - rule: extension_authority_noninterference
+        identity: "graph/evidence-graph.yaml: ext-edge:fixture:spoof unknown relation or edge identity is not normalized and namespaced"
+        causal_role: intended_primary
     risk: critical
     reason: "Punctuation variants of forbidden relation semantics remain forbidden inside an extension namespace."
   - fixture_id: reject-forbidden-registered-overlap
     target: node_edge_catalog
     mutation: add_forbidden_registered_overlap
+    intended_rule: forbidden_relation
     expected_rule: forbidden_relation
+    expected_first_rule: forbidden_relation
+    expected_rules_exact: [forbidden_relation]
+    expected_findings_ordered:
+      - rule: forbidden_relation
+        identity: "graph/node-edge-catalog.yaml: forbidden relation set differs from the exact non-overlapping contract"
+        causal_role: intended_primary
     risk: critical
     reason: "A relation cannot be simultaneously registered and forbidden while leaving consumers to guess."
   - fixture_id: reject-machine-document-authority-spoof
     target: evidence_graph
     mutation: spoof_machine_document_envelope
+    intended_rule: document_identity_envelope
     expected_rule: document_identity_envelope
+    expected_first_rule: document_identity_envelope
+    expected_rules_exact: [document_identity_envelope]
+    expected_findings_ordered:
+      - rule: document_identity_envelope
+        identity: "graph/evidence-graph.yaml: identity or authority envelope drifted: {'object_type': ('canonical_theological_authority_graph', 'static_claim_mediated_evidence_graph'), 'trust_zone': ('canonical', 'proposed'), 'lifecycle_status': ('approved', 'draft'), 'graph_id': ('urn:logos:graph:approved-doctrine', 'urn:logos:graph:biblical-evidence-demo-v1')}"
+        causal_role: intended_primary
     risk: critical
     reason: "Exact root identity and authority envelopes cannot be refrozen into a different document class."
   - fixture_id: reject-unreviewed-root-authority-field
     target: p66_source
     mutation: add_unreviewed_root_authority_field
+    intended_rule: document_identity_envelope
     expected_rule: document_identity_envelope
+    expected_first_rule: document_identity_envelope
+    expected_rules_exact: [document_identity_envelope]
+    expected_findings_ordered:
+      - rule: document_identity_envelope
+        identity: "sources/p66-source-and-rights.yaml: root key set drifted: missing=[], extra=['theological_authority']"
+        causal_role: intended_primary
     risk: critical
     reason: "Every machine document has an exact root key set; extra authority-bearing fields fail closed."
   - fixture_id: reject-completeness-root-authority-spoof
     target: completeness_receipt
     mutation: spoof_completeness_root_authority
+    intended_rule: document_identity_envelope
     expected_rule: document_identity_envelope
+    expected_first_rule: document_identity_envelope
+    expected_rules_exact: [document_identity_envelope, mesh_role_permissions]
+    expected_findings_ordered:
+      - rule: document_identity_envelope
+        identity: "release/exit-completeness-audit.yaml: identity or authority envelope drifted: {'object_type': ('human_approved_theological_authority_receipt', 'deterministic_role_completeness_audit_receipt'), 'trust_zone': ('canonical', 'proposed'), 'authority_granted': (True, False)}"
+        causal_role: intended_primary
+      - rule: mesh_role_permissions
+        identity: "release/exit-completeness-audit.yaml: completeness receipt mutated state or granted authority"
+        causal_role: causal_cascade
     risk: critical
     reason: "A deterministic completeness receipt cannot claim human or theological authority."
   - fixture_id: reject-structured-late-discovery-auto-promotion
     target: completeness_receipt
     mutation: set_completeness_semantic_false_pass
+    intended_rule: mesh_role_completeness
     expected_rule: mesh_role_completeness
+    expected_first_rule: mesh_role_completeness
+    expected_rules_exact: [mesh_role_completeness]
+    expected_findings_ordered:
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: midflight has unresolved missing roles or no risk routing"
+        causal_role: intended_primary
     risk: critical
     reason: "A valid status cannot hide an unregistered resolution code or premature publication permission."
+  - fixture_id: reject-completeness-actor-alias
+    target: completeness_receipt
+    mutation: alias_completeness_auditor_checker_actor
+    intended_rule: mesh_role_completeness
+    expected_rule: mesh_role_completeness
+    expected_first_rule: mesh_role_completeness
+    expected_rules_exact: [completeness_input_drift, mesh_role_completeness]
+    expected_findings_ordered:
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: entry lacks a distinct actor-bound auditor/checker pass over exact chained evidence"
+        causal_role: intended_primary
+      - rule: completeness_input_drift
+        identity: "release/exit-completeness-audit.yaml: midflight phase evidence profile, digest, or prior-pair chain is stale"
+        causal_role: causal_cascade
+    risk: critical
+    reason: "Different role names and attempt IDs cannot hide that one actor emitted both the audit and its purported independent check."
+  - fixture_id: reject-completeness-checker-overrides-failed-auditor
+    target: completeness_receipt
+    mutation: forge_checker_override_of_failed_auditor
+    intended_rule: mesh_role_completeness
+    expected_rule: mesh_role_completeness
+    expected_first_rule: mesh_role_completeness
+    expected_rules_exact: [completeness_input_drift, mesh_role_completeness]
+    expected_findings_ordered:
+      - rule: mesh_role_completeness
+        identity: "release/exit-completeness-audit.yaml: entry lacks a distinct actor-bound auditor/checker pass over exact chained evidence"
+        causal_role: intended_primary
+      - rule: completeness_input_drift
+        identity: "release/exit-completeness-audit.yaml: midflight phase evidence profile, digest, or prior-pair chain is stale"
+        causal_role: causal_cascade
+    risk: critical
+    reason: "A checker can verify or reject an audit but cannot turn an auditor fail-closed result into a passing phase."
+  - fixture_id: reject-completeness-broken-phase-pair-chain
+    target: completeness_receipt
+    mutation: break_completeness_phase_pair_chain
+    intended_rule: completeness_input_drift
+    expected_rule: completeness_input_drift
+    expected_first_rule: completeness_input_drift
+    expected_rules_exact: [completeness_input_drift]
+    expected_findings_ordered:
+      - rule: completeness_input_drift
+        identity: "release/exit-completeness-audit.yaml: midflight phase evidence profile, digest, or prior-pair chain is stale"
+        causal_role: intended_primary
+      - rule: completeness_input_drift
+        identity: "release/exit-completeness-audit.yaml: exit phase evidence profile, digest, or prior-pair chain is stale"
+        causal_role: causal_cascade
+    risk: critical
+    reason: "Midflight and exit cannot be independently resealed after silently replacing the predecessor audit/checker pair."
+  - fixture_id: reject-completeness-receipt-self-reference
+    target: completeness_receipt
+    mutation: inject_completeness_receipt_self_reference
+    intended_rule: receipt_self_reference
+    expected_rule: receipt_self_reference
+    expected_first_rule: receipt_self_reference
+    expected_rules_exact: [completeness_input_drift, receipt_self_reference]
+    expected_findings_ordered:
+      - rule: receipt_self_reference
+        identity: "release/exit-completeness-audit.yaml: entry receipt attempts to bind its own mutable bytes"
+        causal_role: intended_primary
+      - rule: completeness_input_drift
+        identity: "release/exit-completeness-audit.yaml: entry phase evidence profile, digest, or prior-pair chain is stale"
+        causal_role: causal_cascade
+      - rule: completeness_input_drift
+        identity: "release/exit-completeness-audit.yaml: midflight phase evidence profile, digest, or prior-pair chain is stale"
+        causal_role: causal_cascade
+    risk: critical
+    reason: "A receipt cannot prove its own immutable identity by embedding the digest of the mutable file that contains that digest."
   - fixture_id: reject-duplicate-yaml-root-key
     target: strict_parser
     mutation: parse_duplicate_yaml_root_key
+    intended_rule: duplicate_mapping_key
     expected_rule: duplicate_mapping_key
+    expected_first_rule: duplicate_mapping_key
+    expected_rules_exact: [duplicate_mapping_key]
+    expected_findings_ordered:
+      - rule: duplicate_mapping_key
+        identity: "package-byte-overlay: cannot parse strict YAML graph/evidence-graph.yaml: while constructing a mapping\n  in \"<unicode string>\", line 1, column 1:\n    schema_version: logos.biblical-e ... \n    ^\nduplicate mapping key 'object_type'\n  in \"<unicode string>\", line 413, column 1:\n    object_type: static_claim_mediat ... \n    ^"
+        causal_role: intended_primary
     risk: critical
     reason: "YAML root ambiguity cannot expose one authority contract to humans and another to the validator."
   - fixture_id: reject-duplicate-json-nested-key
     target: strict_parser
     mutation: parse_duplicate_json_nested_key
+    intended_rule: duplicate_mapping_key
     expected_rule: duplicate_mapping_key
+    expected_first_rule: duplicate_mapping_key
+    expected_rules_exact: [duplicate_mapping_key]
+    expected_findings_ordered:
+      - rule: duplicate_mapping_key
+        identity: "package-byte-overlay: cannot parse strict JSON mesh/agent-mesh.v3.json: duplicate mapping key 'role_id'"
+        causal_role: intended_primary
     risk: critical
     reason: "Nested JSON authority fields use one unambiguous member identity across all consumers."
   - fixture_id: reject-duplicate-review-frontmatter-key
     target: strict_parser
     mutation: parse_duplicate_review_frontmatter_key
+    intended_rule: duplicate_mapping_key
     expected_rule: duplicate_mapping_key
+    expected_first_rule: duplicate_mapping_key
+    expected_rules_exact: [duplicate_mapping_key]
+    expected_findings_ordered:
+      - rule: duplicate_mapping_key
+        identity: "package-byte-overlay: cannot parse strict YAML review frontmatter release/independent-graph-mesh-review.md: while constructing a mapping\n  in \"<unicode string>\", line 1, column 1:\n    schema_version: logos.biblical-e ... \n    ^\nduplicate mapping key 'result'\n  in \"<unicode string>\", line 15, column 1:\n    result: pass\n    ^"
+        causal_role: intended_primary
     risk: critical
     reason: "A machine review receipt cannot contain both fail-closed and pass values for the same field."

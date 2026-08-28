@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.event-ledger.v3",
+  "title": "Doctrine Marathon event ledger",
+  "description": "object_type=event_ledger_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent replay-control review; reason_for_inclusion=Make the ledger boundary, runtime state, and event collection structurally enforceable.",
+  "type": "object",
+  "required": ["metadata", "schema_version", "campaign_id", "runtime_events", "append_only", "ledger_generation", "prior_snapshot", "event_count", "last_event_hash", "events", "ledger_hash"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"],
+      "additionalProperties": true
+    },
+    "schema_version": {"const": "logos.doctrine_marathon.event-ledger.v3"},
+    "campaign_id": {"const": "LOGOS-DOCTRINE-MARATHON-003"},
+    "runtime_events": {"type": "boolean"},
+    "append_only": {"const": true},
+    "ledger_generation": {"type": "integer", "minimum": 0},
+    "prior_snapshot": {
+      "type": ["object", "null"],
+      "required": ["ref", "digest", "ledger_generation", "event_count", "last_event_hash"],
+      "properties": {
+        "ref": {"type": "string", "pattern": "^events/snapshots/[A-Za-z0-9._-]+\\.json$"},
+        "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "ledger_generation": {"type": "integer", "minimum": 0},
+        "event_count": {"type": "integer", "minimum": 0},
+        "last_event_hash": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "event_count": {"type": "integer", "minimum": 0},
+    "last_event_hash": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "events": {"type": "array", "items": {"type": "object"}},
+    "ledger_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"runtime_events": {"const": false}}}, "then": {"properties": {"ledger_generation": {"const": 0}, "prior_snapshot": {"type": "null"}, "event_count": {"const": 0}, "last_event_hash": {"type": "null"}, "events": {"maxItems": 0}}}},
+    {"if": {"properties": {"runtime_events": {"const": true}}}, "then": {"properties": {"events": {"minItems": 1}}}}
+  ],
+  "additionalProperties": false
+}

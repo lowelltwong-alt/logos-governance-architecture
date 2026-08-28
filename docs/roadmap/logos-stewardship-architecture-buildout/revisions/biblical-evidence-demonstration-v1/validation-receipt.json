@@ -3,7 +3,7 @@
   "object_type": "biblical_evidence_demonstration_validation_receipt",
   "trust_zone": "proposed",
   "lifecycle_status": "draft",
-  "provenance_note": "Created 2026-08-26 after the frozen static demonstration, deterministic replay, and independent academic, rights, graph-mesh, and completeness reviews passed on exact inputs.",
+  "provenance_note": "Regenerated 2026-08-28 after the exact 21-file freeze matched, all 77 adversarial fixtures passed exact forward/reverse replay, and 64 complementary focused tests passed; independent review and actor-bound completeness receipts are separately bound and remain non-authorizing.",
   "reason_for_inclusion": "Bind the validated static demonstration to its immutable evidence manifest while preserving every non-runtime, non-authority, and non-promotion boundary.",
   "status": "validated_static_demonstration",
   "mutation_performed": false,
@@ -16,6 +16,6 @@
     "not evidence that any archaeological case proves Scripture",
     "not publication, CI, or merge evidence"
   ],
-  "frozen_manifest_sha256": "sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523",
-  "frozen_aggregate_sha256": "sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490"
+  "frozen_manifest_sha256": "sha256:7671341b23c70e806a05acba23d9721eb4762e3104c8ead104756adacdce1e9f",
+  "frozen_aggregate_sha256": "sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81"
 }

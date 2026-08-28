@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.resume-checkpoint.v3",
+  "title": "Doctrine Marathon resume checkpoint",
+  "description": "object_type=resume_checkpoint_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Bind each resumed run to exact goal, prompt, graph, event, and validation state.",
+  "type": "object",
+  "required": ["schema_version", "checkpoint_id", "created_at", "goal_digest", "prompt_digest", "constitution_digest", "campaign_digest", "event_ledger_digest", "dependency_graph_digest", "review_debt_digest", "last_event_id", "next_ready_unit_ids", "blocking_gate_ids", "fresh_context_due_at", "status"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_marathon.resume-checkpoint.v3"},
+    "checkpoint_id": {"type": "string", "pattern": "^DMV3-CP-[0-9]{4,}$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "goal_digest": {"$ref": "#/$defs/digest"},
+    "prompt_digest": {"$ref": "#/$defs/digest"},
+    "constitution_digest": {"$ref": "#/$defs/digest"},
+    "campaign_digest": {"$ref": "#/$defs/digest"},
+    "event_ledger_digest": {"$ref": "#/$defs/digest"},
+    "dependency_graph_digest": {"$ref": "#/$defs/digest"},
+    "review_debt_digest": {"$ref": "#/$defs/digest"},
+    "last_event_id": {"type": ["string", "null"]},
+    "next_ready_unit_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "blocking_gate_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "fresh_context_due_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["CONTINUE", "BLOCKED"]}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+  "additionalProperties": false
+}

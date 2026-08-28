@@ -1,4 +1,4 @@
-schema_version: logos.biblical-evidence.graph.v1
+schema_version: logos.biblical-evidence.graph.v2
 object_type: static_claim_mediated_evidence_graph
 trust_zone: proposed
 lifecycle_status: draft
@@ -12,8 +12,9 @@ named_graph:
   canonical: false
   theological_authority: false
 nodes:
-  - {id: src:p66-cologne, kind: source_record, label: "Cologne P66 object and rights record", trust_zone: proposed, status: candidate}
-  - {id: artifact:p66-verso, kind: physical_artifact, label: "P66 Cologne verso JPEG", trust_zone: proposed, status: byte_verified}
+  - {id: src:p66-cologne, kind: source_record, label: "Cologne P66 combined object and rights record", trust_zone: proposed, status: candidate}
+  - {id: artifact:p66-cologne-object, kind: physical_artifact, label: "P66 Cologne recto-and-verso manuscript object", trust_zone: proposed, status: cataloged}
+  - {id: asset:p66-verso, kind: digital_asset, label: "P66 Cologne verso JPEG", trust_zone: proposed, status: byte_verified_side_coverage_unresolved}
   - {id: rights:p66-cc-by-4, kind: rights_record, label: "P66 image CC BY 4.0 record", trust_zone: proposed, status: independently_checked}
   - {id: segment:p66-08-11, kind: witness_coverage_segment, label: "John 19:8-11", trust_zone: proposed, status: cataloged}
   - {id: segment:p66-13-15, kind: witness_coverage_segment, label: "John 19:13-15", trust_zone: proposed, status: cataloged}
@@ -40,31 +41,33 @@ nodes:
   - {id: gate:epigraphy, kind: review_gate, label: "Qualified epigraphy gate", trust_zone: proposed, status: required_if_new_reading}
   - {id: gate:doctrine, kind: review_gate, label: "Separate theological authority gate", trust_zone: proposed, status: not_requested}
 edges:
-  - {id: e001, from: src:p66-cologne, relation: identifies, to: artifact:p66-verso, authority_effect: none}
-  - {id: e002, from: artifact:p66-verso, relation: governed_by_rights, to: rights:p66-cc-by-4, authority_effect: none}
-  - {id: e003, from: artifact:p66-verso, relation: has_coverage_segment, to: segment:p66-08-11, authority_effect: none}
-  - {id: e004, from: artifact:p66-verso, relation: has_coverage_segment, to: segment:p66-13-15, authority_effect: none}
-  - {id: e005, from: artifact:p66-verso, relation: has_coverage_segment, to: segment:p66-18-20, authority_effect: none}
-  - {id: e006, from: artifact:p66-verso, relation: has_coverage_segment, to: segment:p66-23-24, authority_effect: none}
-  - {id: e007, from: segment:p66-08-11, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
-  - {id: e008, from: segment:p66-13-15, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
-  - {id: e009, from: segment:p66-18-20, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
-  - {id: e010, from: segment:p66-23-24, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
-  - {id: e011, from: scripture:john19, relation: displayed_through, to: text:eng-web, authority_effect: none}
-  - {id: e012, from: segment:p66-08-11, relation: verse_identity_intersects, to: chunk:m7-public-009, authority_effect: none}
-  - {id: e013, from: segment:p66-13-15, relation: verse_identity_intersects, to: chunk:m7-local-057, authority_effect: none}
-  - {id: e014, from: segment:p66-18-20, relation: verse_identity_intersects, to: chunk:m7-local-058, authority_effect: none}
-  - {id: e015, from: segment:p66-23-24, relation: verse_identity_intersects, to: chunk:m7-public-009, authority_effect: none}
-  - {id: e016, from: artifact:p66-verso, relation: requires_review, to: gate:papyrology, authority_effect: none}
-  - {id: e017, from: claim:sennacherib, relation: compared_with, to: scripture:sennacherib-passages, authority_effect: none}
-  - {id: e018, from: claim:tel-dan, relation: compared_with, to: scripture:david-passages, authority_effect: none}
-  - {id: e019, from: claim:pilate, relation: compared_with, to: scripture:pilate-passages, authority_effect: none}
-  - {id: e020, from: claim:jericho-control, relation: compared_with, to: scripture:jericho-passages, authority_effect: none}
-  - {id: e021, from: claim:hittite-control, relation: compared_with, to: scripture:hittite-passages, authority_effect: none}
-  - {id: e022, from: claim:sennacherib, relation: requires_review, to: gate:assyriology, authority_effect: none}
-  - {id: e023, from: claim:tel-dan, relation: requires_review, to: gate:epigraphy, authority_effect: none}
-  - {id: e024, from: claim:pilate, relation: requires_review, to: gate:epigraphy, authority_effect: none}
-  - {id: e025, from: claim:sennacherib, relation: requires_review, to: gate:doctrine, authority_effect: none}
+  - {id: e001, from: src:p66-cologne, relation: identifies, to: artifact:p66-cologne-object, authority_effect: none}
+  - {id: e002, from: src:p66-cologne, relation: publishes_representation, to: asset:p66-verso, authority_effect: none}
+  - {id: e003, from: artifact:p66-cologne-object, relation: has_digital_representation, to: asset:p66-verso, authority_effect: none}
+  - {id: e004, from: asset:p66-verso, relation: governed_by_rights, to: rights:p66-cc-by-4, authority_effect: none}
+  - {id: e005, from: artifact:p66-cologne-object, relation: has_coverage_segment, to: segment:p66-08-11, authority_effect: none}
+  - {id: e006, from: artifact:p66-cologne-object, relation: has_coverage_segment, to: segment:p66-13-15, authority_effect: none}
+  - {id: e007, from: artifact:p66-cologne-object, relation: has_coverage_segment, to: segment:p66-18-20, authority_effect: none}
+  - {id: e008, from: artifact:p66-cologne-object, relation: has_coverage_segment, to: segment:p66-23-24, authority_effect: none}
+  - {id: e009, from: segment:p66-08-11, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
+  - {id: e010, from: segment:p66-13-15, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
+  - {id: e011, from: segment:p66-18-20, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
+  - {id: e012, from: segment:p66-23-24, relation: verse_identity_intersects, to: scripture:john19, authority_effect: none}
+  - {id: e013, from: scripture:john19, relation: displayed_through, to: text:eng-web, authority_effect: none}
+  - {id: e014, from: segment:p66-08-11, relation: verse_identity_intersects, to: chunk:m7-public-009, authority_effect: none}
+  - {id: e015, from: segment:p66-13-15, relation: verse_identity_intersects, to: chunk:m7-local-057, authority_effect: none}
+  - {id: e016, from: segment:p66-18-20, relation: verse_identity_intersects, to: chunk:m7-local-058, authority_effect: none}
+  - {id: e017, from: segment:p66-23-24, relation: verse_identity_intersects, to: chunk:m7-public-009, authority_effect: none}
+  - {id: e018, from: asset:p66-verso, relation: requires_review, to: gate:papyrology, authority_effect: none}
+  - {id: e019, from: claim:sennacherib, relation: compared_with, to: scripture:sennacherib-passages, authority_effect: none}
+  - {id: e020, from: claim:tel-dan, relation: compared_with, to: scripture:david-passages, authority_effect: none}
+  - {id: e021, from: claim:pilate, relation: compared_with, to: scripture:pilate-passages, authority_effect: none}
+  - {id: e022, from: claim:jericho-control, relation: compared_with, to: scripture:jericho-passages, authority_effect: none}
+  - {id: e023, from: claim:hittite-control, relation: compared_with, to: scripture:hittite-passages, authority_effect: none}
+  - {id: e024, from: claim:sennacherib, relation: requires_review, to: gate:assyriology, authority_effect: none}
+  - {id: e025, from: claim:tel-dan, relation: requires_review, to: gate:epigraphy, authority_effect: none}
+  - {id: e026, from: claim:pilate, relation: requires_review, to: gate:epigraphy, authority_effect: none}
+  - {id: e027, from: claim:sennacherib, relation: requires_review, to: gate:doctrine, authority_effect: none}
 source_claim_edges:
   - {source: bm-sennacherib-prism-91032, relation: supports, claim: claim:sennacherib, scope: object_identity_and_royal_account, authority_effect: none}
   - {source: oracc-rinap-q003496, relation: supports, claim: claim:sennacherib, scope: critical_edition_of_chicago_taylor_prism_royal_account, authority_effect: none}
@@ -92,6 +95,10 @@ invariants:
   artifacts_reach_scripture_only_through_claim_or_segment_identity: true
   archaeology_reaches_scripture_only_through_historical_claim: true
   no_path_promotes_to_doctrine: true
+  object_catalog_coverage_attaches_only_to_physical_object: true
+  digital_asset_side_coverage_unresolved: true
+  single_side_asset_does_not_inherit_object_coverage: true
+  digital_asset_has_no_forward_path_to_coverage_or_scripture: true
   m7_candidate_state_preserved: true
   m8_john_pending: true
   convergence_not_started: true

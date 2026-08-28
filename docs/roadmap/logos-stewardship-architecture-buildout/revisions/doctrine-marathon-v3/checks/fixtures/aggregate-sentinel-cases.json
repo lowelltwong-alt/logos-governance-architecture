@@ -1,0 +1,232 @@
+{
+  "metadata": {
+    "object_type": "doctrine_marathon_aggregate_sentinel_catalog",
+    "trust_zone": "proposed",
+    "lifecycle_status": "active",
+    "provenance_note": "Created on 2026-08-28 from the systemic false-green repair and a copied-root aggregate execution design.",
+    "reason_for_inclusion": "Bind a small high-risk proof slice to actual package-byte mutations without relabeling the 197 retained component-only cases."
+  },
+  "schema_version": "logos.doctrine-marathon.aggregate-sentinel-catalog.v1",
+  "assurance_scope": "aggregate_sentinel_only_not_full_legacy_migration",
+  "cases": [
+    {
+      "case_id": "AGG-DMV3-AUTHORITY-RUNTIME",
+      "source_case_id": "NEG-001",
+      "target_ref": "constitution.yaml",
+      "mutation_id": "authorize_runtime",
+      "intended_rule": "authority_runtime_activation_authorized",
+      "expected_findings_ordered": [
+        {
+          "rule": "authority_runtime_activation_authorized",
+          "identity": "authority_runtime_activation_authorized: must remain false"
+        },
+        {
+          "rule": "constitution_contract_integrity",
+          "identity": "constitution_contract_integrity: the complete canonical constitution changed: expected sha256:a3cf70bb2706e3f1737e16322d9adcabc9b0daee4cbd203702a0b81395d5d8c6; observed sha256:f21f6d590dca751ac0848043c17f1b53f34601dc79effee6934f6db3648d1263"
+        }
+      ],
+      "baseline_mode": "clean",
+      "declared_gate": null,
+      "dependent_state": "recomputed",
+      "stale_dependency_rule": null,
+      "expected_new_rules_exact": [
+        "authority_runtime_activation_authorized",
+        "constitution_contract_integrity"
+      ],
+      "causal_closure": [
+        {
+          "rule": "authority_runtime_activation_authorized",
+          "identity": "authority_runtime_activation_authorized: must remain false",
+          "kind": "direct",
+          "reason": "The exact named byte mutation directly violates this control."
+        },
+        {
+          "rule": "constitution_contract_integrity",
+          "identity": "constitution_contract_integrity: the complete canonical constitution changed: expected sha256:a3cf70bb2706e3f1737e16322d9adcabc9b0daee4cbd203702a0b81395d5d8c6; observed sha256:f21f6d590dca751ac0848043c17f1b53f34601dc79effee6934f6db3648d1263",
+          "kind": "cascade",
+          "reason": "The prohibited authority elevation necessarily changes the complete canonical constitution fingerprint after all external digest dependencies are resealed."
+        }
+      ]
+    },
+    {
+      "case_id": "AGG-DMV3-MESH-META-CHECKER",
+      "source_case_id": "NEG-006",
+      "target_ref": "mesh/agent-mesh.v3.json",
+      "mutation_id": "remove_meta_checker",
+      "intended_rule": "mesh_required_roles",
+      "expected_findings_ordered": [
+        {
+          "rule": "mesh_required_roles",
+          "identity": "mesh_required_roles: expected exact required role set; got ['authority-plane-auditor', 'citation-locator-verifier', 'claim-entailment-context-verifier', 'counterevidence-challenger', 'dependency-invalidation-checker', 'doctrine-mesh-completeness-auditor', 'environment-specialist', 'father-or-corpus-specialist', 'frontier-compounded-error-sentinel', 'goal-prompt-alignment-auditor', 'human-risk-router', 'independent-whole-work-checker', 'marathon-controller', 'original-language-translation-verifier', 'primary-source-researcher', 'source-fitness-rights-verifier', 'task-local-role-factory']"
+        },
+        {
+          "rule": "mesh_contract_integrity",
+          "identity": "mesh_contract_integrity: the complete canonical agent mesh changed: expected sha256:acc80a7cbb4998d048b708f25c6b41b6670663c3895ccb57b47155c591e84928; observed sha256:776ebf169e6dc0172acd48967fd02b9d999ec4886cee78c7075ee0675a67c4e6"
+        },
+        {
+          "rule": "role_assignment_unknown_role",
+          "identity": "role_assignment_unknown_role: DMV3-ROLE-SYNTHETIC-META-CHECKER: role-qualification-and-independence-auditor"
+        },
+        {
+          "rule": "role_assignment_checker_edge",
+          "identity": "role_assignment_checker_edge: DMV3-ROLE-SYNTHETIC-WHOLE-CHECKER cannot check DMV3-ROLE-SYNTHETIC-META-CHECKER"
+        },
+        {
+          "rule": "action_requirement_invalid",
+          "identity": "action_requirement_invalid: ExpertPack_gate: roles=['role-qualification-and-independence-auditor'] capabilities=[]"
+        },
+        {
+          "rule": "action_requirement_invalid",
+          "identity": "action_requirement_invalid: environment_pack_gate: roles=['role-qualification-and-independence-auditor'] capabilities=[]"
+        },
+        {
+          "rule": "action_requirement_invalid",
+          "identity": "action_requirement_invalid: tradition_pack_gate: roles=['role-qualification-and-independence-auditor'] capabilities=[]"
+        },
+        {
+          "rule": "trigger_unknown_role",
+          "identity": "trigger_unknown_role: TR-ACTOR: ['role-qualification-and-independence-auditor']"
+        },
+        {
+          "rule": "trigger_unknown_role",
+          "identity": "trigger_unknown_role: TR-PROMPT: ['role-qualification-and-independence-auditor']"
+        }
+      ],
+      "baseline_mode": "clean",
+      "declared_gate": null,
+      "dependent_state": "recomputed",
+      "stale_dependency_rule": null,
+      "expected_new_rules_exact": [
+        "action_requirement_invalid",
+        "mesh_contract_integrity",
+        "mesh_required_roles",
+        "role_assignment_checker_edge",
+        "role_assignment_unknown_role",
+        "trigger_unknown_role"
+      ],
+      "causal_closure": [
+        {
+          "rule": "mesh_required_roles",
+          "identity": "mesh_required_roles: expected exact required role set; got ['authority-plane-auditor', 'citation-locator-verifier', 'claim-entailment-context-verifier', 'counterevidence-challenger', 'dependency-invalidation-checker', 'doctrine-mesh-completeness-auditor', 'environment-specialist', 'father-or-corpus-specialist', 'frontier-compounded-error-sentinel', 'goal-prompt-alignment-auditor', 'human-risk-router', 'independent-whole-work-checker', 'marathon-controller', 'original-language-translation-verifier', 'primary-source-researcher', 'source-fitness-rights-verifier', 'task-local-role-factory']",
+          "kind": "direct",
+          "reason": "The exact named byte mutation directly violates this control."
+        },
+        {
+          "rule": "mesh_contract_integrity",
+          "identity": "mesh_contract_integrity: the complete canonical agent mesh changed: expected sha256:acc80a7cbb4998d048b708f25c6b41b6670663c3895ccb57b47155c591e84928; observed sha256:776ebf169e6dc0172acd48967fd02b9d999ec4886cee78c7075ee0675a67c4e6",
+          "kind": "cascade",
+          "reason": "The prohibited role removal or self-check necessarily changes the complete canonical mesh fingerprint after external digest dependencies are resealed."
+        },
+        {
+          "rule": "role_assignment_unknown_role",
+          "identity": "role_assignment_unknown_role: DMV3-ROLE-SYNTHETIC-META-CHECKER: role-qualification-and-independence-auditor",
+          "kind": "cascade",
+          "reason": "Removing the required meta-checker leaves its existing assignment without a declared role."
+        },
+        {
+          "rule": "role_assignment_checker_edge",
+          "identity": "role_assignment_checker_edge: DMV3-ROLE-SYNTHETIC-WHOLE-CHECKER cannot check DMV3-ROLE-SYNTHETIC-META-CHECKER",
+          "kind": "cascade",
+          "reason": "Removing the meta-checker also invalidates the whole-work checker's declared checker edge."
+        },
+        {
+          "rule": "action_requirement_invalid",
+          "identity": "action_requirement_invalid: ExpertPack_gate: roles=['role-qualification-and-independence-auditor'] capabilities=[]",
+          "kind": "cascade",
+          "reason": "Removing the meta-checker invalidates actions that require that role."
+        },
+        {
+          "rule": "action_requirement_invalid",
+          "identity": "action_requirement_invalid: environment_pack_gate: roles=['role-qualification-and-independence-auditor'] capabilities=[]",
+          "kind": "cascade",
+          "reason": "Removing the meta-checker invalidates actions that require that role."
+        },
+        {
+          "rule": "action_requirement_invalid",
+          "identity": "action_requirement_invalid: tradition_pack_gate: roles=['role-qualification-and-independence-auditor'] capabilities=[]",
+          "kind": "cascade",
+          "reason": "Removing the meta-checker invalidates actions that require that role."
+        },
+        {
+          "rule": "trigger_unknown_role",
+          "identity": "trigger_unknown_role: TR-ACTOR: ['role-qualification-and-independence-auditor']",
+          "kind": "cascade",
+          "reason": "Removing the meta-checker invalidates triggers that route to that role."
+        },
+        {
+          "rule": "trigger_unknown_role",
+          "identity": "trigger_unknown_role: TR-PROMPT: ['role-qualification-and-independence-auditor']",
+          "kind": "cascade",
+          "reason": "Removing the meta-checker invalidates triggers that route to that role."
+        }
+      ]
+    },
+    {
+      "case_id": "AGG-DMV3-MESH-WRITER-INDEPENDENCE",
+      "source_case_id": "NEG-007",
+      "target_ref": "mesh/agent-mesh.v3.json",
+      "mutation_id": "writer_self_checks",
+      "intended_rule": "mesh_writer_self_check",
+      "expected_findings_ordered": [
+        {
+          "rule": "mesh_writer_self_check",
+          "identity": "mesh_writer_self_check: marathon-controller checks itself"
+        },
+        {
+          "rule": "mesh_contract_integrity",
+          "identity": "mesh_contract_integrity: the complete canonical agent mesh changed: expected sha256:acc80a7cbb4998d048b708f25c6b41b6670663c3895ccb57b47155c591e84928; observed sha256:581027cd1778a1bda83db47cb8462a41872eb382b9ee6f1465f2fe9621f2df40"
+        }
+      ],
+      "baseline_mode": "clean",
+      "declared_gate": null,
+      "dependent_state": "recomputed",
+      "stale_dependency_rule": null,
+      "expected_new_rules_exact": [
+        "mesh_contract_integrity",
+        "mesh_writer_self_check"
+      ],
+      "causal_closure": [
+        {
+          "rule": "mesh_writer_self_check",
+          "identity": "mesh_writer_self_check: marathon-controller checks itself",
+          "kind": "direct",
+          "reason": "The exact named byte mutation directly violates this control."
+        },
+        {
+          "rule": "mesh_contract_integrity",
+          "identity": "mesh_contract_integrity: the complete canonical agent mesh changed: expected sha256:acc80a7cbb4998d048b708f25c6b41b6670663c3895ccb57b47155c591e84928; observed sha256:581027cd1778a1bda83db47cb8462a41872eb382b9ee6f1465f2fe9621f2df40",
+          "kind": "cascade",
+          "reason": "The prohibited role removal or self-check necessarily changes the complete canonical mesh fingerprint after external digest dependencies are resealed."
+        }
+      ]
+    },
+    {
+      "case_id": "AGG-DMV3-PROMPT-NEUTRALITY",
+      "source_case_id": "NEG-030",
+      "target_ref": "DOCTRINE_MARATHON_MASTER_PROMPT.md",
+      "mutation_id": "desired_conclusion",
+      "intended_rule": "prompt_desired_conclusion",
+      "expected_findings_ordered": [
+        {
+          "rule": "prompt_desired_conclusion",
+          "identity": "prompt_desired_conclusion: prompt matches forbidden desired-conclusion family \\b(?:your|the)\\s+(?:job|task|mandate|goal)\\s+is\\s+to\\s+(?:prove|establish|demonstrate|confirm|defend)\\b.{0,80}\\b(?:preferred|correct|true|orthodox)\\b"
+        }
+      ],
+      "baseline_mode": "clean",
+      "declared_gate": null,
+      "dependent_state": "recomputed",
+      "stale_dependency_rule": null,
+      "expected_new_rules_exact": [
+        "prompt_desired_conclusion"
+      ],
+      "causal_closure": [
+        {
+          "rule": "prompt_desired_conclusion",
+          "identity": "prompt_desired_conclusion: prompt matches forbidden desired-conclusion family \\b(?:your|the)\\s+(?:job|task|mandate|goal)\\s+is\\s+to\\s+(?:prove|establish|demonstrate|confirm|defend)\\b.{0,80}\\b(?:preferred|correct|true|orthodox)\\b",
+          "kind": "direct",
+          "reason": "The exact named byte mutation directly violates this control."
+        }
+      ]
+    }
+  ]
+}

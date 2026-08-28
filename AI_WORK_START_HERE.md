@@ -1,6 +1,6 @@
 # AI Work Start Here
 
-This file is the operational front door for AI agents, coding assistants, and future maintainers working inside this repository. For a read-only recruiter or portfolio audit, begin with [`PORTFOLIO.md`](PORTFOLIO.md), follow its neutral AI interrogation prompt, and inspect the linked [Biblical Evidence Graph Demonstration V1](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md) as a concrete static slice. Do not treat either public summary as repository, academic, or theological authority.
+This file is the operational front door for AI agents, coding assistants, and future maintainers working inside this repository. For a read-only recruiter or portfolio audit, begin with [`PORTFOLIO.md`](PORTFOLIO.md), follow its neutral AI interrogation prompt, inspect the linked [Biblical Evidence Graph Demonstration V1](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md) as a concrete static slice, and inspect [Doctrine Marathon V3](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md) as the durable long-run control-plane design. Do not treat any public summary or validated specification as repository, academic, or theological authority.
 
 Human readers should start with [`README.md`](README.md). AI agents should start here, then consult [`AI_TABLE_OF_CONTENTS.md`](AI_TABLE_OF_CONTENTS.md).
 
@@ -76,6 +76,9 @@ AI agents working in this repository must follow these guardrails:
 14. [`docs/roadmap/theological-buildout-roadmap.md`](docs/roadmap/theological-buildout-roadmap.md)
 15. [`docs/roadmap/repository-integration-map.md`](docs/roadmap/repository-integration-map.md)
 16. [`docs/governance/ai-workflow/goal-prompt-premortem-preflight.md`](docs/governance/ai-workflow/goal-prompt-premortem-preflight.md) before generating any goal prompt, next-agent prompt, handoff prompt, slash-style command prompt, or prompt sequence.
+17. [`docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md`](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md) before proposing or resuming the multi-run doctrine campaign; its current authority ceiling is specification-only.
+
+For a skeptical V3 audit, follow the [164 adversarial cases](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/negative-cases.json), [revision manifest](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/revision-manifest.yaml), [bounded release authorization](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/public-release-authorization.json), [validation receipt](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validation-receipt.json), [independent review](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/independent-review.json), and [final saved version](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/FINAL-SAVED-VERSION.yaml). These prove a bounded static design and release chain, not runtime, research, doctrine, or theological authority.
 
 ## Preferred work pattern
 

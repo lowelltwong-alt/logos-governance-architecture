@@ -3,18 +3,18 @@ schema_version: logos.biblical-evidence.independent-review-receipt.v1
 object_type: independent_graph_mesh_red_team_receipt
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Recorded from the changed-input read-only frozen-manifest row-integrity replay completed 2026-08-27 against the exact 21-file freeze."
-reason_for_inclusion: "Bind independent review of duplicate, malformed, missing, extra, and reordered frozen rows to exact graph, mesh, validator, test, fixture, and manifest inputs without granting runtime or theological authority."
+provenance_note: "Recorded from the read-only graph, mesh, path-binding, and 77-fixture replay completed 2026-08-28 against the exact stable 21-file freeze."
+reason_for_inclusion: "Bind independent review of the P66 object/image topology, graph authority boundaries, actor-segregated mesh, extension-safe taxonomy, and deterministic adversarial harness to exact candidate inputs without granting runtime, publication, or theological authority."
 review_id: urn:logos:review:biblical-evidence-graph-mesh-v1
 review_class: graph_mesh_semantic_red_team
 reviewer_role: graph-invariant-red-team
 reviewer_identity: codex-subagent-independent-graph-mesh-red-team
-reviewer_attempt_id: REVIEW-GRAPH-MESH-008
+reviewer_attempt_id: REVIEW-GRAPH-MESH-009
 reviewer_independence: true
 independence_basis: read_only_non_author_no_candidate_mutation
 result: pass
-frozen_manifest_sha256: "sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523"
-frozen_aggregate_sha256: "sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490"
+frozen_manifest_sha256: "sha256:7671341b23c70e806a05acba23d9721eb4762e3104c8ead104756adacdce1e9f"
+frozen_aggregate_sha256: "sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81"
 reviewed_scope:
   - docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/checks/adversarial-fixtures.yaml
   - docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/frozen-digests.json
@@ -26,37 +26,84 @@ reviewed_scope:
   - scripts/validate_biblical_evidence_demo.py
   - tests/test_biblical_evidence_demo.py
 reviewed_scope_digests:
-  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/checks/adversarial-fixtures.yaml, sha256: "sha256:c39ccaf384c0bdf880457669d01c75ae09e04acd22510bf90d7ea0aef31936c6"}
-  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/frozen-digests.json, sha256: "sha256:e24c0045d887c71cc56a5f2cbbb86b5f2cd42c30130d9aca6facd2ea83aab523"}
-  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/evidence-graph.yaml, sha256: "sha256:c5397232df6b2af7ab33d8821e9717287943d45953b10063975980d79a4c0668"}
-  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/node-edge-catalog.yaml, sha256: "sha256:6f64f81f63fb2271077e6559ce3dc8de83ac127612de07c3634abce50e888e88"}
-  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/p66-chunk-crosswalk.yaml, sha256: "sha256:134b375cc7f7e88e143a081dd25d5c2ddedf5f1c713bfce7f98bb4925ed2a805"}
-  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/agent-mesh.v3.json, sha256: "sha256:2d42e69bdbfc02d33e495c22cabe23b6eead70aa74190e3d013403249ff8184a"}
-  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/completeness-audit-contract.yaml, sha256: "sha256:a13de960d7bae6fdd2b7e986c126b076dd03302950483d86d0a45f202cbf3a23"}
-  - {path: scripts/validate_biblical_evidence_demo.py, sha256: "sha256:eec63fbae54883f0740df972e2920fade1c4b27f3a1c3d4c2dfbb6cb47de4fd0"}
-  - {path: tests/test_biblical_evidence_demo.py, sha256: "sha256:5c1751ab7052c48271c639bae1353049e0e34e3356658d30a1e35d7952abf7cd"}
+  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/checks/adversarial-fixtures.yaml, sha256: "sha256:5955a394ad5101f9279193b0b54909a28ca744a516ef4ed389508587c01e7fdf"}
+  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/frozen-digests.json, sha256: "sha256:7671341b23c70e806a05acba23d9721eb4762e3104c8ead104756adacdce1e9f"}
+  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/evidence-graph.yaml, sha256: "sha256:380ba2bfacc6b4204c0515e2fd790ff17e234cbbd0b35adeba6b384d3e96dc51"}
+  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/node-edge-catalog.yaml, sha256: "sha256:2acdd09a05516d80689556728a10f78b9f3c9c99ec5bda3e3528ec9fa677a1a4"}
+  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/p66-chunk-crosswalk.yaml, sha256: "sha256:385fde5e53e1340a7c6499af9eaf90a5bcd9d7b41a4299c0e0b1a72a2dfd63c5"}
+  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/agent-mesh.v3.json, sha256: "sha256:c55551939e84adbdf83a144504d3a51af7b3ac2d195619f5f415d7e6a3dd678e"}
+  - {path: docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/completeness-audit-contract.yaml, sha256: "sha256:98255c38649edfd85d28b70fc8584d4de8abaa046f6b7afac32a4ca909e70bcb"}
+  - {path: scripts/validate_biblical_evidence_demo.py, sha256: "sha256:4391d03585808a53df4d2b6c03fe9a634fffe901c10f47064a88d7974e72ad4b"}
+  - {path: tests/test_biblical_evidence_demo.py, sha256: "sha256:6f5e113a53b5775c0b636c7b39f991e64f637f4d03ca425846e0323444d1a2e3"}
 blocking_findings: []
 residual_nonclaims:
-  - "The static validator does not establish historical truth, transcription or translation accuracy, or scholarly consensus."
-  - "Reviewer identity is recorded but not cryptographically attested."
-  - "Runtime readiness and safe behavior by consumers that ignore the non-authority envelope are not established."
-  - "Publication, CI, and merge authority are not granted by this review."
+  - "The static validator does not establish historical truth, manuscript transcription or translation accuracy, preferred readings, or scholarly consensus."
+  - "The P66 verso JPEG is not asserted to contain any particular combined-object catalog segment; side-specific coverage remains unresolved."
+  - "Reviewer and completeness-auditor identities are recorded but not cryptographically attested."
+  - "Runtime readiness, cross-model diversity, and safe behavior by consumers that ignore the non-authority envelope are not established."
+  - "This review does not complete the separate actor-bound completeness checker chain or certify the aggregate release receipt."
+  - "Publication, CI, merge, promotion, and theological authority are not granted by this review."
 mutation_performed: false
 authority_granted: false
 qualified_human_approval: false
-observed_at: "2026-08-27T00:03:30Z"
+observed_at: "2026-08-28T15:35:58Z"
 ---
 
 # Independent graph and mesh red-team review
 
 Result: **PASS**
 
-The changed-input replay proved that raw frozen rows are validated before
-dictionary collapse. Duplicate, same-count duplicate/missing, malformed, extra,
-missing, and reordered cases fail closed without crash. The exact 21-file
-freeze, P66 identity, substantive 45-edge graph, agent authority boundaries,
-and specification-only runtime state remain unchanged.
+The exact stable candidate contains 28 graph nodes and 47 edges including the
+source-to-claim projection. Node and edge identities, endpoint kinds, trust
+zones, relation semantics, claim mediation, and authority-effect constraints
+are closed and deterministic.
 
-This is evidence for a static governed design, not a claim that an agent mesh
-or knowledge-graph runtime is active. Downstream completeness evidence must bind
-this exact validator/test pair before repository validation can pass.
+The P66 topology separates the combined recto-and-verso physical object from
+the exact licensed verso digital asset. The physical object has the four
+non-contiguous catalog-coverage segments and has the digital representation.
+The digital asset has no forward path to a coverage segment or Scripture.
+Coverage does not propagate through `has_digital_representation`, and the
+public prose preserves the unresolved side-specific mapping caveat.
+
+All graph edges have `authority_effect: none`. Lower-trust evidence cannot
+promote Scripture or doctrine, unknown extensions are preserved without
+authority traversal, and registered relation endpoint contracts cannot be
+silently widened. Archaeological sources reach Scripture only through bounded
+historical claims; the manuscript object reaches Scripture only through
+explicit segment identities.
+
+The mesh declares 12 materially distinct roles, including a single writer,
+primary role-completeness auditor, separate completeness-audit checker,
+domain-source roles, graph builder and red team, release checker, and human
+decision steward. Writer, auditor, and checker responsibilities do not alias.
+The checker cannot repair, override, or grant authority. Low, medium, high, and
+critical risks remain routed respectively to deterministic validation plus an
+independent checker, two relevant independent checkers with dissent metadata,
+named human authority, and fail-closed non-publication.
+
+The v5 adversarial catalog contains 77 uniquely identified fixtures. Direct
+replay produced zero fixture-contract findings. Every fixture began from a
+zero-finding baseline and bound its actual changed paths to the exact declared
+primary and permitted synthetic-reseal path union. Primary and resealed paths
+were disjoint. Intended and first rules, complete ordered finding identities,
+and causal-cascade classifications matched in forward and reverse execution.
+Only the synthetic non-authorizing completeness receipt may be resealed, using
+target-based policy.
+
+Observed checks:
+
+- Canonical frozen-manifest digest:
+  `sha256:7671341b23c70e806a05acba23d9721eb4762e3104c8ead104756adacdce1e9f`.
+- Frozen aggregate:
+  `sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81`,
+  with 21 ordered rows.
+- Direct 77-fixture replay: zero findings.
+- Focused graph, P66, mesh, completeness, extension-policy, source-projection,
+  and crosswalk tests: 15 passed, 53 deselected.
+- The aggregate validator remained correctly fail-closed only on excluded,
+  stale review/completeness/validation receipts awaiting current-freeze
+  replacement and chained checking; no stable graph, mesh, fixture, or frozen
+  row finding was observed.
+
+This was a read-only review. No candidate file, Git state, index, ref, cache,
+registry, remote, or receipt was mutated.

@@ -125,7 +125,7 @@ Before any new branch, worktree, roadmap implementation, or resumed task, read
 [`governance/FAMILY_WORK_COORDINATION_STANDARD.yaml`](governance/FAMILY_WORK_COORDINATION_STANDARD.yaml),
 [`governance/registry/FAMILY_WORK_REGISTRY.yaml`](governance/registry/FAMILY_WORK_REGISTRY.yaml),
 and the latest [`family worktree audit`](reports/FAMILY_WORKTREE_AUDIT_2026-07-10.md).
-Run `python scripts/validate_family_work_registry.py` and the read-only family
+Run `python -B scripts/validate_family_work_registry.py` and the read-only family
 audit. Reuse one existing work ID when the task or roadmap already exists. New
 work must register its identity, claimed paths, semantic tags, lease, dependencies,
 and authority ceiling before non-claim edits. Unresolved duplicate identity,
@@ -625,12 +625,121 @@ and validator before proposing a real pack.
 
 For a concrete, public, non-authorizing application of that contract, inspect
 [`docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md`](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/README.md).
-It includes the exact CC BY 4.0 P66 image, source and rights lineage, public-domain
-English crosswalk, candid M7/M8 status, bounded archaeology sources and
-counterpositions, claim-mediated graph edges, a separated specialist-agent mesh,
-negative fixtures, frozen digests, and review receipts. Read its `SCOPE.md` and
-release manifest before summarizing it. It is validated static design, not a
-running graph, source corpus, historical verdict, doctrine, or authority.
+It includes the exact CC BY 4.0 P66 verso image, a distinct combined-object
+record, explicit unresolved image-side coverage, source and rights lineage, an
+object-catalog verse-identity crosswalk to a separately sourced public-domain English display,
+candid M7/M8 status, bounded archaeology sources and counterpositions,
+claim-mediated graph edges, a separated specialist-agent mesh, negative
+fixtures, frozen digests, and review receipts. Read its `SCOPE.md` and release
+manifest before summarizing it. It is validated static design, not a running
+graph, source corpus, historical verdict, doctrine, or authority.
+
+### P66 evidence route for AI reviewers
+
+Follow these direct links rather than inferring a pipeline from the portfolio
+diagram or image:
+
+1. [Exact P66 Cologne verso image](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/assets/p66-cologne-john19-verso.jpg)
+2. [P66 source-and-rights record](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/sources/p66-source-and-rights.yaml)
+3. [P66 verse and candidate-chunk crosswalk](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/p66-chunk-crosswalk.yaml)
+4. [Typed evidence graph](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/evidence-graph.yaml)
+5. [Node-edge catalog and forbidden shortcuts](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/graph/node-edge-catalog.yaml)
+6. [Separated specialist and checker agent mesh](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/agent-mesh.v3.json)
+7. [Deterministic role-completeness auditor](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/mesh/completeness-audit-contract.yaml)
+8. [Exit completeness audit](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/release/exit-completeness-audit.yaml)
+9. [Validation receipt](docs/roadmap/logos-stewardship-architecture-buildout/revisions/biblical-evidence-demonstration-v1/validation-receipt.json)
+
+The exact verso image, combined recto-and-verso physical object, object-catalog
+coverage segments, verse identities, separate English display, and candidate
+chunks are distinct graph objects connected by typed, non-authorizing edges.
+The official source does not assign the four object-level ranges to the verso
+JPEG, so this packet assigns none. The `role-completeness-auditor` checks the assigned
+specialists and checkers at entry, midflight, and exit. A different actor operating
+as `completeness-audit-checker` must replay each exact audit and chained evidence
+digest; neither role can override failure or confer expert, release, or human
+authority. **The English display is not translated from the image.**
+
+Diplomatic transcription, Greek alignment, textual-variant analysis,
+witness-specific translation, qualified specialist review, and explicit human
+approval remain future gates. Treat any claim that the photograph itself yielded
+the English display, or that the current packet supplies a P66-specific
+translation or preferred reading, as an error. A future attempt must add the
+rights-cleared source-text, New Testament papyrology/textual-criticism, Koine
+Greek and translation, transformation-provenance, independent source-checking,
+and named human-review gates appropriate to its exact scope.
+
+## Doctrine Marathon V3 route
+
+For the durable, multi-run doctrine-research control-plane design, begin with
+[`doctrine-marathon-v3/README.md`](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/README.md).
+Its public maturity is `blocked_specification_only`: strict prefinal validation
+passes, while final validation must return exactly one
+`adversarial_harness_release_gate`. The 83 managed files comprise 78 payload
+files plus five administrative records. The portable V4 receipt/V3 registry root
+control is independently checked, but the repository-specific V4 adapter,
+registry, per-case receipts, clean-checkout CI binding, and unchanged-head gate
+remain future work. Four local aggregate sentinels are a subset of 197 component
+cases, not additional inventory and not protected-release evidence.
+Then inspect, in order:
+
+1. [Canonical master prompt](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/DOCTRINE_MARATHON_MASTER_PROMPT.md)
+2. [Durable goal](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/goal.yaml)
+3. [Provider-neutral agent mesh](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/agent-mesh.v3.json)
+4. [Entry/midflight/exit completeness auditor](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/completeness-auditor-v3.yaml)
+5. [Design-time assignment and independence fixture](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/examples/design-time-independence-fixture.json)
+6. [Runtime assignment-bundle contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-assignment-bundle.schema.json)
+7. [Typed qualification registry](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-registry.json)
+8. [Qualification-receipt contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/qualification-receipt.schema.json)
+9. [Correlation-exception contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/correlation-acceptance-receipt.schema.json)
+10. [Role and capability catalog](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/mesh/role-catalog.yaml)
+11. [Typed evidence registry](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-registry.json)
+12. [Evidence-review receipt contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/evidence/evidence-review-receipt.schema.json)
+13. [Father-specific ExpertPack contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/research/father-expert-pack-contract.yaml)
+14. [Context-discipline ExpertPack contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/research/environment-pack-contract.yaml)
+15. [Epistemic integrity firewall](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/epistemic-integrity-contract.yaml)
+16. [Changed-input trigger matrix](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/trigger-matrix.yaml)
+17. [Action-to-checker requirements](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/action-checker-requirements.yaml)
+18. [Prompt-neutrality review contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/firewall/prompt-neutrality-contract.yaml)
+19. [Typed marathon-event contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/events/marathon-event.schema.json)
+20. [Empty append-only event ledger](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/events/event-ledger.json)
+21. [Fresh-context verification receipt contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/fresh-context-verification-receipt.schema.json)
+22. [Initial unresolved weekly-gate fixture](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/state/examples/initial-weekly-fresh-context-gate.json)
+23. [Consumer-to-prerequisite invalidation contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/event-driven-invalidation-contract.yaml)
+24. [Inactive human-identity authority root](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/human-identity-authority-root.yaml)
+25. [Empty human-authority registry](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/graph/authority-registry.yaml)
+26. [Ranked expert-review debt](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/debt/initial-review-debt.json)
+27. [Premortem](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/premortem.yaml)
+28. [Repair ledger](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/repair-ledger.yaml)
+29. [Public mistake-escalation and CAPA receipt](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/redteam/ai-mistake-escalation-2026-08-27.yaml)
+30. [Root-cause and sibling-recurrence report](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/ADVERSARIAL_HARNESS_ROOT_FIX.md)
+31. [Public V4 receipt / V3 registry contract summary](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/DETERMINISTIC_ADVERSARIAL_HARNESS_CONTRACT.md)
+32. [Blocked repository migration contract](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/adversarial-harness-migration.yaml)
+33. [164-case legacy component catalog](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/negative-cases.json)
+34. [33-case exact-ordered isolated catalog](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/strict-isolated-cases.json)
+35. [Four-case aggregate sentinel subset](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/fixtures/aggregate-sentinel-cases.json)
+36. [Copied-root aggregate runner](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/run_adversarial_harness.py)
+37. [Aggregate-runner regression tests](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/test_run_adversarial_harness.py)
+38. [Exact revision manifest](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/revision-manifest.yaml)
+39. [Bounded public-release authorization](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/public-release-authorization.json)
+40. [Final saved-version index](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/FINAL-SAVED-VERSION.yaml)
+41. [Validation receipt](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/validation-receipt.json)
+42. [Independent review](docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3/checks/independent-review.json)
+
+This route describes public engineering evidence. It does not activate the
+mesh, qualify an AI or human expert, ingest an early-church source, write
+doctrine, decide orthodoxy or heresy, select a normative tradition, or grant
+theological authority. Future agents must use attributable historical labels
+and an exact human-approved `NormativeFrame`; context from Judaism, archaeology,
+philosophy, non-Christian religions, or science has no implicit normative force.
+The role and prompt contracts require review bindings; they do not prove that a
+prompt is neutral or that any checker ran. The weekly fixture remains unresolved
+with no verification receipt and no continuation authority. The human-identity
+root is intentionally inactive, the authority registry contains no qualified
+approver or active frame, and this V3 validator rejects activation until a
+separate reviewed identity-and-authority mechanism is implemented. Treat the
+package as a frozen, blocked specification only when its manifest, validation
+receipt, saved-version index, independent review, and exact single final blocker
+all agree. Never summarize it as aggregate-assured or protected-release eligible.
 
 ## Final principle
 

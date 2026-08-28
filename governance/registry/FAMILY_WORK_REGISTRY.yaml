@@ -71,6 +71,18 @@ overlap_resolutions:
     decision: allow_parallel_with_recorded_boundaries
     decided_at: "2026-08-24T18:00:26Z"
     rationale: "Lowell explicitly serialized the shared-path work. The residue-repair lane remains paused and non-writing, its exact claim-only delta is imported without modifying that worktree, and every file and unique commit there remains protected. The stewardship lane is the sole current writer and may update the shared family registry, governance dependency map, and validation-contract registry only for its validated specification-only doctrine-mesh and public recruiter-front-door release. This resolution grants no residue-remediation implementation, remote-ref mutation, source ingestion, runtime activation, substantive doctrine, force operation, cleanup, reset, rebase, or deletion; the residue lane requires a fresh owner-authorized resume after stewardship reaches a stable disposition."
+  - resolution_id: OVERLAP-W27-P66-PORTFOLIO-CLARITY-001
+    owner_decision_ref: lowell_owner_authorization_2026-08-27_p66_portfolio_clarity
+    affected_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001, WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001, WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001, WORK-GOV-CITATION-RESIDUE-REPAIR-001, WORK-GOV-REPO-RESIDUE-REMOTE-REPAIR-001, WORK-GOV-P66-PORTFOLIO-CLARITY-001]
+    decision: allow_parallel_with_recorded_boundaries
+    decided_at: "2026-08-27T03:32:09Z"
+    rationale: "The stewardship release is already integrated and its retained worktree and branch remain clean and non-writing. The other older claims are preserved without content, status, authority, branch, history, or non-registry changes. This bounded continuation uses a new worktree and claim to update only the public portfolio, AI front door, focused regression tests, and its own additive family-registry bookkeeping. It may explain and link the existing P66 crosswalk, image rights, graph, mesh, deterministic completeness auditor, receipts, and future specialist gates, but it may not claim an image-derived translation, ingest transcription or source text, create a witness-specific translation, mutate M8, reopen any retained lane, or perform any remote or destructive action."
+  - resolution_id: OVERLAP-W27-DOCTRINE-MARATHON-P66-001
+    owner_decision_ref: lowell_owner_authorization_2026-08-27_doctrine_marathon_p66_serialized_import
+    affected_work_ids: [WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001, WORK-GOV-P66-PORTFOLIO-CLARITY-001]
+    decision: allow_parallel_with_recorded_boundaries
+    decided_at: "2026-08-27T18:47:44Z"
+    rationale: "Lowell explicitly serialized the changed-input continuation. The exact frozen four-path P66 clarity candidate is imported into the Doctrine Marathon worktree without modifying the paused P66 worktree; all P66 files, validation evidence, claim history, and authority limits remain preserved. The Doctrine Marathon lane is the sole writer for the combined public specification release and may extend only the existing stewardship claim, its claimed public navigation and test surfaces, and the additive doctrine-marathon-v3 package. P66 remains paused and non-writing. This grants no runtime launch, research execution, source ingestion, translation, substantive doctrine change, autonomous orthodoxy or heresy ruling, force operation, bypass, cleanup, reset, rebase, or deletion."
 work_items:
   - work_id: WORK-GOV-FAMILY-COORD-001
     repo: logos-governance-architecture
@@ -304,7 +316,7 @@ work_items:
     authority_ceiling: non_output_changing_learning_loop_governance
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-SCR-T468-W2-2]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-BUILDOUT-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-BUILDOUT-001, OVERLAP-W27-P66-PORTFOLIO-CLARITY-001]
     completion_evidence:
       - "Governed validation suite passed: 27 validators"
       - "Full pytest passed: 80 tests"
@@ -368,7 +380,7 @@ work_items:
     authority_ceiling: non_authorizing_registry_bookkeeping_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001]
-    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-BUILDOUT-001]
+    overlap_resolution_ids: [OVERLAP-W27-HD4G1B-DEPMAP-001, OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-BUILDOUT-001, OVERLAP-W27-P66-PORTFOLIO-CLARITY-001]
     completion_evidence: []
   - work_id: WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001
     repo: logos-governance-architecture
@@ -396,7 +408,7 @@ work_items:
     authority_ceiling: non_authorizing_local_public_release_candidate_only
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: []
-    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-BUILDOUT-001]
+    overlap_resolution_ids: [OVERLAP-W27-CONV-PUBLIC-PROJECTION-001, OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-BUILDOUT-001, OVERLAP-W27-P66-PORTFOLIO-CLARITY-001]
     completion_evidence:
       - "Live public main and the local parent remained pinned to the authorized revision throughout preparation."
       - "Family-registry validation passed and the protected-hold preflight passed with exactly seven suppressions."
@@ -409,9 +421,9 @@ work_items:
     repo: logos-governance-architecture
     task_id: LOGOS-STEWARDSHIP-BUILDOUT-001
     objective_key: logos_stewardship_architecture_buildout_campaign
-    objective: "Author a governed, resumable Logos Stewardship Architecture buildout and public recruiter-facing AI project front door; specify a lossless Academic Extension Contract; and publish one claim-scoped academic evidence demonstration that joins neutral biblical-archaeology research with the exact CC BY 4.0 P66 Cologne image, manuscript-to-text provenance, public-domain English alignment, candidate chunk intersections, uncertainty, counterpositions, rights gates, graph/mesh contracts, and deterministic validation without implying completed doctrine, settled academic truth, runtime activation, or production deployment."
-    status: active
-    board_column: in_progress
+    objective: "Author a governed, resumable Logos Stewardship Architecture buildout and public recruiter-facing AI project front door; preserve the validated Doctrine Mesh V2, Academic Extension Contract, and Biblical Evidence Demonstration V1; and add a public, specification-only Doctrine Marathon V3 control plane with one canonical durable prompt, hash-linked goal and resume state, deterministic pre/mid/post agent-completeness audits, Father- and environment-specific ExpertPack contracts, event-driven epistemic and dependency firewalls, ranked expert-review debt, weekly fresh-context and terminal next-prompt gates, adversarial fixtures, frozen evidence, and public-safe transparency without launching research, ingesting sources, changing substantive doctrine, or granting theological authority."
+    status: "awaiting_review"
+    board_column: "review"
     claim_mode: additive_write
     claimed_paths:
       - governance/registry/FAMILY_WORK_REGISTRY.yaml
@@ -441,21 +453,23 @@ work_items:
       - tests/fixtures/academic_extensions/
       - scripts/validate_biblical_evidence_demo.py
       - tests/test_biblical_evidence_demo.py
-    semantic_tags: [architecture_buildout, long_run_campaign, agent_orchestration, public_portfolio, ai_front_door, evidence_manifest, governance_authority, graph_retrieval_vector_truth, theology_authority, academic_extension, domain_pack, graph_extension, interoperability, n_ary_assertion, hypothesis_graph, lossless_projection, academic_research, biblical_archaeology, manuscript_witness, p66, cc_by_4_0, claim_mediation, source_rights, bible_chunk_alignment, uncertainty, counterposition]
-    roadmap_refs: [LOGOS-STEWARDSHIP-ARCHITECTURE-BUILDOUT-V1, LOGOS-PUBLIC-PORTFOLIO-FRONT-DOOR-V1, LOGOS-ACADEMIC-EXTENSION-CONTRACT-V1, LOGOS-BIBLICAL-EVIDENCE-DEMONSTRATION-V1]
-    branch: codex/logos-stewardship-academic-extension
+    semantic_tags: [architecture_buildout, long_run_campaign, agent_orchestration, public_portfolio, ai_front_door, evidence_manifest, governance_authority, graph_retrieval_vector_truth, theology_authority, academic_extension, domain_pack, graph_extension, interoperability, n_ary_assertion, hypothesis_graph, lossless_projection, academic_research, biblical_archaeology, manuscript_witness, p66, cc_by_4_0, claim_mediation, source_rights, bible_chunk_alignment, uncertainty, counterposition, doctrine_marathon, patristics, church_fathers, father_specific_expert_pack, agent_completeness_audit, dependency_invalidation, epistemic_firewall, compounded_error, theological_profile_drift, frontier_adversarial_sentinel, expert_review_debt, fresh_context_gate, deterministic_handoff, public_transparency]
+    roadmap_refs: [LOGOS-STEWARDSHIP-ARCHITECTURE-BUILDOUT-V1, LOGOS-PUBLIC-PORTFOLIO-FRONT-DOOR-V1, LOGOS-ACADEMIC-EXTENSION-CONTRACT-V1, LOGOS-BIBLICAL-EVIDENCE-DEMONSTRATION-V1, LOGOS-DOCTRINE-MARATHON-V3]
+    branch: codex/doctrine-marathon-control-plane
     issue_url: null
     pr_url: null
     owner: Lowell Wong
     agent: Codex root
     started_at: "2026-08-23T15:44:30Z"
-    heartbeat_at: "2026-08-26T18:32:53Z"
+    heartbeat_at: "2026-08-28T04:47:14Z"
     stale_after_days: 7
-    authority_ceiling: public_academic_demonstration_and_exact_cc_by_4_p66_asset_only_no_substantive_doctrine_runtime_or_other_source_ingestion_release_only_through_governed_pr_ci_and_normal_merge
+    authority_ceiling: public_specification_and_transparency_release_only_no_runtime_launch_research_execution_source_ingestion_substantive_doctrine_normative_decision_or_theological_authority_release_only_through_governed_pr_ci_independent_unchanged_head_gate_and_normal_merge
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001]
-    overlap_resolution_ids: [OVERLAP-W27-STEWARD-BUILDOUT-001, OVERLAP-W27-STEWARD-CITATION-001, OVERLAP-W27-STEWARD-REPO-RESIDUE-001]
+    overlap_resolution_ids: [OVERLAP-W27-STEWARD-BUILDOUT-001, OVERLAP-W27-STEWARD-CITATION-001, OVERLAP-W27-STEWARD-REPO-RESIDUE-001, OVERLAP-W27-P66-PORTFOLIO-CLARITY-001, OVERLAP-W27-DOCTRINE-MARATHON-P66-001]
     completion_evidence:
+      - "Lowell authorized the additive Doctrine Marathon V3 design and public transparency continuation: preserve one canonical non-degrading launch prompt and durable goal; require deterministic pre/mid/post agent and ExpertPack completeness audits, event-driven dependency and epistemic firewalls, Sol-tier frontier adversarial review where proportionate, weekly fresh-context resets, ranked bidirectional expert-review dependencies, terminal next prompts, public-safe agent/graph/harness evidence, and a governed GitHub release. This grants no runtime launch, source ingestion, research execution, substantive doctrine change, autonomous orthodoxy or heresy ruling, theological authority, force operation, bypass, cleanup, reset, rebase, or deletion."
+      - "The continuation uses the registered isolated Doctrine Marathon V3 worktree on branch codex/doctrine-marathon-control-plane at exact fetched origin/main f320d8430c10f82d4fdd80567c4d533fa90c25d5; the divergent canonical checkout, frozen V2 payload, retained integrated lane, paused P66 clarity candidate, active M8 lane, and every unrelated worktree remain untouched."
       - "The fresh owner-authorized protected-hold-aware family preflight passed from exact checkpoint 08eab8e3edf44ab22175e3e47b1828153a84d716 with eight exact clean non-writing suppressions and no mutation."
       - "The DAD public_release unavailable acknowledgement was recorded as audit evidence reviewed by Lowell Wong; it waived no privacy, provenance, accuracy, CI, authority, or independent-review gate."
       - "Doctrine Mesh V2 contains exactly ninety managed files (eighty-five payload plus five administrative evidence files), and its final deterministic replay and twenty adversarial/static tests, including claimed-path traversal regression coverage, pass as validated specification only."
@@ -469,6 +483,43 @@ work_items:
       - "Lowell authorized one claim-scoped public academic evidence demonstration, the exact byte-verified P66 Cologne image licensed CC BY 4.0, neutral archaeology and manuscript research, deterministic graph/rights/authority checks, independent non-author review, scoped local commits, non-force push, governed PR, required CI, unchanged-head gate, and normal merge; M8 mutation, force, bypass, cleanup, reset, rebase, deletion, runtime launch, substantive doctrine, and every other source intake remain prohibited."
       - "The one-time changed-input work-ID-only protected-hold preflight passed at 2026-08-26T16:57:30.1585139Z from checkpoint 08eab8e3edf44ab22175e3e47b1828153a84d716 with eight exact clean non-writing suppressions, no remaining work-ID blocker, no registry mutation, and no use of the optional cleanup-audit flag."
       - "Independent review caught and blocked an unrelated Garstang 1936 Jericho source before release; the candidate now uses the directly relevant 1935 PEQ article and code-pins relation endpoints, M7/M8 identities, canonical trust-zone limits, exact machine-document root keys, strict duplicate-key parsing, exact role contracts, and typed completeness receipts with seventy-two differential adversarial fixtures."
+      - "The exact frozen P66 clarity candidate was imported byte-for-byte for its three public/test files and semantically merged for the shared family registry under OVERLAP-W27-DOCTRINE-MARATHON-P66-001; the P66 worktree remains paused, unchanged, and non-writing while this lane is the sole writer."
+  - work_id: WORK-GOV-P66-PORTFOLIO-CLARITY-001
+    repo: logos-governance-architecture
+    task_id: P66-PORTFOLIO-CLARITY-001
+    objective_key: p66_portfolio_ai_front_door_translation_boundary
+    objective: "Make the public recruiter portfolio and AI front door directly navigable through the existing P66 image, source and rights record, crosswalk, evidence graph, node-edge catalog, agent mesh, deterministic role-completeness auditor, and validation receipts; state precisely that the current English text is a separately sourced public-domain display rather than a translation from the photograph; and identify the future transcription, normalized Greek, variant, witness-specific translation, specialist-review, and human gates without adding source content or making theological claims."
+    status: awaiting_review
+    board_column: review
+    claim_mode: additive_write
+    claimed_paths:
+      - governance/registry/FAMILY_WORK_REGISTRY.yaml
+      - PORTFOLIO.md
+      - AI_FRONT_DOOR.md
+      - tests/test_portfolio_front_door.py
+    semantic_tags: [public_portfolio, ai_front_door, p66, manuscript_witness, source_rights, bible_chunk_alignment, graph_provenance, agent_mesh, deterministic_completeness_audit, translation_boundary, human_gate]
+    roadmap_refs: [LOGOS-PUBLIC-PORTFOLIO-FRONT-DOOR-V1, LOGOS-BIBLICAL-EVIDENCE-DEMONSTRATION-V1]
+    branch: codex/p66-portfolio-translation-clarity
+    issue_url: null
+    pr_url: null
+    owner: Lowell Wong
+    agent: Codex root
+    started_at: "2026-08-27T03:32:09Z"
+    heartbeat_at: "2026-08-27T15:21:26Z"
+    stale_after_days: 7
+    authority_ceiling: local_public_documentation_and_regression_tests_only_no_source_ingestion_translation_commit_push_pr_merge_or_publication
+    dependencies: [WORK-GOV-FAMILY-COORD-001, WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001]
+    related_work_ids: [WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001]
+    overlap_resolution_ids: [OVERLAP-W27-P66-PORTFOLIO-CLARITY-001, OVERLAP-W27-DOCTRINE-MARATHON-P66-001]
+    completion_evidence:
+      - "Direct owner request requires the AI landing page and PORTFOLIO.md to explain and link the P66 evidence chain, systems, image, and checker-of-checkers."
+      - "The new worktree starts clean from exact live origin/main f320d8430c10f82d4fdd80567c4d533fa90c25d5; the integrated stewardship lane, M8, and canonical dirty checkout remain untouched."
+      - "Independent read-only source and mesh audits found the existing release is an image/catalog-to-verse-to-separate-English-display crosswalk, not an image-derived translation; any future translation requires separate source, rights, papyrology/textual-criticism, Koine-Greek, TEI-provenance, and human gates."
+      - "The fresh one-time protected-hold-aware family preflight passed at 2026-08-27T14:53:46Z from exact checkpoint 08eab8e3edf44ab22175e3e47b1828153a84d716 with eight exact clean non-writing suppressions, no remaining work-ID blocker, and no mutation of the checkpoint, family registry, lifecycle registry, or held worktrees."
+      - "Both public entry points now directly link the exact image, rights record, crosswalk, evidence graph, node-edge catalog, agent mesh, deterministic completeness contract, exit audit, and validation receipt while stating that the separate English display is not translated from the image and every transcription, Greek, variant, translation, specialist, and human gate remains future work."
+      - "Final local checks passed: 71 focused tests, portfolio validation with zero findings, family-registry validation, 465-file all-Markdown link validation, and git diff and exact four-path scope checks. The baseline privacy audit reported zero content findings but retained needs_human_review for pre-existing path heuristics and a missing SECURITY.md; the candidate-added redacted scan found zero private-path, locator, credential-shape, or email findings."
+      - "Independent non-author review caught an ephemeral authorization label and shallow link-only assertions; the label was replaced with a durable owner-authorization reference, semantic rights/crosswalk/graph/mesh/audit/receipt tests were added, and follow-up review passed repaired diff c20fe493e9f131f7edecb2e5a54c77cf2246b1d1 with no dissent."
+      - "No commit, push, PR, merge, publication, source ingestion, witness-specific translation, M8 mutation, cleanup, reset, rebase, force operation, or deletion is authorized."
   - work_id: WORK-GOV-CITATION-RESIDUE-REPAIR-001
     repo: logos-governance-architecture
     task_id: CITATION-RESIDUE-REPAIR-001
@@ -507,7 +558,7 @@ work_items:
     authority_ceiling: non_authorizing_public_hygiene_validation_and_source_ref_cleanup
     dependencies: [WORK-GOV-FAMILY-COORD-001]
     related_work_ids: [WORK-GOV-MAIN-EXPOSURE-HOTFIX-001, WORK-GOV-W2-7-LLOS-V1]
-    overlap_resolution_ids: [OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-CITATION-001]
+    overlap_resolution_ids: [OVERLAP-W27-CITATION-RESIDUE-REPAIR-001, OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-CITATION-001, OVERLAP-W27-P66-PORTFOLIO-CLARITY-001]
     completion_evidence:
       - "Owner-authorized one-time protected-hold-aware preflight at checkpoint 08eab8e3 passed without modifying any held worktree; eight exact clean non-writing holds qualified, seven were actual overlaps, and the eighth had no ahead commit or overlapping path."
       - "Removed sixteen non-resolvable locator tokens from nine public files and all private-use citation wrappers from the two canon documents; seven example provenance.source_refs arrays are now empty rather than fabricated."
@@ -548,7 +599,7 @@ work_items:
     authority_ceiling: non_authorizing_public_hygiene_remote_ref_remediation_and_validation
     dependencies: [WORK-GOV-FAMILY-COORD-001, WORK-GOV-CITATION-RESIDUE-REPAIR-001]
     related_work_ids: [WORK-GOV-W2-7-LLOS-V1, WORK-GOV-MAIN-EXPOSURE-HOTFIX-001, WORK-GOV-CLOSE-MAIN-HOTFIX-CLAIM-001, WORK-GOV-LOGOS-CONVERGENCE-PUBLIC-PROJECTION-001]
-    overlap_resolution_ids: [OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-REPO-RESIDUE-001]
+    overlap_resolution_ids: [OVERLAP-W27-REPO-RESIDUE-REMOTE-REPAIR-001, OVERLAP-W27-STEWARD-REPO-RESIDUE-001, OVERLAP-W27-P66-PORTFOLIO-CLARITY-001]
     completion_evidence:
       - "The fresh owner-authorized one-time protected-hold-aware preflight passed from exact clean checkpoint 08eab8e3edf44ab22175e3e47b1828153a84d716 with eight exact clean non-writing suppressions, unchanged claim/lifecycle inputs, and no protected-hold mutation."
       - "After exact live ancestry and merged-PR checks, only codex/logos-convergence-public-projection and fable/main-exposure-hotfix were deleted remotely; both had zero unique commits and remain preserved through main and retained local refs."

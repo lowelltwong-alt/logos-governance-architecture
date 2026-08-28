@@ -1,0 +1,192 @@
+metadata:
+  object_type: doctrine_marathon_revision_manifest
+  trust_zone: proposed
+  lifecycle_status: frozen_specification_payload
+  provenance_note: Refrozen by Codex root after the independently reviewed portable V4 root repair, the truthful blocked V3 migration contract, the 197-case component inventory, and four local aggregate sentinels.
+  reason_for_inclusion: Bind every non-administrative V3 file to an exact canonical digest while preserving the named repository-adapter release blocker and all non-authority boundaries.
+schema_version: logos.doctrine_marathon.revision_manifest.v3
+manifest_id: DMV3-REVISION-003
+work_id: WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
+revision_id: doctrine-marathon-v3
+revision_root: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3
+parent_revision:
+  revision_id: doctrine-mesh-v2
+  payload_digest: sha256:6fdc5507d69ed5e6cdeb0aa9b79ed6365aa6b38cce258a0649ee527ba5e15fa8
+  final_saved_digest: sha256:1fdff84a9c1a8d34523183e6a8b1fe0ef70c53bde4ad3e054b94faa4a9b3076c
+generated_at: '2026-08-28T16:32:09.5959710Z'
+authority:
+  specification_only: true
+  runtime_activation_authorized: false
+  research_execution_authorized: false
+  source_ingestion_authorized: false
+  substantive_doctrine_implementation_authorized: false
+  completed_doctrine_corpus: false
+  qualified_theological_authority: false
+hash_algorithm: sha256_over_canonical_lf_bytes_for_utf8_raw_bytes_otherwise
+payload_list_digest_algorithm: sha256_over_canonical_compact_json_of_sorted_path_sha256_rows
+administrative_files_excluded_from_payload_digest:
+- FINAL-SAVED-VERSION.yaml
+- checks/independent-review.json
+- checks/public-release-authorization.json
+- checks/validation-receipt.json
+- revision-manifest.yaml
+payload_file_count: 78
+payload_digest: sha256:4a77843f3b0e7fae6ea5f6847d43cb40066ff9e1411fa65db51c662dedc80001
+payload_files:
+- path: DOCTRINE_MARATHON_MASTER_PROMPT.md
+  sha256: sha256:494dfd574a257c99d03b84544343a94a05f678b4b08f19cac18f1ca31d80fd9d
+- path: QUICK_RESUME_PROMPT.md
+  sha256: sha256:0525e8b970f30775373a04380a58cfcf83239c282e2720431d045e8f40fe0e85
+- path: README.md
+  sha256: sha256:d979b53096f1319ff00e4b4dcccd36e9ca09f50e596a1556eff1ed0f3a0720e0
+- path: campaign.yaml
+  sha256: sha256:08ad06379ce250cdf81a861337c40a07a9edae3ad2df5d4e01bcca951b8a2ab0
+- path: checks/ADVERSARIAL_HARNESS_ROOT_FIX.md
+  sha256: sha256:2a31220210342422ed0929dc15506c3ef189bfae64a4964aed38733f4d04ef6e
+- path: checks/DETERMINISTIC_ADVERSARIAL_HARNESS_CONTRACT.md
+  sha256: sha256:8435988817ce784f264223c3626f76698a3d2925f18ca2e26086bdd0c33a6d40
+- path: checks/README.md
+  sha256: sha256:4fcded8993c57eee9a99cd71a2d815a7dadfe9a51d80d1e2805274975d3b7386
+- path: checks/adversarial-harness-migration.yaml
+  sha256: sha256:7f62a488e5988faaddde9dd05220de668495e1e0f81510d6f2848d9fa54b1e90
+- path: checks/fixtures/aggregate-sentinel-cases.json
+  sha256: sha256:0baa46c056bec70ecd35828c6673c9584e85171623d1d285b17a107cc47de13c
+- path: checks/fixtures/negative-cases.json
+  sha256: sha256:151b0a1c1cefe9e76446372aa8dc7a50e8afe7f49e0a7e4ade70ca24c06c16b5
+- path: checks/fixtures/strict-isolated-cases.json
+  sha256: sha256:08b7d6bb5e01f0acedf94d8601c037318a29a1a1bedd7e8e43b2d9ec969d05a1
+- path: checks/run_adversarial_harness.py
+  sha256: sha256:c3911caca9c88fd42bb79659c61bf0744c0321695312639d5d37587d3ce23f8e
+- path: checks/test_run_adversarial_harness.py
+  sha256: sha256:2a2c77e8fc5a2dbdcecc3de63dba53b6f7a8d553104a01de4545058785571833
+- path: checks/test_validate_doctrine_marathon.py
+  sha256: sha256:d6b34bbb8b16339877198ce01f7aeb52184fea79a4b9af105d6a0857d33f4c02
+- path: checks/validate_doctrine_marathon.py
+  sha256: sha256:a7d609c7442356b5a3901dab99c35c4bb82ea7fcea3517486d9393438aff9c7e
+- path: constitution.yaml
+  sha256: sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe
+- path: debt/expert-review-debt.schema.json
+  sha256: sha256:4e2216003e0b290ff44ebb5404f44aa972fe2bfae05b772d1574a11144ecf346
+- path: debt/initial-review-debt.json
+  sha256: sha256:01e2177807057b418da84412f9c4bcf0d37aea28927f745faff70f1c0d1757dc
+- path: debt/review-debt-ranking-contract.yaml
+  sha256: sha256:b8fc10f62c3616b811bd7bdc82c9b209a2ee18528c9eec1f2d4134a3c1fe5428
+- path: events/event-ledger-contract.yaml
+  sha256: sha256:ad2cc8cf1e40c3465e937422b32e4c8ed1fffedefdf5f8432ecb100cc1bd38aa
+- path: events/event-ledger.json
+  sha256: sha256:32e3b1dfd997bc925b85e784e47b92ac69ef49b847db30ef840706e02b25d615
+- path: events/event-ledger.schema.json
+  sha256: sha256:222cf2c3daabae672cdfdd22b5d78422ae46e7cf58a0450cf466fa5cce7a4d4e
+- path: events/marathon-event.schema.json
+  sha256: sha256:b94ad374313e640c367cd3532c4cc2e7b5da76102da9cff092737460e6094490
+- path: evidence/claim-record.schema.json
+  sha256: sha256:9380965830402119ccdd2a1d75ef7fb46e20fa96c15294a3162b76a2bacb8bcb
+- path: evidence/evidence-registry.json
+  sha256: sha256:fa4eba3cbf6fb4342944d0119d6443d72ed7285b5f287aeb09b8c0a6ae222c10
+- path: evidence/evidence-registry.schema.json
+  sha256: sha256:2474f5d84eadb257ef3494376753a51bce0e75b9511d4540807993a23c13d91e
+- path: evidence/evidence-review-receipt.schema.json
+  sha256: sha256:a7061a40641ae86bbf71f6d017b3d43b7c8a710cd5b382784b24062d2bf834f2
+- path: evidence/source-record.schema.json
+  sha256: sha256:bf6b8afd8839271ae9dcc8c14ec668633bde96d2e1bcb54ce173bdb77d42838f
+- path: evidence/translation-lineage.schema.json
+  sha256: sha256:6234a5a7da6a83867c8bba7859fffcc53689b1b5ccb5bf3041bc53098c1caef2
+- path: firewall/action-checker-requirements.yaml
+  sha256: sha256:33a2945636ba4ba1bb9c7554650d2f3541e1e43218c98004b094244364becd4b
+- path: firewall/epistemic-integrity-contract.yaml
+  sha256: sha256:686c325c9184def545621c5f2984adf6e972e9d67593517ce157c3705264a0d6
+- path: firewall/frontier-adversarial-sentinel.yaml
+  sha256: sha256:54145674f4383a6f2691ce7ff25443d7b9e44376617f3a6d075aa463c4c69c61
+- path: firewall/prompt-neutrality-contract.yaml
+  sha256: sha256:3fdaf4c6f966c23ea7fe3c7a62c25fb5b4f7e0be0d52e8935eb782b2f21ac275
+- path: firewall/trigger-matrix.yaml
+  sha256: sha256:68241d381c01fa0e90ac886a6d7b2e5b75cc79a1ee700097ea88fe0c4bce0f92
+- path: graph/authority-registry.schema.json
+  sha256: sha256:9d33bca6908d7135b324f52c9d858ca12532001555fadc97e23eab67bc780613
+- path: graph/authority-registry.yaml
+  sha256: sha256:9d837048ad2244b492ab54a99af1e8bab5de3012c67fc739a9ac7d2976bbf073
+- path: graph/event-driven-invalidation-contract.yaml
+  sha256: sha256:25552a7b76201a9ce0c13aede18b1eaf7563e4e63e59227bb73a97e300387f93
+- path: graph/example-graph.json
+  sha256: sha256:474a3b790228069175c1feb90cd26759e202718ad6aefbe0a00303fb0cb23702
+- path: graph/historical-attribution.schema.json
+  sha256: sha256:2d5db3f3ad957072631ec801c6de6a59829fddddff94b62eb4ab86ed5a908c06
+- path: graph/human-decision-receipt.schema.json
+  sha256: sha256:7f9dd73d21826b454cead038a6a3ac0de24b81926dbaede5fb156370e1ac2e01
+- path: graph/human-identity-authority-root.schema.json
+  sha256: sha256:251b4b053c7f2bc602de54dda62f70a389dd5006ea1ae7c2ccfac96f988311fe
+- path: graph/human-identity-authority-root.yaml
+  sha256: sha256:c489da192bef045ff9d24018d419991f52462d56729308e9a4c72ffd0d33815d
+- path: graph/influence-hypothesis.schema.json
+  sha256: sha256:285f44800380bc187cfd7dd818da761b853331a0de0b71d86e61d05942331338
+- path: graph/instance-dependency-graph.schema.json
+  sha256: sha256:a58cb9d9f810d074e39f2762f038f06758275e2bbe2b035240e71996a2a2f5f0
+- path: graph/normative-frame.schema.json
+  sha256: sha256:a0a497264fb1d0450ba3488309143f823b33a88d4e52e42588bbd14ab8956f03
+- path: mesh/agent-mesh.v3.json
+  sha256: sha256:82034aae352b9bbf3df467b9b94ab7b0e0d486c62e4654b7aca80589f7f9396d
+- path: mesh/completeness-auditor-v3.yaml
+  sha256: sha256:c800f38307195c6da51da2a53fb73caa09cde398236789bdd145df55abebbcd8
+- path: mesh/correlation-acceptance-receipt.schema.json
+  sha256: sha256:d67d80aa617cbbc35fb99fd1c7cdce0626cad238624e2b4d9a0c47d9fbc3d893
+- path: mesh/examples/design-time-independence-fixture.json
+  sha256: sha256:4442c87e356aa39023e3d795a503a9eb9a7e8acac42f0b9415ad285aeb5ca136
+- path: mesh/expert-pack.schema.json
+  sha256: sha256:baddcb87e26dd37a600fda38268396c775d00c6399df66144d75840e6769fec0
+- path: mesh/qualification-receipt.schema.json
+  sha256: sha256:7da8f3298d47bc9bacb227eea2418eaaa5ec3acc9b0351e6e51b38ac90a9fbb0
+- path: mesh/qualification-registry.json
+  sha256: sha256:db722897e80f59af4ef996bc52f5ed739fec1ed8d095d2cd8f4097dcdd83dbc0
+- path: mesh/qualification-registry.schema.json
+  sha256: sha256:e4a761958bf98caa4d18db7785af3f308a9ed77d4ccb5c426455bf9e465e4bb3
+- path: mesh/role-assignment-bundle.schema.json
+  sha256: sha256:04e7ad9ca5abd0c185510a7613390535663b78de15f52c85bed60346b7ef4dbf
+- path: mesh/role-assignment.schema.json
+  sha256: sha256:87c2dcefdd4caa265c957dee8cb5fc7f25baf29aa7b0f5f3496d01fdeb850765
+- path: mesh/role-catalog.yaml
+  sha256: sha256:3b37c1c1a301f3113474dcabe48a0aa65d90676b48859da183c034c16843834c
+- path: redteam/ai-mistake-escalation-2026-08-27.yaml
+  sha256: sha256:198d16d306e2ce09f0376cde786f3096c2ea10c30417e542c205335411eb4dd2
+- path: redteam/premortem.yaml
+  sha256: sha256:a0096bf9b3b66c55dd558c2d780134e77a5d16181bb69c0e57e382d8c2d8d4b6
+- path: redteam/repair-ledger.yaml
+  sha256: sha256:99b9dff2d5f056b29d59372e07e4a2e0c07de52b5bda6876bc92fd8eb97dc248
+- path: research/environment-pack-contract.yaml
+  sha256: sha256:f805f896a25e0a5c8d306a789124f2159ed19dab7e5cb9c42090391c33bf63f0
+- path: research/father-expert-pack-contract.yaml
+  sha256: sha256:b946a937a38355d52d612f0316e35d15695165d4116dfb92010c3b12d37f772c
+- path: research/father-pack-bootstrap-queue.yaml
+  sha256: sha256:54dd1404c759f50398e65e2a97610071bbaaa69b84a0797e6037a668049a7f82
+- path: research/jewish-context-pack.schema.json
+  sha256: sha256:edd633bee81a0f959de36c03639adf33ff68c83f81b94b848eb862931cc7b634
+- path: research/patristic-source-qualification-plan.yaml
+  sha256: sha256:598b700d653390bc9a9b9c7c6fd19c37f65d003bb50d8e64f59c9ce92946aaf7
+- path: state/campaign-completion-definition.schema.json
+  sha256: sha256:88e5060202a17dc771161a700bef523d2dfb18e764fedb9d27f8a7e472aa479c
+- path: state/campaign-completion-receipt.schema.json
+  sha256: sha256:aa566728a3d95991859e488da3e77f8b722523b817910e8e81e13e016cf72117
+- path: state/examples/initial-resume-checkpoint.json
+  sha256: sha256:f6092ec11926914230ffaa86d682644e47c40bec686a2392302cd2d1144c4833
+- path: state/examples/initial-weekly-fresh-context-gate.json
+  sha256: sha256:8f23e7aa732eaf728e3c8f347b8d5c14cb715ecf2476a485d633d6d61267542d
+- path: state/examples/terminal-handoff-blocked.json
+  sha256: sha256:4b97b1fee8ed4640654f6e191ed4bbdcb4e22c444aa3db150954aaf55abd24bc
+- path: state/fresh-context-verification-receipt.schema.json
+  sha256: sha256:8bdf41db9d82115e9302f84021bd108609b2c0ac2d057ec3395f03d4c1059912
+- path: state/goal.yaml
+  sha256: sha256:0b4fe9528ca3b251d098e247471278e6fca35334fc32161d27e93ddcb2beab35
+- path: state/marathon-goal.schema.json
+  sha256: sha256:6143c2e404280a454e55d6437709f4f8c98da448fed87983b944b9b7c2acbbc7
+- path: state/resume-checkpoint.schema.json
+  sha256: sha256:2fcbbaf1c3f2348aeb3ea76736da65d9d6cb9e09d63c94e10b4b72e1c0a117d8
+- path: state/terminal-handoff.schema.json
+  sha256: sha256:7f7b537a2c188b0d4154fd84d6f3f0934de606edfc9d6eef823c5effb21fcc17
+- path: state/weekly-fresh-context-gate.schema.json
+  sha256: sha256:0a140864d5eb8a37fc97b70957c547b924ad2194e639a1a3305e3cb0b3e0d4dc
+- path: transparency/public-safe-status.schema.json
+  sha256: sha256:81d04a19a814c784da1388911076b3d4e84a695a1f2eb28d760eb99db0c8f1f5
+- path: transparency/public-status.json
+  sha256: sha256:1b45adb9219e70f11fd6ca707798fc7b1ec74c4b9dbbb32bff0f614a0583db5e
+- path: transparency/publication-scrub-contract.yaml
+  sha256: sha256:069c00508930a584fbe6a24cab16fabc33e587cf382a66e0b2ef1022078b20aa
+manifest_digest: sha256:817acfdafe227da0b7223da7f690e9b95e8897a5a9fbf2ed962cf53f328e4a1b

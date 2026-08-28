@@ -1,0 +1,87 @@
+metadata:
+  object_type: doctrine_marathon_epistemic_integrity_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as the real-time anti-hallucination, anti-half-truth, and authority firewall."
+  reason_for_inclusion: "Stop small evidence, context, translation, and authority cracks before downstream graph layers multiply them."
+schema_version: logos.doctrine_marathon.epistemic_integrity.v3
+separate_status_dimensions:
+  - source_identity
+  - source_fitness
+  - rights_and_access
+  - locator_validity
+  - quotation_fidelity
+  - translation_fidelity
+  - context_integrity
+  - entailment
+  - temporal_fit
+  - causal_or_influence_support
+  - tradition_representation
+  - normative_admissibility
+  - human_review
+no_status_substitution: true
+root_source_rule: >-
+  Every load-bearing claim must terminate at an independently re-accessed root
+  source. Search results, snippets, citation aggregators, KnowledgeGuides, model
+  outputs, and summaries are discovery-only and cannot occupy a load-bearing
+  evidence edge.
+evidence_registry_ref: ../evidence/evidence-registry.json
+source_record_schema_ref: ../evidence/source-record.schema.json
+claim_record_schema_ref: ../evidence/claim-record.schema.json
+translation_lineage_schema_ref: ../evidence/translation-lineage.schema.json
+influence_hypothesis_schema_ref: ../graph/influence-hypothesis.schema.json
+claim_types:
+  - direct_quotation
+  - diplomatic_transcription
+  - translation
+  - paraphrase
+  - source_report
+  - synthesis
+  - inference
+  - historical_attribution
+  - tradition_scoped_assessment
+  - normative_assessment
+strength_rule: consumer_strength_not_above_weakest_load_bearing_premise
+historical_authority_rule:
+  schema_ref: ../graph/historical-attribution.schema.json
+  autonomous_ai_verdict_forbidden: [is_orthodox, is_heresy]
+  generic_machine_labels_forbidden: [liberal_theology, conservative_theology]
+  required_decomposition: [actor, work, method, proposition, period, exact_source, tension_or_disagreement]
+normative_authority_rule:
+  schema_ref: ../graph/normative-frame.schema.json
+  human_decision_receipt_schema_ref: ../graph/human-decision-receipt.schema.json
+  authority_registry_ref: ../graph/authority-registry.yaml
+  exact_current_human_approved_frame_required: true
+  frame_inference_or_default_forbidden: true
+causation_rule:
+  explicit_influence_hypothesis_required: true
+  chronology_or_similarity_alone_forbidden: true
+  required_dimensions: [contact_evidence, reception_evidence, mechanism, alternatives, counterevidence, qualified_sources]
+source_laundering_failures:
+  - KnowledgeGuide_used_as_evidence
+  - inaccessible_root_source_confidence_inherited
+  - secondary_source_presented_as_primary
+  - locator_check_presented_as_entailment
+  - translation_check_presented_as_witness_identity
+  - repeated_citation_presented_as_authority
+  - retrieval_rank_presented_as_truth
+compounded_error_actions:
+  detect:
+    - premise_strength_exceeded
+    - unresolved_or_stale_ancestor
+    - uncertainty_or_dissent_erased_by_summary
+    - multiple_small_failures_on_one_dependency_chain
+    - correlated_agent_agreement
+  respond:
+    - block_lease
+    - quarantine_output_and_reverse_consumers
+    - preserve_failed_claim_and_disagreement
+    - invoke_frontier_adversarial_sentinel_when_triggered
+    - create_or_raise_expert_review_debt
+promotion_requires:
+  - every_status_dimension_applicable_to_the_claim_is_explicit
+  - all_load_bearing_prerequisites_current
+  - independent_check_receipts
+  - completeness_exit_receipt
+  - no_unresolved_blocking_or_high_risk_disagreement
+  - exact_human_gate_for_normative_effect

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.terminal-handoff.v3",
+  "title": "Doctrine Marathon terminal handoff",
+  "description": "object_type=terminal_handoff_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Ensure every stopped run preserves state and returns one unambiguous next prompt unless complete.",
+  "type": "object",
+  "required": ["schema_version", "handoff_id", "status", "checkpoint_id", "checkpoint_ref", "checkpoint_digest", "completed_unit_ids", "blocked_gate_ids", "residual_risks", "completion_definition_ref", "completion_definition_digest", "completion_receipt_ref", "completion_receipt_digest", "next_prompt"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.terminal-handoff.v3"},
+    "handoff_id": {"type": "string", "pattern": "^DMV3-HANDOFF-[0-9]{4,}$"},
+    "status": {"enum": ["CONTINUE", "BLOCKED", "CAMPAIGN_COMPLETE"]},
+    "checkpoint_id": {"type": "string", "pattern": "^DMV3-CP-[0-9]{4,}$"},
+    "checkpoint_ref": {"type": "string", "pattern": "^state/(?:checkpoints|examples)/[A-Za-z0-9._-]+\\.json$"},
+    "checkpoint_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "completed_unit_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "blocked_gate_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "residual_risks": {"type": "array", "items": {"type": "string"}},
+    "completion_definition_ref": {"type": ["string", "null"], "pattern": "^state/completion-definitions/[A-Za-z0-9._-]+\\.json$"},
+    "completion_definition_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "completion_receipt_ref": {"type": ["string", "null"], "pattern": "^state/completion-receipts/[A-Za-z0-9._-]+\\.json$"},
+    "completion_receipt_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "next_prompt": {"type": ["string", "null"], "minLength": 1}
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"const": "CAMPAIGN_COMPLETE"}}}, "then": {"properties": {"next_prompt": {"type": "null"}, "blocked_gate_ids": {"maxItems": 0}, "residual_risks": {"maxItems": 0}, "completed_unit_ids": {"minItems": 1}, "completion_definition_ref": {"type": "string"}, "completion_definition_digest": {"type": "string"}, "completion_receipt_ref": {"type": "string"}, "completion_receipt_digest": {"type": "string"}}}},
+    {"if": {"properties": {"status": {"enum": ["CONTINUE", "BLOCKED"]}}}, "then": {"properties": {"next_prompt": {"type": "string", "minLength": 40}, "completion_definition_ref": {"type": "null"}, "completion_definition_digest": {"type": "null"}, "completion_receipt_ref": {"type": "null"}, "completion_receipt_digest": {"type": "null"}}}}
+  ],
+  "additionalProperties": false
+}

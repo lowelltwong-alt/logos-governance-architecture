@@ -1,14 +1,21 @@
-schema_version: logos.biblical-evidence.p66-chunk-crosswalk.v1
+schema_version: logos.biblical-evidence.p66-chunk-crosswalk.v2
 object_type: manuscript_translation_chunk_crosswalk
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Created 2026-08-26 from the Cologne P66 catalog ranges, the pinned eng-web source manifest, immutable M7 public metadata, a separately disclosed local corrective observation, and the protected M8 checkpoint."
-reason_for_inclusion: "Demonstrate a loss-aware manuscript-to-English-to-candidate-chunk path without pretending the photograph supplies a transcription or translation."
+provenance_note: "Created 2026-08-26 from the Cologne P66 object-level catalog ranges, the pinned eng-web source manifest, immutable M7 public metadata, a separately disclosed local corrective observation, and the protected M8 checkpoint; corrected 2026-08-28 to leave exact verso-side passage mapping unresolved."
+reason_for_inclusion: "Demonstrate a loss-aware object-catalog-to-verse-identity-to-English-to-candidate-chunk path without pretending the verso photograph supplies the object-level coverage, a transcription, or a translation."
 crosswalk_id: urn:logos:crosswalk:p66-cologne-john19-to-candidate-chunks
 source_layers:
   p66:
-    record_ref: urn:logos:source:p66-cologne-tm61627-verso
+    record_ref: urn:logos:source:p66-cologne-tm61627-object
+    catalog_coverage_subject_ref: artifact:p66-cologne-object
     coverage_basis: official_object_catalog_metadata
+    catalog_coverage_scope: combined_recto_and_verso_object_record
+    asset_ref: asset:p66-verso
+    asset_side: verso
+    asset_side_coverage_status: not_established_in_current_source_pack
+    asset_side_mapped_segments: []
+    crosswalk_scope: object_catalog_to_verse_identity_only
   english:
     source_record_ref: urn:logos:source:eng-web-2026-05-28
     title: World English Bible Classic
@@ -102,8 +109,11 @@ segments:
       - verse: John.19.24
         english: "Then they said to one another, ‘Let’s not tear it, but cast lots for it to decide whose it will be,’ that the Scripture might be fulfilled, which says, ‘They parted my garments among them. They cast lots for my clothing.’ Therefore the soldiers did these things."
 invariants:
-  segment_count: 4
-  coverage_is_non_contiguous: true
+  object_catalog_coverage_segment_count: 4
+  object_catalog_coverage_is_non_contiguous: true
+  object_catalog_to_verse_identity_only: true
+  asset_side_specific_coverage_claimed: false
+  asset_side_mapped_segment_count: 0
   image_to_english_direct_edge_allowed: false
   transcription_claimed_from_image: false
   m7_candidate_only: true

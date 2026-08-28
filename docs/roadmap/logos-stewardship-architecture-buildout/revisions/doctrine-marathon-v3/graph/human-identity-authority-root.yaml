@@ -1,0 +1,20 @@
+---
+metadata:
+  object_type: doctrine_marathon_human_identity_authority_root
+  trust_zone: proposed
+  lifecycle_status: specification_only_inactive
+  provenance_note: >-
+    Created on 2026-08-27 by Codex root as an intentionally inactive root; no
+    human identity, credential, or signature is asserted by this artifact.
+  reason_for_inclusion: >-
+    Make future approver admission depend on a separate human-recorded,
+    protected-commit anchor while proving that no approver is active now.
+schema_version: logos.doctrine-marathon.human-identity-authority-root.v3
+anchor_id: DMV3-HUMAN-IDENTITY-AUTHORITY-ROOT
+active: false
+authorized_identity_issuer_ids: []
+authorized_signer_ids: []
+recorded_by_human: false
+created_by_ai: true
+protected_commit: null
+anchor_digest: sha256:2091008f9f66f0ee50c03eebb93a82da54655f2dd973859324dfaae45af7b2e0

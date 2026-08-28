@@ -3,5 +3,7 @@
   "operation": "replace",
   "path": ["named_graph", "default_winner"],
   "value": true,
-  "expected_rule": "schema_validation"
+  "expected_rule": "schema_validation",
+  "expected_first_rule": "schema_validation",
+  "expected_rules_exact": ["schema_validation"]
 }

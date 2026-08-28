@@ -1,0 +1,22 @@
+metadata:
+  object_type: doctrine_marathon_authority_registry
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: Created on 2026-08-27 by Codex root as an intentionally empty design-time
+    authority registry.
+  reason_for_inclusion: Prove that V3 has no qualified approver or active NormativeFrame
+    and make later human authority additions explicit and digest-bound.
+schema_version: logos.doctrine-marathon.authority-registry.v3
+registry_id: DMV3-AUTHORITY-REGISTRY
+human_identity_authority_root_ref: graph/human-identity-authority-root.yaml
+human_identity_authority_root_file_digest: sha256:c489da192bef045ff9d24018d419991f52462d56729308e9a4c72ffd0d33815d
+human_identity_authority_root_anchor_digest: sha256:2091008f9f66f0ee50c03eebb93a82da54655f2dd973859324dfaae45af7b2e0
+approver_qualification_receipts: []
+qualified_approvers: []
+approver_set_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+human_decision_receipts: []
+normative_frames: []
+normative_authority_active: false
+current_normative_frame_ref: null
+current_normative_frame_digest: null
+registry_digest: sha256:6422f3b383fcebaa6a413293ca8c50036dc6a064a2aef31b4b73f6f2cc2b2e31

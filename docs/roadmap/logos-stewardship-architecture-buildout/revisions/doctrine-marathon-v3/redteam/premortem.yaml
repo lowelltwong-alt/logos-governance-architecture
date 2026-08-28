@@ -1,0 +1,188 @@
+metadata:
+  object_type: doctrine_marathon_premortem
+  trust_zone: proposed
+  lifecycle_status: active
+  provenance_note: "Created on 2026-08-27 by Codex root and strengthened after independent chronology, patristics, mesh, public-boundary, deterministic, and frontier epistemic-integrity challenges."
+  reason_for_inclusion: "Assume the multi-year campaign failed and record the most plausible causes before runtime or doctrine work begins."
+schema_version: logos.doctrine_marathon.premortem.v3
+failure_scenarios:
+  - id: PM-001
+    failure: prompt_drift_over_months
+    cause: chat_summaries_or_next_prompts_silently_replace_the_canonical_prompt
+    detection: prompt_checkpoint_digest_mismatch
+    prevention: canonical_master_prompt_plus_weekly_fresh_context_gate
+    residual_risk: human_may_invoke_an_old_revision
+  - id: PM-002
+    failure: many_agents_create_correlated_hallucination_consensus
+    cause: shared_context_sources_prompt_authorship_or_model_binding_is_hidden
+    detection: independence_lineage_collision
+    prevention: role_qualification_meta_checker_and_distinct_attempt_receipts
+    residual_risk: semantic_correlation_is_not_fully_machine_provable
+  - id: PM-003
+    failure: thin_expert_personas_launder_summaries_into_claims
+    cause: role_labels_exist_without_qualified_ExpertPacks_or_root_source_access
+    detection: missing_pack_digest_or_root_source_reaccess
+    prevention: pack_qualification_and_abstention_fixtures
+    residual_risk: source_pack_quality_requires_real_specialists
+  - id: PM-004
+    failure: chronology_becomes_false_causal_genealogy
+    cause: moving_forward_in_time_is_treated_as_influence_or_continuity
+    detection: influence_edge_without_contact_reception_and_counterhypothesis_evidence
+    prevention: chronology_as_navigation_plus_dependency_readiness
+    residual_risk: sparse_historical_record
+  - id: PM-005
+    failure: heresy_protection_becomes_desired_conclusion_prompting
+    cause: AI_is_told_to_prove_an_unattributed_normative_label
+    detection: autonomous_is_heresy_or_is_orthodox_or_generic_liberal_label
+    prevention: HistoricalAttribution_plus_human_approved_NormativeFrame
+    residual_risk: human_frames_can_still_be_contested_and_must_be_explicit
+  - id: PM-006
+    failure: non_Christian_context_silently_becomes_doctrine
+    cause: generic_cites_or_similarity_edge_crosses_authority_planes
+    detection: contextual_edge_with_normative_force_or_load_bearing_doctrine_effect
+    prevention: authority_plane_auditor_and_context_edge_allowlist
+    residual_risk: real_influence_questions_remain difficult and disputed
+  - id: PM-007
+    failure: small_upstream_error_multiplies_across_layers
+    cause: reverse_consumers_are_missing_or_not_invalidated
+    detection: current_consumer_reaches_stale_or_invalid_ancestor
+    prevention: generated_reverse_index_weakest_premise_and_BFS_quarantine
+    residual_risk: undeclared_dependencies_escape_the_graph
+  - id: PM-008
+    failure: qualified_human_review_debt_becomes_invisible_permanent_backlog
+    cause: review_needs_are_unranked_or_not_linked_to_consumers
+    detection: debt_record_missing_risk_blast_radius_or_two_way_dependencies
+    prevention: deterministic_operational_ranking_and_public_safe_queue
+    residual_risk: qualified_reviewers_may_remain_unavailable
+  - id: PM-009
+    failure: green_validator_is_misrepresented_as_truth_or_runtime
+    cause: artifact_integrity_claim_is_promoted_to_scholarly_or_theological_completion
+    detection: public_maturity_or_authority_flags_elevated_without_receipts
+    prevention: public_status_schema_and_independent_nonclaim_review
+    residual_risk: readers_may_ignore_labels
+  - id: PM-010
+    failure: public_transparency_leaks_private_or_restricted_material
+    cause: raw_reasoning_chat_local_paths_secrets_or_copyrighted_text_enter_release
+    detection: bounded_privacy_rights_and_path_scan
+    prevention: publication_scrub_contract_and_exact_scope_gate
+    residual_risk: automated scanners_cannot_prove_all_licensing_or_privacy_questions
+  - id: PM-011
+    failure: records_self_attest_expertise_or_review
+    cause: a_source_pack_assignment_or_claim_sets_a_qualified_or_verified_flag_without_a_typed_exact_scope_receipt
+    detection: unresolved_receipt_wrong_subject_wrong_scope_wrong_digest_or_design_fixture_used_as_runtime_evidence
+    prevention: typed_qualification_and_evidence_review_registries_plus_recomputed_status_gates
+    residual_risk: machine_validation_cannot_prove_a_human_reviewers_real_world_competence
+  - id: PM-012
+    failure: context_is_laundered_through_a_historical_intermediate
+    cause: only_direct_cross_plane_edges_are_checked
+    detection: recomputed_transitive_authority_taint_reaches_scripture_tradition_normative_or_public_plane
+    prevention: full_load_bearing_prerequisite_closure_and_witness_path_failure
+    residual_risk: an_undeclared_or_misclassified_edge_can_escape_the_graph
+  - id: PM-013
+    failure: midflight_audit_checks_only_the_changed_node
+    cause: a_trigger_receipt_covers_a_subset_or_a_different_graph_snapshot
+    detection: trigger_input_graph_closure_action_or_requirement_digest_mismatch
+    prevention: exact_direct_subject_plus_full_reverse_consumer_closure_barrier_before_continuation
+    residual_risk: dependency_completeness_still_requires_substantive_review
+  - id: PM-014
+    failure: campaign_is_declared_complete_by_empty_green_flags
+    cause: terminal_status_is_treated_as_authority
+    detection: missing_human_approved_completion_definition_exact_unit_rows_or_zero_residual_proof
+    prevention: typed_completion_definition_receipt_and_registered_human_decision_gate
+    residual_risk: the_human_approved_definition_itself_may_later_need_revision
+  - id: PM-015
+    failure: generated_or_unmanaged_files_bypass_the_freeze
+    cause: payload_enumeration_silently_ignores_cache_bytecode_or_extra_files
+    detection: tracked_generated_path_or_manifest_inventory_mismatch
+    prevention: exact_payload_rows_exact_admin_allowlist_no_linked_paths_and_release_scope_diff
+    residual_risk: ignored_local_cache_can_exist_but_is_neither_evidence_nor_release_content
+  - id: PM-016
+    failure: a_boolean_self_authorizes_publication
+    cause: final_saved_record_contains_release_true_without_upstream_bounded_owner_evidence
+    detection: authorization_work_payload_manifest_scope_or_ceiling_digest_mismatch
+    prevention: separate_procedurally_honest_owner_authorization_receipt_bound_by_the_final_index
+    residual_risk: the_public_receipt_is_not_a_cryptographic_identity_attestation_and_says_so
+  - id: PM-017
+    failure: completion_is_forged_with_a_green_self_attestation
+    cause: output_requirement_producer_reviewer_or_decision_identity_is_not_exactly_bound
+    detection: latest_requirement_or_exact_review_receipt_mismatch
+    prevention: two_qualified_reviewers_exact_output_evidence_and_use_time_plus_terminal_revalidation
+    residual_risk: qualified_review_quality_still_requires_real_experts
+  - id: PM-018
+    failure: a_completeness_auditor_is_named_but_never_qualified_or_replayed
+    cause: entry_midflight_or_exit_treats_a_role_label_as_execution_evidence
+    detection: runtime_bundle_assignment_capability_or_requirement_digest_mismatch
+    prevention: exact_qualified_completeness_assignment_at_all_three_phases
+    residual_risk: declared_capability_taxonomy_can_still_miss_a_real_domain
+  - id: PM-019
+    failure: a_human_exception_receipt_floats_unattached_until_convenient
+    cause: correlation_acceptance_is_authority_checked_but_not_consumer_checked
+    detection: zero_or_multiple_ledger_reachable_bundle_relations
+    prevention: immutable_bundle_ID_and_exactly_one_checker_target_relation
+    residual_risk: a_human_can_accept_a_bounded_disclosed_correlation_but_cannot_make_it_independent
+  - id: PM-020
+    failure: hashes_are_presented_as_identity_or_expertise_proof
+    cause: integrity_and_authority_are_conflated
+    detection: missing_generation_zero_bootstrap_or_protected_signed_anchor
+    prevention: explicit_human_genesis_and_public_hash_limit_nonclaim
+    residual_risk: real_world_credential_and_identity_verification_remains_a_human_process
+  - id: PM-021
+    failure: later_requirement_sets_silently_drop_hard_capabilities
+    cause: a_check_can_point_to_an_earlier_or_weaker_completeness_event
+    detection: latest_prior_requirement_event_hash_and_capability_set_mismatch
+    prevention: deterministic_latest_event_selection_and_adversarial_weakened_set_fixture
+    residual_risk: correct_capability_labels_do_not_by_themselves_prove_adequate_staffing
+  - id: PM-022
+    failure: a_midflight_action_pass_is_sealed_by_an_unqualified_or_unrelated_checker
+    cause: action_ID_evidence_and_assignment_are_self_declared_inside_one_result
+    detection: action_requirement_checker_object_actor_attempt_or_evidence_digest_mismatch
+    prevention: exact_action_checker_catalog_plus_resolved_assignment_bundle_and_evidence_bindings
+    residual_risk: capability_contracts_do_not_prove_real_world_expertise
+  - id: PM-023
+    failure: the_meta_checker_and_whole_work_checker_leave_each_other_or_an_assigned_role_unchecked
+    cause: local_checker_edges_are_present_but_total_mesh_coverage_is_not_rederived
+    detection: meta_or_whole_cardinality_total_coverage_or_whole_to_meta_mismatch
+    prevention: exact_bundle_topology_and_provider_neutral_role_capability_contract
+    residual_risk: a_required_capability_taxonomy_can_still_omit_a_new_error_class
+  - id: PM-024
+    failure: a_neutral_template_hides_a_task_local_prompt_that_presupposes_the_answer
+    cause: task_prompt_bytes_and_semantic_review_are_not_bound_to_the_assignment
+    detection: prompt_ref_digest_assignment_scope_dimension_or_independent_reviewer_mismatch
+    prevention: assignment_scoped_prompt_neutrality_receipt_plus_lexical_floor_and_changed_input_event
+    residual_risk: semantic_bias_can_evade_lexical_rules_and_requires_independent_human_or_expert_review
+  - id: PM-025
+    failure: an_evidence_review_checks_a_claim_but_not_the_agent_that_produced_it
+    cause: review_capabilities_and_producer_identity_are independently self_declared
+    detection: producer_assignment_digest_checker_edge_or_review_kind_capability_mismatch
+    prevention: exact_producer_binding_and_catalog_derived_review_capability_set
+    residual_risk: correctly bound reviewers may still share unseen priors
+  - id: PM-026
+    failure: an_ExpertPack_points_to_nonexistent_or_stale_source_and_fixture_files
+    cause: a_hash_shaped_string_is_treated_as_resolution
+    detection: in_root_ref_file_digest_or_qualified_fixture_result_mismatch
+    prevention: content_keyed_pack_dependency_resolution_and_cache_invalidation
+    residual_risk: a_passing_fixture_set_can_be_substantively_incomplete
+  - id: PM-027
+    failure: a_weekly_context_reset_is_attested_without_actually_reloading_the_control_plane
+    cause: the_gate_accepts_times_and_a_receipt_name_without_resolving_contents
+    detection: receipt_file_object_scope_or_exact_ordered_control_binding_mismatch
+    prevention: typed_fresh_context_receipt_and_context_digest_over_all_core_controls
+    residual_risk: reading_controls_does_not_prove_correct_comprehension
+  - id: PM-028
+    failure: a_graph_edge_binds_valid_bytes_from_the_consumer_instead_of_the_prerequisite
+    cause: basis_resolution_checks_validity_but_not_semantic_endpoint_identity
+    detection: prerequisite_node_content_ref_digest_pair_absent_from_load_bearing_edge
+    prevention: node_content_identity_plus_exact_prerequisite_basis_contract
+    residual_risk: a_misclassified_node_can_still_encode_the_wrong_concept
+  - id: PM-029
+    failure: AI_created_human_identity_strings_activate_normative_authority
+    cause: human_flags_and_hashes_are_mistaken_for_identity_or_signature_proof
+    detection: any_active_human_identity_root_in_V3
+    prevention: V3_rejects_all_identity_root_activation_pending_a_separately_reviewed_mechanism
+    residual_risk: future_control_revision_requires_real_identity_and_credential_governance
+  - id: PM-030
+    failure: a_negative_test_reports_the_expected_rule_but_was_never_a_clean_one_mutation_case
+    cause: warm_caches_shared_temp_state_or_unrelated_baseline_errors
+    detection: exact_rule_set_source_sentinel_or_forward_reverse_order_mismatch
+    prevention: isolated_temp_roots_cache_clears_clean_baselines_and_order_meta_tests
+    residual_risk: test_coverage_can_still_miss_unknown_failure_classes

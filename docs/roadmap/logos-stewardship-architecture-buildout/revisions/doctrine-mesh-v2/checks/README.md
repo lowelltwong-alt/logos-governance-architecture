@@ -38,12 +38,23 @@ The validator checks:
 - no missing, duplicate, stale, out-of-order, self-checked, reused-attempt, or
   bad-digest receipt;
 - positive replay plus the required negative fixtures;
+- the same aggregate draft validator against a fresh, zero-finding audit
+  baseline and each isolated mutated candidate;
+- all 15 negative fixtures by exact ordered finding identity, with the first
+  finding bound as both the intended and primary rule, the complete canonical
+  rule set, and every additional finding declared as a causal cascade;
+- resealing of non-target event, receipt-chain, and attempt dependencies unless
+  stale state is the fixture's named direct mutation, plus forward and reverse
+  replay from fresh baselines;
 - a complete frozen payload manifest and no pending digest, workstation path,
   deprecated project label, or unreviewed activation.
 
-The deterministic result proves only execution presence and contract integrity
-for exact inputs. The separate independent review evaluates whether the chosen
-expert coverage, omissions, source policy, and autonomy boundary are
+The deterministic result confirms only the presence and internal consistency of
+recorded execution evidence and contract data for exact inputs. It does not
+authenticate execution, reviewer identity, or timestamps, and the retained V2
+aggregate replay is non-authorizing legacy evidence rather than V4 protected-
+release assurance. The separate independent review evaluates whether the
+chosen expert coverage, omissions, source policy, and autonomy boundary are
 substantively adequate.
 
 `--mode draft` is a non-authorizing authoring check and reports

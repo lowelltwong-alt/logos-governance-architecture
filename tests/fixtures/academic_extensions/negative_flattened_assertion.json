@@ -3,5 +3,7 @@
   "operation": "replace",
   "path": ["roles"],
   "value": "subject -- predicate -- object",
-  "expected_rule": "schema_validation"
+  "expected_rule": "schema_validation",
+  "expected_first_rule": "schema_validation",
+  "expected_rules_exact": ["schema_validation"]
 }

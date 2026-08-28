@@ -7,9 +7,11 @@ provenance_note: Created on 2026-08-24 by Codex root.
 reason_for_inclusion: Deterministically validate the saved whole-doctrine mesh,
 audit-event presence, authority boundaries, negative cases, and frozen digests.
 
-This validator proves that required audit executions left exact, ordered,
-hash-bound evidence. It does not prove that an auditor identified every useful
-expert or that any candidate doctrinal claim is true.
+This validator confirms that recorded audit evidence is present, internally
+consistent, ordered, and hash-bound. It does not authenticate execution,
+reviewer identity, or timestamps; qualify V2 as V4 protected-release assurance;
+prove that an auditor identified every useful expert; or establish that any
+candidate doctrinal claim is true.
 """
 
 from __future__ import annotations
@@ -23,7 +25,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, TypedDict
 
 import yaml
 from jsonschema import Draft202012Validator, FormatChecker
@@ -122,6 +124,134 @@ CAMPAIGN_GATE_RULES = {
     "DMG-009": ("independent_specification_review_pass", "pass_specification_only"),
     "DMG-010": ("dormant_manual_review_packet_valid", "packet_integrity_pass_external_review_not_sent"),
 }
+
+
+class AuditValidationInputs(TypedDict):
+    """Complete in-memory audit boundary used by isolated adversarial replay."""
+
+    events: list[dict[str, Any]]
+    receipts: list[dict[str, Any]]
+    attempts: list[dict[str, Any]]
+    timeline: dict[str, Any]
+
+
+AUDIT_INPUT_KEYS = frozenset(AuditValidationInputs.__annotations__)
+
+
+def audit_finding_record(failure: str) -> dict[str, str]:
+    """Map one ordered audit failure to a stable rule and exact identity.
+
+    Negative-fixture tests deliberately fail if a new message is not classified;
+    that prevents an unexpected cascade from being hidden behind rule membership.
+    """
+
+    if ": schema error at " in failure:
+        rule = "audit_schema_validation"
+    elif failure == "audit: event ledger is empty":
+        rule = "audit_event_presence"
+    elif failure == "audit: event sequences are not contiguous and ordered":
+        rule = "audit_event_sequence_order"
+    elif failure == "audit: required preflight, midflight, and postflight phase order is absent":
+        rule = "audit_phase_order"
+    elif failure.startswith("audit: duplicate event ID "):
+        rule = "audit_event_identity_uniqueness"
+    elif failure.startswith("audit: event digest mismatch "):
+        rule = "audit_event_self_digest"
+    elif failure.startswith("audit: event predecessor mismatch "):
+        rule = "audit_event_predecessor"
+    elif failure.startswith("audit: event timestamp order mismatch "):
+        rule = "audit_event_timestamp_order"
+    elif failure.startswith("audit: invalid event timestamp "):
+        rule = "audit_event_timestamp_validity"
+    elif failure.startswith("audit: missing input manifest "):
+        rule = "audit_input_manifest_presence"
+    elif failure.startswith("audit: input manifest self-digest mismatch "):
+        rule = "audit_input_manifest_self_digest"
+    elif failure.startswith("audit: stale input manifest digest for "):
+        rule = "audit_input_manifest_digest"
+    elif failure.startswith("audit: duplicate receipt ID "):
+        rule = "audit_receipt_identity_uniqueness"
+    elif failure.startswith("audit: orphan receipt "):
+        rule = "audit_receipt_event_presence"
+    elif failure.startswith("audit: receipt/event "):
+        rule = "audit_receipt_event_binding"
+    elif failure.startswith("audit: receipt digest mismatch "):
+        rule = "audit_receipt_self_digest"
+    elif failure.startswith("audit: receipt hash-chain mismatch "):
+        rule = "audit_receipt_hash_chain"
+    elif failure.startswith("audit: invalid receipt time window "):
+        rule = "audit_receipt_time_order"
+    elif failure.startswith("audit: invalid receipt timestamp "):
+        rule = "audit_receipt_timestamp_validity"
+    elif failure.startswith("audit: reused auditor attempt ID "):
+        rule = "audit_attempt_reuse"
+    elif failure.startswith("audit: execution attempt ref mismatch "):
+        rule = "audit_execution_attempt_reference"
+    elif failure.startswith("audit: auditor/checker collision "):
+        rule = "audit_receipt_role_independence"
+    elif failure.startswith("audit: missing output "):
+        rule = "audit_output_presence"
+    elif failure.startswith("audit: output digest mismatch "):
+        rule = "audit_output_digest"
+    elif failure.startswith("audit: gap registry event mismatch "):
+        rule = "audit_gap_registry_event_binding"
+    elif failure.startswith("audit: duplicate gap ID in "):
+        rule = "audit_gap_identity_uniqueness"
+    elif failure.startswith("audit: gap event mismatch "):
+        rule = "audit_gap_event_binding"
+    elif failure.startswith("audit: coverage "):
+        rule = "audit_coverage_binding"
+    elif re.match(r"^audit: event .+ has \d+ receipts; expected exactly 1$", failure):
+        rule = "audit_event_receipt_cardinality"
+    elif failure.startswith("audit: duplicate execution attempt "):
+        rule = "audit_attempt_identity_uniqueness"
+    elif failure.startswith("audit: execution attempt self-check collision "):
+        rule = "audit_attempt_role_independence"
+    elif failure.startswith("audit: execution attempt actor collision "):
+        rule = "audit_attempt_actor_independence"
+    elif failure.startswith("audit: receipt references missing attempt "):
+        rule = "audit_attempt_presence"
+    elif failure.startswith("audit: attempt event mismatch "):
+        rule = "audit_attempt_event_binding"
+    elif failure.startswith("audit: attempt actor mismatch "):
+        rule = "audit_attempt_actor_binding"
+    elif failure.startswith("audit: attempt checker mismatch "):
+        rule = "audit_attempt_checker_binding"
+    elif failure.startswith("audit: attempt execution class mismatch "):
+        rule = "audit_attempt_execution_class_binding"
+    elif failure.startswith("audit: attempt time mismatch ") or failure.startswith("audit: attempt auditor_completed_at mismatch ") or failure.startswith("audit: attempt checker_started_at mismatch ") or failure.startswith("audit: attempt checker_completed_at mismatch "):
+        rule = "audit_attempt_time_binding"
+    elif failure.startswith("audit: invalid attempt timestamp "):
+        rule = "audit_attempt_timestamp_validity"
+    elif failure == "audit: invalid lifecycle timeline":
+        rule = "audit_lifecycle_timeline_validity"
+    elif failure == "audit: preflight auditor did not complete before first writer lease":
+        rule = "audit_preflight_before_writer"
+    elif failure == "audit: controller preflight checker did not complete before first writer lease":
+        rule = "audit_controller_preflight_checker_before_writer"
+    elif failure.startswith("audit: midflight receipt predates trigger "):
+        rule = "audit_midflight_after_trigger"
+    elif failure == "audit: postflight did not complete after worker/checker receipts":
+        rule = "audit_postflight_after_workers"
+    elif failure == "audit: postflight did not complete before completion gate":
+        rule = "audit_postflight_before_completion_gate"
+    else:
+        raise ValueError(f"unclassified ordered audit finding: {failure}")
+    return {"rule": rule, "identity": failure}
+
+
+def load_audit_validation_inputs(root: Path) -> AuditValidationInputs:
+    """Load a fresh, complete audit boundary for one isolated validator run."""
+
+    return {
+        "events": copy.deepcopy(load_data(root / "evidence/event-ledger.json")["events"]),
+        "receipts": [
+            copy.deepcopy(load_data(path))
+            for path in sorted((root / "evidence/receipts").glob("*.json"))
+        ],
+        "attempts": copy.deepcopy(load_data(root / "evidence/execution-attempts.json")["attempts"]),
+        "timeline": copy.deepcopy(load_data(root / "evidence/timeline.json")),
+    }
 
 
 def load_data(path: Path) -> Any:
@@ -830,7 +960,23 @@ def validate_audit_bundle(
     return failures
 
 
-def validate_revision(root: Path, mode: str) -> tuple[list[str], dict[str, Any]]:
+def validate_revision(
+    root: Path,
+    mode: str,
+    *,
+    audit_inputs: AuditValidationInputs | None = None,
+) -> tuple[list[str], dict[str, Any]]:
+    """Validate the complete revision, optionally against one isolated audit bundle.
+
+    The command-line production path supplies no override and therefore continues
+    to load the repository evidence exactly as before.  Tests must provide all four
+    audit surfaces together so a partial disk/in-memory mixture cannot pass.
+    """
+
+    if audit_inputs is not None and set(audit_inputs) != AUDIT_INPUT_KEYS:
+        missing = sorted(AUDIT_INPUT_KEYS - set(audit_inputs))
+        extra = sorted(set(audit_inputs) - AUDIT_INPUT_KEYS)
+        raise ValueError(f"isolated audit inputs must be complete; missing={missing} extra={extra}")
     failures: list[str] = []
     checks: dict[str, Any] = {}
     campaign = load_data(root / "campaign.yaml")
@@ -1049,7 +1195,16 @@ def validate_revision(root: Path, mode: str) -> tuple[list[str], dict[str, Any]]
 
     ledger_path = root / "evidence/event-ledger.json"
     if ledger_path.is_file():
-        audit_failures = validate_audit_bundle(root)
+        if audit_inputs is None:
+            audit_failures = validate_audit_bundle(root)
+        else:
+            audit_failures = validate_audit_bundle(
+                root,
+                events_override=audit_inputs["events"],
+                receipts_override=audit_inputs["receipts"],
+                attempts_override=audit_inputs["attempts"],
+                timeline_override=audit_inputs["timeline"],
+            )
         failures.extend(audit_failures)
         checks["audit_failures"] = len(audit_failures)
     elif mode == "final":
@@ -1167,7 +1322,7 @@ def main() -> int:
         "checks": checks,
         "failure_count": len(failures),
         "failures": failures,
-        "determinism_claim": "audit execution presence and exact contract replay only",
+        "determinism_claim": "recorded audit evidence presence and internal consistency only; execution reviewer identity and timestamps unauthenticated",
         "epistemic_completeness_claim": "not_proven_requires_independent_review",
         "mutation_performed": False,
     }

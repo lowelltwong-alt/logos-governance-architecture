@@ -1,5 +1,5 @@
 {
-  "schema_version": "logos.doctrine_mesh_negative_cases.v2",
+  "schema_version": "logos.doctrine_mesh_negative_cases.v3",
   "metadata": {
     "object_type": "doctrine_mesh_negative_fixture_catalog",
     "trust_zone": "proposed",
@@ -8,20 +8,484 @@
     "reason_for_inclusion": "Ensure the completeness-auditor proof fails closed for the exact bypasses it claims to detect."
   },
   "cases": [
-    {"case_id": "NEG-MISSING-POST", "action": "remove_postflight_receipt", "expected_signal": "postflight"},
-    {"case_id": "NEG-DUPLICATE-MID", "action": "duplicate_midflight_receipt", "expected_signal": "expected exactly 1"},
-    {"case_id": "NEG-STALE-INPUT", "action": "stale_input_digest", "expected_signal": "input_manifest_digest mismatch"},
-    {"case_id": "NEG-OUT-OF-ORDER", "action": "out_of_order_sequence", "expected_signal": "sequences are not contiguous"},
-    {"case_id": "NEG-SELF-CHECK", "action": "auditor_checker_collision", "expected_signal": "schema error"},
-    {"case_id": "NEG-REUSED-ATTEMPT", "action": "reused_attempt", "expected_signal": "reused auditor attempt"},
-    {"case_id": "NEG-CORRUPT-DIGEST", "action": "corrupt_receipt_digest", "expected_signal": "receipt digest mismatch"},
-    {"case_id": "NEG-CORRUPT-EVENT", "action": "corrupt_event_digest", "expected_signal": "event digest mismatch"},
-    {"case_id": "NEG-BROKEN-CHAIN", "action": "break_receipt_chain", "expected_signal": "receipt hash-chain mismatch"},
-    {"case_id": "NEG-WRONG-OUTPUT", "action": "wrong_output_digest", "expected_signal": "output digest mismatch"},
-    {"case_id": "NEG-WRONG-PREDECESSOR", "action": "wrong_event_predecessor", "expected_signal": "event predecessor mismatch"},
-    {"case_id": "NEG-MISSING-ATTEMPT", "action": "missing_attempt", "expected_signal": "missing attempt"},
-    {"case_id": "NEG-ATTEMPT-ACTOR", "action": "attempt_actor_mismatch", "expected_signal": "attempt actor mismatch"},
-    {"case_id": "NEG-LATE-PREFLIGHT", "action": "preflight_after_writer", "expected_signal": "preflight auditor did not complete before first writer lease"},
-    {"case_id": "NEG-EARLY-POSTFLIGHT", "action": "postflight_before_worker", "expected_signal": "postflight did not complete after worker/checker receipts"}
+    {
+      "case_id": "NEG-MISSING-POST",
+      "action": "remove_postflight_receipt",
+      "intended_rule": "audit_event_receipt_cardinality",
+      "primary_rule": "audit_event_receipt_cardinality",
+      "expected_primary_finding": {
+        "rule": "audit_event_receipt_cardinality",
+        "identity": "audit: event DMA-POSTFLIGHT-001 has 0 receipts; expected exactly 1"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_event_receipt_cardinality",
+          "identity": "audit: event DMA-POSTFLIGHT-001 has 0 receipts; expected exactly 1"
+        },
+        {
+          "rule": "audit_postflight_after_workers",
+          "identity": "audit: postflight did not complete after worker/checker receipts"
+        },
+        {
+          "rule": "audit_postflight_before_completion_gate",
+          "identity": "audit: postflight did not complete before completion gate"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_event_receipt_cardinality",
+        "audit_postflight_after_workers",
+        "audit_postflight_before_completion_gate"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_event_receipt_cardinality",
+          "identity": "audit: event DMA-POSTFLIGHT-001 has 0 receipts; expected exactly 1",
+          "classification": "direct",
+          "caused_by": null
+        },
+        {
+          "rule": "audit_postflight_after_workers",
+          "identity": "audit: postflight did not complete after worker/checker receipts",
+          "classification": "causal_cascade",
+          "caused_by": "audit: event DMA-POSTFLIGHT-001 has 0 receipts; expected exactly 1"
+        },
+        {
+          "rule": "audit_postflight_before_completion_gate",
+          "identity": "audit: postflight did not complete before completion gate",
+          "classification": "causal_cascade",
+          "caused_by": "audit: event DMA-POSTFLIGHT-001 has 0 receipts; expected exactly 1"
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-DUPLICATE-MID",
+      "action": "duplicate_midflight_receipt",
+      "intended_rule": "audit_event_receipt_cardinality",
+      "primary_rule": "audit_event_receipt_cardinality",
+      "expected_primary_finding": {
+        "rule": "audit_event_receipt_cardinality",
+        "identity": "audit: event DMA-MIDFLIGHT-001 has 2 receipts; expected exactly 1"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_event_receipt_cardinality",
+          "identity": "audit: event DMA-MIDFLIGHT-001 has 2 receipts; expected exactly 1"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_event_receipt_cardinality"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_event_receipt_cardinality",
+          "identity": "audit: event DMA-MIDFLIGHT-001 has 2 receipts; expected exactly 1",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-STALE-INPUT",
+      "action": "stale_input_digest",
+      "intended_rule": "audit_input_manifest_digest",
+      "primary_rule": "audit_input_manifest_digest",
+      "expected_primary_finding": {
+        "rule": "audit_input_manifest_digest",
+        "identity": "audit: stale input manifest digest for DMA-MIDFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_input_manifest_digest",
+          "identity": "audit: stale input manifest digest for DMA-MIDFLIGHT-001"
+        },
+        {
+          "rule": "audit_coverage_binding",
+          "identity": "audit: coverage input_manifest_digest mismatch evidence/coverage/midflight.yaml"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_coverage_binding",
+        "audit_input_manifest_digest"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_input_manifest_digest",
+          "identity": "audit: stale input manifest digest for DMA-MIDFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        },
+        {
+          "rule": "audit_coverage_binding",
+          "identity": "audit: coverage input_manifest_digest mismatch evidence/coverage/midflight.yaml",
+          "classification": "causal_cascade",
+          "caused_by": "audit: stale input manifest digest for DMA-MIDFLIGHT-001"
+        }
+      ],
+      "stale_dependency_intended": true,
+      "dependency_reseal": "target_digest_or_dependency_deliberately_stale_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-OUT-OF-ORDER",
+      "action": "out_of_order_sequence",
+      "intended_rule": "audit_event_sequence_order",
+      "primary_rule": "audit_event_sequence_order",
+      "expected_primary_finding": {
+        "rule": "audit_event_sequence_order",
+        "identity": "audit: event sequences are not contiguous and ordered"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_event_sequence_order",
+          "identity": "audit: event sequences are not contiguous and ordered"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_event_sequence_order"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_event_sequence_order",
+          "identity": "audit: event sequences are not contiguous and ordered",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-SELF-CHECK",
+      "action": "attempt_instance_self_check",
+      "intended_rule": "audit_attempt_actor_independence",
+      "primary_rule": "audit_attempt_actor_independence",
+      "expected_primary_finding": {
+        "rule": "audit_attempt_actor_independence",
+        "identity": "audit: execution attempt actor collision DMA-ATTEMPT-PREFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_attempt_actor_independence",
+          "identity": "audit: execution attempt actor collision DMA-ATTEMPT-PREFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_attempt_actor_independence"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_attempt_actor_independence",
+          "identity": "audit: execution attempt actor collision DMA-ATTEMPT-PREFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-REUSED-ATTEMPT",
+      "action": "reused_attempt",
+      "intended_rule": "audit_attempt_reuse",
+      "primary_rule": "audit_attempt_reuse",
+      "expected_primary_finding": {
+        "rule": "audit_attempt_reuse",
+        "identity": "audit: reused auditor attempt ID DMA-ATTEMPT-PREFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_attempt_reuse",
+          "identity": "audit: reused auditor attempt ID DMA-ATTEMPT-PREFLIGHT-001"
+        },
+        {
+          "rule": "audit_attempt_event_binding",
+          "identity": "audit: attempt event mismatch DMA-ATTEMPT-PREFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_attempt_event_binding",
+        "audit_attempt_reuse"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_attempt_reuse",
+          "identity": "audit: reused auditor attempt ID DMA-ATTEMPT-PREFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        },
+        {
+          "rule": "audit_attempt_event_binding",
+          "identity": "audit: attempt event mismatch DMA-ATTEMPT-PREFLIGHT-001",
+          "classification": "causal_cascade",
+          "caused_by": "audit: reused auditor attempt ID DMA-ATTEMPT-PREFLIGHT-001"
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-CORRUPT-DIGEST",
+      "action": "corrupt_receipt_digest",
+      "intended_rule": "audit_receipt_self_digest",
+      "primary_rule": "audit_receipt_self_digest",
+      "expected_primary_finding": {
+        "rule": "audit_receipt_self_digest",
+        "identity": "audit: receipt digest mismatch DMR-POSTFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_receipt_self_digest",
+          "identity": "audit: receipt digest mismatch DMR-POSTFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_receipt_self_digest"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_receipt_self_digest",
+          "identity": "audit: receipt digest mismatch DMR-POSTFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": true,
+      "dependency_reseal": "target_digest_or_dependency_deliberately_stale_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-CORRUPT-EVENT",
+      "action": "corrupt_event_digest",
+      "intended_rule": "audit_event_self_digest",
+      "primary_rule": "audit_event_self_digest",
+      "expected_primary_finding": {
+        "rule": "audit_event_self_digest",
+        "identity": "audit: event digest mismatch DMA-MIDFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_event_self_digest",
+          "identity": "audit: event digest mismatch DMA-MIDFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_event_self_digest"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_event_self_digest",
+          "identity": "audit: event digest mismatch DMA-MIDFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": true,
+      "dependency_reseal": "target_digest_or_dependency_deliberately_stale_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-BROKEN-CHAIN",
+      "action": "break_receipt_chain",
+      "intended_rule": "audit_receipt_hash_chain",
+      "primary_rule": "audit_receipt_hash_chain",
+      "expected_primary_finding": {
+        "rule": "audit_receipt_hash_chain",
+        "identity": "audit: receipt hash-chain mismatch DMR-MIDFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_receipt_hash_chain",
+          "identity": "audit: receipt hash-chain mismatch DMR-MIDFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_receipt_hash_chain"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_receipt_hash_chain",
+          "identity": "audit: receipt hash-chain mismatch DMR-MIDFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": true,
+      "dependency_reseal": "target_digest_or_dependency_deliberately_stale_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-WRONG-OUTPUT",
+      "action": "wrong_output_digest",
+      "intended_rule": "audit_output_digest",
+      "primary_rule": "audit_output_digest",
+      "expected_primary_finding": {
+        "rule": "audit_output_digest",
+        "identity": "audit: output digest mismatch evidence/coverage/preflight.yaml for DMR-PREFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_output_digest",
+          "identity": "audit: output digest mismatch evidence/coverage/preflight.yaml for DMR-PREFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_output_digest"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_output_digest",
+          "identity": "audit: output digest mismatch evidence/coverage/preflight.yaml for DMR-PREFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": true,
+      "dependency_reseal": "target_digest_or_dependency_deliberately_stale_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-WRONG-PREDECESSOR",
+      "action": "wrong_event_predecessor",
+      "intended_rule": "audit_event_predecessor",
+      "primary_rule": "audit_event_predecessor",
+      "expected_primary_finding": {
+        "rule": "audit_event_predecessor",
+        "identity": "audit: event predecessor mismatch DMA-POSTFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_event_predecessor",
+          "identity": "audit: event predecessor mismatch DMA-POSTFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_event_predecessor"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_event_predecessor",
+          "identity": "audit: event predecessor mismatch DMA-POSTFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-MISSING-ATTEMPT",
+      "action": "missing_attempt",
+      "intended_rule": "audit_attempt_presence",
+      "primary_rule": "audit_attempt_presence",
+      "expected_primary_finding": {
+        "rule": "audit_attempt_presence",
+        "identity": "audit: receipt references missing attempt DMA-ATTEMPT-MIDFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_attempt_presence",
+          "identity": "audit: receipt references missing attempt DMA-ATTEMPT-MIDFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_attempt_presence"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_attempt_presence",
+          "identity": "audit: receipt references missing attempt DMA-ATTEMPT-MIDFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-ATTEMPT-ACTOR",
+      "action": "attempt_actor_mismatch",
+      "intended_rule": "audit_attempt_actor_binding",
+      "primary_rule": "audit_attempt_actor_binding",
+      "expected_primary_finding": {
+        "rule": "audit_attempt_actor_binding",
+        "identity": "audit: attempt actor mismatch DMA-ATTEMPT-PREFLIGHT-001"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_attempt_actor_binding",
+          "identity": "audit: attempt actor mismatch DMA-ATTEMPT-PREFLIGHT-001"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_attempt_actor_binding"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_attempt_actor_binding",
+          "identity": "audit: attempt actor mismatch DMA-ATTEMPT-PREFLIGHT-001",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-LATE-PREFLIGHT",
+      "action": "preflight_after_writer",
+      "intended_rule": "audit_preflight_before_writer",
+      "primary_rule": "audit_preflight_before_writer",
+      "expected_primary_finding": {
+        "rule": "audit_preflight_before_writer",
+        "identity": "audit: preflight auditor did not complete before first writer lease"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_preflight_before_writer",
+          "identity": "audit: preflight auditor did not complete before first writer lease"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_preflight_before_writer"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_preflight_before_writer",
+          "identity": "audit: preflight auditor did not complete before first writer lease",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    },
+    {
+      "case_id": "NEG-EARLY-POSTFLIGHT",
+      "action": "postflight_before_worker",
+      "intended_rule": "audit_postflight_after_workers",
+      "primary_rule": "audit_postflight_after_workers",
+      "expected_primary_finding": {
+        "rule": "audit_postflight_after_workers",
+        "identity": "audit: postflight did not complete after worker/checker receipts"
+      },
+      "expected_findings_ordered": [
+        {
+          "rule": "audit_postflight_after_workers",
+          "identity": "audit: postflight did not complete after worker/checker receipts"
+        }
+      ],
+      "expected_rules_exact": [
+        "audit_postflight_after_workers"
+      ],
+      "causal_closure": [
+        {
+          "rule": "audit_postflight_after_workers",
+          "identity": "audit: postflight did not complete after worker/checker receipts",
+          "classification": "direct",
+          "caused_by": null
+        }
+      ],
+      "stale_dependency_intended": false,
+      "dependency_reseal": "all_non_target_dependencies_resealed"
+    }
   ]
 }

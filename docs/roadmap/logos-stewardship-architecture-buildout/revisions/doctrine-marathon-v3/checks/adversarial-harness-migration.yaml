@@ -1,0 +1,66 @@
+metadata:
+  object_type: doctrine_marathon_adversarial_harness_migration_state
+  trust_zone: proposed
+  lifecycle_status: blocked_repair
+  provenance_note: "Revised on 2026-08-28 after independent V4/V3 root-control review and four-case repository aggregate-sentinel replay; the 197-case component inventory remains non-authorizing migration debt."
+  reason_for_inclusion: "Prevent component-only, membership-only, count-drifted, unregistered, or representative-only fixture evidence from being treated as aggregate release assurance."
+schema_version: logos.doctrine_marathon.adversarial_harness_migration.v2
+state: blocked_pending_full_v4_repository_adapter
+public_maturity: blocked_specification_only
+release_evidence_eligible: false
+declared_release_blocker:
+  rule: adversarial_harness_release_gate
+  identity: "adversarial_harness_release_gate: V3 cannot release until the aggregate exact-oracle migration is complete and independently reviewed"
+root_control:
+  portable_core_revision: dad.deterministic_adversarial_harness.v4
+  registry_discovery_contract_revision: dad.harness_registry_discovery.v3
+  receipt_index_contract_revision: dad.harness_receipt_index.v2
+  independent_review: PASS_ACTIVATE
+  repository_registry_bound: false
+  repository_adapter_bound: false
+  ci_provider_installation_verified: false
+case_inventory:
+  legacy_catalog_ref: checks/fixtures/negative-cases.json
+  legacy_catalog_digest: sha256:151b0a1c1cefe9e76446372aa8dc7a50e8afe7f49e0a7e4ade70ca24c06c16b5
+  legacy_case_ids_digest: sha256:ea32bbba3857eec16824f2d735b44ef25ae59ef32c6bcd52d3e93baf6174bd0e
+  legacy_catalog_case_count: 164
+  isolated_catalog_ref: checks/fixtures/strict-isolated-cases.json
+  isolated_catalog_digest: sha256:08b7d6bb5e01f0acedf94d8601c037318a29a1a1bedd7e8e43b2d9ec969d05a1
+  isolated_case_ids_digest: sha256:9c21471c5979dc99545aa80ccef94bd9cb2a7fd71dfcbb92d764ea946aa50cde
+  isolated_catalog_case_count: 33
+  component_inventory_case_count: 197
+  aggregate_sentinel_catalog_ref: checks/fixtures/aggregate-sentinel-cases.json
+  aggregate_sentinel_catalog_digest: sha256:0baa46c056bec70ecd35828c6673c9584e85171623d1d285b17a107cc47de13c
+  aggregate_sentinel_case_ids_digest: sha256:862666ffa8c0f491e994b91605f46b5252785c2bd98c0dc347cf5ba4d8c1299c
+  aggregate_sentinel_case_count: 4
+  aggregate_sentinel_runner_ref: checks/run_adversarial_harness.py
+  aggregate_sentinel_runner_digest: sha256:c3911caca9c88fd42bb79659c61bf0744c0321695312639d5d37587d3ce23f8e
+  aggregate_sentinel_test_ref: checks/test_run_adversarial_harness.py
+  aggregate_sentinel_test_digest: sha256:2a2c77e8fc5a2dbdcecc3de63dba53b6f7a8d553104a01de4545058785571833
+  total_executable_rows_across_catalogs: 201
+  unique_source_case_count: 197
+  sentinel_count_is_subset_not_inventory_addend: true
+  portable_v4_conforming_receipt_count: 0
+  release_evidence_case_count: 0
+case_classification:
+  legacy_catalog: component_only_non_authorizing_pending_aggregate_adapter
+  strict_isolated_catalog: exact_order_component_only_non_authorizing_pending_aggregate_adapter
+  aggregate_sentinel_catalog: local_aggregate_subset_non_authorizing_pending_v4_receipts_registry_and_ci
+  unsupported_manual_migration_bucket_counts_removed: true
+required_before_release:
+  - migrate or exact-digest human-classify every component-only row under the V3 repository registry
+  - create one V4 receipt per governed catalog case with an exact receipt-index bijection
+  - preserve validator emission order before presentation sorting
+  - bind exact finding identities and causal closure for every governed case
+  - retain the exact one-gate declaration for the completion baseline only
+  - reseal dependent digests closures and receipts unless staleness is intended
+  - replay every governed case forward and reverse from fresh baselines
+  - bind runner command catalog snapshots delta graph outputs review and result evidence
+  - install and test an explicit clean-checkout repository discovery adapter and CI gate
+  - obtain independent unchanged-head non-author review of the adapter runner registry receipts and release candidate
+nonclaims:
+  - this state file and four-case sentinel are containment evidence not a completed repository harness migration
+  - the independently reviewed reusable V4 root control has not been adapted to the V3 manifest profile
+  - the four aggregate sentinels are a subset of the 197 source cases and are not an inventory addend
+  - component-level exact ordering and local sentinel replay are not V4 receipt or CI coverage
+  - no fixture result establishes doctrine scholarship source fitness or human authority

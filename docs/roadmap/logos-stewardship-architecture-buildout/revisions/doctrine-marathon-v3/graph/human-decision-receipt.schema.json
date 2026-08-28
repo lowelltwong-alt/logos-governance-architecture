@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.human-decision-receipt.v3",
+  "title": "Human authority decision receipt",
+  "description": "object_type=human_decision_receipt_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent authority-spoofing review; reason_for_inclusion=Bind a human decision to an allowlisted signer, exact subject digest, bounded scope, dates, and immutable receipt identity.",
+  "type": "object",
+  "required": ["schema_version", "receipt_id", "decision_type", "subject_ref", "subject_digest", "scope_digest", "tradition_or_jurisdiction", "signer_ids", "signer_registry_digest", "authority_scope", "decision", "issued_at", "expires_at", "attestation_bindings", "recorded_by_human", "created_by_ai", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.human-decision-receipt.v3"},
+    "receipt_id": {"type": "string", "pattern": "^HDEC-[A-Za-z0-9._-]+$"},
+    "decision_type": {"enum": ["normative_frame_approval", "tradition_representation_approval", "theological_review", "qualification_approval", "correlation_acceptance_approval", "publication_acknowledgement", "campaign_completion_approval"]},
+    "subject_ref": {"type": "string", "minLength": 3},
+    "subject_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "tradition_or_jurisdiction": {"type": "string", "minLength": 3},
+    "signer_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^HUMAN-[A-Za-z0-9._-]+$"}},
+    "signer_registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "authority_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+    "decision": {"enum": ["approved", "rejected", "needs_revision"]},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "attestation_bindings": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["ref", "digest"], "properties": {"ref": {"type": "string", "minLength": 3}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "additionalProperties": false}},
+    "recorded_by_human": {"const": true},
+    "created_by_ai": {"const": false},
+    "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

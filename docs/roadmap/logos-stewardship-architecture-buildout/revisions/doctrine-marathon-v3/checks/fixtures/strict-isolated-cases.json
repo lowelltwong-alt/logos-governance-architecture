@@ -1,0 +1,184 @@
+{
+  "metadata": {
+    "object_type": "doctrine_marathon_strict_isolated_case_catalog",
+    "trust_zone": "proposed",
+    "lifecycle_status": "active_non_authorizing_test_inventory",
+    "provenance_note": "Created on 2026-08-28 from the executable strict_isolated_cases source after an independent count-drift audit.",
+    "reason_for_inclusion": "Bind every strict component regression by stable identity and exact ordered findings so count drift and unordered set-based false greens fail closed while the aggregate adapter remains unfinished."
+  },
+  "schema_version": "logos.doctrine_marathon.strict_isolated_case_catalog.v1",
+  "assurance_use": "none_pending_aggregate_adapter",
+  "cases": [
+    {
+      "case_id": "ISO-ROLE-CAPABILITY",
+      "intended_rule": "role_assignment_role_capability_mismatch",
+      "expected_findings_ordered": ["role_assignment_role_capability_mismatch: DMV3-ROLE-SYNTHETIC-WHOLE-CHECKER: missing ['role_qualification_and_independence']"]
+    },
+    {
+      "case_id": "ISO-ROLE-META-COVERAGE",
+      "intended_rule": "role_assignment_meta_checker_coverage",
+      "expected_findings_ordered": ["role_assignment_meta_checker_coverage: DMV3-ROLE-SYNTHETIC-META-CHECKER: expected ['DMV3-ROLE-SYNTHETIC-FACTORY', 'DMV3-ROLE-SYNTHETIC-WHOLE-CHECKER']"]
+    },
+    {
+      "case_id": "ISO-ROLE-WHOLE-CHECKS-META",
+      "intended_rule": "role_assignment_whole_work_checks_meta_checker",
+      "expected_findings_ordered": ["role_assignment_whole_work_checks_meta_checker: DMV3-ROLE-SYNTHETIC-WHOLE-CHECKER must check DMV3-ROLE-SYNTHETIC-META-CHECKER"]
+    },
+    {
+      "case_id": "ISO-COMPLETENESS-REQUIRED-FACET",
+      "intended_rule": "completeness_contract_integrity",
+      "expected_findings_ordered": ["completeness_contract_integrity: the complete canonical contract changed: expected sha256:cbd09f221b2ce674daf7f8671ca152c220f45e05f526243a87be1c730ff7c768; observed sha256:ca806fd00ae3080b4217f4c515243d36c05756f20019799069c3569be4c6af1b"]
+    },
+    {
+      "case_id": "ISO-COMPLETENESS-CANONICALIZATION",
+      "intended_rule": "completeness_contract_integrity",
+      "expected_findings_ordered": ["completeness_contract_integrity: the complete canonical contract changed: expected sha256:cbd09f221b2ce674daf7f8671ca152c220f45e05f526243a87be1c730ff7c768; observed sha256:80415070b90bfbfa342f33f4ae5835fcdff284ab7cf87a9e43e0a59867d0f5b2"]
+    },
+    {
+      "case_id": "ISO-COMPLETENESS-PHASE-BINDING",
+      "intended_rule": "completeness_contract_integrity",
+      "expected_findings_ordered": ["completeness_contract_integrity: the complete canonical contract changed: expected sha256:cbd09f221b2ce674daf7f8671ca152c220f45e05f526243a87be1c730ff7c768; observed sha256:baf9c949f3523499b8652096db8b323e69cc030aaebb584da27ff0372370be71"]
+    },
+    {
+      "case_id": "ISO-COMPLETENESS-NONMATERIAL-RECOVERY",
+      "intended_rule": "completeness_contract_integrity",
+      "expected_findings_ordered": ["completeness_contract_integrity: the complete canonical contract changed: expected sha256:cbd09f221b2ce674daf7f8671ca152c220f45e05f526243a87be1c730ff7c768; observed sha256:cd5bb8483882e5f2fd75e2cfd65efdd6afbc13647f417a4bb0315049cb6a9b9b"]
+    },
+    {
+      "case_id": "ISO-COMPLETENESS-HARD-FAIL-CODE",
+      "intended_rule": "completeness_contract_integrity",
+      "expected_findings_ordered": ["completeness_contract_integrity: the complete canonical contract changed: expected sha256:cbd09f221b2ce674daf7f8671ca152c220f45e05f526243a87be1c730ff7c768; observed sha256:1568904c91c2448dc74d3910ba773d18dd567c8b89249f85d6eea4fecb55d2c3"]
+    },
+    {
+      "case_id": "ISO-CONSTITUTION-HUMAN-GATES",
+      "intended_rule": "constitution_contract_integrity",
+      "expected_findings_ordered": ["constitution_contract_integrity: the complete canonical constitution changed: expected sha256:a3cf70bb2706e3f1737e16322d9adcabc9b0daee4cbd203702a0b81395d5d8c6; observed sha256:5c2ad8367af8ee3c9571dd4cdd04a64429afe552d0f13c42602982477a40c00b"]
+    },
+    {
+      "case_id": "ISO-CAMPAIGN-FRESH-CONTEXT",
+      "intended_rule": "campaign_contract_integrity",
+      "expected_findings_ordered": ["campaign_contract_integrity: the complete canonical campaign changed: expected sha256:ed2d3f25ec13362e778ff17ff36474b37c665680e91c7bd27bb68f4c5377e045; observed sha256:e5ce10a4483c26fef50bc047d63d628e156fa02a0116a64c6060af852c181f13"]
+    },
+    {
+      "case_id": "ISO-MESH-ONE-WRITER",
+      "intended_rule": "mesh_contract_integrity",
+      "expected_findings_ordered": ["mesh_contract_integrity: the complete canonical agent mesh changed: expected sha256:acc80a7cbb4998d048b708f25c6b41b6670663c3895ccb57b47155c591e84928; observed sha256:f2d67e74df551a174ba77d219e858c6602d225dde5f53f0b28bebeaff09a0191"]
+    },
+    {
+      "case_id": "ISO-PROMPT-NEUTRALITY-VERBS",
+      "intended_rule": "prompt_neutrality_contract_integrity",
+      "expected_findings_ordered": ["prompt_neutrality_contract_integrity: the complete canonical prompt-neutrality contract changed: expected sha256:a76692d60f6943f1d69e44c5e922b1f4ff518e4a5d62f161b9a6f4f9231c5de6; observed sha256:021fc72eb3078bfb89502e26db31aada9d4dcf88d4aa9dc29eefae728f435f29"]
+    },
+    {
+      "case_id": "ISO-PROMPT-DIGEST",
+      "intended_rule": "role_assignment_task_prompt_digest",
+      "expected_findings_ordered": ["role_assignment_task_prompt_digest: DMV3-ROLE-PROMPT-WRITER: mesh/task-prompts/dmv3-role-prompt-writer.md"]
+    },
+    {
+      "case_id": "ISO-PROMPT-REVIEW-INDEPENDENCE",
+      "intended_rule": "role_assignment_prompt_review_independence",
+      "expected_findings_ordered": ["role_assignment_prompt_review_independence: DMV3-ROLE-PROMPT-WRITER"]
+    },
+    {
+      "case_id": "ISO-EXPERT-SOURCE-REF",
+      "intended_rule": "expert_pack_source_manifest_ref",
+      "expected_findings_ordered": ["expert_pack_source_manifest_ref: EPACK-SYNTHETIC-RESOLUTION: mesh/fixtures/missing-source.json"]
+    },
+    {
+      "case_id": "ISO-EXPERT-SOURCE-DIGEST",
+      "intended_rule": "expert_pack_source_manifest_digest",
+      "expected_findings_ordered": ["expert_pack_source_manifest_digest: EPACK-SYNTHETIC-RESOLUTION: mesh/fixtures/synthetic-source-manifest.json"]
+    },
+    {
+      "case_id": "ISO-EXPERT-FIXTURE-REF",
+      "intended_rule": "expert_pack_fixture_ref",
+      "expected_findings_ordered": ["expert_pack_fixture_ref: EPACK-SYNTHETIC-RESOLUTION: mesh/fixtures/missing-result.json"]
+    },
+    {
+      "case_id": "ISO-EXPERT-FIXTURE-DIGEST",
+      "intended_rule": "expert_pack_fixture_digest",
+      "expected_findings_ordered": ["expert_pack_fixture_digest: EPACK-SYNTHETIC-RESOLUTION: mesh/fixtures/synthetic-expert-result.json"]
+    },
+    {
+      "case_id": "ISO-GRAPH-PREREQUISITE-BASIS",
+      "intended_rule": "graph_prerequisite_basis",
+      "expected_findings_ordered": ["graph_prerequisite_basis: DMV3-E-001: missing exact prerequisite content binding constitution.yaml"]
+    },
+    {
+      "case_id": "ISO-EVIDENCE-PRODUCER-DIGEST",
+      "intended_rule": "evidence_review_producer_digest",
+      "expected_findings_ordered": ["evidence_review_producer_digest: SRC-SYNTHETIC-A: role-assignment:DMV3-ROLE-EVIDENCE-RUN-WRITER"]
+    },
+    {
+      "case_id": "ISO-EVIDENCE-PRODUCER-INDEPENDENCE",
+      "intended_rule": "evidence_review_producer_independence",
+      "expected_findings_ordered": [
+        "evidence_review_producer_independence: SRC-SYNTHETIC-A: producer is a reviewer",
+        "evidence_review_producer_independence: SRC-SYNTHETIC-A: reviewer does not check producer"
+      ]
+    },
+    {
+      "case_id": "ISO-EVIDENCE-REVIEW-KIND-CAPABILITIES",
+      "intended_rule": "evidence_review_required_capabilities",
+      "expected_findings_ordered": ["evidence_review_required_capabilities: SRC-SYNTHETIC-A: expected ['source_identity_locator_and_rights']"]
+    },
+    {
+      "case_id": "ISO-MIDFLIGHT-ACTION-BUNDLE-DIGEST",
+      "intended_rule": "event_midflight_action_bundle_digest",
+      "expected_findings_ordered": ["event_midflight_action_bundle_digest: DMV3-EVENT-0004"]
+    },
+    {
+      "case_id": "ISO-MIDFLIGHT-CHECKER-DIGEST",
+      "intended_rule": "event_midflight_action_checker_digest",
+      "expected_findings_ordered": ["event_midflight_action_checker_digest: DMV3-EVENT-0004: claim_evidence_lineage_gate"]
+    },
+    {
+      "case_id": "ISO-MIDFLIGHT-EVIDENCE-DIGEST",
+      "intended_rule": "event_midflight_action_evidence_digest",
+      "expected_findings_ordered": ["event_midflight_action_evidence_digest: DMV3-EVENT-0004: claim_evidence_lineage_gate: events/fixtures/synthetic-action-evidence.json"]
+    },
+    {
+      "case_id": "ISO-WEEKLY-RECEIPT-FILE-DIGEST",
+      "intended_rule": "weekly_verification_receipt_file_digest",
+      "expected_findings_ordered": ["weekly_verification_receipt_file_digest: state/fresh-context-receipts/synthetic.json"]
+    },
+    {
+      "case_id": "ISO-WEEKLY-RECEIPT-OBJECT-DIGEST",
+      "intended_rule": "weekly_verification_receipt_object_digest",
+      "expected_findings_ordered": ["weekly_verification_receipt_object_digest: state/fresh-context-receipts/synthetic.json"]
+    },
+    {
+      "case_id": "ISO-WEEKLY-CONTROL-BINDING",
+      "intended_rule": "weekly_verification_control_binding",
+      "expected_findings_ordered": ["weekly_verification_control_binding: DOCTRINE_MARATHON_MASTER_PROMPT.md"]
+    },
+    {
+      "case_id": "ISO-AUTHORITY-ROOT-FILE-DIGEST",
+      "intended_rule": "authority_identity_root_file_digest",
+      "expected_findings_ordered": ["authority_identity_root_file_digest: graph/human-identity-authority-root.yaml"]
+    },
+    {
+      "case_id": "ISO-AUTHORITY-ACTIVATION-FAIL-CLOSED",
+      "intended_rule": "authority_identity_root_activation_unimplemented",
+      "expected_findings_ordered": ["authority_identity_root_activation_unimplemented: V3 deliberately has no deterministic human-identity activation mechanism; activation requires a separately reviewed control revision"]
+    },
+    {
+      "case_id": "ISO-AUTHORITY-QUALIFICATION-ROOT",
+      "intended_rule": "authority_qualification_identity_root",
+      "expected_findings_ordered": ["authority_qualification_identity_root: QAPP-SYNTHETIC-INACTIVE"]
+    },
+    {
+      "case_id": "ISO-AUTHORITY-QUALIFICATION-EVIDENCE",
+      "intended_rule": "authority_qualification_identity_root",
+      "expected_findings_ordered": [
+        "authority_qualification_identity_root: QAPP-SYNTHETIC-INACTIVE",
+        "authority_qualification_evidence_binding: QAPP-SYNTHETIC-INACTIVE: constitution.yaml"
+      ]
+    },
+    {
+      "case_id": "ISO-HUMAN-DECISION-ATTESTATION",
+      "intended_rule": "human_decision_attestation_binding",
+      "expected_findings_ordered": ["human_decision_attestation_binding: constitution.yaml"]
+    }
+  ]
+}

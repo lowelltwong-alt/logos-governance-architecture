@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.historical-attribution.v3",
+  "title": "Attributed historical judgment",
+  "description": "object_type=historical_attribution_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Record labels such as orthodox or heretical as attributable historical claims instead of autonomous AI verdicts.",
+  "type": "object",
+  "required": ["schema_version", "attribution_id", "actor_or_community_ref", "actor_or_community", "document_or_event_ref", "document_or_event", "date_or_period", "label_used", "target_labeled_ref", "target_labeled", "target_proposition", "source_record_ref", "source_record_digest", "exact_locator", "source_state", "dispute_state", "review_scope_digest", "review_receipt_refs", "review_receipt_digests", "review_state", "normative_force", "ai_generated_verdict", "attribution_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_marathon.historical-attribution.v3"},
+    "attribution_id": {"type": "string", "pattern": "^HATTR-[A-Za-z0-9._-]+$"},
+    "actor_or_community_ref": {"type": "string", "pattern": "^(?:actor|community):[A-Za-z0-9._-]+$"},
+    "actor_or_community": {"type": "string", "minLength": 3, "not": {"pattern": "^(?i:the church|the jews|christians|jews)$"}},
+    "document_or_event_ref": {"type": "string", "pattern": "^(?:document|event):[A-Za-z0-9._-]+$"},
+    "document_or_event": {"type": "string", "minLength": 3},
+    "date_or_period": {"type": "object", "required": ["display", "uncertainty"], "properties": {"display": {"type": "string"}, "uncertainty": {"type": "string"}}, "additionalProperties": false},
+    "label_used": {"type": "string", "minLength": 2, "not": {"pattern": "^(?i:liberal theology|conservative theology)$"}},
+    "target_labeled_ref": {"type": "string", "pattern": "^(?:actor|community|document|proposition):[A-Za-z0-9._-]+$"},
+    "target_labeled": {"type": "string", "minLength": 1},
+    "target_proposition": {"type": "string", "minLength": 1},
+    "source_record_ref": {"type": "string", "pattern": "^source-record:SRC-[A-Za-z0-9._-]+$"},
+    "source_record_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "exact_locator": {"type": "string", "minLength": 3, "not": {"pattern": "^(?i:n/?a|none|unknown|unavailable)$"}},
+    "source_state": {"enum": ["qualified", "disputed"]},
+    "dispute_state": {"enum": ["none_recorded", "known_disagreement", "unresolved", "unknown"]},
+    "review_scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "review_receipt_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^evidence-review:EREV-[A-Za-z0-9._-]+$"}},
+    "review_receipt_digests": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+    "review_state": {"enum": ["candidate", "specialist_reviewed", "disputed", "stale", "invalidated"]},
+    "normative_force": {"const": "none"},
+    "ai_generated_verdict": {"const": false},
+    "attribution_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"review_state": {"const": "specialist_reviewed"}}}, "then": {"properties": {"review_receipt_refs": {"minItems": 1}, "review_receipt_digests": {"minItems": 1}}}}
+  ],
+  "additionalProperties": false
+}

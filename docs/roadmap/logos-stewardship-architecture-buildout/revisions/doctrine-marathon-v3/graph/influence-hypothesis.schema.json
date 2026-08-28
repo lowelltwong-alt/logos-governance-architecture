@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.influence-hypothesis.v3",
+  "title": "Bounded historical influence hypothesis",
+  "description": "object_type=influence_hypothesis_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent causation review; reason_for_inclusion=Prevent chronology or similarity from silently becoming borrowing, continuity, or causal fact.",
+  "type": "object",
+  "required": ["schema_version", "hypothesis_id", "source_actor_ref", "target_actor_ref", "source_period", "target_period", "contact_evidence_refs", "reception_evidence_refs", "mechanism", "alternative_hypotheses", "counterevidence_refs", "qualified_source_record_refs", "review_scope_digest", "specialist_review_receipt_refs", "specialist_review_receipt_digests", "confidence", "status", "normative_force", "hypothesis_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.influence-hypothesis.v3"},
+    "hypothesis_id": {"type": "string", "pattern": "^INFL-[A-Za-z0-9._-]+$"},
+    "source_actor_ref": {"type": "string", "pattern": "^(?:actor|community):[A-Za-z0-9._-]+$"},
+    "target_actor_ref": {"type": "string", "pattern": "^(?:actor|community):[A-Za-z0-9._-]+$"},
+    "source_period": {"type": "string", "minLength": 3},
+    "target_period": {"type": "string", "minLength": 3},
+    "contact_evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^source-record:SRC-[A-Za-z0-9._-]+$"}},
+    "reception_evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^source-record:SRC-[A-Za-z0-9._-]+$"}},
+    "mechanism": {"type": "string", "minLength": 20},
+    "alternative_hypotheses": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 10}},
+    "counterevidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+    "qualified_source_record_refs": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^source-record:SRC-[A-Za-z0-9._-]+$"}},
+    "review_scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "specialist_review_receipt_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^evidence-review:EREV-[A-Za-z0-9._-]+$"}},
+    "specialist_review_receipt_digests": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+    "confidence": {"enum": ["insufficient", "possible", "probable", "disputed"]},
+    "status": {"enum": ["candidate", "specialist_review_required", "human_reviewed", "rejected", "stale", "invalidated"]},
+    "normative_force": {"const": "none"},
+    "hypothesis_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"const": "human_reviewed"}}}, "then": {"properties": {"specialist_review_receipt_refs": {"minItems": 1}, "specialist_review_receipt_digests": {"minItems": 1}}}}
+  ],
+  "additionalProperties": false
+}

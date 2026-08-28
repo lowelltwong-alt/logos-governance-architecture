@@ -1,0 +1,199 @@
+metadata:
+  object_type: doctrine_marathon_role_capability_catalog
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: Created on 2026-08-27 by Codex root as a non-exhaustive, extensible classification of task-local expertise.
+  reason_for_inclusion: Give the role factory stable capability facets while requiring evidence of added value and forbidding thin expert personas.
+schema_version: logos.doctrine_marathon.role_catalog.v3
+catalog_id: LOGOS-DOCTRINE-ROLE-CATALOG-003
+classification_rule: A capability facet describes a bounded error class or source route. It is not an expert credential. A task-local role requires a qualified ExpertPack and a documented expected-information-gain statement.
+capability_families:
+  scripture_and_languages:
+  - biblical_hebrew_and_aramaic
+  - septuagint_and_koine_greek
+  - new_testament_textual_criticism
+  - ancient_versions_and_translation_history
+  - manuscript_codicology_and_papyrology
+  jewish_worlds:
+  - hebrew_bible_reception_before_christ
+  - second_temple_literature
+  - dead_sea_scrolls_and_qumran
+  - pharisees_sadducees_essenes_and_other_named_groups
+  - early_rabbinic_formation
+  - jewish_apocalyptic_and_mystical_traditions
+  - divine_agency_and_multiple_power_debates
+  - diaspora_and_regional_jewish_communities
+  patristic_authors_and_corpora:
+  - apostolic_fathers
+  - greek_apologists
+  - alexandrian_traditions
+  - antiochene_traditions
+  - cappadocian_fathers
+  - latin_ante_nicene_writers
+  - augustine_and_augustinian_reception
+  - eastern_syrian_coptic_armenian_and_other_reception
+  - councils_creeds_and_conciliar_history
+  - attributed_heresy_and_controversy_history
+  ancient_environments:
+  - egyptology_and_egyptian_religions
+  - assyriology_babylonian_and_near_eastern_religions
+  - greco_roman_religions_and_civic_cults
+  - roman_law_politics_and_social_history
+  - archaeology_epigraphy_numismatics_and_material_culture
+  - ancient_family_disability_exposure_and_personhood_practices
+  philosophy_and_intellectual_history:
+  - platonism_middle_platonism_and_neoplatonism
+  - aristotelian_philosophy
+  - stoicism_epicureanism_and_skepticism
+  - rhetoric_education_and_ancient_science
+  - concept_reception_without_assumed_borrowing
+  medieval_and_scholastic:
+  - greek_and_latin_medieval_theology
+  - aquinas_corpus_arguments_sources_and_reception
+  - scholastic_methods_and_disputed_questions
+  - canon_law_liturgy_and_ecclesial_institutions
+  reformation_and_confessions:
+  - luther_corpus_letters_table_talk_and_reception
+  - lutheran_confessional_sources
+  - catholic_reform_and_magisterial_sources
+  - reformed_and_presbyterian_confessions
+  - anglican_anabaptist_baptist_wesleyan_and_pentecostal_sources
+  - eastern_orthodox_reception_and_self_description
+  modern_and_cross_disciplinary:
+  - modern_historical_theology
+  - named_modern_methods_actors_works_and_propositions
+  - apologetics_and_philosophy_of_religion
+  - science_history_and_bounded_apologetic_claims
+  - sociology_anthropology_and_religious_studies_as_context
+  verification_and_governance:
+  - doctrine_mesh_completeness_and_gap_detection
+  - source_identity_locator_and_rights
+  - quotation_context_and_entailment
+  - original_language_and_translation_fidelity
+  - counterevidence_and_alternative_hypotheses
+  - graph_dependency_and_invalidation
+  - tradition_representation
+  - prompt_alignment_and_authority
+  - role_qualification_and_independence
+  - privacy_public_boundary_and_custody
+evidence_review_capability_requirements:
+  source_qualification:
+  - source_identity_locator_and_rights
+  translation_fidelity:
+  - original_language_and_translation_fidelity
+  influence_hypothesis:
+  - counterevidence_and_alternative_hypotheses
+  historical_attribution:
+  - quotation_context_and_entailment
+  - tradition_representation
+  claim_entailment_context:
+  - quotation_context_and_entailment
+extension_contract:
+  new_facet_requires:
+  - stable capability identifier
+  - named error class or source route
+  - evidence that an existing facet cannot cover it
+  - expected information gain
+  - required ExpertPack fields
+  - checker and independence requirements
+  - risk tier and human gate
+  automatic_global_promotion_allowed: false
+forbidden_shortcuts:
+- generic_expert_on_all_theology
+- generic_expert_on_all_church_fathers
+- tradition_label_without_primary_self_descriptive_sources
+- liberal_or_conservative_as_unparsed_machine_classification
+- powerful_model_equals_qualified_expert
+- many_agents_equals_independence
+proposed_role_gaps:
+- gap_id: DMV3-GAP-PATRISTIC-GREEK
+  proposed_capability_id: patristic_greek
+  status: proposed_unapproved
+  named_error_or_source_route: Distinguish post-biblical patristic Greek diction, genre, textual transmission, and semantic range from biblical-corpus language work.
+  approved_facets_considered:
+  - apostolic_fathers
+  - septuagint_and_koine_greek
+  - original_language_and_translation_fidelity
+  non_substitutable_by:
+  - septuagint_and_koine_greek
+  - original_language_and_translation_fidelity
+  why_insufficient: Biblical Koine and general translation checking do not establish competence in patristic idiom, authorial corpora, critical editions, or reception-specific usage.
+  expected_information_gain: Reduce anachronistic lexical transfer and identify witness- or author-specific language questions that require a qualified patristics specialist.
+  required_expert_pack_fields: &id001
+  - capability_ids
+  - scope
+  - exclusions
+  - source_manifest_bindings
+  - fixture_result_bindings
+  - qualification_receipt_refs
+  - invalidation_triggers
+  - non_authority
+  checker_capability_ids:
+  - quotation_context_and_entailment
+  - role_qualification_and_independence
+  risk_tier: high
+  human_gate_ids:
+  - original_language_or_translation_review_when_material
+  - patristics_or_period_specialist_review_when_material
+- gap_id: DMV3-GAP-PATRISTIC-TEXTUAL-HISTORY
+  proposed_capability_id: patristic_textual_history_and_critical_editions
+  status: proposed_unapproved
+  named_error_or_source_route: Qualify patristic witnesses, recensions, editions, attribution states, and apparatus conventions before evidentiary use.
+  approved_facets_considered:
+  - apostolic_fathers
+  - manuscript_codicology_and_papyrology
+  - new_testament_textual_criticism
+  non_substitutable_by:
+  - manuscript_codicology_and_papyrology
+  - new_testament_textual_criticism
+  why_insufficient: General manuscript study and New Testament criticism do not by themselves cover the work-specific transmission and editorial history of patristic corpora.
+  expected_information_gain: Expose recension, attribution, edition, and apparatus risks before quotations or translations become load-bearing evidence.
+  required_expert_pack_fields: *id001
+  checker_capability_ids:
+  - source_identity_locator_and_rights
+  - role_qualification_and_independence
+  risk_tier: high
+  human_gate_ids:
+  - patristics_or_period_specialist_review_when_material
+  - source_rights_privacy_and_custody_review
+- gap_id: DMV3-GAP-EARLY-CHRISTIAN-CHRONOLOGY
+  proposed_capability_id: late_first_or_early_second_century_christian_context_with_date_uncertainty
+  status: proposed_unapproved
+  named_error_or_source_route: Represent uncertain early-Christian chronology, authorship, community setting, and competing historical reconstructions without false precision.
+  approved_facets_considered:
+  - apostolic_fathers
+  - modern_historical_theology
+  - roman_law_politics_and_social_history
+  non_substitutable_by:
+  - apostolic_fathers
+  - modern_historical_theology
+  why_insufficient: Corpus familiarity and broad historical theology do not alone resolve the specialized chronology and provenance disputes attached to individual early texts.
+  expected_information_gain: Preserve competing date and provenance hypotheses and prevent a convenient chronology from silently controlling downstream interpretation.
+  required_expert_pack_fields: *id001
+  checker_capability_ids:
+  - counterevidence_and_alternative_hypotheses
+  - role_qualification_and_independence
+  risk_tier: high
+  human_gate_ids:
+  - patristics_or_period_specialist_review_when_material
+- gap_id: DMV3-GAP-ROMAN-CORINTHIAN-ECCLESIAL-CONTEXT
+  proposed_capability_id: roman_and_corinthian_ecclesial_context
+  status: proposed_unapproved
+  named_error_or_source_route: Reconstruct bounded Roman and Corinthian ecclesial, social, and institutional context for early reception claims.
+  approved_facets_considered:
+  - apostolic_fathers
+  - roman_law_politics_and_social_history
+  - greco_roman_religions_and_civic_cults
+  non_substitutable_by:
+  - roman_law_politics_and_social_history
+  - greco_roman_religions_and_civic_cults
+  why_insufficient: Broad Roman social or religious context does not establish the local ecclesial history and source-specific relationships needed for this work unit.
+  expected_information_gain: Separate warranted local context from broad Greco-Roman generalization and surface where the surviving evidence cannot decide between reconstructions.
+  required_expert_pack_fields: *id001
+  checker_capability_ids:
+  - quotation_context_and_entailment
+  - counterevidence_and_alternative_hypotheses
+  - role_qualification_and_independence
+  risk_tier: high
+  human_gate_ids:
+  - patristics_or_period_specialist_review_when_material

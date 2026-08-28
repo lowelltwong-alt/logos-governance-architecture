@@ -49,7 +49,24 @@ def test_adversarial_mutations_are_rejected(path: Path) -> None:
     observed = validator.negative_fixture_rules(
         base_name, candidate, fixtures, schemas, ROOT
     )
-    assert descriptor["expected_rule"] in observed
+    observed_rules = list(dict.fromkeys(observed))
+    assert sorted(set(observed_rules)) == descriptor["expected_rules_exact"]
+    assert observed_rules[0] == descriptor["expected_first_rule"] == descriptor["expected_rule"]
+
+
+def test_negative_fixture_contract_rejects_false_green_metadata() -> None:
+    descriptor = {
+        "expected_rule": "secondary_rule",
+        "expected_first_rule": "secondary_rule",
+        "expected_rules_exact": ["secondary_rule"],
+    }
+    findings = validator._negative_fixture_contract_findings(
+        descriptor, ["primary_rule", "secondary_rule"], "synthetic.json"
+    )
+    assert {finding.rule for finding in findings} == {
+        "negative_fixture_exact_rejection",
+        "negative_fixture_first_failure",
+    }
 
 
 def test_source_digest_drift_invalidates_projection() -> None:
