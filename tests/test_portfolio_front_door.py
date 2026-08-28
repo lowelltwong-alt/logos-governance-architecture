@@ -511,8 +511,8 @@ def test_p66_linked_records_preserve_translation_and_authority_boundaries() -> N
 
     assert source["rights"]["license_id"] == "CC-BY-4.0"
     assert source["asset"]["byte_verification"]["local_remote_match"] is True
-    assert len(source["coverage_segments"]) == 4
-    assert source["coverage_is_non_contiguous"] is True
+    assert len(source["object_catalog_coverage_segments"]) == 4
+    assert source["object_catalog_coverage_is_non_contiguous"] is True
     assert source["authority"]["image_is_translation"] is False
     source_layers = {row["layer_id"]: row for row in source["layers"]}
     assert source_layers["diplomatic_transcription"]["included"] is False
