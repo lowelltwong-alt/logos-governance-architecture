@@ -2,19 +2,19 @@ metadata:
   object_type: doctrine_mesh_fable_review_manifest
   trust_zone: proposed
   lifecycle_status: dormant_not_sent
-  provenance_note: "Rebound on 2026-08-24 by Codex root after the independently checked claimed-scope traversal repair for the optional exact Fable review requested by Lowell."
+  provenance_note: "Rebound on 2026-08-28 by Codex root after the cache-free changed-input V2 replay and task-separated read-only review. The optional Fable packet remains unsent, external, untrusted, and non-authorizing."
   reason_for_inclusion: "Bind the simple external review handoff to this exact validated specification while keeping output external, untrusted, and non-authorizing."
 schema_version: logos.doctrine_mesh_fable_review_manifest.v2
 manifest_id: FABLE-DM-MANIFEST-0002
 job_id: FABLE-DM-0002
 revision_manifest_ref: revision-manifest.yaml
-revision_manifest_digest: sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1
+revision_manifest_digest: sha256:5187ad96a294c5b6aa3dcfad7af67635ceceac562068abc6314a896dbcde2f9e
 brief_ref: fable/FABLE-REVIEW-BRIEF.md
 brief_digest: sha256:f16e41f63e9b61a8397dd056a0cebcbcb43cade1c4dc921a559712b58bee3dad
 validation_receipt_ref: checks/validation-receipt.json
-validation_receipt_digest: sha256:c24f07711c432443b1db0b3dbf5b815e5c9c11781d6837592b060de7485659d7
+validation_receipt_digest: sha256:e5e4e2ffe4fd0c777615aad8ee347f467a221ed39b527e3773495d42337f9465
 independent_review_ref: checks/independent-review.json
-independent_review_digest: sha256:d4883122aa5d696141ce24bd63fb3c446132476c252cf5b66e7f15bebc525846
+independent_review_digest: sha256:877216f815dfde36179686526fe547aa31d0d718de431cde17bead5cc1ff7e96
 requested_output:
   portable_path_token: user-downloads/FABLE-DOCTRINE-MESH-AUTONOMY-REVIEW.md
   custody_class: external_user_controlled_not_in_repository
@@ -25,5 +25,5 @@ external_review_status: not_sent
 review_authority: non_authorizing_advisory_only
 runtime_activation_authorized: false
 research_authorized: false
-created_at: "2026-08-24T20:24:27Z"
-manifest_digest: sha256:829969a988555e7b413f827369bfb7c6516f0d0470b8b9f3925b81e637b321d0
+created_at: "2026-08-28T12:44:16.6547735Z"
+manifest_digest: sha256:c85b50078d39b373cbf2bd7784e375a0ae01262c2cf2dde89a86810735296f3f

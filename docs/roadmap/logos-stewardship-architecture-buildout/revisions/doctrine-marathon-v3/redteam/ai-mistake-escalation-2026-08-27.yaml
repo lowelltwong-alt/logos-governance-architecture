@@ -1,0 +1,230 @@
+---
+metadata:
+  object_type: ai_mistake_escalation_receipt
+  trust_zone: proposed
+  lifecycle_status: contained_root_v4_independent_review_pass_repository_release_blocked
+  provenance_note: >-
+    Created on 2026-08-27 by Codex root after independent reviewers reproduced
+    several fail-open design paths before any commit or publication; updated on
+    2026-08-28 after the fixture-oracle root control passed independent V4/V3 review.
+  reason_for_inclusion: >-
+    Preserve a public, privacy-safe account of the containment, causal analysis,
+    sibling audit, repairs, and regression controls instead of hiding a useful
+    engineering failure.
+schema_version: logos.doctrine-marathon.ai-mistake-escalation.v1
+incident_id: DMV3-AI-MISTAKE-2026-08-27-001
+detected_at: '2026-08-27T19:00:00Z'
+trigger: >-
+  Independent read-only review found that the first validator draft could accept
+  self-attested completion checks, unresolved graph bases, incomplete evidence
+  review bindings, disjoint continuation after an unresolved trigger, and an
+  accepted but unused correlation exception.
+disclosure:
+  status: disclosed_during_active_work
+  audience: Lowell Wong and the public V3 engineering record
+  disclosed_at: '2026-08-27T19:00:00Z'
+  summary: >-
+    The first freeze was invalidated before commit or publication. Independent
+    reviewers then found additional nested role, prompt, evidence, authority,
+    fresh-context, and test-isolation weaknesses. The lane remains contained.
+disclosure_pending_decisions: []
+reusable_prevention_followup:
+  owner_authorized: true
+  status: root_v4_independently_reviewed_repository_adapter_pending
+  note: >-
+    Lowell authorized a cross-repository root control. Its first V4 candidate
+    was blocked twice by independent review on reseal-cardinality and physical-
+    identity gaps. The corrected receipt/core V4 and registry/discovery V3
+    control passed 31 regressions and independent Sol/high re-review. It remains
+    structural and non-authorizing; this repository still lacks a bound V4
+    registry, receipt index, clean-checkout adapter, CI execution, and unchanged-
+    head release gate.
+containment:
+  publication_stopped: true
+  commit_stopped: true
+  runtime_stopped: true
+  source_ingestion_stopped: true
+  substantive_doctrine_work_stopped: true
+  affected_surface: doctrine-marathon-v3 specification candidate only
+impact:
+  observed: none
+  credible_counterfactual: high
+  severity: high
+  rationale: >-
+    No unreviewed candidate was committed or published, but a later runtime could
+    have treated fabricated or weakly bound review evidence as promotion-safe and
+    propagated that error through dependent doctrine layers.
+actual_impact:
+  external_state_changed: false
+  released_artifact_affected: false
+  doctrine_or_source_content_affected: false
+  local_effect: first_freeze_evidence_invalidated_before_release
+potential_impact:
+  rating: high
+  rationale: >-
+    A self-attested checker, incomplete mesh, biased prompt, unresolved expert
+    binding, or misbound prerequisite could become trusted upstream input and
+    compound through reverse consumers over a multi-year campaign.
+control_failure_severity: high
+luck_limited_outcome: true
+independent_verification:
+  reproduced_bypasses:
+    - unresolved trigger followed by a disjoint continuation event
+    - accepted load-bearing graph edge with a nonexistent basis
+    - completion event with no qualified reviewer evidence
+  reviewers:
+    - independent control and sibling-path auditor
+    - independent graph and evidence-contract auditor
+    - independent deterministic completion-contract auditor
+root_cause:
+  direct: >-
+    The initial contract bound top-level hashes and states more strongly than the
+    identities, qualification freshness, requirement provenance, and reachable
+    consumer relations beneath them.
+  systemic: >-
+    Positive happy-path validation existed before a complete adversarial model of
+    cross-object substitution, orphan authority receipts, and transitive hash
+    ordering had been written.
+  contributing_factors:
+    - completion was first modeled as a state transition rather than a typed two-reviewer evidence receipt
+    - graph basis references were not initially paired with exact digests and typed resolution
+    - completeness capability selection was not initially bound to its producing audit event
+    - accepted correlation exceptions were checked only when encountered, not for ledger reachability
+blast_radius_review:
+  checked_sibling_surfaces:
+    - event trigger and continuation barriers
+    - entry, midflight, exit, and terminal completeness gates
+    - role, ExpertPack, qualification, and correlation-exception records
+    - evidence review bindings, capability coverage, and use-time freshness
+    - graph basis resolution and reverse-consumer propagation
+    - normative and nonnormative human-decision planes
+    - checkpoint, terminal handoff, and public non-claim surfaces
+  external_state_changed: false
+blast_radius:
+  current_boundary: local_uncommitted_specification_only_candidate
+  credible_future_boundary:
+    - role qualification and checker assignment
+    - evidence and source qualification
+    - graph dependency and invalidation
+    - human authority routing
+    - downstream doctrine and public projections
+  bounded_by:
+    - stopped commit and publication
+    - no runtime activation
+    - no source ingestion
+    - no substantive doctrine work
+    - preserved human theological authority gates
+sibling_audit:
+  status: root_v4_pass_repository_adapter_and_release_review_pending
+  checked_families:
+    - role and capability contracts
+    - prompt neutrality and fresh-context reset
+    - ExpertPack source and fixture bindings
+    - evidence producer and reviewer relations
+    - action checker assignment and evidence bindings
+    - graph prerequisite identity
+    - human identity, qualification, and attestation references
+    - cache invalidation and adversarial case isolation
+  remaining: fresh independent unchanged-input review and exact refreeze
+capa:
+  corrective_actions:
+    - bind every event affected identifier to a graph node and block all continuation behind every unresolved material trigger
+    - require exact output, requirement-event, producer, reviewer, evidence, and decision bindings for completion checks
+    - require qualified and fresh producer, completeness-auditor, and independent-reviewer assignments
+    - resolve every load-bearing graph basis by type, exact digest, state, and use time
+    - require exact evidence bindings and capability coverage from fresh qualified reviewers
+    - bind correlation exceptions to immutable runtime bundle IDs and one ledger-reachable checker-target relation
+  preventive_actions:
+    - maintain a positive fully sealed campaign-completion fixture
+    - add one isolated adversarial case for every reproduced or credible sibling bypass
+    - keep digest construction acyclic and dependency ordered
+    - require independent unchanged-input review before release and unchanged-head review before merge
+    - retain generation-zero human bootstrap as an explicit trust root rather than treating hashes as identity proof
+regression_evidence:
+  negative_case_range_at_receipt: catalog_NEG-001..NEG-164_plus_33_exact_isolated_component_cases
+  aggregate_sentinel_subset: 4_source_mapped_cases_not_an_inventory_addend
+  new_control_families:
+    - event_affected_ref and global unresolved-trigger barrier
+    - event_review_requirement_event, producer, reviewer, evidence, and decision binding
+    - event_completeness_assignment_qualification at entry, midflight, and exit
+    - graph_basis_ref, graph_basis_digest, and accepted qualification basis
+    - correlation_acceptance_orphan_active, relation, scope, and use-time checks
+    - exact meta_checker_total_coverage and whole_work_checker_to_meta coverage
+    - task_prompt_assignment_scope and semantic_neutrality_review bindings
+    - action_specific_checker_assignment and evidence resolution
+    - evidence_producer and review_kind_capability bindings
+    - ExpertPack source_manifest and fixture_result resolution
+    - typed weekly fresh_context verification receipt resolution
+    - exact prerequisite content binding on load_bearing graph edges
+    - inactive human_identity root enforcement
+    - cache_clear source_sentinel and forward_reverse isolation equivalence
+  latest_targeted_result: >-
+    pass_draft_78_payload_files_164_catalog_cases_33_exact_isolated_cases_197_component_cases_plus_4_non_authorizing_aggregate_sentinels
+regression_test:
+  harness_ref: checks/test_validate_doctrine_marathon.py
+  requirements:
+    - every new case begins from a clean positive fixture in a fresh temporary root
+    - both validator caches are cleared before and after each isolated case
+    - exact expected rule sets are asserted for the new repair cases
+    - forward and reverse case order produce identical rule sets
+    - source-root sentinel digests remain unchanged
+  status: pass_component_and_sentinel_non_authorizing
+  replay_evidence:
+    digest_algorithm: canonical_utf8_lf_sha256
+    test_file_sha256: sha256:d6b34bbb8b16339877198ce01f7aeb52184fea79a4b9af105d6a0857d33f4c02
+    full_script_exit: 0
+    catalog_case_count: 164
+    exact_isolated_case_count: 33
+    total_component_case_count: 197
+    order_independence: forward_and_reverse_pass
+    active_identity_root_result: authority_identity_root_activation_unimplemented
+    aggregate_sentinel_catalog_sha256: sha256:0baa46c056bec70ecd35828c6673c9584e85171623d1d285b17a107cc47de13c
+    aggregate_sentinel_runner_sha256: sha256:c3911caca9c88fd42bb79659c61bf0744c0321695312639d5d37587d3ce23f8e
+    aggregate_sentinel_test_sha256: sha256:2a2c77e8fc5a2dbdcecc3de63dba53b6f7a8d553104a01de4545058785571833
+    aggregate_sentinel_case_count: 4
+    aggregate_sentinel_test_count: 5
+    aggregate_sentinel_test_exit: 0
+    portable_v4_receipt_count: 0
+learning_loop_candidate:
+  status: prepared_not_transmitted
+  reason: >-
+    No approved DAD write transport was available in this task. The privacy-safe
+    learning candidate is preserved here for later human-reviewed ingestion.
+  lesson: >-
+    A valid top-level digest is not enough: every authority-bearing claim must be
+    bound to a qualified actor, exact inputs, deterministic use time, and one
+    reachable consumer relation, with adversarial substitution tests.
+learning_loop:
+  status: local_candidate_only
+  privacy_class: public_safe_engineering_lesson
+  external_write_performed: false
+  candidate_ref: redteam/ai-mistake-escalation-2026-08-27.yaml
+  lesson: >-
+    Self-consistent hashes can still seal a false relation. Validate the
+    producer, reviewer, capability, prompt, evidence, prerequisite, use time,
+    and reverse-consumer relation, then prove the negative test is isolated.
+runtime_contract:
+  runtime_activation_authorized: false
+  research_execution_authorized: false
+  source_ingestion_authorized: false
+  substantive_doctrine_implementation_authorized: false
+  human_identity_activation_supported: false
+portability_evidence:
+  provider_neutral_core: true
+  stable_role_ids_are_provider_neutral: true
+  runtime_adapters_are_attempt_scoped: true
+  cross_provider_diversity_proved: false
+  reason: no runtime or cross-provider harness has been activated
+unresolved_risks:
+  - machine checks cannot prove scholarship, theology, human identity, or expert competence
+  - the deterministic human-identity activation mechanism is intentionally unimplemented and blocked
+  - source and rights packs remain unbuilt and unqualified
+  - fresh independent post-repair review and exact refreeze are pending
+  - repository V4 registry, per-case receipts, clean-checkout adapter, CI execution, and unchanged-head release review remain missing
+remaining_human_gates:
+  - production identity needs a maintainer-pinned protected commit or verifiable signature
+  - theological or doctrinal authority remains human and expert gated
+  - runtime activation and source ingestion remain unauthorized
+  - every public release requires fresh independent review, privacy checks, CI, and unchanged-head verification
+status: root_v4_independent_review_pass_repository_release_blocked
+final_disposition: pending_repository_v4_adapter_exact_refreeze_and_public_release_review

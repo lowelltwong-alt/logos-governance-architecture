@@ -36,6 +36,12 @@ disagreements, `SPECIAL-001`, and the substantive human gates remain blocked.
 - [`revisions/doctrine-mesh-v2/README.md`](revisions/doctrine-mesh-v2/README.md)
   is the frozen specification-only doctrine mesh; it is not runtime-activated or
   theological authority.
+- [`revisions/doctrine-marathon-v3/README.md`](revisions/doctrine-marathon-v3/README.md)
+  is the additive durable campaign control plane: canonical prompt and state,
+  chronological/dependency routing, pre/mid/post role meta-audits, source-bound
+  Father and environment packs, real-time epistemic firewall, reverse
+  invalidation, expert-review debt, weekly fresh-context resets, and terminal
+  next-prompt enforcement. It remains specification-only and non-authorizing.
 - [`revisions/academic-extension-contract-v1/README.md`](revisions/academic-extension-contract-v1/README.md)
   is the lossless, non-authorizing domain-extension contract with an empty
   production registry.

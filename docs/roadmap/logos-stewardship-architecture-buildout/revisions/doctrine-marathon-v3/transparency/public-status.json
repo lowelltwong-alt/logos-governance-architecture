@@ -1,0 +1,41 @@
+{
+  "schema_version": "logos.doctrine-marathon.public-status.v3",
+  "campaign_id": "LOGOS-DOCTRINE-MARATHON-003",
+  "maturity": "blocked_specification_only",
+  "specification_complete": false,
+  "declared_release_blocker": "adversarial_harness_release_gate: V3 cannot release until the aggregate exact-oracle migration is complete and independently reviewed",
+  "runtime_activated": false,
+  "research_started": false,
+  "source_corpus_ingested": false,
+  "doctrine_corpus_complete": false,
+  "qualified_theological_authority": false,
+  "human_review_required": true,
+  "progress": {
+    "research_units_completed": 0,
+    "doctrine_claims_promoted": 0,
+    "qualified_human_reviews_completed": 0,
+    "open_expert_review_debt": 2
+  },
+  "evidence_routes": [
+    "README.md",
+    "DOCTRINE_MARATHON_MASTER_PROMPT.md",
+    "mesh/agent-mesh.v3.json",
+    "mesh/examples/design-time-independence-fixture.json",
+    "mesh/completeness-auditor-v3.yaml",
+    "events/event-ledger.json",
+    "evidence/evidence-registry.json",
+    "graph/event-driven-invalidation-contract.yaml",
+    "graph/authority-registry.yaml",
+    "debt/initial-review-debt.json",
+    "checks/fixtures/negative-cases.json",
+    "checks/validation-receipt.json"
+  ],
+  "nonclaims": [
+    "not_a_running_controller",
+    "not_an_ingested_source_corpus",
+    "not_substantive_doctrine_research",
+    "not_a_completed_doctrine_corpus",
+    "not_qualified_theological_authority",
+    "not_permission_for_autonomous_agents"
+  ]
+}

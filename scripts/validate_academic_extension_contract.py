@@ -289,23 +289,30 @@ def negative_fixture_rules(
     fixtures: dict[str, Any],
     schemas: dict[str, dict[str, Any]],
     root: Path = ROOT,
-) -> set[str]:
-    rules: set[str] = set()
+) -> list[str]:
+    rules: list[str] = []
+
+    def add_rule(rule: str) -> None:
+        if rule not in rules:
+            rules.append(rule)
+
     if schema_errors(candidate, schemas[POSITIVE_FIXTURES[base_name]]):
-        rules.add("schema_validation")
+        add_rule("schema_validation")
     if base_name == "positive_assertion.json":
-        rules.update(item.rule for item in _assertion_semantic_findings(candidate))
+        for item in _assertion_semantic_findings(candidate):
+            add_rule(item.rule)
     elif base_name == "positive_extension_registry.json":
-        rules.update(item.rule for item in _registry_semantic_findings(candidate, root))
+        for item in _registry_semantic_findings(candidate, root):
+            add_rule(item.rule)
     elif base_name == "positive_source_record.json":
         if candidate.get("record_digest") != canonical_digest(candidate.get("source_payload")):
-            rules.add("source_digest")
+            add_rule("source_digest")
     elif base_name == "positive_derived_projection.json":
         if candidate.get("projection_digest") != canonical_digest(candidate.get("projection_payload")):
-            rules.add("projection_digest")
+            add_rule("projection_digest")
         source = fixtures["positive_source_record.json"]
         if candidate.get("source_digest") != source.get("record_digest"):
-            rules.add("source_drift")
+            add_rule("source_drift")
     return rules
 
 
@@ -342,6 +349,46 @@ def _semantic_fixture_findings(
         findings.append(Finding("fixture_pack_link", "positive_assertion.json", "assertion pack does not match the synthetic pack"))
     if source["source_record_id"] not in assertion["provenance"]["source_record_refs"]:
         findings.append(Finding("fixture_source_link", "positive_assertion.json", "assertion does not cite the synthetic source record"))
+    return findings
+
+
+def _negative_fixture_contract_findings(
+    descriptor: dict[str, Any], observed_rules: list[str], path: str
+) -> list[Finding]:
+    """Bind one mutation to its intended rule, exact rule set, and first rule."""
+    findings: list[Finding] = []
+    expected_rule = descriptor.get("expected_rule")
+    expected_first_rule = descriptor.get("expected_first_rule")
+    expected_rules_exact = descriptor.get("expected_rules_exact")
+    if (
+        not isinstance(expected_rule, str)
+        or not isinstance(expected_first_rule, str)
+        or not isinstance(expected_rules_exact, list)
+        or not expected_rules_exact
+        or any(not isinstance(rule, str) or not rule for rule in expected_rules_exact)
+        or expected_rules_exact != sorted(set(expected_rules_exact))
+        or expected_first_rule != expected_rule
+        or expected_rule not in expected_rules_exact
+    ):
+        return [Finding(
+            "negative_fixture_contract",
+            path,
+            "fixture must bind an intended rule, sorted exact rule set, and its deterministic first rule",
+        )]
+    actual_rules_ordered = list(dict.fromkeys(observed_rules))
+    actual_rules_exact = sorted(set(actual_rules_ordered))
+    if actual_rules_exact != expected_rules_exact:
+        findings.append(Finding(
+            "negative_fixture_exact_rejection",
+            path,
+            f"expected exact rules {expected_rules_exact}; observed {actual_rules_exact}",
+        ))
+    if not actual_rules_ordered or actual_rules_ordered[0] != expected_first_rule:
+        findings.append(Finding(
+            "negative_fixture_first_failure",
+            path,
+            f"expected first rule {expected_first_rule}; observed {actual_rules_ordered[:1]}",
+        ))
     return findings
 
 
@@ -456,15 +503,11 @@ def validate_repository(root: Path = ROOT) -> ValidationResult:
             observed_rules = negative_fixture_rules(
                 base_name, candidate, fixtures, schemas, root
             )
-            expected_rule = descriptor.get("expected_rule")
-            if not isinstance(expected_rule, str) or expected_rule not in observed_rules:
-                findings.append(
-                    Finding(
-                        "negative_fixture_not_rejected",
-                        path.name,
-                        f"expected {expected_rule!r}; observed {sorted(observed_rules)}",
-                    )
+            findings.extend(
+                _negative_fixture_contract_findings(
+                    descriptor, observed_rules, path.name
                 )
+            )
         metrics["negative_fixtures_checked"] = len(negative_paths)
 
         gates = _load_yaml_documents(root / PACKET_ROOT.relative_to(ROOT) / "human-decision-gates.yaml")[-1]

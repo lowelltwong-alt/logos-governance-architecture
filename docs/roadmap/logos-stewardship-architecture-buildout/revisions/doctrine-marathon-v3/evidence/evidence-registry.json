@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "object_type": "doctrine_marathon_evidence_registry",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-27 by Codex root as an empty design-time registry; no source or doctrine record was ingested.",
+    "reason_for_inclusion": "Make future evidence references resolvable while proving that the V3 release contains no runtime source, translation, influence, or doctrine records."
+  },
+  "schema_version": "logos.doctrine-marathon.evidence-registry.v3",
+  "runtime_records": false,
+  "source_records": [],
+  "translation_lineages": [],
+  "influence_hypotheses": [],
+  "historical_attributions": [],
+  "claim_records": [],
+  "evidence_review_receipts": [],
+  "registry_digest": "sha256:f62c8d1c4ea5a628c3a4d57055f97fc5d1f6cad55ff4e7515939d8bbb5a0a556"
+}

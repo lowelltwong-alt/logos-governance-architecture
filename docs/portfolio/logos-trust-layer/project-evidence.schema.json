@@ -17,6 +17,7 @@
     "repositories",
     "capabilities",
     "doctrine_mesh_specification",
+    "doctrine_marathon_specification",
     "evidence_routes",
     "planned_value_horizons",
     "explicit_non_claims",
@@ -24,7 +25,7 @@
   ],
   "properties": {
     "metadata": {"$ref": "#/$defs/metadata"},
-    "schema_version": {"const": "logos.project_evidence.v2"},
+    "schema_version": {"const": "logos.project_evidence.v3"},
     "project_id": {"const": "logos-trust-layer"},
     "title": {"type": "string", "minLength": 10},
     "public_entry": {"const": "PORTFOLIO.md"},
@@ -48,6 +49,7 @@
       "items": {"$ref": "#/$defs/capability"}
     },
     "doctrine_mesh_specification": {"$ref": "#/$defs/doctrineMesh"},
+    "doctrine_marathon_specification": {"$ref": "#/$defs/doctrineMarathon"},
     "evidence_routes": {
       "type": "array",
       "minItems": 4,
@@ -107,77 +109,26 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "status", "base_commit", "current_content_path_count",
+        "status", "release_id", "base_commit", "current_content_path_count",
         "total_unique_path_count", "receipt_excluded_path_count",
         "added_path_count", "modified_path_count", "deleted_path_count",
         "renamed_path_count",
-        "canonical_digest_algorithm", "intermediate_receipt", "prior_release",
+        "canonical_digest_algorithm", "prior_release",
         "historical_v1"
       ],
       "properties": {
         "status": {"const": "chained_incremental_release_candidate"},
-        "base_commit": {"const": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca"},
-        "current_content_path_count": {"const": 85},
-        "total_unique_path_count": {"const": 86},
-        "receipt_excluded_path_count": {"const": 85},
-        "added_path_count": {"const": 64},
-        "modified_path_count": {"const": 21},
+        "release_id": {"const": "LOGOS-PORTFOLIO-RELEASE-004"},
+        "base_commit": {"const": "f320d8430c10f82d4fdd80567c4d533fa90c25d5"},
+        "current_content_path_count": {"const": 141},
+        "total_unique_path_count": {"const": 142},
+        "receipt_excluded_path_count": {"const": 141},
+        "added_path_count": {"const": 83},
+        "modified_path_count": {"const": 58},
         "deleted_path_count": {"const": 0},
         "renamed_path_count": {"const": 0},
         "canonical_digest_algorithm": {"type": "string", "minLength": 80},
-        "intermediate_receipt": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "status", "content_head_commit", "content_tree_sha", "receipt_commit",
-            "receipt_tree_sha", "receipt_raw_sha256", "receipt_digest",
-            "content_path_count", "total_release_path_count",
-            "fingerprinted_content_path_count", "added_path_count",
-            "modified_path_count", "deleted_path_count", "renamed_path_count",
-            "content_digest"
-          ],
-          "properties": {
-            "status": {"const": "superseded_prepublication_non_authorizing_checkpoint"},
-            "content_head_commit": {"const": "9128c6b710a35fe70115efadfef65ea54ed50ebb"},
-            "content_tree_sha": {"const": "e0fdc9e3087675ba9ab1713400945ab644f4342b"},
-            "receipt_commit": {"const": "36ba16eab3dbf9dafb35184528c6ce68346e5c29"},
-            "receipt_tree_sha": {"const": "96760b23e366ad9368848ec116bad6ed68d79847"},
-            "receipt_raw_sha256": {"const": "sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6"},
-            "receipt_digest": {"const": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f"},
-            "content_path_count": {"const": 85},
-            "total_release_path_count": {"const": 86},
-            "fingerprinted_content_path_count": {"const": 85},
-            "added_path_count": {"const": 64},
-            "modified_path_count": {"const": 21},
-            "deleted_path_count": {"const": 0},
-            "renamed_path_count": {"const": 0},
-            "content_digest": {"const": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"}
-          }
-        },
-        "prior_release": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "base_commit", "content_head_commit", "receipt_commit", "merge_commit",
-            "receipt_raw_sha256", "path_count", "fingerprinted_path_count",
-            "canonical_digest_algorithm", "content_digest", "receipt_digest",
-            "merge_tree_sha", "protected_drift_to_current_base_count"
-          ],
-          "properties": {
-            "base_commit": {"const": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12"},
-            "content_head_commit": {"const": "04a190bf091eea468a57f5604264a71ff97dd237"},
-            "receipt_commit": {"const": "54be8f8b5e75aeda994ff5fc6b858c9e1edad6cd"},
-            "merge_commit": {"const": "91fa8560fecade6b7dd557edad8edf91609efd9b"},
-            "receipt_raw_sha256": {"const": "sha256:c6a9b91c81ecc024dd82c183c16a02c455fda94fc9255bae90e9f15cab93b450"},
-            "path_count": {"const": 131},
-            "fingerprinted_path_count": {"const": 130},
-            "canonical_digest_algorithm": {"type": "string", "minLength": 80},
-            "content_digest": {"const": "sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc"},
-            "receipt_digest": {"const": "sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff"},
-            "merge_tree_sha": {"const": "4542d66e88bd8cb14cb77487e52c88c184b4de30"},
-            "protected_drift_to_current_base_count": {"const": 0}
-          }
-        },
+        "prior_release": {"$ref": "#/$defs/release003Anchor"},
         "historical_v1": {
           "type": "object",
           "additionalProperties": false,
@@ -289,7 +240,7 @@
         "expert_profile_count": {"const": 68},
         "graph_node_count": {"const": 25},
         "graph_edge_count": {"const": 26},
-        "adversarial_test_count": {"const": 20},
+        "adversarial_test_count": {"const": 21},
         "payload_digest": {"$ref": "#/$defs/sha256"},
         "revision_manifest_digest": {"$ref": "#/$defs/sha256"},
         "final_saved_version_digest": {"$ref": "#/$defs/sha256"},
@@ -299,6 +250,88 @@
         "freeze_publication_authorized": {"const": false},
         "portfolio_release_authorized": {"const": true},
         "runtime_activation_authorized": {"const": false},
+        "source_ingestion_authorized": {"const": false},
+        "substantive_doctrine_implementation_authorized": {"const": false},
+        "completed_doctrine_corpus": {"const": false},
+        "qualified_theological_authority": {"const": false},
+        "evidence": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "doctrineMarathon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path", "maturity", "declared_final_blocker", "final_replay_status",
+        "release_file_count", "payload_file_count",
+        "administrative_file_count", "role_count", "trigger_count",
+        "assignment_fixture_count", "runtime_assignment_count",
+        "expert_pack_count", "qualification_receipt_count",
+        "correlation_acceptance_count", "event_count", "evidence_record_count",
+        "graph_node_count", "graph_edge_count", "mistake_receipt_count",
+        "corrective_action_count", "preventive_action_count",
+        "repair_ledger_entry_count", "legacy_component_case_count",
+        "strict_isolated_component_case_count", "component_only_executable_case_count",
+        "aggregate_sentinel_subset_case_count", "negative_case_catalog_count",
+        "isolated_regression_case_count", "negative_case_count",
+        "open_expert_review_debt", "payload_digest",
+        "revision_manifest_file_digest", "final_saved_version_digest",
+        "independent_review_status", "independence_status", "cross_provider_verified",
+        "runtime_activation_authorized", "research_execution_authorized",
+        "source_ingestion_authorized", "substantive_doctrine_implementation_authorized",
+        "completed_doctrine_corpus", "qualified_theological_authority", "evidence"
+      ],
+      "properties": {
+        "path": {"const": "docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-marathon-v3"},
+        "maturity": {"const": "blocked_specification_only"},
+        "declared_final_blocker": {
+          "const": "adversarial_harness_release_gate: V3 cannot release until the aggregate exact-oracle migration is complete and independently reviewed"
+        },
+        "final_replay_status": {
+          "const": "blocked_by_declared_aggregate_exact_oracle_gate"
+        },
+        "release_file_count": {"const": 83},
+        "payload_file_count": {"const": 78},
+        "administrative_file_count": {"const": 5},
+        "role_count": {"const": 18},
+        "trigger_count": {"const": 19},
+        "assignment_fixture_count": {"const": 3},
+        "runtime_assignment_count": {"const": 0},
+        "expert_pack_count": {"const": 0},
+        "qualification_receipt_count": {"const": 0},
+        "correlation_acceptance_count": {"const": 0},
+        "event_count": {"const": 0},
+        "evidence_record_count": {"const": 0},
+        "graph_node_count": {"const": 5},
+        "graph_edge_count": {"const": 3},
+        "mistake_receipt_count": {"const": 1},
+        "corrective_action_count": {"const": 6},
+        "preventive_action_count": {"const": 5},
+        "repair_ledger_entry_count": {"const": 40},
+        "legacy_component_case_count": {"const": 164},
+        "strict_isolated_component_case_count": {"const": 33},
+        "component_only_executable_case_count": {"const": 197},
+        "aggregate_sentinel_subset_case_count": {"const": 4},
+        "negative_case_catalog_count": {"const": 164},
+        "isolated_regression_case_count": {"const": 33},
+        "negative_case_count": {"const": 197},
+        "open_expert_review_debt": {"const": 2},
+        "payload_digest": {"$ref": "#/$defs/sha256"},
+        "revision_manifest_file_digest": {"$ref": "#/$defs/sha256"},
+        "final_saved_version_digest": {
+          "anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]
+        },
+        "independent_review_status": {
+          "enum": [
+            "pending_blocked_specification_review",
+            "pass_blocked_specification_only"
+          ]
+        },
+        "independence_status": {
+          "enum": ["pending_non_author_read_only_review", "non_author_read_only_cross_provider_unverified"]
+        },
+        "cross_provider_verified": {"const": false},
+        "runtime_activation_authorized": {"const": false},
+        "research_execution_authorized": {"const": false},
         "source_ingestion_authorized": {"const": false},
         "substantive_doctrine_implementation_authorized": {"const": false},
         "completed_doctrine_corpus": {"const": false},
@@ -331,13 +364,39 @@
     "verification": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema", "manifest", "validator", "tests", "ai_interrogation_prompt", "commands"],
+      "required": ["schema", "manifest", "validator", "tests", "ai_interrogation_prompt", "oracle_controls", "commands"],
       "properties": {
         "schema": {"const": "docs/portfolio/logos-trust-layer/project-evidence.schema.json"},
         "manifest": {"const": "docs/portfolio/logos-trust-layer/project-evidence.yaml"},
         "validator": {"const": "scripts/validate_portfolio_front_door.py"},
         "tests": {"const": "tests/test_portfolio_front_door.py"},
         "ai_interrogation_prompt": {"const": "docs/portfolio/logos-trust-layer/AI-INTERROGATION-PROMPT.md"},
+        "oracle_controls": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "input_snapshot_bound", "duplicate_structured_keys_rejected",
+            "ordered_duplicate_findings_preserved", "alternate_root_isolated",
+            "single_receipt_read", "sentinel_count", "sentinel_ids"
+          ],
+          "properties": {
+            "input_snapshot_bound": {"const": true},
+            "duplicate_structured_keys_rejected": {"const": true},
+            "ordered_duplicate_findings_preserved": {"const": true},
+            "alternate_root_isolated": {"const": true},
+            "single_receipt_read": {"const": true},
+            "sentinel_count": {"const": 5},
+            "sentinel_ids": {
+              "const": [
+                "portfolio-v3-maturity-overclaim",
+                "portfolio-v3-migration-gate-erasure",
+                "portfolio-v3-authority-elevation",
+                "portfolio-v3-required-route-omission",
+                "portfolio-release-chain-drift"
+              ]
+            }
+          }
+        },
         "commands": {
           "type": "array",
           "minItems": 2,
@@ -358,6 +417,44 @@
         "kind": {"enum": ["local_path", "github_url"]},
         "target": {"type": "string", "minLength": 3},
         "supports": {"type": "string", "minLength": 10}
+      }
+    },
+    "release003Anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_id", "base_commit", "content_head_commit", "content_tree_sha",
+        "receipt_commit", "merge_commit", "receipt_tree_sha", "merge_tree_sha",
+        "receipt_raw_sha256", "receipt_digest", "manifest_raw_sha256",
+        "release_chain_digest", "content_path_count", "total_release_path_count",
+        "fingerprinted_content_path_count", "added_path_count",
+        "modified_path_count", "deleted_path_count", "renamed_path_count",
+        "canonical_digest_algorithm", "content_digest",
+        "protected_drift_to_current_base_count"
+      ],
+      "properties": {
+        "release_id": {"const": "LOGOS-PORTFOLIO-RELEASE-003"},
+        "base_commit": {"const": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca"},
+        "content_head_commit": {"const": "6bb775321f93fe97dff5a90a3c3bdca42f42edfb"},
+        "content_tree_sha": {"const": "a9307538e127d87fdc987f6c86921401679286e5"},
+        "receipt_commit": {"const": "424cd882da0ac0f8271254b8c27149acb1f5b571"},
+        "merge_commit": {"const": "f320d8430c10f82d4fdd80567c4d533fa90c25d5"},
+        "receipt_tree_sha": {"const": "565e9b71faff3f7296d35e310ad3c31110403df9"},
+        "merge_tree_sha": {"const": "565e9b71faff3f7296d35e310ad3c31110403df9"},
+        "receipt_raw_sha256": {"const": "sha256:448449c335e7c67295f94195f415b1b3a0952447f1a6057ce1545a2d36f17851"},
+        "receipt_digest": {"const": "sha256:35e046eae2b684c2196bb44dc299e0a8e0882a399738360f25f98156821f2d57"},
+        "manifest_raw_sha256": {"const": "sha256:fe201b881d8b5b62fdb9d862db43eea1b8ae7f4969294355ebbaf50a535b664f"},
+        "release_chain_digest": {"const": "sha256:e3ad5952f884602e472c4070754141afa27a517c090f890eba0be91c3e075d31"},
+        "content_path_count": {"const": 85},
+        "total_release_path_count": {"const": 86},
+        "fingerprinted_content_path_count": {"const": 85},
+        "added_path_count": {"const": 64},
+        "modified_path_count": {"const": 21},
+        "deleted_path_count": {"const": 0},
+        "renamed_path_count": {"const": 0},
+        "canonical_digest_algorithm": {"type": "string", "minLength": 80},
+        "content_digest": {"const": "sha256:7b7a4885889ee32ef38d83cbb1008204c990d34cfce0c7decdfa3fc923be16ab"},
+        "protected_drift_to_current_base_count": {"const": 0}
       }
     },
     "portfolioValidationReceiptV2": {
@@ -583,8 +680,193 @@
         "receipt_digest": {"$ref": "#/$defs/sha256"}
       }
     },
+    "portfolioValidationReceiptV3": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "object_type", "trust_zone", "lifecycle_status",
+        "provenance_note", "reason_for_inclusion", "receipt_id", "work_id",
+        "status", "release_chain", "doctrine_mesh_status",
+        "doctrine_mesh_payload_digest", "doctrine_mesh_revision_manifest_digest",
+        "doctrine_mesh_final_saved_version_digest", "doctrine_marathon_status",
+        "doctrine_marathon_payload_digest",
+        "doctrine_marathon_revision_manifest_file_digest",
+        "doctrine_marathon_final_saved_version_digest",
+        "doctrine_marathon_declared_final_blocker",
+        "doctrine_marathon_independence_status", "preflight",
+        "dad_unavailable_ack", "checks", "independent_reviews",
+        "unchanged_head_gate", "required_ci", "normal_merge",
+        "runtime_activation_authorized", "research_execution_authorized",
+        "source_ingestion_authorized",
+        "substantive_doctrine_implementation_authorized", "completed_doctrine_corpus",
+        "qualified_theological_authority_granted", "mutation_performed_by_validation",
+        "observed_at", "receipt_digest"
+      ],
+      "properties": {
+        "schema_version": {"const": "logos.portfolio_validation_receipt.v3"},
+        "object_type": {"const": "logos_portfolio_validation_receipt"},
+        "trust_zone": {"const": "proposed"},
+        "lifecycle_status": {"const": "public_release_candidate"},
+        "provenance_note": {"type": "string", "minLength": 30},
+        "reason_for_inclusion": {"type": "string", "minLength": 30},
+        "receipt_id": {"const": "LOGOS-PORTFOLIO-RELEASE-004"},
+        "work_id": {"const": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001"},
+        "status": {"const": "pass_scoped_incremental_release_candidate"},
+        "release_chain": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode", "receipt_path", "active_increment", "privacy",
+            "external_baseline_finding", "prior_release", "historical_v1"
+          ],
+          "properties": {
+            "mode": {"const": "direct_parent_incremental_v3"},
+            "receipt_path": {"const": "docs/portfolio/logos-trust-layer/validation-receipt.json"},
+            "active_increment": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "branch_base_commit", "content_head_commit", "content_tree_sha",
+                "content_path_count", "receipt_path_count", "total_release_path_count",
+                "fingerprinted_content_path_count", "added_path_count",
+                "modified_path_count", "deleted_path_count", "renamed_path_count",
+                "canonical_digest_algorithm", "content_digest"
+              ],
+              "properties": {
+                "branch_base_commit": {"const": "f320d8430c10f82d4fdd80567c4d533fa90c25d5"},
+                "content_head_commit": {"$ref": "#/$defs/sha1"},
+                "content_tree_sha": {"$ref": "#/$defs/sha1"},
+                "content_path_count": {"const": 141},
+                "receipt_path_count": {"const": 1},
+                "total_release_path_count": {"const": 142},
+                "fingerprinted_content_path_count": {"const": 141},
+                "added_path_count": {"const": 83},
+                "modified_path_count": {"const": 58},
+                "deleted_path_count": {"const": 0},
+                "renamed_path_count": {"const": 0},
+                "canonical_digest_algorithm": {"type": "string", "minLength": 80},
+                "content_digest": {"$ref": "#/$defs/sha256"}
+              }
+            },
+            "privacy": {
+              "const": {
+                "mode": "exact_base_candidate_added_occurrences",
+                "baseline_commit": "f320d8430c10f82d4fdd80567c4d533fa90c25d5",
+                "content_source": "active_increment.content_head_commit",
+                "receipt_source": "derived_latest_receipt_commit",
+                "candidate_added_finding_count": 0,
+                "invalid_utf8_count": 0,
+                "repository_wide_privacy_pass_claimed": false
+              }
+            },
+            "external_baseline_finding": {
+              "const": {
+                "baseline_commit": "f320d8430c10f82d4fdd80567c4d533fa90c25d5",
+                "path": "tests/test_machine_citation_artifacts.py",
+                "rule": "file_uri",
+                "occurrence_count": 3,
+                "integrated_via_pr": 120,
+                "disposition": "unresolved_preexisting_not_waived"
+              }
+            },
+            "prior_release": {"$ref": "#/$defs/release003Anchor"},
+            "historical_v1": {
+              "const": {
+                "reference": "project-evidence.yaml#/release_scope/historical_v1",
+                "status": "historical_evidence_only"
+              }
+            }
+          }
+        },
+        "doctrine_mesh_status": {"const": "validated_specification_only"},
+        "doctrine_mesh_payload_digest": {"$ref": "#/$defs/sha256"},
+        "doctrine_mesh_revision_manifest_digest": {"$ref": "#/$defs/sha256"},
+        "doctrine_mesh_final_saved_version_digest": {"$ref": "#/$defs/sha256"},
+        "doctrine_marathon_status": {"const": "blocked_specification_only"},
+        "doctrine_marathon_payload_digest": {"$ref": "#/$defs/sha256"},
+        "doctrine_marathon_revision_manifest_file_digest": {"$ref": "#/$defs/sha256"},
+        "doctrine_marathon_final_saved_version_digest": {"$ref": "#/$defs/sha256"},
+        "doctrine_marathon_declared_final_blocker": {
+          "const": "adversarial_harness_release_gate: V3 cannot release until the aggregate exact-oracle migration is complete and independently reviewed"
+        },
+        "doctrine_marathon_independence_status": {"const": "non_author_read_only_cross_provider_unverified"},
+        "preflight": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status", "checkpoint", "observed_at",
+            "protected_hold_suppressions", "mutation_performed"
+          ],
+          "properties": {
+            "status": {"const": "pass"},
+            "checkpoint": {"const": "08eab8e3edf44ab22175e3e47b1828153a84d716"},
+            "observed_at": {"type": "string", "format": "date-time"},
+            "protected_hold_suppressions": {"const": 8},
+            "mutation_performed": {"const": false}
+          }
+        },
+        "dad_unavailable_ack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "reviewed_by", "created_at", "authority_boundary"],
+          "properties": {
+            "operation": {"const": "public_release"},
+            "reviewed_by": {"const": "Lowell Wong"},
+            "created_at": {"type": "string", "format": "date-time"},
+            "authority_boundary": {"type": "string", "minLength": 40}
+          }
+        },
+        "checks": {
+          "type": "array",
+          "minItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["check_id", "status", "result"],
+            "properties": {
+              "check_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]+$"},
+              "status": {"type": "string", "minLength": 4},
+              "result": {"type": "string", "minLength": 12}
+            }
+          }
+        },
+        "independent_reviews": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "review_id", "role", "status", "reviewed_path_count",
+              "reviewed_digest", "scope_note", "observed_at"
+            ],
+            "properties": {
+              "review_id": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
+              "role": {"type": "string", "minLength": 8},
+              "status": {"type": "string", "minLength": 4},
+              "reviewed_path_count": {"type": "integer", "minimum": 1},
+              "reviewed_digest": {"$ref": "#/$defs/sha256"},
+              "scope_note": {"type": "string", "minLength": 30},
+              "observed_at": {"type": "string", "format": "date-time"}
+            }
+          }
+        },
+        "unchanged_head_gate": {"type": "string", "minLength": 20},
+        "required_ci": {"const": "pending_at_receipt_finalization"},
+        "normal_merge": {"const": "pending_at_receipt_finalization"},
+        "runtime_activation_authorized": {"const": false},
+        "research_execution_authorized": {"const": false},
+        "source_ingestion_authorized": {"const": false},
+        "substantive_doctrine_implementation_authorized": {"const": false},
+        "completed_doctrine_corpus": {"const": false},
+        "qualified_theological_authority_granted": {"const": false},
+        "mutation_performed_by_validation": {"const": false},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "receipt_digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
     "maturity": {
-      "enum": ["active_control", "active_data_plane", "active_scaffold", "validated_specification_only", "dated_validation_snapshot", "roadmap_only"]
+      "enum": ["active_control", "active_data_plane", "active_scaffold", "release_candidate_specification_only", "blocked_specification_only", "validated_specification_only", "dated_validation_snapshot", "roadmap_only"]
     },
     "sha1": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
     "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}

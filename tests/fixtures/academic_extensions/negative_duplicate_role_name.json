@@ -3,5 +3,7 @@
   "operation": "replace",
   "path": ["roles", 1, "role"],
   "value": "observed_object",
-  "expected_rule": "nary_role_uniqueness"
+  "expected_rule": "nary_role_uniqueness",
+  "expected_first_rule": "nary_role_uniqueness",
+  "expected_rules_exact": ["nary_role_uniqueness"]
 }

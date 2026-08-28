@@ -3,5 +3,7 @@
   "operation": "replace",
   "path": ["qualifiers", "measurement", "value"],
   "value": 3.0,
-  "expected_rule": "schema_validation"
+  "expected_rule": "schema_validation",
+  "expected_first_rule": "schema_validation",
+  "expected_rules_exact": ["schema_validation"]
 }

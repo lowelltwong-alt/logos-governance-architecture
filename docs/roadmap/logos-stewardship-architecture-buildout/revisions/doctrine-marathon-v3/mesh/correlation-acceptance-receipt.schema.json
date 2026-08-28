@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.correlation-acceptance-receipt.v3",
+  "title": "Doctrine Marathon correlation acceptance receipt",
+  "description": "object_type=correlation_acceptance_receipt_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after frontier red-team review; reason_for_inclusion=Bind any permitted correlated checker exception to the exact actors, attempts, assignments, collision set, work unit, and human decision.",
+  "type": "object",
+  "required": ["schema_version", "receipt_id", "assignment_bundle_id", "work_unit_id", "checker_assignment_ref", "checker_input_digest", "checked_assignment_refs", "checked_input_digests", "collision_dimensions", "checker_actor_instance_id", "checker_attempt_id", "decision", "human_decision_receipt_ref", "human_decision_receipt_digest", "issued_at", "expires_at", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.correlation-acceptance-receipt.v3"},
+    "receipt_id": {"type": "string", "pattern": "^CAREC-[A-Za-z0-9._-]+$"},
+    "assignment_bundle_id": {"type": "string", "pattern": "^DMV3-BUNDLE-[A-Za-z0-9._-]+$"},
+    "work_unit_id": {"type": "string", "minLength": 3},
+    "checker_assignment_ref": {"type": "string", "pattern": "^role-assignment:DMV3-ROLE-[A-Za-z0-9._-]+$"},
+    "checker_input_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "checked_assignment_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^role-assignment:DMV3-ROLE-[A-Za-z0-9._-]+$"}},
+    "checked_input_digests": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+    "collision_dimensions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["prompt_authorship", "answer_context_exposure", "source_order", "KnowledgeGuide_digest", "runtime_adapter"]}},
+    "checker_actor_instance_id": {"type": "string", "minLength": 3},
+    "checker_attempt_id": {"type": "string", "minLength": 3},
+    "decision": {"enum": ["accepted_for_bounded_unit", "rejected"]},
+    "human_decision_receipt_ref": {"type": "string", "pattern": "^human-decision:HDEC-[A-Za-z0-9._-]+$"},
+    "human_decision_receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"decision": {"const": "accepted_for_bounded_unit"}}}, "then": {"properties": {"expires_at": {"type": "string", "format": "date-time"}}}}
+  ],
+  "additionalProperties": false
+}

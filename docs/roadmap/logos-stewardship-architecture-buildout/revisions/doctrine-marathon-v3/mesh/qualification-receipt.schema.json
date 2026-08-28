@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.qualification-receipt.v3",
+  "title": "Doctrine Marathon qualification receipt",
+  "description": "object_type=qualification_receipt_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after frontier red-team review; reason_for_inclusion=Reject arbitrary files and prose strings as evidence that an ExpertPack or task-local assignment is qualified.",
+  "type": "object",
+  "required": ["schema_version", "receipt_id", "subject_kind", "subject_ref", "subject_scope_digest", "work_unit_id", "capability_ids", "expert_pack_ref", "expert_pack_digest", "runtime_adapter_digest", "qualification_generation", "reviewer_evidence_role", "bootstrap_authorization_ref", "bootstrap_authorization_digest", "qualification_input_digest", "reviewer_assignment_bundle_ref", "reviewer_assignment_bundle_digest", "reviewer_assignment_refs", "fixture_bindings", "decision", "abstention_fixture_passed", "independence_assessment", "human_approval_receipt_ref", "human_approval_receipt_digest", "issued_at", "expires_at", "authority_effect", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.qualification-receipt.v3"},
+    "receipt_id": {"type": "string", "pattern": "^QREC-[A-Za-z0-9._-]+$"},
+    "subject_kind": {"enum": ["expert_pack", "role_assignment", "runtime_adapter"]},
+    "subject_ref": {"type": "string", "minLength": 3},
+    "subject_scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "work_unit_id": {"type": "string", "minLength": 3},
+    "capability_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
+    "expert_pack_ref": {"type": ["string", "null"], "pattern": "^expert-pack:EPACK-[A-Za-z0-9._-]+$"},
+    "expert_pack_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "runtime_adapter_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "qualification_generation": {"type": "integer", "minimum": 0},
+    "reviewer_evidence_role": {"const": "supporting_non_authorizing"},
+    "bootstrap_authorization_ref": {"type": ["string", "null"], "pattern": "^human-decision:HDEC-[A-Za-z0-9._-]+$"},
+    "bootstrap_authorization_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "qualification_input_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "reviewer_assignment_bundle_ref": {"type": "string", "pattern": "^mesh/(?:examples|receipts)/[A-Za-z0-9._-]+\\.json$"},
+    "reviewer_assignment_bundle_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "reviewer_assignment_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^role-assignment:DMV3-ROLE-[A-Za-z0-9._-]+$"}},
+    "fixture_bindings": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["ref", "digest", "result"], "properties": {"ref": {"type": "string", "minLength": 3}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "result": {"enum": ["pass", "fail", "abstain"]}}, "additionalProperties": false}},
+    "decision": {"enum": ["qualified", "rejected", "needs_revision", "abstained"]},
+    "abstention_fixture_passed": {"type": "boolean"},
+    "independence_assessment": {"enum": ["independent", "correlated_disclosed", "blocked"]},
+    "human_approval_receipt_ref": {"type": "string", "pattern": "^human-decision:HDEC-[A-Za-z0-9._-]+$"},
+    "human_approval_receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "authority_effect": {"const": "none"},
+    "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"qualification_generation": {"const": 0}}, "required": ["qualification_generation"]}, "then": {"properties": {"bootstrap_authorization_ref": {"type": "string"}, "bootstrap_authorization_digest": {"type": "string"}}}},
+    {"if": {"properties": {"qualification_generation": {"minimum": 1}}, "required": ["qualification_generation"]}, "then": {"properties": {"bootstrap_authorization_ref": {"type": "null"}, "bootstrap_authorization_digest": {"type": "null"}}}}
+  ],
+  "additionalProperties": false
+}

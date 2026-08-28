@@ -1,0 +1,30 @@
+metadata:
+  object_type: doctrine_marathon_trigger_matrix
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as the deterministic mapping from changed work features to audits and specialist capabilities."
+  reason_for_inclusion: "Prevent a controller from forgetting or casually waiving midflight role and firewall checks."
+schema_version: logos.doctrine_marathon.trigger_matrix.v3
+default_action_for_unknown_material_feature: block_and_create_role_gap
+triggers:
+  - {trigger_id: TR-SOURCE, feature: new_or_changed_source, required_roles: [source-fitness-rights-verifier, citation-locator-verifier, claim-entailment-context-verifier], actions: [midflight_completeness_audit, source_record_gate, claim_evidence_lineage_gate, invalidate_affected_consumers]}
+  - {trigger_id: TR-LANGUAGE, feature: new_language_witness_edition_or_translation, required_roles: [original-language-translation-verifier, source-fitness-rights-verifier], actions: [midflight_completeness_audit, source_record_gate, translation_lineage_gate, original_language_review_gate]}
+  - {trigger_id: TR-ACTOR, feature: new_author_community_or_corpus, required_roles: [father-or-corpus-specialist, role-qualification-and-independence-auditor], actions: [midflight_completeness_audit, ExpertPack_gate]}
+  - {trigger_id: TR-PERIOD, feature: new_period_geography_or_polity, required_roles: [environment-specialist], actions: [midflight_completeness_audit, environment_pack_gate]}
+  - {trigger_id: TR-JEWISH, feature: Jewish_group_teaching_or_reception_claim, required_capabilities: [second_temple_literature, pharisees_sadducees_essenes_and_other_named_groups, tradition_representation], actions: [midflight_completeness_audit, jewish_context_pack_gate, later_source_bridge_check, tradition_nonflattening_check]}
+  - {trigger_id: TR-ANCIENT-CONTEXT, feature: archaeology_philosophy_or_non_Christian_religion, required_roles: [environment-specialist, authority-plane-auditor], actions: [midflight_completeness_audit, normative_force_none_check]}
+  - {trigger_id: TR-HIST-LABEL, feature: orthodoxy_heresy_schism_or_error_label, required_roles: [authority-plane-auditor, counterevidence-challenger], actions: [midflight_completeness_audit, historical_attribution_schema_check, qualified_source_gate, human_gate_if_normative]}
+  - {trigger_id: TR-NORMATIVE, feature: present_normative_assessment, required_roles: [authority-plane-auditor, human-risk-router], actions: [midflight_completeness_audit, NormativeFrame_gate, human_decision_receipt_gate, frontier_sentinel]}
+  - {trigger_id: TR-INFLUENCE, feature: borrowing_influence_causation_or_continuity, required_roles: [counterevidence-challenger, environment-specialist, dependency-invalidation-checker], actions: [midflight_completeness_audit, influence_hypothesis_schema_check, contact_and_reception_evidence_check, alternative_hypothesis_check]}
+  - {trigger_id: TR-GRAPH, feature: new_or_changed_load_bearing_edge, required_roles: [dependency-invalidation-checker], actions: [midflight_completeness_audit, reverse_index_rebuild, weakest_premise_check, descendant_invalidation]}
+  - {trigger_id: TR-DISAGREE, feature: new_or_materially_changed_disagreement, required_roles: [counterevidence-challenger, frontier-compounded-error-sentinel, human-risk-router], actions: [midflight_completeness_audit, preserve_named_graph_disagreement, rerank_review_debt, frontier_sentinel]}
+  - {trigger_id: TR-PROMPT, feature: prompt_goal_policy_model_provider_or_tool_change, required_roles: [goal-prompt-alignment-auditor, role-qualification-and-independence-auditor], actions: [midflight_completeness_audit, fresh_context_gate, changed_input_revalidation]}
+  - {trigger_id: TR-PUBLIC, feature: public_projection_or_release, required_roles: [authority-plane-auditor, independent-whole-work-checker], actions: [midflight_completeness_audit, privacy_rights_scrub, nonclaim_check, unchanged_head_gate]}
+  - {trigger_id: TR-POST-GAP, feature: material_missing_role_discovered_at_exit, required_roles: [doctrine-mesh-completeness-auditor, dependency-invalidation-checker, human-risk-router], actions: [midflight_completeness_audit, quarantine, reverse_consumer_invalidation, bounded_replay, blocking_debt]}
+  - {trigger_id: TR-TRADITION, feature: new_or_changed_tradition_or_community_self_representation, required_roles: [father-or-corpus-specialist, authority-plane-auditor, counterevidence-challenger], actions: [midflight_completeness_audit, tradition_pack_gate, self_description_source_check, tradition_nonflattening_check]}
+  - {trigger_id: TR-PROPOSITION, feature: new_or_materially_reframed_proposition_or_claim, required_roles: [claim-entailment-context-verifier, citation-locator-verifier, counterevidence-challenger], actions: [midflight_completeness_audit, typed_claim_gate, claim_evidence_lineage_gate, counterevidence_route]}
+  - {trigger_id: TR-CONTROVERSY, feature: new_or_changed_controversy_rival_account_or_disputed_reception, required_roles: [father-or-corpus-specialist, counterevidence-challenger, human-risk-router], actions: [midflight_completeness_audit, historical_attribution_schema_check, preserve_named_graph_disagreement, counterposition_route]}
+  - {trigger_id: TR-RISK, feature: new_risk_dimension_or_material_risk_tier_change, required_roles: [frontier-compounded-error-sentinel, human-risk-router], actions: [midflight_completeness_audit, risk_recomputation, rerank_review_debt, frontier_sentinel]}
+  - {trigger_id: TR-DEPENDENCY, feature: new_or_changed_prerequisite_dependency_state_or_non_edge_dependency, required_roles: [dependency-invalidation-checker, doctrine-mesh-completeness-auditor], actions: [midflight_completeness_audit, reverse_index_rebuild, weakest_premise_check, descendant_invalidation, quarantine]}
+deduplication_rule: identical_trigger_id_and_identical_input_digest_only
+changed_input_requires_new_event: true

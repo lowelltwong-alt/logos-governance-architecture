@@ -1,0 +1,34 @@
+metadata:
+  object_type: father_expert_pack_bootstrap_queue
+  trust_zone: proposed
+  lifecycle_status: planning_only
+  provenance_note: "Created on 2026-08-27 by Codex root as a non-exhaustive queue of author/corpus packs requiring future qualification."
+  reason_for_inclusion: "Expose the depth of future expert work while preventing a single generic patristics role or implied completion claim."
+schema_version: logos.doctrine_marathon.father_pack_queue.v3
+ordering_rule: dependency_ready_then_chronological_navigation
+items:
+  - {queue_id: FPQ-001, corpus: 1_Clement, horizon: H10, state: first_candidate_blocked, requires_separate_pack: true}
+  - {queue_id: FPQ-002, corpus: Ignatian_letters, horizon: H10, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-003, corpus: Polycarp_and_Martyrdom_of_Polycarp, horizon: H10, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-004, corpus: Didache, horizon: H10, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-005, corpus: Shepherd_of_Hermas, horizon: H10, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-006, corpus: Epistle_of_Barnabas, horizon: H10, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-007, corpus: Papias_fragments_and_testimonia, horizon: H10, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-010, corpus: Justin_Martyr, horizon: H20, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-011, corpus: Irenaeus, horizon: H20, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-012, corpus: Tertullian, horizon: H20, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-013, corpus: Clement_of_Alexandria, horizon: H20, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-014, corpus: Origen, horizon: H20, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-020, corpus: Athanasius, horizon: H30, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-021, corpus: Cappadocian_Fathers_separate_author_packs, horizon: H30, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-022, corpus: Cyril_of_Alexandria, horizon: H30, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-023, corpus: John_Chrysostom, horizon: H30, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-024, corpus: Jerome, horizon: H30, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-025, corpus: Augustine, horizon: H30, state: planned_unqualified, requires_separate_pack: true}
+  - {queue_id: FPQ-030, corpus: Syriac_Coptic_Armenian_and_other_regional_corpora, horizon: H30, state: planned_requires_decomposition, requires_separate_pack: true}
+queue_nonclaims:
+  - list_is_not_complete
+  - grouping_does_not_flatten_individual_authors
+  - order_does_not_assert_dependency_or_rank
+  - inclusion_does_not_assert_authorship_date_authenticity_or_authority
+  - every_item_requires_source_language_context_and_checker_qualification

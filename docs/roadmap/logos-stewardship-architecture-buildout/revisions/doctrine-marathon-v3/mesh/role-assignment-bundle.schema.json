@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.role-assignment-bundle.v3",
+  "title": "Doctrine Marathon role-assignment bundle",
+  "description": "object_type=role_assignment_bundle_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent correlation-control review; reason_for_inclusion=Bind task-local writer/checker assignments into one pairwise-verifiable independence surface.",
+  "type": "object",
+  "required": ["schema_version", "fixture_kind", "runtime_assignments", "authority_effect", "qualification_registry_ref", "qualification_registry_digest", "assignments", "prompt_neutrality_reviews", "bundle_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.role-assignment-bundle.v3"},
+    "bundle_id": {"type": "string", "pattern": "^DMV3-BUNDLE-[A-Za-z0-9._-]+$"},
+    "work_unit_id": {"type": "string", "minLength": 3},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "fixture_kind": {"enum": ["design_time_simulation", "runtime_receipt"]},
+    "runtime_assignments": {"type": "boolean"},
+    "authority_effect": {"enum": ["none", "bounded_by_external_authority"]},
+    "qualification_registry_ref": {"type": "string", "pattern": "^mesh/(?:qualification-registry|qualification-snapshots/[A-Za-z0-9._-]+)\\.json$"},
+    "qualification_registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "assignments": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "object"},
+      "allOf": [
+        {"contains": {"type": "object", "required": ["role_id"], "properties": {"role_id": {"const": "role-qualification-and-independence-auditor"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"type": "object", "required": ["role_id"], "properties": {"role_id": {"const": "independent-whole-work-checker"}}}, "minContains": 1, "maxContains": 1}
+      ]
+    },
+    "prompt_neutrality_reviews": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/prompt_neutrality_review"}},
+    "bundle_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "prompt_neutrality_review": {
+      "type": "object",
+      "required": ["schema_version", "review_id", "subject_assignment_ref", "subject_assignment_scope_digest", "task_prompt_ref", "task_prompt_digest", "neutrality_contract_ref", "neutrality_contract_digest", "reviewer_assignment_ref", "review_dimensions", "decision", "reviewed_at", "expires_at", "authority_effect", "receipt_digest"],
+      "properties": {
+        "schema_version": {"const": "logos.doctrine-marathon.prompt-neutrality-review.v3"},
+        "review_id": {"type": "string", "pattern": "^PNR-[A-Za-z0-9._-]+$"},
+        "subject_assignment_ref": {"type": "string", "pattern": "^role-assignment:DMV3-ROLE-[A-Za-z0-9._-]+$"},
+        "subject_assignment_scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "task_prompt_ref": {"type": "string", "minLength": 3},
+        "task_prompt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "neutrality_contract_ref": {"const": "firewall/prompt-neutrality-contract.yaml"},
+        "neutrality_contract_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "reviewer_assignment_ref": {"type": "string", "pattern": "^role-assignment:DMV3-ROLE-[A-Za-z0-9._-]+$"},
+        "review_dimensions": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"enum": ["presupposed_conclusion", "framing", "omitted_alternatives", "counterevidence_route", "abstention_path", "authority_transfer"]}},
+        "decision": {"enum": ["accepted", "needs_revision", "rejected", "abstained"]},
+        "reviewed_at": {"type": "string", "format": "date-time"},
+        "expires_at": {"type": ["string", "null"], "format": "date-time"},
+        "authority_effect": {"const": "none"},
+        "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"fixture_kind": {"const": "design_time_simulation"}}}, "then": {"properties": {"runtime_assignments": {"const": false}, "authority_effect": {"const": "none"}}}},
+    {"if": {"properties": {"fixture_kind": {"const": "runtime_receipt"}}}, "then": {"required": ["bundle_id", "work_unit_id", "issued_at", "expires_at"], "properties": {"runtime_assignments": {"const": true}}}}
+  ],
+  "additionalProperties": false
+}

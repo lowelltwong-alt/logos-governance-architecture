@@ -1,4 +1,4 @@
-schema_version: logos.biblical-evidence.node-edge-catalog.v1
+schema_version: logos.biblical-evidence.node-edge-catalog.v2
 object_type: extensible_graph_vocabulary
 trust_zone: proposed
 lifecycle_status: draft
@@ -40,6 +40,9 @@ node_kinds:
   - kind: physical_artifact
     identity_rule: holding_institution_plus_inventory_id
     examples: [manuscript_folio, inscription, relief, prism, excavated_object]
+  - kind: digital_asset
+    identity_rule: source_record_plus_side_or_view_plus_content_digest
+    examples: [licensed_manuscript_side_image, museum_object_photograph, scan]
   - kind: archaeological_context
     identity_rule: site_plus_excavation_unit_plus_publication_locator
     examples: [stratum, locus, destruction_context, sample_context]
@@ -81,6 +84,15 @@ relation_kinds:
     from_kinds: [source_record]
     to_kinds: [physical_artifact, archaeological_context, text_or_translation_witness]
     authority_effect: none
+  - relation: publishes_representation
+    from_kinds: [source_record]
+    to_kinds: [digital_asset]
+    authority_effect: none
+  - relation: has_digital_representation
+    from_kinds: [physical_artifact]
+    to_kinds: [digital_asset]
+    coverage_does_not_propagate_to_asset: true
+    authority_effect: none
   - relation: depicts
     from_kinds: [physical_artifact]
     to_kinds: [historical_claim]
@@ -120,11 +132,11 @@ relation_kinds:
     source_rights_required: true
     authority_effect: none
   - relation: governed_by_rights
-    from_kinds: [physical_artifact, text_or_translation_witness]
+    from_kinds: [digital_asset, physical_artifact, text_or_translation_witness]
     to_kinds: [rights_record]
     authority_effect: none
   - relation: requires_review
-    from_kinds: [historical_claim, physical_artifact, candidate_chunk, doctrine_or_tradition_object]
+    from_kinds: [historical_claim, digital_asset, physical_artifact, candidate_chunk, doctrine_or_tradition_object]
     to_kinds: [review_gate]
     authority_effect: none
   - relation: derived_projection_of
@@ -152,6 +164,9 @@ validation_invariants:
   reserved_namespace_kind_alignment_enforced: true
   external_node_payload_lossless_and_quarantined: true
   source_claim_identity_kind_and_global_uniqueness_enforced: true
+  physical_object_and_digital_asset_identity_separated: true
+  single_side_asset_cannot_inherit_object_catalog_coverage: true
+  digital_asset_forward_path_to_coverage_or_scripture_forbidden: true
   unknown_relation_identifiers_confusable_safe: true
   forbidden_and_registered_relation_sets_non_overlapping: true
 cross_repository_rules:

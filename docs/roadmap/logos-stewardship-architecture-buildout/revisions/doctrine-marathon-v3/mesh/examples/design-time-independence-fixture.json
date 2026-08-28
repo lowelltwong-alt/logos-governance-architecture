@@ -1,0 +1,239 @@
+{
+  "schema_version": "logos.doctrine-marathon.role-assignment-bundle.v3",
+  "fixture_kind": "design_time_simulation",
+  "runtime_assignments": false,
+  "authority_effect": "none",
+  "qualification_registry_ref": "mesh/qualification-registry.json",
+  "qualification_registry_digest": "sha256:db722897e80f59af4ef996bc52f5ed739fec1ed8d095d2cd8f4097dcdd83dbc0",
+  "assignments": [
+    {
+      "schema_version": "logos.doctrine-marathon.role-assignment.v3",
+      "assignment_id": "DMV3-ROLE-SYNTHETIC-FACTORY",
+      "work_unit_id": "DMV3-SPEC-HARNESS",
+      "assignment_kind": "writer",
+      "role_id": "task-local-role-factory",
+      "capability_ids": [
+        "prompt_alignment_and_authority",
+        "role_qualification_and_independence"
+      ],
+      "qualification_basis": {
+        "kind": "control_contract",
+        "ref": "mesh/role-catalog.yaml",
+        "digest": "sha256:3b37c1c1a301f3113474dcabe48a0aa65d90676b48859da183c034c16843834c",
+        "state": "candidate"
+      },
+      "expected_information_gain": "Exercise the bounded role-composition surface without dispatching or claiming subject expertise.",
+      "qualification_receipt_ref": null,
+      "qualification_receipt_digest": null,
+      "task_prompt_ref": null,
+      "task_prompt_digest": null,
+      "prompt_neutrality_review_ref": null,
+      "prompt_neutrality_review_digest": null,
+      "attempt_id": "SYNTHETIC-ATTEMPT-FACTORY",
+      "actor_instance_id": "SYNTHETIC-ACTOR-FACTORY",
+      "checks_assignment_ids": [],
+      "source_order": [
+        {
+          "ordinal": 1,
+          "source_ref": "mesh/role-catalog.yaml",
+          "source_digest": "sha256:3b37c1c1a301f3113474dcabe48a0aa65d90676b48859da183c034c16843834c",
+          "source_class": "control_contract"
+        },
+        {
+          "ordinal": 2,
+          "source_ref": "mesh/agent-mesh.v3.json",
+          "source_digest": "sha256:82034aae352b9bbf3df467b9b94ab7b0e0d486c62e4654b7aca80589f7f9396d",
+          "source_class": "control_contract"
+        }
+      ],
+      "source_order_digest": "sha256:932b045fb9675a946dba029e19e82f8e1498a92fc19345495bc0a3e56c5fda34",
+      "knowledge_guide_lineage": [
+        {
+          "guide_ref": "mesh/role-catalog.yaml",
+          "guide_digest": "sha256:3b37c1c1a301f3113474dcabe48a0aa65d90676b48859da183c034c16843834c",
+          "usage": "routing_only",
+          "used_as_evidence": false
+        }
+      ],
+      "knowledge_guide_lineage_digest": "sha256:e25f9ca9cbf3d3d23ff2bfd64d3e490cb02f50ae9761f72fd7a31f4205164833",
+      "runtime_adapter": {
+        "adapter_id": "SYNTHETIC-ADAPTER-A",
+        "runtime_family": "synthetic-runtime-family-a",
+        "model_revision": "design-time-fixture-a",
+        "capability_tier": "balanced",
+        "reasoning_effort": "synthetic",
+        "tool_profile_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "context_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "receipt_ref": "synthetic/attempt-receipt/factory"
+      },
+      "runtime_adapter_digest": "sha256:69277a3896a588494f087fa101e6b0648a55ac5b2e779b4618fca12dfaa85e26",
+      "independence": {
+        "answer_context_exposure": "none",
+        "prompt_author_ids": [
+          "SYNTHETIC-PROMPT-AUTHOR-A"
+        ],
+        "correlation_disclosures": [],
+        "assessment": "independent",
+        "human_acceptance_receipt_ref": null
+      },
+      "expires_with_work_unit": true,
+      "status": "candidate"
+    },
+    {
+      "schema_version": "logos.doctrine-marathon.role-assignment.v3",
+      "assignment_id": "DMV3-ROLE-SYNTHETIC-META-CHECKER",
+      "work_unit_id": "DMV3-SPEC-HARNESS",
+      "assignment_kind": "checker",
+      "role_id": "role-qualification-and-independence-auditor",
+      "capability_ids": [
+        "prompt_alignment_and_authority",
+        "role_qualification_and_independence"
+      ],
+      "qualification_basis": {
+        "kind": "control_contract",
+        "ref": "mesh/completeness-auditor-v3.yaml",
+        "digest": "sha256:c800f38307195c6da51da2a53fb73caa09cde398236789bdd145df55abebbcd8",
+        "state": "candidate"
+      },
+      "expected_information_gain": "Exercise independent qualification review of the bounded role factory and its lineage declarations.",
+      "qualification_receipt_ref": null,
+      "qualification_receipt_digest": null,
+      "task_prompt_ref": null,
+      "task_prompt_digest": null,
+      "prompt_neutrality_review_ref": null,
+      "prompt_neutrality_review_digest": null,
+      "attempt_id": "SYNTHETIC-ATTEMPT-META",
+      "actor_instance_id": "SYNTHETIC-ACTOR-META",
+      "checks_assignment_ids": [
+        "DMV3-ROLE-SYNTHETIC-FACTORY",
+        "DMV3-ROLE-SYNTHETIC-WHOLE-CHECKER"
+      ],
+      "source_order": [
+        {
+          "ordinal": 1,
+          "source_ref": "mesh/completeness-auditor-v3.yaml",
+          "source_digest": "sha256:c800f38307195c6da51da2a53fb73caa09cde398236789bdd145df55abebbcd8",
+          "source_class": "control_contract"
+        },
+        {
+          "ordinal": 2,
+          "source_ref": "mesh/role-assignment.schema.json",
+          "source_digest": "sha256:87c2dcefdd4caa265c957dee8cb5fc7f25baf29aa7b0f5f3496d01fdeb850765",
+          "source_class": "control_contract"
+        }
+      ],
+      "source_order_digest": "sha256:3859d0e7da0930d82016d587a6af9d14814d3b2f888afb80741c028d30ae05f4",
+      "knowledge_guide_lineage": [
+        {
+          "guide_ref": "mesh/completeness-auditor-v3.yaml",
+          "guide_digest": "sha256:c800f38307195c6da51da2a53fb73caa09cde398236789bdd145df55abebbcd8",
+          "usage": "instruction_context",
+          "used_as_evidence": false
+        }
+      ],
+      "knowledge_guide_lineage_digest": "sha256:659d93cf760b2a858267131bcc3dbfdfbb1298363b734cf1d67534a24db505b7",
+      "runtime_adapter": {
+        "adapter_id": "SYNTHETIC-ADAPTER-B",
+        "runtime_family": "synthetic-runtime-family-b",
+        "model_revision": "design-time-fixture-b",
+        "capability_tier": "frontier_reasoning",
+        "reasoning_effort": "synthetic",
+        "tool_profile_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "context_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "receipt_ref": "synthetic/attempt-receipt/meta"
+      },
+      "runtime_adapter_digest": "sha256:25963d66ff95a14ed68ec30750b9b7c27a9b3923b23fbc0aabbbecbf296b3eda",
+      "independence": {
+        "answer_context_exposure": "none",
+        "prompt_author_ids": [
+          "SYNTHETIC-PROMPT-AUTHOR-B"
+        ],
+        "correlation_disclosures": [],
+        "assessment": "independent",
+        "human_acceptance_receipt_ref": null
+      },
+      "expires_with_work_unit": true,
+      "status": "candidate"
+    },
+    {
+      "schema_version": "logos.doctrine-marathon.role-assignment.v3",
+      "assignment_id": "DMV3-ROLE-SYNTHETIC-WHOLE-CHECKER",
+      "work_unit_id": "DMV3-SPEC-HARNESS",
+      "assignment_kind": "checker",
+      "role_id": "independent-whole-work-checker",
+      "capability_ids": [
+        "prompt_alignment_and_authority",
+        "role_qualification_and_independence"
+      ],
+      "qualification_basis": {
+        "kind": "control_contract",
+        "ref": "constitution.yaml",
+        "digest": "sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe",
+        "state": "candidate"
+      },
+      "expected_information_gain": "Exercise a distinct whole-work judgment over both role composition and meta-qualification outputs.",
+      "qualification_receipt_ref": null,
+      "qualification_receipt_digest": null,
+      "task_prompt_ref": null,
+      "task_prompt_digest": null,
+      "prompt_neutrality_review_ref": null,
+      "prompt_neutrality_review_digest": null,
+      "attempt_id": "SYNTHETIC-ATTEMPT-WHOLE",
+      "actor_instance_id": "SYNTHETIC-ACTOR-WHOLE",
+      "checks_assignment_ids": [
+        "DMV3-ROLE-SYNTHETIC-FACTORY",
+        "DMV3-ROLE-SYNTHETIC-META-CHECKER"
+      ],
+      "source_order": [
+        {
+          "ordinal": 1,
+          "source_ref": "constitution.yaml",
+          "source_digest": "sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe",
+          "source_class": "control_contract"
+        },
+        {
+          "ordinal": 2,
+          "source_ref": "DOCTRINE_MARATHON_MASTER_PROMPT.md",
+          "source_digest": "sha256:494dfd574a257c99d03b84544343a94a05f678b4b08f19cac18f1ca31d80fd9d",
+          "source_class": "control_contract"
+        }
+      ],
+      "source_order_digest": "sha256:988e3a63bbb2070b5551d59c3beb2d8a483d8afe08b147e6c810067de57001e3",
+      "knowledge_guide_lineage": [
+        {
+          "guide_ref": "firewall/epistemic-integrity-contract.yaml",
+          "guide_digest": "sha256:686c325c9184def545621c5f2984adf6e972e9d67593517ce157c3705264a0d6",
+          "usage": "instruction_context",
+          "used_as_evidence": false
+        }
+      ],
+      "knowledge_guide_lineage_digest": "sha256:5ed183fd2208a1db6df4c10ed49aeee0cb4d2acd67d32a4dc0b9ca75d1a24d8f",
+      "runtime_adapter": {
+        "adapter_id": "SYNTHETIC-ADAPTER-C",
+        "runtime_family": "synthetic-runtime-family-c",
+        "model_revision": "design-time-fixture-c",
+        "capability_tier": "frontier_reasoning",
+        "reasoning_effort": "synthetic",
+        "tool_profile_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "context_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "receipt_ref": "synthetic/attempt-receipt/whole"
+      },
+      "runtime_adapter_digest": "sha256:032834bb39682b81bc14f320a1467096dbb3364de6d8d6189eecee6375c753a4",
+      "independence": {
+        "answer_context_exposure": "findings_only",
+        "prompt_author_ids": [
+          "SYNTHETIC-PROMPT-AUTHOR-C"
+        ],
+        "correlation_disclosures": [
+          "answer_context_exposure"
+        ],
+        "assessment": "blocked",
+        "human_acceptance_receipt_ref": null
+      },
+      "expires_with_work_unit": true,
+      "status": "candidate"
+    }
+  ],
+  "prompt_neutrality_reviews": [],
+  "bundle_digest": "sha256:7db051a8951274d8d53448d8c67e427160382415f591bec7a286b5f827e88831"
+}

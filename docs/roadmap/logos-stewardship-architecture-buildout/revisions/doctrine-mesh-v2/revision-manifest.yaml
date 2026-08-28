@@ -2,7 +2,7 @@ metadata:
   object_type: doctrine_mesh_revision_manifest
   trust_zone: proposed
   lifecycle_status: frozen_specification_payload
-  provenance_note: Regenerated on 2026-08-24 by Codex root from exact canonical payload bytes after the claimed-scope traversal regression repair; independent changed-input review is bound separately.
+  provenance_note: Regenerated on 2026-08-28 by Codex root from exact canonical payload bytes after the aggregate exact-oracle harness repair; independent read-only review is bound separately.
   reason_for_inclusion: Bind every portable specification, project governance instance, dormant adapter, and revision-evidence file without treating volatile interpreter caches or self-referential administrative receipts as payload.
 schema_version: logos_doctrine_mesh_revision_manifest.v2
 manifest_id: LOGOS-DOCTRINE-MESH-REVISION-002
@@ -10,7 +10,7 @@ work_id: WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001
 revision_id: doctrine-mesh-v2
 revision_root: docs/roadmap/logos-stewardship-architecture-buildout/revisions/doctrine-mesh-v2
 parent_checkpoint: 410c7e429290d34013c1dbf23c0335ebfe68e45f
-generated_at: '2026-08-24T20:14:29Z'
+generated_at: '2026-08-28T12:31:15Z'
 authority: specification_only_no_runtime_research_doctrine_source_admission_or_publication
 capability_class_definitions:
   portable_core: Provider-neutral schema, contract, prompt, or deterministic validator intended for separately qualified reuse.
@@ -35,16 +35,16 @@ payload_files:
   sha256: sha256:d99351788114194c2e6245c35583fc14bc8757a3f1c4298ca18590403613a32b
   capability_class: project_governance_instance
 - path: checks/README.md
-  sha256: sha256:6796bd4ec613375a8f20b46fa4f19880a113bf104e5c7012c74d63847329a8ea
+  sha256: sha256:99fe28aba32a41e902c9de95c83e9a2dae2dd82146c3fc1c68a75005d9231903
   capability_class: portable_core
 - path: checks/fixtures/negative-cases.json
-  sha256: sha256:ec53b9f6429c64139e277717652448b80996409c26bd2ae8cb115d4ba275272f
+  sha256: sha256:a4705d908139acfd53a7a6e19f85b980894dffcf963f9fffca6be97f23be6f5b
   capability_class: revision_evidence
 - path: checks/test_validate_doctrine_mesh.py
-  sha256: sha256:bbaebe5afe4d98b9cb00db473e3ed2d91f030ae96d24c6a35cede187c1d7d882
+  sha256: sha256:11d53d52992dd025b5429a9fced4453e668d6ecdc80297432342f60abde64d7d
   capability_class: revision_evidence
 - path: checks/validate_doctrine_mesh.py
-  sha256: sha256:9474e653857da7baab809236557595285d335460a05045edca426c43331bdcb2
+  sha256: sha256:2cb2350c2f3eb2db6c945891c19f987adf4fc1c351638fa33ad54d3c31144e60
   capability_class: portable_core
 - path: constitution.yaml
   sha256: sha256:deb949de6aa7cfdbeb07025deeefe4f786fb996f9a65f81d2b116964d5bd01af
@@ -283,5 +283,5 @@ payload_files:
 - path: source-lock.yaml
   sha256: sha256:a5af5dc7003b27ff656e5f870a9cc0d5aca820fcb1e0c859e9aabbbc50e08275
   capability_class: project_governance_instance
-payload_digest: sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946
-manifest_digest: sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1
+payload_digest: sha256:6fdc5507d69ed5e6cdeb0aa9b79ed6365aa6b38cce258a0649ee527ba5e15fa8
+manifest_digest: sha256:5187ad96a294c5b6aa3dcfad7af67635ceceac562068abc6314a896dbcde2f9e

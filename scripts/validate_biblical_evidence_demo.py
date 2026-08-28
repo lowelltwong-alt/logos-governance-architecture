@@ -34,6 +34,10 @@ IMAGE_REL = PACKAGE_REL / "assets/p66-cologne-john19-verso.jpg"
 EXPECTED_IMAGE_SHA256 = "f7453af8d2523cc358148c7d26072d87b53c991aa03df667f8c5c54c7beef040"
 EXPECTED_IMAGE_BYTES = 1083773
 EXPECTED_IMAGE_DIMENSIONS = (1802, 1921)
+EXPECTED_FROZEN_ALGORITHM = (
+    "sha256_canonical_utf8_lf_or_raw_binary_plus_sha256_canonical_file_rows.v1"
+)
+EXPECTED_FROZEN_PATH_ORDER = "ordinal_forward_slash_repository_relative"
 EXPECTED_SEGMENTS = {
     "p66-john19-08-11": ("John.19.8-John.19.11", [f"John.19.{n}" for n in range(8, 12)], "M7_sol-John-057"),
     "p66-john19-13-15": ("John.19.13-John.19.15", [f"John.19.{n}" for n in range(13, 16)], "M7_sol-John-057"),
@@ -49,6 +53,7 @@ EXPECTED_CASES = {
 }
 EXPECTED_FIXTURE_RULES = {
     "p66_non_contiguous_coverage",
+    "p66_asset_side_scope",
     "p66_asset_identity",
     "p66_rights_attribution",
     "p66_layer_rights_separation",
@@ -63,6 +68,7 @@ EXPECTED_FIXTURE_RULES = {
     "graph_claim_identity",
     "graph_invariant_consistency",
     "completeness_input_drift",
+    "receipt_self_reference",
     "extension_authority_noninterference",
     "crosswalk_provenance_integrity",
     "mesh_governance_contract",
@@ -90,6 +96,7 @@ METADATA_KEYS = {
 EXPECTED_ROLE_MODES = {
     "mesh-coordinator-single-writer": "write_bounded",
     "role-completeness-auditor": "read_only",
+    "completeness-audit-checker": "read_only",
     "archaeology-history-researcher": "read_only",
     "manuscript-transmission-researcher": "read_only",
     "source-rights-reviewer": "read_only",
@@ -103,6 +110,7 @@ EXPECTED_ROLE_MODES = {
 EXPECTED_ROLE_CLASSES = {
     "mesh-coordinator-single-writer": "orchestrator_writer",
     "role-completeness-auditor": "deterministic_mesh_auditor",
+    "completeness-audit-checker": "independent_meta_checker",
     "archaeology-history-researcher": "neutral_domain_researcher",
     "manuscript-transmission-researcher": "neutral_domain_researcher",
     "source-rights-reviewer": "independent_rights_checker",
@@ -113,9 +121,11 @@ EXPECTED_ROLE_CLASSES = {
     "privacy-provenance-release-checker": "independent_release_checker",
     "human-decision-steward": "human_gate_router",
 }
-EXPECTED_ROLE_CONTRACT_DIGEST = "sha256:4e31fb99b07464d39b9433c9e97e10a81b5f97e35582c1e8650d8fb0e87724bc"
+EXPECTED_ROLE_CONTRACT_DIGEST = "sha256:33dba824158b5ca974e9dbc8cb7bcaf20605ca28880ba86cca8dc1e5882f1c88"
 EXPECTED_RELATION_ENDPOINTS = {
     "identifies": ({"source_record"}, {"physical_artifact", "archaeological_context", "text_or_translation_witness"}),
+    "publishes_representation": ({"source_record"}, {"digital_asset"}),
+    "has_digital_representation": ({"physical_artifact"}, {"digital_asset"}),
     "depicts": ({"physical_artifact"}, {"historical_claim"}),
     "attests_bounded_claim": ({"source_record", "physical_artifact", "archaeological_context"}, {"historical_claim"}),
     "supports": ({"source_record", "physical_artifact", "archaeological_context", "counterposition"}, {"historical_claim"}),
@@ -124,8 +134,8 @@ EXPECTED_RELATION_ENDPOINTS = {
     "has_coverage_segment": ({"physical_artifact"}, {"witness_coverage_segment"}),
     "verse_identity_intersects": ({"witness_coverage_segment"}, {"scripture_anchor", "candidate_chunk"}),
     "displayed_through": ({"scripture_anchor"}, {"text_or_translation_witness"}),
-    "governed_by_rights": ({"physical_artifact", "text_or_translation_witness"}, {"rights_record"}),
-    "requires_review": ({"historical_claim", "physical_artifact", "candidate_chunk", "doctrine_or_tradition_object"}, {"review_gate"}),
+    "governed_by_rights": ({"digital_asset", "physical_artifact", "text_or_translation_witness"}, {"rights_record"}),
+    "requires_review": ({"historical_claim", "digital_asset", "physical_artifact", "candidate_chunk", "doctrine_or_tradition_object"}, {"review_gate"}),
     "derived_projection_of": ({"external_domain_extension"}, {"source_record", "historical_claim"}),
 }
 EXPECTED_GRAPH_STATES = {
@@ -136,28 +146,28 @@ EXPECTED_GRAPH_STATES = {
 }
 EXPECTED_COMPLETENESS_OUTPUT_FIELDS = {
     "phase",
-    "input_digests",
+    "phase_evidence",
     "assigned_roles",
     "missing_roles",
     "rejected_unnecessary_roles",
     "late_discoveries",
     "risk_routing",
-    "result",
-    "reviewer_independence",
-    "reviewer_role",
-    "observed_at",
     "changed_input_replay",
-    "reviewer_attempt_id",
-    "reviewer_evidence_digest",
+    "auditor",
+    "auditor_receipt_digest",
+    "checker",
+    "checker_receipt_digest",
+    "phase_pair_digest",
+    "result",
 }
 TRUST_ZONES = {"canonical", "tradition-scoped", "proposed", "inferred", "deprecated", "learning-sidecar"}
 EXPECTED_DOCUMENT_ENVELOPES = {
     "p66_source": {
-        "schema_version": "logos.biblical-evidence.p66-source-pack.v1",
+        "schema_version": "logos.biblical-evidence.p66-source-pack.v2",
         "object_type": "manuscript_image_source_and_rights_record",
         "trust_zone": "proposed",
         "lifecycle_status": "draft",
-        "record_id": "urn:logos:source:p66-cologne-tm61627-verso",
+        "record_id": "urn:logos:source:p66-cologne-tm61627-object",
     },
     "archaeology_source_pack": {
         "schema_version": "logos.biblical-evidence.archaeology-source-pack.v1",
@@ -168,21 +178,21 @@ EXPECTED_DOCUMENT_ENVELOPES = {
         "authority_ceiling": "contextual_evidence_only_no_scripture_or_doctrine_promotion",
     },
     "p66_crosswalk": {
-        "schema_version": "logos.biblical-evidence.p66-chunk-crosswalk.v1",
+        "schema_version": "logos.biblical-evidence.p66-chunk-crosswalk.v2",
         "object_type": "manuscript_translation_chunk_crosswalk",
         "trust_zone": "proposed",
         "lifecycle_status": "draft",
         "crosswalk_id": "urn:logos:crosswalk:p66-cologne-john19-to-candidate-chunks",
     },
     "node_edge_catalog": {
-        "schema_version": "logos.biblical-evidence.node-edge-catalog.v1",
+        "schema_version": "logos.biblical-evidence.node-edge-catalog.v2",
         "object_type": "extensible_graph_vocabulary",
         "trust_zone": "proposed",
         "lifecycle_status": "draft",
         "catalog_id": "urn:logos:vocabulary:biblical-evidence-demo-v1",
     },
     "evidence_graph": {
-        "schema_version": "logos.biblical-evidence.graph.v1",
+        "schema_version": "logos.biblical-evidence.graph.v2",
         "object_type": "static_claim_mediated_evidence_graph",
         "trust_zone": "proposed",
         "lifecycle_status": "draft",
@@ -204,11 +214,11 @@ EXPECTED_DOCUMENT_ENVELOPES = {
         "runtime_status": "specification_only_not_activated",
     },
     "completeness_contract": {
-        "schema_version": "logos.biblical-evidence.mesh-completeness-audit.v1",
+        "schema_version": "logos.biblical-evidence.mesh-completeness-audit.v2",
         "object_type": "deterministic_role_completeness_audit_contract",
         "trust_zone": "proposed",
         "lifecycle_status": "draft",
-        "audit_id": "urn:logos:audit-contract:biblical-evidence-role-completeness-v1",
+        "audit_id": "urn:logos:audit-contract:biblical-evidence-role-completeness-v2",
     },
     "expert_source_contract": {
         "schema_version": "logos.biblical-evidence.expert-source-pack.v1",
@@ -217,7 +227,7 @@ EXPECTED_DOCUMENT_ENVELOPES = {
         "lifecycle_status": "draft",
     },
     "adversarial_fixtures": {
-        "schema_version": "logos.biblical-evidence.adversarial-fixtures.v1",
+        "schema_version": "logos.biblical-evidence.adversarial-fixtures.v5",
         "object_type": "deterministic_negative_fixture_catalog",
         "trust_zone": "proposed",
         "lifecycle_status": "draft",
@@ -253,11 +263,11 @@ EXPECTED_DOCUMENT_ENVELOPES = {
         "release_status": "validated_static_demonstration",
     },
     "completeness_receipt": {
-        "schema_version": "logos.biblical-evidence.mesh-completeness-receipt.v1",
+        "schema_version": "logos.biblical-evidence.mesh-completeness-receipt.v2",
         "object_type": "deterministic_role_completeness_audit_receipt",
         "trust_zone": "proposed",
         "lifecycle_status": "draft",
-        "audit_id": "urn:logos:audit-receipt:biblical-evidence-role-completeness-v1",
+        "audit_id": "urn:logos:audit-receipt:biblical-evidence-role-completeness-v2",
         "mutation_performed": False,
         "authority_granted": False,
         "status": "pass",
@@ -274,21 +284,21 @@ EXPECTED_DOCUMENT_ENVELOPES = {
 }
 GOVERNED_ROOT_KEYS = METADATA_KEYS | {"schema_version"}
 EXPECTED_DOCUMENT_ROOT_KEYS = {
-    "p66_source": GOVERNED_ROOT_KEYS | {"record_id", "object", "asset", "coverage_is_non_contiguous", "coverage_segments", "forbidden_continuous_range", "rights", "layers", "authority", "review"},
+    "p66_source": GOVERNED_ROOT_KEYS | {"record_id", "object", "asset", "object_catalog_coverage_scope", "object_catalog_coverage_is_non_contiguous", "object_catalog_coverage_segments", "forbidden_object_catalog_continuous_range", "asset_side_coverage", "rights", "layers", "authority", "review"},
     "archaeology_source_pack": GOVERNED_ROOT_KEYS | {"pack_id", "authority_ceiling", "retrieved_on", "source_role_order", "source_catalog", "claim_records", "pack_invariants"},
     "p66_crosswalk": GOVERNED_ROOT_KEYS | {"crosswalk_id", "source_layers", "segments", "invariants"},
     "node_edge_catalog": GOVERNED_ROOT_KEYS | {"catalog_id", "extension_policy", "node_kinds", "relation_kinds", "forbidden_relations", "validation_invariants", "cross_repository_rules", "future_domain_examples"},
     "evidence_graph": GOVERNED_ROOT_KEYS | {"graph_id", "named_graph", "nodes", "edges", "source_claim_edges", "invariants"},
     "query_stories": GOVERNED_ROOT_KEYS | {"runtime_status", "queries"},
     "agent_mesh": GOVERNED_ROOT_KEYS | {"mesh_id", "runtime_status", "portable_core", "tested_runtime_adapters", "model_policy", "execution_invariants", "roles", "conditional_specialist_factory", "mesh_sequence", "risk_routing"},
-    "completeness_contract": GOVERNED_ROOT_KEYS | {"audit_id", "phases", "deterministic_inputs", "questions", "outputs", "receipt_semantics", "rerun_triggers", "this_slice_entry_decision"},
+    "completeness_contract": GOVERNED_ROOT_KEYS | {"audit_id", "phases", "deterministic_inputs", "phase_profiles", "questions", "outputs", "actor_identity", "phase_chain", "receipt_semantics", "rerun_triggers", "this_slice_entry_requirements"},
     "expert_source_contract": GOVERNED_ROOT_KEYS | {"minimum_role_instruction", "source_fitness", "research_output", "independent_check"},
-    "adversarial_fixtures": GOVERNED_ROOT_KEYS | {"fixtures"},
+    "adversarial_fixtures": GOVERNED_ROOT_KEYS | {"path_binding_contract", "fixtures"},
     "acceptance_matrix": GOVERNED_ROOT_KEYS | {"checks"},
     "asset_attribution": GOVERNED_ROOT_KEYS | {"asset_id", "repository_path", "source_filename", "repository_filename", "sha256", "bytes", "dimensions", "credit", "object_label", "source_url", "official_image_url", "license_id", "license_url", "rights_scope", "excluded_rights", "modification_status", "institutional_endorsement", "remote_byte_verification"},
     "source_locator_check": GOVERNED_ROOT_KEYS | {"observed_at", "prior_full_replay_observed_at", "method", "mutation_performed", "summary", "checks", "corrections", "limitations"},
     "release_manifest": GOVERNED_ROOT_KEYS | {"release_id", "work_id", "candidate_base_commit", "release_status", "public_path", "content_status", "validated_structure_metrics", "asset_release", "source_payload_boundary", "authority", "required_release_gates", "frozen_evidence"},
-    "completeness_receipt": GOVERNED_ROOT_KEYS | {"audit_id", "mutation_performed", "authority_granted", "changed_input_invalidates_pass", "input_digests", "phase_receipts", "status"},
+    "completeness_receipt": GOVERNED_ROOT_KEYS | {"audit_id", "writer_actor_id", "mutation_performed", "authority_granted", "changed_input_invalidates_pass", "input_digests", "phase_receipts", "status"},
     "validation_receipt": GOVERNED_ROOT_KEYS | {
         "status",
         "mutation_performed",
@@ -300,6 +310,7 @@ EXPECTED_DOCUMENT_ROOT_KEYS = {
     },
 }
 RESERVED_NODE_PREFIX_TO_KIND = {
+    "asset:": "digital_asset",
     "artifact:": "physical_artifact",
     "chunk:": "candidate_chunk",
     "state:": "candidate_chunk",
@@ -322,25 +333,26 @@ EXTERNAL_PROMOTION_TOKENS = {
     "m7", "m8", "reviewed gold", "built and converged", "canonical",
     "promoted", "proves scripture", "theological authority", "approved",
 }
-EXPECTED_CATALOG_NODE_KINDS_DIGEST = "sha256:5c9098a043cecf11716170374a4faf31f8bfd93f62b10732337eb9b673ea4589"
-EXPECTED_CATALOG_RELATIONS_DIGEST = "sha256:c5cdbc380e31681f342b09e244fbed5f7f8da592dfe02c840741b5e835f115d9"
+EXPECTED_CATALOG_NODE_KINDS_DIGEST = "sha256:2cd2cdf07063a9187054e6cd621ce9ae1a12663deb4c4c7b9b7927c073c60860"
+EXPECTED_CATALOG_RELATIONS_DIGEST = "sha256:eb52638c184d9e1aab36a08ffe49d1d03e1189b4b77ca6b39a0a50fb2948e3b6"
 EXPECTED_CATALOG_EXTENSION_POLICY_DIGEST = "sha256:ac5987ad9dc258313b970ca9099f99551151d54ac8e08c059e580d6f8358358a"
 EXPECTED_CATALOG_CROSS_REPOSITORY_DIGEST = "sha256:ec141875714c09f7f0216fa04def089e4c7299b637ab15e205591ae514722938"
 EXPECTED_CATALOG_FUTURE_EXAMPLES_DIGEST = "sha256:fe57ec2305cdea9dfa028c67485b605822916e9dcd02735fe90395497e2ba7ab"
-EXPECTED_CROSSWALK_SOURCE_LAYERS_DIGEST = "sha256:0e0040de0a8ffabed89626852a1511d51546f20ade1f3764c4d773f6aa3ae2bf"
+EXPECTED_CROSSWALK_SOURCE_LAYERS_DIGEST = "sha256:95b03538f5d786c599fe67c234a48ffdefc072ce1ceed202d50704ce336b57b6"
 EXPECTED_CROSSWALK_SEGMENTS_DIGEST = "sha256:43bc3e632ebee744898ba6cd77924bf61b925043ea141f92dbfba11a10ff65db"
-EXPECTED_CROSSWALK_INVARIANTS_DIGEST = "sha256:2a17acacb55a4ee01295c42457d3210e4b6ed735bfc02734cc0b462c896d3f71"
-EXPECTED_GRAPH_CORE_NODES_DIGEST = "sha256:747e1a237a1b1db1eed816ae46ff5f22c6f1a331f98065ca31842d9ce945ff7a"
-EXPECTED_GRAPH_CORE_EDGES_DIGEST = "sha256:fefc1ff98ec2d9cb8f0387569d9d83e2a38f49a86eb739c8a09da0d2c8ed4083"
+EXPECTED_CROSSWALK_INVARIANTS_DIGEST = "sha256:b958b6b953a7668626b38e44987312c615019d93b0ffd2073a435437ab00ba63"
+EXPECTED_GRAPH_CORE_NODES_DIGEST = "sha256:9f91ad3db6f8f84f822bbd669024cf3e6b92f401176f1380f7e889e30f831571"
+EXPECTED_GRAPH_CORE_EDGES_DIGEST = "sha256:23189d77d025a5ec59567afb43ce1ede5d5390313e53bc066bd47a86a91fb6e7"
 EXPECTED_GRAPH_SOURCE_CLAIM_EDGES_DIGEST = "sha256:66ddcc8e1b148d1b92aa82ab25d1d0bf8dccad7ab5e7eebe6035d70ccef12d05"
 EXPECTED_GRAPH_NAMED_DIGEST = "sha256:3eefad51751fa71fd92b74e5943cadc876ab3a40affad7518a73277bdd0fbb66"
-EXPECTED_CORE_EDGE_IDS = {f"e{number:03d}" for number in range(1, 26)}
+EXPECTED_CORE_EDGE_IDS = {f"e{number:03d}" for number in range(1, 28)}
 EXPECTED_MESH_FACTORY_DIGEST = "sha256:9c195792397b0e57886f042ce1082d23063283863984b9db05f5e3ed5d108b86"
-EXPECTED_MESH_SEQUENCE_DIGEST = "sha256:6cfa5439de3777e17b0d05c2f5e4e841e6d94a05b4a7143870aca42249f66c0b"
+EXPECTED_MESH_SEQUENCE_DIGEST = "sha256:20d84cbc0e24a7619f988bc70a35a7315120cdd9130db8d197ca850a65ce96e6"
 EXPECTED_MESH_RISK_ROUTING_DIGEST = "sha256:cbc59c970bdcd0ac7f7ce2e0d14ecab324553286fb6e3618bd87831052161067"
-EXPECTED_MESH_EXECUTION_DIGEST = "sha256:b699eb82c4ff3cb92bccff75d0a29f5e1e3433918b380c5d09d268a6b3bb25bb"
+EXPECTED_MESH_EXECUTION_DIGEST = "sha256:bccf0854a09cb7fc03a6d32b3b0e54a3cd13d57bcd411e59045ceff82b973135"
 EXPECTED_MESH_MODEL_POLICY_DIGEST = "sha256:e4f08da086dbbd517b074fbd58bf3a65c4a6512b8b7e6d3bf193e9d76f7ff093"
-EXPECTED_COMPLETENESS_CONTRACT_DIGEST = "sha256:05b08a51d42f50c50a869512b862211622e5ca62fc079c391bce4cd1218df83f"
+EXPECTED_COMPLETENESS_CONTRACT_DIGEST = "sha256:34e77914cba6004a59fa2f80ebd54fbbaf31ebb1db0ab98d47ef2c0c8da69339"
+EXPECTED_FIXTURE_PATH_BINDING_DIGEST = "sha256:cde15836cebc6a942e7729fbdb8626990e2aecb57569b5a3e17520df25043420"
 EXPECTED_GRAPH_ROOT_KEYS = {
     "schema_version", "object_type", "trust_zone", "lifecycle_status", "provenance_note",
     "reason_for_inclusion", "graph_id", "named_graph", "nodes", "edges", "source_claim_edges", "invariants",
@@ -365,7 +377,7 @@ ALLOWED_UNKNOWN_EDGE_KEYS = {
 }
 EXPECTED_COMPLETENESS_RECEIPT_ROOT_KEYS = {
     "schema_version", "object_type", "trust_zone", "lifecycle_status", "provenance_note",
-    "reason_for_inclusion", "audit_id", "mutation_performed", "authority_granted",
+    "reason_for_inclusion", "audit_id", "writer_actor_id", "mutation_performed", "authority_granted",
     "changed_input_invalidates_pass", "input_digests", "phase_receipts", "status",
 }
 EXPECTED_COMPLETENESS_RISK_ROUTES = {
@@ -374,10 +386,56 @@ EXPECTED_COMPLETENESS_RISK_ROUTES = {
     "high": "named_human_authority",
     "critical": "fail_closed_no_publication_or_promotion",
 }
+EXPECTED_PHASE_PROFILE_INPUTS = {
+    "entry": (
+        "exact_scope_digest", "claim_class_set", "transformation_class_set", "source_role_set",
+        "rights_class_set", "graph_relation_set", "risk_register_digest", "assigned_role_manifest_digest",
+        "candidate_base_commit_digest", "execution_environment_fingerprint_digest",
+    ),
+    "midflight": (
+        "exact_scope_digest", "changed_input_delta_digest", "assigned_role_manifest_digest",
+        "validator_digest", "focused_test_digest", "adversarial_fixture_digest",
+    ),
+    "exit": (
+        "exact_scope_digest", "frozen_manifest_digest", "validation_receipt_digest",
+        "independent_review_evidence_digest", "unresolved_gate_register_digest", "final_candidate_digest",
+        "execution_environment_fingerprint_digest",
+    ),
+}
+EXPECTED_PHASE_PROFILE_REFS = {
+    "entry": (
+        "SCOPE.md", "mesh/agent-mesh.v3.json", "mesh/completeness-audit-contract.yaml",
+        "release/public-release-manifest.yaml",
+    ),
+    "midflight": (
+        "sources/p66-source-and-rights.yaml", "graph/evidence-graph.yaml", "graph/node-edge-catalog.yaml",
+        "graph/p66-chunk-crosswalk.yaml", "mesh/agent-mesh.v3.json", "checks/adversarial-fixtures.yaml",
+        "scripts/validate_biblical_evidence_demo.py", "tests/test_biblical_evidence_demo.py",
+    ),
+    "exit": (
+        "frozen-digests.json", "validation-receipt.json", "release/independent-academic-review.md",
+        "release/independent-rights-review.md", "release/independent-graph-mesh-review.md",
+        "release/public-release-manifest.yaml",
+    ),
+}
+EXPECTED_PHASE_EVIDENCE_FIELDS = {"profile_id", "input_digests", "evidence_refs", "prior_phase_pair_digest", "digest"}
+EXPECTED_AUDITOR_FIELDS = {
+    "role_id", "actor_id", "attempt_id", "independence", "result", "authority_effect",
+    "mutation_performed", "observed_at",
+}
+EXPECTED_CHECKER_FIELDS = {
+    "role_id", "actor_id", "attempt_id", "subject_audit_receipt_digest",
+    "replayed_phase_evidence_digest", "independence_basis", "findings", "result",
+    "authority_effect", "mutation_performed", "observed_at",
+}
+ACTOR_ID_PATTERN = re.compile(r"^urn:logos:actor:[a-z0-9][a-z0-9._:-]{2,127}$")
 EXPECTED_REJECTED_UNNECESSARY_ROLES = {"generic_apologist", "generic_theologian"}
 EXPECTED_LATE_DISCOVERY_IDS = {
     "academic-source-identity-failures",
+    "adversarial-fixture-path-binding-gap",
+    "completeness-self-attestation-gap",
     "graph-mesh-semantic-bypasses",
+    "p66-object-asset-scope-mismatch",
     "receipt-provenance-drift",
 }
 REVIEW_REPORTS = {
@@ -447,6 +505,30 @@ EXPECTED_LATE_DISCOVERIES = {
         "resolved_by_role_ids": ["archaeology-history-researcher", "citation-source-fitness-checker"],
         "risk_level": "medium",
         "evidence_paths": ["sources/archaeology-source-pack.yaml", "release/source-locator-check.json"],
+        "resolution_code": "existing_role_replay",
+    },
+    "adversarial-fixture-path-binding-gap": {
+        "failure_mode": "fixture_outcome_bound_without_exact_primary_and_reseal_path_scope",
+        "resolved_by_role_ids": ["graph-invariant-red-team", "completeness-audit-checker"],
+        "risk_level": "medium",
+        "evidence_paths": [
+            "checks/adversarial-fixtures.yaml",
+            "scripts/validate_biblical_evidence_demo.py",
+            "tests/test_biblical_evidence_demo.py",
+        ],
+        "resolution_code": "bounded_role_added",
+    },
+    "completeness-self-attestation-gap": {
+        "failure_mode": "role_completeness_auditor_certified_its_own_output_with_aliased_phase_evidence",
+        "resolved_by_role_ids": ["role-completeness-auditor", "completeness-audit-checker", "graph-invariant-red-team"],
+        "risk_level": "medium",
+        "evidence_paths": [
+            "mesh/agent-mesh.v3.json",
+            "mesh/completeness-audit-contract.yaml",
+            "scripts/validate_biblical_evidence_demo.py",
+            "tests/test_biblical_evidence_demo.py",
+        ],
+        "resolution_code": "bounded_role_added",
     },
     "graph-mesh-semantic-bypasses": {
         "failure_mode": "graph_identity_authority_or_completeness_semantic_bypass",
@@ -459,9 +541,23 @@ EXPECTED_LATE_DISCOVERIES = {
             "scripts/validate_biblical_evidence_demo.py",
             "tests/test_biblical_evidence_demo.py",
         ],
+        "resolution_code": "existing_role_replay",
+    },
+    "p66-object-asset-scope-mismatch": {
+        "failure_mode": "combined_recto_and_verso_catalog_coverage_attributed_to_single_verso_asset",
+        "resolved_by_role_ids": ["manuscript-transmission-researcher", "citation-source-fitness-checker", "graph-contract-engineer", "graph-invariant-red-team"],
+        "risk_level": "medium",
+        "evidence_paths": [
+            "sources/p66-source-and-rights.yaml",
+            "graph/p66-chunk-crosswalk.yaml",
+            "graph/node-edge-catalog.yaml",
+            "graph/evidence-graph.yaml",
+            "checks/adversarial-fixtures.yaml",
+        ],
+        "resolution_code": "existing_role_replay",
     },
     "receipt-provenance-drift": {
-        "failure_mode": "release_or_completeness_receipt_not_bound_to_current_candidate",
+        "failure_mode": "release_or_completeness_receipt_not_bound_to_current_candidate_or_self_referential_digest",
         "resolved_by_role_ids": ["role-completeness-auditor", "privacy-provenance-release-checker"],
         "risk_level": "medium",
         "evidence_paths": [
@@ -469,6 +565,7 @@ EXPECTED_LATE_DISCOVERIES = {
             "release/public-release-manifest.yaml",
             "scripts/validate_biblical_evidence_demo.py",
         ],
+        "resolution_code": "existing_role_replay",
     },
 }
 LOWER_TRUST_AUTHORITY_SOURCES = {"learning-sidecar", "inferred", "deprecated"}
@@ -651,7 +748,32 @@ DOCUMENT_FILES = {
 }
 
 
+def canonical_file_bytes(path: Path) -> bytes:
+    """Return checkout-stable bytes while preserving opaque binary exactly.
+
+    Git may materialize tracked UTF-8 text with LF or CRLF depending on the
+    checkout. Frozen evidence represents the same repository content on either
+    platform, so text newlines are normalized to LF. Non-UTF-8 files, including
+    the exact P66 JPEG, remain byte-for-byte unchanged.
+    """
+
+    payload = path.read_bytes()
+    try:
+        text = payload.decode("utf-8")
+    except UnicodeDecodeError:
+        return payload
+    return text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+
+
 def file_sha256(path: Path) -> str:
+    return hashlib.sha256(canonical_file_bytes(path)).hexdigest()
+
+
+def file_byte_count(path: Path) -> int:
+    return len(canonical_file_bytes(path))
+
+
+def raw_file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
@@ -677,13 +799,41 @@ def _load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def load_documents(root: Path = ROOT) -> dict[str, dict[str, Any]]:
-    package = root / PACKAGE_REL
+def _load_package_input_bytes(file_bytes: dict[str, bytes]) -> dict[str, dict[str, Any]]:
     documents: dict[str, dict[str, Any]] = {}
     for key, relative in DOCUMENT_FILES.items():
-        path = package / relative
-        documents[key] = _load_json(path) if path.suffix == ".json" else _load_yaml(path)
+        if relative not in file_bytes:
+            raise DemoInputError(f"package byte overlay is missing {relative}")
+        try:
+            text = file_bytes[relative].decode("utf-8")
+        except UnicodeDecodeError as exc:
+            raise DemoInputError(f"cannot decode package input {relative}: {exc}") from exc
+        value = _strict_json_load(text, relative) if Path(relative).suffix == ".json" else _strict_yaml_load(text, relative)
+        if not isinstance(value, dict):
+            raise DemoInputError(f"package input root must be an object: {relative}")
+        documents[key] = value
+    review_relative = "release/independent-graph-mesh-review.md"
+    if review_relative not in file_bytes:
+        raise DemoInputError(f"package byte overlay is missing {review_relative}")
+    try:
+        review_text = file_bytes[review_relative].decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise DemoInputError(f"cannot decode package input {review_relative}: {exc}") from exc
+    _parse_markdown_frontmatter_text(review_text, review_relative)
     return documents
+
+
+def load_documents(root: Path = ROOT) -> dict[str, dict[str, Any]]:
+    package = root / PACKAGE_REL
+    relatives = list(DOCUMENT_FILES.values()) + ["release/independent-graph-mesh-review.md"]
+    file_bytes: dict[str, bytes] = {}
+    for relative in relatives:
+        path = package / relative
+        try:
+            file_bytes[relative] = path.read_bytes()
+        except OSError as exc:
+            raise DemoInputError(f"cannot load package input {path}: {exc}") from exc
+    return _load_package_input_bytes(file_bytes)
 
 
 def _parse_markdown_frontmatter_text(text: str, source: str) -> dict[str, Any]:
@@ -758,20 +908,26 @@ def _evidence_reference_rows(root: Path, relative_paths: list[str]) -> list[dict
 def expected_late_discoveries(root: Path, phase: str) -> list[dict[str, Any]]:
     if phase == "entry":
         return []
-    status = "detected_and_routed" if phase == "midflight" else "closed_by_existing_roles"
-    publication_allowed = phase == "exit"
+    eligible_for_downstream_release_evaluation = phase == "exit"
     rows: list[dict[str, Any]] = []
     for discovery_id in sorted(EXPECTED_LATE_DISCOVERIES):
         spec = EXPECTED_LATE_DISCOVERIES[discovery_id]
+        status = (
+            "detected_and_routed"
+            if phase == "midflight"
+            else "closed_by_bounded_role"
+            if spec["resolution_code"] == "bounded_role_added"
+            else "closed_by_existing_roles"
+        )
         rows.append({
             "discovery_id": discovery_id,
             "failure_mode": spec["failure_mode"],
-            "resolution_code": "existing_role_replay",
+            "resolution_code": spec["resolution_code"],
             "resolved_by_role_ids": spec["resolved_by_role_ids"],
             "risk_level": spec["risk_level"],
             "evidence_refs": _evidence_reference_rows(root, spec["evidence_paths"]),
             "authority_effect": "none",
-            "publication_allowed": publication_allowed,
+            "eligible_for_downstream_release_evaluation": eligible_for_downstream_release_evaluation,
             "status": status,
         })
     return rows
@@ -845,7 +1001,7 @@ def _asset_findings(documents: dict[str, dict[str, Any]], root: Path, check_asse
         if not path.is_file():
             findings.append(_finding("p66_asset_identity", str(IMAGE_REL), "image is missing"))
         else:
-            if file_sha256(path) != EXPECTED_IMAGE_SHA256 or path.stat().st_size != EXPECTED_IMAGE_BYTES:
+            if raw_file_sha256(path) != EXPECTED_IMAGE_SHA256 or path.stat().st_size != EXPECTED_IMAGE_BYTES:
                 findings.append(_finding("p66_asset_identity", str(IMAGE_REL), "repository bytes do not match the verified official image"))
             try:
                 dimensions = jpeg_dimensions(path)
@@ -863,19 +1019,38 @@ def _p66_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
     crosswalk = documents["p66_crosswalk"]
     if set(crosswalk) != EXPECTED_CROSSWALK_ROOT_KEYS:
         findings.append(_finding("crosswalk_provenance_integrity", DOCUMENT_FILES["p66_crosswalk"], "crosswalk root fields drifted"))
-    if _canonical_digest(crosswalk.get("source_layers", {})) != EXPECTED_CROSSWALK_SOURCE_LAYERS_DIGEST:
-        findings.append(_finding("crosswalk_provenance_integrity", DOCUMENT_FILES["p66_crosswalk"], "P66, English, M7, or M8 source-layer identity drifted"))
+    source_layers_drifted = _canonical_digest(crosswalk.get("source_layers", {})) != EXPECTED_CROSSWALK_SOURCE_LAYERS_DIGEST
     if _canonical_digest(crosswalk.get("segments", [])) != EXPECTED_CROSSWALK_SEGMENTS_DIGEST:
         findings.append(_finding("crosswalk_provenance_integrity", DOCUMENT_FILES["p66_crosswalk"], "exact verse, English, or candidate crosswalk content drifted"))
     if _canonical_digest(crosswalk.get("invariants", {})) != EXPECTED_CROSSWALK_INVARIANTS_DIGEST:
         findings.append(_finding("crosswalk_provenance_integrity", DOCUMENT_FILES["p66_crosswalk"], "crosswalk invariants drifted or contradicted the source state"))
-    segments = source.get("coverage_segments", [])
+    segments = source.get("object_catalog_coverage_segments", [])
     observed = {row.get("segment_id"): row.get("passage") for row in segments if isinstance(row, dict)}
     expected = {key: value[0] for key, value in EXPECTED_SEGMENTS.items()}
-    if observed != expected or source.get("coverage_is_non_contiguous") is not True:
-        findings.append(_finding("p66_non_contiguous_coverage", DOCUMENT_FILES["p66_source"], "exact four non-contiguous ranges are required"))
-    if source.get("forbidden_continuous_range") != "John.19.8-John.19.24":
+    if (
+        observed != expected
+        or source.get("object_catalog_coverage_is_non_contiguous") is not True
+        or source.get("object_catalog_coverage_scope") != "combined_recto_and_verso_object_record"
+    ):
+        findings.append(_finding("p66_non_contiguous_coverage", DOCUMENT_FILES["p66_source"], "exact four non-contiguous combined-object catalog ranges are required"))
+    if source.get("forbidden_object_catalog_continuous_range") != "John.19.8-John.19.24":
         findings.append(_finding("p66_non_contiguous_coverage", DOCUMENT_FILES["p66_source"], "forbidden continuous range marker drifted"))
+    expected_asset_side_coverage = {
+        "asset_id": "urn:logos:asset:p66-cologne-john19-verso",
+        "side": "verso",
+        "status": "not_established_in_current_source_pack",
+        "claim_allowed": False,
+        "mapped_segments": [],
+        "required_before_mapping": [
+            "qualified_new_testament_papyrology_review",
+            "side_specific_diplomatic_transcription_or_published_side_mapping",
+            "exact_source_locator_and_provenance",
+            "independent_claim_fidelity_review",
+            "named_human_approval",
+        ],
+    }
+    if source.get("asset_side_coverage") != expected_asset_side_coverage:
+        findings.append(_finding("p66_asset_side_scope", DOCUMENT_FILES["p66_source"], "verso asset coverage must remain unresolved with zero mapped segments and all specialist gates"))
     rights = source.get("rights", {})
     required_rights = {
         "license_id": "CC-BY-4.0",
@@ -903,6 +1078,16 @@ def _p66_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
     if any(value is not False for value in authority.values()):
         findings.append(_finding("p66_layer_rights_separation", DOCUMENT_FILES["p66_source"], "all image and publication authority assertions must be false"))
 
+    graph = documents["evidence_graph"]
+    image_coverage_edges = [
+        edge for edge in graph.get("edges", [])
+        if isinstance(edge, dict)
+        and edge.get("from") == "asset:p66-verso"
+        and edge.get("relation") == "has_coverage_segment"
+    ]
+    if image_coverage_edges:
+        findings.append(_finding("p66_asset_side_scope", DOCUMENT_FILES["evidence_graph"], "the single-side verso asset must not inherit combined-object catalog coverage"))
+
     cross_segments = crosswalk.get("segments", [])
     cross_by_id = {row.get("segment_id"): row for row in cross_segments if isinstance(row, dict)}
     if set(cross_by_id) != set(EXPECTED_SEGMENTS):
@@ -917,6 +1102,20 @@ def _p66_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
         if row.get("m7_durable_candidate_refs") != ["M7_sol-John-009"] or row.get("m7_local_observation_refs") != [local_ref]:
             findings.append(_finding("m7_candidate_boundary", DOCUMENT_FILES["p66_crosswalk"], f"{segment_id} candidate mapping drifted"))
     layers = crosswalk.get("source_layers", {})
+    p66_layer = layers.get("p66", {})
+    expected_p66_layer_scope = {
+        "record_ref": "urn:logos:source:p66-cologne-tm61627-object",
+        "catalog_coverage_subject_ref": "artifact:p66-cologne-object",
+        "coverage_basis": "official_object_catalog_metadata",
+        "catalog_coverage_scope": "combined_recto_and_verso_object_record",
+        "asset_ref": "asset:p66-verso",
+        "asset_side": "verso",
+        "asset_side_coverage_status": "not_established_in_current_source_pack",
+        "asset_side_mapped_segments": [],
+        "crosswalk_scope": "object_catalog_to_verse_identity_only",
+    }
+    if p66_layer != expected_p66_layer_scope:
+        findings.append(_finding("p66_asset_side_scope", DOCUMENT_FILES["p66_crosswalk"], "crosswalk must bind object-level coverage while leaving verso-side segment mapping unresolved"))
     m7 = layers.get("m7_public_metadata", {}).get("durable_candidate", {})
     if m7.get("candidate_only") is not True or m7.get("non_authorizing") is not True or m7.get("lifecycle") != "hold_with_findings":
         findings.append(_finding("m7_candidate_boundary", DOCUMENT_FILES["p66_crosswalk"], "M7 public candidate must remain held, candidate-only, and non-authorizing"))
@@ -926,7 +1125,18 @@ def _p66_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
     m8 = layers.get("m8", {})
     if m8.get("john_status") != "pending_not_built" or m8.get("convergence_status") != "not_started" or m8.get("books_completed") != 22 or m8.get("current_book") != "Isa":
         findings.append(_finding("m8_pending_boundary", DOCUMENT_FILES["p66_crosswalk"], "M8 must remain 22/66, Isa current, John pending, convergence not started"))
+    if source_layers_drifted:
+        findings.append(_finding("crosswalk_provenance_integrity", DOCUMENT_FILES["p66_crosswalk"], "P66, English, M7, or M8 source-layer identity drifted"))
     invariants = crosswalk.get("invariants", {})
+    side_scope_invariants = (
+        invariants.get("object_catalog_coverage_segment_count") == 4
+        and invariants.get("object_catalog_coverage_is_non_contiguous") is True
+        and invariants.get("object_catalog_to_verse_identity_only") is True
+        and invariants.get("asset_side_specific_coverage_claimed") is False
+        and invariants.get("asset_side_mapped_segment_count") == 0
+    )
+    if not side_scope_invariants:
+        findings.append(_finding("p66_asset_side_scope", DOCUMENT_FILES["p66_crosswalk"], "crosswalk side-scope invariants drifted or assigned object coverage to the image"))
     if invariants.get("image_to_english_direct_edge_allowed") is not False or invariants.get("authority_effect") != "none":
         findings.append(_finding("p66_layer_rights_separation", DOCUMENT_FILES["p66_crosswalk"], "direct image-to-English authority must remain forbidden"))
     return findings
@@ -1034,6 +1244,9 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
         "reserved_namespace_kind_alignment_enforced",
         "external_node_payload_lossless_and_quarantined",
         "source_claim_identity_kind_and_global_uniqueness_enforced",
+        "physical_object_and_digital_asset_identity_separated",
+        "single_side_asset_cannot_inherit_object_catalog_coverage",
+        "digital_asset_forward_path_to_coverage_or_scripture_forbidden",
         "unknown_relation_identifiers_confusable_safe",
         "forbidden_and_registered_relation_sets_non_overlapping",
     }
@@ -1056,17 +1269,29 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
     node_ids = [row.get("id") for row in nodes if isinstance(row, dict)]
     node_by_id = {row.get("id"): row for row in nodes if isinstance(row, dict) and row.get("id")}
     node_kinds = {node_id: row.get("kind") for node_id, row in node_by_id.items()}
+    if node_kinds.get("artifact:p66-cologne-object") != "physical_artifact" or node_kinds.get("asset:p66-verso") != "digital_asset":
+        findings.append(_finding("p66_asset_side_scope", DOCUMENT_FILES["evidence_graph"], "P66 physical object and verso digital asset must remain distinct typed nodes"))
     if len(node_ids) != len(set(node_ids)) or any(not value for value in node_ids):
         findings.append(_finding("graph_identity", DOCUMENT_FILES["evidence_graph"], "node IDs must be non-empty and unique"))
     core_nodes = [row for row in nodes if isinstance(row, dict) and row.get("kind") != "external_domain_extension"]
-    if _canonical_digest(core_nodes) != EXPECTED_GRAPH_CORE_NODES_DIGEST:
-        findings.append(_finding("graph_invariant_consistency", DOCUMENT_FILES["evidence_graph"], "released core node identity, label, status, or field contract drifted"))
+    core_nodes_drifted = _canonical_digest(core_nodes) != EXPECTED_GRAPH_CORE_NODES_DIGEST
     observed_candidate_ids = {row.get("id") for row in nodes if isinstance(row, dict) and row.get("kind") == "candidate_chunk"}
-    if observed_candidate_ids != set(EXPECTED_GRAPH_STATES):
-        candidate_rows = [row for row in nodes if isinstance(row, dict) and row.get("kind") == "candidate_chunk"]
-        if any("m7" in str(row.get("id", "")).lower() + str(row.get("label", "")).lower() for row in candidate_rows):
+    expected_candidate_ids = set(EXPECTED_GRAPH_STATES)
+    if observed_candidate_ids != expected_candidate_ids:
+        unexpected_ids = observed_candidate_ids - expected_candidate_ids
+        missing_ids = expected_candidate_ids - observed_candidate_ids
+        unexpected_rows = [node_by_id[node_id] for node_id in unexpected_ids if node_id in node_by_id]
+        m7_delta = (
+            any(str(node_id).startswith("chunk:m7-") for node_id in unexpected_ids | missing_ids)
+            or any(row.get("status") == "reviewed_gold" for row in unexpected_rows)
+        )
+        m8_delta = (
+            any(str(node_id).startswith("state:m8-") for node_id in unexpected_ids | missing_ids)
+            or any(row.get("status") == "built_and_converged" for row in unexpected_rows)
+        )
+        if m7_delta:
             findings.append(_finding("m7_candidate_boundary", DOCUMENT_FILES["evidence_graph"], "candidate-chunk identity set differs from the exact M7 release set"))
-        if any("m8" in str(row.get("id", "")).lower() + str(row.get("label", "")).lower() for row in candidate_rows):
+        if m8_delta:
             findings.append(_finding("m8_pending_boundary", DOCUMENT_FILES["evidence_graph"], "candidate-chunk identity set differs from the exact M8 release set"))
     for node_id, node in node_by_id.items():
         if not _safe_identifier(node_id):
@@ -1074,6 +1299,17 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
         expected_kind = next((kind for prefix, kind in RESERVED_NODE_PREFIX_TO_KIND.items() if str(node_id).startswith(prefix)), None)
         if expected_kind is not None and node.get("kind") != expected_kind:
             findings.append(_finding("graph_identity", DOCUMENT_FILES["evidence_graph"], f"{node_id} uses a reserved namespace for {expected_kind!r}"))
+        if node.get("kind") not in registered_node_kinds:
+            findings.append(_finding("graph_shape", DOCUMENT_FILES["evidence_graph"], f"{node_id} uses unregistered node kind {node.get('kind')!r}"))
+        if node.get("trust_zone") not in TRUST_ZONES:
+            findings.append(_finding("trust_zone_authority_path", DOCUMENT_FILES["evidence_graph"], f"{node_id} uses an invalid trust zone"))
+        if node.get("kind") != "historical_claim" and "source_claim_id" in node:
+            findings.append(_finding("graph_claim_identity", DOCUMENT_FILES["evidence_graph"], f"{node_id} illegally carries source_claim_id outside a historical claim"))
+        if node.get("kind") == "scripture_anchor":
+            if node.get("trust_zone") != "canonical" or node.get("status") != "identity_pointer_only":
+                findings.append(_finding("trust_zone_authority_path", DOCUMENT_FILES["evidence_graph"], f"{node_id} Scripture identity boundary drifted"))
+        elif node.get("trust_zone") == "canonical":
+            findings.append(_finding("trust_zone_authority_path", DOCUMENT_FILES["evidence_graph"], f"{node_id} non-Scripture node entered the canonical trust zone"))
         if node.get("kind") == "external_domain_extension":
             normalized_semantics = _semantic_skeleton(
                 " ".join(str(node.get(field, "")) for field in ("id", "label", "status"))
@@ -1101,17 +1337,6 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
             unexpected_node_keys = set(node) - ALLOWED_GRAPH_NODE_KEYS
             if unexpected_node_keys:
                 findings.append(_finding("graph_authority_noninterference", DOCUMENT_FILES["evidence_graph"], f"{node_id} has unreviewed fields {sorted(unexpected_node_keys)}"))
-        if node.get("kind") not in registered_node_kinds:
-            findings.append(_finding("graph_shape", DOCUMENT_FILES["evidence_graph"], f"{node_id} uses unregistered node kind {node.get('kind')!r}"))
-        if node.get("trust_zone") not in TRUST_ZONES:
-            findings.append(_finding("trust_zone_authority_path", DOCUMENT_FILES["evidence_graph"], f"{node_id} uses an invalid trust zone"))
-        if node.get("kind") != "historical_claim" and "source_claim_id" in node:
-            findings.append(_finding("graph_claim_identity", DOCUMENT_FILES["evidence_graph"], f"{node_id} illegally carries source_claim_id outside a historical claim"))
-        if node.get("kind") == "scripture_anchor":
-            if node.get("trust_zone") != "canonical" or node.get("status") != "identity_pointer_only":
-                findings.append(_finding("trust_zone_authority_path", DOCUMENT_FILES["evidence_graph"], f"{node_id} Scripture identity boundary drifted"))
-        elif node.get("trust_zone") == "canonical":
-            findings.append(_finding("trust_zone_authority_path", DOCUMENT_FILES["evidence_graph"], f"{node_id} non-Scripture node entered the canonical trust zone"))
     edge_ids: list[Any] = []
     traversable_edges: list[tuple[str, str]] = []
     core_edges = [row for row in graph.get("edges", []) if isinstance(row, dict) and row.get("id") in EXPECTED_CORE_EDGE_IDS]
@@ -1162,8 +1387,6 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
             if not extension_ok:
                 findings.append(_finding("extension_authority_noninterference", DOCUMENT_FILES["evidence_graph"], f"{edge.get('id')} unknown relation is not a complete non-authorizing extension"))
         elif relation_spec is not None:
-            if edge.get("id") not in EXPECTED_CORE_EDGE_IDS:
-                findings.append(_finding("graph_invariant_consistency", DOCUMENT_FILES["evidence_graph"], f"{edge.get('id')} adds an unreviewed registered-relation edge"))
             from_kind = node_kinds.get(from_id)
             to_kind = node_kinds.get(to_id)
             if from_kind not in set(relation_spec.get("from_kinds", [])) or to_kind not in set(relation_spec.get("to_kinds", [])):
@@ -1172,6 +1395,8 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
                 findings.append(_finding("graph_authority_noninterference", DOCUMENT_FILES["node_edge_catalog"], f"catalog relation {relation!r} grants authority"))
             if endpoints_exist:
                 traversable_edges.append((from_id, to_id))
+            if edge.get("id") not in EXPECTED_CORE_EDGE_IDS:
+                findings.append(_finding("graph_invariant_consistency", DOCUMENT_FILES["evidence_graph"], f"{edge.get('id')} adds an unreviewed registered-relation edge"))
         if edge.get("authority_effect") != "none":
             findings.append(_finding("graph_authority_noninterference", DOCUMENT_FILES["evidence_graph"], f"{edge.get('id')} authority effect is not none"))
         from_kind = node_kinds.get(from_id)
@@ -1186,6 +1411,33 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
             findings.append(_finding("trust_zone_authority_path", DOCUMENT_FILES["evidence_graph"], f"{edge.get('id')} connects lower-trust material to canonical identity"))
     if len(edge_ids) != len(set(edge_ids)) or any(not value for value in edge_ids):
         findings.append(_finding("graph_identity", DOCUMENT_FILES["evidence_graph"], "edge IDs must be non-empty and unique"))
+    p66_expected_triples = {
+        ("src:p66-cologne", "identifies", "artifact:p66-cologne-object"),
+        ("src:p66-cologne", "publishes_representation", "asset:p66-verso"),
+        ("artifact:p66-cologne-object", "has_digital_representation", "asset:p66-verso"),
+        ("asset:p66-verso", "governed_by_rights", "rights:p66-cc-by-4"),
+        ("asset:p66-verso", "requires_review", "gate:papyrology"),
+    }
+    p66_expected_triples.update({
+        ("artifact:p66-cologne-object", "has_coverage_segment", segment_id)
+        for segment_id in {
+            "segment:p66-08-11",
+            "segment:p66-13-15",
+            "segment:p66-18-20",
+            "segment:p66-23-24",
+        }
+    })
+    p66_observed_triples = {
+        (edge.get("from"), edge.get("relation"), edge.get("to"))
+        for edge in graph.get("edges", [])
+        if isinstance(edge, dict)
+        and (
+            edge.get("from") in {"src:p66-cologne", "artifact:p66-cologne-object", "asset:p66-verso"}
+            or edge.get("to") in {"artifact:p66-cologne-object", "asset:p66-verso", "rights:p66-cc-by-4", "gate:papyrology"}
+        )
+    }
+    if p66_observed_triples != p66_expected_triples:
+        findings.append(_finding("p66_asset_side_scope", DOCUMENT_FILES["evidence_graph"], "P66 source, object, verso asset, rights, review, and object-coverage topology drifted"))
 
     adjacency: dict[str, list[str]] = {node_id: [] for node_id in node_by_id}
     for from_id, to_id in traversable_edges:
@@ -1213,6 +1465,11 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
             findings.append(_finding("claim_mediation", DOCUMENT_FILES["evidence_graph"], f"{node_id} reaches Scripture without a witness segment or historical claim"))
         if kind == "archaeological_context" and reaches(node_id, target_kind="scripture_anchor", mediator_kinds={"historical_claim"}):
             findings.append(_finding("claim_mediation", DOCUMENT_FILES["evidence_graph"], f"{node_id} reaches Scripture without a historical claim"))
+        if kind == "digital_asset" and (
+            reaches(node_id, target_kind="witness_coverage_segment")
+            or reaches(node_id, target_kind="scripture_anchor")
+        ):
+            findings.append(_finding("p66_asset_side_scope", DOCUMENT_FILES["evidence_graph"], f"{node_id} has a forbidden forward path to object coverage or Scripture"))
         if kind in {"physical_artifact", "archaeological_context", "historical_claim"} and reaches(node_id, target_kind="doctrine_or_tradition_object"):
             findings.append(_finding("graph_authority_noninterference", DOCUMENT_FILES["evidence_graph"], f"{node_id} reaches doctrine or tradition material"))
         if node.get("trust_zone") in LOWER_TRUST_AUTHORITY_SOURCES and reaches(node_id, target_kind="scripture_anchor"):
@@ -1269,12 +1526,18 @@ def _graph_findings(documents: dict[str, dict[str, Any]]) -> list[Finding]:
         rule = "m8_pending_boundary" if node_id == "state:m8-john" else "m7_candidate_boundary"
         if node.get("label") != label or node.get("trust_zone") != trust_zone or node.get("status") != status:
             findings.append(_finding(rule, DOCUMENT_FILES["evidence_graph"], f"{node_id} state drifted"))
+    if core_nodes_drifted:
+        findings.append(_finding("graph_invariant_consistency", DOCUMENT_FILES["evidence_graph"], "released core node identity, label, status, or field contract drifted"))
     required_graph_invariants = {
         "every_edge_endpoint_exists",
         "every_edge_authority_effect_is_none",
         "artifacts_reach_scripture_only_through_claim_or_segment_identity",
         "archaeology_reaches_scripture_only_through_historical_claim",
         "no_path_promotes_to_doctrine",
+        "object_catalog_coverage_attaches_only_to_physical_object",
+        "digital_asset_side_coverage_unresolved",
+        "single_side_asset_does_not_inherit_object_coverage",
+        "digital_asset_has_no_forward_path_to_coverage_or_scripture",
         "m7_candidate_state_preserved",
         "m8_john_pending",
         "convergence_not_started",
@@ -1295,12 +1558,63 @@ def _canonical_digest(value: Any) -> str:
     return "sha256:" + hashlib.sha256(encoded).hexdigest()
 
 
+def phase_evidence_digest(phase_evidence: dict[str, Any]) -> str:
+    return _canonical_digest({
+        field: phase_evidence.get(field)
+        for field in ("profile_id", "input_digests", "evidence_refs", "prior_phase_pair_digest")
+    })
+
+
+def auditor_receipt_digest(phase: dict[str, Any]) -> str:
+    phase_evidence = phase.get("phase_evidence")
+    phase_evidence = phase_evidence if isinstance(phase_evidence, dict) else {}
+    return _canonical_digest({
+        "phase": phase.get("phase"),
+        "phase_evidence_digest": phase_evidence.get("digest"),
+        "assigned_roles": phase.get("assigned_roles"),
+        "missing_roles": phase.get("missing_roles"),
+        "rejected_unnecessary_roles": phase.get("rejected_unnecessary_roles"),
+        "late_discoveries": phase.get("late_discoveries"),
+        "risk_routing": phase.get("risk_routing"),
+        "changed_input_replay": phase.get("changed_input_replay"),
+        "auditor": phase.get("auditor"),
+    })
+
+
+def checker_receipt_digest(phase: dict[str, Any]) -> str:
+    return _canonical_digest({"phase": phase.get("phase"), "checker": phase.get("checker")})
+
+
+def phase_pair_digest(phase: dict[str, Any]) -> str:
+    return _canonical_digest({
+        "phase": phase.get("phase"),
+        "auditor_receipt_digest": phase.get("auditor_receipt_digest"),
+        "checker_receipt_digest": phase.get("checker_receipt_digest"),
+    })
+
+
+def expected_phase_evidence(
+    root: Path,
+    phase: str,
+    input_digests: dict[str, str],
+    prior_phase_pair_digest: str | None,
+) -> dict[str, Any]:
+    evidence = {
+        "profile_id": f"completeness-{phase}-v1",
+        "input_digests": {name: input_digests[name] for name in EXPECTED_PHASE_PROFILE_INPUTS[phase]},
+        "evidence_refs": _evidence_reference_rows(root, list(EXPECTED_PHASE_PROFILE_REFS[phase])),
+        "prior_phase_pair_digest": prior_phase_pair_digest,
+    }
+    evidence["digest"] = phase_evidence_digest(evidence)
+    return evidence
+
+
 def completeness_input_digests(documents: dict[str, dict[str, Any]], root: Path = ROOT) -> dict[str, str]:
     scope_records = [
         {
             "path": relative,
             "sha256": file_sha256(root / Path(relative)),
-            "bytes": (root / Path(relative)).stat().st_size,
+            "bytes": file_byte_count(root / Path(relative)),
         }
         for relative in expected_frozen_paths(root)
     ]
@@ -1344,6 +1658,17 @@ def completeness_input_digests(documents: dict[str, dict[str, Any]], root: Path 
         "tested_runtime_adapters": documents["agent_mesh"].get("tested_runtime_adapters"),
         "model_policy": documents["agent_mesh"].get("model_policy"),
     }
+    candidate_document_digests = {
+        key: _canonical_digest(documents[key])
+        for key in sorted(set(DOCUMENT_FILES) - {"completeness_receipt", "validation_receipt", "source_locator_check"})
+    }
+    validation_receipt = documents["validation_receipt"]
+    unresolved_gate_register = {
+        "current_known_blockers": validation_receipt.get("current_known_blockers"),
+        "required_release_gates": documents["release_manifest"].get("required_release_gates"),
+        "authority": documents["release_manifest"].get("authority"),
+    }
+    frozen_manifest = _load_json(root / PACKAGE_REL / "frozen-digests.json")
     return {
         "exact_scope_digest": _canonical_digest(scope_records),
         "claim_class_set": _canonical_digest(cases),
@@ -1360,6 +1685,13 @@ def completeness_input_digests(documents: dict[str, dict[str, Any]], root: Path 
         "adversarial_fixture_digest": "sha256:" + file_sha256(root / PACKAGE_REL / DOCUMENT_FILES["adversarial_fixtures"]),
         "independent_review_evidence_digest": _canonical_digest(review_rows),
         "execution_environment_fingerprint_digest": _canonical_digest(execution_fingerprint),
+        "changed_input_delta_digest": _canonical_digest(candidate_document_digests),
+        "validation_receipt_digest": _canonical_digest(validation_receipt),
+        "unresolved_gate_register_digest": _canonical_digest(unresolved_gate_register),
+        "final_candidate_digest": _canonical_digest({
+            "candidate_document_digests": candidate_document_digests,
+            "frozen_aggregate_sha256": frozen_manifest.get("aggregate_sha256"),
+        }),
     }
 
 
@@ -1369,8 +1701,7 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
     if set(mesh) != EXPECTED_MESH_ROOT_KEYS:
         findings.append(_finding("mesh_governance_contract", DOCUMENT_FILES["agent_mesh"], "mesh root fields drifted or acquired hidden authority"))
     invariants = mesh.get("execution_invariants", {})
-    if _canonical_digest(invariants) != EXPECTED_MESH_EXECUTION_DIGEST:
-        findings.append(_finding("mesh_governance_contract", DOCUMENT_FILES["agent_mesh"], "execution invariants drifted or acquired hidden permissions"))
+    execution_invariants_drifted = _canonical_digest(invariants) != EXPECTED_MESH_EXECUTION_DIGEST
     required_true = (
         "single_writer",
         "researchers_are_read_only",
@@ -1378,12 +1709,19 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
         "writer_cannot_approve_own_output",
         "researcher_cannot_certify_own_citations",
         "rights_reviewer_is_distinct_from_asset_researcher",
+        "completeness_auditor_checked_by_distinct_meta_checker",
+        "completeness_auditor_and_checker_actor_ids_must_differ",
+        "completeness_auditor_and_checker_must_differ_from_writer_actor",
+        "completeness_checker_cannot_override_auditor_failure",
+        "completeness_checker_authority_effect_is_none",
         "high_risk_disagreement_routes_to_human",
         "no_agent_can_promote_scripture_or_doctrine",
         "no_runtime_or_source_ingestion_authority",
     )
     if any(invariants.get(field) is not True for field in required_true):
         findings.append(_finding("mesh_independence", DOCUMENT_FILES["agent_mesh"], "one or more required separation-of-duty invariants are false"))
+    if execution_invariants_drifted:
+        findings.append(_finding("mesh_governance_contract", DOCUMENT_FILES["agent_mesh"], "execution invariants drifted or acquired hidden permissions"))
     if invariants.get("maximum_delegation_depth") != 1 or invariants.get("maximum_parallel_roles", 99) > 4:
         findings.append(_finding("mesh_boundedness", DOCUMENT_FILES["agent_mesh"], "delegation depth or fan-out exceeds contract"))
     roles = mesh.get("roles", [])
@@ -1392,8 +1730,7 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
     required_roles = set(EXPECTED_ROLE_MODES)
     if role_ids != required_roles or len(role_id_list) != len(role_ids):
         findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["agent_mesh"], f"role set differs: missing={sorted(required_roles-role_ids)}, extra={sorted(role_ids-required_roles)}"))
-    if _canonical_digest(roles) != EXPECTED_ROLE_CONTRACT_DIGEST:
-        findings.append(_finding("mesh_role_instruction_depth", DOCUMENT_FILES["agent_mesh"], "exact reviewed role contracts drifted"))
+    role_contract_drifted = _canonical_digest(roles) != EXPECTED_ROLE_CONTRACT_DIGEST
     for role in roles:
         if len(role.get("knowledge_base_contract", [])) < 4 or len(role.get("may_not", [])) < 3 or len(role.get("purpose", "")) < 60:
             findings.append(_finding("mesh_role_instruction_depth", DOCUMENT_FILES["agent_mesh"], f"{role.get('role_id')} is a thin role instruction"))
@@ -1415,6 +1752,8 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
                 findings.append(_finding("mesh_role_permissions", DOCUMENT_FILES["agent_mesh"], f"{role.get('role_id')} acquired authority-bearing fields {sorted(authority_keys)}"))
         if role.get("class") == "neutral_domain_researcher" and not any(str(item).startswith("self_") for item in role.get("may_not", [])):
             findings.append(_finding("mesh_role_permissions", DOCUMENT_FILES["agent_mesh"], f"{role.get('role_id')} can self-certify"))
+    if role_contract_drifted:
+        findings.append(_finding("mesh_role_instruction_depth", DOCUMENT_FILES["agent_mesh"], "exact reviewed role contracts drifted"))
     rights_role = next((row for row in roles if row.get("role_id") == "source-rights-reviewer"), {})
     required_rights_restrictions = {
         "review_own_asset_research",
@@ -1424,6 +1763,16 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
     required_rights_knowledge = {"license legal code", "holding-institution rights statement", "content hashes", "public-release boundary"}
     if not required_rights_restrictions <= set(rights_role.get("may_not", [])) or not required_rights_knowledge <= set(rights_role.get("knowledge_base_contract", [])):
         findings.append(_finding("mesh_role_permissions", DOCUMENT_FILES["agent_mesh"], "source-rights-reviewer restrictions or knowledge contract drifted"))
+    completeness_checker = next((row for row in roles if row.get("role_id") == "completeness-audit-checker"), {})
+    required_checker_restrictions = {
+        "author_primary_completeness_audit",
+        "change_required_role_set",
+        "repair_audit_or_candidate",
+        "waive_or_override_failed_audit",
+        "grant_publication_or_theological_authority",
+    }
+    if not required_checker_restrictions <= set(completeness_checker.get("may_not", [])):
+        findings.append(_finding("mesh_role_permissions", DOCUMENT_FILES["agent_mesh"], "completeness-audit-checker can author, repair, override, or authorize its subject"))
     if mesh.get("runtime_status") != "specification_only_not_activated" or mesh.get("portable_core") is not True or mesh.get("tested_runtime_adapters") != []:
         findings.append(_finding("mesh_boundedness", DOCUMENT_FILES["agent_mesh"], "mesh runtime or portability evidence boundary drifted"))
     model_policy = mesh.get("model_policy", {})
@@ -1462,10 +1811,40 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
         findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "entry/midflight/exit fail-closed contract drifted"))
     if set(completeness.get("outputs", {}).get("required_fields", [])) != EXPECTED_COMPLETENESS_OUTPUT_FIELDS:
         findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "completeness output field contract drifted"))
-    if completeness.get("this_slice_entry_decision", {}).get("result") != "pass":
-        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "entry completeness decision is not pass"))
-    if set(completeness.get("this_slice_entry_decision", {}).get("required_roles", [])) != required_roles:
-        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "entry decision role set differs from the mesh"))
+    entry_requirements = completeness.get("this_slice_entry_requirements", {})
+    if entry_requirements.get("status") != "pending_receipt" or "result" in entry_requirements:
+        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "entry requirements embed a result instead of remaining pending until receipt replay"))
+    if set(entry_requirements.get("required_roles", [])) != required_roles:
+        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "entry requirement role set differs from the mesh"))
+    expected_profiles = {
+        phase: {
+            "bound_input_names": list(EXPECTED_PHASE_PROFILE_INPUTS[phase]),
+            "required_evidence_refs": list(EXPECTED_PHASE_PROFILE_REFS[phase]),
+            "prior_phase_pair_digest": "forbidden" if phase == "entry" else "required",
+        }
+        for phase in ("entry", "midflight", "exit")
+    }
+    if completeness.get("phase_profiles") != expected_profiles:
+        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "differentiated phase evidence profiles drifted"))
+    actor_identity = completeness.get("actor_identity", {})
+    if (
+        actor_identity.get("receipt_root_field") != "writer_actor_id"
+        or actor_identity.get("phase_actor_fields") != ["auditor_actor_id", "checker_actor_id"]
+        or set(actor_identity.get("semantic_rules", [])) != {
+            "auditor_actor_id_differs_from_checker_actor_id",
+            "auditor_actor_id_differs_from_writer_actor_id",
+            "checker_actor_id_differs_from_writer_actor_id",
+        }
+    ):
+        findings.append(_finding("mesh_independence", DOCUMENT_FILES["completeness_contract"], "actor-identity separation contract drifted"))
+    phase_chain = completeness.get("phase_chain", {})
+    if (
+        phase_chain.get("next_phase_must_bind_prior_phase_pair_digest") is not True
+        or phase_chain.get("checker_subject_digest") != "auditor_receipt_digest"
+        or phase_chain.get("checker_replayed_evidence_digest") != "phase_evidence_digest"
+        or phase_chain.get("stale_v1_receipt_status") != "fail_closed_superseded_by_fresh_v2_replay"
+    ):
+        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "actor-bound phase-chain contract drifted"))
     required_inputs = {
         "exact_scope_digest",
         "claim_class_set",
@@ -1482,6 +1861,10 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
         "adversarial_fixture_digest",
         "independent_review_evidence_digest",
         "execution_environment_fingerprint_digest",
+        "changed_input_delta_digest",
+        "validation_receipt_digest",
+        "unresolved_gate_register_digest",
+        "final_candidate_digest",
     }
     if set(completeness.get("deterministic_inputs", [])) != required_inputs:
         findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_contract"], "deterministic input set drifted"))
@@ -1502,18 +1885,51 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
         findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], "receipt root contract or pass status drifted"))
     if receipt.get("input_digests") != expected_digests or receipt.get("changed_input_invalidates_pass") is not True:
         findings.append(_finding("completeness_input_drift", DOCUMENT_FILES["completeness_receipt"], "receipt inputs do not match the current deterministic candidate"))
+    writer_actor_id = receipt.get("writer_actor_id")
+    if not isinstance(writer_actor_id, str) or ACTOR_ID_PATTERN.fullmatch(writer_actor_id) is None:
+        findings.append(_finding("mesh_independence", DOCUMENT_FILES["completeness_receipt"], "writer actor identity is absent or malformed"))
     phase_receipts = receipt.get("phase_receipts", [])
     phase_names = [row.get("phase") for row in phase_receipts if isinstance(row, dict)]
     if phase_names != ["entry", "midflight", "exit"]:
         findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], "entry/midflight/exit receipts are missing or out of order"))
     observed_times: list[datetime] = []
-    attempt_ids: list[str] = []
+    checker_attempt_ids: list[str] = []
+    auditor_attempt_ids: list[str] = []
+    phase_evidence_digests: list[str] = []
+    prior_phase_pair_digest: str | None = None
     for expected_phase, phase in zip(("entry", "midflight", "exit"), phase_receipts):
         if not isinstance(phase, dict):
             findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{expected_phase} receipt is not an object"))
             continue
         if set(phase) != EXPECTED_COMPLETENESS_OUTPUT_FIELDS:
             findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} receipt fields differ from the exact contract"))
+        phase_evidence = phase.get("phase_evidence")
+        phase_evidence_refs = phase_evidence.get("evidence_refs", []) if isinstance(phase_evidence, dict) else []
+        late_for_self_reference = phase.get("late_discoveries")
+        late_evidence_refs = [
+            ref
+            for discovery in late_for_self_reference
+            if isinstance(discovery, dict)
+            for ref in discovery.get("evidence_refs", [])
+            if isinstance(ref, dict)
+        ] if isinstance(late_for_self_reference, list) else []
+        if any(
+            isinstance(ref, dict) and ref.get("path") == DOCUMENT_FILES["completeness_receipt"]
+            for ref in list(phase_evidence_refs) + late_evidence_refs
+        ):
+            findings.append(_finding("receipt_self_reference", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} receipt attempts to bind its own mutable bytes"))
+        expected_evidence = expected_phase_evidence(root, expected_phase, expected_digests, prior_phase_pair_digest)
+        evidence_valid = (
+            isinstance(phase_evidence, dict)
+            and set(phase_evidence) == EXPECTED_PHASE_EVIDENCE_FIELDS
+            and phase_evidence == expected_evidence
+            and phase_evidence.get("digest") == phase_evidence_digest(phase_evidence)
+        )
+        if not evidence_valid:
+            findings.append(_finding("completeness_input_drift", DOCUMENT_FILES["completeness_receipt"], f"{expected_phase} phase evidence profile, digest, or prior-pair chain is stale"))
+        evidence_digest = phase_evidence.get("digest") if isinstance(phase_evidence, dict) else None
+        if isinstance(evidence_digest, str):
+            phase_evidence_digests.append(evidence_digest)
         assigned = phase.get("assigned_roles", [])
         assigned_valid = (
             isinstance(assigned, list)
@@ -1521,31 +1937,84 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
             and set(assigned) == required_roles
             and len(assigned) == len(required_roles)
         )
-        if phase.get("phase") != expected_phase or not isinstance(phase.get("input_digests"), dict) or phase.get("input_digests") != expected_digests or not assigned_valid:
-            findings.append(_finding("completeness_input_drift", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} receipt is stale or role-incomplete"))
-        expected_attempt_pattern = rf"^REVIEW-COMPLETENESS-{expected_phase.upper()}-[0-9]{{3}}$"
-        attempt_id = phase.get("reviewer_attempt_id")
-        if isinstance(attempt_id, str):
-            attempt_ids.append(attempt_id)
+        if not assigned_valid:
+            findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} assigned-role semantics are invalid"))
+        if phase.get("phase") != expected_phase:
+            findings.append(_finding("completeness_input_drift", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} receipt phase identity is stale"))
+        expected_checker_attempt_pattern = rf"^REVIEW-COMPLETENESS-CHECK-{expected_phase.upper()}-[0-9]{{3}}$"
+        expected_auditor_attempt_pattern = rf"^AUDIT-COMPLETENESS-{expected_phase.upper()}-[0-9]{{3}}$"
+        auditor = phase.get("auditor")
+        checker = phase.get("checker")
+        auditor = auditor if isinstance(auditor, dict) else {}
+        checker = checker if isinstance(checker, dict) else {}
+        checker_attempt_id = checker.get("attempt_id")
+        auditor_attempt_id = auditor.get("attempt_id")
+        if isinstance(checker_attempt_id, str):
+            checker_attempt_ids.append(checker_attempt_id)
+        if isinstance(auditor_attempt_id, str):
+            auditor_attempt_ids.append(auditor_attempt_id)
+        auditor_actor_id = auditor.get("actor_id")
+        checker_actor_id = checker.get("actor_id")
+        actor_ids_valid = (
+            isinstance(auditor_actor_id, str)
+            and ACTOR_ID_PATTERN.fullmatch(auditor_actor_id) is not None
+            and isinstance(checker_actor_id, str)
+            and ACTOR_ID_PATTERN.fullmatch(checker_actor_id) is not None
+            and auditor_actor_id != checker_actor_id
+            and auditor_actor_id != writer_actor_id
+            and checker_actor_id != writer_actor_id
+        )
+        expected_auditor_digest = auditor_receipt_digest(phase) if isinstance(phase_evidence, dict) else None
+        expected_checker_digest = checker_receipt_digest(phase)
+        expected_pair_digest = phase_pair_digest(phase)
+        auditor_valid = (
+            set(auditor) == EXPECTED_AUDITOR_FIELDS
+            and auditor.get("role_id") == "role-completeness-auditor"
+            and auditor.get("independence") is True
+            and auditor.get("result") == "pass"
+            and auditor.get("authority_effect") == "none"
+            and auditor.get("mutation_performed") is False
+            and isinstance(auditor_attempt_id, str)
+            and re.fullmatch(expected_auditor_attempt_pattern, auditor_attempt_id) is not None
+            and phase.get("auditor_receipt_digest") == expected_auditor_digest
+        )
+        checker_valid = (
+            set(checker) == EXPECTED_CHECKER_FIELDS
+            and checker.get("role_id") == "completeness-audit-checker"
+            and checker.get("independence_basis") == "distinct_actor_no_candidate_mutation_no_audit_authorship"
+            and checker.get("findings") == []
+            and checker.get("result") == "verified"
+            and checker.get("authority_effect") == "none"
+            and checker.get("mutation_performed") is False
+            and isinstance(checker_attempt_id, str)
+            and re.fullmatch(expected_checker_attempt_pattern, checker_attempt_id) is not None
+            and checker.get("subject_audit_receipt_digest") == phase.get("auditor_receipt_digest")
+            and checker.get("replayed_phase_evidence_digest") == evidence_digest
+            and phase.get("checker_receipt_digest") == expected_checker_digest
+        )
+        pair_valid = phase.get("phase_pair_digest") == expected_pair_digest
         if (
             phase.get("result") != "pass"
-            or phase.get("reviewer_independence") is not True
-            or phase.get("reviewer_role") != "role-completeness-auditor"
             or phase.get("changed_input_replay") is not True
-            or not isinstance(attempt_id, str)
-            or re.fullmatch(expected_attempt_pattern, attempt_id) is None
-            or phase.get("reviewer_evidence_digest") != expected_digests["independent_review_evidence_digest"]
+            or not actor_ids_valid
+            or not auditor_valid
+            or not checker_valid
+            or not pair_valid
         ):
-            findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} did not independently pass"))
-        observed_at = phase.get("observed_at")
-        try:
-            observed_time = datetime.strptime(observed_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-        except (TypeError, ValueError):
-            findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} lacks an exact UTC observation timestamp"))
-        else:
-            observed_times.append(observed_time)
-            if observed_time > datetime.now(timezone.utc):
-                findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} observation timestamp is in the future"))
+            findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} lacks a distinct actor-bound auditor/checker pass over exact chained evidence"))
+        phase_times: list[datetime] = []
+        for actor_label, observed_at in (("auditor", auditor.get("observed_at")), ("checker", checker.get("observed_at"))):
+            try:
+                observed_time = datetime.strptime(observed_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+            except (TypeError, ValueError):
+                findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} {actor_label} lacks an exact UTC observation timestamp"))
+            else:
+                phase_times.append(observed_time)
+                observed_times.append(observed_time)
+                if observed_time > datetime.now(timezone.utc):
+                    findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} {actor_label} observation timestamp is in the future"))
+        if len(phase_times) == 2 and phase_times[1] < phase_times[0]:
+            findings.append(_finding("mesh_independence", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} checker predates its auditor receipt"))
         rejected = phase.get("rejected_unnecessary_roles")
         rejected_valid = (
             isinstance(rejected, list)
@@ -1564,16 +2033,52 @@ def _mesh_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Fin
         routing_valid = routing_valid and len(routing) == 4 and routing_map == EXPECTED_COMPLETENESS_RISK_ROUTES and all(row.get("status") == "preserved" for row in routing)
         if phase.get("missing_roles") != [] or not rejected_valid or not late_valid or not routing_valid:
             findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], f"{phase.get('phase')} has unresolved missing roles or no risk routing"))
-    if len(attempt_ids) != 3 or len(set(attempt_ids)) != 3:
-        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], "reviewer attempt IDs are missing or reused"))
-    if len(observed_times) != 3 or observed_times != sorted(observed_times):
-        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], "phase observation timestamps are missing or not nondecreasing"))
+        prior_phase_pair_digest = phase.get("phase_pair_digest") if isinstance(phase.get("phase_pair_digest"), str) else None
+    if len(checker_attempt_ids) != 3 or len(set(checker_attempt_ids)) != 3:
+        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], "checker attempt IDs are missing or reused"))
+    if len(auditor_attempt_ids) != 3 or len(set(auditor_attempt_ids)) != 3 or set(auditor_attempt_ids) & set(checker_attempt_ids):
+        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], "auditor attempt IDs are missing, reused, or aliased to checker attempts"))
+    if len(phase_evidence_digests) != 3 or len(set(phase_evidence_digests)) != 3:
+        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], "entry, midflight, and exit audit evidence digests are missing or aliased"))
+    if len(observed_times) != 6 or observed_times != sorted(observed_times):
+        findings.append(_finding("mesh_role_completeness", DOCUMENT_FILES["completeness_receipt"], "auditor/checker observation timestamps are missing or not nondecreasing"))
     if receipt.get("mutation_performed") is not False or receipt.get("authority_granted") is not False:
         findings.append(_finding("mesh_role_permissions", DOCUMENT_FILES["completeness_receipt"], "completeness receipt mutated state or granted authority"))
     return findings
 
 
-def apply_fixture_mutation(documents: dict[str, dict[str, Any]], mutation: str) -> dict[str, dict[str, Any]]:
+def _reseal_synthetic_completeness_receipt(documents: dict[str, dict[str, Any]], root: Path) -> None:
+    receipt = documents.get("completeness_receipt", {})
+    if (
+        receipt.get("object_type") != "deterministic_role_completeness_audit_receipt"
+        or "Synthetic in-memory" not in str(receipt.get("provenance_note", ""))
+        or receipt.get("authority_granted") is not False
+        or receipt.get("mutation_performed") is not False
+    ):
+        raise DemoInputError("dependent receipt resealing is restricted to the non-authorizing synthetic fixture baseline")
+    expected = completeness_input_digests(documents, root)
+    phases = receipt.get("phase_receipts")
+    if not isinstance(phases, list) or [row.get("phase") for row in phases if isinstance(row, dict)] != ["entry", "midflight", "exit"]:
+        raise DemoInputError("synthetic completeness receipt phase set drifted before resealing")
+    receipt["input_digests"] = copy.deepcopy(expected)
+    prior_pair: str | None = None
+    for phase in phases:
+        phase_name = phase["phase"]
+        phase["phase_evidence"] = expected_phase_evidence(root, phase_name, expected, prior_pair)
+        phase["auditor_receipt_digest"] = auditor_receipt_digest(phase)
+        checker = phase.get("checker")
+        if not isinstance(checker, dict):
+            raise DemoInputError("synthetic completeness checker receipt drifted before resealing")
+        checker["subject_audit_receipt_digest"] = phase["auditor_receipt_digest"]
+        checker["replayed_phase_evidence_digest"] = phase["phase_evidence"]["digest"]
+        phase["checker_receipt_digest"] = checker_receipt_digest(phase)
+        phase["phase_pair_digest"] = phase_pair_digest(phase)
+        prior_pair = phase["phase_pair_digest"]
+
+
+def apply_fixture_mutation(
+    documents: dict[str, dict[str, Any]], mutation: str, root: Path = ROOT
+) -> dict[str, dict[str, Any]]:
     changed = copy.deepcopy(documents)
     p66 = changed["p66_source"]
     crosswalk = changed["p66_crosswalk"]
@@ -1583,7 +2088,9 @@ def apply_fixture_mutation(documents: dict[str, dict[str, Any]], mutation: str) 
     catalog = changed["node_edge_catalog"]
     completeness_receipt = changed["completeness_receipt"]
     if mutation == "collapse_four_segments_to_John.19.8-John.19.24":
-        p66["coverage_segments"] = [{"segment_id": "p66-john19-08-24", "passage": "John.19.8-John.19.24"}]
+        p66["object_catalog_coverage_segments"] = [{"segment_id": "p66-john19-08-24", "passage": "John.19.8-John.19.24"}]
+    elif mutation == "attach_combined_object_coverage_to_verso_asset":
+        graph["edges"].append({"id": "negative-verso-coverage", "from": "asset:p66-verso", "relation": "has_coverage_segment", "to": "segment:p66-08-11", "authority_effect": "none"})
     elif mutation == "replace_asset_sha256_with_zero_digest":
         p66["asset"]["sha256"] = "0" * 64
     elif mutation == "remove_attribution_text":
@@ -1615,7 +2122,7 @@ def apply_fixture_mutation(documents: dict[str, dict[str, Any]], mutation: str) 
             "add_proves_scripture_edge": "proves_scripture",
             "add_proves_doctrine_edge": "proves_doctrine",
         }[mutation]
-        graph["edges"].append({"id": f"negative-{relation}", "from": "artifact:p66-verso", "relation": relation, "to": "scripture:john19", "authority_effect": "promote"})
+        graph["edges"].append({"id": f"negative-{relation}", "from": "asset:p66-verso", "relation": relation, "to": "scripture:john19", "authority_effect": "promote"})
     elif mutation == "remove_first_claim_cannot_establish":
         pack["claim_records"][0].pop("cannot_establish", None)
     elif mutation == "remove_first_claim_counterpositions":
@@ -1629,10 +2136,10 @@ def apply_fixture_mutation(documents: dict[str, dict[str, Any]], mutation: str) 
     elif mutation == "disable_extension_human_gate":
         catalog["extension_policy"]["new_core_type_requires_human_architecture_decision"] = False
     elif mutation == "add_image_displayed_through_english_edge":
-        graph["edges"].append({"id": "negative-image-display", "from": "artifact:p66-verso", "relation": "displayed_through", "to": "text:eng-web", "authority_effect": "none"})
+        graph["edges"].append({"id": "negative-image-display", "from": "asset:p66-verso", "relation": "displayed_through", "to": "text:eng-web", "authority_effect": "none"})
     elif mutation == "widen_displayed_through_and_add_image_edge":
-        next(row for row in catalog["relation_kinds"] if row.get("relation") == "displayed_through")["from_kinds"].append("physical_artifact")
-        graph["edges"].append({"id": "negative-catalog-widening", "from": "artifact:p66-verso", "relation": "displayed_through", "to": "text:eng-web", "authority_effect": "none"})
+        next(row for row in catalog["relation_kinds"] if row.get("relation") == "displayed_through")["from_kinds"].append("digital_asset")
+        graph["edges"].append({"id": "negative-catalog-widening", "from": "asset:p66-verso", "relation": "displayed_through", "to": "text:eng-web", "authority_effect": "none"})
     elif mutation == "add_unknown_edge_outer_promotion_field":
         graph["nodes"].extend([
             {"id": "ext:fixture:negative-a", "kind": "external_domain_extension", "label": "Fixture extension A", "trust_zone": "proposed", "status": "extension_unreviewed_non_authorizing", "extension_node": True, "authority_effect": "none", "traversable_for_authority": False, "extension_payload": {"future": "preserved-a"}},
@@ -1655,10 +2162,10 @@ def apply_fixture_mutation(documents: dict[str, dict[str, Any]], mutation: str) 
             {"id": "doctrine:negative", "kind": "doctrine_or_tradition_object", "trust_zone": "tradition-scoped", "status": "candidate"},
         ])
         graph["edges"].append({"id": "negative-context-doctrine", "from": "context:negative", "relation": "requires_review", "to": "doctrine:negative", "authority_effect": "none"})
-    elif mutation == "add_lower_trust_verse_identity_to_canonical_edge":
-        graph["edges"].append({"id": "negative-lower-trust-canonical", "from": "chunk:m7-local-057", "relation": "verse_identity_intersects", "to": "scripture:john19", "authority_effect": "none"})
+    elif mutation == "set_lower_trust_claim_with_existing_canonical_path":
+        next(node for node in graph["nodes"] if node.get("id") == "claim:sennacherib")["trust_zone"] = "learning-sidecar"
     elif mutation == "add_canonical_external_node":
-        graph["nodes"].append({"id": "external:negative-canonical", "kind": "external_domain_extension", "label": "Negative canonical extension", "trust_zone": "canonical", "status": "candidate"})
+        graph["nodes"].append({"id": "ext:fixture:canonical", "kind": "external_domain_extension", "label": "Future external record", "trust_zone": "canonical", "status": "extension_unreviewed_non_authorizing", "extension_node": True, "authority_effect": "none", "traversable_for_authority": False, "extension_payload": {"opaque": True}})
     elif mutation == "add_canonical_doctrine_node":
         graph["nodes"].append({"id": "doctrine:negative-canonical", "kind": "doctrine_or_tradition_object", "label": "Negative canonical doctrine", "trust_zone": "canonical", "status": "candidate"})
     elif mutation == "set_graph_m7_status_reviewed_gold":
@@ -1670,9 +2177,8 @@ def apply_fixture_mutation(documents: dict[str, dict[str, Any]], mutation: str) 
     elif mutation == "add_nonreserved_m7_alias_edge":
         graph["nodes"].append({"id": "candidate:john-reviewed", "kind": "candidate_chunk", "label": "M7 reviewed gold John candidate", "trust_zone": "proposed", "status": "reviewed_gold"})
         graph["edges"].append({"id": "negative-nonreserved-m7", "from": "segment:p66-08-11", "relation": "verse_identity_intersects", "to": "candidate:john-reviewed", "authority_effect": "none"})
-    elif mutation == "set_graph_m8_built_and_invariant_false":
+    elif mutation == "set_graph_m8_status_built_and_converged":
         next(node for node in graph["nodes"] if node.get("id") == "state:m8-john")["status"] = "built_and_converged"
-        graph["invariants"]["m8_john_pending"] = False
     elif mutation == "set_graph_m8_label_built":
         next(node for node in graph["nodes"] if node.get("id") == "state:m8-john")["label"] = "M8 John built and converged"
     elif mutation == "add_graph_m8_alias_node":
@@ -1761,46 +2267,92 @@ def apply_fixture_mutation(documents: dict[str, dict[str, Any]], mutation: str) 
         if not phases:
             phases.append({"phase": "entry"})
         phases[0]["assigned_roles"] = "all roles"
-        phases[0]["reviewer_independence"] = "true"
+        phases[0]["auditor"] = "independent"
         phases[0]["risk_routing"] = {"critical": "human"}
     elif mutation == "set_completeness_semantic_false_pass":
         phases = completeness_receipt.setdefault("phase_receipts", [])
         if len(phases) != 3:
             raise DemoInputError("semantic completeness fixture requires a known-valid three-phase receipt")
         phases[1]["late_discoveries"][0]["resolution_code"] = "ignored_and_automatically_promoted"
-        phases[1]["late_discoveries"][0]["publication_allowed"] = True
+        phases[1]["late_discoveries"][0]["eligible_for_downstream_release_evaluation"] = True
+        phases[1]["auditor_receipt_digest"] = auditor_receipt_digest(phases[1])
+        phases[1]["checker"]["subject_audit_receipt_digest"] = phases[1]["auditor_receipt_digest"]
+        phases[1]["checker_receipt_digest"] = checker_receipt_digest(phases[1])
+        phases[1]["phase_pair_digest"] = phase_pair_digest(phases[1])
+        phases[2]["phase_evidence"]["prior_phase_pair_digest"] = phases[1]["phase_pair_digest"]
+        phases[2]["phase_evidence"]["digest"] = phase_evidence_digest(phases[2]["phase_evidence"])
+        phases[2]["auditor_receipt_digest"] = auditor_receipt_digest(phases[2])
+        phases[2]["checker"]["subject_audit_receipt_digest"] = phases[2]["auditor_receipt_digest"]
+        phases[2]["checker"]["replayed_phase_evidence_digest"] = phases[2]["phase_evidence"]["digest"]
+        phases[2]["checker_receipt_digest"] = checker_receipt_digest(phases[2])
+        phases[2]["phase_pair_digest"] = phase_pair_digest(phases[2])
+    elif mutation == "alias_completeness_auditor_checker_actor":
+        phases = completeness_receipt.setdefault("phase_receipts", [])
+        if len(phases) != 3:
+            raise DemoInputError("actor alias fixture requires a known-valid three-phase receipt")
+        phases[0]["checker"]["actor_id"] = phases[0]["auditor"]["actor_id"]
+        phases[0]["checker_receipt_digest"] = checker_receipt_digest(phases[0])
+        phases[0]["phase_pair_digest"] = phase_pair_digest(phases[0])
+    elif mutation == "forge_checker_override_of_failed_auditor":
+        phases = completeness_receipt.setdefault("phase_receipts", [])
+        if len(phases) != 3:
+            raise DemoInputError("checker override fixture requires a known-valid three-phase receipt")
+        phases[0]["auditor"]["result"] = "fail_closed"
+        phases[0]["auditor_receipt_digest"] = auditor_receipt_digest(phases[0])
+        phases[0]["checker"]["subject_audit_receipt_digest"] = phases[0]["auditor_receipt_digest"]
+        phases[0]["checker_receipt_digest"] = checker_receipt_digest(phases[0])
+        phases[0]["phase_pair_digest"] = phase_pair_digest(phases[0])
+    elif mutation == "break_completeness_phase_pair_chain":
+        phases = completeness_receipt.setdefault("phase_receipts", [])
+        if len(phases) != 3:
+            raise DemoInputError("phase-chain fixture requires a known-valid three-phase receipt")
+        phases[1]["phase_evidence"]["prior_phase_pair_digest"] = "sha256:" + "0" * 64
+        phases[1]["phase_evidence"]["digest"] = phase_evidence_digest(phases[1]["phase_evidence"])
+        phases[1]["auditor_receipt_digest"] = auditor_receipt_digest(phases[1])
+        phases[1]["checker"]["subject_audit_receipt_digest"] = phases[1]["auditor_receipt_digest"]
+        phases[1]["checker"]["replayed_phase_evidence_digest"] = phases[1]["phase_evidence"]["digest"]
+        phases[1]["checker_receipt_digest"] = checker_receipt_digest(phases[1])
+        phases[1]["phase_pair_digest"] = phase_pair_digest(phases[1])
+    elif mutation == "inject_completeness_receipt_self_reference":
+        phases = completeness_receipt.setdefault("phase_receipts", [])
+        if len(phases) != 3:
+            raise DemoInputError("receipt self-reference fixture requires a known-valid three-phase receipt")
+        phases[0]["phase_evidence"]["evidence_refs"].append({
+            "path": DOCUMENT_FILES["completeness_receipt"],
+            "sha256": "sha256:" + "0" * 64,
+        })
+        phases[0]["phase_evidence"]["digest"] = phase_evidence_digest(phases[0]["phase_evidence"])
+        phases[0]["auditor_receipt_digest"] = auditor_receipt_digest(phases[0])
+        phases[0]["checker"]["subject_audit_receipt_digest"] = phases[0]["auditor_receipt_digest"]
+        phases[0]["checker"]["replayed_phase_evidence_digest"] = phases[0]["phase_evidence"]["digest"]
+        phases[0]["checker_receipt_digest"] = checker_receipt_digest(phases[0])
+        phases[0]["phase_pair_digest"] = phase_pair_digest(phases[0])
     elif mutation == "stale_completeness_validator_digest":
         completeness_receipt["input_digests"]["validator_digest"] = "sha256:" + "0" * 64
     else:
         raise DemoInputError(f"unknown fixture mutation {mutation!r}")
+    receipt = changed.get("completeness_receipt", {})
+    changed_document_keys = {
+        key
+        for key in set(documents) | set(changed)
+        if documents.get(key) != changed.get(key)
+    }
+    if (
+        changed_document_keys - {"completeness_receipt"}
+        and "Synthetic in-memory" in str(receipt.get("provenance_note", ""))
+        and receipt.get("input_digests") != completeness_input_digests(changed, root)
+    ):
+        _reseal_synthetic_completeness_receipt(changed, root)
     return changed
 
 
 def raw_parser_fixture_findings(mutation: str) -> list[Finding]:
-    cases = {
-        "parse_duplicate_yaml_root_key": lambda: _strict_yaml_load(
-            "object_type: canonical_theological_authority_graph\nobject_type: static_claim_mediated_evidence_graph\n",
-            "duplicate-yaml-root-fixture",
-        ),
-        "parse_duplicate_json_nested_key": lambda: _strict_json_load(
-            '{"nested":{"authority_granted":true,"authority_granted":false}}',
-            "duplicate-json-nested-fixture",
-        ),
-        "parse_duplicate_review_frontmatter_key": lambda: _parse_markdown_frontmatter_text(
-            "---\nresult: fail_closed\nresult: pass\n---\n# Review\n",
-            "duplicate-review-frontmatter-fixture",
-        ),
-    }
-    if mutation not in cases:
-        raise DemoInputError(f"unknown raw parser fixture {mutation!r}")
-    try:
-        cases[mutation]()
-    except DemoInputError as exc:
-        if "duplicate mapping key" in str(exc):
-            return [_finding("duplicate_mapping_key", "strict-parser-fixture", mutation)]
-        return [_finding("fixture_execution", "strict-parser-fixture", f"{mutation}: unexpected parser failure: {exc}")]
-    return []
-
+    baseline_documents = build_known_valid_fixture_baseline(load_documents(ROOT), ROOT)
+    baseline_files = _materialize_fixture_package_bytes(baseline_documents, ROOT)
+    candidate_files = _strict_overlay_mutation(baseline_files, mutation)
+    if _fixture_file_set_digest(candidate_files) == _fixture_file_set_digest(baseline_files):
+        raise DemoInputError("raw parser compatibility wrapper produced no package-byte delta")
+    return _aggregate_overlay_findings(candidate_files, ROOT)
 
 def build_known_valid_fixture_baseline(
     documents: dict[str, dict[str, Any]], root: Path = ROOT
@@ -1840,36 +2392,66 @@ def build_known_valid_fixture_baseline(
         for risk, route in EXPECTED_COMPLETENESS_RISK_ROUTES.items()
     ]
     phase_times = {
-        "entry": "2026-08-26T17:00:00Z",
-        "midflight": "2026-08-26T18:00:00Z",
-        "exit": "2026-08-26T19:00:00Z",
+        "entry": ("2026-08-26T17:00:00Z", "2026-08-26T17:00:01Z"),
+        "midflight": ("2026-08-26T18:00:00Z", "2026-08-26T18:00:01Z"),
+        "exit": ("2026-08-26T19:00:00Z", "2026-08-26T19:00:01Z"),
     }
     phase_receipts = []
+    prior_pair: str | None = None
     for index, phase in enumerate(("entry", "midflight", "exit"), start=1):
-        phase_receipts.append({
+        phase_receipt = {
             "phase": phase,
-            "input_digests": copy.deepcopy(expected_digests),
+            "phase_evidence": expected_phase_evidence(root, phase, expected_digests, prior_pair),
             "assigned_roles": list(role_ids),
             "missing_roles": [],
             "rejected_unnecessary_roles": copy.deepcopy(rejected),
             "late_discoveries": expected_late_discoveries(root, phase),
             "risk_routing": copy.deepcopy(risk_routing),
-            "result": "pass",
-            "reviewer_independence": True,
-            "reviewer_role": "role-completeness-auditor",
-            "observed_at": phase_times[phase],
             "changed_input_replay": True,
-            "reviewer_attempt_id": f"REVIEW-COMPLETENESS-{phase.upper()}-{index:03d}",
-            "reviewer_evidence_digest": expected_digests["independent_review_evidence_digest"],
-        })
+            "auditor": {
+                "role_id": "role-completeness-auditor",
+                "actor_id": "urn:logos:actor:synthetic-completeness-auditor",
+                "attempt_id": f"AUDIT-COMPLETENESS-{phase.upper()}-{index:03d}",
+                "independence": True,
+                "result": "pass",
+                "authority_effect": "none",
+                "mutation_performed": False,
+                "observed_at": phase_times[phase][0],
+            },
+            "checker": {
+                "role_id": "completeness-audit-checker",
+                "actor_id": "urn:logos:actor:synthetic-completeness-checker",
+                "attempt_id": f"REVIEW-COMPLETENESS-CHECK-{phase.upper()}-{index:03d}",
+                "subject_audit_receipt_digest": None,
+                "replayed_phase_evidence_digest": None,
+                "independence_basis": "distinct_actor_no_candidate_mutation_no_audit_authorship",
+                "findings": [],
+                "result": "verified",
+                "authority_effect": "none",
+                "mutation_performed": False,
+                "observed_at": phase_times[phase][1],
+            },
+            "auditor_receipt_digest": None,
+            "checker_receipt_digest": None,
+            "phase_pair_digest": None,
+            "result": "pass",
+        }
+        phase_receipt["auditor_receipt_digest"] = auditor_receipt_digest(phase_receipt)
+        phase_receipt["checker"]["subject_audit_receipt_digest"] = phase_receipt["auditor_receipt_digest"]
+        phase_receipt["checker"]["replayed_phase_evidence_digest"] = phase_receipt["phase_evidence"]["digest"]
+        phase_receipt["checker_receipt_digest"] = checker_receipt_digest(phase_receipt)
+        phase_receipt["phase_pair_digest"] = phase_pair_digest(phase_receipt)
+        prior_pair = phase_receipt["phase_pair_digest"]
+        phase_receipts.append(phase_receipt)
     baseline["completeness_receipt"] = {
-        "schema_version": "logos.biblical-evidence.mesh-completeness-receipt.v1",
+        "schema_version": "logos.biblical-evidence.mesh-completeness-receipt.v2",
         "object_type": "deterministic_role_completeness_audit_receipt",
         "trust_zone": "proposed",
         "lifecycle_status": "draft",
         "provenance_note": "Synthetic in-memory known-valid baseline for differential adversarial fixture execution.",
         "reason_for_inclusion": "Prevent pending release evidence from producing vacuous completeness fixture passes.",
-        "audit_id": "urn:logos:audit-receipt:biblical-evidence-role-completeness-v1",
+        "audit_id": "urn:logos:audit-receipt:biblical-evidence-role-completeness-v2",
+        "writer_actor_id": "urn:logos:actor:synthetic-fixture-writer",
         "mutation_performed": False,
         "authority_granted": False,
         "changed_input_invalidates_pass": True,
@@ -1878,6 +2460,240 @@ def build_known_valid_fixture_baseline(
         "status": "pass",
     }
     return baseline
+
+
+def _finding_identity(item: Finding) -> dict[str, str]:
+    return {"rule": item.rule, "identity": f"{item.path}: {item.detail}"}
+
+
+def _fixture_document_bytes(document: dict[str, Any], relative: str) -> bytes:
+    if Path(relative).suffix == ".json":
+        text = json.dumps(document, indent=2, ensure_ascii=False) + "\n"
+    else:
+        text = yaml.safe_dump(document, sort_keys=False, allow_unicode=True)
+    return text.encode("utf-8")
+
+
+def _materialize_fixture_package_bytes(
+    documents: dict[str, dict[str, Any]], root: Path
+) -> dict[str, bytes]:
+    file_bytes = {
+        relative: _fixture_document_bytes(documents[key], relative)
+        for key, relative in DOCUMENT_FILES.items()
+    }
+    review_relative = "release/independent-graph-mesh-review.md"
+    file_bytes[review_relative] = (root / PACKAGE_REL / review_relative).read_bytes()
+    return file_bytes
+
+
+def _fixture_file_set_digest(file_bytes: dict[str, bytes]) -> str:
+    rows = [
+        {"path": relative, "sha256": hashlib.sha256(file_bytes[relative]).hexdigest(), "bytes": len(file_bytes[relative])}
+        for relative in sorted(file_bytes)
+    ]
+    return _canonical_digest(rows)
+
+
+def _strict_overlay_mutation(file_bytes: dict[str, bytes], mutation: str) -> dict[str, bytes]:
+    candidate = dict(file_bytes)
+    if mutation == "parse_duplicate_yaml_root_key":
+        relative = DOCUMENT_FILES["evidence_graph"]
+        candidate[relative] += b"\nobject_type: static_claim_mediated_evidence_graph\n"
+    elif mutation == "parse_duplicate_json_nested_key":
+        relative = DOCUMENT_FILES["agent_mesh"]
+        text = candidate[relative].decode("utf-8")
+        match = re.search(r'(?m)^(\s*)"role_id":\s*("[^"]+"),\s*$', text)
+        if match is None:
+            raise DemoInputError("strict JSON fixture could not locate the reviewed nested role_id field")
+        duplicate = f'{match.group(1)}"role_id": {match.group(2)},'
+        candidate[relative] = (text[:match.end()] + "\n" + duplicate + text[match.end():]).encode("utf-8")
+    elif mutation == "parse_duplicate_review_frontmatter_key":
+        relative = "release/independent-graph-mesh-review.md"
+        text = candidate[relative].decode("utf-8")
+        match = re.search(r"(?m)^result:[^\r\n]*", text)
+        if match is None:
+            raise DemoInputError("strict Markdown fixture could not locate the reviewed result field")
+        candidate[relative] = (text[:match.end()] + "\n" + match.group(0) + text[match.end():]).encode("utf-8")
+    else:
+        raise DemoInputError(f"unknown strict parser fixture {mutation!r}")
+    return candidate
+
+
+def _aggregate_overlay_findings(file_bytes: dict[str, bytes], root: Path) -> list[Finding]:
+    try:
+        documents = _load_package_input_bytes(file_bytes)
+    except DemoInputError as exc:
+        detail = str(exc)
+        rule = "duplicate_mapping_key" if "duplicate mapping key" in detail else "fixture_execution"
+        return [_finding(rule, "package-byte-overlay", detail)]
+    return _collect_findings(
+        documents,
+        root,
+        check_asset=False,
+        check_frozen=False,
+        check_fixtures=False,
+        check_release=False,
+    )
+
+
+def _fixture_expected_changed_paths(
+    fixture_doc: dict[str, Any], fixture: dict[str, Any]
+) -> list[str]:
+    contract = fixture_doc.get("path_binding_contract")
+    if not isinstance(contract, dict):
+        raise DemoInputError("fixture path-binding contract is missing or wrong-typed")
+    required_keys = {
+        "schema_version",
+        "primary_path_by_target",
+        "strict_parser_primary_path_by_mutation",
+        "primary_paths_by_mutation",
+        "reseal_policy_paths",
+        "reseal_policy_by_target",
+        "reseal_policy_by_mutation",
+        "default_reseal_policy",
+        "actual_changed_paths_must_equal_declared_union",
+        "primary_and_resealed_paths_must_be_disjoint",
+    }
+    if set(contract) != required_keys:
+        raise DemoInputError("fixture path-binding contract fields differ from the exact v2 contract")
+    expected_primary_targets = {
+        key: DOCUMENT_FILES[key]
+        for key in {
+            "agent_mesh",
+            "archaeology_source_pack",
+            "completeness_receipt",
+            "evidence_graph",
+            "node_edge_catalog",
+            "p66_crosswalk",
+            "p66_source",
+        }
+    }
+    expected_strict_targets = {
+        "parse_duplicate_yaml_root_key": DOCUMENT_FILES["evidence_graph"],
+        "parse_duplicate_json_nested_key": DOCUMENT_FILES["agent_mesh"],
+        "parse_duplicate_review_frontmatter_key": "release/independent-graph-mesh-review.md",
+    }
+    expected_primary_mutations = {
+        "widen_displayed_through_and_add_image_edge": [
+            DOCUMENT_FILES["evidence_graph"],
+            DOCUMENT_FILES["node_edge_catalog"],
+        ],
+    }
+    expected_reseal_policies = {
+        "none": [],
+        "synthetic_completeness_receipt_only": [DOCUMENT_FILES["completeness_receipt"]],
+    }
+    expected_target_policies = {
+        "agent_mesh": "synthetic_completeness_receipt_only",
+        "archaeology_source_pack": "synthetic_completeness_receipt_only",
+        "completeness_receipt": "none",
+        "evidence_graph": "synthetic_completeness_receipt_only",
+        "node_edge_catalog": "synthetic_completeness_receipt_only",
+        "p66_crosswalk": "synthetic_completeness_receipt_only",
+        "p66_source": "synthetic_completeness_receipt_only",
+        "strict_parser": "none",
+    }
+    expected_mutation_policies: dict[str, str] = {}
+    exact_contract = (
+        contract.get("schema_version") == "logos.biblical-evidence.fixture-path-binding.v2"
+        and contract.get("primary_path_by_target") == expected_primary_targets
+        and contract.get("strict_parser_primary_path_by_mutation") == expected_strict_targets
+        and contract.get("primary_paths_by_mutation") == expected_primary_mutations
+        and contract.get("reseal_policy_paths") == expected_reseal_policies
+        and contract.get("reseal_policy_by_target") == expected_target_policies
+        and contract.get("reseal_policy_by_mutation") == expected_mutation_policies
+        and contract.get("default_reseal_policy") == "none"
+        and contract.get("actual_changed_paths_must_equal_declared_union") is True
+        and contract.get("primary_and_resealed_paths_must_be_disjoint") is True
+    )
+    if not exact_contract:
+        raise DemoInputError("fixture path-binding semantics differ from the exact v2 contract")
+    target = fixture.get("target")
+    mutation = fixture.get("mutation")
+    if target == "strict_parser":
+        default_primary = expected_strict_targets.get(mutation)
+    else:
+        default_primary = expected_primary_targets.get(target)
+    primary_paths = expected_primary_mutations.get(mutation, [default_primary] if isinstance(default_primary, str) else [])
+    if not primary_paths or not all(isinstance(primary, str) for primary in primary_paths):
+        raise DemoInputError(f"fixture {fixture.get('fixture_id')} has no declared primary path")
+    policy_name = expected_mutation_policies.get(mutation, expected_target_policies.get(target, "none"))
+    resealed = expected_reseal_policies[policy_name]
+    if set(primary_paths) & set(resealed):
+        raise DemoInputError(f"fixture {fixture.get('fixture_id')} overlaps primary and resealed paths")
+    return sorted({*primary_paths, *resealed})
+
+
+def _aggregate_fixture_candidate(
+    baseline_documents: dict[str, dict[str, Any]],
+    baseline_findings: set[Finding],
+    fixture: dict[str, Any],
+    root: Path,
+) -> tuple[str, str, list[str], list[Finding]]:
+    baseline_files = _materialize_fixture_package_bytes(baseline_documents, root)
+    observed_baseline = _aggregate_overlay_findings(baseline_files, root)
+    if observed_baseline or baseline_findings:
+        raise DemoInputError("file-overlay aggregate baseline is not clean")
+    if fixture.get("target") == "strict_parser":
+        candidate_files = _strict_overlay_mutation(baseline_files, fixture.get("mutation"))
+    else:
+        changed = apply_fixture_mutation(baseline_documents, fixture.get("mutation"), root=root)
+        candidate_files = _materialize_fixture_package_bytes(changed, root)
+    baseline_digest = _fixture_file_set_digest(baseline_files)
+    candidate_digest = _fixture_file_set_digest(candidate_files)
+    changed_paths = sorted(
+        relative
+        for relative in set(baseline_files) | set(candidate_files)
+        if baseline_files.get(relative) != candidate_files.get(relative)
+    )
+    if candidate_digest == baseline_digest or not changed_paths:
+        raise DemoInputError("fixture did not change the aggregate package byte overlay")
+    raw_findings = [
+        item for item in _aggregate_overlay_findings(candidate_files, root) if item not in baseline_findings
+    ]
+    return baseline_digest, candidate_digest, changed_paths, raw_findings
+
+
+def _fixture_observation(
+    baseline_documents: dict[str, dict[str, Any]],
+    baseline_findings: set[Finding],
+    fixture: dict[str, Any],
+    root: Path,
+) -> dict[str, Any]:
+    baseline_digest, candidate_digest, changed_paths, raw_findings = _aggregate_fixture_candidate(
+        baseline_documents, baseline_findings, fixture, root
+    )
+    if not raw_findings:
+        raise DemoInputError("mutation produced no aggregate-validator finding")
+    return {
+        "baseline_digest": baseline_digest,
+        "candidate_digest": candidate_digest,
+        "changed_paths": changed_paths,
+        "findings": [_finding_identity(item) for item in raw_findings],
+    }
+
+
+def _fixture_catalog_observations(
+    baseline_documents: dict[str, dict[str, Any]],
+    baseline_findings: set[Finding],
+    fixtures: list[dict[str, Any]],
+    root: Path,
+) -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
+    def execute(rows: Iterable[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+        observed: dict[str, dict[str, Any]] = {}
+        for fixture in rows:
+            fixture_id = fixture["fixture_id"]
+            observed[fixture_id] = _fixture_observation(
+                baseline_documents,
+                baseline_findings,
+                fixture,
+                root,
+            )
+        return observed
+
+    forward = execute(fixtures)
+    reverse = execute(reversed(fixtures))
+    return forward, reverse
 
 
 def _fixture_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[Finding]:
@@ -1897,47 +2713,161 @@ def _fixture_findings(documents: dict[str, dict[str, Any]], root: Path) -> list[
         findings.append(_finding(
             "fixture_baseline_invalid",
             DOCUMENT_FILES["adversarial_fixtures"],
-            "negative fixtures require a known-valid semantic baseline; pre-existing findings cannot satisfy a fixture",
+            "negative fixtures require a zero-finding aggregate baseline",
         ))
         return findings
+    if fixture_doc.get("schema_version") != "logos.biblical-evidence.adversarial-fixtures.v5":
+        return [_finding("fixture_contract", DOCUMENT_FILES["adversarial_fixtures"], "fixture schema is not v5")]
+    if _canonical_digest(fixture_doc.get("path_binding_contract", {})) != EXPECTED_FIXTURE_PATH_BINDING_DIGEST:
+        return [_finding("fixture_contract", DOCUMENT_FILES["adversarial_fixtures"], "fixture path-binding contract digest drifted")]
     observed_rules: set[str] = set()
     fixture_ids: set[str] = set()
+    valid_fixtures: list[dict[str, Any]] = []
+    expected_by_id: dict[str, list[dict[str, str]]] = {}
+    expected_changed_paths_by_id: dict[str, list[str]] = {}
+    required_fixture_keys = {
+        "fixture_id",
+        "target",
+        "mutation",
+        "intended_rule",
+        "expected_rule",
+        "expected_first_rule",
+        "expected_rules_exact",
+        "expected_findings_ordered",
+        "risk",
+        "reason",
+    }
     for fixture in fixture_doc.get("fixtures", []):
+        if not isinstance(fixture, dict) or set(fixture) != required_fixture_keys:
+            findings.append(_finding(
+                "fixture_contract",
+                DOCUMENT_FILES["adversarial_fixtures"],
+                "every fixture must use the exact v4 key set",
+            ))
+            continue
         fixture_id = fixture.get("fixture_id")
-        if not fixture_id or fixture_id in fixture_ids:
+        if not isinstance(fixture_id, str) or not fixture_id or fixture_id in fixture_ids:
             findings.append(_finding("fixture_identity", DOCUMENT_FILES["adversarial_fixtures"], "fixture IDs must be unique and non-empty"))
+            continue
         fixture_ids.add(fixture_id)
-        expected_rule = fixture.get("expected_rule")
-        observed_rules.add(expected_rule)
-        if fixture.get("target") == "strict_parser":
-            raw_findings = raw_parser_fixture_findings(fixture.get("mutation"))
-            if expected_rule not in {item.rule for item in raw_findings}:
-                findings.append(_finding("fixture_expected_rejection", DOCUMENT_FILES["adversarial_fixtures"], f"{fixture_id} did not produce {expected_rule}"))
-            continue
         try:
-            changed = apply_fixture_mutation(baseline_documents, fixture.get("mutation"))
+            expected_changed_paths_by_id[fixture_id] = _fixture_expected_changed_paths(fixture_doc, fixture)
         except DemoInputError as exc:
-            findings.append(_finding("fixture_execution", DOCUMENT_FILES["adversarial_fixtures"], f"{fixture_id}: {exc}"))
+            findings.append(_finding("fixture_contract", DOCUMENT_FILES["adversarial_fixtures"], str(exc)))
             continue
-        if _canonical_digest(changed) == _canonical_digest(baseline_documents):
-            findings.append(_finding("fixture_execution", DOCUMENT_FILES["adversarial_fixtures"], f"{fixture_id}: mutation did not change the semantic candidate"))
-            continue
-        result = validate_data(
-            changed,
-            root,
-            check_asset=False,
-            check_frozen=False,
-            check_fixtures=False,
-            check_release=False,
+        intended_rule = fixture.get("intended_rule")
+        expected_rule = fixture.get("expected_rule")
+        expected_first_rule = fixture.get("expected_first_rule")
+        expected_rules_exact = fixture.get("expected_rules_exact")
+        expected_findings = fixture.get("expected_findings_ordered")
+        identity_rows_valid = (
+            isinstance(expected_findings, list)
+            and bool(expected_findings)
+            and all(
+                isinstance(row, dict)
+                and set(row) == {"rule", "identity", "causal_role"}
+                and isinstance(row.get("rule"), str)
+                and bool(row.get("rule"))
+                and isinstance(row.get("identity"), str)
+                and bool(row.get("identity"))
+                and row.get("causal_role") in {"intended_primary", "causal_cascade"}
+                for row in expected_findings
+            )
         )
-        new_findings = set(result.findings) - baseline_findings
-        rules = {item.rule for item in new_findings}
-        if expected_rule not in rules:
-            findings.append(_finding("fixture_expected_rejection", DOCUMENT_FILES["adversarial_fixtures"], f"{fixture_id} did not produce {expected_rule}"))
+        expected_pairs = (
+            [(row["rule"], row["identity"]) for row in expected_findings]
+            if identity_rows_valid
+            else []
+        )
+        identity_roles_valid = (
+            identity_rows_valid
+            and expected_findings[0]["causal_role"] == "intended_primary"
+            and all(row["causal_role"] == "causal_cascade" for row in expected_findings[1:])
+            and len(expected_pairs) == len(set(expected_pairs))
+        )
+        derived_rules_ordered = list(dict.fromkeys(row["rule"] for row in expected_findings)) if identity_rows_valid else []
+        contract_valid = (
+            isinstance(intended_rule, str)
+            and bool(intended_rule)
+            and isinstance(expected_rule, str)
+            and isinstance(expected_first_rule, str)
+            and isinstance(expected_rules_exact, list)
+            and bool(expected_rules_exact)
+            and all(isinstance(rule, str) and rule for rule in expected_rules_exact)
+            and expected_rules_exact == sorted(set(expected_rules_exact))
+            and expected_first_rule == expected_rule == intended_rule
+            and expected_rule in expected_rules_exact
+            and identity_roles_valid
+            and derived_rules_ordered
+            and derived_rules_ordered[0] == intended_rule
+            and sorted(set(derived_rules_ordered)) == expected_rules_exact
+        )
+        if not contract_valid:
+            findings.append(_finding(
+                "fixture_contract",
+                DOCUMENT_FILES["adversarial_fixtures"],
+                f"{fixture_id} has an invalid exact identity, causal closure, or primary-rule contract",
+            ))
+            continue
+        observed_rules.add(intended_rule)
+        expected_by_id[fixture_id] = expected_findings
+        valid_fixtures.append(fixture)
+    if findings:
+        return findings
+    try:
+        forward, reverse = _fixture_catalog_observations(
+            baseline_documents,
+            baseline_findings,
+            valid_fixtures,
+            root,
+        )
+    except DemoInputError as exc:
+        return [_finding("fixture_execution", DOCUMENT_FILES["adversarial_fixtures"], str(exc))]
+    for fixture in valid_fixtures:
+        fixture_id = fixture["fixture_id"]
+        forward_row = forward[fixture_id]
+        reverse_row = reverse[fixture_id]
+        if forward_row != reverse_row:
+            findings.append(_finding(
+                "fixture_replay_order",
+                DOCUMENT_FILES["adversarial_fixtures"],
+                f"{fixture_id} differs between isolated forward and reverse replay",
+            ))
+            continue
+        actual_findings = forward_row["findings"]
+        if forward_row.get("changed_paths") != expected_changed_paths_by_id[fixture_id]:
+            findings.append(_finding(
+                "fixture_path_scope",
+                DOCUMENT_FILES["adversarial_fixtures"],
+                f"{fixture_id} changed paths {forward_row.get('changed_paths')!r}; expected {expected_changed_paths_by_id[fixture_id]!r}",
+            ))
+        expected_findings = [
+            {"rule": row["rule"], "identity": row["identity"]}
+            for row in expected_by_id[fixture_id]
+        ]
+        actual_rules_ordered = list(dict.fromkeys(row["rule"] for row in actual_findings))
+        actual_rules_exact = sorted(set(actual_rules_ordered))
+        if actual_findings != expected_findings:
+            findings.append(_finding(
+                "fixture_exact_rejection",
+                DOCUMENT_FILES["adversarial_fixtures"],
+                f"{fixture_id} exact ordered finding identities drifted",
+            ))
+        if actual_rules_exact != fixture["expected_rules_exact"]:
+            findings.append(_finding(
+                "fixture_exact_rejection",
+                DOCUMENT_FILES["adversarial_fixtures"],
+                f"{fixture_id} expected exact rules {fixture['expected_rules_exact']}; observed {actual_rules_exact}",
+            ))
+        if not actual_rules_ordered or actual_rules_ordered[0] != fixture["intended_rule"]:
+            findings.append(_finding(
+                "fixture_first_failure",
+                DOCUMENT_FILES["adversarial_fixtures"],
+                f"{fixture_id} intended primary {fixture['intended_rule']}; observed {actual_rules_ordered[:1]}",
+            ))
     if not EXPECTED_FIXTURE_RULES <= observed_rules:
         findings.append(_finding("fixture_coverage", DOCUMENT_FILES["adversarial_fixtures"], f"missing rule coverage {sorted(EXPECTED_FIXTURE_RULES - observed_rules)}"))
     return findings
-
 
 def _review_receipt_findings(root: Path, manifest_hash: str, aggregate_hash: Any) -> list[Finding]:
     findings: list[Finding] = []
@@ -2171,10 +3101,14 @@ def _frozen_findings(root: Path) -> list[Finding]:
     }
     if set(observed) != set(expected):
         findings.append(_finding("frozen_digest_manifest", str(path.relative_to(root)), f"path set differs: missing={sorted(set(expected)-set(observed))}, extra={sorted(set(observed)-set(expected))}"))
+    if manifest.get("algorithm") != EXPECTED_FROZEN_ALGORITHM:
+        findings.append(_finding("frozen_digest_manifest", str(path.relative_to(root)), "digest algorithm identifier differs from the portable freeze contract"))
+    if manifest.get("path_order") != EXPECTED_FROZEN_PATH_ORDER:
+        findings.append(_finding("frozen_digest_manifest", str(path.relative_to(root)), "path-order identifier differs from the portable freeze contract"))
     for relative in sorted(set(expected) & set(observed)):
         target = root / Path(relative)
         row = observed[relative]
-        if row.get("sha256") != file_sha256(target) or row.get("bytes") != target.stat().st_size:
+        if row.get("sha256") != file_sha256(target) or row.get("bytes") != file_byte_count(target):
             findings.append(_finding("frozen_digest_mismatch", relative, "hash or byte count differs"))
     if manifest.get("asset_sha256") != EXPECTED_IMAGE_SHA256:
         findings.append(_finding("p66_asset_identity", str(path.relative_to(root)), "asset digest pin drifted"))
@@ -2186,7 +3120,7 @@ def _frozen_findings(root: Path) -> list[Finding]:
     return findings
 
 
-def validate_data(
+def _collect_findings(
     documents: dict[str, dict[str, Any]],
     root: Path = ROOT,
     *,
@@ -2194,7 +3128,7 @@ def validate_data(
     check_frozen: bool = True,
     check_fixtures: bool = True,
     check_release: bool = True,
-) -> ValidationResult:
+) -> list[Finding]:
     findings: list[Finding] = []
     findings.extend(_document_envelope_findings(documents))
     findings.extend(_metadata_findings(documents))
@@ -2209,6 +3143,26 @@ def validate_data(
         findings.extend(_fixture_findings(documents, root))
     if check_frozen:
         findings.extend(_frozen_findings(root))
+    return list(dict.fromkeys(findings))
+
+
+def validate_data(
+    documents: dict[str, dict[str, Any]],
+    root: Path = ROOT,
+    *,
+    check_asset: bool = True,
+    check_frozen: bool = True,
+    check_fixtures: bool = True,
+    check_release: bool = True,
+) -> ValidationResult:
+    findings = _collect_findings(
+        documents,
+        root,
+        check_asset=check_asset,
+        check_frozen=check_frozen,
+        check_fixtures=check_fixtures,
+        check_release=check_release,
+    )
     return ValidationResult(
         findings=tuple(sorted(set(findings))),
         metrics={

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.expert-pack.v3",
+  "title": "Doctrine Marathon qualified ExpertPack",
+  "description": "object_type=expert_pack_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after frontier red-team review; reason_for_inclusion=Bind specialist capability claims to an exact contract, source manifest, fixtures, scope, exclusions, review receipts, and expiry.",
+  "type": "object",
+  "required": ["schema_version", "expert_pack_id", "revision", "pack_kind", "contract_ref", "contract_digest", "capability_ids", "scope", "exclusions", "source_manifest_bindings", "fixture_result_bindings", "qualification_scope_digest", "qualification_receipt_refs", "qualification_receipt_digests", "qualification_state", "effective_at", "expires_at", "invalidation_triggers", "non_authority", "pack_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.expert-pack.v3"},
+    "expert_pack_id": {"type": "string", "pattern": "^EPACK-[A-Za-z0-9._-]+$"},
+    "revision": {"type": "integer", "minimum": 1},
+    "pack_kind": {"enum": ["father_or_corpus", "environment", "jewish_context", "tradition_representation", "original_language", "source_rights", "citation_locator", "historical_theology"]},
+    "contract_ref": {"type": "string", "minLength": 3},
+    "contract_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "capability_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
+    "scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+    "exclusions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+    "source_manifest_bindings": {"type": "array", "items": {"type": "object", "required": ["ref", "digest"], "properties": {"ref": {"type": "string", "minLength": 3}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "additionalProperties": false}},
+    "fixture_result_bindings": {"type": "array", "items": {"type": "object", "required": ["ref", "digest", "result"], "properties": {"ref": {"type": "string", "minLength": 3}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "result": {"enum": ["pass", "fail", "abstain"]}}, "additionalProperties": false}},
+    "qualification_scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "qualification_receipt_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^qualification-receipt:QREC-[A-Za-z0-9._-]+$"}},
+    "qualification_receipt_digests": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+    "qualification_state": {"enum": ["candidate", "qualified", "blocked", "expired", "revoked"]},
+    "effective_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "invalidation_triggers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+    "non_authority": {"type": "object", "required": ["doctrine_authority", "source_authority", "runtime_authority"], "properties": {"doctrine_authority": {"const": false}, "source_authority": {"const": false}, "runtime_authority": {"const": false}}, "additionalProperties": false},
+    "pack_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"qualification_state": {"const": "qualified"}}}, "then": {"properties": {"source_manifest_bindings": {"minItems": 1}, "fixture_result_bindings": {"minItems": 1}, "qualification_receipt_refs": {"minItems": 1}, "qualification_receipt_digests": {"minItems": 1}}}}
+  ],
+  "additionalProperties": false
+}

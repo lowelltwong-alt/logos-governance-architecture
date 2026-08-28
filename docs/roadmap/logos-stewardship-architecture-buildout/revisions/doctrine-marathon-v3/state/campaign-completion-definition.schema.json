@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.campaign-completion-definition.v3",
+  "title": "Doctrine Marathon human-approved completion definition",
+  "description": "object_type=campaign_completion_definition_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after frontier red-team review; reason_for_inclusion=Prevent an agent from declaring the marathon complete without an exact human-approved scope and terminal criteria.",
+  "type": "object",
+  "required": ["schema_version", "definition_id", "required_horizon_ids", "required_work_unit_ids", "required_claim_ids", "required_output_classes", "permitted_residual_risk_classes", "human_approval_receipt_ref", "human_approval_receipt_digest", "authority_registry_digest", "effective_at", "expires_at", "definition_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.campaign-completion-definition.v3"},
+    "definition_id": {"type": "string", "pattern": "^DMV3-COMPDEF-[A-Za-z0-9._-]+$"},
+    "required_horizon_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "required_work_unit_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "required_claim_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^CLAIM-[A-Za-z0-9._-]+$"}},
+    "required_output_classes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "permitted_residual_risk_classes": {"type": "array", "maxItems": 0},
+    "human_approval_receipt_ref": {"type": "string", "pattern": "^human-decision:HDEC-[A-Za-z0-9._-]+$"},
+    "human_approval_receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "authority_registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "effective_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "definition_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

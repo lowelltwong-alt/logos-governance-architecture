@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.claim-record.v3",
+  "title": "Doctrine Marathon claim-evidence record",
+  "description": "object_type=claim_record_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent evidence-lineage review; reason_for_inclusion=Keep source identity, quotation, context, entailment, translation, influence, and normative authority as separately checked dimensions.",
+  "type": "object",
+  "required": ["schema_version", "claim_id", "claim_type", "assertion_text", "source_record_refs", "source_bindings", "exact_locator_refs", "quotation_or_transcription_ref", "translation_lineage_ref", "translation_lineage_digest", "influence_hypothesis_ref", "influence_hypothesis_digest", "historical_attribution_ref", "historical_attribution_digest", "normative_frame_ref", "normative_frame_digest", "review_receipt_refs", "review_receipt_digests", "context_boundary", "status_dimensions", "claim_state", "normative_force", "evidence_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.claim-record.v3"},
+    "claim_id": {"type": "string", "pattern": "^CLAIM-[A-Za-z0-9._-]+$"},
+    "claim_type": {"enum": ["direct_quotation", "diplomatic_transcription", "translation", "paraphrase", "source_report", "synthesis", "inference", "influence_or_causation", "historical_attribution", "tradition_scoped_assessment", "normative_assessment"]},
+    "assertion_text": {"type": "string", "minLength": 10},
+    "source_record_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^source-record:SRC-[A-Za-z0-9._-]+$"}},
+    "source_bindings": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["source_record_ref", "source_content_digest", "source_record_digest", "exact_locator_refs"], "properties": {"source_record_ref": {"type": "string", "pattern": "^source-record:SRC-[A-Za-z0-9._-]+$"}, "source_content_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "source_record_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "exact_locator_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 3}}}, "additionalProperties": false}},
+    "exact_locator_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+    "quotation_or_transcription_ref": {"type": ["string", "null"], "minLength": 3},
+    "translation_lineage_ref": {"type": ["string", "null"], "pattern": "^translation-lineage:TLIN-[A-Za-z0-9._-]+$"},
+    "translation_lineage_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "influence_hypothesis_ref": {"type": ["string", "null"], "pattern": "^influence-hypothesis:INFL-[A-Za-z0-9._-]+$"},
+    "influence_hypothesis_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "historical_attribution_ref": {"type": ["string", "null"], "pattern": "^historical-attribution:HATTR-[A-Za-z0-9._-]+$"},
+    "historical_attribution_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "normative_frame_ref": {"type": ["string", "null"], "pattern": "^normative-frame:NFRAME-[A-Za-z0-9._-]+$"},
+    "normative_frame_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "review_receipt_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^evidence-review:EREV-[A-Za-z0-9._-]+$"}},
+    "review_receipt_digests": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+    "context_boundary": {"type": "string", "minLength": 20},
+    "status_dimensions": {
+      "type": "object",
+      "required": ["source_identity", "source_fitness", "rights_and_access", "locator_validity", "quotation_fidelity", "translation_fidelity", "context_integrity", "entailment", "causal_or_influence_support", "temporal_fit", "tradition_representation", "normative_admissibility", "human_review"],
+      "properties": {
+        "source_identity": {"enum": ["qualified", "candidate", "disputed", "stale", "invalidated"]},
+        "source_fitness": {"enum": ["qualified", "candidate", "disputed", "stale", "invalidated"]},
+        "rights_and_access": {"enum": ["qualified", "candidate", "restricted", "prohibited", "unknown"]},
+        "locator_validity": {"enum": ["verified", "candidate", "failed", "not_applicable"]},
+        "quotation_fidelity": {"enum": ["verified", "candidate", "failed", "not_applicable"]},
+        "translation_fidelity": {"enum": ["specialist_reviewed", "candidate", "failed", "not_applicable"]},
+        "context_integrity": {"enum": ["verified", "candidate", "disputed", "failed"]},
+        "entailment": {"enum": ["verified", "candidate", "disputed", "failed"]},
+        "causal_or_influence_support": {"enum": ["specialist_reviewed", "candidate", "disputed", "insufficient", "not_applicable"]},
+        "temporal_fit": {"enum": ["verified", "candidate", "disputed", "failed", "not_applicable"]},
+        "tradition_representation": {"enum": ["qualified", "candidate", "disputed", "failed", "not_applicable"]},
+        "normative_admissibility": {"enum": ["human_frame_verified", "blocked", "not_applicable"]},
+        "human_review": {"enum": ["completed", "required", "not_applicable"]}
+      },
+      "additionalProperties": false
+    },
+    "claim_state": {"enum": ["candidate", "review_required", "verified", "disputed", "quarantined", "invalidated"]},
+    "normative_force": {"enum": ["none", "frame_scoped"]},
+    "evidence_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"claim_type": {"enum": ["direct_quotation", "diplomatic_transcription"]}}}, "then": {"properties": {"quotation_or_transcription_ref": {"type": "string", "minLength": 3}}}},
+    {"if": {"properties": {"claim_type": {"const": "translation"}}}, "then": {"properties": {"translation_lineage_ref": {"type": "string", "pattern": "^translation-lineage:TLIN-[A-Za-z0-9._-]+$"}}}},
+    {"if": {"properties": {"claim_type": {"const": "influence_or_causation"}}}, "then": {"properties": {"influence_hypothesis_ref": {"type": "string", "pattern": "^influence-hypothesis:INFL-[A-Za-z0-9._-]+$"}}}},
+    {"if": {"properties": {"claim_type": {"const": "historical_attribution"}}}, "then": {"properties": {"historical_attribution_ref": {"type": "string", "pattern": "^historical-attribution:HATTR-[A-Za-z0-9._-]+$"}}}},
+    {"if": {"properties": {"claim_type": {"const": "normative_assessment"}}}, "then": {"properties": {"normative_frame_ref": {"type": "string", "pattern": "^normative-frame:NFRAME-[A-Za-z0-9._-]+$"}, "normative_force": {"const": "frame_scoped"}}}, "else": {"properties": {"normative_force": {"const": "none"}}}}
+  ],
+  "additionalProperties": false
+}

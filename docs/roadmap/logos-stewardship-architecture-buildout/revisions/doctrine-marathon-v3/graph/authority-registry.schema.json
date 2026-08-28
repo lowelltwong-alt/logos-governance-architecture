@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.authority-registry.v3",
+  "title": "Doctrine Marathon authority registry",
+  "description": "object_type=authority_registry_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent authority-spoofing review; reason_for_inclusion=Ensure no AI-created string can stand in for a qualified human approver or active NormativeFrame.",
+  "type": "object",
+  "required": ["metadata", "schema_version", "registry_id", "human_identity_authority_root_ref", "human_identity_authority_root_file_digest", "human_identity_authority_root_anchor_digest", "approver_qualification_receipts", "qualified_approvers", "approver_set_digest", "human_decision_receipts", "normative_frames", "normative_authority_active", "current_normative_frame_ref", "current_normative_frame_digest", "registry_digest"],
+  "properties": {
+    "metadata": {"type": "object", "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"], "additionalProperties": true},
+    "schema_version": {"const": "logos.doctrine-marathon.authority-registry.v3"},
+    "registry_id": {"const": "DMV3-AUTHORITY-REGISTRY"},
+    "human_identity_authority_root_ref": {"const": "graph/human-identity-authority-root.yaml"},
+    "human_identity_authority_root_file_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "human_identity_authority_root_anchor_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "approver_qualification_receipts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/approver_qualification_receipt"}
+    },
+    "qualified_approvers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["signer_id", "qualification_scope", "tradition_or_jurisdiction", "qualification_receipt_ref", "qualification_receipt_digest", "valid_from", "valid_until"],
+        "properties": {
+          "signer_id": {"type": "string", "pattern": "^HUMAN-[A-Za-z0-9._-]+$"},
+          "qualification_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+          "tradition_or_jurisdiction": {"type": "string", "minLength": 3},
+          "qualification_receipt_ref": {"type": "string", "pattern": "^approver-qualification:QAPP-[A-Za-z0-9._-]+$"},
+          "qualification_receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "valid_from": {"type": "string", "format": "date-time"},
+          "valid_until": {"type": ["string", "null"], "format": "date-time"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "approver_set_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "human_decision_receipts": {"type": "array", "items": {"type": "object"}},
+    "normative_frames": {"type": "array", "items": {"type": "object"}},
+    "normative_authority_active": {"type": "boolean"},
+    "current_normative_frame_ref": {"type": ["string", "null"], "pattern": "^normative-frame:NFRAME-[A-Za-z0-9._-]+$"},
+    "current_normative_frame_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "approver_qualification_receipt": {
+      "type": "object",
+      "required": ["schema_version", "receipt_id", "signer_id", "issuer_id", "qualification_scope", "tradition_or_jurisdiction", "identity_root_anchor_digest", "protected_commit", "evidence_bindings", "issued_at", "expires_at", "recorded_by_human", "created_by_ai", "receipt_digest"],
+      "properties": {
+        "schema_version": {"const": "logos.doctrine-marathon.approver-qualification.v3"},
+        "receipt_id": {"type": "string", "pattern": "^QAPP-[A-Za-z0-9._-]+$"},
+        "signer_id": {"type": "string", "pattern": "^HUMAN-[A-Za-z0-9._-]+$"},
+        "issuer_id": {"type": "string", "pattern": "^HUMAN-[A-Za-z0-9._-]+$"},
+        "qualification_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+        "tradition_or_jurisdiction": {"type": "string", "minLength": 3},
+        "identity_root_anchor_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "protected_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "evidence_bindings": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["ref", "digest"], "properties": {"ref": {"type": "string", "minLength": 3}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "additionalProperties": false}},
+        "issued_at": {"type": "string", "format": "date-time"},
+        "expires_at": {"type": ["string", "null"], "format": "date-time"},
+        "recorded_by_human": {"const": true},
+        "created_by_ai": {"const": false},
+        "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"normative_authority_active": {"const": false}}}, "then": {"properties": {"normative_frames": {"maxItems": 0}, "current_normative_frame_ref": {"type": "null"}, "current_normative_frame_digest": {"type": "null"}}}},
+    {"if": {"properties": {"normative_authority_active": {"const": true}}}, "then": {"properties": {"qualified_approvers": {"minItems": 1}, "current_normative_frame_ref": {"type": "string"}, "current_normative_frame_digest": {"type": "string"}}}}
+  ],
+  "additionalProperties": false
+}

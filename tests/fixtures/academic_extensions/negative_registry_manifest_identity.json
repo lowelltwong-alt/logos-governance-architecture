@@ -3,5 +3,7 @@
   "operation": "replace",
   "path": ["packs", 0, "pack_id"],
   "value": "academic.registry-mismatch",
-  "expected_rule": "registry_manifest_identity"
+  "expected_rule": "registry_manifest_identity",
+  "expected_first_rule": "registry_manifest_identity",
+  "expected_rules_exact": ["registry_manifest_identity", "reverse_consumer_closure", "unknown_consumer_pack"]
 }

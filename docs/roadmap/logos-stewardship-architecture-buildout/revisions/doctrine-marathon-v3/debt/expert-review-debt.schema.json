@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.expert-review-debt.v3",
+  "title": "Doctrine Marathon expert review debt",
+  "description": "object_type=expert_review_debt_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Make missing qualified review easy to rank, find, and traverse in both dependency directions.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "debt_id",
+    "subject_node_ids",
+    "required_capability_ids",
+    "required_human_gate_ids",
+    "proposed_role_gap_ids",
+    "missing_source_access",
+    "blocking",
+    "risk_tier",
+    "risk_reasons",
+    "downstream_consumer_ids",
+    "load_bearing_downstream_consumer_ids",
+    "direct_load_bearing_prerequisite_ids",
+    "blast_radius_count",
+    "load_bearing_blast_radius_count",
+    "source_fragility",
+    "freshness_state",
+    "opened_at",
+    "dependency_graph_ref",
+    "dependency_graph_digest",
+    "capability_catalog_ref",
+    "capability_catalog_digest",
+    "human_gate_registry_ref",
+    "human_gate_registry_digest",
+    "review_packet_ref",
+    "review_packet_digest",
+    "acceptance_rubric_ref",
+    "acceptance_rubric_digest",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "logos.doctrine-marathon.expert-review-debt.v3"
+    },
+    "debt_id": {
+      "type": "string",
+      "pattern": "^DMV3-DEBT-[A-Za-z0-9._-]+$"
+    },
+    "subject_node_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_capability_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_source_access": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocking": {
+      "type": "boolean"
+    },
+    "risk_tier": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "frontier"
+      ]
+    },
+    "risk_reasons": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "downstream_consumer_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "blast_radius_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_fragility": {
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ]
+    },
+    "freshness_state": {
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "opened_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "prior_failed_review_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "review_packet_ref": {
+      "type": "string",
+      "pattern": "^(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "acceptance_rubric_ref": {
+      "type": "string",
+      "pattern": "^(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "status": {
+      "enum": [
+        "open",
+        "assigned",
+        "blocked_source",
+        "reviewed",
+        "closed",
+        "superseded"
+      ]
+    },
+    "required_human_gate_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "proposed_role_gap_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^DMV3-GAP-[A-Z0-9-]+$"
+      }
+    },
+    "load_bearing_downstream_consumer_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "direct_load_bearing_prerequisite_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "load_bearing_blast_radius_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "dependency_graph_ref": {
+      "type": "string",
+      "pattern": "^(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "capability_catalog_ref": {
+      "type": "string",
+      "pattern": "^(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "human_gate_registry_ref": {
+      "type": "string",
+      "pattern": "^(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "dependency_graph_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "capability_catalog_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "human_gate_registry_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "review_packet_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "acceptance_rubric_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,41 @@
+metadata:
+  object_type: doctrine_marathon_frontier_adversarial_sentinel
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as an event-triggered high-risk checker contract, not a permanently bound model identity."
+  reason_for_inclusion: "Continuously seek small cracks, correlated hallucinations, half-truths, hidden authority transfer, and large-blast-radius failure without making expensive frontier review ceremonial."
+schema_version: logos.doctrine_marathon.frontier_sentinel.v3
+capability_tier: frontier_reasoning
+provider_or_model_binding: attempt_receipt_only
+activation_triggers:
+  - canon_normativity_orthodoxy_or_heresy_surface
+  - unresolved_high_risk_disagreement
+  - source_or_translation_chain_with_large_blast_radius
+  - three_or_more_minor_findings_on_one_dependency_chain
+  - suspected_correlated_agent_consensus
+  - prompt_or_authority_change
+  - pre_promotion_or_public_release
+review_questions:
+  - What premise is being treated as stronger than its source warrants?
+  - What true fragment is presented without a material qualification?
+  - What source cannot be independently re-accessed?
+  - What dissent, uncertainty, variant, or context disappeared in synthesis?
+  - Which agents share prompts, context, sources, or assumptions?
+  - What contextual edge is quietly acquiring normative force?
+  - What harmless-looking error has the largest reverse-consumer blast radius?
+  - What instruction asks an agent to establish a preferred conclusion?
+  - Which missing specialist would most likely change the result?
+output_requires:
+  - exact_attempt_and_input_digests
+  - challenged_claim_edge_or_instruction_ids
+  - evidence_and_counterexample_refs
+  - risk_tier_and_reasons
+  - affected_consumer_ids
+  - disposition_recommendation
+  - disagreements_with_other_checkers
+authority:
+  may_block: true
+  may_quarantine: true
+  may_approve_theology: false
+  may_close_human_gate: false
+  may_modify_source_or_claim: false

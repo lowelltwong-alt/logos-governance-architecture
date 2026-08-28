@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.qualification-registry.v3",
+  "title": "Doctrine Marathon qualification registry",
+  "description": "object_type=qualification_registry_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after frontier red-team review; reason_for_inclusion=Give ExpertPacks, qualification receipts, and correlation acceptances one typed resolvable surface instead of accepting arbitrary files.",
+  "type": "object",
+  "required": ["metadata", "schema_version", "runtime_records", "expert_packs", "qualification_receipts", "correlation_acceptance_receipts", "registry_digest"],
+  "properties": {
+    "metadata": {"type": "object", "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"], "additionalProperties": true},
+    "schema_version": {"const": "logos.doctrine-marathon.qualification-registry.v3"},
+    "runtime_records": {"type": "boolean"},
+    "expert_packs": {"type": "array", "items": {"type": "object"}},
+    "qualification_receipts": {"type": "array", "items": {"type": "object"}},
+    "correlation_acceptance_receipts": {"type": "array", "items": {"type": "object"}},
+    "registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"runtime_records": {"const": false}}}, "then": {"properties": {"expert_packs": {"maxItems": 0}, "qualification_receipts": {"maxItems": 0}, "correlation_acceptance_receipts": {"maxItems": 0}}}}
+  ],
+  "additionalProperties": false
+}

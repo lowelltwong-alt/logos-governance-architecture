@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.source-record.v3",
+  "title": "Doctrine Marathon source record",
+  "description": "object_type=source_record_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent source-laundering review; reason_for_inclusion=Require an independently re-accessed root identity, exact locator, rights state, and digest before evidence may be load bearing.",
+  "type": "object",
+  "required": ["schema_version", "source_record_id", "revision", "source_kind", "root_or_derivative", "title", "creator_or_custodian", "edition_or_witness_id", "stable_locator_uri", "root_source_access", "identity_state", "rights_state", "content_digest", "observed_at", "qualification_scope_digest", "qualification_receipt_refs", "qualification_receipt_digests", "qualifies_for_load_bearing", "record_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.source-record.v3"},
+    "source_record_id": {"type": "string", "pattern": "^SRC-[A-Za-z0-9._-]+$"},
+    "revision": {"type": "integer", "minimum": 1},
+    "source_kind": {"enum": ["primary_witness", "diplomatic_transcription", "critical_edition", "translation", "secondary_scholarship", "catalog_record"]},
+    "root_or_derivative": {"enum": ["root", "derivative"]},
+    "title": {"type": "string", "minLength": 3},
+    "creator_or_custodian": {"type": "string", "minLength": 3},
+    "edition_or_witness_id": {"type": "string", "minLength": 3},
+    "stable_locator_uri": {"type": "string", "format": "uri"},
+    "root_source_access": {"enum": ["directly_reaccessed", "institutionally_verified", "unavailable"]},
+    "identity_state": {"enum": ["qualified", "candidate", "disputed", "stale", "invalidated"]},
+    "rights_state": {"enum": ["public_domain", "open_license", "permission_recorded", "restricted_citation_only", "unknown", "prohibited"]},
+    "content_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "qualification_scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "qualification_receipt_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^evidence-review:EREV-[A-Za-z0-9._-]+$"}},
+    "qualification_receipt_digests": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+    "qualifies_for_load_bearing": {"type": "boolean"},
+    "record_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"qualifies_for_load_bearing": {"const": true}}},
+      "then": {
+        "properties": {
+          "root_source_access": {"enum": ["directly_reaccessed", "institutionally_verified"]},
+          "identity_state": {"const": "qualified"},
+          "rights_state": {"enum": ["public_domain", "open_license", "permission_recorded", "restricted_citation_only"]},
+          "qualification_receipt_refs": {"minItems": 1},
+          "qualification_receipt_digests": {"minItems": 1}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -43,28 +43,104 @@ def test_demo_validator_is_registered_once() -> None:
 def test_exact_p66_asset_identity_and_dimensions() -> None:
     path = ROOT / validator.IMAGE_REL
     assert path.stat().st_size == validator.EXPECTED_IMAGE_BYTES
+    assert validator.raw_file_sha256(path) == validator.EXPECTED_IMAGE_SHA256
     assert validator.file_sha256(path) == validator.EXPECTED_IMAGE_SHA256
+    assert validator.file_byte_count(path) == validator.EXPECTED_IMAGE_BYTES
     assert validator.jpeg_dimensions(path) == validator.EXPECTED_IMAGE_DIMENSIONS
+
+
+def test_file_digest_and_count_are_checkout_newline_stable(tmp_path: Path) -> None:
+    lf = tmp_path / "lf.txt"
+    crlf = tmp_path / "crlf.txt"
+    lf.write_bytes(b"alpha\nbeta\n")
+    crlf.write_bytes(b"alpha\r\nbeta\r\n")
+
+    assert validator.canonical_file_bytes(lf) == b"alpha\nbeta\n"
+    assert validator.canonical_file_bytes(crlf) == b"alpha\nbeta\n"
+    assert validator.file_sha256(lf) == validator.file_sha256(crlf)
+    assert validator.file_byte_count(lf) == validator.file_byte_count(crlf) == 11
+    assert validator.raw_file_sha256(lf) != validator.raw_file_sha256(crlf)
+
+
+def test_non_utf8_digest_preserves_raw_binary_bytes(tmp_path: Path) -> None:
+    binary = tmp_path / "opaque.bin"
+    payload = b"\xff\xd8\x00\r\n\xff\xd9"
+    binary.write_bytes(payload)
+
+    assert validator.canonical_file_bytes(binary) == payload
+    assert validator.file_byte_count(binary) == len(payload)
+    assert validator.file_sha256(binary) == validator.raw_file_sha256(binary)
 
 
 def test_p66_ranges_are_four_non_contiguous_segments() -> None:
     documents = validator.load_documents(ROOT)
     source = documents["p66_source"]
     observed = {
-        row["segment_id"]: row["passage"] for row in source["coverage_segments"]
+        row["segment_id"]: row["passage"] for row in source["object_catalog_coverage_segments"]
     }
     expected = {
         segment_id: values[0]
         for segment_id, values in validator.EXPECTED_SEGMENTS.items()
     }
     assert observed == expected
-    assert source["coverage_is_non_contiguous"] is True
-    assert source["forbidden_continuous_range"] not in set(observed.values())
+    assert source["object_catalog_coverage_scope"] == "combined_recto_and_verso_object_record"
+    assert source["object_catalog_coverage_is_non_contiguous"] is True
+    assert source["forbidden_object_catalog_continuous_range"] not in set(observed.values())
+    assert source["asset_side_coverage"]["status"] == "not_established_in_current_source_pack"
+    assert source["asset_side_coverage"]["claim_allowed"] is False
+    assert source["asset_side_coverage"]["mapped_segments"] == []
+
+
+def test_p66_single_side_asset_cannot_inherit_object_catalog_coverage() -> None:
+    documents = validator.load_documents(ROOT)
+    graph = documents["evidence_graph"]
+    assert not any(
+        edge.get("from") == "asset:p66-verso" and edge.get("relation") == "has_coverage_segment"
+        for edge in graph["edges"]
+    )
+    assert {
+        (edge["from"], edge["relation"], edge["to"])
+        for edge in graph["edges"]
+    } >= {
+        ("src:p66-cologne", "identifies", "artifact:p66-cologne-object"),
+        ("src:p66-cologne", "publishes_representation", "asset:p66-verso"),
+        ("artifact:p66-cologne-object", "has_digital_representation", "asset:p66-verso"),
+    }
+    changed = validator.apply_fixture_mutation(documents, "attach_combined_object_coverage_to_verso_asset")
+    result = validator.validate_data(
+        changed,
+        ROOT,
+        check_asset=False,
+        check_frozen=False,
+        check_fixtures=False,
+        check_release=False,
+    )
+    assert "p66_asset_side_scope" in {finding.rule for finding in result.findings}
 
 
 def test_every_negative_fixture_is_executed_and_rejected() -> None:
+    documents = validator.load_documents(ROOT)
+    findings = validator._fixture_findings(documents, ROOT)
+    assert findings == [], [finding.render() for finding in findings]
+
+
+def test_fixture_catalog_binds_exact_ordered_identities_and_causal_roles() -> None:
+    fixture_doc = validator.load_documents(ROOT)["adversarial_fixtures"]
+    assert fixture_doc["schema_version"] == "logos.biblical-evidence.adversarial-fixtures.v5"
+    assert len(fixture_doc["fixtures"]) == 77
+    assert validator._canonical_digest(fixture_doc["path_binding_contract"]) == validator.EXPECTED_FIXTURE_PATH_BINDING_DIGEST
+    for fixture in fixture_doc["fixtures"]:
+        rows = fixture["expected_findings_ordered"]
+        assert rows
+        assert rows[0]["causal_role"] == "intended_primary"
+        assert all(row["causal_role"] == "causal_cascade" for row in rows[1:])
+        assert rows[0]["rule"] == fixture["intended_rule"] == fixture["expected_first_rule"]
+        assert sorted({row["rule"] for row in rows}) == fixture["expected_rules_exact"]
+        assert len({(row["rule"], row["identity"]) for row in rows}) == len(rows)
+
+
+def test_fixture_replay_is_isolated_forward_and_reverse() -> None:
     documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
-    fixture_doc = documents["adversarial_fixtures"]
     baseline = validator.validate_data(
         documents,
         ROOT,
@@ -74,24 +150,72 @@ def test_every_negative_fixture_is_executed_and_rejected() -> None:
         check_release=False,
     )
     assert baseline.passed, [finding.render() for finding in baseline.findings]
-    baseline_findings = set(baseline.findings)
-    for fixture in fixture_doc["fixtures"]:
-        if fixture["target"] == "strict_parser":
-            raw_findings = validator.raw_parser_fixture_findings(fixture["mutation"])
-            assert fixture["expected_rule"] in {finding.rule for finding in raw_findings}, fixture["fixture_id"]
-            continue
-        candidate = validator.apply_fixture_mutation(documents, fixture["mutation"])
-        assert validator._canonical_digest(candidate) != validator._canonical_digest(documents)
-        result = validator.validate_data(
-            candidate,
-            ROOT,
-            check_asset=False,
-            check_frozen=False,
-            check_fixtures=False,
-            check_release=False,
-        )
-        rules = {finding.rule for finding in set(result.findings) - baseline_findings}
-        assert fixture["expected_rule"] in rules, fixture["fixture_id"]
+    rows = documents["adversarial_fixtures"]["fixtures"]
+    forward, reverse = validator._fixture_catalog_observations(documents, set(), rows, ROOT)
+    assert forward == reverse
+    assert len(forward) == 77
+    assert all(row["candidate_digest"].startswith("sha256:") for row in forward.values())
+    assert all(row["baseline_digest"].startswith("sha256:") for row in forward.values())
+    assert all(row["candidate_digest"] != row["baseline_digest"] for row in forward.values())
+    fixtures_by_id = {row["fixture_id"]: row for row in rows}
+    assert all(
+        observation["changed_paths"]
+        == validator._fixture_expected_changed_paths(documents["adversarial_fixtures"], fixtures_by_id[fixture_id])
+        for fixture_id, observation in forward.items()
+    )
+
+def test_fixture_catalog_rejects_drifted_first_failure_or_exact_rule_set() -> None:
+    documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
+    first = documents["adversarial_fixtures"]["fixtures"][0]
+    first["expected_first_rule"] = "zzzz-not-the-first-rule"
+    result = validator.validate_data(
+        documents,
+        ROOT,
+        check_asset=False,
+        check_frozen=False,
+        check_release=False,
+    )
+    assert "fixture_contract" in {finding.rule for finding in result.findings}
+
+    documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
+    first = documents["adversarial_fixtures"]["fixtures"][0]
+    first["expected_rules_exact"] = sorted(first["expected_rules_exact"] + ["zzzz_invented_rule"])
+    result = validator.validate_data(
+        documents,
+        ROOT,
+        check_asset=False,
+        check_frozen=False,
+        check_release=False,
+    )
+    assert "fixture_contract" in {finding.rule for finding in result.findings}
+
+    documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
+    first = documents["adversarial_fixtures"]["fixtures"][0]
+    first["expected_findings_ordered"][0]["identity"] += " drift"
+    result = validator.validate_data(
+        documents,
+        ROOT,
+        check_asset=False,
+        check_frozen=False,
+        check_release=False,
+    )
+    assert "fixture_exact_rejection" in {finding.rule for finding in result.findings}
+
+
+def test_ordered_primary_rule_is_not_reduced_to_alphabetical_order() -> None:
+    documents = validator.load_documents(ROOT)
+    rows = documents["adversarial_fixtures"]["fixtures"]
+    nonlexical = [
+        row
+        for row in rows
+        if row["expected_rule"] != row["expected_rules_exact"][0]
+    ]
+    assert nonlexical, "the fixture catalog must exercise ordered, non-lexical primary failure"
+    assert all(
+        row["expected_rule"] == row["expected_first_rule"]
+        and row["intended_rule"] == row["expected_first_rule"]
+        for row in nonlexical
+    )
 
 
 def test_graph_endpoints_resolve_and_authority_is_none() -> None:
@@ -238,11 +362,120 @@ def test_role_contract_rejects_semantic_and_authority_drift(mutation: str, rule:
     assert rule in {finding.rule for finding in result.findings}
 
 
+def test_role_permission_fixtures_reseal_only_synthetic_completeness_inputs() -> None:
+    documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
+    for mutation in (
+        "set_rights_reviewer_write_bounded",
+        "change_rights_reviewer_class_to_writer",
+        "add_rights_reviewer_write_authority",
+    ):
+        changed = validator.apply_fixture_mutation(documents, mutation, root=ROOT)
+        findings = validator._collect_findings(
+            changed,
+            ROOT,
+            check_asset=False,
+            check_frozen=False,
+            check_fixtures=False,
+            check_release=False,
+        )
+        rules = list(dict.fromkeys(finding.rule for finding in findings))
+        assert rules[0] == "mesh_role_permissions"
+        assert "completeness_input_drift" not in rules
+
+
+def test_alias_attribution_uses_only_the_changed_candidate_family() -> None:
+    documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
+    cases = (
+        ("add_graph_m7_alias_node", "m7_candidate_boundary", "m8_pending_boundary"),
+        ("add_graph_m8_alias_node", "m8_pending_boundary", "m7_candidate_boundary"),
+        ("add_nonreserved_m7_alias_edge", "m7_candidate_boundary", "m8_pending_boundary"),
+        ("add_nonreserved_m8_alias_edge", "m8_pending_boundary", "m7_candidate_boundary"),
+    )
+    for mutation, expected, forbidden in cases:
+        changed = validator.apply_fixture_mutation(documents, mutation, root=ROOT)
+        rules = {
+            finding.rule
+            for finding in validator._collect_findings(
+                changed,
+                ROOT,
+                check_asset=False,
+                check_frozen=False,
+                check_fixtures=False,
+                check_release=False,
+            )
+        }
+        assert expected in rules
+        assert forbidden not in rules
+
+
+def test_single_fault_redesigns_remove_unrelated_secondary_failures() -> None:
+    documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
+    changed = validator.apply_fixture_mutation(
+        documents,
+        "set_lower_trust_claim_with_existing_canonical_path",
+        root=ROOT,
+    )
+    rules = {
+        finding.rule
+        for finding in validator._collect_findings(
+            changed,
+            ROOT,
+            check_asset=False,
+            check_frozen=False,
+            check_fixtures=False,
+            check_release=False,
+        )
+    }
+    assert "trust_zone_authority_path" in rules
+    assert "relation_kind_compatibility" not in rules
+
+    changed = validator.apply_fixture_mutation(
+        documents,
+        "set_graph_m8_status_built_and_converged",
+        root=ROOT,
+    )
+    graph = changed["evidence_graph"]
+    assert graph["invariants"]["m8_john_pending"] is True
+
+
 def test_completeness_receipt_rejects_truth_like_wrong_types() -> None:
     documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
     changed = validator.apply_fixture_mutation(documents, "set_completeness_semantic_fields_to_wrong_types")
     result = validator.validate_data(changed, ROOT, check_asset=False, check_frozen=False, check_fixtures=False, check_release=False)
     assert "mesh_role_completeness" in {finding.rule for finding in result.findings}
+
+
+@pytest.mark.parametrize("mutation, expected_rule", [
+    ("alias_completeness_auditor_checker_actor", "mesh_role_completeness"),
+    ("forge_checker_override_of_failed_auditor", "mesh_role_completeness"),
+    ("break_completeness_phase_pair_chain", "completeness_input_drift"),
+    ("inject_completeness_receipt_self_reference", "receipt_self_reference"),
+])
+def test_completeness_actor_identity_override_and_phase_chain_fail_closed(mutation: str, expected_rule: str) -> None:
+    documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
+    changed = validator.apply_fixture_mutation(documents, mutation)
+    result = validator.validate_data(
+        changed,
+        ROOT,
+        check_asset=False,
+        check_frozen=False,
+        check_fixtures=False,
+        check_release=False,
+    )
+    assert expected_rule in {finding.rule for finding in result.findings}
+
+
+def test_completeness_receipt_never_hashes_its_own_mutable_file() -> None:
+    documents = validator.build_known_valid_fixture_baseline(validator.load_documents(ROOT), ROOT)
+    receipt_path = validator.DOCUMENT_FILES["completeness_receipt"]
+    for phase in documents["completeness_receipt"]["phase_receipts"]:
+        refs = list(phase["phase_evidence"]["evidence_refs"])
+        refs.extend(
+            ref
+            for discovery in phase["late_discoveries"]
+            for ref in discovery["evidence_refs"]
+        )
+        assert receipt_path not in {ref["path"] for ref in refs}
 
 
 def test_all_machine_document_identity_envelopes_are_exact() -> None:
@@ -263,7 +496,7 @@ def test_all_machine_document_identity_envelopes_are_exact() -> None:
     ("add_external_reserved_scripture_namespace", "graph_identity"),
     ("add_external_promoted_status", "extension_authority_noninterference"),
     ("add_external_source_claim_reuse", "graph_claim_identity"),
-    ("add_external_confusable_identifier", "extension_authority_noninterference"),
+    ("add_external_confusable_identifier", "graph_identity"),
     ("add_external_punctuation_impersonator", "extension_authority_noninterference"),
 ])
 def test_external_nodes_cannot_impersonate_core_or_authority(mutation: str, rule: str) -> None:
@@ -293,8 +526,9 @@ def test_structured_late_discoveries_bind_evidence_and_block_midflight_publicati
     assert phases[0]["late_discoveries"] == []
     assert phases[1]["late_discoveries"] == validator.expected_late_discoveries(ROOT, "midflight")
     assert phases[2]["late_discoveries"] == validator.expected_late_discoveries(ROOT, "exit")
-    assert all(row["publication_allowed"] is False for row in phases[1]["late_discoveries"])
-    assert all(row["publication_allowed"] is True for row in phases[2]["late_discoveries"])
+    assert all(row["eligible_for_downstream_release_evaluation"] is False for row in phases[1]["late_discoveries"])
+    assert all(row["eligible_for_downstream_release_evaluation"] is True for row in phases[2]["late_discoveries"])
+    assert all("publication_allowed" not in row for phase in phases for row in phase["late_discoveries"])
     assert all(row["authority_effect"] == "none" for phase in phases for row in phase["late_discoveries"])
 
 
@@ -391,8 +625,45 @@ def test_frozen_manifest_covers_exact_non_receipt_package() -> None:
     manifest_path = ROOT / validator.PACKAGE_REL / "frozen-digests.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     observed = {row["path"] for row in manifest["files"]}
+    assert manifest["algorithm"] == validator.EXPECTED_FROZEN_ALGORITHM
+    assert manifest["path_order"] == validator.EXPECTED_FROZEN_PATH_ORDER
     assert observed == set(validator.expected_frozen_paths(ROOT))
     assert validator._frozen_findings(ROOT) == []
+
+
+def test_frozen_manifest_accepts_checkout_crlf_without_refreeze(tmp_path: Path) -> None:
+    source = ROOT / validator.PACKAGE_REL
+    target = tmp_path / validator.PACKAGE_REL
+    shutil.copytree(source, target)
+    readme = target / "README.md"
+    semantic_lf = validator.canonical_file_bytes(readme)
+    readme.write_bytes(semantic_lf.replace(b"\n", b"\r\n"))
+
+    assert validator._frozen_findings(tmp_path) == []
+
+
+def test_frozen_manifest_rejects_real_text_change(tmp_path: Path) -> None:
+    source = ROOT / validator.PACKAGE_REL
+    target = tmp_path / validator.PACKAGE_REL
+    shutil.copytree(source, target)
+    readme = target / "README.md"
+    readme.write_bytes(validator.canonical_file_bytes(readme) + b"semantic drift\n")
+
+    findings = validator._frozen_findings(tmp_path)
+    assert "frozen_digest_mismatch" in {finding.rule for finding in findings}
+
+
+def test_frozen_manifest_rejects_algorithm_drift(tmp_path: Path) -> None:
+    source = ROOT / validator.PACKAGE_REL
+    target = tmp_path / validator.PACKAGE_REL
+    shutil.copytree(source, target)
+    manifest_path = target / "frozen-digests.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["algorithm"] = "sha256_raw_worktree_bytes"
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+    findings = validator._frozen_findings(tmp_path)
+    assert "frozen_digest_manifest" in {finding.rule for finding in findings}
 
 
 @pytest.mark.parametrize("mutation", ["duplicate", "missing", "extra", "malformed", "reordered"])

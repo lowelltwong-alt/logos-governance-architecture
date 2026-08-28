@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "object_type": "doctrine_marathon_qualification_registry",
+    "trust_zone": "proposed",
+    "lifecycle_status": "specification_only",
+    "provenance_note": "Created on 2026-08-27 by Codex root as an empty design-time registry after frontier red-team review.",
+    "reason_for_inclusion": "Prove that V3 has no qualified ExpertPack, runtime role assignment, or accepted correlation exception while preserving the typed admission contract."
+  },
+  "schema_version": "logos.doctrine-marathon.qualification-registry.v3",
+  "runtime_records": false,
+  "expert_packs": [],
+  "qualification_receipts": [],
+  "correlation_acceptance_receipts": [],
+  "registry_digest": "sha256:9f384f9f305736f37571a2a17798c13a692196db6bcc21ef66a55a59fc41f479"
+}

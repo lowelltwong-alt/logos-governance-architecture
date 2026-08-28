@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.role-assignment.v3",
+  "title": "Doctrine Marathon role assignment",
+  "description": "object_type=role_assignment_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root and strengthened after independent correlation review; reason_for_inclusion=Reject thin expert labels and bind each task-local role to qualification, source order, guide lineage, runtime attempt, and checker independence evidence.",
+  "type": "object",
+  "required": ["schema_version", "assignment_id", "work_unit_id", "assignment_kind", "role_id", "capability_ids", "qualification_basis", "expected_information_gain", "qualification_receipt_ref", "qualification_receipt_digest", "task_prompt_ref", "task_prompt_digest", "prompt_neutrality_review_ref", "prompt_neutrality_review_digest", "attempt_id", "actor_instance_id", "checks_assignment_ids", "source_order", "source_order_digest", "knowledge_guide_lineage", "knowledge_guide_lineage_digest", "runtime_adapter", "runtime_adapter_digest", "independence", "expires_with_work_unit", "status"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.role-assignment.v3"},
+    "assignment_id": {"type": "string", "pattern": "^DMV3-ROLE-[A-Za-z0-9._-]+$"},
+    "work_unit_id": {"type": "string", "minLength": 3},
+    "assignment_kind": {"enum": ["writer", "checker", "controller", "auditor"]},
+    "role_id": {"type": "string", "minLength": 3},
+    "capability_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
+    "qualification_basis": {
+      "type": "object",
+      "required": ["kind", "ref", "digest", "state"],
+      "properties": {
+        "kind": {"enum": ["expert_pack", "control_contract"]},
+        "ref": {"type": "string", "minLength": 3},
+        "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "state": {"enum": ["candidate", "qualified", "blocked", "expired", "revoked"]}
+      },
+      "additionalProperties": false
+    },
+    "expected_information_gain": {"type": "string", "minLength": 40},
+    "qualification_receipt_ref": {"type": ["string", "null"], "minLength": 3},
+    "qualification_receipt_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "task_prompt_ref": {"type": ["string", "null"], "minLength": 3},
+    "task_prompt_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "prompt_neutrality_review_ref": {"type": ["string", "null"], "pattern": "^prompt-neutrality-review:PNR-[A-Za-z0-9._-]+$"},
+    "prompt_neutrality_review_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "attempt_id": {"type": "string", "minLength": 3},
+    "actor_instance_id": {"type": "string", "minLength": 3},
+    "checks_assignment_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^DMV3-ROLE-[A-Za-z0-9._-]+$"}},
+    "source_order": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["ordinal", "source_ref", "source_digest", "source_class"],
+        "properties": {
+          "ordinal": {"type": "integer", "minimum": 1},
+          "source_ref": {"type": "string", "minLength": 3},
+          "source_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "source_class": {"enum": ["control_contract", "root_source", "qualified_secondary", "discovery_only"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "source_order_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "knowledge_guide_lineage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["guide_ref", "guide_digest", "usage", "used_as_evidence"],
+        "properties": {
+          "guide_ref": {"type": "string", "minLength": 3},
+          "guide_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "usage": {"enum": ["routing_only", "discovery_only", "instruction_context"]},
+          "used_as_evidence": {"const": false}
+        },
+        "additionalProperties": false
+      }
+    },
+    "knowledge_guide_lineage_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "runtime_adapter": {
+      "type": "object",
+      "required": ["adapter_id", "runtime_family", "model_revision", "capability_tier", "reasoning_effort", "tool_profile_digest", "context_digest", "receipt_ref"],
+      "properties": {
+        "adapter_id": {"type": "string", "minLength": 3},
+        "runtime_family": {"type": "string", "minLength": 3},
+        "model_revision": {"type": "string", "minLength": 3},
+        "capability_tier": {"enum": ["mechanical", "balanced", "frontier_reasoning", "human"]},
+        "reasoning_effort": {"type": "string", "minLength": 2},
+        "tool_profile_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "context_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "receipt_ref": {"type": "string", "minLength": 3}
+      },
+      "additionalProperties": false
+    },
+    "runtime_adapter_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "independence": {
+      "type": "object",
+      "required": ["answer_context_exposure", "prompt_author_ids", "correlation_disclosures", "assessment", "human_acceptance_receipt_ref"],
+      "properties": {
+        "answer_context_exposure": {"enum": ["none", "findings_only", "full_candidate"]},
+        "prompt_author_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "correlation_disclosures": {"type": "array", "uniqueItems": true, "items": {"enum": ["actor_instance", "attempt_id", "prompt_authorship", "answer_context_exposure", "source_order", "KnowledgeGuide_digest", "runtime_adapter"]}},
+        "assessment": {"enum": ["independent", "correlated_disclosed", "blocked"]},
+        "human_acceptance_receipt_ref": {"type": ["string", "null"], "minLength": 3}
+      },
+      "additionalProperties": false
+    },
+    "expires_with_work_unit": {"const": true},
+    "status": {"enum": ["candidate", "qualified_for_unit", "blocked", "expired", "revoked"]}
+  },
+  "allOf": [
+    {"if": {"properties": {"assignment_kind": {"const": "checker"}}}, "then": {"properties": {"checks_assignment_ids": {"minItems": 1}}}},
+    {"if": {"properties": {"assignment_kind": {"enum": ["writer", "controller"]}}}, "then": {"properties": {"checks_assignment_ids": {"maxItems": 0}}}},
+    {"if": {"properties": {"status": {"const": "qualified_for_unit"}}}, "then": {"properties": {"qualification_basis": {"properties": {"state": {"const": "qualified"}}}, "qualification_receipt_ref": {"type": "string"}, "qualification_receipt_digest": {"type": "string"}, "task_prompt_ref": {"type": "string"}, "task_prompt_digest": {"type": "string"}, "prompt_neutrality_review_ref": {"type": "string"}, "prompt_neutrality_review_digest": {"type": "string"}}}}
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,38 @@
+metadata:
+  object_type: expert_review_debt_ranking_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as an operational triage rule for retroactive scholarly review."
+  reason_for_inclusion: "Help future experts find the highest-consequence review work and its two-way dependencies without scoring theological truth or people."
+schema_version: logos.doctrine_marathon.review_debt_ranking.v3
+ranking_is_operational_not_truth_score: true
+lexicographic_priority:
+  - blocking_descending
+  - authority_risk_descending
+  - stale_or_invalid_prerequisite_descending
+  - blast_radius_count_descending
+  - dependency_depth_descending
+  - source_or_translation_fragility_descending
+  - freshness_age_descending
+  - opened_at_ascending
+  - debt_id_ascending
+forbidden_ranking_inputs:
+  - tradition_popularity
+  - model_confidence
+  - citation_count_as_truth
+  - reviewer_prestige_without_scope_qualification
+  - desired_doctrinal_conclusion
+reviewer_route_requires:
+  - exact subject nodes and revisions
+  - required expertise facets and why each adds value
+  - prerequisite graph in canonical direction
+  - generated reverse consumers and blast radius
+  - source and rights access packet
+  - preserved disagreements and counterevidence
+  - exact questions and acceptance rubric
+  - consequence of confirm revise reject or abstain
+deterministic_checks:
+  - blast_radius_count_equals_reverse_consumer_closure
+  - every_blocking_debt_quarantines_subject_and_load_bearing_consumers
+  - ranking_keys_present_and_stable
+  - closed_debt_has_qualified_human_receipt

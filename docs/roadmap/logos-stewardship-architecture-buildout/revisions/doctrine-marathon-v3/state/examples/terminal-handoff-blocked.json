@@ -1,0 +1,26 @@
+{
+  "schema_version": "logos.doctrine-marathon.terminal-handoff.v3",
+  "handoff_id": "DMV3-HANDOFF-0001",
+  "status": "BLOCKED",
+  "checkpoint_id": "DMV3-CP-0001",
+  "checkpoint_ref": "state/examples/initial-resume-checkpoint.json",
+  "checkpoint_digest": "sha256:f6092ec11926914230ffaa86d682644e47c40bec686a2392302cd2d1144c4833",
+  "completed_unit_ids": [
+    "DMV3-SPECIFICATION-003"
+  ],
+  "blocked_gate_ids": [
+    "FUTURE_RESEARCH_AUTHORITY",
+    "QUALIFIED_EXPERT_PACKS",
+    "QUALIFIED_HUMAN_REVIEW",
+    "SOURCE_INGESTION_AUTHORITY"
+  ],
+  "residual_risks": [
+    "No patristic source or ExpertPack has been qualified.",
+    "No qualified theologian has approved a NormativeFrame."
+  ],
+  "completion_definition_ref": null,
+  "completion_definition_digest": null,
+  "completion_receipt_ref": null,
+  "completion_receipt_digest": null,
+  "next_prompt": "Read QUICK_RESUME_PROMPT.md after granting an exact bounded authority; do not infer research or source-ingestion permission from this example."
+}

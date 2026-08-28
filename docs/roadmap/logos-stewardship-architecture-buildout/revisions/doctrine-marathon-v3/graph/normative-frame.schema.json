@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.normative-frame.v3",
+  "title": "Human-approved normative frame",
+  "description": "object_type=normative_frame_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Require an exact human-approved authority frame before any present normative comparison.",
+  "type": "object",
+  "required": ["schema_version", "frame_id", "revision", "tradition_or_jurisdiction", "canon_scope", "admitted_authorities", "interpretive_policy_ref", "scope_digest", "human_approval_receipt_ref", "human_approval_receipt_digest", "authority_registry_digest", "approved_by", "effective_at", "expires_at", "status", "created_by_ai", "frame_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_marathon.normative-frame.v3"},
+    "frame_id": {"type": "string", "pattern": "^NFRAME-[A-Za-z0-9._-]+$"},
+    "revision": {"type": "integer", "minimum": 1},
+    "tradition_or_jurisdiction": {"type": "string", "minLength": 3},
+    "canon_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "admitted_authorities": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["authority_id", "role", "scope"], "additionalProperties": true}},
+    "interpretive_policy_ref": {"type": "string", "minLength": 3},
+    "scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "human_approval_receipt_ref": {"type": "string", "pattern": "^human-decision:HDEC-[A-Za-z0-9._-]+$"},
+    "human_approval_receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "authority_registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "approved_by": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^HUMAN-[A-Za-z0-9._-]+$"}},
+    "effective_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "supersedes_frame_ref": {"type": ["string", "null"]},
+    "status": {"enum": ["human_approved_active", "expired", "superseded", "revoked"]},
+    "created_by_ai": {"const": false},
+    "frame_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

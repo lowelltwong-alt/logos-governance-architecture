@@ -1,0 +1,52 @@
+metadata:
+  object_type: doctrine_marathon_durable_goal
+  trust_zone: proposed
+  lifecycle_status: saved_specification_only
+  provenance_note: "Created and frozen on 2026-08-27 by Codex root as the durable V3 goal record bound to the exact canonical prompt."
+  reason_for_inclusion: "Keep multi-run purpose, authority ceiling, progress semantics, and completion criteria independent of chat context."
+schema_version: logos.doctrine_marathon.goal.v3
+goal_id: LOGOS-DOCTRINE-MARATHON-003
+revision_id: doctrine-marathon-v3
+objective: >-
+  Build, through future separately authorized bounded work units, an
+  evidence-preserving and expert-reviewable Christian doctrine and reception
+  history layer across time without altering Scripture or elevating AI output,
+  contextual evidence, or historical description into doctrine.
+canonical_prompt_ref: DOCTRINE_MARATHON_MASTER_PROMPT.md
+canonical_prompt_sha256: sha256:494dfd574a257c99d03b84544343a94a05f678b4b08f19cac18f1ca31d80fd9d
+constitution_ref: constitution.yaml
+campaign_ref: campaign.yaml
+revision_manifest_ref: revision-manifest.yaml
+authority_ceiling:
+  current_mode: specification_only
+  research_execution_authorized: false
+  source_ingestion_authorized: false
+  substantive_doctrine_implementation_authorized: false
+  runtime_activation_authorized: false
+success_dimensions:
+  - source_and_claim_traceability
+  - original_language_and_translation_lineage
+  - attributed_historical_context
+  - tradition_specific_self_representation
+  - explicit_normative_frame_and_human_review
+  - complete_forward_and_reverse_dependencies
+  - ranked_retroactive_expert_review
+  - deterministic_event_and_receipt_replay
+completion_requires:
+  - every owner-approved horizon and work unit is terminal
+  - every load-bearing claim has qualified source and reviewer evidence
+  - every graph consumer and prerequisite is fresh and traversable both ways
+  - every blocking or high-risk expert-review debt item is closed by a qualified human
+  - every disputed claim preserves counterevidence and named disagreement
+  - named owner explicitly approves campaign completion
+current_progress:
+  specification_revision: validated_specification_only
+  runtime: not_implemented
+  research_units_completed: 0
+  doctrine_claims_promoted: 0
+  qualified_human_reviews_completed: 0
+  first_candidate: DMV3-PILOT-1CLEMENT-SOURCEPACK
+terminal_contract:
+  allowed_statuses: [CONTINUE, BLOCKED, CAMPAIGN_COMPLETE]
+  next_prompt_required_for: [CONTINUE, BLOCKED]
+  next_prompt_forbidden_for: [CAMPAIGN_COMPLETE]

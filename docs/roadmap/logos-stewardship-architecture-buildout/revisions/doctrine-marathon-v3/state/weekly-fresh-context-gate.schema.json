@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.weekly-fresh-context-gate.v3",
+  "title": "Doctrine Marathon fresh-context gate",
+  "description": "object_type=fresh_context_gate_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Require a clean context at least weekly and on material control-plane change.",
+  "type": "object",
+  "required": ["schema_version", "gate_id", "fixture_kind", "authority_effect", "opened_at", "must_reset_by", "trigger", "checkpoint_ref", "checkpoint_digest", "canonical_resume_prompt", "canonical_resume_prompt_digest", "verification", "continuation_authorized", "result"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine_marathon.weekly-fresh-context-gate.v3"},
+    "gate_id": {"type": "string", "pattern": "^DMV3-WEEK-[0-9]{4,}$"},
+    "fixture_kind": {"enum": ["design_time_simulation", "runtime_receipt"]},
+    "authority_effect": {"enum": ["none", "bounded_by_external_authority"]},
+    "opened_at": {"type": "string", "format": "date-time"},
+    "must_reset_by": {"type": "string", "format": "date-time"},
+    "trigger": {"enum": ["seven_day_maximum", "prompt_change", "model_or_provider_change", "tool_or_authority_change", "source_set_change", "schema_change", "dependency_change", "risk_change", "manual_owner_request"]},
+    "checkpoint_ref": {"type": "string", "pattern": "^state/(?:checkpoints|examples)/[A-Za-z0-9._-]+\\.json$"},
+    "checkpoint_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "canonical_resume_prompt": {"const": "QUICK_RESUME_PROMPT.md"},
+    "canonical_resume_prompt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "verification": {
+      "type": ["object", "null"],
+      "required": ["fresh_task_started_at", "verified_at", "verification_receipt_ref", "verification_receipt_digest"],
+      "properties": {
+        "fresh_task_started_at": {"type": "string", "format": "date-time"},
+        "verified_at": {"type": "string", "format": "date-time"},
+        "verification_receipt_ref": {"type": "string", "pattern": "^state/(?:fresh-context-receipts|examples)/[A-Za-z0-9._-]+\\.json$"},
+        "verification_receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "continuation_authorized": {"type": "boolean"},
+    "result": {"enum": ["fresh_context_required", "fresh_context_verified"]}
+  },
+  "allOf": [
+    {"if": {"properties": {"fixture_kind": {"const": "design_time_simulation"}}}, "then": {"properties": {"authority_effect": {"const": "none"}}}},
+    {"if": {"properties": {"result": {"const": "fresh_context_required"}}}, "then": {"properties": {"verification": {"type": "null"}, "continuation_authorized": {"const": false}}}},
+    {"if": {"properties": {"result": {"const": "fresh_context_verified"}}}, "then": {"properties": {"verification": {"type": "object"}, "continuation_authorized": {"const": true}}}}
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,79 @@
+metadata:
+  object_type: father_expert_pack_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as the minimum depth contract for each material patristic author or corpus."
+  reason_for_inclusion: "Prevent generic church-father personas from substituting for qualified, source-bound, author-specific expertise."
+schema_version: logos.doctrine_marathon.father_expert_pack.v3
+pack_identity:
+  required:
+    - stable_pack_id
+    - revision
+    - author_or_corpus_identity
+    - scope_and_exclusions
+    - qualification_state
+    - qualified_at
+    - expires_at
+    - invalidation_triggers
+corpus_map:
+  required:
+    - authentic_works_with_claim_bases
+    - disputed_works_with_competing_attributions
+    - spurious_or_pseudonymous_works
+    - fragments_testimonia_and_lost_work_status
+    - chronology_with_uncertainty
+    - author_development_hypotheses
+textual_and_language_map:
+  required:
+    - original_languages
+    - witness_and_textual_history
+    - edition_identity_and_revision
+    - translation_identity_and_revision
+    - locator_grammar
+    - known_variant_and_interpolation_risks
+historical_map:
+  required:
+    - genre_audience_and_rhetorical_setting
+    - geography_and_institutions
+    - named_contemporaries_and_ecclesial_relationships
+    - controversies_opponents_and_attributed_positions
+    - Jewish_and_Greco_Roman_context_dependencies
+    - later_reception_reuse_and_misattribution
+doctrinal_scope:
+  required:
+    - propositions_the_corpus_can_directly_evidence
+    - propositions_requiring_synthesis
+    - propositions_the_corpus_cannot_support
+    - live_scholarly_disagreements
+    - anachronisms_and_category_errors
+source_pack:
+  evidence_classes:
+    - exact_primary_text_or_witness
+    - rights_cleared_critical_edition_or_transcription
+    - peer_reviewed_or_academic_secondary_source
+    - qualified_catalog_or_reference_work
+  discovery_only:
+    - search_result
+    - snippet
+    - generic_web_summary
+    - AI_output
+    - KnowledgeGuide
+qualification:
+  fixtures:
+    - authentic_vs_disputed_work_separation
+    - exact_locator_resolution
+    - quotation_context_and_entailment
+    - original_language_or_translation_limit
+    - opponent_position_non_caricature
+    - later_reception_not_back_projected
+    - abstain_when_source_unavailable
+  checker_requirements:
+    - source_fitness_rights_verifier
+    - claim_entailment_context_verifier
+    - counterevidence_challenger
+    - role_qualification_and_independence_auditor
+non_authority:
+  may_create_doctrine: false
+  may_decide_orthodoxy_or_heresy: false
+  may_replace_qualified_human: false
+  may_treat_KnowledgeGuide_as_evidence: false

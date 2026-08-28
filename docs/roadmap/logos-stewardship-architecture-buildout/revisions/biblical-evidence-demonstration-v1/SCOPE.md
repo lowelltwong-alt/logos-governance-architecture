@@ -13,8 +13,8 @@ reason_for_inclusion: "Bound the public slice so real research cannot be mistake
 - One flagship claim-mediated archaeology comparison: Sennacherib and Lachish.
 - Two compact evidence-and-disagreement cases: Tel Dan and the Pilate inscription.
 - Two anti-overclaim controls: Jericho chronology and Hittite reception rhetoric.
-- One exact licensed manuscript image: Cologne P66, TM 61627, verso.
-- Four non-contiguous John 19 coverage segments and public-domain English display text.
+- One exact licensed manuscript-side image: Cologne P66, TM 61627, verso.
+- Four non-contiguous John 19 coverage segments cataloged for the combined recto-and-verso object record, not assigned to the verso image by this packet, plus public-domain English display text.
 - Honest intersections with an immutable M7 public pointer and finer local candidate observations.
 - An explicit M8-pending and convergence-not-started state.
 - Typed nodes, edges, source roles, uncertainty, counterpositions, rights, reviews, and human gates.
@@ -23,6 +23,7 @@ reason_for_inclusion: "Bound the public slice so real research cannot be mistake
 ## Out of scope
 
 - Reading, OCRing, transcribing, or translating P66 from the photograph.
+- Claiming that the exact verso JPEG contains any particular catalog segment until a qualified side-specific source or review establishes that mapping.
 - Selecting a preferred textual reading or claiming P66 is the original text.
 - Treating English wording as licensed by the image.
 - Completing or converging M7 and M8.

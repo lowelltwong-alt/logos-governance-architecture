@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.public-status.v3",
+  "title": "Doctrine Marathon public-safe status",
+  "description": "object_type=public_status_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root; reason_for_inclusion=Publish honest progress, controls, and review debt without leaking private reasoning or claiming runtime or theology authority.",
+  "type": "object",
+  "required": ["schema_version", "campaign_id", "maturity", "specification_complete", "declared_release_blocker", "runtime_activated", "research_started", "source_corpus_ingested", "doctrine_corpus_complete", "qualified_theological_authority", "human_review_required", "progress", "evidence_routes", "nonclaims"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.public-status.v3"},
+    "campaign_id": {"const": "LOGOS-DOCTRINE-MARATHON-003"},
+    "maturity": {"const": "blocked_specification_only"},
+    "specification_complete": {"const": false},
+    "declared_release_blocker": {"const": "adversarial_harness_release_gate: V3 cannot release until the aggregate exact-oracle migration is complete and independently reviewed"},
+    "runtime_activated": {"const": false},
+    "research_started": {"const": false},
+    "source_corpus_ingested": {"const": false},
+    "doctrine_corpus_complete": {"const": false},
+    "qualified_theological_authority": {"const": false},
+    "human_review_required": {"const": true},
+    "progress": {"type": "object", "required": ["research_units_completed", "doctrine_claims_promoted", "qualified_human_reviews_completed", "open_expert_review_debt"]},
+    "evidence_routes": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string"}},
+    "nonclaims": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

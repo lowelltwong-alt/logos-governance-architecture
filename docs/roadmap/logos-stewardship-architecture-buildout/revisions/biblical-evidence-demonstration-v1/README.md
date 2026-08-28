@@ -19,19 +19,19 @@ accepting the narrative on trust:
 
 1. [`SCOPE.md`](SCOPE.md) — claims and nonclaims.
 2. [`sources/archaeology-source-pack.yaml`](sources/archaeology-source-pack.yaml) — real cases, sources, alternatives, and limits.
-3. [`sources/p66-source-and-rights.yaml`](sources/p66-source-and-rights.yaml) — exact image identity, byte proof, and CC BY 4.0 conditions.
-4. [`graph/p66-chunk-crosswalk.yaml`](graph/p66-chunk-crosswalk.yaml) — four non-contiguous witness segments, public-domain English text, and chunk states.
+3. [`sources/p66-source-and-rights.yaml`](sources/p66-source-and-rights.yaml) — object-level catalog scope, exact image identity, byte proof, and CC BY 4.0 conditions.
+4. [`graph/p66-chunk-crosswalk.yaml`](graph/p66-chunk-crosswalk.yaml) — four non-contiguous object-catalog segments, unresolved image-side mapping, public-domain English text, and chunk states.
 5. [`graph/evidence-graph.yaml`](graph/evidence-graph.yaml) — claim-mediated nodes and edges.
 6. [`graph/node-edge-catalog.yaml`](graph/node-edge-catalog.yaml) — extension-safe vocabulary and forbidden authority paths.
-7. [`mesh/agent-mesh.v3.json`](mesh/agent-mesh.v3.json) — researcher, checker, rights, graph, and completeness-auditor separation.
-8. [`checks/adversarial-fixtures.yaml`](checks/adversarial-fixtures.yaml) — claims the validator must reject.
+7. [`mesh/agent-mesh.v3.json`](mesh/agent-mesh.v3.json) — researcher, checker, rights, graph, completeness-auditor, and distinct actor-bound meta-checker separation.
+8. [`checks/adversarial-fixtures.yaml`](checks/adversarial-fixtures.yaml) — claims the validator must reject, with exact rule sets and deterministic first-failure bindings so a secondary finding cannot create a false green.
 9. [`release/public-release-manifest.yaml`](release/public-release-manifest.yaml) — exact maturity, asset, source, and release boundaries.
 10. [`REPOSITORY_PLACEMENT.md`](REPOSITORY_PLACEMENT.md) — where future evidence belongs across the Logos repository family.
 11. [`validation-receipt.json`](validation-receipt.json), [`release/independent-academic-review.md`](release/independent-academic-review.md), [`release/independent-rights-review.md`](release/independent-rights-review.md), and [`release/independent-graph-mesh-review.md`](release/independent-graph-mesh-review.md) — frozen replay evidence and explicit nonclaims.
 
 ## The P66 manuscript-to-chunk slice
 
-![P66 Cologne fragment containing non-contiguous portions of John 19](assets/p66-cologne-john19-verso.jpg)
+![Exact P66 Cologne verso image; side-specific passage mapping remains unresolved](assets/p66-cologne-john19-verso.jpg)
 
 © Institut für Altertumskunde an der Universität zu Köln. Image: *Inv.
 04274+004298 / P.inv. 04274_04298v*, Kölner Papyrussammlung, TM 61627.
@@ -42,14 +42,20 @@ match the official JPEG at SHA-256
 `f7453af8d2523cc358148c7d26072d87b53c991aa03df667f8c5c54c7beef040`.
 The University of Cologne does not endorse this project.
 
-The object catalog assigns this fragment four separated portions of John 19:
-8–11, 13–15, 18–20, and 23–24. The gaps matter. The validator rejects the
-tempting but false simplification “John 19:8–24.”
+The official object record assigns the combined recto-and-verso manuscript
+object four separated portions of John 19: 8–11, 13–15, 18–20, and 23–24.
+It does not assign those four ranges to this verso JPEG. That side-specific
+mapping remains unresolved until a qualified papyrologist/textual critic reviews
+a side-specific transcription or published mapping. The gaps also matter: the
+validator rejects the tempting but false simplification “John 19:8–24.”
 
 ```mermaid
 flowchart LR
-    IMG[P66 licensed image] --> OBJ[Physical witness and catalog identity]
-    OBJ --> SEG[Four non-contiguous coverage segments]
+    SRC[Cologne combined-object record] --> OBJ[Physical recto-and-verso witness]
+    SRC --> IMG[Exact licensed verso JPEG]
+    OBJ -->|has exact verso representation; ranges do not propagate| IMG
+    OBJ --> SEG[Four non-contiguous object-catalog segments]
+    IMG --> PG[Papyrology side-mapping gate]
     SEG --> TX[Diplomatic transcription or edition: not included]
     TX --> GR[Greek token alignment: future reviewed layer]
     SEG --> V[Verse-identity anchors]
@@ -60,12 +66,14 @@ flowchart LR
     M7P & M7L & M8 --> C[M7/M8 convergence: not started]
 ```
 
-Prose equivalent: a licensed photograph is first tied to a physical witness and
-four cataloged regions. A separately sourced transcription and Greek alignment
-would be required before anyone could claim text was read from the image. Verse
-identities can already support a transparent crosswalk to a public-domain
-English display and candidate chunk intersections. M8 has not reached John, and
-no convergence result exists.
+Prose equivalent: the Cologne source identifies a combined recto-and-verso
+physical witness and separately publishes this exact licensed verso photograph.
+The four catalog regions attach to the physical object, not to the single-side
+asset. A side-specific diplomatic transcription, mapping, and Greek alignment
+would be required before anyone could claim which catalog ranges were read from
+the image. Object-catalog verse identities can already support a transparent
+crosswalk to a separately sourced public-domain English display and candidate
+chunk intersections. M8 has not reached John, and no convergence result exists.
 
 The immutable M7 public metadata snapshot exposes one coarse held candidate,
 `M7_sol-John-009` (`John 18:1–19:42`). A later local corrective file contains
@@ -139,7 +147,8 @@ cannot silently convert contextual evidence into Scripture or doctrine authority
 | Surface | Current status |
 |---|---|
 | P66 image identity and redistribution | Byte-verified; CC BY 4.0; attribution required |
-| P66 catalog coverage | Four explicit non-contiguous segments |
+| P66 object-catalog coverage | Four explicit non-contiguous segments recorded collectively for recto and verso |
+| P66 verso-side coverage | Not established in the current source pack; no segment is assigned to the JPEG |
 | Diplomatic transcription / critical edition | Referenced as a required layer; not ingested |
 | English display text | Included from the public-domain `eng-web` source snapshot, with markup removal disclosed |
 | M7 | Candidate-only; public metadata is held; finer local observations are non-durable |

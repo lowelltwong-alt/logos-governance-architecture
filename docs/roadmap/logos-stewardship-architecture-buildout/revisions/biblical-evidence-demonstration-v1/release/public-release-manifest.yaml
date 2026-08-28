@@ -22,10 +22,10 @@ content_status:
 validated_structure_metrics:
   academic_source_records: 20
   bounded_claim_cases: 5
-  graph_nodes: 27
-  graph_edges_including_source_claim_projection: 45
-  separated_mesh_roles: 11
-  adversarial_fixtures: 72
+  graph_nodes: 28
+  graph_edges_including_source_claim_projection: 47
+  separated_mesh_roles: 12
+  adversarial_fixtures: 77
 asset_release:
   p66_image_included: true
   attribution_record: release/asset-attribution.yaml

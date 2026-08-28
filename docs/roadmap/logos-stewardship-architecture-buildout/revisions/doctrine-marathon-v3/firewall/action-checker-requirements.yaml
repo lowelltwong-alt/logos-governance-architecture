@@ -1,0 +1,56 @@
+---
+metadata:
+  object_type: doctrine_marathon_action_checker_requirements
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: >-
+    Created on 2026-08-27 by Codex root after independent review found that
+    midflight action results could name unqualified checkers and unresolved evidence.
+  reason_for_inclusion: >-
+    Bind every trigger action to an appropriate task-local role and capability
+    instead of trusting a self-attested checker label.
+schema_version: logos.doctrine-marathon.action_checker_requirements.v3
+catalog_id: DMV3-ACTION-CHECKER-REQUIREMENTS
+unknown_action_policy: block
+requirements:
+  - {action_id: ExpertPack_gate, required_roles: [role-qualification-and-independence-auditor], required_capabilities: [role_qualification_and_independence]}
+  - {action_id: NormativeFrame_gate, required_roles: [authority-plane-auditor], required_capabilities: [prompt_alignment_and_authority]}
+  - {action_id: alternative_hypothesis_check, required_roles: [counterevidence-challenger], required_capabilities: [counterevidence_and_alternative_hypotheses]}
+  - {action_id: blocking_debt, required_roles: [doctrine-mesh-completeness-auditor], required_capabilities: [doctrine_mesh_completeness_and_gap_detection]}
+  - {action_id: bounded_replay, required_roles: [dependency-invalidation-checker], required_capabilities: [graph_dependency_and_invalidation]}
+  - {action_id: changed_input_revalidation, required_roles: [goal-prompt-alignment-auditor], required_capabilities: [prompt_alignment_and_authority]}
+  - {action_id: claim_evidence_lineage_gate, required_roles: [claim-entailment-context-verifier], required_capabilities: [quotation_context_and_entailment]}
+  - {action_id: contact_and_reception_evidence_check, required_roles: [counterevidence-challenger], required_capabilities: [counterevidence_and_alternative_hypotheses]}
+  - {action_id: counterevidence_route, required_roles: [counterevidence-challenger], required_capabilities: [counterevidence_and_alternative_hypotheses]}
+  - {action_id: counterposition_route, required_roles: [counterevidence-challenger], required_capabilities: [counterevidence_and_alternative_hypotheses]}
+  - {action_id: descendant_invalidation, required_roles: [dependency-invalidation-checker], required_capabilities: [graph_dependency_and_invalidation]}
+  - {action_id: environment_pack_gate, required_roles: [role-qualification-and-independence-auditor], required_capabilities: [role_qualification_and_independence]}
+  - {action_id: fresh_context_gate, required_roles: [goal-prompt-alignment-auditor], required_capabilities: [prompt_alignment_and_authority]}
+  - {action_id: frontier_sentinel, required_roles: [frontier-compounded-error-sentinel], required_capabilities: [counterevidence_and_alternative_hypotheses, graph_dependency_and_invalidation, prompt_alignment_and_authority]}
+  - {action_id: historical_attribution_schema_check, required_roles: [authority-plane-auditor], required_capabilities: [quotation_context_and_entailment, tradition_representation]}
+  - {action_id: human_decision_receipt_gate, required_roles: [authority-plane-auditor], required_capabilities: [prompt_alignment_and_authority]}
+  - {action_id: human_gate_if_normative, required_roles: [human-risk-router], required_capabilities: [prompt_alignment_and_authority]}
+  - {action_id: influence_hypothesis_schema_check, required_roles: [counterevidence-challenger], required_capabilities: [counterevidence_and_alternative_hypotheses]}
+  - {action_id: invalidate_affected_consumers, required_roles: [dependency-invalidation-checker], required_capabilities: [graph_dependency_and_invalidation]}
+  - {action_id: jewish_context_pack_gate, required_roles: [authority-plane-auditor], required_capabilities: [tradition_representation]}
+  - {action_id: later_source_bridge_check, required_roles: [claim-entailment-context-verifier], required_capabilities: [quotation_context_and_entailment]}
+  - {action_id: midflight_completeness_audit, required_roles: [doctrine-mesh-completeness-auditor], required_capabilities: [doctrine_mesh_completeness_and_gap_detection]}
+  - {action_id: nonclaim_check, required_roles: [independent-whole-work-checker], required_capabilities: [prompt_alignment_and_authority]}
+  - {action_id: normative_force_none_check, required_roles: [authority-plane-auditor], required_capabilities: [prompt_alignment_and_authority]}
+  - {action_id: original_language_review_gate, required_roles: [original-language-translation-verifier], required_capabilities: [original_language_and_translation_fidelity]}
+  - {action_id: preserve_named_graph_disagreement, required_roles: [counterevidence-challenger], required_capabilities: [counterevidence_and_alternative_hypotheses]}
+  - {action_id: privacy_rights_scrub, required_roles: [source-fitness-rights-verifier], required_capabilities: [privacy_public_boundary_and_custody, source_identity_locator_and_rights]}
+  - {action_id: qualified_source_gate, required_roles: [source-fitness-rights-verifier], required_capabilities: [source_identity_locator_and_rights]}
+  - {action_id: quarantine, required_roles: [dependency-invalidation-checker], required_capabilities: [graph_dependency_and_invalidation]}
+  - {action_id: rerank_review_debt, required_roles: [doctrine-mesh-completeness-auditor], required_capabilities: [doctrine_mesh_completeness_and_gap_detection]}
+  - {action_id: reverse_consumer_invalidation, required_roles: [dependency-invalidation-checker], required_capabilities: [graph_dependency_and_invalidation]}
+  - {action_id: reverse_index_rebuild, required_roles: [dependency-invalidation-checker], required_capabilities: [graph_dependency_and_invalidation]}
+  - {action_id: risk_recomputation, required_roles: [frontier-compounded-error-sentinel], required_capabilities: [counterevidence_and_alternative_hypotheses, graph_dependency_and_invalidation]}
+  - {action_id: self_description_source_check, required_roles: [authority-plane-auditor], required_capabilities: [tradition_representation]}
+  - {action_id: source_record_gate, required_roles: [source-fitness-rights-verifier], required_capabilities: [source_identity_locator_and_rights]}
+  - {action_id: tradition_nonflattening_check, required_roles: [authority-plane-auditor], required_capabilities: [tradition_representation]}
+  - {action_id: tradition_pack_gate, required_roles: [role-qualification-and-independence-auditor], required_capabilities: [role_qualification_and_independence]}
+  - {action_id: translation_lineage_gate, required_roles: [original-language-translation-verifier], required_capabilities: [original_language_and_translation_fidelity]}
+  - {action_id: typed_claim_gate, required_roles: [claim-entailment-context-verifier], required_capabilities: [quotation_context_and_entailment]}
+  - {action_id: unchanged_head_gate, required_roles: [independent-whole-work-checker], required_capabilities: [prompt_alignment_and_authority]}
+  - {action_id: weakest_premise_check, required_roles: [dependency-invalidation-checker], required_capabilities: [graph_dependency_and_invalidation]}

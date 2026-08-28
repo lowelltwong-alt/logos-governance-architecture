@@ -1,0 +1,52 @@
+metadata:
+  object_type: doctrine_environment_expert_pack_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as the contextual-discipline contract for V3."
+  reason_for_inclusion: "Represent the intellectual, religious, material, political, and linguistic environment without letting non-Christian context become Christian doctrine."
+schema_version: logos.doctrine_marathon.environment_pack.v3
+jewish_context_pack_schema_ref: jewish-context-pack.schema.json
+required_identity:
+  - stable_pack_id
+  - discipline_and_subdiscipline
+  - geography
+  - time_range_with_uncertainty
+  - communities_or_institutions
+  - source_classes
+  - methods_and_limits
+  - qualification_and_expiry
+supported_environment_families:
+  - second_temple_and_early_rabbinic_jewish_worlds
+  - egyptian_and_near_eastern_religions_and_politics
+  - greco_roman_religion_philosophy_law_and_social_practice
+  - archaeology_epigraphy_papyrology_numismatics_and_material_culture
+  - language_rhetoric_education_liturgy_and_book_culture
+  - councils_institutions_political_history_and_transmission
+claim_rules:
+  - describe each community and period from appropriately scoped evidence
+  - distinguish attestation interpretation synthesis analogy and inference
+  - similarity alone never establishes contact borrowing influence or causation
+  - later sources require an explicit bridge before use as earlier evidence
+  - absence_of_evidence is not evidence_of_absence without a method-specific argument
+  - contextual claims declare normative_force_none
+  - Jewish claims require a named community period geography and nonflattening pack
+  - later Jewish sources require an explicit bridge method and limitations before use for an earlier target
+edge_allowlist:
+  - contextualizes
+  - contemporaneous_with
+  - attested_in_place_or_period
+  - possible_contact
+  - historical_parallel
+  - disputes_contextual_claim
+forbidden_direct_edges:
+  - context_proves_doctrine
+  - archaeology_proves_theology
+  - philosophy_is_scripture_source
+  - similarity_proves_borrowing
+  - later_jewish_source_directly_represents_earlier_group
+required_checkers:
+  - relevant_environment_specialist
+  - source_fitness_rights_verifier
+  - counterevidence_challenger
+  - authority_plane_auditor
+  - dependency_invalidation_checker

@@ -1,0 +1,148 @@
+metadata:
+  object_type: doctrine_marathon_completeness_auditor_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root from the owner's required entry, midflight, and exit expert-gap audit."
+  reason_for_inclusion: "Make role selection and missing-expertise recovery deterministic enough to enforce without pretending an algorithm can prove scholarly completeness."
+schema_version: logos.doctrine_marathon.completeness_auditor.v3
+auditor_id: doctrine-mesh-completeness-auditor
+deterministic_input_feature_vector:
+  required_facets:
+    - claim_types
+    - source_classes
+    - authors_and_corpora
+    - periods
+    - languages_and_witnesses
+    - geographies_and_polities
+    - traditions_and_communities
+    - controversies_and_named_propositions
+    - methods_and_disciplines
+    - authority_planes
+    - translation_or_transformation_steps
+    - risk_tags
+    - prerequisite_nodes
+    - downstream_consumers
+    - rights_privacy_and_access_states
+  canonicalization: sorted_unique_utf8_nfc
+  digest_algorithm: sha256_canonical_json
+trigger_matrix_ref: ../firewall/trigger-matrix.yaml
+role_assignment_schema_ref: role-assignment.schema.json
+role_assignment_bundle_schema_ref: role-assignment-bundle.schema.json
+audit_phases:
+  entry:
+    timing: after_work_classification_before_any_research_or_writer_lease
+    derive_from: authorized_scope_and_declared_inputs
+    required_outputs: [coverage_plan, role_assignments, role_gaps, omissions, receipt]
+  midflight:
+    timing: before_affected_work_continues_after_each_distinct_material_trigger
+    derive_from: prior_inputs_plus_trigger_delta
+    required_outputs: [changed_requirements, affected_roles, affected_outputs, gaps, receipt]
+  exit:
+    timing: after_outputs_exist_before_acceptance
+    derive_from: final_outputs_sources_claims_edges_disagreements_and_discovered_gaps
+    may_not_reuse: preflight_requirement_set_without_rederivation
+    required_outputs: [final_coverage, newly_discovered_roles, replay_scope, debt_records, receipt]
+phase_receipt_binding:
+  every_phase_requires:
+    - exact runtime assignment-bundle ID reference and file digest
+    - exact qualified completeness-auditor assignment reference and object digest
+    - sorted known capability IDs
+    - requirement-set digest over the complete phase input
+    - event time inside the bundle and qualification validity windows
+  entry_and_exit_scope: exactly_one_work_unit
+  midflight_scope: exact_material_trigger_reverse_consumer_closure
+  completed_check_requires:
+    - latest applicable entry or midflight event ID and hash
+    - exact qualified producer assignment
+    - two distinct qualified reviewer assignments
+    - exact output and evidence-set digests
+    - exact reviewer capability coverage and decisions
+qualification_trust_root:
+  generation_zero: bounded human bootstrap decision required
+  later_generations: lower_generation qualified reviewers required
+  digest_limit: hashes prove consistency and do not prove real identity competence or authority
+  production_activation_gate: maintainer_pinned_protected_commit_or_verifiable_signature
+correlation_exception_consumption:
+  receipt_binding: immutable_runtime_bundle_id_without_reverse_bundle_digest
+  valid_use: exactly_one_ledger_reachable_checker_to_target_relation
+  zero_use: hard_fail_orphan
+  multiple_distinct_uses: hard_fail_ambiguous
+  same_actor_or_attempt: never_excused
+requirement_resolution_states:
+  - QUALIFIED_ROLE_ASSIGNED
+  - OMIT_WITH_REASON_AND_INDEPENDENT_ACCEPTANCE
+  - BLOCKING_ROLE_GAP
+role_assignment_requires:
+  - stable capability ID
+  - exact task-local role ID
+  - ExpertPack revision and digest
+  - expected information gain
+  - source access state
+  - qualification receipt
+  - attempt adapter receipt
+  - independence lineage
+omission_requires:
+  - capability ID
+  - why expected information gain is immaterial for this exact unit
+  - risk if wrong
+  - independent checker identity and acceptance
+  - expiry trigger
+postflight_recovery:
+  material_missing_role:
+    - quarantine affected outputs
+    - traverse and quarantine reverse consumers
+    - create blocking expert-review debt
+    - schedule bounded replay with qualified role
+  nonmaterial_missing_role:
+    - record expected information gain and rationale
+    - create nonblocking expert-review debt
+    - preserve for later human triage
+independence_rules:
+  disjoint_judgment_lineages:
+    - writer_and_checker
+    - role_factory_and_role_qualification_auditor
+    - completeness_auditor_and_substantive_completeness_reviewer
+    - integrator_and_independent_whole_work_checker
+  compare_dimensions:
+    - actor_instance
+    - attempt_id
+    - prompt_authorship
+    - answer_context_exposure
+    - source_order
+    - KnowledgeGuide_digest
+    - runtime_adapter
+  pairwise_enforcement:
+    - derive collisions from concrete assignment receipts
+    - reject same writer and checker actor instance
+    - reject same writer and checker attempt
+    - require checker role to resolve through the mesh checked_by edge
+    - disclose prompt authorship source order KnowledgeGuide and runtime correlations
+    - do not claim cross-model diversity from role labels or agent count
+deterministic_receipt_proves:
+  - exact input digest
+  - required event type and order
+  - unique trigger coverage
+  - declared capability coverage
+  - schema-valid assignments gaps and omissions
+  - independence constraints
+  - affected output and consumer closure
+deterministic_receipt_does_not_prove:
+  - taxonomy completeness
+  - expert competence
+  - source truth
+  - theological correctness
+  - adequacy of an accepted omission
+hard_fail_codes:
+  - DMCA_MISSING_PHASE
+  - DMCA_STALE_INPUT
+  - DMCA_DUPLICATE_OR_REUSED_RECEIPT
+  - DMCA_UNMAPPED_FEATURE
+  - DMCA_UNRESOLVED_REQUIREMENT
+  - DMCA_UNQUALIFIED_ROLE
+  - DMCA_CORRELATED_CHECKER
+  - DMCA_MIDFLIGHT_TOO_LATE
+  - DMCA_POSTFLIGHT_NOT_REDERIVED
+  - DMCA_MISSING_REVERSE_CONSUMER_QUARANTINE
+  - DMCA_COMPLETENESS_ASSIGNMENT_UNQUALIFIED
+  - DMCA_REQUIREMENT_EVENT_NOT_LATEST
+  - DMCA_CORRELATION_EXCEPTION_ORPHAN

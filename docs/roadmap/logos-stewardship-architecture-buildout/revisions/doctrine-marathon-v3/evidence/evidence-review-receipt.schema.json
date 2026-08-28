@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.evidence-review-receipt.v3",
+  "title": "Doctrine Marathon evidence review receipt",
+  "description": "object_type=evidence_review_receipt_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after frontier red-team review; reason_for_inclusion=Prevent a source, translation, influence hypothesis, historical attribution, or claim from self-attesting its reviewed state.",
+  "type": "object",
+  "required": ["schema_version", "receipt_id", "review_kind", "subject_ref", "subject_scope_digest", "work_unit_id", "assignment_bundle_ref", "assignment_bundle_digest", "producer_assignment_ref", "producer_assignment_digest", "reviewer_assignment_refs", "required_capability_ids", "review_dimensions", "evidence_bindings", "decision", "independence_assessment", "correlation_acceptance_receipt_ref", "issued_at", "expires_at", "authority_effect", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.evidence-review-receipt.v3"},
+    "receipt_id": {"type": "string", "pattern": "^EREV-[A-Za-z0-9._-]+$"},
+    "review_kind": {"enum": ["source_qualification", "translation_fidelity", "influence_hypothesis", "historical_attribution", "claim_entailment_context"]},
+    "subject_ref": {"type": "string", "pattern": "^(?:source-record:SRC|translation-lineage:TLIN|influence-hypothesis:INFL|historical-attribution:HATTR|claim-record:CLAIM)-[A-Za-z0-9._-]+$"},
+    "subject_scope_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "work_unit_id": {"type": "string", "minLength": 3},
+    "assignment_bundle_ref": {"type": "string", "pattern": "^mesh/(?:examples|receipts)/[A-Za-z0-9._-]+\\.json$"},
+    "assignment_bundle_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "producer_assignment_ref": {"type": "string", "pattern": "^role-assignment:DMV3-ROLE-[A-Za-z0-9._-]+$"},
+    "producer_assignment_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "reviewer_assignment_refs": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^role-assignment:DMV3-ROLE-[A-Za-z0-9._-]+$"}},
+    "required_capability_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
+    "review_dimensions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+    "evidence_bindings": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["ref", "digest"], "properties": {"ref": {"type": "string", "minLength": 3}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "additionalProperties": false}},
+    "decision": {"enum": ["qualified", "accepted", "rejected", "needs_revision", "abstained"]},
+    "independence_assessment": {"enum": ["independent", "correlated_disclosed", "blocked"]},
+    "correlation_acceptance_receipt_ref": {"type": ["string", "null"], "pattern": "^correlation-acceptance:CAREC-[A-Za-z0-9._-]+$"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "authority_effect": {"const": "none"},
+    "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,65 @@
+metadata:
+  object_type: doctrine_marathon_campaign_graph
+  trust_zone: proposed
+  lifecycle_status: specification_only
+  provenance_note: "Created on 2026-08-27 by Codex root as the dependency-ordered V3 marathon plan."
+  reason_for_inclusion: "Make chronological intent, prerequisite routing, audit events, stop conditions, and future activation gates explicit and machine-checkable."
+schema_version: logos.doctrine_marathon.campaign.v3
+campaign_id: LOGOS-DOCTRINE-MARATHON-003
+revision_id: doctrine-marathon-v3
+mode: specification_only
+canonical_prompt: DOCTRINE_MARATHON_MASTER_PROMPT.md
+durable_goal: state/goal.yaml
+max_delegation_depth: 1
+default_max_parallel_writers: 1
+fresh_context_max_age_days: 7
+unit_policy:
+  maximum_primary_claims_per_unit: 12
+  one_bounded_writer_per_artifact: true
+  independent_checker_required: true
+  completeness_events: [entry, midflight, exit]
+  acceptance_requires_reverse_consumer_index: true
+chronological_horizons:
+  - {horizon_id: H00, label: scriptural_and_second_temple_prerequisites, chronological_order: 0, normative_force: none_from_context}
+  - {horizon_id: H10, label: apostolic_fathers_and_earliest_reception, chronological_order: 10, normative_force: none_without_human_frame}
+  - {horizon_id: H20, label: apologists_controversies_and_pre_nicene, chronological_order: 20, normative_force: none_without_human_frame}
+  - {horizon_id: H30, label: councils_greek_latin_patristics_late_antiquity, chronological_order: 30, normative_force: none_without_human_frame}
+  - {horizon_id: H40, label: medieval_east_and_west, chronological_order: 40, normative_force: none_without_human_frame}
+  - {horizon_id: H50, label: reformation_catholic_reform_and_confessions, chronological_order: 50, normative_force: none_without_human_frame}
+  - {horizon_id: H60, label: post_reformation_modern_and_contemporary, chronological_order: 60, normative_force: none_without_human_frame}
+jobs:
+  - {job_id: DMV3-000, title: verify_authority_and_hash_bound_state, depends_on: [], outcome: validated_resume_or_block}
+  - {job_id: DMV3-010, title: classify_one_bounded_work_unit, depends_on: [DMV3-000], outcome: risk_and_capability_requirements}
+  - {job_id: DMV3-020, title: run_entry_completeness_audit, depends_on: [DMV3-010], outcome: covered_or_role_gap}
+  - {job_id: DMV3-030, title: qualify_roles_and_expert_source_packs, depends_on: [DMV3-020], outcome: qualified_bindings_or_block}
+  - {job_id: DMV3-040, title: execute_future_bounded_research, depends_on: [DMV3-030], outcome: candidate_claims_only, currently_authorized: false}
+  - {job_id: DMV3-050, title: enforce_midflight_trigger_barrier, depends_on: [DMV3-040], outcome: fresh_audit_or_quarantine}
+  - {job_id: DMV3-060, title: run_independent_claim_source_translation_and_graph_checks, depends_on: [DMV3-050], outcome: checked_candidates_or_quarantine}
+  - {job_id: DMV3-070, title: run_exit_completeness_and_missing_role_recovery, depends_on: [DMV3-060], outcome: accepted_or_replay_or_expert_debt}
+  - {job_id: DMV3-080, title: update_dependency_graph_reverse_consumers_and_debt, depends_on: [DMV3-070], outcome: validated_state_delta}
+  - {job_id: DMV3-090, title: independent_whole_work_and_authority_gate, depends_on: [DMV3-080], outcome: continue_blocked_or_campaign_complete}
+  - {job_id: DMV3-100, title: freeze_checkpoint_and_exact_next_prompt, depends_on: [DMV3-090], outcome: terminal_handoff}
+first_future_candidate:
+  unit_id: DMV3-PILOT-1CLEMENT-SOURCEPACK
+  title: qualify_sources_rights_editions_languages_and_reviewers_for_1_clement
+  state: blocked_pending_future_research_and_source_ingestion_authority
+  nonclaims:
+    - date_not_settled_here
+    - authorship_not_settled_here
+    - no_text_ingested
+    - no_doctrine_claim_created
+mandatory_stop_codes:
+  - authority_boundary
+  - state_digest_mismatch
+  - stale_or_missing_prerequisite
+  - missing_qualified_role
+  - correlated_checker
+  - source_locator_or_rights_failure
+  - translation_or_context_failure
+  - hidden_normative_inference
+  - unsupported_influence_or_causation
+  - unresolved_high_risk_disagreement
+  - public_boundary_failure
+  - changed_input_without_fresh_audit
+  - user_interrupt
+terminal_statuses: [CONTINUE, BLOCKED, CAMPAIGN_COMPLETE]

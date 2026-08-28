@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.evidence-registry.v3",
+  "title": "Doctrine Marathon evidence registry",
+  "description": "object_type=evidence_registry_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent evidence-laundering review; reason_for_inclusion=Provide a resolvable identity surface for future sources, translations, influence hypotheses, and claims without ingesting them now.",
+  "type": "object",
+  "required": ["metadata", "schema_version", "runtime_records", "source_records", "translation_lineages", "influence_hypotheses", "historical_attributions", "claim_records", "evidence_review_receipts", "registry_digest"],
+  "properties": {
+    "metadata": {"type": "object", "required": ["object_type", "trust_zone", "lifecycle_status", "provenance_note", "reason_for_inclusion"], "additionalProperties": true},
+    "schema_version": {"const": "logos.doctrine-marathon.evidence-registry.v3"},
+    "runtime_records": {"type": "boolean"},
+    "source_records": {"type": "array", "items": {"type": "object"}},
+    "translation_lineages": {"type": "array", "items": {"type": "object"}},
+    "influence_hypotheses": {"type": "array", "items": {"type": "object"}},
+    "historical_attributions": {"type": "array", "items": {"type": "object"}},
+    "claim_records": {"type": "array", "items": {"type": "object"}},
+    "evidence_review_receipts": {"type": "array", "items": {"type": "object"}},
+    "registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"runtime_records": {"const": false}}}, "then": {"properties": {"source_records": {"maxItems": 0}, "translation_lineages": {"maxItems": 0}, "influence_hypotheses": {"maxItems": 0}, "historical_attributions": {"maxItems": 0}, "claim_records": {"maxItems": 0}, "evidence_review_receipts": {"maxItems": 0}}}}
+  ],
+  "additionalProperties": false
+}

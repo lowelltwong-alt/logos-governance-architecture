@@ -1,0 +1,79 @@
+metadata:
+  object_type: patristic_source_qualification_plan
+  trust_zone: proposed
+  lifecycle_status: blocked_future_work
+  provenance_note: Created on 2026-08-27 by Codex root as a future research plan; no source was browsed, ingested, or qualified.
+  reason_for_inclusion: Make primary-source and scholarly-source acquisition precede agent claims, avoiding source laundering through thin prompts or summaries.
+schema_version: logos.doctrine_marathon.patristic_source_plan.v3
+current_state: no_sources_ingested_or_qualified
+future_authorities_required:
+- exact bounded research authorization
+- exact source-ingestion authorization
+- rights_privacy_and_custody approval
+- qualified source and domain reviewers
+discovery_source_classes:
+  preferred:
+  - holding_institution_or_manuscript_library
+  - qualified_library_catalog
+  - critical_edition_project
+  - scholarly_society_or_academic_institute
+  - academic_publisher
+  - peer_reviewed_index_or_journal
+  discovery_only:
+  - search_engine_result
+  - snippet
+  - encyclopedia_summary
+  - aggregator
+  - AI_generated_bibliography
+qualification_workflow:
+- establish work_and_author_identity_with_dispute_state
+- identify witness_edition_translation_and_locator_grammar
+- verify stable access_rights_license_privacy_and_retention
+- independently_reaccess_every_load_bearing_source
+- record source_role_and_claim_types_supported
+- build protected qualification_and_abstention_fixtures
+- obtain source_fitness_language_and_subject_reviews
+- freeze manifest_and_pack_digest
+first_candidate:
+  candidate_id: PAT-SOURCEPACK-1CLEMENT-001
+  label: 1_Clement_source_and_expert_pack_qualification
+  status: blocked_no_research_or_ingestion_authority
+  explicit_nonclaims:
+  - no_date_decision
+  - no_authorship_decision
+  - no_textual_reading_decision
+  - no_doctrine_claim
+  - no_orthodoxy_or_heresy_judgment
+  required_capability_ids:
+  - apostolic_fathers
+  - manuscript_codicology_and_papyrology
+  - source_identity_locator_and_rights
+  - privacy_public_boundary_and_custody
+  - original_language_and_translation_fidelity
+  - quotation_context_and_entailment
+  - counterevidence_and_alternative_hypotheses
+  - role_qualification_and_independence
+  required_human_gate_ids:
+  - patristics_or_period_specialist_review_when_material
+  - original_language_or_translation_review_when_material
+  - source_rights_privacy_and_custody_review
+  - named_owner_promotion_decision
+  proposed_role_gap_ids:
+  - DMV3-GAP-PATRISTIC-GREEK
+  - DMV3-GAP-PATRISTIC-TEXTUAL-HISTORY
+  - DMV3-GAP-EARLY-CHRISTIAN-CHRONOLOGY
+  - DMV3-GAP-ROMAN-CORINTHIAN-ECCLESIAL-CONTEXT
+  narrative_scope_requirements:
+  - apostolic_fathers
+  - patristic_greek
+  - textual_history_and_critical_editions
+  - late_first_or_early_second_century_context_with_date_uncertainty
+  - Roman_and_Corinthian_ecclesial_context
+  - Jewish_and_Greco_Roman_context_as_needed
+  - rights_and_source_custody
+source_admission_gate:
+  requires_exact_manifest: true
+  requires_independent_reaccess: true
+  requires_rights_state: true
+  requires_locator_fixture: true
+  requires_human_source_approval: true

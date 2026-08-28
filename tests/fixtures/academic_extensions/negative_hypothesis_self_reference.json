@@ -3,5 +3,7 @@
   "operation": "replace",
   "path": ["hypothesis", "alternatives", 0],
   "value": "urn:logos:graph:hypothesis:synthetic-a",
-  "expected_rule": "hypothesis_self_reference"
+  "expected_rule": "hypothesis_self_reference",
+  "expected_first_rule": "hypothesis_self_reference",
+  "expected_rules_exact": ["hypothesis_self_reference"]
 }

@@ -1,0 +1,74 @@
+metadata:
+  object_type: doctrine_marathon_invalidation_contract
+  trust_zone: proposed
+  lifecycle_status: dormant_specification
+  provenance_note: "Created on 2026-08-27 by Codex root as the V3 compounded-error and blast-radius control."
+  reason_for_inclusion: "Prevent a small upstream error from remaining hidden and multiplying through later doctrine, graph, and public-projection layers."
+schema_version: logos.doctrine_marathon.invalidation.v3
+canonical_edge_direction: consumer_to_prerequisite
+reverse_index:
+  generated_from_canonical_edges: true
+  manual_updates_forbidden: true
+  equality_check_required: true
+load_bearing_edge_types:
+  - derived_from
+  - cites_for_evidence
+  - translated_from
+  - influence_hypothesis
+  - qualified_by
+  - reviewed_by
+  - governed_by
+  - projected_from
+non_load_bearing_edge_types:
+  - contextualized_by
+  - disputed_by
+cross_plane_rules:
+  - context prerequisites cannot directly load-bear into Scripture tradition-view normative-assessment or public-projection planes
+  - contextualized_by and disputed_by always have load_bearing false and normative_force none
+  - frame_scoped force requires the exact active NormativeFrame and human-decision receipt in the authority registry
+  - KnowledgeGuides summaries search results and model outputs cannot appear as load-bearing basis references
+  - translated_from requires both a qualified source record and translation-lineage record
+  - influence_hypothesis requires a qualified hypothesis record with contact reception mechanism alternatives and counterevidence
+weakest_premise_rule: >-
+  A consumer's promotable strength and freshness may not exceed the weakest
+  load-bearing prerequisite. Any blocked, stale, invalidated, unavailable,
+  disputed-beyond-the-consumer's-claim, or unqualified prerequisite blocks
+  promotion of the consumer.
+invalidation_triggers:
+  - prerequisite_content_digest_changed
+  - source_or_locator_failed
+  - rights_or_access_revoked
+  - quotation_context_or_translation_failed
+  - entailment_or_causal_claim_failed
+  - role_qualification_expired_or_revoked
+  - NormativeFrame_expired_superseded_or_revoked
+  - missing_material_expert_discovered
+  - disagreement_or_counterevidence_added
+  - schema_or_authority_policy_changed
+algorithm:
+  - verify_graph_digest_and_reverse_index_equality
+  - mark_trigger_node_noncurrent
+  - breadth_first_traverse_generated_reverse_consumers
+  - quarantine_each_load_bearing_descendant_before_revalidation
+  - record_depth_path_reason_and_prior_state
+  - sort_affected_nodes_by_depth_then_stable_id
+  - compute_descendant_set_digest
+  - emit_append_only_invalidation_event_and_receipt
+  - revoke_promotion_and_public_projection_leases
+  - enqueue_review_debt_in_blast_radius_order
+receipt_requires:
+  - trigger_event_id
+  - input_graph_digest
+  - trigger_node_ids
+  - affected_node_ids_with_depth
+  - traversal_paths
+  - descendant_set_digest
+  - resulting_graph_digest
+  - checker_attempt_id
+  - unresolved_errors
+hard_failures:
+  - reverse_index_disagrees_with_edges
+  - omitted_descendant
+  - current_consumer_reaches_noncurrent_load_bearing_ancestor
+  - context_edge_used_as_normative_support
+  - consumer_strength_exceeds_weakest_premise

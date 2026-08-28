@@ -1,0 +1,147 @@
+{
+  "schema_version": "logos.doctrine_marathon.instance-dependency-graph.v3",
+  "graph_id": "DMV3-GRAPH-INITIAL-SPEC",
+  "canonical_edge_direction": "consumer_to_prerequisite",
+  "nodes": [
+    {
+      "node_id": "DMV3-CONSTITUTION",
+      "revision_id": "v3",
+      "object_type": "governance_constitution",
+      "state": "accepted",
+      "authority_plane": "governance",
+      "content_ref": "constitution.yaml",
+      "content_digest": "sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe",
+      "weakest_premise_state": "not_applicable",
+      "derived_authority_taints": [
+        "governance"
+      ],
+      "normative_frame_ref": null,
+      "normative_frame_digest": null
+    },
+    {
+      "node_id": "DMV3-PAT-SOURCEPLAN",
+      "revision_id": "v3",
+      "object_type": "source_qualification_plan",
+      "state": "blocked",
+      "authority_plane": "source",
+      "content_ref": "research/patristic-source-qualification-plan.yaml",
+      "content_digest": "sha256:598b700d653390bc9a9b9c7c6fd19c37f65d003bb50d8e64f59c9ce92946aaf7",
+      "weakest_premise_state": "blocked",
+      "derived_authority_taints": [
+        "governance",
+        "source"
+      ],
+      "normative_frame_ref": null,
+      "normative_frame_digest": null
+    },
+    {
+      "node_id": "DMV3-PILOT-1CLEMENT",
+      "revision_id": "v3",
+      "object_type": "future_work_unit",
+      "state": "blocked",
+      "authority_plane": "historical_attribution",
+      "content_ref": "campaign.yaml",
+      "content_digest": "sha256:08ad06379ce250cdf81a861337c40a07a9edae3ad2df5d4e01bcca951b8a2ab0",
+      "weakest_premise_state": "blocked",
+      "derived_authority_taints": [
+        "governance",
+        "historical_attribution",
+        "source"
+      ],
+      "normative_frame_ref": null,
+      "normative_frame_digest": null
+    },
+    {
+      "node_id": "DMV3-NORMATIVE-FRAME",
+      "revision_id": "v3",
+      "object_type": "future_human_approved_normative_frame",
+      "state": "blocked",
+      "authority_plane": "normative_assessment",
+      "content_ref": "graph/normative-frame.schema.json",
+      "content_digest": "sha256:a0a497264fb1d0450ba3488309143f823b33a88d4e52e42588bbd14ab8956f03",
+      "weakest_premise_state": "blocked",
+      "derived_authority_taints": [
+        "normative_assessment"
+      ],
+      "normative_frame_ref": null,
+      "normative_frame_digest": null
+    },
+    {
+      "node_id": "DMV3-PUBLIC-STATUS",
+      "revision_id": "v3",
+      "object_type": "public_projection",
+      "state": "candidate_complete",
+      "authority_plane": "public_projection",
+      "content_ref": "transparency/public-status.json",
+      "content_digest": "sha256:1b45adb9219e70f11fd6ca707798fc7b1ec74c4b9dbbb32bff0f614a0583db5e",
+      "weakest_premise_state": "candidate",
+      "derived_authority_taints": [
+        "governance",
+        "public_projection"
+      ],
+      "normative_frame_ref": null,
+      "normative_frame_digest": null
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "DMV3-E-001",
+      "consumer_id": "DMV3-PAT-SOURCEPLAN",
+      "prerequisite_id": "DMV3-CONSTITUTION",
+      "edge_type": "governed_by",
+      "load_bearing": true,
+      "normative_force": "none",
+      "basis_refs": [
+        "constitution.yaml"
+      ],
+      "basis_digests": [
+        "sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe"
+      ],
+      "review_state": "accepted"
+    },
+    {
+      "edge_id": "DMV3-E-002",
+      "consumer_id": "DMV3-PILOT-1CLEMENT",
+      "prerequisite_id": "DMV3-PAT-SOURCEPLAN",
+      "edge_type": "qualified_by",
+      "load_bearing": true,
+      "normative_force": "none",
+      "basis_refs": [
+        "research/patristic-source-qualification-plan.yaml"
+      ],
+      "basis_digests": [
+        "sha256:598b700d653390bc9a9b9c7c6fd19c37f65d003bb50d8e64f59c9ce92946aaf7"
+      ],
+      "review_state": "candidate"
+    },
+    {
+      "edge_id": "DMV3-E-003",
+      "consumer_id": "DMV3-PUBLIC-STATUS",
+      "prerequisite_id": "DMV3-CONSTITUTION",
+      "edge_type": "projected_from",
+      "load_bearing": true,
+      "normative_force": "none",
+      "basis_refs": [
+        "constitution.yaml"
+      ],
+      "basis_digests": [
+        "sha256:4d047e5280cb13d7d43cba20dbd6a35dcbaf1de0ad2c4f802da697a60b10befe"
+      ],
+      "review_state": "candidate"
+    }
+  ],
+  "reverse_consumer_index": {
+    "DMV3-CONSTITUTION": [
+      "DMV3-PAT-SOURCEPLAN",
+      "DMV3-PUBLIC-STATUS"
+    ],
+    "DMV3-PAT-SOURCEPLAN": [
+      "DMV3-PILOT-1CLEMENT"
+    ],
+    "DMV3-PILOT-1CLEMENT": [],
+    "DMV3-NORMATIVE-FRAME": [],
+    "DMV3-PUBLIC-STATUS": []
+  },
+  "reverse_index_generated": true,
+  "graph_digest": "sha256:ec3013c5ef0e6376b91bf0e771f3cf93866fcc8f830a5995f23e98a09f40f7f1"
+}

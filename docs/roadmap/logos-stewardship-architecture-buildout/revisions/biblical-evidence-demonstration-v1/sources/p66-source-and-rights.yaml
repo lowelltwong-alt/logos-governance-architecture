@@ -1,10 +1,10 @@
-schema_version: logos.biblical-evidence.p66-source-pack.v1
+schema_version: logos.biblical-evidence.p66-source-pack.v2
 object_type: manuscript_image_source_and_rights_record
 trust_zone: proposed
 lifecycle_status: draft
-provenance_note: "Created 2026-08-26 from the University of Cologne object record, exact official image response, local byte verification, and independent rights review."
-reason_for_inclusion: "Bind the public P66 image to exact custody, catalog, coverage, rights, attribution, and transformation limits."
-record_id: urn:logos:source:p66-cologne-tm61627-verso
+provenance_note: "Created 2026-08-26 from the University of Cologne object record, exact official image response, local byte verification, and independent rights review; corrected 2026-08-28 to keep the combined recto-and-verso object catalog coverage separate from the exact verso JPEG."
+reason_for_inclusion: "Bind the P66 object record and public verso image to exact custody, catalog scope, rights, attribution, and transformation limits without attributing object-level passage coverage to one photographed side."
+record_id: urn:logos:source:p66-cologne-tm61627-object
 object:
   inventory_id: "P.inv. 04274+004298"
   trismegistos_id: "TM 61627"
@@ -51,7 +51,8 @@ rights:
   adaptation: allowed_with_attribution_and_change_notice
   commercial_use: allowed_under_license_terms
   non_copyright_permissions_asserted: false
-coverage_segments:
+object_catalog_coverage_scope: combined_recto_and_verso_object_record
+object_catalog_coverage_segments:
   - segment_id: p66-john19-08-11
     passage: John.19.8-John.19.11
   - segment_id: p66-john19-13-15
@@ -60,8 +61,20 @@ coverage_segments:
     passage: John.19.18-John.19.20
   - segment_id: p66-john19-23-24
     passage: John.19.23-John.19.24
-coverage_is_non_contiguous: true
-forbidden_continuous_range: John.19.8-John.19.24
+object_catalog_coverage_is_non_contiguous: true
+forbidden_object_catalog_continuous_range: John.19.8-John.19.24
+asset_side_coverage:
+  asset_id: urn:logos:asset:p66-cologne-john19-verso
+  side: verso
+  status: not_established_in_current_source_pack
+  claim_allowed: false
+  mapped_segments: []
+  required_before_mapping:
+    - qualified_new_testament_papyrology_review
+    - side_specific_diplomatic_transcription_or_published_side_mapping
+    - exact_source_locator_and_provenance
+    - independent_claim_fidelity_review
+    - named_human_approval
 layers:
   - layer_id: physical_image
     included: true
@@ -82,6 +95,7 @@ layers:
     rights_basis: public_domain_eng_web_source_snapshot
     source_ref: urn:logos:source:eng-web-2026-05-28
 authority:
+  object_catalog_coverage_is_asset_side_mapping: false
   image_is_translation: false
   image_is_preferred_reading: false
   image_is_canonical_authority: false

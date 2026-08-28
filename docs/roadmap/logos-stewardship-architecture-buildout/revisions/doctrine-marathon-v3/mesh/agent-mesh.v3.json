@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "object_type": "doctrine_marathon_agent_mesh",
+    "trust_zone": "proposed",
+    "lifecycle_status": "dormant_specification",
+    "provenance_note": "Created on 2026-08-27 by Codex root as the provider-neutral V3 role and independence graph.",
+    "reason_for_inclusion": "Declare which distinct capabilities check each other and keep authoring, expertise qualification, evidence verification, and authority review separate."
+  },
+  "schema_version": "logos.doctrine_marathon.agent-mesh.v3",
+  "mesh_id": "LOGOS-DOCTRINE-MARATHON-MESH-003",
+  "runtime_activation_authorized": false,
+  "max_delegation_depth": 1,
+  "one_writer_per_artifact": true,
+  "stable_role_identity_rule": "provider_neutral_capability_id_only",
+  "attempt_adapter_rule": "model_provider_effort_tools_and_context_are_bound_only_in_ephemeral_attempt_receipts",
+  "assignment_schema_ref": "mesh/role-assignment.schema.json",
+  "assignment_bundle_schema_ref": "mesh/role-assignment-bundle.schema.json",
+  "required_role_capabilities": {
+    "marathon-controller": ["prompt_alignment_and_authority"],
+    "doctrine-mesh-completeness-auditor": ["doctrine_mesh_completeness_and_gap_detection"],
+    "role-qualification-and-independence-auditor": ["prompt_alignment_and_authority", "role_qualification_and_independence"],
+    "task-local-role-factory": ["role_qualification_and_independence"],
+    "primary-source-researcher": [],
+    "father-or-corpus-specialist": [],
+    "environment-specialist": [],
+    "citation-locator-verifier": ["source_identity_locator_and_rights"],
+    "source-fitness-rights-verifier": ["privacy_public_boundary_and_custody", "source_identity_locator_and_rights"],
+    "claim-entailment-context-verifier": ["quotation_context_and_entailment"],
+    "original-language-translation-verifier": ["original_language_and_translation_fidelity"],
+    "counterevidence-challenger": ["counterevidence_and_alternative_hypotheses"],
+    "dependency-invalidation-checker": ["graph_dependency_and_invalidation"],
+    "authority-plane-auditor": ["privacy_public_boundary_and_custody", "prompt_alignment_and_authority", "quotation_context_and_entailment", "tradition_representation"],
+    "goal-prompt-alignment-auditor": ["prompt_alignment_and_authority"],
+    "frontier-compounded-error-sentinel": ["counterevidence_and_alternative_hypotheses", "graph_dependency_and_invalidation", "prompt_alignment_and_authority"],
+    "human-risk-router": ["prompt_alignment_and_authority"],
+    "independent-whole-work-checker": ["prompt_alignment_and_authority", "role_qualification_and_independence"]
+  },
+  "roles": [
+    {
+      "role_id": "marathon-controller",
+      "class": "controller",
+      "writes": ["checkpoint_candidate", "event_candidate"],
+      "must_not_write": ["source_evidence", "doctrine_assessment", "human_approval"],
+      "checked_by": ["goal-prompt-alignment-auditor", "independent-whole-work-checker"]
+    },
+    {
+      "role_id": "doctrine-mesh-completeness-auditor",
+      "class": "coverage_auditor",
+      "writes": ["coverage_receipt", "role_gap_candidate"],
+      "runs_at": ["entry", "material_midflight_trigger", "exit"],
+      "checked_by": ["role-qualification-and-independence-auditor", "independent-whole-work-checker"]
+    },
+    {
+      "role_id": "role-qualification-and-independence-auditor",
+      "class": "meta_checker",
+      "writes": ["role_qualification_receipt"],
+      "checks": ["every_assigned_role", "ExpertPack", "source_routes", "instruction_neutrality", "attempt_lineage", "expected_information_gain"],
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "task-local-role-factory",
+      "class": "bounded_role_composer",
+      "writes": ["task_local_candidate_role"],
+      "may_dispatch": false,
+      "may_recurse": false,
+      "checked_by": ["role-qualification-and-independence-auditor", "goal-prompt-alignment-auditor", "independent-whole-work-checker"]
+    },
+    {
+      "role_id": "primary-source-researcher",
+      "class": "researcher",
+      "writes": ["candidate_source_record", "candidate_claim"],
+      "requires": ["qualified_subject_pack", "qualified_source_manifest"],
+      "checked_by": ["citation-locator-verifier", "source-fitness-rights-verifier", "claim-entailment-context-verifier"]
+    },
+    {
+      "role_id": "father-or-corpus-specialist",
+      "class": "subject_specialist",
+      "writes": ["candidate_historical_attribution", "candidate_context_note"],
+      "requires": ["father_expert_pack"],
+      "checked_by": ["counterevidence-challenger", "role-qualification-and-independence-auditor"]
+    },
+    {
+      "role_id": "environment-specialist",
+      "class": "context_specialist",
+      "writes": ["candidate_context_claim"],
+      "requires": ["environment_expert_pack"],
+      "checked_by": ["counterevidence-challenger", "authority-plane-auditor"]
+    },
+    {
+      "role_id": "citation-locator-verifier",
+      "class": "evidence_checker",
+      "writes": ["locator_check_receipt"],
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "source-fitness-rights-verifier",
+      "class": "evidence_checker",
+      "writes": ["source_fitness_receipt", "rights_receipt"],
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "claim-entailment-context-verifier",
+      "class": "claim_checker",
+      "writes": ["entailment_receipt", "context_receipt"],
+      "checked_by": ["counterevidence-challenger", "independent-whole-work-checker"]
+    },
+    {
+      "role_id": "original-language-translation-verifier",
+      "class": "language_checker",
+      "writes": ["textual_identity_receipt", "translation_fidelity_receipt"],
+      "conditional_on": ["original_language_material", "translation_material"],
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "counterevidence-challenger",
+      "class": "adversarial_checker",
+      "writes": ["counterevidence_receipt", "alternative_hypothesis_record"],
+      "must_not_share": ["writer_attempt_context", "writer_answer", "undisclosed_writer_knowledge_guide"],
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "dependency-invalidation-checker",
+      "class": "graph_checker",
+      "writes": ["dependency_receipt", "invalidation_receipt"],
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "authority-plane-auditor",
+      "class": "authority_checker",
+      "writes": ["authority_boundary_receipt"],
+      "checks": ["historical_vs_normative", "contextual_non_normative", "tradition_self_representation", "repository_custody"],
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "goal-prompt-alignment-auditor",
+      "class": "prompt_checker",
+      "writes": ["alignment_receipt"],
+      "checks": ["desired_conclusion_bias", "authority_broadening", "prompt_digest", "goal_drift", "scope_drift"],
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "frontier-compounded-error-sentinel",
+      "class": "high_risk_adversarial_checker",
+      "writes": ["epistemic_chain_review"],
+      "runs_when": ["frontier_risk", "large_blast_radius", "repeated_small_cracks", "unresolved_disagreement", "pre_promotion"],
+      "checked_by": ["independent-whole-work-checker", "human-risk-router"]
+    },
+    {
+      "role_id": "human-risk-router",
+      "class": "decision_router",
+      "writes": ["human_review_packet"],
+      "may_approve": false,
+      "checked_by": ["independent-whole-work-checker"]
+    },
+    {
+      "role_id": "independent-whole-work-checker",
+      "class": "terminal_checker",
+      "writes": ["whole_work_review"],
+      "must_be_distinct_from": ["all_writers", "marathon-controller", "role_factory", "completeness_auditor"],
+      "may_approve_theology": false
+    }
+  ],
+  "independence_dimensions": [
+    "actor_instance",
+    "attempt_id",
+    "prompt_authorship",
+    "answer_context_exposure",
+    "source_order",
+    "KnowledgeGuide_digest",
+    "runtime_adapter"
+  ],
+  "pairwise_independence_policy": {
+    "derive_correlations_from_assignments": true,
+    "undisclosed_correlation_is_hard_failure": true,
+    "same_actor_or_attempt_for_writer_and_checker_is_hard_failure": true,
+    "same_runtime_alone_is_not_cross_model_independence": true,
+    "correlated_disclosed_requires_explicit_acceptance_or_block": true,
+    "KnowledgeGuide_may_route_but_may_not_supply_load_bearing_evidence": true
+  },
+  "hard_failures": [
+    "writer_self_check",
+    "role_label_without_qualified_pack",
+    "checker_source_unavailable",
+    "correlated_checker_not_disclosed",
+    "missing_material_capability",
+    "recursive_role_creation",
+    "role_factory_dispatch",
+    "provider_name_as_stable_role_identity"
+  ]
+}

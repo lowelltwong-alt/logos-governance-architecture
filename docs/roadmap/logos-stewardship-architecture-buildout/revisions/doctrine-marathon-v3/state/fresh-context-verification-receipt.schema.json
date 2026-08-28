@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logos.doctrine-marathon.fresh-context-verification-receipt.v3",
+  "title": "Doctrine Marathon fresh-context verification receipt",
+  "description": "object_type=fresh_context_verification_receipt_schema; trust_zone=proposed; lifecycle_status=active; provenance_note=Created 2026-08-27 by Codex root after independent fresh-context review; reason_for_inclusion=Reject self-attested weekly continuation by binding a fresh task, checkpoint, prompt, reloaded controls, actor attempt, times, and exact receipt digest.",
+  "type": "object",
+  "required": ["schema_version", "receipt_id", "gate_id", "checkpoint_ref", "checkpoint_digest", "canonical_resume_prompt", "canonical_resume_prompt_digest", "fresh_task_started_at", "verified_at", "actor_instance_id", "attempt_id", "context_digest", "reloaded_control_bindings", "result", "authority_effect", "receipt_digest"],
+  "properties": {
+    "schema_version": {"const": "logos.doctrine-marathon.fresh-context-verification-receipt.v3"},
+    "receipt_id": {"type": "string", "pattern": "^FCTX-[A-Za-z0-9._-]+$"},
+    "gate_id": {"type": "string", "pattern": "^DMV3-WEEK-[0-9]{4,}$"},
+    "checkpoint_ref": {"type": "string", "pattern": "^state/(?:checkpoints|examples)/[A-Za-z0-9._-]+\\.json$"},
+    "checkpoint_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "canonical_resume_prompt": {"const": "QUICK_RESUME_PROMPT.md"},
+    "canonical_resume_prompt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "fresh_task_started_at": {"type": "string", "format": "date-time"},
+    "verified_at": {"type": "string", "format": "date-time"},
+    "actor_instance_id": {"type": "string", "minLength": 3},
+    "attempt_id": {"type": "string", "minLength": 3},
+    "context_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "reloaded_control_bindings": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"type": "object", "required": ["ref", "digest"], "properties": {"ref": {"type": "string", "minLength": 3}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "additionalProperties": false}},
+    "result": {"const": "verified"},
+    "authority_effect": {"const": "none"},
+    "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

@@ -27,6 +27,134 @@ if SPEC is None or SPEC.loader is None:
     raise RuntimeError("validator module unavailable")
 VALIDATOR = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(VALIDATOR)
+STALE_TARGET_ACTIONS = {
+    "stale_input_digest",
+    "corrupt_receipt_digest",
+    "corrupt_event_digest",
+    "break_receipt_chain",
+    "wrong_output_digest",
+}
+
+
+def _event(inputs: VALIDATOR.AuditValidationInputs, phase: str) -> dict[str, object]:
+    return next(item for item in inputs["events"] if item["phase"] == phase)
+
+
+def _receipt(inputs: VALIDATOR.AuditValidationInputs, phase: str) -> dict[str, object]:
+    return next(item for item in inputs["receipts"] if item["phase"] == phase)
+
+
+def _attempt(inputs: VALIDATOR.AuditValidationInputs, phase: str) -> dict[str, object]:
+    event_id = _event(inputs, phase)["event_id"]
+    return next(item for item in inputs["attempts"] if item["event_id"] == event_id)
+
+
+def _reseal_event_and_receipt(inputs: VALIDATOR.AuditValidationInputs, phase: str) -> None:
+    event = _event(inputs, phase)
+    event["event_digest"] = VALIDATOR.object_digest(event, ("event_digest",))
+    receipt = _receipt(inputs, phase)
+    for field in (
+        "event_digest",
+        "sequence",
+        "phase",
+        "execution_class",
+        "work_unit_id",
+        "work_unit_revision",
+        "input_manifest_ref",
+        "input_manifest_digest",
+    ):
+        receipt[field] = event[field]
+
+
+def _reseal_receipt_chain(inputs: VALIDATOR.AuditValidationInputs) -> None:
+    prior_digest = None
+    for receipt in sorted(inputs["receipts"], key=lambda item: item["sequence"]):
+        receipt["previous_receipt_digest"] = prior_digest
+        receipt["receipt_digest"] = VALIDATOR.object_digest(receipt, ("receipt_digest",))
+        prior_digest = receipt["receipt_digest"]
+
+
+def _apply_negative_action(
+    inputs: VALIDATOR.AuditValidationInputs,
+    action: str,
+) -> None:
+    """Apply one mutation and reseal every dependency not under direct test."""
+
+    if action == "remove_postflight_receipt":
+        inputs["receipts"] = [item for item in inputs["receipts"] if item["phase"] != "postflight"]
+        _reseal_receipt_chain(inputs)
+    elif action == "duplicate_midflight_receipt":
+        duplicate_receipt = copy.deepcopy(_receipt(inputs, "midflight"))
+        duplicate_attempt = copy.deepcopy(_attempt(inputs, "midflight"))
+        duplicate_receipt["receipt_id"] = "DMR-MIDFLIGHT-DUP-001"
+        duplicate_receipt["auditor_attempt_id"] = "DMA-ATTEMPT-MIDFLIGHT-DUP-001"
+        duplicate_receipt["execution_attempt_ref"] = (
+            "evidence/execution-attempts.json#DMA-ATTEMPT-MIDFLIGHT-DUP-001"
+        )
+        duplicate_attempt["attempt_id"] = "DMA-ATTEMPT-MIDFLIGHT-DUP-001"
+        duplicate_attempt["actor_instance_id"] = "codex-root-design-auditor-midflight-dup-001"
+        duplicate_attempt["checker_instance_id"] = "campaign-mesh-challenge-readonly-dup-001"
+        inputs["receipts"].append(duplicate_receipt)
+        inputs["attempts"].append(duplicate_attempt)
+        _reseal_receipt_chain(inputs)
+    elif action == "stale_input_digest":
+        event = _event(inputs, "midflight")
+        event["input_manifest_digest"] = "sha256:" + ("f" * 64)
+        _reseal_event_and_receipt(inputs, "midflight")
+        _reseal_receipt_chain(inputs)
+    elif action == "out_of_order_sequence":
+        _event(inputs, "midflight")["sequence"] = 9
+        _reseal_event_and_receipt(inputs, "midflight")
+        _reseal_receipt_chain(inputs)
+    elif action == "attempt_instance_self_check":
+        attempt = _attempt(inputs, "preflight")
+        attempt["actor_instance_id"] = attempt["checker_instance_id"]
+    elif action == "reused_attempt":
+        preflight_attempt = _attempt(inputs, "preflight")
+        midflight_receipt = _receipt(inputs, "midflight")
+        midflight_receipt["auditor_attempt_id"] = preflight_attempt["attempt_id"]
+        midflight_receipt["execution_attempt_ref"] = (
+            f"evidence/execution-attempts.json#{preflight_attempt['attempt_id']}"
+        )
+        _reseal_receipt_chain(inputs)
+    elif action == "corrupt_receipt_digest":
+        _reseal_receipt_chain(inputs)
+        _receipt(inputs, "postflight")["receipt_digest"] = "sha256:" + ("a" * 64)
+    elif action == "corrupt_event_digest":
+        event = _event(inputs, "midflight")
+        event["event_digest"] = "sha256:" + ("b" * 64)
+        _receipt(inputs, "midflight")["event_digest"] = event["event_digest"]
+        _reseal_receipt_chain(inputs)
+    elif action == "break_receipt_chain":
+        ordered = sorted(inputs["receipts"], key=lambda item: item["sequence"])
+        midflight_index = next(index for index, item in enumerate(ordered) if item["phase"] == "midflight")
+        ordered[midflight_index]["previous_receipt_digest"] = "sha256:" + ("c" * 64)
+        ordered[midflight_index]["receipt_digest"] = VALIDATOR.object_digest(
+            ordered[midflight_index], ("receipt_digest",)
+        )
+        prior_digest = ordered[midflight_index]["receipt_digest"]
+        for receipt in ordered[midflight_index + 1 :]:
+            receipt["previous_receipt_digest"] = prior_digest
+            receipt["receipt_digest"] = VALIDATOR.object_digest(receipt, ("receipt_digest",))
+            prior_digest = receipt["receipt_digest"]
+    elif action == "wrong_output_digest":
+        _receipt(inputs, "preflight")["coverage_plan_digest"] = "sha256:" + ("d" * 64)
+        _reseal_receipt_chain(inputs)
+    elif action == "wrong_event_predecessor":
+        _event(inputs, "postflight")["required_before_event_id"] = None
+        _reseal_event_and_receipt(inputs, "postflight")
+        _reseal_receipt_chain(inputs)
+    elif action == "missing_attempt":
+        midflight_event_id = _event(inputs, "midflight")["event_id"]
+        inputs["attempts"] = [item for item in inputs["attempts"] if item["event_id"] != midflight_event_id]
+    elif action == "attempt_actor_mismatch":
+        _attempt(inputs, "preflight")["actor_role_id"] = "bounded-domain-researcher"
+    elif action == "preflight_after_writer":
+        inputs["timeline"]["first_writer_lease_at"] = "2026-08-24T15:29:00Z"
+    elif action == "postflight_before_worker":
+        inputs["timeline"]["last_worker_or_checker_receipt_at"] = "2099-01-01T00:00:00Z"
+    else:
+        raise AssertionError(f"unknown fixture action {action}")
 
 
 class DoctrineMeshAuditNegativeTests(unittest.TestCase):
@@ -35,61 +163,80 @@ class DoctrineMeshAuditNegativeTests(unittest.TestCase):
         required = [ROOT / "evidence/event-ledger.json", ROOT / "evidence/timeline.json"]
         if not all(path.is_file() for path in required) or not list((ROOT / "evidence/receipts").glob("*.json")):
             raise unittest.SkipTest("pending final audit evidence")
-        cls.events = VALIDATOR.load_data(ROOT / "evidence/event-ledger.json")["events"]
-        cls.receipts = [VALIDATOR.load_data(path) for path in sorted((ROOT / "evidence/receipts").glob("*.json"))]
-        cls.attempts = VALIDATOR.load_data(ROOT / "evidence/execution-attempts.json")["attempts"]
-        cls.timeline = VALIDATOR.load_data(ROOT / "evidence/timeline.json")
-        cls.cases = json.loads((ROOT / "checks/fixtures/negative-cases.json").read_text(encoding="utf-8"))["cases"]
+        catalog = json.loads((ROOT / "checks/fixtures/negative-cases.json").read_text(encoding="utf-8"))
+        if catalog.get("schema_version") != "logos.doctrine_mesh_negative_cases.v3":
+            raise AssertionError("negative-case catalog must use the exact-oracle v3 contract")
+        cls.cases = catalog["cases"]
 
     def test_positive_audit_bundle(self) -> None:
+        baseline = VALIDATOR.load_audit_validation_inputs(ROOT)
         self.assertEqual([], VALIDATOR.validate_audit_bundle(ROOT))
+        self.assertEqual([], VALIDATOR.validate_revision(ROOT, "draft", audit_inputs=baseline)[0])
 
-    def test_negative_cases_fail_closed(self) -> None:
-        for case in self.cases:
-            with self.subTest(case=case["case_id"]):
-                events = copy.deepcopy(self.events)
-                receipts = copy.deepcopy(self.receipts)
-                attempts = copy.deepcopy(self.attempts)
-                timeline = copy.deepcopy(self.timeline)
-                action = case["action"]
-                if action == "remove_postflight_receipt":
-                    receipts = [item for item in receipts if item["phase"] != "postflight"]
-                elif action == "duplicate_midflight_receipt":
-                    duplicate = copy.deepcopy(next(item for item in receipts if item["phase"] == "midflight"))
-                    duplicate["receipt_id"] += "-DUP"
-                    receipts.append(duplicate)
-                elif action == "stale_input_digest":
-                    next(item for item in receipts if item["phase"] == "midflight")["input_manifest_digest"] = "sha256:" + ("f" * 64)
-                elif action == "out_of_order_sequence":
-                    next(item for item in events if item["phase"] == "midflight")["sequence"] = 9
-                elif action == "auditor_checker_collision":
-                    next(item for item in receipts if item["phase"] == "preflight")["checker_role_id"] = "doctrine-mesh-completeness-auditor"
-                elif action == "reused_attempt":
-                    mids = next(item for item in receipts if item["phase"] == "midflight")
-                    mids["auditor_attempt_id"] = next(item for item in receipts if item["phase"] == "preflight")["auditor_attempt_id"]
-                elif action == "corrupt_receipt_digest":
-                    next(item for item in receipts if item["phase"] == "postflight")["receipt_digest"] = "sha256:" + ("a" * 64)
-                elif action == "corrupt_event_digest":
-                    next(item for item in events if item["phase"] == "midflight")["event_digest"] = "sha256:" + ("b" * 64)
-                elif action == "break_receipt_chain":
-                    next(item for item in receipts if item["phase"] == "midflight")["previous_receipt_digest"] = "sha256:" + ("c" * 64)
-                elif action == "wrong_output_digest":
-                    next(item for item in receipts if item["phase"] == "preflight")["coverage_plan_digest"] = "sha256:" + ("d" * 64)
-                elif action == "wrong_event_predecessor":
-                    next(item for item in events if item["phase"] == "postflight")["required_before_event_id"] = None
-                elif action == "missing_attempt":
-                    attempts = [item for item in attempts if item["event_id"] != "DMA-MIDFLIGHT-001"]
-                elif action == "attempt_actor_mismatch":
-                    next(item for item in attempts if item["event_id"] == "DMA-PREFLIGHT-001")["actor_role_id"] = "bounded-domain-researcher"
-                elif action == "preflight_after_writer":
-                    timeline["first_writer_lease_at"] = "2026-08-24T15:29:00Z"
-                elif action == "postflight_before_worker":
-                    timeline["last_worker_or_checker_receipt_at"] = "2099-01-01T00:00:00Z"
-                else:
-                    self.fail(f"unknown fixture action {action}")
-                failures = VALIDATOR.validate_audit_bundle(ROOT, events, receipts, attempts, timeline)
-                self.assertTrue(failures, f"negative case passed unexpectedly: {case['case_id']}")
-                self.assertTrue(any(case["expected_signal"] in failure for failure in failures), failures)
+    def _evaluate_case(self, case: dict[str, object]) -> list[dict[str, str]]:
+        baseline = VALIDATOR.load_audit_validation_inputs(ROOT)
+        baseline_digest = VALIDATOR.object_digest(baseline)
+        baseline_failures, _ = VALIDATOR.validate_revision(ROOT, "draft", audit_inputs=baseline)
+        self.assertEqual([], baseline_failures, f"dirty aggregate baseline for {case['case_id']}")
+
+        candidate = copy.deepcopy(baseline)
+        _apply_negative_action(candidate, str(case["action"]))
+        self.assertNotEqual(
+            baseline_digest,
+            VALIDATOR.object_digest(candidate),
+            f"no-op negative mutation for {case['case_id']}",
+        )
+        candidate_failures, _ = VALIDATOR.validate_revision(ROOT, "draft", audit_inputs=candidate)
+        self.assertTrue(candidate_failures, f"negative case passed unexpectedly: {case['case_id']}")
+        records = [VALIDATOR.audit_finding_record(failure) for failure in candidate_failures]
+
+        self.assertEqual(case["expected_findings_ordered"], records)
+        self.assertEqual(case["expected_primary_finding"], records[0])
+        self.assertEqual(case["primary_rule"], records[0]["rule"])
+        self.assertEqual(case["intended_rule"], case["primary_rule"])
+        self.assertEqual(case["expected_rules_exact"], sorted({row["rule"] for row in records}))
+        stale_target = case["action"] in STALE_TARGET_ACTIONS
+        self.assertEqual(case["stale_dependency_intended"], stale_target)
+        self.assertEqual(
+            case["dependency_reseal"],
+            (
+                "target_digest_or_dependency_deliberately_stale_non_target_dependencies_resealed"
+                if stale_target
+                else "all_non_target_dependencies_resealed"
+            ),
+        )
+
+        expected_causal = []
+        for index, record in enumerate(records):
+            expected_causal.append(
+                {
+                    **record,
+                    "classification": "direct" if index == 0 else "causal_cascade",
+                    "caused_by": None if index == 0 else records[0]["identity"],
+                }
+            )
+        self.assertEqual(case["causal_closure"], expected_causal)
+        return records
+
+    def test_negative_cases_exact_oracle_forward_and_reverse(self) -> None:
+        ids = [case["case_id"] for case in self.cases]
+        self.assertEqual(15, len(ids), "the governed V2 catalog must retain all 15 cases")
+        self.assertEqual(len(ids), len(set(ids)), "negative case IDs must be unique")
+        forward = {
+            str(case["case_id"]): self._evaluate_case(case)
+            for case in self.cases
+        }
+        reverse = {
+            str(case["case_id"]): self._evaluate_case(case)
+            for case in reversed(self.cases)
+        }
+        self.assertEqual(forward, reverse)
+
+    def test_isolated_audit_override_requires_complete_boundary(self) -> None:
+        incomplete = VALIDATOR.load_audit_validation_inputs(ROOT)
+        incomplete.pop("timeline")
+        with self.assertRaises(ValueError):
+            VALIDATOR.validate_revision(ROOT, "draft", audit_inputs=incomplete)
 
     def test_non_horizontal_graph_cycle_fails(self) -> None:
         node_ids = {"A", "B"}
