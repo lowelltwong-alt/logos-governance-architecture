@@ -453,6 +453,90 @@ def _git_parents(root: Path, commit: str) -> list[str]:
     return fields[1:]
 
 
+def _git_merge_free_content_chain(
+    root: Path, base_commit: str, content_head: str
+) -> list[str]:
+    """Return the exact ordered one-parent chain from base (exclusive) to head."""
+
+    for label, commit in (("base", base_commit), ("content head", content_head)):
+        if re.fullmatch(r"[0-9a-f]{40}", commit) is None:
+            raise PortfolioValidationError(f"release {label} is not an exact commit")
+        if _git_revision(root, commit) != commit:
+            raise PortfolioValidationError(
+                f"release {label} does not resolve to its exact commit"
+            )
+    reverse_chain: list[str] = []
+    seen: set[str] = set()
+    current = content_head
+    while current != base_commit:
+        if current in seen:
+            raise PortfolioValidationError("content history contains a parent cycle")
+        if len(reverse_chain) >= 256:
+            raise PortfolioValidationError("content history exceeds the bounded chain limit")
+        seen.add(current)
+        parents = _git_parents(root, current)
+        if len(parents) != 1:
+            raise PortfolioValidationError(
+                "content history must be a merge-free first-parent chain"
+            )
+        reverse_chain.append(current)
+        current = parents[0]
+    if not reverse_chain:
+        raise PortfolioValidationError("content history must contain at least one commit")
+    return list(reversed(reverse_chain))
+
+
+def _validate_content_history_scope(
+    root: Path,
+    base_commit: str,
+    content_chain: Iterable[str],
+    cumulative_entries: Iterable[GitDeltaEntry],
+) -> None:
+    """Reject transient paths and non-additive operations hidden by a cumulative diff."""
+
+    touched_paths: set[str] = set()
+    parent = base_commit
+    for commit in content_chain:
+        entries = _git_delta_entries(root, parent, commit)
+        touched_paths.update(entry.path for entry in entries)
+        parent = commit
+    cumulative_paths = {entry.path for entry in cumulative_entries}
+    if touched_paths != cumulative_paths:
+        raise PortfolioValidationError(
+            "per-commit content paths do not equal the cumulative release scope"
+        )
+
+
+def _check_receipt_content_chain(
+    active_increment: dict[str, Any],
+    scope: dict[str, Any],
+    content_chain: Iterable[str],
+    receipt_path: str,
+) -> list[Finding]:
+    """Bind the receipt to the exact derived content history without omissions."""
+
+    derived = list(content_chain)
+    observed = {
+        "content_history_mode": active_increment.get("content_history_mode"),
+        "content_commit_count": active_increment.get("content_commit_count"),
+        "content_commit_chain": active_increment.get("content_commit_chain"),
+    }
+    expected = {
+        "content_history_mode": scope.get("content_history_mode"),
+        "content_commit_count": len(derived),
+        "content_commit_chain": derived,
+    }
+    if observed == expected:
+        return []
+    return [
+        Finding(
+            "release_scope_content_chain",
+            receipt_path,
+            "receipt content history does not match the exact derived chain",
+        )
+    ]
+
+
 def _git_is_ancestor(root: Path, ancestor: str, descendant: str) -> bool:
     return (
         subprocess.run(
@@ -1504,6 +1588,65 @@ def _scan_release_snapshot(
     return findings, scanned, skipped
 
 
+def _scan_content_history(
+    root: Path,
+    base_commit: str,
+    content_chain: Iterable[str],
+) -> list[Finding]:
+    """Scan every changed text blob in publishable history, not only the final tree."""
+
+    findings: list[Finding] = []
+    parent = base_commit
+    baseline_cache: dict[str, str | None] = {}
+    for commit in content_chain:
+        entries = _git_delta_entries(root, parent, commit)
+        for entry in entries:
+            path = entry.path
+            if PurePosixPath(path).suffix.lower() not in TEXT_SUFFIXES:
+                continue
+            raw = _git_object_bytes(root, commit, path)
+            try:
+                text = raw.decode("utf-8")
+            except UnicodeDecodeError:
+                findings.append(
+                    Finding(
+                        "release_scope_history_privacy",
+                        path,
+                        f"text blob at content commit {commit[:12]} is not valid UTF-8",
+                    )
+                )
+                continue
+            if path not in baseline_cache:
+                baseline_raw = _git_object_bytes_if_present(root, base_commit, path)
+                if baseline_raw is None:
+                    baseline_cache[path] = ""
+                else:
+                    try:
+                        baseline_cache[path] = baseline_raw.decode("utf-8")
+                    except UnicodeDecodeError:
+                        baseline_cache[path] = None
+            baseline_text = baseline_cache[path]
+            if baseline_text is None:
+                findings.append(
+                    Finding(
+                        "release_scope_history_privacy",
+                        path,
+                        "baseline text is not valid UTF-8, so history comparison is unavailable",
+                    )
+                )
+                continue
+            for finding in scan_candidate_added_text(path, text, baseline_text):
+                findings.append(
+                    Finding(
+                        "release_scope_history_privacy",
+                        path,
+                        f"{finding.rule} at content commit {commit[:12]}: {finding.detail}",
+                    )
+                )
+        parent = commit
+    return findings
+
+
 def _composed_snapshot_drift(
     root: Path,
     anchor_commit: str,
@@ -2486,19 +2629,45 @@ def _check_prior_release_003(
 
 def _release_004_content_entries(
     scope: dict[str, Any], root: Path, content_head: str
-) -> tuple[list[Finding], list[GitDeltaEntry]]:
+) -> tuple[list[Finding], list[GitDeltaEntry], list[str]]:
     findings: list[Finding] = []
     receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
     base = scope.get("base_commit", "")
-    if _git_parents(root, content_head) != [base]:
+    content_chain: list[str] = []
+    try:
+        content_chain = _git_merge_free_content_chain(root, base, content_head)
+    except PortfolioValidationError as exc:
         findings.append(
             Finding(
-                "release_scope_content_parent",
+                "release_scope_content_chain",
                 receipt_path,
-                "Release 004 content checkpoint must be a direct child of its exact base",
+                str(exc),
             )
         )
     entries = _git_delta_entries(root, base, content_head)
+    if (
+        scope.get("content_history_mode")
+        != "exact_merge_free_first_parent_chain"
+        or scope.get("content_commit_count") != len(content_chain)
+    ):
+        findings.append(
+            Finding(
+                "release_scope_content_chain",
+                "project-evidence.yaml",
+                "Release 004 content-history mode or commit count does not replay exactly",
+            )
+        )
+    if content_chain:
+        try:
+            _validate_content_history_scope(root, base, content_chain, entries)
+        except PortfolioValidationError as exc:
+            findings.append(
+                Finding(
+                    "release_scope_history_scope",
+                    receipt_path,
+                    str(exc),
+                )
+            )
     if any(entry.path == receipt_path for entry in entries):
         findings.append(
             Finding(
@@ -2526,7 +2695,7 @@ def _release_004_content_entries(
                     f"Release 004 {field} does not match the exact Git delta",
                 )
             )
-    return findings, entries
+    return findings, entries, content_chain
 
 
 def _check_release_004_content_checkpoint(
@@ -2537,8 +2706,14 @@ def _check_release_004_content_checkpoint(
     prior_findings, _ = _check_prior_release_003(scope, root)
     findings.extend(prior_findings)
     head = _git_revision(root, "HEAD")
-    content_findings, entries = _release_004_content_entries(scope, root, head)
+    content_findings, entries, content_chain = _release_004_content_entries(
+        scope, root, head
+    )
     findings.extend(content_findings)
+    if content_chain:
+        findings.extend(
+            _scan_content_history(root, scope.get("base_commit", ""), content_chain)
+        )
     prior_receipt = scope.get("prior_release", {}).get("receipt_commit", "")
     receipt_path = PORTFOLIO_RECEIPT_RELATIVE.as_posix()
     if (
@@ -2579,7 +2754,7 @@ def _check_release_004_finalized(
     prior_findings, prior_paths = _check_prior_release_003(scope, root)
     findings.extend(prior_findings)
     if (
-        chain.get("mode") != "direct_parent_incremental_v3"
+        chain.get("mode") != "merge_free_first_parent_incremental_v3"
         or chain.get("receipt_path") != receipt_path
         or chain.get("prior_release") != scope.get("prior_release")
         or chain.get("historical_v1")
@@ -2604,14 +2779,26 @@ def _check_release_004_finalized(
             "release_text_files_scanned": 0,
             "release_text_files_skipped": 0,
         }
-    content_findings, entries = _release_004_content_entries(scope, root, content_head)
+    content_findings, entries, content_chain = _release_004_content_entries(
+        scope, root, content_head
+    )
     findings.extend(content_findings)
+    if content_chain:
+        findings.extend(
+            _scan_content_history(root, scope.get("base_commit", ""), content_chain)
+        )
+        findings.extend(
+            _check_receipt_content_chain(active, scope, content_chain, receipt_path)
+        )
     paths = [entry.path for entry in entries]
     release_paths = sorted({*paths, receipt_path})
     active_expected = {
         "branch_base_commit": scope.get("base_commit"),
         "content_head_commit": content_head,
         "content_tree_sha": _git_tree_sha(root, content_head),
+        "content_history_mode": scope.get("content_history_mode"),
+        "content_commit_count": len(content_chain),
+        "content_commit_chain": content_chain,
         "content_path_count": len(paths),
         "receipt_path_count": 1,
         "total_release_path_count": len(release_paths),

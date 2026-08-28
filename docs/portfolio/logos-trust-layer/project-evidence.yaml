@@ -32,6 +32,8 @@ release_scope:
   status: chained_incremental_release_candidate
   release_id: LOGOS-PORTFOLIO-RELEASE-004
   base_commit: f320d8430c10f82d4fdd80567c4d533fa90c25d5
+  content_history_mode: exact_merge_free_first_parent_chain
+  content_commit_count: 3
   current_content_path_count: 141
   total_unique_path_count: 142
   receipt_excluded_path_count: 141

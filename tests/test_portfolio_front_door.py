@@ -821,6 +821,149 @@ def test_release_snapshot_fails_closed_on_invalid_utf8_baseline(
     assert skipped == 1
 
 
+def test_merge_free_content_chain_rejects_a_merge(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    first = "2" * 40
+    merge = "3" * 40
+    side = "4" * 40
+    monkeypatch.setattr(validator, "_git_revision", lambda _root, revision: revision)
+    monkeypatch.setattr(
+        validator,
+        "_git_parents",
+        lambda _root, commit: {
+            first: [base],
+            merge: [first, side],
+        }[commit],
+    )
+
+    with pytest.raises(
+        validator.PortfolioValidationError,
+        match="merge-free first-parent chain",
+    ):
+        validator._git_merge_free_content_chain(ROOT, base, merge)
+
+
+def test_merge_free_content_chain_accepts_an_ordered_three_commit_chain(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    first = "2" * 40
+    second = "3" * 40
+    third = "4" * 40
+    monkeypatch.setattr(validator, "_git_revision", lambda _root, revision: revision)
+    monkeypatch.setattr(
+        validator,
+        "_git_parents",
+        lambda _root, commit: {
+            first: [base],
+            second: [first],
+            third: [second],
+        }[commit],
+    )
+
+    assert validator._git_merge_free_content_chain(ROOT, base, third) == [
+        first,
+        second,
+        third,
+    ]
+
+
+def test_content_history_scope_rejects_a_transient_path(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    first = "2" * 40
+    second = "3" * 40
+    monkeypatch.setattr(
+        validator,
+        "_git_delta_entries",
+        lambda _root, parent, commit: {
+            (base, first): [
+                validator.GitDeltaEntry("M", "kept.md"),
+                validator.GitDeltaEntry("M", "reverted.md"),
+            ],
+            (first, second): [validator.GitDeltaEntry("M", "reverted.md")],
+        }[(parent, commit)],
+    )
+
+    with pytest.raises(
+        validator.PortfolioValidationError,
+        match="per-commit content paths",
+    ):
+        validator._validate_content_history_scope(
+            ROOT,
+            base,
+            [first, second],
+            [validator.GitDeltaEntry("M", "kept.md")],
+        )
+
+
+def test_content_history_scan_rejects_an_intermediate_sensitive_occurrence(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    commit = "2" * 40
+    private_path = "".join(("C:", "\\", "wt", "\\", "intermediate"))
+    monkeypatch.setattr(
+        validator,
+        "_git_delta_entries",
+        lambda _root, _parent, _commit: [
+            validator.GitDeltaEntry("M", "candidate.md")
+        ],
+    )
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes",
+        lambda _root, _commit, _path: private_path.encode("utf-8"),
+    )
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes_if_present",
+        lambda _root, _commit, _path: b"clean baseline",
+    )
+
+    findings = validator._scan_content_history(ROOT, base, [commit])
+
+    assert findings == [
+        validator.Finding(
+            "release_scope_history_privacy",
+            "candidate.md",
+            "windows_private_path at content commit 222222222222: "
+            "1 candidate-added occurrence(s)",
+        )
+    ]
+    assert private_path not in findings[0].render()
+
+
+def test_content_history_scan_rejects_intermediate_invalid_utf8(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    base = "1" * 40
+    commit = "2" * 40
+    monkeypatch.setattr(
+        validator,
+        "_git_delta_entries",
+        lambda _root, _parent, _commit: [
+            validator.GitDeltaEntry("M", "candidate.md")
+        ],
+    )
+    monkeypatch.setattr(
+        validator,
+        "_git_object_bytes",
+        lambda _root, _commit, _path: b"\xff",
+    )
+
+    assert validator._scan_content_history(ROOT, base, [commit]) == [
+        validator.Finding(
+            "release_scope_history_privacy",
+            "candidate.md",
+            "text blob at content commit 222222222222 is not valid UTF-8",
+        )
+    ]
+
+
 def test_git_object_cache_uses_exact_immutable_keys(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -935,6 +1078,15 @@ def test_nul_safe_git_delta_preserves_status_and_rejects_deletion(
     with pytest.raises(validator.PortfolioValidationError):
         validator._git_delta_entries(ROOT, "a" * 40, "b" * 40)
 
+    def rename_run(command: list[str], **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        return subprocess.CompletedProcess(
+            command, 0, stdout=b"R100\0old.md\0new.md\0", stderr=b""
+        )
+
+    monkeypatch.setattr(validator.subprocess, "run", rename_run)
+    with pytest.raises(validator.PortfolioValidationError):
+        validator._git_delta_entries(ROOT, "a" * 40, "b" * 40)
+
 
 @pytest.mark.parametrize(
     "payload",
@@ -1029,6 +1181,54 @@ def test_release_scope_rejects_a_stale_content_head() -> None:
     findings, _ = validator._check_release_scope(manifest, receipt, ROOT)
 
     assert any(finding.rule == "release_scope_finalization" for finding in findings)
+
+
+def test_release_scope_rejects_an_omitted_content_commit() -> None:
+    scope = {
+        "content_history_mode": "exact_merge_free_first_parent_chain",
+    }
+    derived = ["1" * 40, "2" * 40, "3" * 40]
+    active = {
+        "content_history_mode": scope["content_history_mode"],
+        "content_commit_count": 2,
+        "content_commit_chain": derived[1:],
+    }
+
+    findings = validator._check_receipt_content_chain(
+        active, scope, derived, "receipt.json"
+    )
+
+    assert findings == [
+        validator.Finding(
+            "release_scope_content_chain",
+            "receipt.json",
+            "receipt content history does not match the exact derived chain",
+        )
+    ]
+
+
+def test_release_scope_rejects_a_reordered_content_chain() -> None:
+    scope = {
+        "content_history_mode": "exact_merge_free_first_parent_chain",
+    }
+    derived = ["1" * 40, "2" * 40, "3" * 40]
+    active = {
+        "content_history_mode": scope["content_history_mode"],
+        "content_commit_count": 3,
+        "content_commit_chain": [derived[1], derived[0], derived[2]],
+    }
+
+    findings = validator._check_receipt_content_chain(
+        active, scope, derived, "receipt.json"
+    )
+
+    assert findings == [
+        validator.Finding(
+            "release_scope_content_chain",
+            "receipt.json",
+            "receipt content history does not match the exact derived chain",
+        )
+    ]
 
 
 def test_release_scope_rejects_a_mismatched_prior_release_snapshot() -> None:

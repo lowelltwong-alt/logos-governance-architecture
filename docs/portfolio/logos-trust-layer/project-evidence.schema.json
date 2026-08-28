@@ -109,7 +109,8 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "status", "release_id", "base_commit", "current_content_path_count",
+        "status", "release_id", "base_commit", "content_history_mode",
+        "content_commit_count", "current_content_path_count",
         "total_unique_path_count", "receipt_excluded_path_count",
         "added_path_count", "modified_path_count", "deleted_path_count",
         "renamed_path_count",
@@ -120,6 +121,8 @@
         "status": {"const": "chained_incremental_release_candidate"},
         "release_id": {"const": "LOGOS-PORTFOLIO-RELEASE-004"},
         "base_commit": {"const": "f320d8430c10f82d4fdd80567c4d533fa90c25d5"},
+        "content_history_mode": {"const": "exact_merge_free_first_parent_chain"},
+        "content_commit_count": {"const": 3},
         "current_content_path_count": {"const": 141},
         "total_unique_path_count": {"const": 142},
         "receipt_excluded_path_count": {"const": 141},
@@ -720,13 +723,15 @@
             "external_baseline_finding", "prior_release", "historical_v1"
           ],
           "properties": {
-            "mode": {"const": "direct_parent_incremental_v3"},
+            "mode": {"const": "merge_free_first_parent_incremental_v3"},
             "receipt_path": {"const": "docs/portfolio/logos-trust-layer/validation-receipt.json"},
             "active_increment": {
               "type": "object",
               "additionalProperties": false,
               "required": [
                 "branch_base_commit", "content_head_commit", "content_tree_sha",
+                "content_history_mode", "content_commit_count",
+                "content_commit_chain",
                 "content_path_count", "receipt_path_count", "total_release_path_count",
                 "fingerprinted_content_path_count", "added_path_count",
                 "modified_path_count", "deleted_path_count", "renamed_path_count",
@@ -736,6 +741,12 @@
                 "branch_base_commit": {"const": "f320d8430c10f82d4fdd80567c4d533fa90c25d5"},
                 "content_head_commit": {"$ref": "#/$defs/sha1"},
                 "content_tree_sha": {"$ref": "#/$defs/sha1"},
+                "content_history_mode": {"const": "exact_merge_free_first_parent_chain"},
+                "content_commit_count": {"const": 3},
+                "content_commit_chain": {
+                  "type": "array", "minItems": 3, "maxItems": 3,
+                  "uniqueItems": true, "items": {"$ref": "#/$defs/sha1"}
+                },
                 "content_path_count": {"const": 141},
                 "receipt_path_count": {"const": 1},
                 "total_release_path_count": {"const": 142},
