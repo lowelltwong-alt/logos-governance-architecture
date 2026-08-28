@@ -1,34 +1,41 @@
 {
-  "schema_version": "logos.portfolio_validation_receipt.v2",
+  "schema_version": "logos.portfolio_validation_receipt.v3",
   "object_type": "logos_portfolio_validation_receipt",
   "trust_zone": "proposed",
   "lifecycle_status": "public_release_candidate",
-  "provenance_note": "Recorded after the exact 85-path refrozen content checkpoint, independent changed-input review, hash-pinned preservation of one non-authorizing pre-publication receipt, and immutable replay of the prior public release evidence.",
-  "reason_for_inclusion": "Bind this public candidate to one exact branch increment without rewriting preserved history, absorbing an unrelated integrated pull request, or waiving its disclosed baseline privacy finding.",
-  "receipt_id": "LOGOS-PORTFOLIO-RELEASE-003",
+  "provenance_note": "Recorded after the exact three-commit merge-free Release 004 content chain, intermediate-history privacy replay, current frozen package validation, and independent non-author checkpoint review.",
+  "reason_for_inclusion": "Bind the public candidate to exact content commits, final bytes, prior releases, non-authority boundaries, and still-pending CI and merge gates without rewriting history or waiving any baseline finding.",
+  "receipt_id": "LOGOS-PORTFOLIO-RELEASE-004",
   "work_id": "WORK-GOV-LOGOS-STEWARDSHIP-BUILDOUT-001",
   "status": "pass_scoped_incremental_release_candidate",
   "release_chain": {
-    "mode": "direct_parent_incremental_v2",
+    "mode": "merge_free_first_parent_incremental_v3",
     "receipt_path": "docs/portfolio/logos-trust-layer/validation-receipt.json",
     "active_increment": {
-      "branch_base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
-      "content_head_commit": "6bb775321f93fe97dff5a90a3c3bdca42f42edfb",
-      "content_tree_sha": "a9307538e127d87fdc987f6c86921401679286e5",
-      "content_path_count": 85,
+      "branch_base_commit": "f320d8430c10f82d4fdd80567c4d533fa90c25d5",
+      "content_head_commit": "7036ffa8491baf9fed560eb234763e3cac437686",
+      "content_tree_sha": "45f76e6d11f962de79891aa45828b50fd87f9935",
+      "content_history_mode": "exact_merge_free_first_parent_chain",
+      "content_commit_count": 3,
+      "content_commit_chain": [
+        "14dbedf8b40f5f01baa7e68d0e0f8f0acc740c29",
+        "f70b65ffc17927b7c8056d86059f2a8c381010ef",
+        "7036ffa8491baf9fed560eb234763e3cac437686"
+      ],
+      "content_path_count": 141,
       "receipt_path_count": 1,
-      "total_release_path_count": 86,
-      "fingerprinted_content_path_count": 85,
-      "added_path_count": 64,
-      "modified_path_count": 21,
+      "total_release_path_count": 142,
+      "fingerprinted_content_path_count": 141,
+      "added_path_count": 83,
+      "modified_path_count": 58,
       "deleted_path_count": 0,
       "renamed_path_count": 0,
       "canonical_digest_algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-      "content_digest": "sha256:7b7a4885889ee32ef38d83cbb1008204c990d34cfce0c7decdfa3fc923be16ab"
+      "content_digest": "sha256:7eae7a2efe8b41448b554cf6bf26b109ece2bbbc23d89fc66a100e58f404225c"
     },
     "privacy": {
       "mode": "exact_base_candidate_added_occurrences",
-      "baseline_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+      "baseline_commit": "f320d8430c10f82d4fdd80567c4d533fa90c25d5",
       "content_source": "active_increment.content_head_commit",
       "receipt_source": "derived_latest_receipt_commit",
       "candidate_added_finding_count": 0,
@@ -36,21 +43,26 @@
       "repository_wide_privacy_pass_claimed": false
     },
     "external_baseline_finding": {
-      "baseline_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+      "baseline_commit": "f320d8430c10f82d4fdd80567c4d533fa90c25d5",
       "path": "tests/test_machine_citation_artifacts.py",
       "rule": "file_uri",
       "occurrence_count": 3,
       "integrated_via_pr": 120,
       "disposition": "unresolved_preexisting_not_waived"
     },
-    "intermediate_receipt": {
-      "status": "superseded_prepublication_non_authorizing_checkpoint",
-      "content_head_commit": "9128c6b710a35fe70115efadfef65ea54ed50ebb",
-      "content_tree_sha": "e0fdc9e3087675ba9ab1713400945ab644f4342b",
-      "receipt_commit": "36ba16eab3dbf9dafb35184528c6ce68346e5c29",
-      "receipt_tree_sha": "96760b23e366ad9368848ec116bad6ed68d79847",
-      "receipt_raw_sha256": "sha256:b0286073e852204a758fbceb5bf84c59b89d362f50c4a287acdf8a28c5fd99a6",
-      "receipt_digest": "sha256:725e4431e21208b6288257b43852e334ffd0a34c7ac22d6378dceaa95f337d2f",
+    "prior_release": {
+      "release_id": "LOGOS-PORTFOLIO-RELEASE-003",
+      "base_commit": "f159e3f54d96755cd93dc5cfcd069085be4fb2ca",
+      "content_head_commit": "6bb775321f93fe97dff5a90a3c3bdca42f42edfb",
+      "content_tree_sha": "a9307538e127d87fdc987f6c86921401679286e5",
+      "receipt_commit": "424cd882da0ac0f8271254b8c27149acb1f5b571",
+      "merge_commit": "f320d8430c10f82d4fdd80567c4d533fa90c25d5",
+      "receipt_tree_sha": "565e9b71faff3f7296d35e310ad3c31110403df9",
+      "merge_tree_sha": "565e9b71faff3f7296d35e310ad3c31110403df9",
+      "receipt_raw_sha256": "sha256:448449c335e7c67295f94195f415b1b3a0952447f1a6057ce1545a2d36f17851",
+      "receipt_digest": "sha256:35e046eae2b684c2196bb44dc299e0a8e0882a399738360f25f98156821f2d57",
+      "manifest_raw_sha256": "sha256:fe201b881d8b5b62fdb9d862db43eea1b8ae7f4969294355ebbaf50a535b664f",
+      "release_chain_digest": "sha256:e3ad5952f884602e472c4070754141afa27a517c090f890eba0be91c3e075d31",
       "content_path_count": 85,
       "total_release_path_count": 86,
       "fingerprinted_content_path_count": 85,
@@ -58,20 +70,8 @@
       "modified_path_count": 21,
       "deleted_path_count": 0,
       "renamed_path_count": 0,
-      "content_digest": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39"
-    },
-    "prior_release": {
-      "base_commit": "4f00f6f9d50e870d4e9805f29a69feb33e6f4d12",
-      "content_head_commit": "04a190bf091eea468a57f5604264a71ff97dd237",
-      "receipt_commit": "54be8f8b5e75aeda994ff5fc6b858c9e1edad6cd",
-      "merge_commit": "91fa8560fecade6b7dd557edad8edf91609efd9b",
-      "receipt_raw_sha256": "sha256:c6a9b91c81ecc024dd82c183c16a02c455fda94fc9255bae90e9f15cab93b450",
-      "path_count": 131,
-      "fingerprinted_path_count": 130,
       "canonical_digest_algorithm": "Sort Git path strings ordinally; for each path normalize valid UTF-8 CRLF and lone CR to LF while preserving invalid-UTF-8 bytes, then emit lowercase SHA-256, TAB, forward-slash-normalized path, and LF; SHA-256 the UTF-8 concatenation including the final LF.",
-      "content_digest": "sha256:94ce848ce3793a10a51d25520b48eabb3af1fc9880c1b865e75360c1a59efabc",
-      "receipt_digest": "sha256:93b2da7b302e5aba02a65bb600fbaeaefd56d583be844e451d629faf56961dff",
-      "merge_tree_sha": "4542d66e88bd8cb14cb77487e52c88c184b4de30",
+      "content_digest": "sha256:7b7a4885889ee32ef38d83cbb1008204c990d34cfce0c7decdfa3fc923be16ab",
       "protected_drift_to_current_base_count": 0
     },
     "historical_v1": {
@@ -80,9 +80,15 @@
     }
   },
   "doctrine_mesh_status": "validated_specification_only",
-  "doctrine_mesh_payload_digest": "sha256:dad7adcd3930b74f34fdab8a39f29fb283ee8f7f40e6be15dd3489a300c27946",
-  "doctrine_mesh_revision_manifest_digest": "sha256:d0344542dd602a7c2ada2b9810c0330a59ce9c5ab29ce08c631406ee5ffda7f1",
-  "doctrine_mesh_final_saved_version_digest": "sha256:a5f4bcdd3cbba5e24afd1edfbfb8351c92e10a92ae5ab1e054e5ec0255db3a13",
+  "doctrine_mesh_payload_digest": "sha256:6fdc5507d69ed5e6cdeb0aa9b79ed6365aa6b38cce258a0649ee527ba5e15fa8",
+  "doctrine_mesh_revision_manifest_digest": "sha256:5187ad96a294c5b6aa3dcfad7af67635ceceac562068abc6314a896dbcde2f9e",
+  "doctrine_mesh_final_saved_version_digest": "sha256:1fdff84a9c1a8d34523183e6a8b1fe0ef70c53bde4ad3e054b94faa4a9b3076c",
+  "doctrine_marathon_status": "blocked_specification_only",
+  "doctrine_marathon_payload_digest": "sha256:4a77843f3b0e7fae6ea5f6847d43cb40066ff9e1411fa65db51c662dedc80001",
+  "doctrine_marathon_revision_manifest_file_digest": "sha256:b3082cf1966840435ead72c7b652ffffd9763fdfd3101f48c77be53807ca7bda",
+  "doctrine_marathon_final_saved_version_digest": "sha256:a13cf70c636308d1d4f59648dcea84e72f9dff677ce0108b8750c0415711747c",
+  "doctrine_marathon_declared_final_blocker": "adversarial_harness_release_gate: V3 cannot release until the aggregate exact-oracle migration is complete and independently reviewed",
+  "doctrine_marathon_independence_status": "non_author_read_only_cross_provider_unverified",
   "preflight": {
     "status": "pass",
     "checkpoint": "08eab8e3edf44ab22175e3e47b1828153a84d716",
@@ -97,152 +103,80 @@
     "authority_boundary": "Audit acknowledgement only; repository privacy, provenance, accuracy, CI, theological authority, and independent-review gates remain binding."
   },
   "checks": [
-    {
-      "check_id": "doctrine_mesh_final_replay",
-      "status": "pass_artifact_specification_only",
-      "result": "66 structured files, 13 roles, 68 domain profiles, 25 nodes, 26 edges, and zero static failures."
-    },
-    {
-      "check_id": "doctrine_mesh_adversarial_tests",
-      "status": "pass",
-      "result": "20 deterministic adversarial tests passed; no runtime, source ingestion, or doctrinal authority was activated."
-    },
-    {
-      "check_id": "academic_extension_validator",
-      "status": "pass",
-      "result": "The refrozen 47-row contract passed with five schemas, five positive fixtures, twelve negative fixtures, nine standards records, and eight blocked human gates."
-    },
-    {
-      "check_id": "academic_extension_focused_tests",
-      "status": "pass",
-      "result": "27 isolated focused tests passed, including canonical LF digest and raw-binary preservation cases."
-    },
-    {
-      "check_id": "biblical_evidence_validator",
-      "status": "pass",
-      "result": "The exact 21-file freeze, licensed P66 asset, 20 sources, 27 nodes, 45 edges, 11 roles, and 72 negative fixtures passed."
-    },
-    {
-      "check_id": "biblical_evidence_focused_tests",
-      "status": "pass",
-      "result": "50 isolated focused tests passed, including malformed, duplicate, missing, extra, and reordered frozen-row challenges."
-    },
-    {
-      "check_id": "portfolio_prefinalization_tests",
-      "status": "binding_post_finalization",
-      "result": "The complete 67-test portfolio suite must replay after this exact receipt-only finalization; no prior-head result substitutes for that gate."
-    },
-    {
-      "check_id": "family_registry",
-      "status": "pass_with_unrelated_warnings",
-      "result": "Family registry schema and semantics passed; five pre-existing stale-lease warnings remain outside this claim."
-    },
-    {
-      "check_id": "governance_dependency_map",
-      "status": "pass",
-      "result": "The materially changed portfolio validator and its exact dependency-map revision passed changed-path coverage."
-    },
-    {
-      "check_id": "all_markdown_internal_links",
-      "status": "pass",
-      "result": "466 Markdown files passed the complete internal-link audit."
-    },
-    {
-      "check_id": "global_workspace_policy",
-      "status": "pass",
-      "result": "Policy revision 1.0.0 passed across 80 registered worktrees; M8 remained protected and untouched; mutation_performed was false."
-    },
-    {
-      "check_id": "git_diff_check",
-      "status": "pass",
-      "result": "The preserved correction history, four-file refreeze checkpoint, and exact 85-path branch candidate contain no whitespace errors."
-    },
-    {
-      "check_id": "superseded_receipt_preservation",
-      "status": "pass_content_checkpoint",
-      "result": "The prior direct-parent receipt is retained byte-for-byte, hash-pinned, explicitly non-authorizing, and excluded from the 85-path nonreceipt fingerprint without history rewriting."
-    },
-    {
-      "check_id": "incremental_privacy_contract",
-      "status": "binding_post_finalization",
-      "result": "The validator must replay all 86 release paths after this receipt-only commit; the unrelated three-occurrence baseline is disclosed and not waived."
-    },
-    {
-      "check_id": "full_pytest",
-      "status": "binding_post_finalization",
-      "result": "The complete isolated suite must pass after direct-parent receipt materialization and before any push."
-    },
-    {
-      "check_id": "required_ci_and_merge",
-      "status": "pending",
-      "result": "Required pull-request CI, an unchanged-head independent gate, and a normal non-bypass merge remain mandatory."
-    }
+    {"check_id": "doctrine_mesh_final_replay", "status": "pass_artifact_specification_only", "result": "The refrozen package passed with 66 structured files, 13 roles, 68 domain profiles, 25 nodes, 26 edges, and zero static findings."},
+    {"check_id": "doctrine_mesh_adversarial_tests", "status": "pass", "result": "Twenty-one cache-free deterministic tests passed; no runtime, source ingestion, research execution, or doctrinal authority was activated."},
+    {"check_id": "academic_extension_validator", "status": "pass_specification_only", "result": "The 47-row contract passed with five schemas, five positive fixtures, twelve negative fixtures, nine standards records, and eight blocked human gates."},
+    {"check_id": "academic_extension_focused_tests", "status": "pass", "result": "Twenty-eight isolated tests passed, including canonical LF and raw-binary digest preservation."},
+    {"check_id": "biblical_evidence_validator", "status": "pass_bounded_non_authorizing", "result": "The exact 21-file freeze, licensed P66 asset, 20 sources, 28 nodes, 47 edges, 12 roles, and 77 adversarial fixtures passed."},
+    {"check_id": "biblical_evidence_focused_tests", "status": "pass", "result": "Sixty-eight focused tests passed against the exact current freeze; the English display remains separately sourced and not image-derived."},
+    {"check_id": "doctrine_marathon_prefinal_replay", "status": "pass_specification_only", "result": "The 78-file payload, 83 managed files, 197 component cases, and four aggregate sentinels replayed with zero prefinal findings."},
+    {"check_id": "doctrine_marathon_final_replay", "status": "pass_exact_declared_blocker", "result": "Final mode returned exactly the one declared aggregate-oracle migration blocker and no unexpected finding; maturity remains blocked specification only."},
+    {"check_id": "portfolio_content_checkpoint", "status": "pass", "result": "The exact three-commit merge-free history, 141 content paths, 142 release paths, and all intermediate text blobs replayed with zero findings or skipped text."},
+    {"check_id": "release_chain_root_review", "status": "pass_independent_read_only", "result": "A non-author reviewer reproduced the exact four-path root-fix fingerprint, ordered chain, zero-finding content validator, and clean checkpoint."},
+    {"check_id": "family_registry", "status": "pass_with_unrelated_stale_lease_warnings", "result": "Family registry schema and semantics passed; unrelated stale-lease warnings remain disclosed outside this claim."},
+    {"check_id": "all_markdown_internal_links", "status": "pass", "result": "Four hundred seventy-two Markdown files passed the complete internal-link audit at the content checkpoint."},
+    {"check_id": "incremental_privacy_contract", "status": "pass_candidate_added_scope_only", "result": "All release snapshots and intermediate changed text blobs added zero sensitive occurrences and zero invalid UTF-8 files; no repository-wide privacy claim is made."},
+    {"check_id": "portfolio_postfinalization_tests", "status": "binding_post_finalization", "result": "The full focused portfolio suite must pass after this exact receipt-only commit; pre-receipt results do not substitute."},
+    {"check_id": "scoped_workspace_policy", "status": "binding_post_finalization", "result": "The relationship-scoped workspace validator must remain passing on the exact receipt head before push."},
+    {"check_id": "required_ci_and_merge", "status": "pending", "result": "Required pull-request CI, an independent unchanged-head gate, and a normal non-bypass merge remain mandatory."}
   ],
   "independent_reviews": [
     {
-      "review_id": "AE-XPLAT-DIGEST-REVIEW-20260827T000334Z",
-      "role": "independent-academic-extension-checker",
-      "status": "pass_specification_only",
-      "reviewed_path_count": 47,
-      "reviewed_digest": "sha256:ccb6f70ed925af51bfb3a545c619012b6a46989f7fa88f5d6735a59adee2424b",
-      "scope_note": "Reproduced all 47 canonical frozen rows, cross-platform Git-blob equivalence, aggregate digest, and all eight blocked human gates.",
-      "observed_at": "2026-08-27T00:03:34.255Z"
+      "review_id": "P66-ACADEMIC-006",
+      "role": "citation-source-fitness-checker",
+      "status": "pass_bounded_non_authorizing",
+      "reviewed_path_count": 21,
+      "reviewed_digest": "sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81",
+      "scope_note": "Reconciled all frozen rows, 20 source records, five bounded archaeology claims, object-versus-image scope, and public academic wording without specialist authority.",
+      "observed_at": "2026-08-28T15:37:36Z"
     },
     {
-      "review_id": "REVIEW-GRAPH-MESH-008",
-      "role": "independent-graph-mesh-checker",
+      "review_id": "P66-GRAPH-MESH-009",
+      "role": "graph-invariant-red-team",
       "status": "pass_static_non_authorizing",
       "reviewed_path_count": 21,
-      "reviewed_digest": "sha256:1eff357dd77b81ca72ec107ed2270e1d146eb4fa08b5eff0f92d0996d3496490",
-      "scope_note": "Reproduced the frozen P66 and evidence-graph package and verified fail-closed duplicate, malformed, missing, extra, and order challenges.",
-      "observed_at": "2026-08-27T00:03:30Z"
+      "reviewed_digest": "sha256:9791fc26beebdf90f13e22f0f56f9bc631a57b20a7ef379bc657328bead8ea81",
+      "scope_note": "Replayed the frozen graph, object and asset topology, 12-role mesh, role completeness separation, and 77-fixture adversarial catalog.",
+      "observed_at": "2026-08-28T15:35:58Z"
     },
     {
-      "review_id": "REVIEW-RELEASE-CHAIN-010",
-      "role": "independent-release-integration-checker",
-      "status": "pass_changed_input",
-      "reviewed_path_count": 85,
-      "reviewed_digest": "sha256:bd9692b5bb1018bca1f6075df90227a83e5663579bed64da3771ef01e514bd39",
-      "scope_note": "Caught two fail-closed defects, then verified their correction plus the exact 64-addition and 21-modification chain, prior-release replay, and non-waiver boundary.",
-      "observed_at": "2026-08-27T01:09:40.076176Z"
+      "review_id": "P66-RIGHTS-006",
+      "role": "source-rights-reviewer",
+      "status": "pass_bounded_non_authorizing",
+      "reviewed_path_count": 5,
+      "reviewed_digest": "sha256:f7453af8d2523cc358148c7d26072d87b53c991aa03df667f8c5c54c7beef040",
+      "scope_note": "Checked the exact P66 image, Cologne attribution and CC BY 4.0 scope, object-versus-image distinction, translation separation, and public boundary.",
+      "observed_at": "2026-08-28T15:35:42Z"
     },
     {
-      "review_id": "REVIEW-SUPERSEDING-RECEIPT-011",
-      "role": "independent-release-integration-checker",
-      "status": "pass_preserved_history",
-      "reviewed_path_count": 85,
-      "reviewed_digest": "sha256:3e49466797c5930dd14028f239bcfd80d029709546bdb6ab7aadc27de4a2b5cf",
-      "scope_note": "Verified the pinned intermediate receipt, exact retained bytes, 85-path exclusion, fail-closed Release 003 contract, corrected stale-head test, prior-release replay, and privacy non-waiver.",
-      "observed_at": "2026-08-27T01:26:18.010835Z"
+      "review_id": "DMV3-INDEPENDENT-REVIEW-003",
+      "role": "independent-non-author-whole-work-checker",
+      "status": "pass_blocked_specification_only",
+      "reviewed_path_count": 78,
+      "reviewed_digest": "sha256:4a77843f3b0e7fae6ea5f6847d43cb40066ff9e1411fa65db51c662dedc80001",
+      "scope_note": "Re-derived the exact frozen payload, public nonclaims, administrative bindings, and singleton final blocker without granting runtime, research, or theological authority.",
+      "observed_at": "2026-08-28T16:36:05Z"
     },
     {
-      "review_id": "AEX-REFREEZE-IR-20260827T014156Z",
-      "role": "independent-academic-extension-checker",
-      "status": "pass_refrozen_specification_only",
-      "reviewed_path_count": 47,
-      "reviewed_digest": "sha256:f07c6a75879802c953268b192850c79e8ea1c116443c9b47c9a37464e2a434df",
-      "scope_note": "Reproduced all 47 refrozen canonical rows, the updated dependency-map identity, exact exclusions, empty production registry, and eight blocked human gates.",
-      "observed_at": "2026-08-27T01:41:56.786535Z"
-    },
-    {
-      "review_id": "AEX-REFREEZE-STAGED-20260827T014715Z",
-      "role": "independent-release-integration-checker",
-      "status": "pass_exact_staged_correction",
+      "review_id": "RELEASE004-ROOT-FIX-CHECKPOINT-001",
+      "role": "independent-release-chain-checker",
+      "status": "pass_exact_immutable_checkpoint",
       "reviewed_path_count": 4,
-      "reviewed_digest": "sha256:f9b040862fd8448bd79d165edd8e2cfcf886a0406c2e6a867820e34218dd2d2f",
-      "scope_note": "Verified the exact four-file staged refreeze, byte-identical intermediate receipt, reproducible Academic digests, and zero authority elevation.",
-      "observed_at": "2026-08-27T01:47:15.231897Z"
+      "reviewed_digest": "sha256:1f0ba53d0a8cfc5247817e6d2a5536c89fd9545916d9d1c8ce72d855ebecb8db",
+      "scope_note": "Verified the exact four-path root fix, three-commit merge-free chain, intermediate-history privacy controls, adversarial tests, and zero-finding content checkpoint.",
+      "observed_at": "2026-08-28T17:16:58.4043736Z"
     }
   ],
-  "unchanged_head_gate": "pass_local_exact_content_head_6bb775321f93fe97dff5a90a3c3bdca42f42edfb; receipt finalization and remote unchanged-head gates remain pending",
+  "unchanged_head_gate": "pass_local_exact_content_head_7036ffa8491baf9fed560eb234763e3cac437686; receipt finalization and remote unchanged-head gates remain pending",
   "required_ci": "pending_at_receipt_finalization",
   "normal_merge": "pending_at_receipt_finalization",
   "runtime_activation_authorized": false,
+  "research_execution_authorized": false,
   "source_ingestion_authorized": false,
   "substantive_doctrine_implementation_authorized": false,
   "completed_doctrine_corpus": false,
   "qualified_theological_authority_granted": false,
   "mutation_performed_by_validation": false,
-  "observed_at": "2026-08-27T01:49:25.4188613Z",
-  "receipt_digest": "sha256:35e046eae2b684c2196bb44dc299e0a8e0882a399738360f25f98156821f2d57"
+  "observed_at": "2026-08-28T17:17:17.7291269Z",
+  "receipt_digest": "sha256:ad1bfb3852e5b271ddf27131c546f08953a22726fd79f19a363b47159a6f4b47"
 }
