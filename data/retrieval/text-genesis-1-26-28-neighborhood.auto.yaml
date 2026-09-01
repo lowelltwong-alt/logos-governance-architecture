@@ -9,7 +9,7 @@ neighborhood_type: passage
 review_status: unreviewed
 trust_filter: canonical,proposed,tradition-scoped
 freshness:
-  generated_at: 2026-07-06T13:43:57Z
+  generated_at: 2026-09-01T10:40:14Z
   stale_after_days: 30
 included_objects:
   - application.ai_governance.genesis_anthropology_constraints
